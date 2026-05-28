@@ -2,15 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { units } from '../data/mockData';
 import { useUser, isLessonUnlocked, isLessonCompleted, getNextLesson } from '../data/userStore';
 import LessonNode from '../components/LessonNode';
-import BottomNav from '../components/BottomNav';
 import DuolingoOwl from '../components/DuolingoOwl';
 import './LearnPage.css';
-
-const levelIcons = {
-  easy: '⭐',
-  medium: '🔥',
-  hard: '👑',
-};
 
 const levelLabels = {
   easy: 'Easy',
@@ -38,13 +31,14 @@ export default function LearnPage() {
             >
               <div className="learn-unit-header-content">
                 <div>
-                  <h2 className="learn-unit-title">Unit {unit.id}</h2>
-                  <p className="learn-unit-desc">{unit.description}</p>
+                  <div className="learn-unit-section">{unit.section}</div>
+                  <h2 className="learn-unit-title">{unit.title}</h2>
                 </div>
-                <div className="learn-unit-guide-btn">
+                <div className="learn-unit-guide-btn" title="Guidebook">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
                     <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/>
                   </svg>
+                  <span className="learn-unit-guide-label">GUIDEBOOK</span>
                 </div>
               </div>
             </div>
@@ -74,6 +68,9 @@ export default function LearnPage() {
                       index={unitIndex * 3 + levelIndex}
                       onClick={() => navigate(`/quiz/${unit.id}/${level.id}`)}
                     />
+                    {isNext && (
+                      <span className="learn-path-open-badge">OPEN</span>
+                    )}
                     <span className={`learn-path-label ${status === 'locked' ? 'locked' : ''}`}>
                       {levelLabels[level.id]}
                     </span>
@@ -88,6 +85,16 @@ export default function LearnPage() {
                 </div>
               )}
             </div>
+
+            {/* Jump here button between units */}
+            {unitIndex < units.length - 1 && (
+              <div className="learn-jump-here">
+                <div className="learn-jump-divider">
+                  <span className="learn-jump-text">{units[unitIndex + 1].title}</span>
+                </div>
+                <button className="learn-jump-btn">JUMP HERE?</button>
+              </div>
+            )}
           </div>
         ))}
 
@@ -100,8 +107,6 @@ export default function LearnPage() {
           </div>
         )}
       </div>
-
-      <BottomNav />
     </div>
   );
 }

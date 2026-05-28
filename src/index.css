@@ -83,14 +83,27 @@ body {
 
 /* ===== App Container ===== */
 .app-container {
-  max-width: var(--max-width);
   width: 100%;
-  margin: 0 auto;
   min-height: 100vh;
   min-height: 100dvh;
   position: relative;
   display: flex;
   flex-direction: column;
+}
+
+/* Mobile: constrain to max-width */
+@media (max-width: 1023px) {
+  .app-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+}
+
+/* Desktop: full width */
+@media (min-width: 1024px) {
+  .app-container {
+    max-width: 100%;
+  }
 }
 
 /* ===== Typography ===== */

@@ -1,0 +1,70 @@
+.desktop-layout {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Main content area */
+.desktop-main {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.desktop-main-content {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Mobile-only helper */
+.mobile-only {
+  display: block;
+}
+
+/* Desktop layout */
+@media (min-width: 1024px) {
+  .desktop-layout {
+    display: grid;
+    grid-template-columns: 230px 1fr 360px;
+  }
+
+  .desktop-main {
+    grid-column: 2;
+    padding: 0;
+  }
+
+  .desktop-main-content {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 24px 32px;
+    padding-bottom: 40px;
+  }
+
+  .mobile-only {
+    display: none !important;
+  }
+}
+
+/* Narrower desktop */
+@media (max-width: 1280px) and (min-width: 1024px) {
+  .desktop-layout {
+    grid-template-columns: 230px 1fr 300px;
+  }
+}
+
+/* No right sidebar variant */
+.desktop-layout:not(:has(.right-sidebar)) {
+  grid-template-columns: 230px 1fr;
+}
+
+@media (max-width: 1023px) {
+  .desktop-layout {
+    display: block;
+  }
+
+  .desktop-main-content {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0;
+    padding-bottom: 80px; /* space for bottom nav */
+  }
+}

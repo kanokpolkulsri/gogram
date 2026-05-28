@@ -96,6 +96,27 @@ function userReducer(state, action) {
       break;
     }
 
+    case 'ADD_GEMS': {
+      newState = {
+        ...state,
+        gems: (state.gems || 0) + (action.amount || 0),
+      };
+      break;
+    }
+
+    case 'SPEND_GEMS': {
+      const cost = action.amount || 0;
+      if ((state.gems || 0) < cost) {
+        newState = state;
+        break;
+      }
+      newState = {
+        ...state,
+        gems: (state.gems || 0) - cost,
+      };
+      break;
+    }
+
     case 'RESET_PROGRESS': {
       newState = { ...initialUser };
       break;

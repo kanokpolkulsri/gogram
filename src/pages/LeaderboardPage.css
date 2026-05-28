@@ -1,39 +1,79 @@
 .leaderboard-page {
+  animation: fadeIn var(--transition-normal) ease;
+}
+
+/* League header */
+.leaderboard-league-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.leaderboard-league-icon {
+  margin-bottom: 8px;
+}
+
+.leaderboard-league-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.leaderboard-league-sub {
+  font-size: 14px;
+  color: var(--color-text-light);
+}
+
+/* Leagues strip */
+.leaderboard-leagues-strip {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 4px 0 16px;
+  margin-bottom: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.leaderboard-leagues-strip::-webkit-scrollbar {
+  height: 0;
+}
+
+.league-chip {
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-text-light);
+  background: var(--color-gray-light);
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.league-chip.active {
+  background: var(--color-yellow-bg);
+  color: var(--color-yellow-dark);
+  border: 2px solid var(--color-yellow);
+}
+
+/* List */
+.leaderboard-list {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  min-height: 100dvh;
-  padding: 0 0 80px;
-}
-
-.leaderboard-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 24px 20px 20px;
-  border-bottom: 2px solid var(--color-gray);
-}
-
-.leaderboard-header h2 {
-  font-size: 24px;
-  font-weight: 800;
-  color: var(--color-purple);
-}
-
-.leaderboard-list {
-  padding: 8px 16px;
+  gap: 4px;
+  margin-bottom: 20px;
 }
 
 .leaderboard-row {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 14px 16px;
-  border-bottom: 1px solid var(--color-gray-light);
-  animation: fadeInUp 0.4s ease backwards;
-  border-radius: var(--border-radius-sm);
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  animation: fadeInUp 0.3s ease forwards;
+  opacity: 0;
   transition: background var(--transition-fast);
+  position: relative;
 }
 
 .leaderboard-row:hover {
@@ -41,20 +81,26 @@
 }
 
 .leaderboard-row-you {
-  background: var(--color-green-bg-light);
-  border-radius: var(--border-radius-sm);
+  background: var(--color-blue-bg) !important;
+  border: 2px solid var(--color-blue);
+  border-radius: 12px;
 }
 
-.leaderboard-row-you:hover {
-  background: var(--color-green-bg);
+.leaderboard-row.promotion {
+  border-left: 3px solid var(--color-green);
+}
+
+.leaderboard-row.demotion {
+  border-left: 3px solid var(--color-red);
 }
 
 .leaderboard-rank {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--color-text);
   width: 32px;
   text-align: center;
-  font-size: 18px;
-  font-weight: 800;
-  color: var(--color-text-light);
+  flex-shrink: 0;
 }
 
 .leaderboard-avatar {
@@ -64,28 +110,92 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  font-size: 14px;
   font-weight: 800;
-  font-size: 16px;
+  color: white;
   flex-shrink: 0;
 }
 
-.leaderboard-name {
+.leaderboard-user-info {
   flex: 1;
-  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.leaderboard-name {
+  font-size: 15px;
   font-weight: 700;
   color: var(--color-text);
 }
 
-.leaderboard-xp {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--color-text-light);
-  display: flex;
-  align-items: center;
-  gap: 4px;
+.leaderboard-country {
+  font-size: 16px;
 }
 
-.leaderboard-xp-icon {
+.leaderboard-xp {
   font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-light);
+  flex-shrink: 0;
+}
+
+.leaderboard-zone-badge {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.promotion-badge {
+  color: var(--color-green);
+}
+
+.demotion-badge {
+  color: var(--color-red);
+}
+
+/* Legend */
+.leaderboard-legend {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  padding: 16px 0;
+}
+
+.leaderboard-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-light);
+}
+
+.leaderboard-legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.promotion-dot {
+  background: var(--color-green);
+}
+
+.demotion-dot {
+  background: var(--color-red);
+}
+
+@media (max-width: 1023px) {
+  .leaderboard-page {
+    padding: 16px;
+  }
 }

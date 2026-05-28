@@ -1,13 +1,25 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { UserProvider } from './data/userStore';
+import DesktopLayout from './components/DesktopLayout';
 import LandingPage from './pages/LandingPage';
 import LearnPage from './pages/LearnPage';
+import LettersPage from './pages/LettersPage';
+import PracticePage from './pages/PracticePage';
+import LeaderboardPage from './pages/LeaderboardPage';
+import QuestsPage from './pages/QuestsPage';
+import ShopPage from './pages/ShopPage';
+import ProfilePage from './pages/ProfilePage';
 import QuizPage from './pages/QuizPage';
 import LessonCompletePage from './pages/LessonCompletePage';
 import StreakPage from './pages/StreakPage';
-import PracticePage from './pages/PracticePage';
-import LeaderboardPage from './pages/LeaderboardPage';
-import ProfilePage from './pages/ProfilePage';
+
+function DesktopPage({ children, showRightSidebar = true }) {
+  return (
+    <DesktopLayout showRightSidebar={showRightSidebar}>
+      {children}
+    </DesktopLayout>
+  );
+}
 
 function App() {
   return (
@@ -15,14 +27,20 @@ function App() {
       <BrowserRouter>
         <div className="app-container">
           <Routes>
+            {/* Full-screen pages (no sidebar) */}
             <Route path="/" element={<LandingPage />} />
-            <Route path="/learn" element={<LearnPage />} />
             <Route path="/quiz/:unitId/:levelId" element={<QuizPage />} />
             <Route path="/lesson-complete" element={<LessonCompletePage />} />
             <Route path="/streak" element={<StreakPage />} />
-            <Route path="/practice" element={<PracticePage />} />
-            <Route path="/leaderboard" element={<LeaderboardPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
+
+            {/* Desktop layout pages */}
+            <Route path="/learn" element={<DesktopPage><LearnPage /></DesktopPage>} />
+            <Route path="/letters" element={<DesktopPage><LettersPage /></DesktopPage>} />
+            <Route path="/practice" element={<DesktopPage><PracticePage /></DesktopPage>} />
+            <Route path="/leaderboard" element={<DesktopPage showRightSidebar={false}><LeaderboardPage /></DesktopPage>} />
+            <Route path="/quests" element={<DesktopPage showRightSidebar={false}><QuestsPage /></DesktopPage>} />
+            <Route path="/shop" element={<DesktopPage showRightSidebar={false}><ShopPage /></DesktopPage>} />
+            <Route path="/profile" element={<DesktopPage showRightSidebar={false}><ProfilePage /></DesktopPage>} />
           </Routes>
         </div>
       </BrowserRouter>
