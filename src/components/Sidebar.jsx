@@ -9,9 +9,12 @@ const sidebarTabs = [
     label: 'LEARN',
     path: '/learn',
     icon: (
-      <svg width="32" height="32" viewBox="0 0 46 46" fill="none">
-        <path d="M23 5L8 14V32L23 41L38 32V14L23 5Z" fill="currentColor"/>
-        <path d="M23 5L8 14L23 23L38 14L23 5Z" fill="currentColor" opacity="0.8"/>
+      <svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 6L6 20H42L24 6Z" fill="#FF4B4B" />
+        <path d="M24 6L24 20H42L24 6Z" fill="#EA2C2C" opacity="0.15" />
+        <path d="M9 20V40C9 41.1 9.9 42 11 42H37C38.1 42 39 41.1 39 40V20H9Z" fill="#FFC800" />
+        <path d="M20 30V42H28V30H20Z" fill="#FF4B4B" />
+        <circle cx="22" cy="36" r="1.5" fill="#FFFFFF" />
       </svg>
     ),
   },
@@ -20,8 +23,8 @@ const sidebarTabs = [
     label: 'LETTERS',
     path: '/letters',
     icon: (
-      <svg width="32" height="32" viewBox="0 0 46 46" fill="none">
-        <text x="10" y="33" fontFamily="Nunito, sans-serif" fontSize="28" fontWeight="800" fill="currentColor">字</text>
+      <svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="24" y="36" textAnchor="middle" fontFamily="Nunito, sans-serif" fontSize="34" fontWeight="900" fill="#1CB0F6">あ</text>
       </svg>
     ),
   },
@@ -30,8 +33,14 @@ const sidebarTabs = [
     label: 'PRACTICE',
     path: '/practice',
     icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-        <path d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0014.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8H4.69c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z" fill="currentColor"/>
+      <svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g transform="rotate(-45 24 24)">
+          <rect x="10" y="21" width="28" height="6" rx="3" fill="#1CB0F6" />
+          <rect x="6" y="14" width="6" height="20" rx="3" fill="#0092DF" />
+          <rect x="2" y="10" width="4" height="28" rx="2" fill="#1CB0F6" />
+          <rect x="36" y="14" width="6" height="20" rx="3" fill="#0092DF" />
+          <rect x="42" y="10" width="4" height="28" rx="2" fill="#1CB0F6" />
+        </g>
       </svg>
     ),
   },
@@ -40,8 +49,10 @@ const sidebarTabs = [
     label: 'LEADERBOARDS',
     path: '/leaderboard',
     icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-        <path d="M7.5 21H2V9h5.5v12zm7.25-18h-5.5v18h5.5V3zM22 11h-5.5v10H22V11z" fill="currentColor"/>
+      <svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 4L8 8V22C8 32.4 14.8 42.1 24 44C33.2 42.1 40 32.4 40 22V8L24 4Z" fill="#FFC800" />
+        <path d="M24 4L24 44C33.2 42.1 40 32.4 40 22V8L24 4Z" fill="#FF9600" opacity="0.15" />
+        <path d="M24 10L14 12V22C14 29 18.2 35.5 24 38V10Z" fill="#FFE57F" opacity="0.4" />
       </svg>
     ),
   },
@@ -50,8 +61,14 @@ const sidebarTabs = [
     label: 'QUESTS',
     path: '/quests',
     icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-        <path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z" fill="currentColor"/>
+      <svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="6" y="18" width="36" height="24" rx="4" fill="#C67600" />
+        <rect x="6" y="18" width="36" height="24" rx="4" fill="#A05A00" clipPath="polygon(50% 0, 100% 0, 100% 100%, 50% 100%)" />
+        <path d="M6 18H42V14C42 10.7 39.3 8 36 8H12C8.7 8 6 10.7 6 14V18Z" fill="#FFB300" />
+        <rect x="20" y="15" width="8" height="8" rx="2" fill="#E5A93C" stroke="#A05A00" strokeWidth="2" />
+        <circle cx="24" cy="19" r="1.5" fill="#333" />
+        <rect x="10" y="8" width="4" height="34" fill="#FFC800" opacity="0.7" />
+        <rect x="34" y="8" width="4" height="34" fill="#FFC800" opacity="0.7" />
       </svg>
     ),
   },
@@ -60,8 +77,14 @@ const sidebarTabs = [
     label: 'SHOP',
     path: '/shop',
     icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-        <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" fill="currentColor"/>
+      <svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="6" y="18" width="36" height="24" rx="4" fill="#C67600" />
+        <rect x="6" y="18" width="36" height="24" rx="4" fill="#A05A00" clipPath="polygon(50% 0, 100% 0, 100% 100%, 50% 100%)" />
+        <path d="M6 18H42V14C42 10.7 39.3 8 36 8H12C8.7 8 6 10.7 6 14V18Z" fill="#FFB300" />
+        <rect x="20" y="15" width="8" height="8" rx="2" fill="#E5A93C" stroke="#A05A00" strokeWidth="2" />
+        <circle cx="24" cy="19" r="1.5" fill="#333" />
+        <rect x="10" y="8" width="4" height="34" fill="#FFC800" opacity="0.7" />
+        <rect x="34" y="8" width="4" height="34" fill="#FFC800" opacity="0.7" />
       </svg>
     ),
   },
@@ -70,8 +93,14 @@ const sidebarTabs = [
     label: 'PROFILE',
     path: '/profile',
     icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="currentColor"/>
+      <svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="18" fill="#CE82FF" />
+        <circle cx="24" cy="25" r="13" fill="#FFD0A1" />
+        <path d="M11 25C11 17.8 16.8 12 24 12C31.2 12 37 17.8 37 25H11Z" fill="#CE82FF" />
+        <path d="M24 12C20 12 16 15 15 19C17 18 20 19 22 21C23 18 26 16 29 17C28 14 26 12 24 12Z" fill="#B566E6" opacity="0.3" />
+        <path d="M18 25Q20 27 22 25" stroke="#4B4B4B" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+        <path d="M26 25Q28 27 30 25" stroke="#4B4B4B" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+        <path d="M21 30Q24 33 27 30" stroke="#FF4B4B" strokeWidth="2.5" strokeLinecap="round" fill="none" />
       </svg>
     ),
   },
@@ -81,11 +110,12 @@ const sidebarTabs = [
     path: null,
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-        <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="currentColor"/>
+        <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="#4B4B4B" />
       </svg>
     ),
   },
 ];
+
 
 export default function Sidebar() {
   const location = useLocation();

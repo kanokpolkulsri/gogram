@@ -25,6 +25,9 @@
   .desktop-layout {
     display: grid;
     grid-template-columns: 230px 1fr 360px;
+    max-width: 1440px;
+    margin: 0 auto;
+    width: 100%;
   }
 
   .desktop-main {
@@ -42,6 +45,12 @@
   .mobile-only {
     display: none !important;
   }
+
+  /* No right sidebar variant */
+  .desktop-layout:not(:has(.right-sidebar)) {
+    grid-template-columns: 230px 1fr;
+    max-width: 1080px;
+  }
 }
 
 /* Narrower desktop */
@@ -49,11 +58,6 @@
   .desktop-layout {
     grid-template-columns: 230px 1fr 300px;
   }
-}
-
-/* No right sidebar variant */
-.desktop-layout:not(:has(.right-sidebar)) {
-  grid-template-columns: 230px 1fr;
 }
 
 @media (max-width: 1023px) {
@@ -65,6 +69,7 @@
     max-width: var(--max-width);
     margin: 0 auto;
     padding: 0;
+    padding-top: 50px; /* space for fixed top header */
     padding-bottom: 80px; /* space for bottom nav */
   }
 }

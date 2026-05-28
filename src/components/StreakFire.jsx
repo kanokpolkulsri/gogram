@@ -1,6 +1,6 @@
 import './StreakFire.css';
 
-export default function StreakFire({ size = 64 }) {
+export default function StreakFire({ size = 64, active = true }) {
   return (
     <div className="streak-fire" style={{ width: size, height: size }}>
       <svg viewBox="0 0 64 64" width={size} height={size} className="streak-fire-svg">
@@ -18,17 +18,25 @@ export default function StreakFire({ size = 64 }) {
         {/* Outer flame */}
         <path
           d="M32 4C32 4 14 22 14 38C14 48.5 22 56 32 58C42 56 50 48.5 50 38C50 22 32 4 32 4Z"
-          fill="url(#fireGradient)"
+          fill={active ? "url(#fireGradient)" : "#E5E5E5"}
           className="flame-outer"
         />
         {/* Inner flame */}
         <path
           d="M32 20C32 20 22 32 22 40C22 46 26.5 50 32 52C37.5 50 42 46 42 40C42 32 32 20 32 20Z"
-          fill="url(#fireInnerGradient)"
+          fill={active ? "url(#fireInnerGradient)" : "#AFAFAF"}
           className="flame-inner"
         />
         {/* Core glow */}
-        <ellipse cx="32" cy="46" rx="6" ry="8" fill="#FFC800" opacity="0.8" className="flame-core" />
+        <ellipse 
+          cx="32" 
+          cy="46" 
+          rx="6" 
+          ry="8" 
+          fill={active ? "#FFC800" : "#CCCCCC"} 
+          opacity="0.8" 
+          className="flame-core" 
+        />
       </svg>
     </div>
   );

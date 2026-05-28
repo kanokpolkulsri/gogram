@@ -3,6 +3,42 @@ import { dailyQuests, leagueData } from '../data/mockData';
 import StreakFire from './StreakFire';
 import './RightSidebar.css';
 
+const FrenchFlagIcon = ({ size = 24 }) => (
+  <svg 
+    width={size} 
+    height={size * 0.75} 
+    viewBox="0 0 24 18" 
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg" 
+    style={{ 
+      display: 'inline-block', 
+      verticalAlign: 'middle', 
+      borderRadius: '4px', 
+      boxShadow: '0 2px 0 #E5E5E5', 
+      border: '1px solid #E5E5E5' 
+    }}
+  >
+    <rect x="0" y="0" width="8" height="18" fill="#002695" />
+    <rect x="8" y="0" width="8" height="18" fill="#FFFFFF" />
+    <rect x="16" y="0" width="8" height="18" fill="#ED2939" />
+  </svg>
+);
+
+const GemIcon = ({ size = 20 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M12 2L19 7L12 12L5 7L12 2Z" fill="#00CDFF" />
+    <path d="M12 12L19 7V17L12 22V12Z" fill="#0079FF" opacity="0.85" />
+    <path d="M5 7L12 12V22L5 17V7Z" fill="#00A2FF" opacity="0.95" />
+    <path d="M12 2L12 12L5 7L12 2Z" fill="#84E7FF" opacity="0.6" />
+  </svg>
+);
+
+const HeartIcon = ({ size = 18 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#FF4B4B" />
+  </svg>
+);
+
 export default function RightSidebar() {
   const user = useUser();
 
@@ -11,7 +47,9 @@ export default function RightSidebar() {
       {/* Top stats bar */}
       <div className="right-sidebar-stats" id="right-sidebar-stats">
         <div className="right-sidebar-stat" title="Language">
-          <span className="right-sidebar-flag">🇫🇷</span>
+          <span className="right-sidebar-flag">
+            <FrenchFlagIcon size={24} />
+          </span>
           <span className="right-sidebar-stat-val">{Math.floor((user.totalXP || 0) / 10)}</span>
         </div>
         <div className="right-sidebar-stat" title="Streak">
@@ -19,11 +57,15 @@ export default function RightSidebar() {
           <span className="right-sidebar-stat-val">{user.streak}</span>
         </div>
         <div className="right-sidebar-stat" title="Gems">
-          <span className="right-sidebar-gem">💎</span>
+          <span className="right-sidebar-gem">
+            <GemIcon size={18} />
+          </span>
           <span className="right-sidebar-stat-val">{user.gems || 0}</span>
         </div>
         <div className="right-sidebar-stat" title="Hearts">
-          <span className="right-sidebar-heart">❤️</span>
+          <span className="right-sidebar-heart">
+            <HeartIcon size={18} />
+          </span>
           <span className="right-sidebar-stat-val">{user.hearts}</span>
         </div>
       </div>

@@ -2,61 +2,120 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   position: relative;
+  width: 96px;
+  height: 96px;
   animation: fadeInUp 0.4s ease backwards;
 }
 
-.lesson-node-tooltip {
+/* Duolingo Progress Ring (acts as a transparent base track around the active button) */
+.lesson-node-progress-ring {
   position: absolute;
-  top: -40px;
-  background: var(--color-white);
-  color: var(--color-text);
-  font-weight: 800;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  padding: 6px 16px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-  white-space: nowrap;
-  z-index: 10;
-  animation: bounceIn 0.5s ease backwards;
-  animation-delay: 0.3s;
+  width: 94px;
+  height: 88px;
+  top: 4px;
+  left: 1px;
+  z-index: 1;
+  pointer-events: none;
 }
 
+/* Speech-Bubble Tooltip */
+.lesson-node-tooltip {
+  position: absolute;
+  top: -16px;
+  background: var(--color-white);
+  color: var(--node-color, var(--color-green));
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.8px;
+  padding: 5px 12px;
+  border-radius: 12px;
+  border: 2px solid var(--color-gray);
+  box-shadow: 0 3px 0 var(--color-gray);
+  white-space: nowrap;
+  z-index: 10;
+  animation: tooltipBounce 2s ease-in-out infinite;
+}
+
+/* Tooltip Downward Pointer Triangle */
 .lesson-node-tooltip::after {
   content: '';
   position: absolute;
   bottom: -6px;
   left: 50%;
-  transform: translateX(-50%);
-  width: 12px;
-  height: 12px;
-  background: var(--color-white);
-  border-radius: 2px;
   transform: translateX(-50%) rotate(45deg);
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+  width: 8px;
+  height: 8px;
+  background: var(--color-white);
+  border-right: 2px solid var(--color-gray);
+  border-bottom: 2px solid var(--color-gray);
 }
 
+@keyframes tooltipBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* The circular lesson button (exactly styled with Duolingo's tilted-ellipse path dimensions) */
 .lesson-node {
-  width: 70px;
-  height: 70px;
+  position: absolute;
+  width: 64px;
+  height: 60px;
+  top: 16px; /* optically shifted by 2px upwards to balance visual weight of 4.5px bottom shadow */
+  left: 16px;
   border-radius: 50%;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  transition: all var(--transition-fast);
+  transition: transform 0.1s cubic-bezier(0.3, 0, 0, 1), box-shadow 0.1s ease, background-color var(--transition-fast);
   -webkit-tap-highlight-color: transparent;
   outline: none;
   padding: 0;
+  z-index: 2; /* Sits on top of the progress ring track */
 }
 
+/* 3D solid thickness rim rendered as a box-shadow (keeps button perfectly centered in progress ring) */
+.lesson-node-active {
+  background: var(--node-color, var(--color-green)) !important;
+  box-shadow: 0 4.5px 0 var(--node-color-dark, var(--color-green-dark)) !important;
+}
+
+.lesson-node-completed {
+  background: var(--node-color, var(--color-green)) !important;
+  box-shadow: 0 4.5px 0 var(--node-color-dark, var(--color-green-dark)) !important;
+}
+
+.lesson-node-locked {
+  background: #E5E5E5 !important;
+  box-shadow: 0 4.5px 0 #AFAFAF !important;
+  cursor: not-allowed;
+}
+
+/* Tactile press down state (shifts container down and compresses shadow) */
 .lesson-node:active:not(:disabled) {
-  transform: translateY(4px);
+  transform: translateY(3px);
 }
 
+.lesson-node-active:active:not(:disabled) {
+  box-shadow: 0 1.5px 0 var(--node-color-dark, var(--color-green-dark)) !important;
+}
+
+.lesson-node-completed:active:not(:disabled) {
+  box-shadow: 0 1.5px 0 var(--node-color-dark, var(--color-green-dark)) !important;
+}
+
+.lesson-node-completed:hover {
+  filter: brightness(1.05);
+}
+
+/* Inner face styling for depth styling */
 .lesson-node-inner {
   display: flex;
   align-items: center;
@@ -64,54 +123,9 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-}
-
-/* Active state */
-.lesson-node-active {
-  background: var(--node-color, var(--color-green));
-  box-shadow: 0 6px 0 var(--color-green-dark), 0 0 0 4px rgba(88, 204, 2, 0.2);
-  animation: glow 2s ease-in-out infinite;
-}
-
-.lesson-node-active:active {
-  box-shadow: 0 2px 0 var(--color-green-dark);
-}
-
-.lesson-node-active .lesson-node-inner {
-  background: var(--node-color, var(--color-green));
-}
-
-/* Completed state */
-.lesson-node-completed {
-  background: var(--node-color, var(--color-green));
-  box-shadow: 0 6px 0 var(--color-green-dark);
-}
-
-.lesson-node-completed:hover {
-  filter: brightness(1.05);
-}
-
-.lesson-node-completed .lesson-node-inner {
-  background: var(--node-color, var(--color-green));
-}
-
-/* Locked state */
-.lesson-node-locked {
-  background: var(--color-gray);
-  box-shadow: 0 6px 0 #CCCCCC;
-  cursor: not-allowed;
+  box-shadow: inset 0 -3.5px 0 rgba(0, 0, 0, 0.15); /* inner shadow for rounded volume */
 }
 
 .lesson-node-locked .lesson-node-inner {
-  background: var(--color-gray);
-}
-
-/* Crown ring for completed */
-.lesson-node-completed::before {
-  content: '';
-  position: absolute;
-  inset: -5px;
-  border-radius: 50%;
-  border: 3px solid var(--color-yellow);
-  opacity: 0.6;
+  box-shadow: inset 0 -3.5px 0 rgba(0, 0, 0, 0.08);
 }

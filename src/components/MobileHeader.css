@@ -1,0 +1,116 @@
+.mobile-header {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--max-width);
+  height: 56px; /* increased to fit 32px icons beautifully */
+  background: var(--color-white);
+  /* border-bottom removed by user request */
+  display: flex !important; /* Force display: flex to override .mobile-only block layout */
+  align-items: center;
+  z-index: 999;
+  padding: 0 16px;
+  transition: background-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.mobile-header-stats {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%; /* Fill header height to allow vertical centering */
+}
+
+.mobile-header-stat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Fill stats height to center children perfectly */
+  gap: 8px; /* space between icon and value text */
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+}
+
+.mobile-header-stat:hover {
+  opacity: 0.8;
+}
+
+.mobile-header-flag,
+.mobile-header-gem,
+.mobile-header-heart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.mobile-header-stat-val {
+  font-size: 15px;
+  font-weight: 800;
+  color: #777777; /* warm bold gray value matching Duolingo */
+  font-family: var(--font-family);
+  line-height: 1;
+}
+
+/* Scroll-activated unit info header display */
+.mobile-header-unit-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 0 8px;
+  color: var(--color-white);
+}
+
+.mobile-header-unit-guide-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.mobile-header-unit-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.mobile-header-unit-section {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.mobile-header-unit-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--color-white);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 340px; /* Prevent long titles from clipping mobile boundary */
+}
+
+/* Ensure StreakFire is perfectly centered and static in stats bars */
+.mobile-header-stats .streak-fire,
+.right-sidebar-stats .streak-fire {
+  animation: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Ensure mobile header is hidden on desktop */
+@media (min-width: 1024px) {
+  .mobile-header {
+    display: none !important;
+  }
+}

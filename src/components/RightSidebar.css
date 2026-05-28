@@ -292,6 +292,16 @@
   border-radius: 2px;
 }
 
+/* Desktop positioning */
+@media (min-width: 1024px) {
+  .right-sidebar {
+    position: sticky;
+    top: 0;
+    right: auto;
+    border-left: 2px solid var(--color-gray);
+  }
+}
+
 /* Hide on mobile */
 @media (max-width: 1023px) {
   .right-sidebar {

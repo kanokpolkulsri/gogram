@@ -5,12 +5,6 @@ import LessonNode from '../components/LessonNode';
 import DuolingoOwl from '../components/DuolingoOwl';
 import './LearnPage.css';
 
-const levelLabels = {
-  easy: 'Easy',
-  medium: 'Medium',
-  hard: 'Hard',
-};
-
 // Snake path offsets: zigzag pattern
 const snakeOffsets = [0, -60, 60];
 
@@ -66,24 +60,12 @@ export default function LearnPage() {
                       label={`${unit.id}-${level.id}`}
                       color={unit.color}
                       index={unitIndex * 3 + levelIndex}
+                      icon={level.icon}
                       onClick={() => navigate(`/quiz/${unit.id}/${level.id}`)}
                     />
-                    {isNext && (
-                      <span className="learn-path-open-badge">OPEN</span>
-                    )}
-                    <span className={`learn-path-label ${status === 'locked' ? 'locked' : ''}`}>
-                      {levelLabels[level.id]}
-                    </span>
                   </div>
                 );
               })}
-
-              {/* Decorative owl between units */}
-              {unitIndex === 0 && (
-                <div className="learn-path-owl">
-                  <DuolingoOwl size={60} />
-                </div>
-              )}
             </div>
 
             {/* Jump here button between units */}
@@ -101,7 +83,6 @@ export default function LearnPage() {
         {/* All done message if completed everything */}
         {!nextLesson && (
           <div className="learn-complete-message">
-            <DuolingoOwl size={100} />
             <h3>🎉 All lessons completed!</h3>
             <p>You&apos;re amazing! More lessons coming soon.</p>
           </div>

@@ -10,20 +10,22 @@
   align-items: center;
   background: var(--color-white);
   border-top: 2px solid var(--color-gray);
-  padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+  padding: 10px 0 max(10px, env(safe-area-inset-bottom));
   z-index: 1000;
+  height: 64px;
 }
 
 .bottom-nav-tab {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  justify-content: center;
   text-decoration: none;
-  color: var(--color-gray-medium);
-  padding: 4px 12px;
-  border-radius: var(--border-radius-xs);
-  transition: color var(--transition-fast);
+  color: #3C3C3C;
+  width: 50px;
+  height: 50px;
+  border-radius: var(--border-radius-sm);
+  transition: all var(--transition-fast);
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -39,17 +41,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
+  transition: all var(--transition-fast);
 }
 
+/* Active frame styling matching Duolingo screenshot */
 .bottom-nav-tab.active .bottom-nav-icon {
   background: var(--color-blue-bg);
-  border-radius: 8px;
+  border: 2px solid #84D8FF;
+  border-radius: 12px;
+  color: var(--color-blue);
 }
 
+/* Hide labels to keep bottom nav icon-only on mobile */
 .bottom-nav-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.3px;
+  display: none !important;
 }

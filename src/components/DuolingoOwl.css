@@ -1,0 +1,116 @@
+/* Interactive Classic Green Owl Mascot Container */
+.duolingo-owl-container {
+  display: inline-block;
+  cursor: pointer;
+  transform-origin: center bottom;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.duolingo-owl-container:hover {
+  transform: scale(1.08);
+}
+
+.duolingo-owl-container:active {
+  transform: scale(0.95);
+}
+
+/* 1. Backflip Animation */
+.animate-backflip {
+  animation: backflip 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes backflip {
+  0% {
+    transform: translateY(0) rotate(0deg) scaleY(1);
+  }
+  15% {
+    /* Anticipation compression */
+    transform: translateY(8px) rotate(-8deg) scaleY(0.8);
+  }
+  50% {
+    /* Peak height and half-rotation */
+    transform: translateY(-90px) rotate(180deg) scaleY(1.05) scaleX(0.95);
+  }
+  80% {
+    /* Landing compression */
+    transform: translateY(8px) rotate(360deg) scaleY(0.8);
+  }
+  100% {
+    /* Settles back to normal */
+    transform: translateY(0) rotate(360deg) scaleY(1);
+  }
+}
+
+/* 2. Turnaround Animation (Spin) */
+.animate-turnaround {
+  animation: turnaround 0.7s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards;
+}
+
+@keyframes turnaround {
+  0% {
+    transform: scaleX(1) scaleY(1) rotate(0);
+  }
+  25% {
+    transform: scaleX(0.1) scaleY(1.05) skewY(6deg);
+  }
+  50% {
+    transform: scaleX(-1) scaleY(1) rotate(0);
+  }
+  75% {
+    transform: scaleX(-0.1) scaleY(1.05) skewY(-6deg);
+  }
+  100% {
+    transform: scaleX(1) scaleY(1) rotate(0);
+  }
+}
+
+/* 3. Micro-animations inside the SVG */
+
+/* Eye blink */
+.owl-eye-white-left {
+  transform-origin: 85px 75px;
+  animation: blink 4s infinite;
+}
+
+.owl-eye-white-right {
+  transform-origin: 115px 75px;
+  animation: blink 4s infinite;
+}
+
+@keyframes blink {
+  0%, 96%, 100% {
+    transform: scaleY(1);
+  }
+  98% {
+    transform: scaleY(0.08); /* Squish down to look like a blink */
+  }
+}
+
+/* Wing bobbing (idle breathing movement) */
+.owl-left-wing {
+  transform-origin: 48px 120px;
+  animation: wing-bob-left 3s ease-in-out infinite;
+}
+
+.owl-right-wing {
+  transform-origin: 152px 120px;
+  animation: wing-bob-right 3s ease-in-out infinite;
+}
+
+@keyframes wing-bob-left {
+  0%, 100% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(17deg);
+  }
+}
+
+@keyframes wing-bob-right {
+  0%, 100% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(-17deg);
+  }
+}

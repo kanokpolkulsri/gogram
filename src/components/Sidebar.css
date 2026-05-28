@@ -205,6 +205,15 @@
   width: 100%;
 }
 
+/* Desktop positioning */
+@media (min-width: 1024px) {
+  .sidebar {
+    position: sticky;
+    top: 0;
+    left: auto;
+  }
+}
+
 /* Hide on mobile */
 @media (max-width: 1023px) {
   .sidebar {

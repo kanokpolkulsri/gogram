@@ -1,12 +1,15 @@
 import Sidebar from './Sidebar';
 import RightSidebar from './RightSidebar';
 import BottomNav from './BottomNav';
+import MobileHeader from './MobileHeader';
 import './DesktopLayout.css';
 
 export default function DesktopLayout({ children, showRightSidebar = true }) {
   return (
     <div className="desktop-layout" id="desktop-layout">
       <Sidebar />
+      {/* Mobile Top Header - rendered only on smaller screens */}
+      <MobileHeader />
       <main className="desktop-main">
         <div className="desktop-main-content">
           {children}

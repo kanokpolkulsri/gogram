@@ -9,7 +9,7 @@
 /* Unit Header */
 .learn-unit-header {
   border-radius: 16px;
-  padding: 16px 20px;
+  padding: 16px 16px !important;
   margin-bottom: 24px;
 }
 
@@ -17,6 +17,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 !important; /* Explicitly removed all padding inside content wrapper */
 }
 
 .learn-unit-section {
@@ -63,6 +64,7 @@
   align-items: center;
   gap: 12px;
   padding: 8px 0 24px;
+  position: relative;
 }
 
 .learn-path-node {
@@ -71,17 +73,6 @@
   align-items: center;
   gap: 4px;
   position: relative;
-}
-
-.learn-path-label {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--color-text-light);
-  letter-spacing: 0.3px;
-}
-
-.learn-path-label.locked {
-  color: var(--color-gray-medium);
 }
 
 .learn-path-open-badge {
@@ -102,8 +93,29 @@
 }
 
 .learn-path-owl {
-  padding: 16px 0;
-  animation: float 3s ease-in-out infinite;
+  position: absolute;
+  animation: float 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@media (min-width: 1024px) {
+  .learn-path-owl {
+    width: 140px;
+    height: 140px;
+    left: calc(50% + 80px);
+    top: 150px;
+    transform: translateY(-50%);
+  }
+}
+
+@media (max-width: 1023px) {
+  .learn-path-owl {
+    width: calc(50% - 2px);
+    height: 220px;
+    left: calc(50% - 14px);
+    top: 140px;
+    transform: translateY(-50%);
+  }
 }
 
 /* Jump here section */
@@ -182,8 +194,12 @@
   }
 
   .learn-unit-header {
-    border-radius: 0;
-    margin-bottom: 16px;
+    border-radius: 16px !important; /* Keep beautiful rounded corners on mobile */
+    margin-left: 16px !important;
+    margin-right: 16px !important;
+    margin-top: 16px !important; /* Spacing from the fixed top header */
+    margin-bottom: 16px !important;
+    padding: 16px 16px !important;
   }
 
   .learn-unit-guide-label {
