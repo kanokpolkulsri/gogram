@@ -104,8 +104,8 @@ export default function MobileHeader() {
             </svg>
           </span>
           <div className="mobile-header-unit-text-container">
-            <div className="mobile-header-unit-section">{activeUnit.subtitle.toUpperCase()}</div>
-            <div className="mobile-header-unit-title">{activeUnit.title}</div>
+            <div className="mobile-header-unit-section">{(activeUnit.section || '').toUpperCase()}</div>
+            <div className="mobile-header-unit-title">{activeUnit.title || ''}</div>
           </div>
         </div>
       )}
