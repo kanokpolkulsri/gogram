@@ -1,0 +1,91 @@
+.leaderboard-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 0 0 80px;
+}
+
+.leaderboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px 20px 20px;
+  border-bottom: 2px solid var(--color-gray);
+}
+
+.leaderboard-header h2 {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--color-purple);
+}
+
+.leaderboard-list {
+  padding: 8px 16px;
+}
+
+.leaderboard-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--color-gray-light);
+  animation: fadeInUp 0.4s ease backwards;
+  border-radius: var(--border-radius-sm);
+  transition: background var(--transition-fast);
+}
+
+.leaderboard-row:hover {
+  background: var(--color-gray-light);
+}
+
+.leaderboard-row-you {
+  background: var(--color-green-bg-light);
+  border-radius: var(--border-radius-sm);
+}
+
+.leaderboard-row-you:hover {
+  background: var(--color-green-bg);
+}
+
+.leaderboard-rank {
+  width: 32px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--color-text-light);
+}
+
+.leaderboard-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 800;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.leaderboard-name {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.leaderboard-xp {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-text-light);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.leaderboard-xp-icon {
+  font-size: 14px;
+}

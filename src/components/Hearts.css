@@ -1,0 +1,28 @@
+.hearts-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+}
+
+.hearts-icon {
+  flex-shrink: 0;
+}
+
+.hearts-count {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--color-red);
+}
+
+.hearts-empty {
+  animation: shake 0.5s ease;
+}
+
+.hearts-empty .hearts-icon {
+  opacity: 0.4;
+}
+
+.hearts-empty .hearts-count {
+  opacity: 0.4;
+}

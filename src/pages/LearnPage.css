@@ -1,0 +1,132 @@
+.learn-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--color-white);
+}
+
+.learn-scroll-area {
+  flex: 1;
+  padding-bottom: 80px;
+  overflow-y: auto;
+}
+
+/* Unit Header */
+.learn-unit-header {
+  padding: 20px 20px 24px;
+  color: white;
+}
+
+.learn-unit-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.learn-unit-title {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.learn-unit-desc {
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.learn-unit-guide-btn {
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.learn-unit-guide-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Lesson Path */
+.learn-path {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px 30px;
+  gap: 32px;
+  position: relative;
+}
+
+.learn-path::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  bottom: 30px;
+  left: 50%;
+  width: 4px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--color-gray) 0px,
+    var(--color-gray) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+  transform: translateX(-50%);
+  z-index: 0;
+  opacity: 0.5;
+}
+
+.learn-path-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 1;
+  transition: transform var(--transition-normal);
+}
+
+.learn-path-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.learn-path-label.locked {
+  color: var(--color-gray-medium);
+}
+
+/* Decorative owl */
+.learn-path-owl {
+  z-index: 1;
+  animation: float 3s ease-in-out infinite;
+  margin: 10px 0;
+}
+
+/* Complete message */
+.learn-complete-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: center;
+  gap: 12px;
+  animation: fadeInUp 0.5s ease;
+}
+
+.learn-complete-message h3 {
+  font-size: 24px;
+  color: var(--color-green);
+}
+
+.learn-complete-message p {
+  font-size: 16px;
+  color: var(--color-text-light);
+}

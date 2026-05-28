@@ -1,0 +1,109 @@
+.streak-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 24px;
+}
+
+.streak-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+/* Streak Number */
+.streak-number {
+  font-size: 100px;
+  font-weight: 900;
+  color: var(--color-orange);
+  line-height: 1;
+  animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  text-shadow: 0 4px 0 var(--color-orange-dark);
+}
+
+.streak-label {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--color-orange);
+  margin-bottom: 16px;
+  animation: fadeInUp 0.5s ease backwards;
+  animation-delay: 0.3s;
+}
+
+.streak-fire-wrapper {
+  margin-bottom: 32px;
+  animation: fadeInUp 0.5s ease backwards;
+  animation-delay: 0.5s;
+}
+
+/* Calendar */
+.streak-calendar {
+  width: 100%;
+  max-width: 360px;
+  border: 2px solid var(--color-gray);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  animation: fadeInUp 0.5s ease backwards;
+  animation-delay: 0.7s;
+}
+
+.streak-week {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 16px;
+}
+
+.streak-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.streak-day-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-gray-dark);
+}
+
+.streak-day-label.today {
+  color: var(--color-blue);
+}
+
+.streak-day-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-normal);
+}
+
+.streak-day-circle.practiced {
+  background: var(--color-green);
+}
+
+.streak-day-circle.today-circle {
+  box-shadow: 0 0 0 3px var(--color-blue-bg);
+}
+
+.streak-warning {
+  font-size: 14px;
+  color: var(--color-text-light);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* Bottom */
+.streak-bottom {
+  padding-top: 20px;
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+  animation: fadeInUp 0.5s ease backwards;
+  animation-delay: 0.9s;
+}
