@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react';
 import { useUser } from '../data/userStore';
-import { units } from '../data/mockData';
 import StreakFire from './StreakFire';
 import './MobileHeader.css';
 
@@ -42,73 +40,47 @@ const HeartIcon = ({ size = 32 }) => (
 
 export default function MobileHeader() {
   const user = useUser();
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // scroll past 80px triggers the header content/color transition
-      setIsScrolled(window.scrollY > 80);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const activeUnit = units[0]; // Primary active unit details
 
   return (
     <header 
-      className={`mobile-header mobile-only ${isScrolled ? 'scrolled' : ''}`} 
+      className="mobile-header mobile-only" 
       id="mobile-header"
       style={{
-        backgroundColor: isScrolled ? activeUnit.color : 'var(--color-white)'
+        backgroundColor: 'var(--color-white)'
       }}
     >
-      {!isScrolled ? (
-        <div className="mobile-header-stats animate-fade-in">
-          {/* Language flag & XP */}
-          <div className="mobile-header-stat" title="Language & XP">
-            <span className="mobile-header-flag">
-              <FrenchFlagIcon size={32} />
-            </span>
-            <span className="mobile-header-stat-val">{Math.floor((user.totalXP || 0) / 10)}</span>
-          </div>
-
-          {/* Streak */}
-          <div className="mobile-header-stat" title="Streak">
-            <StreakFire size={32} active={user.streak > 0} />
-            <span className="mobile-header-stat-val">{user.streak}</span>
-          </div>
-
-          {/* Gems */}
-          <div className="mobile-header-stat" title="Gems">
-            <span className="mobile-header-gem">
-              <GemIcon size={32} />
-            </span>
-            <span className="mobile-header-stat-val">{user.gems || 0}</span>
-          </div>
-
-          {/* Hearts */}
-          <div className="mobile-header-stat" title="Hearts">
-            <span className="mobile-header-heart">
-              <HeartIcon size={32} />
-            </span>
-            <span className="mobile-header-stat-val">{user.hearts}</span>
-          </div>
-        </div>
-      ) : (
-        <div className="mobile-header-unit-info animate-fade-in">
-          {/* Back button icon to match Duolingo style if scrolled */}
-          <span className="mobile-header-unit-guide-btn">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 19L8 12L15 5" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+      <div className="mobile-header-stats animate-fade-in">
+        {/* Language flag & XP */}
+        <div className="mobile-header-stat" title="Language & XP">
+          <span className="mobile-header-flag">
+            <FrenchFlagIcon size={32} />
           </span>
-          <div className="mobile-header-unit-text-container">
-            <div className="mobile-header-unit-section">{(activeUnit.section || '').toUpperCase()}</div>
-            <div className="mobile-header-unit-title">{activeUnit.title || ''}</div>
-          </div>
+          <span className="mobile-header-stat-val">{Math.floor((user.totalXP || 0) / 10)}</span>
         </div>
-      )}
+
+        {/* Streak */}
+        <div className="mobile-header-stat" title="Streak">
+          <StreakFire size={32} active={user.streak > 0} />
+          <span className="mobile-header-stat-val">{user.streak}</span>
+        </div>
+
+        {/* Gems */}
+        <div className="mobile-header-stat" title="Gems">
+          <span className="mobile-header-gem">
+            <GemIcon size={32} />
+          </span>
+          <span className="mobile-header-stat-val">{user.gems || 0}</span>
+        </div>
+
+        {/* Hearts */}
+        <div className="mobile-header-stat" title="Hearts">
+          <span className="mobile-header-heart">
+            <HeartIcon size={32} />
+          </span>
+          <span className="mobile-header-stat-val">{user.hearts}</span>
+        </div>
+      </div>
     </header>
   );
 }
+

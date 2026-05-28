@@ -194,6 +194,9 @@
   }
 
   .learn-unit-header {
+    position: sticky;
+    top: 56px; /* Right below the fixed mobile stats header */
+    z-index: 100; /* Sit above the path nodes, but below the mobile header (z-index 999) */
     border-radius: 16px !important; /* Keep beautiful rounded corners on mobile */
     margin-left: 16px !important;
     margin-right: 16px !important;
