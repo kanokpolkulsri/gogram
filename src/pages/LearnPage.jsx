@@ -2,11 +2,10 @@ import { useNavigate } from 'react-router-dom';
 import { units } from '../data/mockData';
 import { useUser, isLessonUnlocked, isLessonCompleted, getNextLesson } from '../data/userStore';
 import LessonNode from '../components/LessonNode';
-import DuolingoOwl from '../components/DuolingoOwl';
 import './LearnPage.css';
 
-// Snake path offsets: zigzag pattern
-const snakeOffsets = [0, -60, 60];
+// Snake path offsets: zigzag pattern for 5 nodes per unit
+const snakeOffsets = [0, -50, -80, -40, 10];
 
 export default function LearnPage() {
   const navigate = useNavigate();
@@ -49,6 +48,10 @@ export default function LearnPage() {
                 else if (isNext) status = 'active';
                 else if (unlocked) status = 'active';
 
+                let tooltipText = undefined;
+                if (levelIndex === 3) tooltipText = `LEVEL ${unit.id}`;
+                else if (levelIndex === 4) tooltipText = 'START';
+
                 return (
                   <div
                     key={level.id}
@@ -59,8 +62,9 @@ export default function LearnPage() {
                       status={status}
                       label={`${unit.id}-${level.id}`}
                       color={unit.color}
-                      index={unitIndex * 3 + levelIndex}
+                      index={unitIndex * 5 + levelIndex}
                       icon={level.icon}
+                      tooltipText={tooltipText}
                       onClick={() => navigate(`/quiz/${unit.id}/${level.id}`)}
                     />
                   </div>

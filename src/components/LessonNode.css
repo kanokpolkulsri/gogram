@@ -9,7 +9,7 @@
   animation: fadeInUp 0.4s ease backwards;
 }
 
-/* Duolingo Progress Ring (acts as a transparent base track around the active button) */
+/* 1. Classic Duolingo Progress Ring */
 .lesson-node-progress-ring {
   position: absolute;
   width: 94px;
@@ -20,7 +20,7 @@
   pointer-events: none;
 }
 
-/* Speech-Bubble Tooltip */
+/* Classic Speech-Bubble Tooltip */
 .lesson-node-tooltip {
   position: absolute;
   top: -16px;
@@ -38,7 +38,6 @@
   animation: tooltipBounce 2s ease-in-out infinite;
 }
 
-/* Tooltip Downward Pointer Triangle */
 .lesson-node-tooltip::after {
   content: '';
   position: absolute;
@@ -61,27 +60,27 @@
   }
 }
 
-/* The circular lesson button (exactly styled with Duolingo's tilted-ellipse path dimensions) */
+/* The circular lesson button (70px by 65px as requested) */
 .lesson-node {
   position: absolute;
-  width: 64px;
-  height: 60px;
-  top: 16px; /* optically shifted by 2px upwards to balance visual weight of 4.5px bottom shadow */
-  left: 16px;
+  width: 70px;
+  height: 65px;
+  top: 13.5px; /* optically shifted by 2px upwards to balance visual weight of 4.5px bottom shadow */
+  left: 13px;
   border-radius: 50%;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.1s cubic-bezier(0.3, 0, 0, 1), box-shadow 0.1s ease, background-color var(--transition-fast);
+  transition: transform 0.1s cubic-bezier(0.3, 0, 0, 1), box-shadow 0.1s ease, background-color var(--transition-fast), filter var(--transition-fast);
   -webkit-tap-highlight-color: transparent;
   outline: none;
   padding: 0;
-  z-index: 2; /* Sits on top of the progress ring track */
+  z-index: 2;
 }
 
-/* 3D solid thickness rim rendered as a box-shadow (keeps button perfectly centered in progress ring) */
+/* 3D solid thickness rim rendered as a box-shadow (exactly 4.5px bottom shadow) */
 .lesson-node-active {
   background: var(--node-color, var(--color-green)) !important;
   box-shadow: 0 4.5px 0 var(--node-color-dark, var(--color-green-dark)) !important;
@@ -98,7 +97,7 @@
   cursor: not-allowed;
 }
 
-/* Tactile press down state (shifts container down and compresses shadow) */
+/* Tactile press down state */
 .lesson-node:active:not(:disabled) {
   transform: translateY(3px);
 }
@@ -115,7 +114,6 @@
   filter: brightness(1.05);
 }
 
-/* Inner face styling for depth styling */
 .lesson-node-inner {
   display: flex;
   align-items: center;
@@ -123,7 +121,7 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  box-shadow: inset 0 -3.5px 0 rgba(0, 0, 0, 0.15); /* inner shadow for rounded volume */
+  box-shadow: inset 0 -3.5px 0 rgba(0, 0, 0, 0.15);
 }
 
 .lesson-node-locked .lesson-node-inner {

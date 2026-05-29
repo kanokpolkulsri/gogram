@@ -1,17 +1,28 @@
-/* Interactive Classic Green Owl Mascot Container */
+/* Interactive Mascot Container - Mike Wazowski + Brilliant design fusion */
 .duolingo-owl-container {
   display: inline-block;
   cursor: pointer;
   transform-origin: center bottom;
   transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: hover-float 4s ease-in-out infinite; /* Premium floating breathing effect */
 }
 
 .duolingo-owl-container:hover {
-  transform: scale(1.08);
+  transform: scale(1.08) translateY(-4px);
 }
 
 .duolingo-owl-container:active {
   transform: scale(0.95);
+}
+
+/* Premium Floating Animation */
+@keyframes hover-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 /* 1. Backflip Animation */
@@ -66,51 +77,48 @@
 
 /* 3. Micro-animations inside the SVG */
 
-/* Eye blink */
-.owl-eye-white-left {
-  transform-origin: 85px 75px;
-  animation: blink 4s infinite;
-}
-
-.owl-eye-white-right {
-  transform-origin: 115px 75px;
-  animation: blink 4s infinite;
+/* Eye blink animation on eye white, iris, and pupil */
+.mascot-eye-white,
+.mascot-eye-iris,
+.mascot-pupil {
+  transform-origin: 100px 96px;
+  animation: blink 5s infinite;
 }
 
 @keyframes blink {
-  0%, 96%, 100% {
+  0%, 94%, 100% {
     transform: scaleY(1);
   }
-  98% {
-    transform: scaleY(0.08); /* Squish down to look like a blink */
+  97% {
+    transform: scaleY(0.05); /* Quick squish for blink */
   }
 }
 
-/* Wing bobbing (idle breathing movement) */
-.owl-left-wing {
-  transform-origin: 48px 120px;
-  animation: wing-bob-left 3s ease-in-out infinite;
+/* Cute Waving Arm Animation */
+.mascot-left-arm {
+  transform-origin: 46px 112px;
+  animation: arm-wave 2.5s ease-in-out infinite;
 }
 
-.owl-right-wing {
-  transform-origin: 152px 120px;
-  animation: wing-bob-right 3s ease-in-out infinite;
-}
-
-@keyframes wing-bob-left {
+@keyframes arm-wave {
   0%, 100% {
-    transform: rotate(10deg);
+    transform: rotate(0deg);
   }
   50% {
-    transform: rotate(17deg);
+    transform: rotate(-15deg); /* Wave back and forth */
   }
 }
 
-@keyframes wing-bob-right {
+.mascot-right-arm {
+  transform-origin: 154px 112px;
+  animation: arm-breathe 3s ease-in-out infinite;
+}
+
+@keyframes arm-breathe {
   0%, 100% {
-    transform: rotate(-10deg);
+    transform: rotate(0deg);
   }
   50% {
-    transform: rotate(-17deg);
+    transform: rotate(8deg); /* Gentle arm breathing */
   }
 }

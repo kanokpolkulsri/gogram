@@ -36,56 +36,128 @@ export default function DuolingoOwl({ size = 120 }) {
         xmlns="http://www.w3.org/2000/svg"
         style={{ display: 'block' }}
       >
-        {/* Body */}
-        <ellipse cx="100" cy="120" rx="60" ry="65" fill="#58CC02" />
-        
-        {/* Belly */}
-        <ellipse cx="100" cy="135" rx="40" ry="45" fill="#89E219" />
-        
-        {/* Head */}
-        <circle cx="100" cy="75" r="45" fill="#58CC02" />
-        
-        {/* Left ear tuft */}
-        <ellipse cx="72" cy="38" rx="8" ry="14" fill="#58CC02" transform="rotate(-15, 72, 38)" />
-        
-        {/* Right ear tuft */}
-        <ellipse cx="128" cy="38" rx="8" ry="14" fill="#58CC02" transform="rotate(15, 128, 38)" />
-        
-        {/* Face area (white) */}
-        <ellipse cx="100" cy="82" rx="35" ry="30" fill="white" />
-        
-        {/* Left eye white */}
-        <circle className="owl-eye-white-left" cx="85" cy="75" r="16" fill="white" stroke="#58CC02" strokeWidth="2" />
-        
-        {/* Right eye white */}
-        <circle className="owl-eye-white-right" cx="115" cy="75" r="16" fill="white" stroke="#58CC02" strokeWidth="2" />
-        
-        {/* Left pupil */}
-        <circle cx="88" cy="75" r="8" fill="#333" />
-        <circle cx="90" cy="73" r="3" fill="white" />
-        
-        {/* Right pupil */}
-        <circle cx="118" cy="75" r="8" fill="#333" />
-        <circle cx="120" cy="73" r="3" fill="white" />
-        
-        {/* Beak */}
-        <ellipse cx="100" cy="95" rx="8" ry="5" fill="#FFC800" />
-        <ellipse cx="100" cy="93" rx="7" ry="3" fill="#FFD43B" />
-        
-        {/* Left wing */}
-        <ellipse className="owl-left-wing" cx="48" cy="120" rx="15" ry="30" fill="#4CAF00" transform="rotate(10, 48, 120)" />
-        
-        {/* Right wing */}
-        <ellipse className="owl-right-wing" cx="152" cy="120" rx="15" ry="30" fill="#4CAF00" transform="rotate(-10, 152, 120)" />
-        
-        {/* Left foot */}
-        <ellipse cx="82" cy="185" rx="14" ry="6" fill="#FFC800" />
-        
-        {/* Right foot */}
-        <ellipse cx="118" cy="185" rx="14" ry="6" fill="#FFC800" />
-        
-        {/* Belly line */}
-        <path d="M75 130 Q100 160 125 130" stroke="#78D600" strokeWidth="2" fill="none" />
+        <defs>
+          <linearGradient id="mascot-body-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#16A34A" />   {/* Emerald green */}
+            <stop offset="50%" stopColor="#58CC02" />  {/* Duolingo light green */}
+            <stop offset="100%" stopColor="#C2F125" /> {/* Glowing yellow-green */}
+          </linearGradient>
+          
+          {/* Subtle inner eye shadow */}
+          <filter id="eye-shadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="3" stdDeviation="2" floodColor="#000000" floodOpacity="0.12" />
+          </filter>
+        </defs>
+
+        {/* Cute Waving Left Arm */}
+        <path 
+          className="mascot-left-arm"
+          d="M 46 112 Q 22 114 26 96" 
+          stroke="#4CAF50" 
+          strokeWidth="4.5" 
+          strokeLinecap="round" 
+          fill="none" 
+        />
+
+        {/* Cute Right Arm */}
+        <path 
+          className="mascot-right-arm"
+          d="M 154 112 Q 178 124 172 136" 
+          stroke="#4CAF50" 
+          strokeWidth="4.5" 
+          strokeLinecap="round" 
+          fill="none" 
+        />
+
+        {/* Left Leg */}
+        <path 
+          d="M 82 156 V 184 H 74" 
+          stroke="#4CAF50" 
+          strokeWidth="5.5" 
+          strokeLinecap="round" 
+          fill="none" 
+        />
+
+        {/* Right Leg */}
+        <path 
+          d="M 118 156 V 184 H 126" 
+          stroke="#4CAF50" 
+          strokeWidth="5.5" 
+          strokeLinecap="round" 
+          fill="none" 
+        />
+
+        {/* Left Horn */}
+        <path 
+          d="M 68 55 Q 52 32 52 38 Q 60 50 68 55 Z" 
+          fill="#F4F4F0" 
+          stroke="#4CAF50" 
+          strokeWidth="1.2" 
+        />
+
+        {/* Right Horn */}
+        <path 
+          d="M 132 55 Q 148 32 148 38 Q 140 50 132 55 Z" 
+          fill="#F4F4F0" 
+          stroke="#4CAF50" 
+          strokeWidth="1.2" 
+        />
+
+        {/* Round Sphere Body (like Mike Wazowski) */}
+        <circle 
+          className="mascot-body-circle"
+          cx="100" 
+          cy="105" 
+          r="56" 
+          fill="url(#mascot-body-grad)" 
+          stroke="#4CAF50" 
+          strokeWidth="1" 
+        />
+
+        {/* Big White Single Eye */}
+        <circle 
+          className="mascot-eye-white" 
+          cx="100" 
+          cy="96" 
+          r="24" 
+          fill="#FFFFFF" 
+          filter="url(#eye-shadow)" 
+        />
+
+        {/* Glowing Cyan Blue Iris */}
+        <circle 
+          className="mascot-eye-iris" 
+          cx="100" 
+          cy="96" 
+          r="12" 
+          fill="#00C3FF" 
+        />
+
+        {/* Pupil (Dark rounded circle) */}
+        <circle 
+          className="mascot-pupil" 
+          cx="100" 
+          cy="96" 
+          r="6" 
+          fill="#1A202C" 
+        />
+
+        {/* Tiny Pupil Sparkle */}
+        <circle 
+          cx="102" 
+          cy="94" 
+          r="2.2" 
+          fill="#FFFFFF" 
+        />
+
+        {/* Big Happy Smile */}
+        <path 
+          d="M 76 128 Q 100 148 124 128" 
+          stroke="#115E59" 
+          strokeWidth="3.5" 
+          strokeLinecap="round" 
+          fill="none" 
+        />
       </svg>
     </div>
   );

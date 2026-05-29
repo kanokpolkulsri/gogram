@@ -47,6 +47,14 @@ export const units = [
             options: ['le', 'la', 'les', 'des'],
             correctAnswer: 'les',
           },
+        ],
+      },
+      {
+        id: 'medium1',
+        label: 'Medium',
+        xpReward: 15,
+        icon: 'star',
+        questions: [
           {
             id: 'a4',
             question: 'Which article goes with "chat" (cat)?',
@@ -59,20 +67,20 @@ export const units = [
             options: ['le', 'la', 'un', 'les'],
             correctAnswer: 'la',
           },
-        ],
-      },
-      {
-        id: 'medium',
-        label: 'Medium',
-        xpReward: 15,
-        icon: 'star',
-        questions: [
           {
             id: 'a6',
             question: 'How do you say "a" (masculine) in French?',
             options: ['un', 'une', 'le', 'des'],
             correctAnswer: 'un',
           },
+        ],
+      },
+      {
+        id: 'medium2',
+        label: 'Medium',
+        xpReward: 15,
+        icon: 'dumbbell',
+        questions: [
           {
             id: 'a7',
             question: 'How do you say "a" (feminine) in French?',
@@ -91,20 +99,20 @@ export const units = [
             options: ['Le', 'La', 'Les', 'Un'],
             correctAnswer: 'Les',
           },
+        ],
+      },
+      {
+        id: 'hard1',
+        label: 'Level 1',
+        xpReward: 20,
+        icon: 'level-up',
+        questions: [
           {
             id: 'a10',
             question: '"___ femme" — which article fits? (a woman)',
             options: ['Un', 'Une', 'Le', 'Des'],
             correctAnswer: 'Une',
           },
-        ],
-      },
-      {
-        id: 'hard',
-        label: 'Hard',
-        xpReward: 20,
-        icon: 'crown',
-        questions: [
           {
             id: 'a11',
             question: 'Which is correct? "I have a dog"',
@@ -117,20 +125,46 @@ export const units = [
             options: ['Les femmes sont grandes', 'La femmes sont grandes', 'Le femmes sont grandes', 'Des femmes sont grandes'],
             correctAnswer: 'Les femmes sont grandes',
           },
+        ],
+      },
+      {
+        id: 'hard2',
+        label: 'Boss Challenge',
+        xpReward: 35,
+        icon: 'boss',
+        questions: [
           {
-            id: 'a13',
-            question: '"L\'" is used before words starting with...',
-            options: ['A vowel', 'A consonant', 'The letter S', 'Two consonants'],
-            correctAnswer: 'A vowel',
+            id: 'a4_b',
+            question: 'Which article goes with "chat" (cat)?',
+            options: ['la', 'le', 'les', 'une'],
+            correctAnswer: 'le',
           },
           {
-            id: 'a14',
-            question: 'Which is correct? "a book"',
-            options: ['un livre', 'une livre', 'le livre', 'la livre'],
-            correctAnswer: 'un livre',
+            id: 'a5_b',
+            question: 'Which article goes with "maison" (house)?',
+            options: ['le', 'la', 'un', 'les'],
+            correctAnswer: 'la',
           },
           {
-            id: 'a15',
+            id: 'a6_b',
+            question: 'How do you say "a" (masculine) in French?',
+            options: ['un', 'une', 'le', 'des'],
+            correctAnswer: 'un',
+          },
+          {
+            id: 'a11_b',
+            question: 'Which is correct? "I have a dog"',
+            options: ["J'ai un chien", "J'ai une chien", "J'ai le chien", "J'ai la chien"],
+            correctAnswer: "J'ai un chien",
+          },
+          {
+            id: 'a12_b',
+            question: 'Which is correct? "The women are tall"',
+            options: ['Les femmes sont grandes', 'La femmes sont grandes', 'Le femmes sont grandes', 'Des femmes sont grandes'],
+            correctAnswer: 'Les femmes sont grandes',
+          },
+          {
+            id: 'a15_b',
             question: 'Translate: "The apple is red"',
             options: ["La pomme est rouge", "Le pomme est rouge", "Une pomme est rouge", "Les pomme est rouge"],
             correctAnswer: "La pomme est rouge",
@@ -142,7 +176,7 @@ export const units = [
   {
     id: 2,
     title: 'Solo trip: Ask about transportation',
-    section: 'SECTION 1, UNIT 1',
+    section: 'SECTION 1, UNIT 2',
     description: 'Learn French pronouns: je, tu, il, elle, nous, vous',
     color: '#CE82FF',
     levels: [
@@ -170,6 +204,14 @@ export const units = [
             options: ['Elle', 'Il', 'Nous', 'Ils'],
             correctAnswer: 'Il',
           },
+        ],
+      },
+      {
+        id: 'medium1',
+        label: 'Medium',
+        xpReward: 15,
+        icon: 'star',
+        questions: [
           {
             id: 'p4',
             question: 'How do you say "she" in French?',
@@ -182,20 +224,20 @@ export const units = [
             options: ['Vous', 'Ils', 'Nous', 'Elles'],
             correctAnswer: 'Nous',
           },
-        ],
-      },
-      {
-        id: 'medium',
-        label: 'Medium',
-        xpReward: 15,
-        icon: 'star',
-        questions: [
           {
             id: 'p6',
             question: 'How do you say "you" (formal/plural) in French?',
             options: ['Tu', 'Vous', 'Nous', 'Ils'],
             correctAnswer: 'Vous',
           },
+        ],
+      },
+      {
+        id: 'medium2',
+        label: 'Medium',
+        xpReward: 15,
+        icon: 'dumbbell',
+        questions: [
           {
             id: 'p7',
             question: 'How do you say "they" (masculine) in French?',
@@ -214,20 +256,20 @@ export const units = [
             options: ['Je', 'Vous', 'Ils', 'Nous'],
             correctAnswer: 'Nous',
           },
+        ],
+      },
+      {
+        id: 'hard1',
+        label: 'Level 2',
+        xpReward: 20,
+        icon: 'level-up',
+        questions: [
           {
             id: 'p10',
             question: '"___ êtes gentils." — You (plural) are kind.',
             options: ['Tu', 'Nous', 'Vous', 'Ils'],
             correctAnswer: 'Vous',
           },
-        ],
-      },
-      {
-        id: 'hard',
-        label: 'Hard',
-        xpReward: 20,
-        icon: 'crown',
-        questions: [
           {
             id: 'p11',
             question: 'How do you say "they" (feminine) in French?',
@@ -240,20 +282,46 @@ export const units = [
             options: ['Formal or plural', 'Only for children', 'Only for animals', 'Never'],
             correctAnswer: 'Formal or plural',
           },
+        ],
+      },
+      {
+        id: 'hard2',
+        label: 'Boss Challenge',
+        xpReward: 35,
+        icon: 'boss',
+        questions: [
           {
-            id: 'p13',
+            id: 'p4_b',
+            question: 'How do you say "she" in French?',
+            options: ['Il', 'Elle', 'Elles', 'Vous'],
+            correctAnswer: 'Elle',
+          },
+          {
+            id: 'p5_b',
+            question: 'How do you say "we" in French?',
+            options: ['Vous', 'Ils', 'Nous', 'Elles'],
+            correctAnswer: 'Nous',
+          },
+          {
+            id: 'p6_b',
+            question: 'How do you say "you" (formal/plural) in French?',
+            options: ['Tu', 'Vous', 'Nous', 'Ils'],
+            correctAnswer: 'Vous',
+          },
+          {
+            id: 'p11_b',
+            question: 'How do you say "they" (feminine) in French?',
+            options: ['Ils', 'Elles', 'Nous', 'Vous'],
+            correctAnswer: 'Elles',
+          },
+          {
+            id: 'p13_b',
             question: 'Translate: "They (f.) are students"',
             options: ['Elles sont étudiantes', 'Ils sont étudiantes', 'Elles est étudiantes', 'Elle sont étudiantes'],
             correctAnswer: 'Elles sont étudiantes',
           },
           {
-            id: 'p14',
-            question: '"On" in French informally means...',
-            options: ['We/One', 'They', 'He', 'You'],
-            correctAnswer: 'We/One',
-          },
-          {
-            id: 'p15',
+            id: 'p15_b',
             question: 'Fill in: "___ suis américain." (I am American)',
             options: ['Je', 'Tu', 'Il', 'Nous'],
             correctAnswer: 'Je',
@@ -262,7 +330,164 @@ export const units = [
       },
     ],
   },
-];
+  {
+    id: 3,
+    title: 'Solo trip: Order in a café',
+    section: 'SECTION 1, UNIT 3',
+    description: 'Learn French common verbs: être, avoir, aimer, parler',
+    color: '#1CB0F6',
+    levels: [
+      {
+        id: 'easy',
+        label: 'Easy',
+        xpReward: 10,
+        icon: 'star',
+        questions: [
+          {
+            id: 'v1',
+            question: 'How do you conjugate "être" (to be) for "je"?',
+            options: ['suis', 'es', 'est', 'sommes'],
+            correctAnswer: 'suis',
+          },
+          {
+            id: 'v2',
+            question: 'How do you conjugate "avoir" (to have) for "tu"?',
+            options: ['ai', 'as', 'a', 'avez'],
+            correctAnswer: 'as',
+          },
+          {
+            id: 'v3',
+            question: 'How do you say "to like" or "to love" in French?',
+            options: ['parler', 'aimer', 'être', 'avoir'],
+            correctAnswer: 'aimer',
+          },
+        ],
+      },
+      {
+        id: 'medium1',
+        label: 'Medium',
+        xpReward: 15,
+        icon: 'star',
+        questions: [
+          {
+            id: 'v4',
+            question: 'How do you conjugate "être" for "ils/elles"?',
+            options: ['sont', 'êtes', 'sommes', 'est'],
+            correctAnswer: 'sont',
+          },
+          {
+            id: 'v5',
+            question: 'How do you say "to speak" in French?',
+            options: ['aimer', 'parler', 'être', 'avoir'],
+            correctAnswer: 'parler',
+          },
+          {
+            id: 'v6',
+            question: 'How do you conjugate "aimer" (to like) for "il/elle"?',
+            options: ['aime', 'aimes', 'aimons', 'aimez'],
+            correctAnswer: 'aime',
+          },
+        ],
+      },
+      {
+        id: 'medium2',
+        label: 'Medium',
+        xpReward: 15,
+        icon: 'dumbbell',
+        questions: [
+          {
+            id: 'v7',
+            question: 'How do you conjugate "parler" (to speak) for "nous"?',
+            options: ['parle', 'parles', 'parlons', 'parlez'],
+            correctAnswer: 'parlons',
+          },
+          {
+            id: 'v8',
+            question: '"Nous ___ un chat." (We have a cat)',
+            options: ['sommes', 'avez', 'avons', 'ont'],
+            correctAnswer: 'avons',
+          },
+          {
+            id: 'v9',
+            question: '"Vous ___ français." (You speak French)',
+            options: ['parle', 'parlez', 'parlons', 'parlent'],
+            correctAnswer: 'parlez',
+          },
+        ],
+      },
+      {
+        id: 'hard1',
+        label: 'Level 3',
+        xpReward: 20,
+        icon: 'level-up',
+        questions: [
+          {
+            id: 'v10',
+            question: '"J\'___ le café." (I like coffee)',
+            options: ['aime', 'aimes', 'aimons', 'aimez'],
+            correctAnswer: 'aime',
+          },
+          {
+            id: 'v11',
+            question: 'How do you conjugate "avoir" (to have) for "ils/elles"?',
+            options: ['ont', 'avons', 'avez', 'ont'],
+            correctAnswer: 'ont',
+          },
+          {
+            id: 'v12',
+            question: 'Translate: "We are happy"',
+            options: ['Nous sommes heureux', 'Nous avez heureux', 'Ils sont heureux', 'Vous êtes heureux'],
+            correctAnswer: 'Nous sommes heureux',
+          },
+        ],
+      },
+      {
+        id: 'hard2',
+        label: 'Boss Challenge',
+        xpReward: 35,
+        icon: 'boss',
+        questions: [
+          {
+            id: 'v5_b',
+            question: 'How do you say "to speak" in French?',
+            options: ['aimer', 'parler', 'être', 'avoir'],
+            correctAnswer: 'parler',
+          },
+          {
+            id: 'v6_b',
+            question: 'How do you conjugate "aimer" (to like) for "il/elle"?',
+            options: ['aime', 'aimes', 'aimons', 'aimez'],
+            correctAnswer: 'aime',
+          },
+          {
+            id: 'v7_b',
+            question: 'How do you conjugate "parler" (to speak) for "nous"?',
+            options: ['parle', 'parles', 'parlons', 'parlez'],
+            correctAnswer: 'parlons',
+          },
+          {
+            id: 'v12_b',
+            question: 'Translate: "We are happy"',
+            options: ['Nous sommes heureux', 'Nous avez heureux', 'Ils sont heureux', 'Vous êtes heureux'],
+            correctAnswer: 'Nous sommes heureux',
+          },
+          {
+            id: 'v14_b',
+            question: 'Conjugate: "Ils ___ fatigués." (They are tired)',
+            options: ['sont', 'ont', 'sommes', 'êtes'],
+            correctAnswer: 'sont',
+          },
+          {
+            id: 'v15_b',
+            question: 'Translate: "She likes croissants"',
+            options: ['Elle aime les croissants', 'Elle aimes les croissants', 'Elle aime le croissants', 'Elle ont les croissants'],
+            correctAnswer: 'Elle aime les croissants',
+          },
+        ],
+      },
+    ],
+  },
+]
 
 // French letters/accents for the Letters tab
 export const letters = [

@@ -17,7 +17,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 !important; /* Explicitly removed all padding inside content wrapper */
+  padding: 0 !important;
+  /* Explicitly removed all padding inside content wrapper */
 }
 
 .learn-unit-section {
@@ -62,8 +63,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  padding: 8px 0 24px;
+  gap: 0;
+  padding: 0;
   position: relative;
 }
 
@@ -195,12 +196,16 @@
 
   .learn-unit-header {
     position: sticky;
-    top: 56px; /* Right below the fixed mobile stats header */
-    z-index: 100; /* Sit above the path nodes, but below the mobile header (z-index 999) */
-    border-radius: 16px !important; /* Keep beautiful rounded corners on mobile */
+    top: 56px;
+    /* Right below the fixed mobile stats header */
+    z-index: 100;
+    /* Sit above the path nodes, but below the mobile header (z-index 999) */
+    border-radius: 16px !important;
+    /* Keep beautiful rounded corners on mobile */
     margin-left: 16px !important;
     margin-right: 16px !important;
-    margin-top: 16px !important; /* Spacing from the fixed top header */
+    margin-top: 16px !important;
+    /* Spacing from the fixed top header */
     margin-bottom: 16px !important;
     padding: 16px 16px !important;
   }
