@@ -1,9 +1,7 @@
 import { dailyQuests, weeklyQuests } from '../data/mockData';
-import { useUser } from '../data/userStore';
 import './QuestsPage.css';
 
 export default function QuestsPage() {
-  const user = useUser();
 
   return (
     <div className="quests-page" id="quests-page">

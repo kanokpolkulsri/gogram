@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useUser } from '../data/userStore';
 import './Sidebar.css';
 
 const sidebarTabs = [
@@ -119,7 +118,6 @@ const sidebarTabs = [
 
 export default function Sidebar() {
   const location = useLocation();
-  const user = useUser();
   const [showMoreMenu, setShowMoreMenu] = useState(false);
   const dropdownRef = useRef(null);
 
