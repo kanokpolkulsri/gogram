@@ -2,100 +2,145 @@
   animation: fadeIn var(--transition-normal) ease;
 }
 
-.practice-header {
+/* ─── Hero Banner ─── */
+.practice-hero {
+  background: linear-gradient(135deg, #1CB0F6 0%, #0092DF 100%);
+  border-radius: 0 0 24px 24px;
+  margin: -24px -16px 24px;
+  padding: 28px 24px;
+  display: flex;
+  align-items: center;
+  min-height: 120px;
+}
+
+.practice-hero-content {
+  flex: 1;
+}
+
+.practice-hero-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.practice-hero-sub {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.4;
+}
+
+.practice-hero-owl {
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+/* ─── Section ─── */
+.practice-section {
   margin-bottom: 28px;
 }
 
-.practice-title {
-  font-size: 26px;
+.practice-section-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: 14px;
+}
+
+/* ─── Duo Feature Card (Listen) ─── */
+.practice-card-duo {
+  border: 2px solid var(--color-gray);
+  border-radius: 16px;
+  padding: 20px;
+  background: var(--color-white);
+  box-shadow: 0 2px 0 var(--color-gray);
+  position: relative;
+  overflow: hidden;
+}
+
+.practice-card-duo-badge {
+  margin-bottom: 12px;
+}
+
+.super-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #1CB0F6, #0092DF);
+  color: white;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 6px;
+}
+
+.practice-card-duo-icon {
+  margin-bottom: 12px;
+}
+
+.practice-card-duo-body h3 {
+  font-size: 18px;
   font-weight: 800;
   color: var(--color-text);
   margin-bottom: 4px;
 }
 
-.practice-subtitle {
-  font-size: 15px;
+.practice-card-duo-body p {
+  font-size: 14px;
   color: var(--color-text-light);
+  line-height: 1.5;
+  margin-bottom: 16px;
 }
 
-/* Grid */
-.practice-grid {
-  display: flex;
-  flex-direction: column;
+.practice-card-duo-btn {
+  max-width: 160px;
+}
+
+/* ─── Collections Grid ─── */
+.practice-collections-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 12px;
-  margin-bottom: 32px;
 }
 
-.practice-card {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 16px;
+.practice-collection-card {
   border: 2px solid var(--color-gray);
   border-radius: 16px;
+  padding: 20px 16px;
   background: var(--color-white);
   box-shadow: 0 2px 0 var(--color-gray);
-  animation: fadeInUp 0.4s ease forwards;
-  opacity: 0;
-  transition: all var(--transition-fast);
-}
-
-.practice-card:hover {
-  border-color: #D0D0D0;
-  transform: translateY(-1px);
-}
-
-.practice-card-icon-wrap {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+  text-align: center;
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
 }
 
-.practice-card-icon {
-  font-size: 28px;
+.practice-collection-card:hover {
+  border-color: #D0D0D0;
+  transform: translateY(-2px);
 }
 
-.practice-card-body {
-  flex: 1;
-  min-width: 0;
+.practice-collection-icon {
+  margin-bottom: 12px;
 }
 
-.practice-card-title {
+.practice-collection-title {
   font-size: 16px;
   font-weight: 800;
   color: var(--color-text);
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 }
 
-.practice-card-desc {
+.practice-collection-desc {
   font-size: 13px;
   color: var(--color-text-light);
-  margin-bottom: 6px;
   line-height: 1.4;
+  margin-bottom: 12px;
 }
 
-.practice-card-meta {
-  display: flex;
-  gap: 12px;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.practice-card-difficulty {
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-}
-
-.practice-card-count {
-  color: var(--color-text-light);
-}
-
-.practice-card-btn {
-  padding: 8px 18px;
+.practice-collection-btn {
+  padding: 8px 20px;
+  background: var(--color-green);
   color: var(--color-white);
   border: none;
   border-radius: 12px;
@@ -104,20 +149,20 @@
   font-weight: 800;
   letter-spacing: 0.5px;
   cursor: pointer;
+  box-shadow: 0 3px 0 var(--color-green-dark);
   transition: all var(--transition-fast);
-  flex-shrink: 0;
 }
 
-.practice-card-btn:hover {
-  opacity: 0.9;
+.practice-collection-btn:hover { background: #6AD80A; }
+.practice-collection-btn:active { transform: translateY(3px); box-shadow: none; }
+
+.practice-collection-done {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.practice-card-btn:active {
-  transform: translateY(3px);
-  box-shadow: none !important;
-}
-
-/* Personalized practice */
+/* ─── Personalized Practice ─── */
 .practice-personalized {
   padding: 24px;
   border: 2px solid var(--color-gray);
@@ -127,7 +172,7 @@
 
 .practice-personalized-content {
   display: flex;
-  gap: 20px;
+  gap: 16px;
   align-items: center;
   margin-bottom: 16px;
 }
@@ -151,6 +196,10 @@
 
 @media (max-width: 1023px) {
   .practice-page {
-    padding: 16px;
+    padding: 24px 16px 100px;
+  }
+
+  .practice-hero {
+    margin: -24px -16px 24px;
   }
 }

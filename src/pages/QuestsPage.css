@@ -2,32 +2,121 @@
   animation: fadeIn var(--transition-normal) ease;
 }
 
-.quests-header {
-  margin-bottom: 28px;
+/* ─── Tabs (Purple header) ─── */
+.quests-tabs {
+  display: flex;
+  background: #CE82FF;
+  border-radius: 0;
+  margin: -24px -16px 0;
+  overflow: hidden;
 }
 
-.quests-title {
-  font-size: 26px;
+.quests-tab {
+  flex: 1;
+  padding: 16px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-family);
+  font-size: 14px;
   font-weight: 800;
-  color: var(--color-text);
-  margin-bottom: 4px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+  border-bottom: 3px solid transparent;
 }
 
-.quests-subtitle {
-  font-size: 15px;
-  color: var(--color-text-light);
+.quests-tab.active {
+  color: white;
+  border-bottom-color: white;
 }
 
-/* Section */
+.quests-tab:hover {
+  color: white;
+}
+
+/* ─── Hero Banner (Purple gradient) ─── */
+.quests-hero {
+  position: relative;
+  background: linear-gradient(135deg, #CE82FF 0%, #B566E6 50%, #a855f7 100%);
+  border-radius: 0 0 24px 24px;
+  margin: 0 -16px 24px;
+  padding: 28px 24px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  min-height: 140px;
+}
+
+.quests-hero-content {
+  flex: 1;
+  z-index: 1;
+}
+
+.quests-hero-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.quests-hero-sub {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.4;
+}
+
+.quests-hero-sub strong {
+  color: white;
+}
+
+.quests-hero-owl {
+  flex-shrink: 0;
+  z-index: 1;
+  margin-left: 8px;
+}
+
+/* Decorative cloud shapes */
+.quests-hero::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: radial-gradient(ellipse 60px 30px at 30px 40px, rgba(255,255,255,0.15) 100%, transparent 100%),
+              radial-gradient(ellipse 80px 35px at 120px 40px, rgba(255,255,255,0.1) 100%, transparent 100%),
+              radial-gradient(ellipse 60px 25px at 250px 40px, rgba(255,255,255,0.12) 100%, transparent 100%);
+}
+
+/* Sparkles */
+.quests-hero-sparkle {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 16px;
+  animation: sparkle 3s ease-in-out infinite;
+}
+.quests-hero-sparkle.s1 { top: 16px; right: 30px; animation-delay: 0s; }
+.quests-hero-sparkle.s2 { top: 40px; right: 70px; animation-delay: 1s; }
+.quests-hero-sparkle.s3 { bottom: 20px; left: 20px; animation-delay: 0.5s; }
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* ─── Section ─── */
 .quests-section {
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 .quests-section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .quests-section-header h2 {
@@ -39,46 +128,49 @@
 .quests-section-timer {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--color-text-light);
 }
 
-/* Quest list */
+/* ─── Quest Cards ─── */
 .quests-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  border: 2px solid var(--color-gray);
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 .quest-card {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 16px;
-  border: 2px solid var(--color-gray);
-  border-radius: 16px;
+  padding: 16px 18px;
   background: var(--color-white);
-  box-shadow: 0 2px 0 var(--color-gray);
   animation: fadeInUp 0.4s ease forwards;
   opacity: 0;
-  transition: border-color var(--transition-fast);
+  transition: background var(--transition-fast);
+  border-bottom: 2px solid var(--color-gray);
+}
+
+.quest-card:last-child {
+  border-bottom: none;
 }
 
 .quest-card:hover {
-  border-color: #D0D0D0;
+  background: var(--color-gray-light);
 }
 
 .quest-card.completed {
-  border-color: #B8E986;
   background: #FAFFF5;
 }
 
 .quest-card-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -95,7 +187,7 @@
   font-size: 15px;
   font-weight: 700;
   color: var(--color-text);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .quest-card-progress {
@@ -106,22 +198,22 @@
 
 .quest-card-progress-bar {
   flex: 1;
-  height: 14px;
+  height: 12px;
   background: var(--color-gray);
-  border-radius: 7px;
+  border-radius: 6px;
   overflow: hidden;
 }
 
 .quest-card-progress-fill {
   height: 100%;
-  border-radius: 7px;
+  border-radius: 6px;
   transition: width var(--transition-normal);
 }
 
 .quest-card-progress-text {
   font-size: 13px;
   font-weight: 700;
-  color: var(--color-text-light);
+  color: var(--color-gray-medium);
   white-space: nowrap;
 }
 
@@ -131,25 +223,6 @@
   align-items: center;
 }
 
-.quest-reward-badge {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 6px 10px;
-  background: var(--color-gray-light);
-  border-radius: 10px;
-}
-
-.quest-reward-gem {
-  font-size: 16px;
-}
-
-.quest-reward-amount {
-  font-size: 14px;
-  font-weight: 800;
-  color: var(--color-text);
-}
-
 .quest-claim-btn {
   padding: 8px 16px;
   background: var(--color-green);
@@ -157,7 +230,7 @@
   border: none;
   border-radius: 12px;
   font-family: var(--font-family);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.5px;
   cursor: pointer;
@@ -165,45 +238,45 @@
   transition: all var(--transition-fast);
 }
 
-.quest-claim-btn:hover {
-  background: #6AD80A;
-}
+.quest-claim-btn:hover { background: #6AD80A; }
+.quest-claim-btn:active { transform: translateY(3px); box-shadow: none; }
 
-.quest-claim-btn:active {
-  transform: translateY(3px);
-  box-shadow: none;
-}
-
-/* Friends quest empty state */
-.quests-friends-empty {
+/* ─── Badges Empty State ─── */
+.quests-badges-empty {
   text-align: center;
-  padding: 32px 24px;
-  border: 2px dashed var(--color-gray);
-  border-radius: 16px;
-  background: var(--color-gray-light);
+  padding: 60px 24px;
 }
 
-.quests-friends-icon {
-  font-size: 48px;
-  margin-bottom: 12px;
+.quests-badges-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
 }
 
-.quests-friends-empty p {
+.quests-badges-empty h3 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.quests-badges-empty p {
   font-size: 14px;
   color: var(--color-text-light);
   max-width: 280px;
-  margin: 0 auto 16px;
+  margin: 0 auto;
   line-height: 1.5;
-}
-
-.quests-add-friends-btn {
-  display: inline-block !important;
-  width: auto !important;
-  padding: 10px 28px !important;
 }
 
 @media (max-width: 1023px) {
   .quests-page {
-    padding: 16px;
+    padding: 24px 16px 100px;
+  }
+
+  .quests-tabs {
+    margin: -24px -16px 0;
+  }
+
+  .quests-hero {
+    margin: 0 -16px 24px;
   }
 }

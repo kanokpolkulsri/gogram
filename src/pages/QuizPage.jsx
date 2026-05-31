@@ -55,7 +55,7 @@ export default function QuizPage() {
     }
   }, [selectedAnswer, isAnswered, currentQuestion, dispatch, user.hearts]);
 
-  const handleContinue = () => {
+  const handleContinue = useCallback(() => {
     if (currentIndex + 1 >= totalQuestions) {
       // Lesson complete!
       const xp = level?.xpReward || 15;
@@ -79,7 +79,7 @@ export default function QuizPage() {
         setAnimating(false);
       }, 300);
     }
-  };
+  }, [currentIndex, totalQuestions, level, unitId, levelId, score, dispatch, navigate]);
 
   const handleClose = () => {
     navigate('/learn');
@@ -100,7 +100,7 @@ export default function QuizPage() {
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
-  }, [isAnswered, handleCheck]);
+  }, [isAnswered, handleCheck, handleContinue]);
 
   if (!unit || !level) {
     return (

@@ -7,14 +7,10 @@ export default function DuolingoOwl({ size = 120 }) {
 
   const handleClick = () => {
     if (isLocked) return;
-
-    // Alternate or choose randomly between backflip and turnaround
     const moves = ['animate-backflip', 'animate-turnaround'];
     const randomMove = moves[Math.floor(Math.random() * moves.length)];
-    
     setAnimation(randomMove);
     setIsLocked(true);
-
     const duration = randomMove === 'animate-backflip' ? 900 : 700;
     setTimeout(() => {
       setAnimation('');
@@ -23,140 +19,64 @@ export default function DuolingoOwl({ size = 120 }) {
   };
 
   return (
-    <div 
-      className={`duolingo-owl-container ${animation}`} 
+    <div
+      className={`duolingo-owl-container ${animation}`}
       onClick={handleClick}
       title="Click me to perform a trick!"
     >
-      <svg 
-        width={size} 
-        height={size} 
-        viewBox="0 0 200 200" 
-        fill="none" 
+      <svg
+        width={size}
+        height={size}
+        viewBox="0 0 200 200"
+        fill="none"
         xmlns="http://www.w3.org/2000/svg"
         style={{ display: 'block' }}
       >
-        <defs>
-          <linearGradient id="mascot-body-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#16A34A" />   {/* Emerald green */}
-            <stop offset="50%" stopColor="#58CC02" />  {/* Duolingo light green */}
-            <stop offset="100%" stopColor="#C2F125" /> {/* Glowing yellow-green */}
-          </linearGradient>
-          
-          {/* Subtle inner eye shadow */}
-          <filter id="eye-shadow" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="0" dy="3" stdDeviation="2" floodColor="#000000" floodOpacity="0.12" />
-          </filter>
-        </defs>
+        {/* Body */}
+        <ellipse cx="100" cy="120" rx="58" ry="60" fill="#58CC02" />
+        <ellipse cx="100" cy="130" rx="45" ry="45" fill="#89E219" />
 
-        {/* Cute Waving Left Arm */}
-        <path 
-          className="mascot-left-arm"
-          d="M 46 112 Q 22 114 26 96" 
-          stroke="#4CAF50" 
-          strokeWidth="4.5" 
-          strokeLinecap="round" 
-          fill="none" 
-        />
+        {/* Left wing/arm */}
+        <ellipse cx="48" cy="125" rx="14" ry="22" fill="#58CC02" transform="rotate(-15 48 125)" />
 
-        {/* Cute Right Arm */}
-        <path 
-          className="mascot-right-arm"
-          d="M 154 112 Q 178 124 172 136" 
-          stroke="#4CAF50" 
-          strokeWidth="4.5" 
-          strokeLinecap="round" 
-          fill="none" 
-        />
+        {/* Right wing/arm */}
+        <ellipse cx="152" cy="125" rx="14" ry="22" fill="#58CC02" transform="rotate(15 152 125)" />
 
-        {/* Left Leg */}
-        <path 
-          d="M 82 156 V 184 H 74" 
-          stroke="#4CAF50" 
-          strokeWidth="5.5" 
-          strokeLinecap="round" 
-          fill="none" 
-        />
+        {/* Head */}
+        <circle cx="100" cy="80" r="42" fill="#58CC02" />
+        <circle cx="100" cy="82" r="36" fill="#89E219" />
 
-        {/* Right Leg */}
-        <path 
-          d="M 118 156 V 184 H 126" 
-          stroke="#4CAF50" 
-          strokeWidth="5.5" 
-          strokeLinecap="round" 
-          fill="none" 
-        />
+        {/* Ear tufts */}
+        <ellipse cx="68" cy="48" rx="8" ry="16" fill="#58CC02" transform="rotate(-20 68 48)" />
+        <ellipse cx="132" cy="48" rx="8" ry="16" fill="#58CC02" transform="rotate(20 132 48)" />
 
-        {/* Left Horn */}
-        <path 
-          d="M 68 55 Q 52 32 52 38 Q 60 50 68 55 Z" 
-          fill="#F4F4F0" 
-          stroke="#4CAF50" 
-          strokeWidth="1.2" 
-        />
+        {/* Left eye */}
+        <circle cx="82" cy="78" r="16" fill="white" />
+        <circle cx="86" cy="78" r="8" fill="#333" />
+        <circle cx="88" cy="76" r="3" fill="white" />
 
-        {/* Right Horn */}
-        <path 
-          d="M 132 55 Q 148 32 148 38 Q 140 50 132 55 Z" 
-          fill="#F4F4F0" 
-          stroke="#4CAF50" 
-          strokeWidth="1.2" 
-        />
+        {/* Right eye */}
+        <circle cx="118" cy="78" r="16" fill="white" />
+        <circle cx="122" cy="78" r="8" fill="#333" />
+        <circle cx="124" cy="76" r="3" fill="white" />
 
-        {/* Round Sphere Body (like Mike Wazowski) */}
-        <circle 
-          className="mascot-body-circle"
-          cx="100" 
-          cy="105" 
-          r="56" 
-          fill="url(#mascot-body-grad)" 
-          stroke="#4CAF50" 
-          strokeWidth="1" 
-        />
+        {/* Beak */}
+        <ellipse cx="100" cy="98" rx="8" ry="5" fill="#FFC800" />
 
-        {/* Big White Single Eye */}
-        <circle 
-          className="mascot-eye-white" 
-          cx="100" 
-          cy="96" 
-          r="24" 
-          fill="#FFFFFF" 
-          filter="url(#eye-shadow)" 
-        />
+        {/* Belly spot */}
+        <ellipse cx="100" cy="140" rx="22" ry="18" fill="#C2F125" opacity="0.4" />
 
-        {/* Glowing Cyan Blue Iris */}
-        <circle 
-          className="mascot-eye-iris" 
-          cx="100" 
-          cy="96" 
-          r="12" 
-          fill="#00C3FF" 
-        />
+        {/* Feet */}
+        <ellipse cx="84" cy="174" rx="12" ry="5" fill="#FFC800" />
+        <ellipse cx="116" cy="174" rx="12" ry="5" fill="#FFC800" />
 
-        {/* Pupil (Dark rounded circle) */}
-        <circle 
-          className="mascot-pupil" 
-          cx="100" 
-          cy="96" 
-          r="6" 
-          fill="#1A202C" 
-        />
-
-        {/* Tiny Pupil Sparkle */}
-        <circle 
-          cx="102" 
-          cy="94" 
-          r="2.2" 
-          fill="#FFFFFF" 
-        />
-
-        {/* Big Happy Smile */}
-        <path 
-          d="M 76 128 Q 100 148 124 128" 
-          stroke="#115E59" 
-          strokeWidth="3.5" 
-          strokeLinecap="round" 
-          fill="none" 
+        {/* Smile */}
+        <path
+          d="M88 104 Q100 114 112 104"
+          stroke="#3C8C00"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          fill="none"
         />
       </svg>
     </div>

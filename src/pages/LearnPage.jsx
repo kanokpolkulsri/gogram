@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { units } from '../data/mockData';
-import { useUser, isLessonUnlocked, isLessonCompleted, getNextLesson } from '../data/userStore';
+import { useUser } from '../data/userStore';
+import { isLessonUnlocked, isLessonCompleted, getNextLesson } from '../data/progressHelpers';
 import LessonNode from '../components/LessonNode';
 import './LearnPage.css';
 

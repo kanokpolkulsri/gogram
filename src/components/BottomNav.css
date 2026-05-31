@@ -1,60 +1,48 @@
+/* Bottom Navigation — Duolingo mobile (icon-only, 6 tabs) */
 .bottom-nav {
   position: fixed;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: var(--max-width);
+  left: 0;
+  right: 0;
+  z-index: 100;
   display: flex;
   justify-content: space-around;
   align-items: center;
   background: var(--color-white);
   border-top: 2px solid var(--color-gray);
-  padding: 10px 0 max(10px, env(safe-area-inset-bottom));
-  z-index: 1000;
-  height: 64px;
+  padding: 6px 8px;
+  height: 60px;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .bottom-nav-tab {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 48px;
+  height: 44px;
+  border-radius: 12px;
   text-decoration: none;
-  color: #3C3C3C;
-  width: 50px;
-  height: 50px;
-  border-radius: var(--border-radius-sm);
-  transition: all var(--transition-fast);
+  transition: background var(--transition-fast), transform var(--transition-fast);
   -webkit-tap-highlight-color: transparent;
 }
 
-.bottom-nav-tab.active {
-  color: var(--color-blue);
-}
-
 .bottom-nav-tab:hover {
-  color: var(--color-blue);
+  background: var(--color-gray-light);
 }
 
-.bottom-nav-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  transition: all var(--transition-fast);
+.bottom-nav-tab:active {
+  transform: scale(0.92);
 }
 
-/* Active frame styling matching Duolingo screenshot */
-.bottom-nav-tab.active .bottom-nav-icon {
-  background: var(--color-blue-bg);
-  border: 2px solid #84D8FF;
-  border-radius: 12px;
-  color: var(--color-blue);
+.bottom-nav-tab.active {
+  background: #DDF4FF;
 }
 
-/* Hide labels to keep bottom nav icon-only on mobile */
-.bottom-nav-label {
-  display: none !important;
+/* Hide on desktop */
+@media (min-width: 1024px) {
+  .bottom-nav {
+    display: none !important;
+  }
 }
