@@ -82,12 +82,20 @@ export default function QuizPage() {
   }, [currentIndex, totalQuestions, level, unitId, levelId, score, dispatch, navigate]);
 
   const handleClose = () => {
-    navigate('/learn');
+    if (unit && unit.category) {
+      navigate(`/learn/${unit.category}`);
+    } else {
+      navigate('/learn');
+    }
   };
 
   const handleOutOfHeartsBack = () => {
     dispatch({ type: 'RESET_HEARTS' });
-    navigate('/learn');
+    if (unit && unit.category) {
+      navigate(`/learn/${unit.category}`);
+    } else {
+      navigate('/learn');
+    }
   };
 
   // Handle keyboard enter for check/continue

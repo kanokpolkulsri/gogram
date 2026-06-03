@@ -18,6 +18,7 @@ export const initialUser = {
 export const units = [
   {
     id: 1,
+    category: 'grammar-foundation',
     title: 'Solo trip: Compare travel experiences',
     section: 'SECTION 1, UNIT 1',
     description: 'Learn French articles: le, la, les, un, une',
@@ -175,6 +176,7 @@ export const units = [
   },
   {
     id: 2,
+    category: 'grammar-foundation',
     title: 'Solo trip: Ask about transportation',
     section: 'SECTION 1, UNIT 2',
     description: 'Learn French pronouns: je, tu, il, elle, nous, vous',
@@ -332,6 +334,7 @@ export const units = [
   },
   {
     id: 3,
+    category: 'grammar-foundation',
     title: 'Solo trip: Order in a café',
     section: 'SECTION 1, UNIT 3',
     description: 'Learn French common verbs: être, avoir, aimer, parler',
@@ -487,25 +490,370 @@ export const units = [
       },
     ],
   },
-]
+  {
+    id: 4,
+    category: 'vocabulary',
+    title: 'Fruits & Veggies: Learn food vocabulary',
+    section: 'SECTION 1, UNIT 4',
+    description: 'Learn common fruits and vegetables in French',
+    color: '#FF4B4B',
+    levels: [
+      {
+        id: 'easy',
+        label: 'Easy',
+        xpReward: 10,
+        icon: 'star',
+        questions: [
+          { id: 'v1', question: 'How do you say "apple" in French?', options: ['la pomme', 'la poire', 'la banane'], correctAnswer: 'la pomme' },
+          { id: 'v2', question: 'How do you say "banana" in French?', options: ['la banane', 'la fraise', 'le citron'], correctAnswer: 'la banane' }
+        ]
+      },
+      {
+        id: 'medium1',
+        label: 'Medium',
+        xpReward: 15,
+        icon: 'star',
+        questions: [
+          { id: 'v3', question: 'How do you say "the potato" in French?', options: ['la pomme de terre', 'la carotte', 'la tomate'], correctAnswer: 'la pomme de terre' },
+          { id: 'v4', question: 'Which word means "the grape"?', options: ['le raisin', 'la fraise', 'la cerise'], correctAnswer: 'le raisin' }
+        ]
+      },
+      {
+        id: 'medium2',
+        label: 'Medium',
+        xpReward: 15,
+        icon: 'dumbbell',
+        questions: [
+          { id: 'v5', question: 'What is French for "strawberry"?', options: ['la fraise', 'la framboise', 'la prune'], correctAnswer: 'la fraise' }
+        ]
+      },
+      {
+        id: 'hard1',
+        label: 'Hard',
+        xpReward: 20,
+        icon: 'star',
+        questions: [
+          { id: 'v6', question: 'Select the correct translation: "I eat a carrot"', options: ['Je mange une carotte', 'Je mange un oignon', 'Je mange une pomme'], correctAnswer: 'Je mange une carotte' }
+        ]
+      },
+      {
+        id: 'hard2',
+        label: 'Hard',
+        xpReward: 25,
+        icon: 'trophy',
+        questions: [
+          { id: 'v7', question: 'How do you write "The fruits are sweet" in French?', options: ['Les fruits sont doux', 'Les légumes sont verts', 'La pomme est sucrée'], correctAnswer: 'Les fruits sont doux' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 5,
+    category: 'vocabulary',
+    title: 'Colors & Clothes: Describe outfits',
+    section: 'SECTION 1, UNIT 5',
+    description: 'Learn common colors and clothing vocabulary',
+    color: '#FF9600',
+    levels: [
+      {
+        id: 'easy',
+        label: 'Easy',
+        xpReward: 10,
+        icon: 'star',
+        questions: [
+          { id: 'c1', question: 'How do you say "red" in French?', options: ['rouge', 'bleu', 'vert'], correctAnswer: 'rouge' },
+          { id: 'c2', question: 'What is French for "a shirt"?', options: ['une chemise', 'un pantalon', 'une robe'], correctAnswer: 'une chemise' }
+        ]
+      },
+      {
+        id: 'medium1',
+        label: 'Medium',
+        xpReward: 15,
+        icon: 'star',
+        questions: [
+          { id: 'c3', question: 'How do you say "the black shoes" in French?', options: ['les chaussures noires', 'les chaussettes noires', 'le chapeau noir'], correctAnswer: 'les chaussures noires' }
+        ]
+      },
+      {
+        id: 'medium2',
+        label: 'Medium',
+        xpReward: 15,
+        icon: 'dumbbell',
+        questions: [
+          { id: 'c4', question: 'What is "yellow" in French?', options: ['jaune', 'orange', 'blanc'], correctAnswer: 'jaune' }
+        ]
+      },
+      {
+        id: 'hard1',
+        label: 'Hard',
+        xpReward: 20,
+        icon: 'star',
+        questions: [
+          { id: 'c5', question: 'Translate: "The blue dress"', options: ['La robe bleue', 'Le costume bleu', 'La jupe verte'], correctAnswer: 'La robe bleue' }
+        ]
+      },
+      {
+        id: 'hard2',
+        label: 'Hard',
+        xpReward: 25,
+        icon: 'trophy',
+        questions: [
+          { id: 'c6', question: 'Translate: "He wears a black coat"', options: ['Il porte un manteau noir', 'Elle porte une veste noire', 'Il a un chapeau noir'], correctAnswer: 'Il porte un manteau noir' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 6,
+    category: 'reading',
+    title: 'Le Petit Prince: Excerpts & Dialogue',
+    section: 'SECTION 2, UNIT 1',
+    description: 'Read simple passages from classic literature',
+    color: '#CE82FF',
+    levels: [
+      {
+        id: 'easy',
+        label: 'Easy',
+        xpReward: 10,
+        icon: 'star',
+        questions: [
+          { id: 'r1', question: 'In "Le Petit Prince", what is the prince\'s beloved flower?', options: ['une rose', 'une tulipe', 'un tournesol'], correctAnswer: 'une rose' }
+        ]
+      },
+      {
+        id: 'medium1',
+        label: 'Medium',
+        xpReward: 15,
+        icon: 'star',
+        questions: [
+          { id: 'r2', question: 'Translate this quote: "Dessine-moi un mouton"', options: ['Draw me a sheep', 'Show me a sheep', 'Draw me a horse'], correctAnswer: 'Draw me a sheep' }
+        ]
+      },
+      {
+        id: 'medium2',
+        label: 'Medium',
+        xpReward: 15,
+        icon: 'dumbbell',
+        questions: [
+          { id: 'r3', question: 'Who does the little prince meet in the desert?', options: ['un aviateur', 'un roi', 'un renard'], correctAnswer: 'un aviateur' }
+        ]
+      },
+      {
+        id: 'hard1',
+        label: 'Hard',
+        xpReward: 20,
+        icon: 'star',
+        questions: [
+          { id: 'r4', question: 'What is the secret the fox tells the prince?', options: ['L\'essentiel est invisible pour les yeux', 'Le désert est beau', 'Les grandes personnes sont bizarres'], correctAnswer: 'L\'essentiel est invisible pour les yeux' }
+        ]
+      },
+      {
+        id: 'hard2',
+        label: 'Hard',
+        xpReward: 25,
+        icon: 'trophy',
+        questions: [
+          { id: 'r5', question: 'Translate: "On ne voit bien qu\'avec le cœur"', options: ['One sees well only with the heart', 'One sees nothing without love', 'We must love one another'], correctAnswer: 'One sees well only with the heart' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 7,
+    category: 'reading',
+    title: 'La Belle et la Bête: Fairytales',
+    section: 'SECTION 2, UNIT 2',
+    description: 'Practice comprehension with traditional stories',
+    color: '#00CDFF',
+    levels: [
+      {
+        id: 'easy',
+        label: 'Easy',
+        xpReward: 10,
+        icon: 'star',
+        questions: [
+          { id: 'r6', question: 'What is the Beast\'s castle full of?', options: ['des objets magiques', 'des monstres', 'des richesses perdues'], correctAnswer: 'des objets magiques' }
+        ]
+      },
+      {
+        id: 'medium1',
+        label: 'Medium',
+        xpReward: 15,
+        icon: 'star',
+        questions: [
+          { id: 'r7', question: 'Why does Belle go to the castle?', options: ['Pour sauver son père', 'Pour trouver de l\'or', 'Pour épouser la Bête'], correctAnswer: 'Pour sauver son père' }
+        ]
+      },
+      {
+        id: 'medium2',
+        label: 'Medium',
+        xpReward: 15,
+        icon: 'dumbbell',
+        questions: [
+          { id: 'r8', question: 'What turns the Beast back into a Prince?', options: ['L\'amour véritable', 'Une potion magique', 'Le miroir magique'], correctAnswer: 'L\'amour véritable' }
+        ]
+      },
+      {
+        id: 'hard1',
+        label: 'Hard',
+        xpReward: 20,
+        icon: 'star',
+        questions: [
+          { id: 'r9', question: 'What is Belle\'s favorite hobby?', options: ['lire des livres', 'chanter des chansons', 'cuisiner de bons plats'], correctAnswer: 'lire des livres' }
+        ]
+      },
+      {
+        id: 'hard2',
+        label: 'Hard',
+        xpReward: 25,
+        icon: 'trophy',
+        questions: [
+          { id: 'r10', question: 'Translate: "Elle vit heureuse pour toujours"', options: ['She lived happily ever after', 'She saw happiness everywhere', 'She wishes to be happy always'], correctAnswer: 'She lived happily ever after' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 8,
+    category: 'exam-grammars',
+    title: 'Subjunctive Mode: Express desires',
+    section: 'SECTION 3, UNIT 1',
+    description: 'Learn the French Subjunctive conjugation and usage',
+    color: '#89E219',
+    levels: [
+      {
+        id: 'easy',
+        label: 'Easy',
+        xpReward: 10,
+        icon: 'star',
+        questions: [
+          { id: 'e1', question: 'Which trigger requires the subjunctive?', options: ['Il faut que...', 'Je pense que...', 'Il est certain que...'], correctAnswer: 'Il faut que...' }
+        ]
+      },
+      {
+        id: 'medium1',
+        label: 'Medium',
+        xpReward: 15,
+        icon: 'star',
+        questions: [
+          { id: 'e2', question: 'Subjunctive of "être" (il form):', options: ['qu\'il soit', 'qu\'il est', 'qu\'il fut'], correctAnswer: 'qu\'il soit' }
+        ]
+      },
+      {
+        id: 'medium2',
+        label: 'Medium',
+        xpReward: 15,
+        icon: 'dumbbell',
+        questions: [
+          { id: 'e3', question: 'Subjunctive of "avoir" (tu form):', options: ['que tu aies', 'que tu as', 'que tu auras'], correctAnswer: 'que tu aies' }
+        ]
+      },
+      {
+        id: 'hard1',
+        label: 'Hard',
+        xpReward: 20,
+        icon: 'star',
+        questions: [
+          { id: 'e4', question: 'Complete: "Je veux que tu ___ tes devoirs" (faire)', options: ['fasses', 'fais', 'feras'], correctAnswer: 'fasses' }
+        ]
+      },
+      {
+        id: 'hard2',
+        label: 'Hard',
+        xpReward: 25,
+        icon: 'trophy',
+        questions: [
+          { id: 'e5', question: 'Complete: "Bien que nous ___ fatigués, nous continuerons" (être)', options: ['soyons', 'sommes', 'serions'], correctAnswer: 'soyons' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 9,
+    category: 'exam-grammars',
+    title: 'Conditional Tense: Hypotheses',
+    section: 'SECTION 3, UNIT 2',
+    description: 'Learn the Conditional tense for hypothetical scenarios',
+    color: '#1CB0F6',
+    levels: [
+      {
+        id: 'easy',
+        label: 'Easy',
+        xpReward: 10,
+        icon: 'star',
+        questions: [
+          { id: 'e6', question: 'What is the conditional ending for "je"?', options: ['-ais', '-ait', '-er'], correctAnswer: '-ais' }
+        ]
+      },
+      {
+        id: 'medium1',
+        label: 'Medium',
+        xpReward: 15,
+        icon: 'star',
+        questions: [
+          { id: 'e7', question: 'Conditional of "vouloir" (je form):', options: ['je voudrais', 'je voulais', 'je veux'], correctAnswer: 'je voudrais' }
+        ]
+      },
+      {
+        id: 'medium2',
+        label: 'Medium',
+        xpReward: 15,
+        icon: 'dumbbell',
+        questions: [
+          { id: 'e8', question: 'Conditional of "être" (nous form):', options: ['nous serions', 'nous étions', 'nous sommes'], correctAnswer: 'nous serions' }
+        ]
+      },
+      {
+        id: 'hard1',
+        label: 'Hard',
+        xpReward: 20,
+        icon: 'star',
+        questions: [
+          { id: 'e9', question: 'Complete: "Si j\'avais le temps, je ___ en France" (voyager)', options: ['voyagerais', 'voyageais', 'voyagerai'], correctAnswer: 'voyagerais' }
+        ]
+      },
+      {
+        id: 'hard2',
+        label: 'Hard',
+        xpReward: 25,
+        icon: 'trophy',
+        questions: [
+          { id: 'e10', question: 'Translate: "We would like to order now"', options: ['Nous voudrions commander maintenant', 'Nous voulons commander maintenant', 'Nous commanderions bien'], correctAnswer: 'Nous voudrions commander maintenant' }
+        ]
+      }
+    ]
+  }
+];
 
-// French letters/accents for the Letters tab
-export const letters = [
-  { char: 'é', name: 'e accent aigu', pronunciation: '/e/', example: 'café', mastered: true },
-  { char: 'è', name: 'e accent grave', pronunciation: '/ɛ/', example: 'mère', mastered: true },
-  { char: 'ê', name: 'e accent circonflex', pronunciation: '/ɛ/', example: 'fête', mastered: false },
-  { char: 'ë', name: 'e tréma', pronunciation: '/ɛ/', example: 'Noël', mastered: false },
-  { char: 'à', name: 'a accent grave', pronunciation: '/a/', example: 'là', mastered: true },
-  { char: 'â', name: 'a accent circonflex', pronunciation: '/ɑ/', example: 'pâte', mastered: false },
-  { char: 'ç', name: 'c cédille', pronunciation: '/s/', example: 'garçon', mastered: true },
-  { char: 'ù', name: 'u accent grave', pronunciation: '/y/', example: 'où', mastered: false },
-  { char: 'û', name: 'u accent circonflex', pronunciation: '/y/', example: 'sûr', mastered: false },
-  { char: 'ü', name: 'u tréma', pronunciation: '/y/', example: 'aigüe', mastered: false },
-  { char: 'ô', name: 'o accent circonflex', pronunciation: '/o/', example: 'hôtel', mastered: false },
-  { char: 'î', name: 'i accent circonflex', pronunciation: '/i/', example: 'île', mastered: false },
-  { char: 'ï', name: 'i tréma', pronunciation: '/i/', example: 'naïf', mastered: false },
-  { char: 'œ', name: 'o-e ligature', pronunciation: '/œ/', example: 'cœur', mastered: false },
-  { char: 'æ', name: 'a-e ligature', pronunciation: '/e/', example: 'et cætera', mastered: false },
+export const studyCategories = [
+  {
+    id: 'grammar-foundation',
+    title: 'Grammar Foundation',
+    description: 'Master structural and sentence patterns',
+    color: '#58CC02',
+    iconChar: 'G',
+  },
+  {
+    id: 'vocabulary',
+    title: 'Vocabulary',
+    description: 'Strengthen core verbs and keywords',
+    color: '#FF4B4B',
+    iconChar: 'V',
+  },
+  {
+    id: 'reading',
+    title: 'Reading',
+    description: 'Improve comprehension with short stories',
+    color: '#CE82FF',
+    iconChar: 'R',
+  },
+  {
+    id: 'exam-grammars',
+    title: 'Exam Grammars',
+    description: 'Prepare for formal proficiency standards',
+    color: '#1CB0F6',
+    iconChar: 'E',
+  },
 ];
 
 // Daily quests

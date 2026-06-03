@@ -1,10 +1,9 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { UserProvider } from './data/userStore';
 import DesktopLayout from './components/DesktopLayout';
 import LandingPage from './pages/LandingPage';
+import DashboardPage from './pages/DashboardPage';
 import LearnPage from './pages/LearnPage';
-import LettersPage from './pages/LettersPage';
-import PracticePage from './pages/PracticePage';
 import LeaderboardPage from './pages/LeaderboardPage';
 import QuestsPage from './pages/QuestsPage';
 import ShopPage from './pages/ShopPage';
@@ -34,9 +33,9 @@ function App() {
             <Route path="/streak" element={<StreakPage />} />
 
             {/* Desktop layout pages */}
-            <Route path="/learn" element={<DesktopPage><LearnPage /></DesktopPage>} />
-            <Route path="/letters" element={<DesktopPage><LettersPage /></DesktopPage>} />
-            <Route path="/practice" element={<DesktopPage><PracticePage /></DesktopPage>} />
+            <Route path="/learn" element={<DesktopPage><DashboardPage /></DesktopPage>} />
+            <Route path="/learn/:categoryId" element={<DesktopPage><LearnPage /></DesktopPage>} />
+            <Route path="/practice" element={<Navigate to="/learn" replace />} />
             <Route path="/leaderboard" element={<DesktopPage showRightSidebar={false}><LeaderboardPage /></DesktopPage>} />
             <Route path="/quests" element={<DesktopPage showRightSidebar={false}><QuestsPage /></DesktopPage>} />
             <Route path="/shop" element={<DesktopPage showRightSidebar={false}><ShopPage /></DesktopPage>} />

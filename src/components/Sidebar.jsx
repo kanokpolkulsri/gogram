@@ -2,8 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
   HomeIcon,
-  LettersIcon,
-  PracticeIcon,
   LeaderboardIcon,
   QuestsIcon,
   GemIcon,
@@ -18,18 +16,6 @@ const sidebarTabs = [
     label: 'LEARN',
     path: '/learn',
     Icon: HomeIcon,
-  },
-  {
-    id: 'letters',
-    label: 'LETTERS',
-    path: '/letters',
-    Icon: LettersIcon,
-  },
-  {
-    id: 'practice',
-    label: 'PRACTICE',
-    path: '/practice',
-    Icon: PracticeIcon,
   },
   {
     id: 'leaderboards',

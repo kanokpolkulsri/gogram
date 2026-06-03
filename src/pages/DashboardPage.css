@@ -1,0 +1,360 @@
+.dashboard-page {
+  animation: fadeIn var(--transition-normal) ease;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 24px 16px 80px;
+}
+
+.dashboard-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.dashboard-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dashboard-section-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* 1. Today's Review Card */
+.review-card {
+  position: relative;
+  display: flex;
+  background: linear-gradient(135deg, #182A60 0%, #3E1B72 100%);
+  border-radius: 20px;
+  padding: 20px;
+  overflow: hidden;
+  box-shadow: 0 6px 0 #181145;
+  color: white;
+  min-height: 160px;
+}
+
+.review-card-content {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  z-index: 2;
+}
+
+.super-pill-badge {
+  background: linear-gradient(90deg, #CE82FF 0%, #1CB0F6 100%);
+  color: white;
+  font-size: 10px;
+  font-weight: 900;
+  padding: 3px 10px;
+  border-radius: 99px;
+  letter-spacing: 0.8px;
+  display: inline-block;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.review-card-title {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0;
+  color: white;
+}
+
+.review-card-desc {
+  font-size: 13px;
+  opacity: 0.85;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.review-unlock-btn {
+  background: white;
+  border: none;
+  border-radius: 12px;
+  color: #3E1B72;
+  font-family: var(--font-family), system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 10px 22px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #CE93D8;
+  transition: transform var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
+  margin-top: 4px;
+}
+
+.review-unlock-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 #CE93D8;
+}
+
+.review-unlock-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #CE93D8;
+}
+
+.review-card-owl-wrapper {
+  flex: 0.8;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.review-owl-mascot {
+  position: absolute;
+  bottom: -15px;
+  right: -5px;
+  z-index: 2;
+  transform: rotate(-5deg);
+}
+
+.review-coin-bottom {
+  position: absolute;
+  bottom: -32px;
+  right: -10px;
+  width: 100px;
+  height: 50px;
+  background: #FFC800;
+  border-radius: 50%;
+  border-bottom: 8px solid #E5A93C;
+  z-index: 1;
+}
+
+.review-floating-deco {
+  position: absolute;
+  top: -15px;
+  right: 40px;
+  opacity: 0.8;
+  animation: floatDeco 3s ease-in-out infinite alternate;
+}
+
+@keyframes floatDeco {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-8px) scale(1.05); }
+}
+
+/* 2. Continue Learning Card */
+.continue-learning-card {
+  display: flex;
+  gap: 16px;
+  background: white;
+  border: 2px solid var(--color-gray);
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: 0 4px 0 var(--color-gray);
+  transition: all var(--transition-fast) ease;
+}
+
+.continue-learning-card:hover {
+  border-color: #D0D0D0;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--color-gray);
+}
+
+.continue-learning-card:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 var(--color-gray);
+}
+
+.continue-card-icon-col {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.continue-card-body-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.continue-card-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.continue-card-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.continue-card-badge {
+  background: #E8F5E9;
+  color: #2E7D32;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+.continue-card-desc {
+  font-size: 12px;
+  color: var(--color-text-light);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.continue-card-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.continue-card-progress-bg {
+  flex: 1;
+  height: 8px;
+  background: #E5E5E5;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.continue-card-progress-bar {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.3s ease;
+}
+
+.continue-card-progress-txt {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--color-text-light);
+  white-space: nowrap;
+}
+
+.continue-card-start-btn {
+  align-self: center;
+  background: #58CC02;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-family: var(--font-family), system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 8px 16px;
+  cursor: pointer;
+  box-shadow: 0 3px 0 #3AA800;
+  transition: transform var(--transition-fast) ease;
+}
+
+.continue-card-start-btn:hover {
+  transform: scale(1.05);
+}
+/* 3. Category Stack list */
+.category-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.category-item-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border: 2px solid var(--color-gray);
+  border-radius: 20px;
+  padding: 20px 24px;
+  box-shadow: 0 4px 0 var(--color-gray);
+  cursor: pointer;
+  transition: all var(--transition-fast) ease;
+  min-height: 110px;
+}
+
+.category-item-card:hover {
+  border-color: #D0D0D0;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--color-gray);
+}
+
+.category-item-card:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 var(--color-gray);
+}
+
+.category-item-card.active {
+  border-color: #B8E986;
+  background: #FAFFF5;
+}
+
+.category-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  padding-right: 16px;
+  text-align: left;
+}
+
+.category-item-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.category-item-desc {
+  font-size: 14px;
+  color: var(--color-text-light);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.category-item-icon-wrapper {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.category-item-card.locked {
+  background: #FAF9F9;
+  cursor: not-allowed;
+}
+
+.category-item-card.locked:hover {
+  transform: none;
+  box-shadow: 0 4px 0 var(--color-gray);
+  border-color: var(--color-gray);
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+/* Responsive adjustments */
+@media (max-width: 580px) {
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .review-card {
+    flex-direction: column;
+    min-height: auto;
+    gap: 16px;
+  }
+  
+  .review-card-owl-wrapper {
+    align-self: flex-end;
+    width: 100%;
+    height: 80px;
+  }
+  
+  .review-owl-mascot {
+    bottom: -10px;
+    right: 10px;
+  }
+  
+  .review-coin-bottom {
+    bottom: -22px;
+    right: 5px;
+  }
+}

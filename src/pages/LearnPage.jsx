@@ -1,6 +1,7 @@
-import { useNavigate } from 'react-router-dom';
-import { units } from '../data/mockData';
-import { useUser } from '../data/userStore';
+import { useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { units, studyCategories } from '../data/mockData';
+import { useUser, useUserDispatch } from '../data/userStore';
 import { isLessonUnlocked, isLessonCompleted, getNextLesson } from '../data/progressHelpers';
 import LessonNode from '../components/LessonNode';
 import './LearnPage.css';
@@ -9,14 +10,47 @@ import './LearnPage.css';
 const snakeOffsets = [0, -50, -80, -40, 10];
 
 export default function LearnPage() {
+  const { categoryId = 'grammar-foundation' } = useParams();
   const navigate = useNavigate();
   const user = useUser();
-  const nextLesson = getNextLesson(user.completedLessons);
+  const dispatch = useUserDispatch();
+
+  // Find the category info (fallback to first category if invalid)
+  const categoryInfo = studyCategories.find((c) => c.id === categoryId) || studyCategories[0];
+
+  // Filter units to show this category's units
+  const categoryUnits = units.filter((u) => u.category === categoryInfo.id);
+
+  // Keep userStore updated with the last studied category
+  useEffect(() => {
+    dispatch({ type: 'SET_LAST_CATEGORY', categoryId: categoryInfo.id });
+  }, [categoryInfo.id, dispatch]);
+
+  const nextLesson = getNextLesson(user.completedLessons, categoryUnits);
 
   return (
     <div className="learn-page" id="learn-page">
+      {/* Category Header with Back Arrow */}
+      <div className="learn-category-header" style={{ backgroundColor: categoryInfo.color }}>
+        <button 
+          className="learn-back-btn" 
+          onClick={() => navigate('/learn')}
+          id="learn-back-btn"
+          aria-label="Back to dashboard"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+          </svg>
+          <span>Dashboard</span>
+        </button>
+        <div className="learn-category-title-wrap">
+          <span className="learn-category-lbl">CATEGORY STUDY</span>
+          <h1 className="learn-category-name">{categoryInfo.title}</h1>
+        </div>
+      </div>
+
       <div className="learn-scroll-area">
-        {units.map((unit, unitIndex) => (
+        {categoryUnits.map((unit, unitIndex) => (
           <div key={unit.id} className="learn-unit">
             {/* Unit Header */}
             <div
@@ -40,7 +74,7 @@ export default function LearnPage() {
             {/* Lesson Path */}
             <div className="learn-path">
               {unit.levels.map((level, levelIndex) => {
-                const unlocked = isLessonUnlocked(user.completedLessons, unit.id, level.id);
+                const unlocked = isLessonUnlocked(user.completedLessons, unit.id, level.id, categoryUnits);
                 const completed = isLessonCompleted(user.completedLessons, unit.id, level.id);
                 const isNext = nextLesson && nextLesson.unitId === unit.id && nextLesson.levelId === level.id;
 
@@ -74,10 +108,10 @@ export default function LearnPage() {
             </div>
 
             {/* Jump here button between units */}
-            {unitIndex < units.length - 1 && (
+            {unitIndex < categoryUnits.length - 1 && (
               <div className="learn-jump-here">
                 <div className="learn-jump-divider">
-                  <span className="learn-jump-text">{units[unitIndex + 1].title}</span>
+                  <span className="learn-jump-text">{categoryUnits[unitIndex + 1].title}</span>
                 </div>
                 <button className="learn-jump-btn">JUMP HERE?</button>
               </div>
@@ -85,11 +119,14 @@ export default function LearnPage() {
           </div>
         ))}
 
-        {/* All done message if completed everything */}
+        {/* All done message if completed everything in this category */}
         {!nextLesson && (
           <div className="learn-complete-message">
-            <h3>🎉 All lessons completed!</h3>
-            <p>You&apos;re amazing! More lessons coming soon.</p>
+            <h3>🎉 Category completed!</h3>
+            <p>You&apos;ve completed all lessons in {categoryInfo.title}! Choose another category on the dashboard.</p>
+            <button className="btn btn-primary" onClick={() => navigate('/learn')} style={{ marginTop: '16px' }}>
+              BACK TO DASHBOARD
+            </button>
           </div>
         )}
       </div>

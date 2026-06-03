@@ -326,3 +326,45 @@ export const MoreIcon = ({ active, size = 32 }) => (
     <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill={active ? '#58CC02' : '#AFAFAF'} />
   </svg>
 );
+
+// ─── 3D Category Letter Icon ──────────────────────────────────────────
+export const Category3DIcon = ({ letter, color, size = 64 }) => {
+  const colorMap = {
+    '#58CC02': { base: '#58CC02', dark: '#38A800', light: '#89E219' }, // Grammar (Green)
+    '#FFC800': { base: '#FFC800', dark: '#cc9f00', light: '#FFE880' }, // Yellow
+    '#FF4B4B': { base: '#FF4B4B', dark: '#EA2C2C', light: '#FF8585' }, // Vocab (Red)
+    '#CE82FF': { base: '#CE82FF', dark: '#AA62DD', light: '#E4B3FF' }, // Reading (Purple)
+    '#1CB0F6': { base: '#1CB0F6', dark: '#0092DF', light: '#84D7FF' }, // Exam (Blue)
+  };
+  const shades = colorMap[color] || { base: color, dark: '#999999', light: '#CCCCCC' };
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 64 64"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{
+        verticalAlign: 'middle',
+        filter: 'drop-shadow(0 2px 2px rgba(0, 0, 0, 0.08))',
+        borderRadius: '10px',
+      }}
+    >
+      <rect x="0" y="4" width="64" height="60" rx="12" fill={shades.dark} />
+      <rect x="0" y="0" width="64" height="60" rx="12" fill={shades.base} />
+      <rect x="4" y="4" width="56" height="24" rx="6" fill={shades.light} opacity="0.45" />
+      <text
+        x="32"
+        y="42"
+        fill="#FFFFFF"
+        fontSize="36"
+        fontWeight="900"
+        textAnchor="middle"
+        fontFamily="var(--font-family), system-ui, sans-serif"
+      >
+        {letter}
+      </text>
+    </svg>
+  );
+};

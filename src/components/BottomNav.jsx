@@ -1,8 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import {
   HomeIcon,
-  LettersIcon,
-  PracticeIcon,
   LeaderboardIcon,
   QuestsIcon,
   ProfileIcon,
@@ -11,8 +9,6 @@ import './BottomNav.css';
 
 const tabs = [
   { id: 'home', path: '/learn', Icon: HomeIcon },
-  { id: 'letters', path: '/letters', Icon: LettersIcon },
-  { id: 'practice', path: '/practice', Icon: PracticeIcon },
   { id: 'leaderboard', path: '/leaderboard', Icon: LeaderboardIcon },
   { id: 'quests', path: '/quests', Icon: QuestsIcon },
   { id: 'profile', path: '/profile', Icon: ProfileIcon },
