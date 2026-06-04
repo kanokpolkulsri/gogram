@@ -1,0 +1,71 @@
+/* Learn Header — mobile-only top stats and navigation bar for learning page */
+.learn-header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: var(--color-white);
+  padding: 10px 16px;
+}
+
+.learn-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.learn-header-category {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 12px;
+  transition: background var(--transition-fast) ease, transform var(--transition-fast) ease;
+}
+
+.learn-header-category:hover {
+  background: var(--color-gray-light);
+}
+
+.learn-header-category:active {
+  transform: scale(0.97);
+}
+
+.learn-header-back-arrow {
+  color: var(--color-text-light);
+  transition: color var(--transition-fast) ease, transform var(--transition-fast) ease;
+}
+
+.learn-header-category:hover .learn-header-back-arrow {
+  color: var(--color-text);
+  transform: translateX(-2px);
+}
+
+.learn-header-category-name {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.learn-header-streak {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 12px;
+}
+
+.learn-header-streak-val {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--color-text);
+  /* Base text color */
+}
+
+/* Hide on desktop */
+@media (min-width: 1024px) {
+  .mobile-only {
+    display: none !important;
+  }
+}

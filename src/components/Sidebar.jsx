@@ -7,6 +7,7 @@ import {
   GemIcon,
   ProfileIcon,
   MoreIcon,
+  LettersIcon,
 } from './icons';
 import './Sidebar.css';
 
@@ -16,6 +17,12 @@ const sidebarTabs = [
     label: 'LEARN',
     path: '/learn',
     Icon: HomeIcon,
+  },
+  {
+    id: 'categories',
+    label: 'CATEGORIES',
+    path: '/dashboard',
+    Icon: LettersIcon,
   },
   {
     id: 'leaderboards',
@@ -90,7 +97,11 @@ export default function Sidebar() {
       {/* Navigation */}
       <nav className="sidebar-nav">
         {sidebarTabs.map((tab) => {
-          const isActive = tab.path && location.pathname === tab.path;
+          const isActive = tab.path && (
+            tab.path === '/learn'
+              ? location.pathname.startsWith('/learn')
+              : location.pathname === tab.path
+          );
           
           if (!tab.path) {
             return (

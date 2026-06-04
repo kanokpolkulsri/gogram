@@ -4,11 +4,13 @@ import {
   LeaderboardIcon,
   QuestsIcon,
   ProfileIcon,
+  LettersIcon,
 } from './icons';
 import './BottomNav.css';
 
 const tabs = [
   { id: 'home', path: '/learn', Icon: HomeIcon },
+  { id: 'categories', path: '/dashboard', Icon: LettersIcon },
   { id: 'leaderboard', path: '/leaderboard', Icon: LeaderboardIcon },
   { id: 'quests', path: '/quests', Icon: QuestsIcon },
   { id: 'profile', path: '/profile', Icon: ProfileIcon },
@@ -20,7 +22,9 @@ export default function BottomNav() {
   return (
     <nav className="bottom-nav" id="bottom-nav">
       {tabs.map((tab) => {
-        const isActive = location.pathname === tab.path;
+        const isActive = tab.path === '/learn'
+          ? location.pathname.startsWith('/learn')
+          : location.pathname === tab.path;
         return (
           <Link
             key={tab.id}

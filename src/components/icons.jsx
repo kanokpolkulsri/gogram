@@ -368,3 +368,77 @@ export const Category3DIcon = ({ letter, color, size = 64 }) => {
     </svg>
   );
 };
+
+// ─── Cute Trophy Icon with Level (Duolingo Style) ──────────────────────
+export const TrophyLevelIcon = ({ size = 48, level = 1 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 64 64"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    style={{
+      display: 'inline-block',
+      verticalAlign: 'middle',
+      filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12))'
+    }}
+  >
+    {/* 1. Bottom 3D Bevel Shadow (Dark Gold/Orange) */}
+    <path
+      d="M14 14 H50 C54 14, 54 18, 53 22 C51 38, 46 52, 32 58 C18 52, 13 38, 11 22 C10 18, 10 14, 14 14 Z"
+      fill="#E58600"
+    />
+
+    {/* 2. Outer Shield Rim (Bright Yellow) */}
+    <path
+      d="M14 10 H50 C54 10, 54 14, 53 18 C51 34, 46 48, 32 54 C18 48, 13 34, 11 18 C10 14, 10 10, 14 10 Z"
+      fill="#FFD900"
+    />
+
+    {/* 3. Inner Shield Face shadow (Orange/Dark Gold) */}
+    <path
+      d="M17 14 H47 C50 14, 50 17, 49 20 C48 33, 43 45, 32 50 C21 45, 16 33, 15 20 C14 17, 14 14, 17 14 Z"
+      fill="#E58600"
+    />
+
+    {/* 4. Inner Shield Face (Warm Gold) */}
+    <path
+      d="M17 12 H47 C50 12, 50 15, 49 18 C48 31, 43 43, 32 48 C21 43, 16 31, 15 18 C14 15, 14 12, 17 12 Z"
+      fill="#FF9600"
+    />
+
+    {/* 5. Top Highlight (Soft Light Yellow) */}
+    <path
+      d="M18 14 H46 C48 14, 48 16, 47 18 C46 22, 43 26, 32 28 C21 26, 18 22, 17 18 C16 16, 16 14, 18 14 Z"
+      fill="#FFE57F"
+      opacity="0.6"
+    />
+
+    {/* 6. Level Text "LV" in bold dark orange */}
+    <text
+      x="32"
+      y="27"
+      textAnchor="middle"
+      fontFamily="var(--font-family), system-ui, sans-serif"
+      fontSize="11"
+      fontWeight="900"
+      fill="#582A00"
+      letterSpacing="0.5"
+    >
+      LV
+    </text>
+
+    {/* 7. Level number in bold dark orange */}
+    <text
+      x="32"
+      y="41"
+      textAnchor="middle"
+      fontFamily="var(--font-family), system-ui, sans-serif"
+      fontSize="15"
+      fontWeight="900"
+      fill="#582A00"
+    >
+      {level}
+    </text>
+  </svg>
+);

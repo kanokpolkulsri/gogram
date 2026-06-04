@@ -1,15 +1,18 @@
+import { useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import RightSidebar from './RightSidebar';
 import BottomNav from './BottomNav';
-import MobileHeader from './MobileHeader';
+import LearnHeader from './LearnHeader';
 import './DesktopLayout.css';
 
 export default function DesktopLayout({ children, showRightSidebar = true }) {
+  const location = useLocation();
+  const showLearnHeader = location.pathname.startsWith('/learn');
+
   return (
     <div className="desktop-layout" id="desktop-layout">
       <Sidebar />
-      {/* Mobile Top Header - rendered only on smaller screens */}
-      <MobileHeader />
+      {showLearnHeader && <LearnHeader />}
       <main className="desktop-main">
         <div className="desktop-main-content">
           {children}

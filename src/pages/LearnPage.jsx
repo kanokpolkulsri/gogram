@@ -10,13 +10,14 @@ import './LearnPage.css';
 const snakeOffsets = [0, -50, -80, -40, 10];
 
 export default function LearnPage() {
-  const { categoryId = 'grammar-foundation' } = useParams();
+  const { categoryId } = useParams();
   const navigate = useNavigate();
   const user = useUser();
   const dispatch = useUserDispatch();
 
-  // Find the category info (fallback to first category if invalid)
-  const categoryInfo = studyCategories.find((c) => c.id === categoryId) || studyCategories[0];
+  // Load the active category from the parameter, defaulting to the last studied category or 'grammar-foundation'
+  const activeCategoryId = categoryId || user.lastCategoryId || 'grammar-foundation';
+  const categoryInfo = studyCategories.find((c) => c.id === activeCategoryId) || studyCategories[0];
 
   // Filter units to show this category's units
   const categoryUnits = units.filter((u) => u.category === categoryInfo.id);
@@ -28,27 +29,10 @@ export default function LearnPage() {
 
   const nextLesson = getNextLesson(user.completedLessons, categoryUnits);
 
+
+
   return (
     <div className="learn-page" id="learn-page">
-      {/* Category Header with Back Arrow */}
-      <div className="learn-category-header" style={{ backgroundColor: categoryInfo.color }}>
-        <button 
-          className="learn-back-btn" 
-          onClick={() => navigate('/learn')}
-          id="learn-back-btn"
-          aria-label="Back to dashboard"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
-          </svg>
-          <span>Dashboard</span>
-        </button>
-        <div className="learn-category-title-wrap">
-          <span className="learn-category-lbl">CATEGORY STUDY</span>
-          <h1 className="learn-category-name">{categoryInfo.title}</h1>
-        </div>
-      </div>
-
       <div className="learn-scroll-area">
         {categoryUnits.map((unit, unitIndex) => (
           <div key={unit.id} className="learn-unit">
@@ -124,7 +108,7 @@ export default function LearnPage() {
           <div className="learn-complete-message">
             <h3>🎉 Category completed!</h3>
             <p>You&apos;ve completed all lessons in {categoryInfo.title}! Choose another category on the dashboard.</p>
-            <button className="btn btn-primary" onClick={() => navigate('/learn')} style={{ marginTop: '16px' }}>
+            <button className="btn btn-primary" onClick={() => navigate('/dashboard')} style={{ marginTop: '16px' }}>
               BACK TO DASHBOARD
             </button>
           </div>
