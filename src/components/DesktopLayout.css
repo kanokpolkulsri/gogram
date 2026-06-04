@@ -24,7 +24,7 @@
 @media (min-width: 1024px) {
   .desktop-layout {
     display: grid;
-    grid-template-columns: 230px 1fr 360px;
+    grid-template-columns: 80px 1fr 360px;
     max-width: 1440px;
     margin: 0 auto;
     width: 100%;
@@ -48,15 +48,15 @@
 
   /* No right sidebar variant */
   .desktop-layout:not(:has(.right-sidebar)) {
-    grid-template-columns: 230px 1fr;
-    max-width: 1080px;
+    grid-template-columns: 80px 1fr;
+    max-width: 960px;
   }
 }
 
 /* Narrower desktop */
 @media (max-width: 1280px) and (min-width: 1024px) {
   .desktop-layout {
-    grid-template-columns: 230px 1fr 300px;
+    grid-template-columns: 80px 1fr 300px;
   }
 }
 @media (max-width: 1023px) {
