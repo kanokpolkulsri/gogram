@@ -209,12 +209,6 @@ export default function LeaderboardPage() {
               <span className="leaderboard-xp" style={{ color: selectedCategory.color, fontWeight: '800' }}>
                 LV. {u.level}
               </span>
-              {isPromotion && (
-                <span className="leaderboard-zone-badge promotion-badge">▲</span>
-              )}
-              {isDemotion && (
-                <span className="leaderboard-zone-badge demotion-badge">▼</span>
-              )}
             </div>
           );
         })}
@@ -245,17 +239,6 @@ export default function LeaderboardPage() {
         </div>
       </div>
 
-      {/* Zone legend */}
-      <div className="leaderboard-legend">
-        <div className="leaderboard-legend-item">
-          <span className="leaderboard-legend-dot promotion-dot" />
-          <span>Top Levels</span>
-        </div>
-        <div className="leaderboard-legend-item">
-          <span className="leaderboard-legend-dot demotion-dot" />
-          <span>Bottom Levels</span>
-        </div>
-      </div>
     </div>
   );
 }

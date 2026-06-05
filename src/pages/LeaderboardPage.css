@@ -63,8 +63,6 @@
   padding: 12px 18px;
   border-radius: 16px;
   background: var(--color-white);
-  border: 2px solid var(--color-gray);
-  border-bottom-width: 4px;
   animation: fadeInUp 0.35s ease forwards;
   opacity: 0;
   transition: all var(--transition-fast) ease;
@@ -74,21 +72,15 @@
 .leaderboard-row:hover {
   background: var(--color-gray-light);
   transform: translateY(-1px);
-  border-bottom-width: 4px;
 }
 
 .leaderboard-row-you {
   background: #FAFDFF !important;
-  border-color: #84D8FF !important;
+  border: 2px solid #84D8FF !important;
   border-bottom-width: 4px !important;
   box-shadow: 0 4px 12px rgba(28, 176, 246, 0.08);
 }
 
-
-.leaderboard-row.demotion {
-  border-left-width: 4px;
-  border-left-color: var(--color-red);
-}
 
 .leaderboard-rank {
   font-size: 16px;
@@ -164,27 +156,6 @@
   flex-shrink: 0;
 }
 
-.leaderboard-zone-badge {
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 10px;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-}
-
-.promotion-badge {
-  color: var(--color-green);
-}
-
-.demotion-badge {
-  color: var(--color-red);
-}
 
 /* Sticky Footer */
 .leaderboard-sticky-footer {
@@ -205,38 +176,6 @@
   opacity: 1;
 }
 
-/* Legend */
-.leaderboard-legend {
-  display: flex;
-  gap: 24px;
-  justify-content: center;
-  padding: 24px 0 8px;
-  border-top: 2px solid var(--color-gray);
-  margin-top: 16px;
-}
-
-.leaderboard-legend-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  font-weight: 800;
-  color: var(--color-text-light);
-}
-
-.leaderboard-legend-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-}
-
-.promotion-dot {
-  background: var(--color-green);
-}
-
-.demotion-dot {
-  background: var(--color-red);
-}
 
 /* Responsive adjustments */
 @media (max-width: 1023px) {
