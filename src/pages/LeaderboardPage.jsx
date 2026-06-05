@@ -10,6 +10,15 @@ function ShieldIcon({ color, letter, isActive, size = 76 }) {
   const opacity = isActive ? 1 : 0.55;
   const shadowColor = `${color}55`;
 
+  const colorMap = {
+    '#58CC02': { base: '#58CC02', dark: '#38A800', light: '#89E219' }, // Grammar (Green)
+    '#FFC800': { base: '#FFC800', dark: '#CC9F00', light: '#FFE880' }, // Yellow
+    '#FF4B4B': { base: '#FF4B4B', dark: '#EA2C2C', light: '#FF8585' }, // Vocab (Red)
+    '#CE82FF': { base: '#CE82FF', dark: '#AA62DD', light: '#E4B3FF' }, // Reading (Purple)
+    '#1CB0F6': { base: '#1CB0F6', dark: '#0092DF', light: '#84D7FF' }, // Exam (Blue)
+  };
+  const shades = colorMap[color] || { base: color, dark: '#999999', light: '#CCCCCC' };
+
   return (
     <div 
       className="shield-icon-wrapper"
@@ -32,19 +41,18 @@ function ShieldIcon({ color, letter, isActive, size = 76 }) {
       >
         <path
           d="M24 4L8 8v14c0 10.4 6.8 20.1 16 22 9.2-1.9 16-11.6 16-22V8L24 4z"
-          fill={isActive ? color : '#E5E5E5'}
+          fill={isActive ? shades.base : '#E5E5E5'}
         />
         {/* Right side shadow overlay for 3D depth */}
         <path 
           d="M24 4L24 44c9.2-1.9 16-11.6 16-22V8L24 4z" 
-          fill="#000000" 
-          opacity={isActive ? 0.15 : 0.1} 
+          fill={isActive ? shades.dark : '#CCCCCC'} 
         />
         {/* Inner left highlight for 3D depth */}
         <path 
           d="M24 10L14 12v10c0 7 4.2 13.5 10 16V10z" 
-          fill="#FFFFFF" 
-          opacity={isActive ? 0.12 : 0.20} 
+          fill={isActive ? shades.light : '#FFFFFF'} 
+          opacity={isActive ? 0.45 : 0.25} 
         />
         {/* Inner letter 3D shadow overlay (active only) */}
         {isActive && (
