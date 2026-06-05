@@ -106,7 +106,19 @@ export default function CategoryPage() {
                   <div className="category-item-info">
                     <div className="category-item-title-row">
                       <h3 className="category-item-title">{category.title}</h3>
-                      {isCurrent && <span className="category-active-badge">ACTIVE</span>}
+                      {isCurrent && (
+                        <span 
+                          className="category-active-badge"
+                          style={{
+                            backgroundColor: `${category.color}15`,
+                            color: category.color,
+                            border: `1.5px solid ${category.color}`
+                          }}
+                        >
+                          <span className="active-badge-dot" style={{ backgroundColor: category.color }} />
+                          CURRENT TRACK
+                        </span>
+                      )}
                     </div>
                     <p className="category-item-desc">{category.description}</p>
                     <div className="category-card-progress">
