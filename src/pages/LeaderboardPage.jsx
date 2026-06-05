@@ -44,16 +44,30 @@ function ShieldIcon({ color, letter, isActive, size = 76 }) {
         <path 
           d="M24 10L14 12v10c0 7 4.2 13.5 10 16V10z" 
           fill="#FFFFFF" 
-          opacity={isActive ? 0.25 : 0.4} 
+          opacity={isActive ? 0.12 : 0.20} 
         />
+        {/* Inner letter 3D shadow overlay (active only) */}
+        {isActive && (
+          <text 
+            x="24" 
+            y="31.5" 
+            textAnchor="middle" 
+            fill="rgba(0, 0, 0, 0.25)" 
+            fontWeight="900" 
+            fontSize="22" 
+            fontFamily="Nunito, system-ui, sans-serif"
+          >
+            {letter}
+          </text>
+        )}
         {/* Inner letter */}
         <text 
           x="24" 
           y="30" 
           textAnchor="middle" 
-          fill={isActive ? 'white' : '#AFAFAF'} 
+          fill={isActive ? 'white' : '#555555'} 
           fontWeight="900" 
-          fontSize="18" 
+          fontSize="22" 
           fontFamily="Nunito, system-ui, sans-serif"
         >
           {letter}
