@@ -5,7 +5,7 @@ import './LeaderboardPage.css';
 
 const medals = ['🥇', '🥈', '🥉'];
 
-function ShieldIcon({ color, letter, isActive, size = 60 }) {
+function ShieldIcon({ color, letter, isActive, size = 76 }) {
   const scale = isActive ? 1.15 : 0.82;
   const opacity = isActive ? 1 : 0.55;
   const shadowColor = `${color}55`;
@@ -20,32 +20,40 @@ function ShieldIcon({ color, letter, isActive, size = 60 }) {
         cursor: 'pointer'
       }}
     >
-      <svg width={size} height={size + 6} viewBox="0 0 100 110" fill="none" style={{ filter: isActive ? `drop-shadow(0 6px 12px ${shadowColor})` : 'none' }}>
-        {/* 3D bottom shadow of the shield */}
-        <path 
-          d="M12 15 C 30 15, 70 15, 88 15 C 88 48, 80 83, 50 101 C 20 83, 12 48, 12 15 Z" 
-          fill={isActive ? color : '#CCCCCC'} 
-          opacity="0.3" 
+      <svg 
+        width={size} 
+        height={size} 
+        viewBox="0 0 48 48" 
+        fill="none" 
+        style={{ 
+          filter: isActive ? `drop-shadow(0 6px 12px ${shadowColor})` : 'none',
+          overflow: 'visible'
+        }}
+      >
+        <path
+          d="M24 4L8 8v14c0 10.4 6.8 20.1 16 22 9.2-1.9 16-11.6 16-22V8L24 4z"
+          fill={isActive ? color : '#E5E5E5'}
         />
-        {/* Main shield body */}
+        {/* Right side shadow overlay for 3D depth */}
         <path 
-          d="M12 10 C 30 10, 70 10, 88 10 C 88 43, 80 78, 50 96 C 20 78, 12 43, 12 10 Z" 
-          fill={isActive ? color : '#E5E5E5'} 
+          d="M24 4L24 44c9.2-1.9 16-11.6 16-22V8L24 4z" 
+          fill="#000000" 
+          opacity={isActive ? 0.15 : 0.1} 
         />
-        {/* Shield inner depth overlay */}
+        {/* Inner left highlight for 3D depth */}
         <path 
-          d="M18 16 C 34 16, 66 16, 82 16 C 82 43, 75 72, 50 88 C 25 72, 18 43, 18 16 Z" 
-          fill="white" 
-          opacity={isActive ? 0.22 : 0.4} 
+          d="M24 10L14 12v10c0 7 4.2 13.5 10 16V10z" 
+          fill="#FFFFFF" 
+          opacity={isActive ? 0.25 : 0.4} 
         />
         {/* Inner letter */}
         <text 
-          x="50" 
-          y="62" 
+          x="24" 
+          y="30" 
           textAnchor="middle" 
           fill={isActive ? 'white' : '#AFAFAF'} 
           fontWeight="900" 
-          fontSize="36" 
+          fontSize="18" 
           fontFamily="Nunito, system-ui, sans-serif"
         >
           {letter}
@@ -129,7 +137,7 @@ export default function LeaderboardPage() {
                 color={cat.color}
                 letter={cat.iconChar}
                 isActive={isSelected}
-                size={58}
+                size={76}
               />
             </div>
           );
