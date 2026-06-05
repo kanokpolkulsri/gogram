@@ -175,7 +175,7 @@ export default function LeaderboardPage() {
       </div>
 
       {/* Leaderboard list */}
-      <div className="leaderboard-list">
+      <div className="leaderboard-list" key={selectedCategoryId}>
         {allUsers.map((u, index) => {
           const isPromotion = u.rank <= leagueData.promotionZone;
           const isDemotion = u.rank > allUsers.length - leagueData.demotionZone;
