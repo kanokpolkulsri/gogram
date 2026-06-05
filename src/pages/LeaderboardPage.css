@@ -249,6 +249,9 @@
 /* Responsive adjustments */
 @media (max-width: 1023px) {
   .leaderboard-page {
-    padding: 16px 16px 80px;
+    padding: 16px 16px 160px;
+  }
+  .leaderboard-sticky-footer {
+    bottom: 60px;
   }
 }
