@@ -154,35 +154,12 @@
 }
 
 .category-active-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
   font-size: 10px;
   font-weight: 800;
-  padding: 4px 10px;
-  border-radius: 99px;
-  letter-spacing: 0.8px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
-
-.active-badge-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  animation: pulseDot 1.6s infinite ease-in-out;
-  flex-shrink: 0;
-}
-
-@keyframes pulseDot {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.4);
-    opacity: 0.5;
-  }
 }
 
 .category-item-desc {
@@ -274,6 +251,7 @@
     opacity: 0;
     transform: scale(0.92) translateY(10px);
   }
+
   100% {
     opacity: 1;
     transform: scale(1) translateY(0);
@@ -281,9 +259,12 @@
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-6px);
   }

@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { useUser } from '../data/userStore';
-import { leagueData } from '../data/mockData';
+import { leagueData, studyCategories, units } from '../data/mockData';
 import './LeaderboardPage.css';
 
 const medals = ['🥇', '🥈', '🥉'];
@@ -7,43 +8,87 @@ const medals = ['🥇', '🥈', '🥉'];
 export default function LeaderboardPage() {
   const user = useUser();
 
-  // Insert user at their position
-  const allUsers = [
-    ...leagueData.weeklyLeaderboard.slice(0, 8),
-    { rank: 9, name: 'You', xp: user.totalXP, country: '🇺🇸', avatar: '#58CC02', initials: 'YO', isYou: true },
-    ...leagueData.weeklyLeaderboard.slice(8),
-  ];
+  // Load the active category or fallback to the first one
+  const initialCategoryId = user.lastCategoryId || 'grammar-foundation';
+  const [selectedCategoryId, setSelectedCategoryId] = useState(initialCategoryId);
 
-  // Re-sort by XP
-  allUsers.sort((a, b) => b.xp - a.xp);
+  const selectedCategory = studyCategories.find((c) => c.id === selectedCategoryId) || studyCategories[0];
+
+  // Helper to calculate or get level for each user
+  const getLevel = (uName, isYou) => {
+    if (isYou) {
+      const unitsForCat = units.filter((u) => u.category === selectedCategoryId);
+      const completedUnitsCount = unitsForCat.filter(unit => 
+        unit.levels.every(level => user.completedLessons.includes(`${unit.id}-${level.id}`))
+      ).length;
+      return 1 + completedUnitsCount;
+    }
+    // Dynamic mock user levels based on categoryId and username hashing
+    const strVal = (selectedCategoryId + uName).length;
+    const mockBase = 1 + (strVal % 5); // Level 1 to 5
+    return mockBase;
+  };
+
+  // Construct leaderboard users list
+  const allUsers = [
+    ...leagueData.weeklyLeaderboard.slice(0, 8).map(u => ({ ...u, isYou: false })),
+    { name: 'You', country: '🇺🇸', avatar: '#58CC02', initials: 'YO', isYou: true, xp: user.totalXP },
+    ...leagueData.weeklyLeaderboard.slice(8).map(u => ({ ...u, isYou: false })),
+  ].map(u => {
+    const level = getLevel(u.name, u.isYou);
+    return { ...u, level };
+  });
+
+  // Re-sort primarily by Level (highest level first) and secondarily by XP
+  allUsers.sort((a, b) => {
+    if (b.level !== a.level) {
+      return b.level - a.level;
+    }
+    return b.xp - a.xp;
+  });
+
   // Reassign ranks
   allUsers.forEach((u, i) => (u.rank = i + 1));
 
   return (
     <div className="leaderboard-page" id="leaderboard-page">
-      {/* League header */}
+      {/* Category Leaderboard header */}
       <div className="leaderboard-league-header">
         <div className="leaderboard-league-icon">
           <svg width="48" height="48" viewBox="0 0 24 24" fill="#FFC800">
             <path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2z"/>
           </svg>
         </div>
-        <h1 className="leaderboard-league-title">{leagueData.currentLeague} League</h1>
+        <h1 className="leaderboard-league-title">Category Leaderboards</h1>
         <p className="leaderboard-league-sub">
-          Top {leagueData.promotionZone} advance to the next league
+          See who has reached the highest level in each study track
         </p>
       </div>
 
-      {/* League progress */}
+      {/* Categories leagues strip */}
       <div className="leaderboard-leagues-strip">
-        {leagueData.leagues.map((league) => (
-          <span
-            key={league}
-            className={`league-chip ${league === leagueData.currentLeague ? 'active' : ''}`}
-          >
-            {league}
-          </span>
-        ))}
+        {studyCategories.map((cat) => {
+          const isSelected = cat.id === selectedCategoryId;
+          const chipStyle = isSelected
+            ? {
+                backgroundColor: `${cat.color}15`,
+                color: cat.color,
+                borderColor: cat.color,
+                borderWidth: '2px',
+                borderStyle: 'solid'
+              }
+            : {};
+          return (
+            <button
+              key={cat.id}
+              className={`league-chip ${isSelected ? 'active' : ''}`}
+              style={chipStyle}
+              onClick={() => setSelectedCategoryId(cat.id)}
+            >
+              {cat.title}
+            </button>
+          );
+        })}
       </div>
 
       {/* Leaderboard list */}
@@ -74,8 +119,8 @@ export default function LeaderboardPage() {
                 <span className="leaderboard-name">{u.name}</span>
                 <span className="leaderboard-country">{u.country}</span>
               </div>
-              <span className="leaderboard-xp">
-                {u.xp} XP
+              <span className="leaderboard-xp" style={{ color: selectedCategory.color, fontWeight: '800' }}>
+                LV. {u.level}
               </span>
               {isPromotion && (
                 <span className="leaderboard-zone-badge promotion-badge">▲</span>
@@ -92,11 +137,11 @@ export default function LeaderboardPage() {
       <div className="leaderboard-legend">
         <div className="leaderboard-legend-item">
           <span className="leaderboard-legend-dot promotion-dot" />
-          <span>Promotion Zone</span>
+          <span>Top Levels</span>
         </div>
         <div className="leaderboard-legend-item">
           <span className="leaderboard-legend-dot demotion-dot" />
-          <span>Demotion Zone</span>
+          <span>Bottom Levels</span>
         </div>
       </div>
     </div>

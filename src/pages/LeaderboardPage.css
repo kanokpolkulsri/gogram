@@ -39,21 +39,28 @@
 }
 
 .league-chip {
-  padding: 6px 12px;
+  padding: 6px 14px;
   border-radius: 16px;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--color-text-light);
   background: var(--color-gray-light);
+  border: 2px solid transparent;
   white-space: nowrap;
   flex-shrink: 0;
   transition: all var(--transition-fast);
+  cursor: pointer;
+  outline: none;
+  font-family: var(--font-family);
+}
+
+.league-chip:hover {
+  background: #E5E5E5;
 }
 
 .league-chip.active {
-  background: var(--color-yellow-bg);
-  color: var(--color-yellow-dark);
-  border: 2px solid var(--color-yellow);
+  border-width: 2px;
+  border-style: solid;
 }
 
 /* List */

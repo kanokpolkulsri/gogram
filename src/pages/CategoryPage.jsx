@@ -18,10 +18,10 @@ export default function CategoryPage() {
   // Sort categories so that the active category is on top of the list (if any)
   const sortedCategories = lastCategoryId
     ? [...studyCategories].sort((a, b) => {
-        if (a.id === lastCategoryId) return -1;
-        if (b.id === lastCategoryId) return 1;
-        return 0;
-      })
+      if (a.id === lastCategoryId) return -1;
+      if (b.id === lastCategoryId) return 1;
+      return 0;
+    })
     : studyCategories;
 
   // Calculate the total of levels of all categories
@@ -106,19 +106,7 @@ export default function CategoryPage() {
                   <div className="category-item-info">
                     <div className="category-item-title-row">
                       <h3 className="category-item-title">{category.title}</h3>
-                      {isCurrent && (
-                        <span 
-                          className="category-active-badge"
-                          style={{
-                            backgroundColor: `${category.color}15`,
-                            color: category.color,
-                            border: `1.5px solid ${category.color}`
-                          }}
-                        >
-                          <span className="active-badge-dot" style={{ backgroundColor: category.color }} />
-                          CURRENT TRACK
-                        </span>
-                      )}
+                      {isCurrent && <span className="category-active-badge">ACTIVE</span>}
                     </div>
                     <p className="category-item-desc">{category.description}</p>
                     <div className="category-card-progress">
