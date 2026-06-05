@@ -54,6 +54,7 @@
   flex-direction: column;
   gap: 6px;
   margin-bottom: 0;
+  font-size: 16px;
 }
 
 .leaderboard-row {
@@ -63,6 +64,7 @@
   padding: 12px 18px;
   border-radius: 16px;
   background: var(--color-white);
+  font-size: 16px;
   animation: fadeInUp 0.35s ease forwards;
   opacity: 0;
   transition: all var(--transition-fast) ease;
@@ -140,7 +142,7 @@
 }
 
 .leaderboard-name {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 800;
   color: var(--color-text);
   white-space: nowrap;
@@ -151,7 +153,7 @@
 
 
 .leaderboard-xp {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 800;
   flex-shrink: 0;
 }
@@ -182,6 +184,7 @@
   .leaderboard-page {
     padding: 16px 16px 90px;
   }
+
   .leaderboard-sticky-footer {
     bottom: 60px;
   }
