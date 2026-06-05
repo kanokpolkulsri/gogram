@@ -3,75 +3,79 @@ import { useUser } from '../data/userStore';
 import { leagueData, studyCategories, units } from '../data/mockData';
 import './LeaderboardPage.css';
 
-function ShieldIcon({ color, letter, isActive, size = 32 }) {
+function ShieldIcon({ color, letter, isActive, size = 76 }) {
   const scale = isActive ? 1.15 : 0.82;
   const opacity = isActive ? 1 : 0.55;
   const shadowColor = `${color}55`;
 
   const colorMap = {
-    '#58CC02': { base: '#58CC02', light: '#89E219' }, // Grammar (Green)
-    '#FFC800': { base: '#FFC800', light: '#FFE880' }, // Yellow
-    '#FF4B4B': { base: '#FF4B4B', light: '#FF8585' }, // Vocab (Red)
-    '#CE82FF': { base: '#CE82FF', light: '#E4B3FF' }, // Reading (Purple)
-    '#1CB0F6': { base: '#1CB0F6', light: '#84D7FF' }, // Exam (Blue)
+    '#58CC02': { base: '#58CC02', dark: '#38A800', light: '#89E219' }, // Grammar (Green)
+    '#FFC800': { base: '#FFC800', dark: '#cc9f00', light: '#FFE880' }, // Yellow
+    '#FF4B4B': { base: '#FF4B4B', dark: '#EA2C2C', light: '#FF8585' }, // Vocab (Red)
+    '#CE82FF': { base: '#CE82FF', dark: '#AA62DD', light: '#E4B3FF' }, // Reading (Purple)
+    '#1CB0F6': { base: '#1CB0F6', dark: '#0092DF', light: '#84D7FF' }, // Exam (Blue)
   };
-  const shades = colorMap[color] || { base: color, light: color };
-
-  const leftColor = isActive ? shades.light : '#FAF9F9';
-  const rightColor = isActive ? shades.base : '#CCCCCC';
+  const shades = colorMap[color] || { base: color, dark: color, light: color };
 
   return (
-    <div 
+    <div
       className="shield-icon-wrapper"
-      style={{ 
-        transform: `scale(${scale})`, 
+      style={{
+        transform: `scale(${scale})`,
         opacity,
         transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
         cursor: 'pointer'
       }}
     >
-      <svg 
-        width={size} 
-        height={size} 
-        viewBox="0 0 48 48" 
-        fill="none" 
-        style={{ 
+      <svg
+        width={size}
+        height={size}
+        viewBox="0 0 48 48"
+        fill="none"
+        style={{
           filter: isActive ? `drop-shadow(0 6px 12px ${shadowColor})` : 'none',
           overflow: 'visible'
         }}
       >
-        {/* Left half base path */}
+        {/* Path 1: Base Shield */}
         <path
           d="M24 4L8 8v14c0 10.4 6.8 20.1 16 22 9.2-1.9 16-11.6 16-22V8L24 4z"
-          fill={leftColor}
+          fill={isActive ? shades.base : '#E5E5E5'}
         />
-        {/* Right half overlay path */}
-        <path 
-          d="M24 4L24 44c9.2-1.9 16-11.6 16-22V8L24 4z" 
-          fill={rightColor} 
+        {/* Path 2: Right Split Shadow */}
+        <path
+          d="M24 4L24 44c9.2-1.9 16-11.6 16-22V8L24 4z"
+          fill={isActive ? shades.dark : '#CCCCCC'}
+          opacity={isActive ? 0.15 : 0.1}
+        />
+        {/* Path 3: Inner Left Highlight */}
+        <path
+          d="M24 10L14 12v10c0 7 4.2 13.5 10 16V10z"
+          fill={isActive ? shades.light : '#FFFFFF'}
+          opacity={isActive ? 0.4 : 0.25}
         />
         {/* Inner letter 3D shadow overlay (active only) */}
         {isActive && (
-          <text 
-            x="24" 
-            y="31.5" 
-            textAnchor="middle" 
-            fill="rgba(0, 0, 0, 0.2)" 
-            fontWeight="900" 
-            fontSize="22" 
+          <text
+            x="24"
+            y="31.5"
+            textAnchor="middle"
+            fill="rgba(0, 0, 0, 0.2)"
+            fontWeight="900"
+            fontSize="22"
             fontFamily="Nunito, system-ui, sans-serif"
           >
             {letter}
           </text>
         )}
         {/* Inner letter */}
-        <text 
-          x="24" 
-          y="30" 
-          textAnchor="middle" 
-          fill={isActive ? 'white' : '#555555'} 
-          fontWeight="900" 
-          fontSize="22" 
+        <text
+          x="24"
+          y="30"
+          textAnchor="middle"
+          fill={isActive ? 'white' : '#555555'}
+          fontWeight="900"
+          fontSize="22"
           fontFamily="Nunito, system-ui, sans-serif"
         >
           {letter}
@@ -94,7 +98,7 @@ export default function LeaderboardPage() {
   const getLevel = (uName, isYou) => {
     if (isYou) {
       const unitsForCat = units.filter((u) => u.category === selectedCategoryId);
-      const completedUnitsCount = unitsForCat.filter(unit => 
+      const completedUnitsCount = unitsForCat.filter(unit =>
         unit.levels.every(level => user.completedLessons.includes(`${unit.id}-${level.id}`))
       ).length;
       return 1 + completedUnitsCount;
@@ -108,8 +112,8 @@ export default function LeaderboardPage() {
   // Determine user display details
   const userName = user.authProfile?.displayName || user.name || 'You';
   const userAvatar = user.authProfile?.photoURL || '#58CC02';
-  const userInitials = user.authProfile?.displayName 
-    ? user.authProfile.displayName.slice(0, 2).toUpperCase() 
+  const userInitials = user.authProfile?.displayName
+    ? user.authProfile.displayName.slice(0, 2).toUpperCase()
     : 'YO';
 
   // Construct leaderboard users list
@@ -155,7 +159,7 @@ export default function LeaderboardPage() {
                 color={cat.color}
                 letter={cat.iconChar}
                 isActive={isSelected}
-                size={32}
+                size={76}
               />
             </div>
           );
