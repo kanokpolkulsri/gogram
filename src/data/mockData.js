@@ -856,73 +856,7 @@ export const studyCategories = [
   },
 ];
 
-// Daily quests
-export const dailyQuests = [
-  {
-    id: 'dq1',
-    title: 'Earn 10 XP',
-    icon: '⚡',
-    iconColor: '#FFC800',
-    current: 0,
-    target: 10,
-    reward: 5,
-    rewardType: 'gems',
-  },
-  {
-    id: 'dq2',
-    title: 'Score 80% or higher in 2 lessons',
-    icon: '🎯',
-    iconColor: '#58CC02',
-    current: 0,
-    target: 2,
-    reward: 10,
-    rewardType: 'gems',
-  },
-  {
-    id: 'dq3',
-    title: 'Earn 15 Combo Bonus XP',
-    icon: '🔥',
-    iconColor: '#FF9600',
-    current: 0,
-    target: 15,
-    reward: 5,
-    rewardType: 'gems',
-  },
-  {
-    id: 'dq4',
-    title: 'Complete 3 lessons without losing a heart',
-    icon: '❤️',
-    iconColor: '#FF4B4B',
-    current: 0,
-    target: 3,
-    reward: 15,
-    rewardType: 'gems',
-  },
-];
 
-// Weekly quests
-export const weeklyQuests = [
-  {
-    id: 'wq1',
-    title: 'Earn 100 XP this week',
-    icon: '💪',
-    iconColor: '#CE82FF',
-    current: 45,
-    target: 100,
-    reward: 20,
-    rewardType: 'gems',
-  },
-  {
-    id: 'wq2',
-    title: 'Maintain a 7-day streak',
-    icon: '🔥',
-    iconColor: '#FF9600',
-    current: 3,
-    target: 7,
-    reward: 50,
-    rewardType: 'gems',
-  },
-];
 
 // Shop items
 export const shopItems = {

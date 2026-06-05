@@ -1,6 +1,6 @@
 import { useUser } from '../data/userStore';
-import { dailyQuests, leagueData } from '../data/mockData';
-import { FrenchFlagIcon, GemIcon, HeartIcon, ChestIcon } from './icons';
+import { leagueData } from '../data/mockData';
+import { FrenchFlagIcon, GemIcon, HeartIcon } from './icons';
 import StreakFire from './StreakFire';
 import './RightSidebar.css';
 
@@ -80,42 +80,6 @@ export default function RightSidebar() {
           <p className="league-card-text">
             Complete a lesson to join this week&apos;s leaderboard and compete against other learners
           </p>
-        </div>
-      </div>
-
-      {/* Daily Quests */}
-      <div className="right-sidebar-card quests-card" id="quests-card">
-        <div className="quests-card-header">
-          <h3>Daily Quests</h3>
-          <button className="quests-card-link">VIEW ALL</button>
-        </div>
-        <div className="quests-card-list">
-          {dailyQuests.slice(0, 3).map((quest) => (
-            <div key={quest.id} className="quest-item">
-              <span className="quest-item-icon" style={{ color: quest.iconColor }}>
-                {quest.icon}
-              </span>
-              <div className="quest-item-info">
-                <span className="quest-item-title">{quest.title}</span>
-                <div className="quest-item-progress-wrapper">
-                  <div className="quest-item-progress-bar">
-                    <div
-                      className="quest-item-progress-fill"
-                      style={{
-                        width: `${Math.min(100, (quest.current / quest.target) * 100)}%`,
-                      }}
-                    />
-                  </div>
-                  <span className="quest-item-progress-text">
-                    {quest.current} / {quest.target}
-                  </span>
-                </div>
-              </div>
-              <div className="quest-item-reward">
-                <ChestIcon size={22} />
-              </div>
-            </div>
-          ))}
         </div>
       </div>
     </aside>

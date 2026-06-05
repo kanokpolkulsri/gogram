@@ -12,7 +12,6 @@ const tabs = [
   { id: 'categories', path: '/dashboard', Icon: LettersIcon },
   { id: 'home', path: '/learn', Icon: HomeIcon },
   { id: 'leaderboard', path: '/leaderboard', Icon: LeaderboardIcon },
-  { id: 'quests', path: '/quests', Icon: QuestsIcon },
   { id: 'profile', path: '/profile', Icon: ProfileIcon },
 ];
 

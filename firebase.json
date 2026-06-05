@@ -17,7 +17,13 @@
     "providers": {
       "googleSignIn": {
         "oAuthBrandDisplayName": "Gogram",
-        "supportEmail": "kanokpolkulsri@gmail.com"
+        "supportEmail": "kanokpolkulsri@gmail.com",
+        "authorizedRedirectUris": [
+          "http://localhost",
+          "https://gogram-web-2026.firebaseapp.com",
+          "https://gogram-web-2026.web.app",
+          "https://gogram.techshabu.com"
+        ]
       }
     }
   }

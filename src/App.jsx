@@ -6,7 +6,6 @@ import LandingPage from './pages/LandingPage';
 import CategoryPage from './pages/CategoryPage';
 import LearnPage from './pages/LearnPage';
 import LeaderboardPage from './pages/LeaderboardPage';
-import QuestsPage from './pages/QuestsPage';
 import ShopPage from './pages/ShopPage';
 import ProfilePage from './pages/ProfilePage';
 import QuizPage from './pages/QuizPage';
@@ -85,7 +84,6 @@ function AppContent() {
             <Route path="/lesson-complete" element={<LessonCompletePage />} />
             <Route path="/streak" element={<StreakPage />} />
             <Route path="/leaderboard" element={<DesktopPage showRightSidebar={false}><LeaderboardPage /></DesktopPage>} />
-            <Route path="/quests" element={<DesktopPage showRightSidebar={false}><QuestsPage /></DesktopPage>} />
             <Route path="/shop" element={<DesktopPage showRightSidebar={false}><ShopPage /></DesktopPage>} />
             <Route path="/profile" element={<DesktopPage showRightSidebar={false}><ProfilePage /></DesktopPage>} />
           </>

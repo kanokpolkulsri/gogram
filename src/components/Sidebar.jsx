@@ -32,12 +32,6 @@ const sidebarTabs = [
     Icon: LeaderboardIcon,
   },
   {
-    id: 'quests',
-    label: 'QUESTS',
-    path: '/quests',
-    Icon: QuestsIcon,
-  },
-  {
     id: 'shop',
     label: 'SHOP',
     path: '/shop',
