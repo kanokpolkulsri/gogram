@@ -1,6 +1,8 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useReducer, useEffect } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
 import { initialUser } from './mockData';
+import { auth } from './firebase';
 
 const UserContext = createContext(null);
 const UserDispatchContext = createContext(null);
@@ -12,17 +14,30 @@ function loadUser() {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       const parsed = JSON.parse(saved);
-      return parsed;
+      return {
+        ...parsed,
+        isAuthenticated: false,
+        authProfile: null,
+        isAuthLoading: true,
+      };
     }
   } catch (e) {
     console.error('Failed to load user data:', e);
   }
-  return { ...initialUser, lastCategoryId: null };
+  return {
+    ...initialUser,
+    lastCategoryId: null,
+    isAuthenticated: false,
+    authProfile: null,
+    isAuthLoading: true,
+  };
 }
 
 function saveUser(user) {
+  if (!user) return;
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
+    const { isAuthenticated, authProfile, isAuthLoading, ...rest } = user;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(rest));
   } catch (e) {
     console.error('Failed to save user data:', e);
   }
@@ -132,6 +147,21 @@ function userReducer(state, action) {
       break;
     }
 
+    case 'AUTH_STATE_CHANGED': {
+      newState = {
+        ...state,
+        isAuthenticated: !!action.user,
+        authProfile: action.user ? {
+          uid: action.user.uid,
+          email: action.user.email,
+          displayName: action.user.displayName,
+          photoURL: action.user.photoURL,
+        } : null,
+        isAuthLoading: false,
+      };
+      break;
+    }
+
     default:
       throw new Error(`Unknown action: ${action.type}`);
   }
@@ -142,6 +172,14 @@ function userReducer(state, action) {
 
 export function UserProvider({ children }) {
   const [user, dispatch] = useReducer(userReducer, null, loadUser);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      dispatch({ type: 'AUTH_STATE_CHANGED', user: firebaseUser });
+    });
+    return () => unsubscribe();
+  }, []);
+
   useEffect(() => {
     saveUser(user);
   }, [user]);

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { auth, signOut } from '../data/firebase';
 import {
   HomeIcon,
   LeaderboardIcon,
@@ -60,6 +61,15 @@ export default function Sidebar() {
   const location = useLocation();
   const [showMoreMenu, setShowMoreMenu] = useState(false);
   const dropdownRef = useRef(null);
+
+  const handleLogout = async () => {
+    setShowMoreMenu(false);
+    try {
+      await signOut(auth);
+    } catch (e) {
+      console.error('Failed to sign out:', e);
+    }
+  };
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -126,10 +136,10 @@ export default function Sidebar() {
                       <span className="dropdown-item-label">HELP</span>
                     </a>
                     <hr className="dropdown-divider" />
-                    <Link to="/" className="dropdown-item logout" onClick={() => setShowMoreMenu(false)}>
+                    <button className="dropdown-item logout" onClick={handleLogout}>
                       <span className="dropdown-item-emoji">🚪</span>
                       <span className="dropdown-item-label">LOG OUT</span>
-                    </Link>
+                    </button>
                   </div>
                 )}
               </div>

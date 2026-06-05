@@ -134,27 +134,40 @@ export default function ProfilePage() {
         {/* Avatar Section */}
         <div className="profile-avatar-card">
           <div className="profile-avatar-container">
-            <div className="profile-avatar-silhouette">
-              <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
-                <circle cx="50" cy="50" r="48" stroke="#E5E5E5" strokeWidth="2.5" strokeDasharray="6 6" />
-                <circle cx="50" cy="38" r="18" fill="#E5E5E5" />
-                <path d="M25 76c0-12 11-20 25-20s25 8 25 20H25z" fill="#E5E5E5" />
-              </svg>
-              <div className="profile-avatar-add-badge">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="12" r="12" fill="#1CB0F6" />
-                  <path d="M12 7v10M7 12h10" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
-                </svg>
+            {user.authProfile?.photoURL ? (
+              <div className="profile-avatar-wrapper">
+                <img src={user.authProfile.photoURL} alt="Avatar" className="profile-avatar-image" />
+                <button className="profile-avatar-edit-btn" title="Edit Avatar">
+                  <EditIcon size={14} />
+                </button>
               </div>
-              <button className="profile-avatar-edit-btn" title="Edit Avatar">
-                <EditIcon size={14} />
-              </button>
-            </div>
+            ) : (
+              <div className="profile-avatar-silhouette">
+                <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+                  <circle cx="50" cy="50" r="48" stroke="#E5E5E5" strokeWidth="2.5" strokeDasharray="6 6" />
+                  <circle cx="50" cy="38" r="18" fill="#E5E5E5" />
+                  <path d="M25 76c0-12 11-20 25-20s25 8 25 20H25z" fill="#E5E5E5" />
+                </svg>
+                <div className="profile-avatar-add-badge">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="12" fill="#1CB0F6" />
+                    <path d="M12 7v10M7 12h10" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+                  </svg>
+                </div>
+                <button className="profile-avatar-edit-btn" title="Edit Avatar">
+                  <EditIcon size={14} />
+                </button>
+              </div>
+            )}
           </div>
 
           <div className="profile-user-info">
-            <h2 className="profile-user-name">{user.name}</h2>
-            <p className="profile-username">@learner_french</p>
+            <h2 className="profile-user-name">
+              {user.authProfile?.displayName || user.name}
+            </h2>
+            <p className="profile-username">
+              @{user.authProfile?.email ? user.authProfile.email.split('@')[0] : 'learner_french'}
+            </p>
             <p className="profile-joined">Joined May 2026</p>
             <div className="profile-flags">
               <FrenchFlagIcon size={24} />

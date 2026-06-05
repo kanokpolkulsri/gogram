@@ -1,9 +1,21 @@
 import { useNavigate } from 'react-router-dom';
 import DuolingoOwl from '../components/DuolingoOwl';
+import { auth, googleProvider, signInWithPopup } from '../data/firebase';
 import './LandingPage.css';
 
 export default function LandingPage() {
   const navigate = useNavigate();
+
+  const handleGoogleLogin = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+      // Successful login triggers onAuthStateChanged in userStore context, 
+      // which handles auth state updates and redirects the user automatically.
+    } catch (error) {
+      console.error('Google Sign-In failed:', error);
+      alert('Failed to sign in with Google. Please try again.');
+    }
+  };
 
   return (
     <div className="landing-page" id="landing-page">
@@ -37,14 +49,14 @@ export default function LandingPage() {
       <div className="landing-buttons">
         <button
           className="btn btn-primary"
-          onClick={() => navigate('/learn')}
+          onClick={handleGoogleLogin}
           id="btn-get-started"
         >
           GET STARTED
         </button>
         <button
           className="btn btn-secondary"
-          onClick={() => navigate('/learn')}
+          onClick={handleGoogleLogin}
           id="btn-login"
         >
           I ALREADY HAVE AN ACCOUNT
