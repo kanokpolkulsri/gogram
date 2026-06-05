@@ -84,10 +84,6 @@
   box-shadow: 0 4px 12px rgba(28, 176, 246, 0.08);
 }
 
-.leaderboard-row.promotion {
-  border-left-width: 4px;
-  border-left-color: var(--color-green);
-}
 
 .leaderboard-row.demotion {
   border-left-width: 4px;
@@ -161,10 +157,6 @@
   width: 100%;
 }
 
-.leaderboard-country {
-  font-size: 14px;
-  color: var(--color-text-light);
-}
 
 .leaderboard-xp {
   font-size: 14px;

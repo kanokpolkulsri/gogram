@@ -3,8 +3,6 @@ import { useUser } from '../data/userStore';
 import { leagueData, studyCategories, units } from '../data/mockData';
 import './LeaderboardPage.css';
 
-const medals = ['🥇', '🥈', '🥉'];
-
 function ShieldIcon({ color, letter, isActive, size = 76 }) {
   const scale = isActive ? 1.15 : 0.82;
   const opacity = isActive ? 1 : 0.55;
@@ -199,7 +197,7 @@ export default function LeaderboardPage() {
               style={{ animationDelay: `${index * 0.04}s` }}
             >
               <span className="leaderboard-rank">
-                {u.rank <= 3 ? medals[u.rank - 1] : u.rank}
+                {u.rank}
               </span>
               <div className="leaderboard-avatar-container">
                 {renderAvatar()}
@@ -207,7 +205,6 @@ export default function LeaderboardPage() {
               </div>
               <div className="leaderboard-user-info">
                 <span className="leaderboard-name">{u.name}</span>
-                <span className="leaderboard-country">{u.country}</span>
               </div>
               <span className="leaderboard-xp" style={{ color: selectedCategory.color, fontWeight: '800' }}>
                 LV. {u.level}
@@ -227,7 +224,7 @@ export default function LeaderboardPage() {
       <div className="leaderboard-sticky-footer" id="leaderboard-sticky-footer">
         <div className="leaderboard-row leaderboard-row-you">
           <span className="leaderboard-rank">
-            {youRank <= 3 ? medals[youRank - 1] : youRank}
+            {youRank}
           </span>
           <div className="leaderboard-avatar-container">
             {userAvatar.startsWith('#') ? (
@@ -241,7 +238,6 @@ export default function LeaderboardPage() {
           </div>
           <div className="leaderboard-user-info">
             <span className="leaderboard-name">{userName}</span>
-            <span className="leaderboard-country">🇺🇸</span>
           </div>
           <span className="leaderboard-xp" style={{ color: selectedCategory.color, fontWeight: '800' }}>
             LV. {youLevel}
