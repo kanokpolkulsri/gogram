@@ -3,7 +3,7 @@ import { useUser } from '../data/userStore';
 import { leagueData, studyCategories, units } from '../data/mockData';
 import './LeaderboardPage.css';
 
-function ShieldIcon({ color, letter, isActive, size = 76 }) {
+function ShieldIcon({ color, letter, isActive, size = 32 }) {
   const scale = isActive ? 1.15 : 0.82;
   const opacity = isActive ? 1 : 0.55;
   const shadowColor = `${color}55`;
@@ -155,7 +155,7 @@ export default function LeaderboardPage() {
                 color={cat.color}
                 letter={cat.iconChar}
                 isActive={isSelected}
-                size={76}
+                size={32}
               />
             </div>
           );

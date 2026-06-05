@@ -140,7 +140,7 @@
 }
 
 .leaderboard-name {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 800;
   color: var(--color-text);
   white-space: nowrap;
@@ -151,7 +151,7 @@
 
 
 .leaderboard-xp {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 800;
   flex-shrink: 0;
 }
