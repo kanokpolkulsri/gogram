@@ -9,8 +9,8 @@ import {
 import './BottomNav.css';
 
 const tabs = [
-  { id: 'home', path: '/learn', Icon: HomeIcon },
   { id: 'categories', path: '/dashboard', Icon: LettersIcon },
+  { id: 'home', path: '/learn', Icon: HomeIcon },
   { id: 'leaderboard', path: '/leaderboard', Icon: LeaderboardIcon },
   { id: 'quests', path: '/quests', Icon: QuestsIcon },
   { id: 'profile', path: '/profile', Icon: ProfileIcon },

@@ -9,16 +9,20 @@ export default function CategoryPage() {
   const navigate = useNavigate();
   const user = useUser();
 
-  // Determine the last studied category (default to grammar-foundation)
-  const lastCategoryId = user.lastCategoryId || 'grammar-foundation';
-  const currentCategory = studyCategories.find((cat) => cat.id === lastCategoryId) || studyCategories[0];
+  // Determine the last studied category
+  const lastCategoryId = user.lastCategoryId;
+  const currentCategory = lastCategoryId
+    ? (studyCategories.find((cat) => cat.id === lastCategoryId) || studyCategories[0])
+    : null;
 
-  // Sort categories so that the active category is on top of the list
-  const sortedCategories = [...studyCategories].sort((a, b) => {
-    if (a.id === lastCategoryId) return -1;
-    if (b.id === lastCategoryId) return 1;
-    return 0;
-  });
+  // Sort categories so that the active category is on top of the list (if any)
+  const sortedCategories = lastCategoryId
+    ? [...studyCategories].sort((a, b) => {
+        if (a.id === lastCategoryId) return -1;
+        if (b.id === lastCategoryId) return 1;
+        return 0;
+      })
+    : studyCategories;
 
   // Calculate the total of levels of all categories
   const totalLevels = studyCategories.reduce((sum, category) => {
@@ -35,16 +39,40 @@ export default function CategoryPage() {
 
         {/* Categories Grid */}
         <div className="category-section">
+          {!lastCategoryId && (
+            <div className="category-welcome-banner animate-fade-in" id="category-welcome-banner">
+              <div className="welcome-banner-owl">
+                <svg width="48" height="48" viewBox="0 0 200 200" fill="none">
+                  <circle cx="100" cy="100" r="90" fill="#58CC02" />
+                  <ellipse cx="100" cy="110" rx="50" ry="55" fill="#89E219" />
+                  <circle cx="82" cy="85" r="14" fill="white" />
+                  <circle cx="118" cy="85" r="14" fill="white" />
+                  <circle cx="86" cy="85" r="7" fill="#333" />
+                  <circle cx="122" cy="85" r="7" fill="#333" />
+                  <circle cx="88" cy="83" r="2.5" fill="white" />
+                  <circle cx="124" cy="83" r="2.5" fill="white" />
+                  <ellipse cx="100" cy="102" rx="7" ry="4" fill="#FFC800" />
+                </svg>
+              </div>
+              <div className="welcome-banner-text">
+                <h3>Welcome to Gogram!</h3>
+                <p>Select a category below to start your French learning journey.</p>
+              </div>
+            </div>
+          )}
+
           <div className="category-section-header">
             <h2>Study Categories</h2>
-            <div className="learn-header-streak" title="Total Level">
-              <StreakFire size={22} active={true} />
-              <span className="learn-header-streak-val">LV. {totalLevels}</span>
-            </div>
+            {lastCategoryId && (
+              <div className="learn-header-streak" title="Total Level">
+                <StreakFire size={22} active={true} />
+                <span className="learn-header-streak-val">LV. {totalLevels}</span>
+              </div>
+            )}
           </div>
           <div className="category-grid">
             {sortedCategories.map((category) => {
-              const isCurrent = category.id === lastCategoryId;
+              const isCurrent = lastCategoryId && category.id === lastCategoryId;
               // Calculate progress for this category
               const unitsForCat = units.filter((u) => u.category === category.id);
               const totalLessonsForCat = unitsForCat.length * 5;

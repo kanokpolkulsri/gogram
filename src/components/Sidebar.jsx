@@ -13,16 +13,16 @@ import './Sidebar.css';
 
 const sidebarTabs = [
   {
-    id: 'learn',
-    label: 'LEARN',
-    path: '/learn',
-    Icon: HomeIcon,
-  },
-  {
     id: 'categories',
     label: 'CATEGORIES',
     path: '/dashboard',
     Icon: LettersIcon,
+  },
+  {
+    id: 'learn',
+    label: 'LEARN',
+    path: '/learn',
+    Icon: HomeIcon,
   },
   {
     id: 'leaderboards',

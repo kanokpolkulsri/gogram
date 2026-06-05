@@ -15,18 +15,29 @@ export default function LearnPage() {
   const user = useUser();
   const dispatch = useUserDispatch();
 
-  // Load the active category from the parameter, defaulting to the last studied category or 'grammar-foundation'
-  const activeCategoryId = categoryId || user.lastCategoryId || 'grammar-foundation';
-  const categoryInfo = studyCategories.find((c) => c.id === activeCategoryId) || studyCategories[0];
+  // Load the active category from the parameter, defaulting to the last studied category (can be null)
+  const activeCategoryId = categoryId || user.lastCategoryId;
 
-  // Filter units to show this category's units
-  const categoryUnits = units.filter((u) => u.category === categoryInfo.id);
+  // Redirect to categories selection page if no category is selected
+  useEffect(() => {
+    if (!activeCategoryId) {
+      navigate('/dashboard', { replace: true });
+    }
+  }, [activeCategoryId, navigate]);
 
   // Keep userStore updated with the last studied category
   useEffect(() => {
-    dispatch({ type: 'SET_LAST_CATEGORY', categoryId: categoryInfo.id });
-  }, [categoryInfo.id, dispatch]);
+    if (activeCategoryId) {
+      dispatch({ type: 'SET_LAST_CATEGORY', categoryId: activeCategoryId });
+    }
+  }, [activeCategoryId, dispatch]);
 
+  if (!activeCategoryId) {
+    return null; // Return empty while redirecting
+  }
+
+  const categoryInfo = studyCategories.find((c) => c.id === activeCategoryId) || studyCategories[0];
+  const categoryUnits = units.filter((u) => u.category === categoryInfo.id);
   const nextLesson = getNextLesson(user.completedLessons, categoryUnits);
 
 

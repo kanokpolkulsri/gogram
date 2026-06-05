@@ -12,15 +12,12 @@ function loadUser() {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       const parsed = JSON.parse(saved);
-      if (!parsed.lastCategoryId) {
-        parsed.lastCategoryId = 'grammar-foundation';
-      }
       return parsed;
     }
   } catch (e) {
     console.error('Failed to load user data:', e);
   }
-  return { ...initialUser, lastCategoryId: 'grammar-foundation' };
+  return { ...initialUser, lastCategoryId: null };
 }
 
 function saveUser(user) {
@@ -131,7 +128,7 @@ function userReducer(state, action) {
     }
 
     case 'RESET_PROGRESS': {
-      newState = { ...initialUser, lastCategoryId: 'grammar-foundation' };
+      newState = { ...initialUser, lastCategoryId: null };
       break;
     }
 
