@@ -1,4 +1,5 @@
 import { useUser, useUserDispatch } from '../data/userStore';
+import { auth, signOut } from '../data/firebase';
 import {
   EditIcon,
   EnglishFlagIcon,
@@ -10,7 +11,16 @@ export default function ProfilePage() {
   const user = useUser();
   const dispatch = useUserDispatch();
 
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+    } catch (e) {
+      console.error('Failed to sign out:', e);
+    }
+  };
+
   return (
+
     <div className="profile-page" id="profile-page">
       <div className="profile-header">
         <div className="profile-title-wrapper">
@@ -99,6 +109,10 @@ export default function ProfilePage() {
           </div>
         </div>
 
+        {/* Log Out Button */}
+        <button className="profile-logout-btn" onClick={handleLogout}>
+          LOG OUT
+        </button>
 
       </div>
     </div>
