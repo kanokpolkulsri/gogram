@@ -17,13 +17,13 @@ const sidebarTabs = [
     id: 'categories',
     label: 'CATEGORIES',
     path: '/dashboard',
-    Icon: LettersIcon,
+    Icon: HomeIcon,
   },
   {
     id: 'learn',
     label: 'LEARN',
     path: '/learn',
-    Icon: HomeIcon,
+    Icon: LettersIcon,
   },
   {
     id: 'leaderboards',

@@ -61,13 +61,41 @@
   background: transparent;
 }
 
-.sidebar-tab:hover {
+.sidebar-tab:hover:not(.active) {
   background: var(--color-gray-light);
 }
 
-.sidebar-tab.active {
-  background: #DDF4FF;
-  color: var(--color-blue);
+/* Tab-specific active background colors */
+#sidebar-categories.active {
+  background: #FFF5E6; /* Soft orange for HomeIcon */
+}
+
+#sidebar-learn.active {
+  background: #E8F7FF; /* Soft blue for LettersIcon */
+}
+
+#sidebar-leaderboards.active {
+  background: #FFFBE5; /* Soft yellow for LeaderboardIcon */
+}
+
+#sidebar-shop.active {
+  background: #E8F7FF; /* Soft blue/cyan for GemIcon */
+}
+
+#sidebar-profile.active {
+  background: #FAF0FF; /* Soft purple for ProfileIcon */
+}
+
+#sidebar-more.active {
+  background: var(--color-gray-light);
+}
+
+.sidebar-tab svg path,
+.sidebar-tab svg circle,
+.sidebar-tab svg ellipse,
+.sidebar-tab svg rect,
+.sidebar-tab svg text {
+  transition: fill var(--transition-fast) ease;
 }
 
 .sidebar-tab-icon {
