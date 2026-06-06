@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../data/userStore';
 import { studyCategories, units } from '../data/mockData';
-import { Category3DIcon } from '../components/icons';
+import { Category3DIcon, HomeIcon } from '../components/icons';
 import StreakFire from '../components/StreakFire';
 import './CategoryPage.css';
 
@@ -62,7 +62,10 @@ export default function CategoryPage() {
           )}
 
           <div className="category-section-header">
-            <h2>Study Categories</h2>
+            <div className="category-section-title-wrapper">
+              <HomeIcon active={true} size={28} />
+              <h2>Study Categories</h2>
+            </div>
             {lastCategoryId && (
               <div className="learn-header-streak" title="Total Level">
                 <StreakFire size={22} active={true} />

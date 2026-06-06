@@ -30,6 +30,12 @@
   margin-top: 8px;
 }
 
+.category-section-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .category-section-header h2 {
   font-size: 20px;
   font-weight: 800;
