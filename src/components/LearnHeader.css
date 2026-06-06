@@ -4,7 +4,7 @@
   top: 0;
   z-index: 999;
   background: var(--color-white);
-  padding: 10px 16px;
+  padding: 16px 16px 10px 16px;
 }
 
 .learn-header-content {
