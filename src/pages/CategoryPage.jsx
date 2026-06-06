@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from '../data/userStore';
 import { studyCategories, units } from '../data/mockData';
 import { Category3DIcon, HomeIcon } from '../components/icons';
-import StreakFire from '../components/StreakFire';
 import './CategoryPage.css';
 
 export default function CategoryPage() {
@@ -68,12 +67,7 @@ export default function CategoryPage() {
               </div>
               <h2>Study Categories</h2>
             </div>
-            {lastCategoryId && (
-              <div className="learn-header-streak" title="Total Level">
-                <StreakFire size={22} active={true} />
-                <span className="learn-header-streak-val">LV. {totalLevels}</span>
-              </div>
-            )}
+
           </div>
           <div className="category-grid">
             {sortedCategories.map((category) => {
@@ -93,6 +87,14 @@ export default function CategoryPage() {
                 ? Math.round((completedLessonsForCat / totalLessonsForCat) * 100)
                 : 0;
 
+              // Calculate category level based on completed units
+              const completedUnitsCount = unitsForCat.filter((unit) =>
+                ['easy', 'medium1', 'medium2', 'hard1', 'hard2'].every((lvl) =>
+                  user.completedLessons.includes(`${unit.id}-${lvl}`)
+                )
+              ).length;
+              const categoryLevel = 1 + completedUnitsCount;
+
               const borderStyle = isCurrent
                 ? {
                   borderColor: category.color,
@@ -111,7 +113,6 @@ export default function CategoryPage() {
                   <div className="category-item-info">
                     <div className="category-item-title-row">
                       <h3 className="category-item-title">{category.title}</h3>
-                      {isCurrent && <span className="category-active-badge">ACTIVE</span>}
                     </div>
                     <p className="category-item-desc">{category.description}</p>
                     <div className="category-card-progress">
@@ -131,6 +132,7 @@ export default function CategoryPage() {
                   </div>
                   <div className="category-item-icon-wrapper">
                     <Category3DIcon letter={category.iconChar} color={category.color} size={64} />
+                    <span className="category-level-badge">LV. {categoryLevel}</span>
                   </div>
                 </div>
               );

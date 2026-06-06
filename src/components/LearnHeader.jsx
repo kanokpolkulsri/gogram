@@ -14,8 +14,9 @@ export default function LearnHeader() {
   const activeCategoryId = categoryId || user.lastCategoryId || 'grammar-foundation';
   const categoryInfo = studyCategories.find((c) => c.id === activeCategoryId) || studyCategories[0];
 
-  // Calculate completed units count
-  const completedUnitsCount = units.filter(unit => 
+  // Calculate completed units count for this category
+  const unitsForCat = units.filter(unit => unit.category === activeCategoryId);
+  const completedUnitsCount = unitsForCat.filter(unit => 
     unit.levels.every(level => user.completedLessons.includes(`${unit.id}-${level.id}`))
   ).length;
   const userLevel = 1 + completedUnitsCount;

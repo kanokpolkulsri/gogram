@@ -183,9 +183,9 @@
   }
 
   .learn-unit-header {
-    position: relative;
-    top: auto;
-    z-index: 1;
+    position: sticky;
+    top: 68px;
+    z-index: 100;
     border-radius: 16px !important;
     margin-left: 16px !important;
     margin-right: 16px !important;

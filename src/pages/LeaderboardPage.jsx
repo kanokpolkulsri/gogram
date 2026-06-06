@@ -210,7 +210,7 @@ export default function LeaderboardPage() {
               <div className="leaderboard-user-info">
                 <span className="leaderboard-name">{u.name}</span>
               </div>
-              <span className="leaderboard-xp" style={{ color: selectedCategory.color, fontWeight: '800' }}>
+              <span className="leaderboard-xp">
                 LV. {u.level}
               </span>
             </div>
@@ -237,7 +237,7 @@ export default function LeaderboardPage() {
           <div className="leaderboard-user-info">
             <span className="leaderboard-name">{userName}</span>
           </div>
-          <span className="leaderboard-xp" style={{ color: selectedCategory.color, fontWeight: '800' }}>
+          <span className="leaderboard-xp">
             LV. {youLevel}
           </span>
         </div>
