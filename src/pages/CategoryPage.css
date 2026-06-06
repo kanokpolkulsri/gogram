@@ -26,7 +26,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 8px;
 }
 
 .category-section-title-wrapper {
@@ -296,16 +295,9 @@
     z-index: 999;
     background: var(--color-white);
     padding: 16px 16px 10px 16px;
-    margin-top: 0;
   }
 
   .category-grid {
     padding: 0 16px;
-  }
-}
-
-@media (max-width: 580px) {
-  .category-grid {
-    grid-template-columns: 1fr;
   }
 }
