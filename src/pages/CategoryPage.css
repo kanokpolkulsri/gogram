@@ -26,7 +26,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
   margin-top: 8px;
 }
 
@@ -295,7 +294,6 @@
     background: var(--color-white);
     padding: 10px 16px;
     margin-top: 0;
-    margin-bottom: 16px;
   }
 
   .category-grid {
