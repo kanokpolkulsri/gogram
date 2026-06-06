@@ -63,7 +63,9 @@ export default function CategoryPage() {
 
           <div className="category-section-header">
             <div className="category-section-title-wrapper">
-              <HomeIcon active={true} size={28} />
+              <div className="category-section-icon-wrapper">
+                <HomeIcon active={true} size={24} />
+              </div>
               <h2>Study Categories</h2>
             </div>
             {lastCategoryId && (
