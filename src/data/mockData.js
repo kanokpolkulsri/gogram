@@ -1,4 +1,4 @@
-// Mock data for Duolingo Clone — French language learning
+// Mock data for Gogram — English language learning for Thai learners
 
 export const initialUser = {
   name: 'Learner',
@@ -13,15 +13,13 @@ export const initialUser = {
   league: 'Gold',
   following: 12,
   followers: 8,
-};
-
-export const units = [
+};export const units = [
   {
     id: 1,
     category: 'grammar-foundation',
-    title: 'Basics: French Articles',
+    title: 'Basics: English Articles',
     section: 'SECTION 1, UNIT 1',
-    description: 'Learn French articles: le, la, les, un, une',
+    description: 'Learn how to use "a", "an", and "the"',
     color: '#58CC02',
     levels: [
       {
@@ -32,21 +30,21 @@ export const units = [
         questions: [
           {
             id: 'a1',
-            question: 'How do you say "the" (masculine) in French?',
-            options: ['le', 'la', 'les', 'un'],
-            correctAnswer: 'le',
+            question: "Which article is used before 'book'?",
+            options: ['a', 'an', 'the'],
+            correctAnswer: 'a',
           },
           {
             id: 'a2',
-            question: 'How do you say "the" (feminine) in French?',
-            options: ['le', 'la', 'un', 'une'],
-            correctAnswer: 'la',
+            question: "Which article is used before 'apple'?",
+            options: ['a', 'an', 'the'],
+            correctAnswer: 'an',
           },
           {
             id: 'a3',
-            question: 'How do you say "the" (plural) in French?',
-            options: ['le', 'la', 'les', 'des'],
-            correctAnswer: 'les',
+            question: "Complete: '___ sun is hot.'",
+            options: ['A', 'An', 'The'],
+            correctAnswer: 'The',
           },
         ],
       },
@@ -58,21 +56,21 @@ export const units = [
         questions: [
           {
             id: 'a4',
-            question: 'Which article goes with "chat" (cat)?',
-            options: ['la', 'le', 'les', 'une'],
-            correctAnswer: 'le',
+            question: "Which article is used before 'hour'?",
+            options: ['a', 'an', 'the'],
+            correctAnswer: 'an',
           },
           {
             id: 'a5',
-            question: 'Which article goes with "maison" (house)?',
-            options: ['le', 'la', 'un', 'les'],
-            correctAnswer: 'la',
+            question: "Which article is used before 'university'?",
+            options: ['a', 'an', 'the'],
+            correctAnswer: 'a',
           },
           {
             id: 'a6',
-            question: 'How do you say "a" (masculine) in French?',
-            options: ['un', 'une', 'le', 'des'],
-            correctAnswer: 'un',
+            question: "Complete: 'I saw ___ elephant.'",
+            options: ['a', 'an', 'the'],
+            correctAnswer: 'an',
           },
         ],
       },
@@ -84,21 +82,21 @@ export const units = [
         questions: [
           {
             id: 'a7',
-            question: 'How do you say "a" (feminine) in French?',
-            options: ['un', 'une', 'la', 'des'],
-            correctAnswer: 'une',
+            question: "Complete: 'She is ___ honest girl.'",
+            options: ['a', 'an', 'the'],
+            correctAnswer: 'an',
           },
           {
             id: 'a8',
-            question: '"___ garçon" — which article fits? (the boy)',
-            options: ['Le', 'La', 'Les', 'Une'],
-            correctAnswer: 'Le',
+            question: "Complete: '___ earth goes around the sun.'",
+            options: ['A', 'An', 'The'],
+            correctAnswer: 'The',
           },
           {
             id: 'a9',
-            question: '"___ filles" — which article fits? (the girls)',
-            options: ['Le', 'La', 'Les', 'Un'],
-            correctAnswer: 'Les',
+            question: "Complete: 'He is ___ teacher.'",
+            options: ['a', 'an', 'the'],
+            correctAnswer: 'a',
           },
         ],
       },
@@ -110,21 +108,21 @@ export const units = [
         questions: [
           {
             id: 'a10',
-            question: '"___ femme" — which article fits? (a woman)',
-            options: ['Un', 'Une', 'Le', 'Des'],
-            correctAnswer: 'Une',
+            question: 'Which is correct?',
+            options: ['I have an umbrella', 'I have a umbrella', 'I have the umbrella'],
+            correctAnswer: 'I have an umbrella',
           },
           {
             id: 'a11',
-            question: 'Which is correct? "I have a dog"',
-            options: ["J'ai un chien", "J'ai une chien", "J'ai le chien", "J'ai la chien"],
-            correctAnswer: "J'ai un chien",
+            question: "Complete: '___ water in this bottle is clean.'",
+            options: ['A', 'An', 'The'],
+            correctAnswer: 'The',
           },
           {
             id: 'a12',
-            question: 'Which is correct? "The women are tall"',
-            options: ['Les femmes sont grandes', 'La femmes sont grandes', 'Le femmes sont grandes', 'Des femmes sont grandes'],
-            correctAnswer: 'Les femmes sont grandes',
+            question: "Complete: 'They live in ___ old house.'",
+            options: ['a', 'an', 'the'],
+            correctAnswer: 'an',
           },
         ],
       },
@@ -136,39 +134,39 @@ export const units = [
         questions: [
           {
             id: 'a4_b',
-            question: 'Which article goes with "chat" (cat)?',
-            options: ['la', 'le', 'les', 'une'],
-            correctAnswer: 'le',
+            question: "Which article is used before 'hour'?",
+            options: ['a', 'an', 'the'],
+            correctAnswer: 'an',
           },
           {
             id: 'a5_b',
-            question: 'Which article goes with "maison" (house)?',
-            options: ['le', 'la', 'un', 'les'],
-            correctAnswer: 'la',
+            question: "Which article is used before 'university'?",
+            options: ['a', 'an', 'the'],
+            correctAnswer: 'a',
           },
           {
             id: 'a6_b',
-            question: 'How do you say "a" (masculine) in French?',
-            options: ['un', 'une', 'le', 'des'],
-            correctAnswer: 'un',
+            question: "Complete: 'I saw ___ elephant.'",
+            options: ['a', 'an', 'the'],
+            correctAnswer: 'an',
+          },
+          {
+            id: 'a10_b',
+            question: 'Which is correct?',
+            options: ['I have an umbrella', 'I have a umbrella', 'I have the umbrella'],
+            correctAnswer: 'I have an umbrella',
           },
           {
             id: 'a11_b',
-            question: 'Which is correct? "I have a dog"',
-            options: ["J'ai un chien", "J'ai une chien", "J'ai le chien", "J'ai la chien"],
-            correctAnswer: "J'ai un chien",
+            question: "Complete: '___ water in this bottle is clean.'",
+            options: ['A', 'An', 'The'],
+            correctAnswer: 'The',
           },
           {
             id: 'a12_b',
-            question: 'Which is correct? "The women are tall"',
-            options: ['Les femmes sont grandes', 'La femmes sont grandes', 'Le femmes sont grandes', 'Des femmes sont grandes'],
-            correctAnswer: 'Les femmes sont grandes',
-          },
-          {
-            id: 'a15_b',
-            question: 'Translate: "The apple is red"',
-            options: ["La pomme est rouge", "Le pomme est rouge", "Une pomme est rouge", "Les pomme est rouge"],
-            correctAnswer: "La pomme est rouge",
+            question: "Complete: 'She is ___ honest girl.'",
+            options: ['a', 'an', 'the'],
+            correctAnswer: 'an',
           },
         ],
       },
@@ -179,7 +177,7 @@ export const units = [
     category: 'grammar-foundation',
     title: 'Basics: The verb "être" (is/am/are)',
     section: 'SECTION 1, UNIT 2',
-    description: 'Learn French verb "être" (to be: am, is, are)',
+    description: 'Learn English verb "to be" (am, is, are)',
     color: '#CE82FF',
     levels: [
       {
@@ -190,21 +188,21 @@ export const units = [
         questions: [
           {
             id: 'p1',
-            question: 'How do you say "I am" in French?',
-            options: ['Je suis', 'Tu es', 'Il est', 'Nous sommes'],
-            correctAnswer: 'Je suis',
+            question: "Complete: 'I ___ a student.'",
+            options: ['am', 'is', 'are'],
+            correctAnswer: 'am',
           },
           {
             id: 'p2',
-            question: 'How do you say "you are" (informal) in French?',
-            options: ['Je suis', 'Tu es', 'Vous êtes', 'Il est'],
-            correctAnswer: 'Tu es',
+            question: "Complete: 'You ___ my friend.'",
+            options: ['am', 'is', 'are'],
+            correctAnswer: 'are',
           },
           {
             id: 'p3',
-            question: 'How do you say "he is" in French?',
-            options: ['Elle est', 'Il est', 'Nous sommes', 'Ils sont'],
-            correctAnswer: 'Il est',
+            question: "Complete: 'He ___ a doctor.'",
+            options: ['am', 'is', 'are'],
+            correctAnswer: 'is',
           },
         ],
       },
@@ -216,21 +214,21 @@ export const units = [
         questions: [
           {
             id: 'p4',
-            question: 'How do you say "she is" in French?',
-            options: ['Il est', 'Elle est', 'Elles sont', 'Vous êtes'],
-            correctAnswer: 'Elle est',
+            question: "Complete: 'She ___ very happy.'",
+            options: ['am', 'is', 'are'],
+            correctAnswer: 'is',
           },
           {
             id: 'p5',
-            question: 'How do you say "we are" in French?',
-            options: ['Vous êtes', 'Ils sont', 'Nous sommes', 'Elles sont'],
-            correctAnswer: 'Nous sommes',
+            question: "Complete: 'We ___ from Thailand.'",
+            options: ['am', 'is', 'are'],
+            correctAnswer: 'are',
           },
           {
             id: 'p6',
-            question: 'How do you say "you are" (formal/plural) in French?',
-            options: ['Tu es', 'Vous êtes', 'Nous sommes', 'Ils sont'],
-            correctAnswer: 'Vous êtes',
+            question: "Complete: 'It ___ a beautiful day.'",
+            options: ['am', 'is', 'are'],
+            correctAnswer: 'is',
           },
         ],
       },
@@ -242,21 +240,21 @@ export const units = [
         questions: [
           {
             id: 'p7',
-            question: 'How do you say "they are" (masculine) in French?',
-            options: ['Elles sont', 'Ils sont', 'Nous sommes', 'Vous êtes'],
-            correctAnswer: 'Ils sont',
+            question: "Complete: 'They ___ playing football.'",
+            options: ['am', 'is', 'are'],
+            correctAnswer: 'are',
           },
           {
             id: 'p8',
-            question: '"Elle ___ française." — She is French.',
-            options: ['suis', 'es', 'est', 'sommes'],
-            correctAnswer: 'est',
+            question: "Complete: 'The cats ___ sleeping.'",
+            options: ['am', 'is', 'are'],
+            correctAnswer: 'are',
           },
           {
             id: 'p9',
-            question: '"Nous ___ heureux." — We are happy.',
-            options: ['suis', 'êtes', 'sont', 'sommes'],
-            correctAnswer: 'sommes',
+            question: "Complete: 'John ___ at home.'",
+            options: ['am', 'is', 'are'],
+            correctAnswer: 'is',
           },
         ],
       },
@@ -268,21 +266,21 @@ export const units = [
         questions: [
           {
             id: 'p10',
-            question: '"Vous ___ étudiants." — You (plural) are students.',
-            options: ['es', 'sommes', 'êtes', 'sont'],
-            correctAnswer: 'êtes',
+            question: "Complete: 'My parents ___ here.'",
+            options: ['am', 'is', 'are'],
+            correctAnswer: 'are',
           },
           {
             id: 'p11',
-            question: 'How do you say "they are" (feminine) in French?',
-            options: ['Ils sont', 'Elles sont', 'Nous sommes', 'Vous êtes'],
-            correctAnswer: 'Elles sont',
+            question: 'Which is correct?',
+            options: ['I am tired', 'I is tired', 'I are tired'],
+            correctAnswer: 'I am tired',
           },
           {
             id: 'p12',
-            question: 'Which is correct? "I am tired" (masculine)',
-            options: ['Je suis fatigué', 'Tu es fatigué', 'Il est fatigué', 'Nous sommes fatigués'],
-            correctAnswer: 'Je suis fatigué',
+            question: "Complete: 'Neither of them ___ ready.'",
+            options: ['am', 'is', 'are'],
+            correctAnswer: 'is',
           },
         ],
       },
@@ -294,39 +292,39 @@ export const units = [
         questions: [
           {
             id: 'p4_b',
-            question: 'How do you say "she is" in French?',
-            options: ['Il est', 'Elle est', 'Elles sont', 'Vous êtes'],
-            correctAnswer: 'Elle est',
+            question: "Complete: 'She ___ very happy.'",
+            options: ['am', 'is', 'are'],
+            correctAnswer: 'is',
           },
           {
             id: 'p5_b',
-            question: 'How do you say "we are" in French?',
-            options: ['Vous êtes', 'Ils sont', 'Nous sommes', 'Elles sont'],
-            correctAnswer: 'Nous sommes',
+            question: "Complete: 'We ___ from Thailand.'",
+            options: ['am', 'is', 'are'],
+            correctAnswer: 'are',
           },
           {
             id: 'p6_b',
-            question: 'How do you say "you are" (formal/plural) in French?',
-            options: ['Tu es', 'Vous êtes', 'Nous sommes', 'Ils sont'],
-            correctAnswer: 'Vous êtes',
+            question: "Complete: 'They ___ playing football.'",
+            options: ['am', 'is', 'are'],
+            correctAnswer: 'are',
           },
           {
             id: 'p11_b',
-            question: 'How do you say "they are" (feminine) in French?',
-            options: ['Ils sont', 'Elles sont', 'Nous sommes', 'Vous êtes'],
-            correctAnswer: 'Elles sont',
+            question: "Complete: 'My parents ___ here.'",
+            options: ['am', 'is', 'are'],
+            correctAnswer: 'are',
           },
           {
             id: 'p13_b',
-            question: 'Translate: "They (f.) are happy"',
-            options: ['Elles sont heureuses', 'Ils sont heureuses', 'Elles est heureuses', 'Elle sont heureuses'],
-            correctAnswer: 'Elles sont heureuses',
+            question: 'Which is correct?',
+            options: ['I am tired', 'I is tired', 'I are tired'],
+            correctAnswer: 'I am tired',
           },
           {
             id: 'p15_b',
-            question: 'Translate: "I am American" (masculine)',
-            options: ['Je suis américain', 'Tu es américain', 'Il est américain', 'Nous sommes américains'],
-            correctAnswer: 'Je suis américain',
+            question: "Complete: 'It ___ a beautiful day.'",
+            options: ['am', 'is', 'are'],
+            correctAnswer: 'is',
           },
         ],
       },
@@ -337,7 +335,7 @@ export const units = [
     category: 'grammar-foundation',
     title: 'Basics: The verb "avoir" (to have)',
     section: 'SECTION 1, UNIT 3',
-    description: 'Learn French verb "avoir" (to have: have, has)',
+    description: 'Learn English verb "to have" (have, has)',
     color: '#1CB0F6',
     levels: [
       {
@@ -348,21 +346,21 @@ export const units = [
         questions: [
           {
             id: 'v1',
-            question: 'How do you say "I have" in French?',
-            options: ["J'ai", 'Tu as', 'Il a', 'Nous avons'],
-            correctAnswer: "J'ai",
+            question: "Complete: 'I ___ a new car.'",
+            options: ['have', 'has', 'had'],
+            correctAnswer: 'have',
           },
           {
             id: 'v2',
-            question: 'How do you say "you have" (informal) in French?',
-            options: ["J'ai", 'Tu as', 'Vous avez', 'Il a'],
-            correctAnswer: 'Tu as',
+            question: "Complete: 'He ___ a big dog.'",
+            options: ['have', 'has', 'had'],
+            correctAnswer: 'has',
           },
           {
             id: 'v3',
-            question: 'How do you say "he has" in French?',
-            options: ['Elle a', 'Il a', 'Nous avons', 'Ils ont'],
-            correctAnswer: 'Il a',
+            question: "Complete: 'They ___ many books.'",
+            options: ['have', 'has', 'had'],
+            correctAnswer: 'have',
           },
         ],
       },
@@ -374,21 +372,21 @@ export const units = [
         questions: [
           {
             id: 'v4',
-            question: 'How do you say "she has" in French?',
-            options: ['Il a', 'Elle a', 'Elles ont', 'Vous avez'],
-            correctAnswer: 'Elle a',
+            question: "Complete: 'She ___ a sister.'",
+            options: ['have', 'has', 'had'],
+            correctAnswer: 'has',
           },
           {
             id: 'v5',
-            question: 'How do you say "we have" in French?',
-            options: ['Vous avez', 'Ils ont', 'Nous avons', 'Elles ont'],
-            correctAnswer: 'Nous avons',
+            question: "Complete: 'We ___ a test today.'",
+            options: ['have', 'has', 'had'],
+            correctAnswer: 'have',
           },
           {
             id: 'v6',
-            question: 'How do you say "you have" (formal/plural) in French?',
-            options: ['Tu as', 'Vous avez', 'Nous avons', 'Ils ont'],
-            correctAnswer: 'Vous avez',
+            question: "Complete: 'You ___ a great smile.'",
+            options: ['have', 'has', 'had'],
+            correctAnswer: 'have',
           },
         ],
       },
@@ -400,21 +398,21 @@ export const units = [
         questions: [
           {
             id: 'v7',
-            question: 'How do you say "they have" (masculine) in French?',
-            options: ['Elles ont', 'Ils ont', 'Nous avons', 'Vous avez'],
-            correctAnswer: 'Ils ont',
+            question: "Complete: 'It ___ four legs.'",
+            options: ['have', 'has', 'had'],
+            correctAnswer: 'has',
           },
           {
             id: 'v8',
-            question: '"Nous ___ un chat." (We have a cat)',
-            options: ['sommes', 'avez', 'avons', 'ont'],
-            correctAnswer: 'avons',
+            question: "Complete: 'The children ___ toys.'",
+            options: ['have', 'has', 'had'],
+            correctAnswer: 'have',
           },
           {
             id: 'v9',
-            question: '"Vous ___ un chien." (You have a dog)',
-            options: ['as', 'avez', 'avons', 'ont'],
-            correctAnswer: 'avez',
+            question: "Complete: 'Anna ___ a computer.'",
+            options: ['have', 'has', 'had'],
+            correctAnswer: 'has',
           },
         ],
       },
@@ -426,21 +424,21 @@ export const units = [
         questions: [
           {
             id: 'v10',
-            question: '"J\'___ une pomme." (I have an apple)',
-            options: ['ai', 'as', 'a', 'avez'],
-            correctAnswer: 'ai',
+            question: "Complete: 'My friend ___ a blue bike.'",
+            options: ['have', 'has', 'had'],
+            correctAnswer: 'has',
           },
           {
             id: 'v11',
-            question: 'How do you say "they have" (feminine) in French?',
-            options: ['Ils ont', 'Elles ont', 'Nous avons', 'Vous avez'],
-            correctAnswer: 'Elles ont',
+            question: 'Which is correct?',
+            options: ['I have a cat', 'I has a cat', 'I having a cat'],
+            correctAnswer: 'I have a cat',
           },
           {
             id: 'v12',
-            question: 'Translate: "They have a car"',
-            options: ['Ils ont une voiture', 'Ils sommes une voiture', 'Elles a une voiture', 'Vous avez une voiture'],
-            correctAnswer: 'Ils ont une voiture',
+            question: "Complete: 'Everyone ___ problems.'",
+            options: ['have', 'has', 'had'],
+            correctAnswer: 'has',
           },
         ],
       },
@@ -452,39 +450,39 @@ export const units = [
         questions: [
           {
             id: 'v4_b',
-            question: 'How do you say "she has" in French?',
-            options: ['Il a', 'Elle a', 'Elles ont', 'Vous avez'],
-            correctAnswer: 'Elle a',
+            question: "Complete: 'She ___ a sister.'",
+            options: ['have', 'has', 'had'],
+            correctAnswer: 'has',
           },
           {
             id: 'v5_b',
-            question: 'How do you say "we have" in French?',
-            options: ['Vous avez', 'Ils ont', 'Nous avons', 'Elles ont'],
-            correctAnswer: 'Nous avons',
+            question: "Complete: 'We ___ a test today.'",
+            options: ['have', 'has', 'had'],
+            correctAnswer: 'have',
           },
           {
             id: 'v6_b',
-            question: 'How do you say "you have" (formal/plural) in French?',
-            options: ['Tu as', 'Vous avez', 'Nous avons', 'Ils ont'],
-            correctAnswer: 'Vous avez',
+            question: "Complete: 'The children ___ toys.'",
+            options: ['have', 'has', 'had'],
+            correctAnswer: 'have',
           },
           {
             id: 'v11_b',
-            question: 'How do you say "they have" (feminine) in French?',
-            options: ['Ils ont', 'Elles ont', 'Nous avons', 'Vous avez'],
-            correctAnswer: 'Elles ont',
+            question: 'Which is correct?',
+            options: ['I have a cat', 'I has a cat', 'I having a cat'],
+            correctAnswer: 'I have a cat',
           },
           {
             id: 'v13_b',
-            question: 'Translate: "They (f.) have books"',
-            options: ['Elles ont des livres', 'Ils ont des livres', 'Elles sommes des livres', 'Elle a des livres'],
-            correctAnswer: 'Elles ont des livres',
+            question: "Complete: 'Anna ___ a computer.'",
+            options: ['have', 'has', 'had'],
+            correctAnswer: 'has',
           },
           {
             id: 'v15_b',
-            question: 'Translate: "I have a cat"',
-            options: ["J'ai un chat", 'Tu as un chat', 'Il a un chat', 'Nous avons un chat'],
-            correctAnswer: "J'ai un chat",
+            question: "Complete: 'My friend ___ a blue bike.'",
+            options: ['have', 'has', 'had'],
+            correctAnswer: 'has',
           },
         ],
       },
@@ -493,9 +491,9 @@ export const units = [
   {
     id: 4,
     category: 'vocabulary',
-    title: 'Fruits & Veggies: Learn food vocabulary',
+    title: 'Vocabulary: Fruits & Food',
     section: 'SECTION 1, UNIT 4',
-    description: 'Learn common fruits and vegetables in French',
+    description: 'Learn common English food and fruits',
     color: '#FF4B4B',
     levels: [
       {
@@ -504,8 +502,8 @@ export const units = [
         xpReward: 10,
         icon: 'star',
         questions: [
-          { id: 'v1', question: 'How do you say "apple" in French?', options: ['la pomme', 'la poire', 'la banane'], correctAnswer: 'la pomme' },
-          { id: 'v2', question: 'How do you say "banana" in French?', options: ['la banane', 'la fraise', 'le citron'], correctAnswer: 'la banane' }
+          { id: 'v1', question: 'How do you say "แอปเปิ้ล" (apple) in English?', options: ['apple', 'banana', 'orange'], correctAnswer: 'apple' },
+          { id: 'v2', question: 'How do you say "กล้วย" (banana) in English?', options: ['banana', 'grape', 'lemon'], correctAnswer: 'banana' }
         ]
       },
       {
@@ -514,8 +512,8 @@ export const units = [
         xpReward: 15,
         icon: 'star',
         questions: [
-          { id: 'v3', question: 'How do you say "the potato" in French?', options: ['la pomme de terre', 'la carotte', 'la tomate'], correctAnswer: 'la pomme de terre' },
-          { id: 'v4', question: 'Which word means "the grape"?', options: ['le raisin', 'la fraise', 'la cerise'], correctAnswer: 'le raisin' }
+          { id: 'v3', question: 'How do you say "มันฝรั่ง" (potato) in English?', options: ['potato', 'carrot', 'tomato'], correctAnswer: 'potato' },
+          { id: 'v4', question: 'Which word means "องุ่น" (grape)?', options: ['grape', 'strawberry', 'cherry'], correctAnswer: 'grape' }
         ]
       },
       {
@@ -524,7 +522,7 @@ export const units = [
         xpReward: 15,
         icon: 'dumbbell',
         questions: [
-          { id: 'v5', question: 'What is French for "strawberry"?', options: ['la fraise', 'la framboise', 'la prune'], correctAnswer: 'la fraise' }
+          { id: 'v5', question: 'What is English for "สตรอว์เบอร์รี" (strawberry)?', options: ['strawberry', 'raspberry', 'plum'], correctAnswer: 'strawberry' }
         ]
       },
       {
@@ -533,7 +531,7 @@ export const units = [
         xpReward: 20,
         icon: 'star',
         questions: [
-          { id: 'v6', question: 'Select the correct translation: "I eat a carrot"', options: ['Je mange une carotte', 'Je mange un oignon', 'Je mange une pomme'], correctAnswer: 'Je mange une carotte' }
+          { id: 'v6', question: 'Select the correct translation: "ฉันกินแครอท"', options: ['I eat a carrot', 'I eat an onion', 'I eat an apple'], correctAnswer: 'I eat a carrot' }
         ]
       },
       {
@@ -542,7 +540,7 @@ export const units = [
         xpReward: 25,
         icon: 'trophy',
         questions: [
-          { id: 'v7', question: 'How do you write "The fruits are sweet" in French?', options: ['Les fruits sont doux', 'Les légumes sont verts', 'La pomme est sucrée'], correctAnswer: 'Les fruits sont doux' }
+          { id: 'v7', question: 'How do you write "ผลไม้มีรสหวาน" in English?', options: ['Fruits are sweet', 'Vegetables are green', 'The apple is sour'], correctAnswer: 'Fruits are sweet' }
         ]
       }
     ]
@@ -550,7 +548,7 @@ export const units = [
   {
     id: 5,
     category: 'vocabulary',
-    title: 'Colors & Clothes: Describe outfits',
+    title: 'Vocabulary: Colors & Clothes',
     section: 'SECTION 1, UNIT 5',
     description: 'Learn common colors and clothing vocabulary',
     color: '#FF9600',
@@ -561,8 +559,8 @@ export const units = [
         xpReward: 10,
         icon: 'star',
         questions: [
-          { id: 'c1', question: 'How do you say "red" in French?', options: ['rouge', 'bleu', 'vert'], correctAnswer: 'rouge' },
-          { id: 'c2', question: 'What is French for "a shirt"?', options: ['une chemise', 'un pantalon', 'une robe'], correctAnswer: 'une chemise' }
+          { id: 'c1', question: 'How do you say "สีแดง" (red) in English?', options: ['red', 'blue', 'green'], correctAnswer: 'red' },
+          { id: 'c2', question: 'What is English for "เสื้อเชิ้ต" (shirt)?', options: ['a shirt', 'pants', 'a dress'], correctAnswer: 'a shirt' }
         ]
       },
       {
@@ -571,7 +569,7 @@ export const units = [
         xpReward: 15,
         icon: 'star',
         questions: [
-          { id: 'c3', question: 'How do you say "the black shoes" in French?', options: ['les chaussures noires', 'les chaussettes noires', 'le chapeau noir'], correctAnswer: 'les chaussures noires' }
+          { id: 'c3', question: 'How do you say "รองเท้าสีดำ" in English?', options: ['black shoes', 'black socks', 'a black hat'], correctAnswer: 'black shoes' }
         ]
       },
       {
@@ -580,7 +578,7 @@ export const units = [
         xpReward: 15,
         icon: 'dumbbell',
         questions: [
-          { id: 'c4', question: 'What is "yellow" in French?', options: ['jaune', 'orange', 'blanc'], correctAnswer: 'jaune' }
+          { id: 'c4', question: 'What is "สีเหลือง" (yellow) in English?', options: ['yellow', 'orange', 'white'], correctAnswer: 'yellow' }
         ]
       },
       {
@@ -589,7 +587,7 @@ export const units = [
         xpReward: 20,
         icon: 'star',
         questions: [
-          { id: 'c5', question: 'Translate: "The blue dress"', options: ['La robe bleue', 'Le costume bleu', 'La jupe verte'], correctAnswer: 'La robe bleue' }
+          { id: 'c5', question: 'Translate: "ชุดเดรสสีน้ำเงิน"', options: ['The blue dress', 'The blue suit', 'The green skirt'], correctAnswer: 'The blue dress' }
         ]
       },
       {
@@ -598,7 +596,7 @@ export const units = [
         xpReward: 25,
         icon: 'trophy',
         questions: [
-          { id: 'c6', question: 'Translate: "He wears a black coat"', options: ['Il porte un manteau noir', 'Elle porte une veste noire', 'Il a un chapeau noir'], correctAnswer: 'Il porte un manteau noir' }
+          { id: 'c6', question: 'Translate: "เขาใส่เสื้อโค้ทสีดำ"', options: ['He wears a black coat', 'She wears a black jacket', 'He has a black hat'], correctAnswer: 'He wears a black coat' }
         ]
       }
     ]
@@ -606,9 +604,9 @@ export const units = [
   {
     id: 6,
     category: 'reading',
-    title: 'Le Petit Prince: Excerpts & Dialogue',
+    title: 'Reading: The Boy Who Cried Wolf',
     section: 'SECTION 2, UNIT 1',
-    description: 'Read simple passages from classic literature',
+    description: 'Practice reading comprehension with a classic fable',
     color: '#CE82FF',
     levels: [
       {
@@ -617,7 +615,7 @@ export const units = [
         xpReward: 10,
         icon: 'star',
         questions: [
-          { id: 'r1', question: 'In "Le Petit Prince", what is the prince\'s beloved flower?', options: ['une rose', 'une tulipe', 'un tournesol'], correctAnswer: 'une rose' }
+          { id: 'r1', question: 'In the story, what animal was the shepherd boy guarding?', options: ['sheep', 'cows', 'goats'], correctAnswer: 'sheep' }
         ]
       },
       {
@@ -626,7 +624,7 @@ export const units = [
         xpReward: 15,
         icon: 'star',
         questions: [
-          { id: 'r2', question: 'Translate this quote: "Dessine-moi un mouton"', options: ['Draw me a sheep', 'Show me a sheep', 'Draw me a horse'], correctAnswer: 'Draw me a sheep' }
+          { id: 'r2', question: 'What did the boy scream to trick the villagers?', options: ['Wolf!', 'Lion!', 'Help!'], correctAnswer: 'Wolf!' }
         ]
       },
       {
@@ -635,7 +633,7 @@ export const units = [
         xpReward: 15,
         icon: 'dumbbell',
         questions: [
-          { id: 'r3', question: 'Who does the little prince meet in the desert?', options: ['un aviateur', 'un roi', 'un renard'], correctAnswer: 'un aviateur' }
+          { id: 'r3', question: 'Why did the villagers ignore his final cry?', options: ['They thought he was lying again', 'They were asleep', 'They did not hear him'], correctAnswer: 'They thought he was lying again' }
         ]
       },
       {
@@ -644,7 +642,7 @@ export const units = [
         xpReward: 20,
         icon: 'star',
         questions: [
-          { id: 'r4', question: 'What is the secret the fox tells the prince?', options: ['L\'essentiel est invisible pour les yeux', 'Le désert est beau', 'Les grandes personnes sont bizarres'], correctAnswer: 'L\'essentiel est invisible pour les yeux' }
+          { id: 'r4', question: 'What is the lesson of this story?', options: ['No one believes a liar even when they tell the truth', 'Always yell loudly', 'Wolves are friendly'], correctAnswer: 'No one believes a liar even when they tell the truth' }
         ]
       },
       {
@@ -653,7 +651,7 @@ export const units = [
         xpReward: 25,
         icon: 'trophy',
         questions: [
-          { id: 'r5', question: 'Translate: "On ne voit bien qu\'avec le cœur"', options: ['One sees well only with the heart', 'One sees nothing without love', 'We must love one another'], correctAnswer: 'One sees well only with the heart' }
+          { id: 'r5', question: 'Translate: "เด็กชายเลี้ยงแกะ"', options: ['The shepherd boy', 'The sheep boy', 'The farmer boy'], correctAnswer: 'The shepherd boy' }
         ]
       }
     ]
@@ -661,9 +659,9 @@ export const units = [
   {
     id: 7,
     category: 'reading',
-    title: 'La Belle et la Bête: Fairytales',
+    title: 'Reading: Little Red Riding Hood',
     section: 'SECTION 2, UNIT 2',
-    description: 'Practice comprehension with traditional stories',
+    description: 'Practice comprehension with a classic fairytale',
     color: '#00CDFF',
     levels: [
       {
@@ -672,7 +670,7 @@ export const units = [
         xpReward: 10,
         icon: 'star',
         questions: [
-          { id: 'r6', question: 'What is the Beast\'s castle full of?', options: ['des objets magiques', 'des monstres', 'des richesses perdues'], correctAnswer: 'des objets magiques' }
+          { id: 'r6', question: 'Who was Little Red Riding Hood going to visit?', options: ['her grandmother', 'her aunt', 'her friend'], correctAnswer: 'her grandmother' }
         ]
       },
       {
@@ -681,7 +679,7 @@ export const units = [
         xpReward: 15,
         icon: 'star',
         questions: [
-          { id: 'r7', question: 'Why does Belle go to the castle?', options: ['Pour sauver son père', 'Pour trouver de l\'or', 'Pour épouser la Bête'], correctAnswer: 'Pour sauver son père' }
+          { id: 'r7', question: 'What animal did she meet in the forest?', options: ['a wolf', 'a bear', 'a fox'], correctAnswer: 'a wolf' }
         ]
       },
       {
@@ -690,7 +688,7 @@ export const units = [
         xpReward: 15,
         icon: 'dumbbell',
         questions: [
-          { id: 'r8', question: 'What turns the Beast back into a Prince?', options: ['L\'amour véritable', 'Une potion magique', 'Le miroir magique'], correctAnswer: 'L\'amour véritable' }
+          { id: 'r8', question: 'What was inside her basket?', options: ['food and cake', 'books', 'toys'], correctAnswer: 'food and cake' }
         ]
       },
       {
@@ -699,7 +697,7 @@ export const units = [
         xpReward: 20,
         icon: 'star',
         questions: [
-          { id: 'r9', question: 'What is Belle\'s favorite hobby?', options: ['lire des livres', 'chanter des chansons', 'cuisiner de bons plats'], correctAnswer: 'lire des livres' }
+          { id: 'r9', question: 'Where did the wolf go to trick her?', options: ['her grandmother\'s house', 'the market', 'the deep river'], correctAnswer: 'her grandmother\'s house' }
         ]
       },
       {
@@ -708,7 +706,7 @@ export const units = [
         xpReward: 25,
         icon: 'trophy',
         questions: [
-          { id: 'r10', question: 'Translate: "Elle vit heureuse pour toujours"', options: ['She lived happily ever after', 'She saw happiness everywhere', 'She wishes to be happy always'], correctAnswer: 'She lived happily ever after' }
+          { id: 'r10', question: 'Translate: "หนูน้อยหมวกแดง"', options: ['Little Red Riding Hood', 'Red Hood Girl', 'Little Red Cap'], correctAnswer: 'Little Red Riding Hood' }
         ]
       }
     ]
@@ -716,9 +714,9 @@ export const units = [
   {
     id: 8,
     category: 'exam-grammars',
-    title: 'Subjunctive Mode: Express desires',
+    title: 'Exam: Passive Voice',
     section: 'SECTION 3, UNIT 1',
-    description: 'Learn the French Subjunctive conjugation and usage',
+    description: 'Learn passive voice structure for formal exams',
     color: '#89E219',
     levels: [
       {
@@ -727,7 +725,7 @@ export const units = [
         xpReward: 10,
         icon: 'star',
         questions: [
-          { id: 'e1', question: 'Which trigger requires the subjunctive?', options: ['Il faut que...', 'Je pense que...', 'Il est certain que...'], correctAnswer: 'Il faut que...' }
+          { id: 'e1', question: 'Which sentence is in the passive voice?', options: ['The cake was eaten.', 'He ate the cake.', 'We are eating cake.'], correctAnswer: 'The cake was eaten.' }
         ]
       },
       {
@@ -736,7 +734,7 @@ export const units = [
         xpReward: 15,
         icon: 'star',
         questions: [
-          { id: 'e2', question: 'Subjunctive of "être" (il form):', options: ['qu\'il soit', 'qu\'il est', 'qu\'il fut'], correctAnswer: 'qu\'il soit' }
+          { id: 'e2', question: 'Passive of "She wrote the book":', options: ['The book was written by her.', 'She was written by the book.', 'The book written by her.'], correctAnswer: 'The book was written by her.' }
         ]
       },
       {
@@ -745,7 +743,7 @@ export const units = [
         xpReward: 15,
         icon: 'dumbbell',
         questions: [
-          { id: 'e3', question: 'Subjunctive of "avoir" (tu form):', options: ['que tu aies', 'que tu as', 'que tu auras'], correctAnswer: 'que tu aies' }
+          { id: 'e3', question: 'Passive of "We build houses":', options: ['Houses are built by us.', 'Houses built by us.', 'We are built houses.'], correctAnswer: 'Houses are built by us.' }
         ]
       },
       {
@@ -754,7 +752,7 @@ export const units = [
         xpReward: 20,
         icon: 'star',
         questions: [
-          { id: 'e4', question: 'Complete: "Je veux que tu ___ tes devoirs" (faire)', options: ['fasses', 'fais', 'feras'], correctAnswer: 'fasses' }
+          { id: 'e4', question: 'Complete: "The report must be ___ by Friday." (finish)', options: ['finished', 'finishing', 'finish'], correctAnswer: 'finished' }
         ]
       },
       {
@@ -763,7 +761,7 @@ export const units = [
         xpReward: 25,
         icon: 'trophy',
         questions: [
-          { id: 'e5', question: 'Complete: "Bien que nous ___ fatigués, nous continuerons" (être)', options: ['soyons', 'sommes', 'serions'], correctAnswer: 'soyons' }
+          { id: 'e5', question: 'Complete: "English is ___ all over the world." (speak)', options: ['spoken', 'spoke', 'speaking'], correctAnswer: 'spoken' }
         ]
       }
     ]
@@ -771,9 +769,9 @@ export const units = [
   {
     id: 9,
     category: 'exam-grammars',
-    title: 'Conditional Tense: Hypotheses',
+    title: 'Exam: Conditional Sentences',
     section: 'SECTION 3, UNIT 2',
-    description: 'Learn the Conditional tense for hypothetical scenarios',
+    description: 'Learn conditional structures (If-clauses)',
     color: '#1CB0F6',
     levels: [
       {
@@ -782,7 +780,7 @@ export const units = [
         xpReward: 10,
         icon: 'star',
         questions: [
-          { id: 'e6', question: 'What is the conditional ending for "je"?', options: ['-ais', '-ait', '-er'], correctAnswer: '-ais' }
+          { id: 'e6', question: 'Complete: "If it rains, we ___ stay home."', options: ['will', 'would', 'shall'], correctAnswer: 'will' }
         ]
       },
       {
@@ -791,7 +789,7 @@ export const units = [
         xpReward: 15,
         icon: 'star',
         questions: [
-          { id: 'e7', question: 'Conditional of "vouloir" (je form):', options: ['je voudrais', 'je voulais', 'je veux'], correctAnswer: 'je voudrais' }
+          { id: 'e7', question: 'Complete: "If I were you, I ___ buy that car."', options: ['would', 'will', 'should'], correctAnswer: 'would' }
         ]
       },
       {
@@ -800,7 +798,7 @@ export const units = [
         xpReward: 15,
         icon: 'dumbbell',
         questions: [
-          { id: 'e8', question: 'Conditional of "être" (nous form):', options: ['nous serions', 'nous étions', 'nous sommes'], correctAnswer: 'nous serions' }
+          { id: 'e8', question: 'Complete: "If he had studied, he ___ have passed."', options: ['would', 'will', 'should'], correctAnswer: 'would' }
         ]
       },
       {
@@ -809,7 +807,7 @@ export const units = [
         xpReward: 20,
         icon: 'star',
         questions: [
-          { id: 'e9', question: 'Complete: "Si j\'avais le temps, je ___ en France" (voyager)', options: ['voyagerais', 'voyageais', 'voyagerai'], correctAnswer: 'voyagerais' }
+          { id: 'e9', question: 'Complete: "Unless you ___ hard, you will not succeed."', options: ['study', 'will study', 'studied'], correctAnswer: 'study' }
         ]
       },
       {
@@ -818,7 +816,7 @@ export const units = [
         xpReward: 25,
         icon: 'trophy',
         questions: [
-          { id: 'e10', question: 'Translate: "We would like to order now"', options: ['Nous voudrions commander maintenant', 'Nous voulons commander maintenant', 'Nous commanderions bien'], correctAnswer: 'Nous voudrions commander maintenant' }
+          { id: 'e10', question: 'Translate: "ถ้าฉันมีเวลา ฉันจะไป"', options: ['If I have time, I will go', 'If I had time, I went', 'If I have time, I went'], correctAnswer: 'If I have time, I will go' }
         ]
       }
     ]
@@ -889,32 +887,32 @@ export const shopItems = {
   outfits: [
     {
       id: 'superhero',
-      name: 'Superhero Duo',
-      description: 'Dress Duo in a superhero cape!',
+      name: 'Superhero Gogram Owl',
+      description: 'Dress Gogram Owl in a superhero cape!',
       icon: '🦸',
       cost: 600,
       category: 'Outfits',
     },
     {
       id: 'formal',
-      name: 'Formal Duo',
-      description: 'Duo looking fancy in a top hat and bow tie.',
+      name: 'Formal Gogram Owl',
+      description: 'Gogram Owl looking fancy in a top hat and bow tie.',
       icon: '🎩',
       cost: 500,
       category: 'Outfits',
     },
     {
       id: 'chef',
-      name: 'Chef Duo',
-      description: 'Duo is ready to cook some French cuisine!',
+      name: 'Chef Gogram Owl',
+      description: 'Gogram Owl is ready to cook some fine cuisine!',
       icon: '👨‍🍳',
       cost: 400,
       category: 'Outfits',
     },
     {
       id: 'athletic',
-      name: 'Athletic Duo',
-      description: 'Duo is ready for the sports day!',
+      name: 'Athletic Gogram Owl',
+      description: 'Gogram Owl is ready for the sports day!',
       icon: '🏃',
       cost: 450,
       category: 'Outfits',
@@ -927,18 +925,18 @@ export const leagueData = {
   currentLeague: 'Gold',
   leagues: ['Bronze', 'Silver', 'Gold', 'Sapphire', 'Ruby', 'Emerald', 'Amethyst', 'Pearl', 'Obsidian', 'Diamond'],
   weeklyLeaderboard: [
-    { rank: 1, name: 'Pierre', xp: 1250, country: '🇫🇷', avatar: '#FF9600', initials: 'PI' },
+    { rank: 1, name: 'Somchai', xp: 1250, country: '🇹🇭', avatar: '#FF9600', initials: 'SC' },
     { rank: 2, name: 'Sakura', xp: 1180, country: '🇯🇵', avatar: '#FF4B4B', initials: 'SA' },
-    { rank: 3, name: 'Marie', xp: 980, country: '🇫🇷', avatar: '#CE82FF', initials: 'MA' },
+    { rank: 3, name: 'Pim', xp: 980, country: '🇹🇭', avatar: '#CE82FF', initials: 'PI' },
     { rank: 4, name: 'Hans', xp: 920, country: '🇩🇪', avatar: '#1CB0F6', initials: 'HA' },
     { rank: 5, name: 'Lucia', xp: 870, country: '🇮🇹', avatar: '#58CC02', initials: 'LU' },
-    { rank: 6, name: 'Carlos', xp: 810, country: '🇪🇸', avatar: '#FF9600', initials: 'CA' },
+    { rank: 6, name: 'Nut', xp: 810, country: '🇹🇭', avatar: '#FF9600', initials: 'NU' },
     { rank: 7, name: 'Emma', xp: 760, country: '🇬🇧', avatar: '#CE82FF', initials: 'EM' },
     { rank: 8, name: 'Yuki', xp: 720, country: '🇯🇵', avatar: '#FF4B4B', initials: 'YU' },
-    { rank: 9, name: 'Jean', xp: 680, country: '🇫🇷', avatar: '#1CB0F6', initials: 'JE' },
-    { rank: 10, name: 'Sophie', xp: 620, country: '🇧🇪', avatar: '#58CC02', initials: 'SO' },
+    { rank: 9, name: 'Kanya', xp: 680, country: '🇹🇭', avatar: '#1CB0F6', initials: 'KA' },
+    { rank: 10, name: 'Lek', xp: 620, country: '🇹🇭', avatar: '#58CC02', initials: 'LE' },
     { rank: 11, name: 'Marco', xp: 580, country: '🇮🇹', avatar: '#FF9600', initials: 'MR' },
-    { rank: 12, name: 'Anna', xp: 520, country: '🇵🇱', avatar: '#CE82FF', initials: 'AN' },
+    { rank: 12, name: 'Bow', xp: 520, country: '🇹🇭', avatar: '#CE82FF', initials: 'BO' },
     { rank: 13, name: 'Tom', xp: 480, country: '🇺🇸', avatar: '#1CB0F6', initials: 'TO' },
     { rank: 14, name: 'Kim', xp: 410, country: '🇰🇷', avatar: '#FF4B4B', initials: 'KI' },
     { rank: 15, name: 'Lena', xp: 350, country: '🇸🇪', avatar: '#58CC02', initials: 'LE' },
@@ -952,7 +950,7 @@ export const practiceCategories = [
   {
     id: 'listening',
     title: 'Listening',
-    description: 'Practice understanding spoken French',
+    description: 'Practice understanding spoken English',
     icon: '🎧',
     color: '#1CB0F6',
     difficulty: 'Beginner',
@@ -979,7 +977,7 @@ export const practiceCategories = [
   {
     id: 'writing',
     title: 'Writing',
-    description: 'Practice writing in French',
+    description: 'Practice writing in English',
     icon: '✏️',
     color: '#FF9600',
     difficulty: 'Intermediate',
@@ -997,7 +995,7 @@ export const practiceCategories = [
   {
     id: 'grammar',
     title: 'Grammar',
-    description: 'Practice French grammar rules',
+    description: 'Practice English grammar rules',
     icon: '📝',
     color: '#FFC800',
     difficulty: 'Intermediate',

@@ -56,7 +56,7 @@ export default function CategoryPage() {
               </div>
               <div className="welcome-banner-text">
                 <h3>Welcome to Gogram!</h3>
-                <p>Select a category below to start your French learning journey.</p>
+                <p>Select a category below to start your English learning journey.</p>
               </div>
             </div>
           )}
@@ -135,7 +135,7 @@ export default function CategoryPage() {
             <div className="category-item-card locked">
               <div className="category-item-info">
                 <h3 className="category-item-title">More Categories</h3>
-                <p className="category-item-desc">Business French, Slang, Travel Hacks coming soon!</p>
+                <p className="category-item-desc">Business English, Slang, Travel Hacks coming soon!</p>
               </div>
               <div className="category-item-icon-wrapper opacity-50">
                 <Category3DIcon letter="?" color="#CCCCCC" size={64} />

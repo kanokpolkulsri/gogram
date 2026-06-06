@@ -71,7 +71,7 @@ export default function ShopPage() {
 
       {/* Outfits */}
       <div className="shop-section">
-        <h2 className="shop-section-title">Outfits for Duo</h2>
+        <h2 className="shop-section-title">Outfits for Gogram Owl</h2>
         <div className="shop-grid shop-grid-outfits">
           {shopItems.outfits.map((item, index) => {
             const bought = boughtItems.includes(item.id);

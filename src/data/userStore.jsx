@@ -7,7 +7,7 @@ import { auth } from './firebase';
 const UserContext = createContext(null);
 const UserDispatchContext = createContext(null);
 
-const STORAGE_KEY = 'duolingo-clone-user';
+const STORAGE_KEY = 'gogram-user';
 
 function loadUser() {
   try {

@@ -1,6 +1,6 @@
 import { useUser } from '../data/userStore';
 import { leagueData } from '../data/mockData';
-import { FrenchFlagIcon, GemIcon, HeartIcon } from './icons';
+import { EnglishFlagIcon, GemIcon, HeartIcon } from './icons';
 import StreakFire from './StreakFire';
 import './RightSidebar.css';
 
@@ -13,7 +13,7 @@ export default function RightSidebar() {
       <div className="right-sidebar-stats" id="right-sidebar-stats">
         <div className="right-sidebar-stat" title="Language">
           <span className="right-sidebar-flag">
-            <FrenchFlagIcon size={24} />
+            <EnglishFlagIcon size={24} />
           </span>
           <span className="right-sidebar-stat-val">
             {Math.floor((user.totalXP || 0) / 10)}
@@ -39,12 +39,12 @@ export default function RightSidebar() {
         </div>
       </div>
 
-      {/* Super Duolingo promo */}
+      {/* Super gogram promo */}
       <div className="right-sidebar-card promo-card" id="promo-card">
         <div className="promo-card-header">
           <span className="promo-badge">SUPER</span>
           <div className="promo-card-text">
-            <h3>Try Super for free</h3>
+            <h3>Try Super gogram</h3>
             <p>No ads, personalized practice, and unlimited Legendary!</p>
           </div>
           <div className="promo-card-owl">

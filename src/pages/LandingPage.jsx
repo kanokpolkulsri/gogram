@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import DuolingoOwl from '../components/DuolingoOwl';
+import GogramOwl from '../components/GogramOwl';
 import { auth, googleProvider, signInWithPopup } from '../data/firebase';
 import './LandingPage.css';
 
@@ -32,17 +32,17 @@ export default function LandingPage() {
           <circle cx="124" cy="83" r="2.5" fill="white" />
           <ellipse cx="100" cy="102" rx="7" ry="4" fill="#FFC800" />
         </svg>
-        <span className="landing-logo-text">duolingo</span>
+        <span className="landing-logo-text">gogram</span>
       </div>
 
       {/* Illustration */}
       <div className="landing-illustration">
-        <DuolingoOwl size={180} />
+        <GogramOwl size={180} />
       </div>
 
       {/* Tagline */}
       <h1 className="landing-tagline">
-        The free, fun, and effective way to learn a language!
+        The free, fun, and effective way to learn English!
       </h1>
 
       {/* Buttons */}

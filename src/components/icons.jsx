@@ -4,11 +4,11 @@
  */
 
 // ─── Flag ────────────────────────────────────────────────────────────
-export const FrenchFlagIcon = ({ size = 32 }) => (
+export const EnglishFlagIcon = ({ size = 32 }) => (
   <svg
     width={size}
-    height={size * 0.75}
-    viewBox="0 0 24 18"
+    height={size * 0.6}
+    viewBox="0 0 76 40"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     style={{
@@ -19,9 +19,26 @@ export const FrenchFlagIcon = ({ size = 32 }) => (
       border: '1px solid #E5E5E5',
     }}
   >
-    <rect x="0" y="0" width="8" height="18" fill="#002695" />
-    <rect x="8" y="0" width="8" height="18" fill="#FFFFFF" />
-    <rect x="16" y="0" width="8" height="18" fill="#ED2939" />
+    {/* Red and white stripes */}
+    <rect width="76" height="40" fill="#FFFFFF" />
+    <rect width="76" height="3.07" y="0" fill="#B22234" />
+    <rect width="76" height="3.07" y="6.15" fill="#B22234" />
+    <rect width="76" height="3.07" y="12.3" fill="#B22234" />
+    <rect width="76" height="3.07" y="18.46" fill="#B22234" />
+    <rect width="76" height="3.07" y="24.61" fill="#B22234" />
+    <rect width="76" height="3.07" y="30.77" fill="#B22234" />
+    <rect width="76" height="3.07" y="36.92" fill="#B22234" />
+    {/* Blue canton */}
+    <rect width="30.4" height="21.54" fill="#3C3B6E" />
+    {/* 8 white stars simplified */}
+    <circle cx="5" cy="4" r="1.2" fill="#FFFFFF" />
+    <circle cx="15" cy="4" r="1.2" fill="#FFFFFF" />
+    <circle cx="25" cy="4" r="1.2" fill="#FFFFFF" />
+    <circle cx="10" cy="11" r="1.2" fill="#FFFFFF" />
+    <circle cx="20" cy="11" r="1.2" fill="#FFFFFF" />
+    <circle cx="5" cy="18" r="1.2" fill="#FFFFFF" />
+    <circle cx="15" cy="18" r="1.2" fill="#FFFFFF" />
+    <circle cx="25" cy="18" r="1.2" fill="#FFFFFF" />
   </svg>
 );
 

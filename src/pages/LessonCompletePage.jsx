@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useUserDispatch } from '../data/userStore';
-import DuolingoOwl from '../components/DuolingoOwl';
+import GogramOwl from '../components/GogramOwl';
 import './LessonCompletePage.css';
 
 export default function LessonCompletePage() {
@@ -28,7 +28,7 @@ export default function LessonCompletePage() {
 
       {/* Owl */}
       <div className="complete-owl">
-        <DuolingoOwl size={140} />
+        <GogramOwl size={140} />
       </div>
 
       {/* Title */}

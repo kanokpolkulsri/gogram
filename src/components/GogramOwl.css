@@ -1,5 +1,5 @@
-/* Interactive Mascot Container - Mike Wazowski + Brilliant design fusion */
-.duolingo-owl-container {
+/* Interactive Mascot Container - Gogram Owl with Brilliant Design Fusion */
+.gogram-owl-container {
   display: inline-block;
   cursor: pointer;
   transform-origin: center bottom;
@@ -7,11 +7,11 @@
   animation: hover-float 4s ease-in-out infinite; /* Premium floating breathing effect */
 }
 
-.duolingo-owl-container:hover {
+.gogram-owl-container:hover {
   transform: scale(1.08) translateY(-4px);
 }
 
-.duolingo-owl-container:active {
+.gogram-owl-container:active {
   transform: scale(0.95);
 }
 
@@ -81,8 +81,19 @@
 .mascot-eye-white,
 .mascot-eye-iris,
 .mascot-pupil {
-  transform-origin: 100px 96px;
   animation: blink 5s infinite;
+}
+
+.mascot-eye-white.left,
+.mascot-eye-iris.left,
+.mascot-pupil.left {
+  transform-origin: 82px 78px;
+}
+
+.mascot-eye-white.right,
+.mascot-eye-iris.right,
+.mascot-pupil.right {
+  transform-origin: 118px 78px;
 }
 
 @keyframes blink {
@@ -94,9 +105,9 @@
   }
 }
 
-/* Cute Waving Arm Animation */
+/* Waving Arm Animation */
 .mascot-left-arm {
-  transform-origin: 46px 112px;
+  transform-origin: 48px 125px;
   animation: arm-wave 2.5s ease-in-out infinite;
 }
 
@@ -110,7 +121,7 @@
 }
 
 .mascot-right-arm {
-  transform-origin: 154px 112px;
+  transform-origin: 152px 125px;
   animation: arm-breathe 3s ease-in-out infinite;
 }
 

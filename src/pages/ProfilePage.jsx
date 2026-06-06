@@ -4,7 +4,7 @@ import {
   EditIcon,
   LightningIcon,
   TrophyIcon,
-  FrenchFlagIcon,
+  EnglishFlagIcon,
   CheckIcon,
 } from '../components/icons';
 import './ProfilePage.css';
@@ -166,11 +166,11 @@ export default function ProfilePage() {
               {user.authProfile?.displayName || user.name}
             </h2>
             <p className="profile-username">
-              @{user.authProfile?.email ? user.authProfile.email.split('@')[0] : 'learner_french'}
+              @{user.authProfile?.email ? user.authProfile.email.split('@')[0] : 'learner_english'}
             </p>
             <p className="profile-joined">Joined May 2026</p>
             <div className="profile-flags">
-              <FrenchFlagIcon size={24} />
+              <EnglishFlagIcon size={24} />
             </div>
             <div className="profile-social">
               <span className="profile-social-stat">
@@ -203,7 +203,7 @@ export default function ProfilePage() {
           </div>
           <div className="profile-invite-content">
             <h3 className="profile-invite-title">Invite Friends</h3>
-            <p className="profile-invite-desc">Learning French is better with friends!</p>
+            <p className="profile-invite-desc">Learning English is better with friends!</p>
             <button className="profile-invite-btn">INVITE FRIENDS</button>
           </div>
         </div>

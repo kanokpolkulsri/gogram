@@ -125,7 +125,7 @@ export default function Sidebar() {
                       <span className="dropdown-item-emoji">⚙️</span>
                       <span className="dropdown-item-label">SETTINGS</span>
                     </Link>
-                    <a href="https://support.duolingo.com" target="_blank" rel="noopener noreferrer" className="dropdown-item" onClick={() => setShowMoreMenu(false)}>
+                    <a href="https://github.com/kanokpolkulsri/gogram" target="_blank" rel="noopener noreferrer" className="dropdown-item" onClick={() => setShowMoreMenu(false)}>
                       <span className="dropdown-item-emoji">❓</span>
                       <span className="dropdown-item-label">HELP</span>
                     </a>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import './DuolingoOwl.css';
+import './GogramOwl.css';
 
-export default function DuolingoOwl({ size = 120 }) {
+export default function GogramOwl({ size = 120 }) {
   const [animation, setAnimation] = useState('');
   const [isLocked, setIsLocked] = useState(false);
 
@@ -20,7 +20,7 @@ export default function DuolingoOwl({ size = 120 }) {
 
   return (
     <div
-      className={`duolingo-owl-container ${animation}`}
+      className={`gogram-owl-container ${animation}`}
       onClick={handleClick}
       title="Click me to perform a trick!"
     >
@@ -37,10 +37,26 @@ export default function DuolingoOwl({ size = 120 }) {
         <ellipse cx="100" cy="130" rx="45" ry="45" fill="#89E219" />
 
         {/* Left wing/arm */}
-        <ellipse cx="48" cy="125" rx="14" ry="22" fill="#58CC02" transform="rotate(-15 48 125)" />
+        <ellipse
+          cx="48"
+          cy="125"
+          rx="14"
+          ry="22"
+          fill="#58CC02"
+          transform="rotate(-15 48 125)"
+          className="mascot-left-arm"
+        />
 
         {/* Right wing/arm */}
-        <ellipse cx="152" cy="125" rx="14" ry="22" fill="#58CC02" transform="rotate(15 152 125)" />
+        <ellipse
+          cx="152"
+          cy="125"
+          rx="14"
+          ry="22"
+          fill="#58CC02"
+          transform="rotate(15 152 125)"
+          className="mascot-right-arm"
+        />
 
         {/* Head */}
         <circle cx="100" cy="80" r="42" fill="#58CC02" />
@@ -51,14 +67,14 @@ export default function DuolingoOwl({ size = 120 }) {
         <ellipse cx="132" cy="48" rx="8" ry="16" fill="#58CC02" transform="rotate(20 132 48)" />
 
         {/* Left eye */}
-        <circle cx="82" cy="78" r="16" fill="white" />
-        <circle cx="86" cy="78" r="8" fill="#333" />
-        <circle cx="88" cy="76" r="3" fill="white" />
+        <circle cx="82" cy="78" r="16" fill="white" className="mascot-eye-white left" />
+        <circle cx="86" cy="78" r="8" fill="#333" className="mascot-eye-iris left" />
+        <circle cx="88" cy="76" r="3" fill="white" className="mascot-pupil left" />
 
         {/* Right eye */}
-        <circle cx="118" cy="78" r="16" fill="white" />
-        <circle cx="122" cy="78" r="8" fill="#333" />
-        <circle cx="124" cy="76" r="3" fill="white" />
+        <circle cx="118" cy="78" r="16" fill="white" className="mascot-eye-white right" />
+        <circle cx="122" cy="78" r="8" fill="#333" className="mascot-eye-iris right" />
+        <circle cx="124" cy="76" r="3" fill="white" className="mascot-pupil right" />
 
         {/* Beak */}
         <ellipse cx="100" cy="98" rx="8" ry="5" fill="#FFC800" />

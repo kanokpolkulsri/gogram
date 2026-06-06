@@ -1,5 +1,5 @@
 import { HeadphonesIcon, BookIcon, RecycleIcon } from '../components/icons';
-import DuolingoOwl from '../components/DuolingoOwl';
+import GogramOwl from '../components/GogramOwl';
 import './PracticePage.css';
 
 export default function PracticePage() {
@@ -14,7 +14,7 @@ export default function PracticePage() {
           </p>
         </div>
         <div className="practice-hero-owl">
-          <DuolingoOwl size={80} />
+          <GogramOwl size={80} />
         </div>
       </div>
 
@@ -47,7 +47,7 @@ export default function PracticePage() {
             </div>
             <h3 className="practice-collection-title">Stories</h3>
             <p className="practice-collection-desc">
-              Read and listen to short stories in French
+              Read and listen to short stories in English
             </p>
             <button className="practice-collection-btn">START</button>
           </div>
@@ -73,7 +73,7 @@ export default function PracticePage() {
       {/* Personalized Practice */}
       <div className="practice-personalized">
         <div className="practice-personalized-content">
-          <DuolingoOwl size={70} />
+          <GogramOwl size={70} />
           <div>
             <h3>Personalized Practice</h3>
             <p>
