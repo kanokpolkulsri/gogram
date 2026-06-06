@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { units, studyCategories } from '../data/mockData';
 import { useUser, useUserDispatch } from '../data/userStore';
@@ -32,40 +32,122 @@ export default function LearnPage() {
     }
   }, [activeCategoryId, dispatch]);
 
+  const categoryInfo = studyCategories.find((c) => c.id === activeCategoryId) || studyCategories[0];
+  const categoryUnits = activeCategoryId
+    ? units.filter((u) => u.category === categoryInfo.id)
+    : [];
+  const nextLesson = getNextLesson(user.completedLessons, categoryUnits);
+
+  // Initialize activeUnitId state
+  const initialActiveUnit = nextLesson
+    ? (categoryUnits.find((u) => u.id === nextLesson.unitId) || categoryUnits[0])
+    : categoryUnits[0];
+
+  const [activeUnitId, setActiveUnitId] = useState(initialActiveUnit?.id);
+
+  // Reset activeUnitId when activeCategoryId changes
+  useEffect(() => {
+    if (categoryUnits.length > 0) {
+      setActiveUnitId(categoryUnits[0].id);
+    }
+  }, [activeCategoryId]);
+
+  // Track which unit is currently in view using scroll position detection
+  useEffect(() => {
+    if (categoryUnits.length === 0) return;
+
+    const handleScroll = () => {
+      const unitElements = document.querySelectorAll('.learn-unit');
+      if (unitElements.length === 0) return;
+      
+      // Determine threshold dynamically based on screen width
+      const isMobile = window.innerWidth < 1024;
+      const threshold = isMobile ? 160 : 110;
+
+      // Check if we are scrolled close to the bottom of the page
+      const scrollHeight = document.documentElement.scrollHeight;
+      const clientHeight = document.documentElement.clientHeight;
+      const scrollY = window.scrollY || window.pageYOffset;
+      const isAtBottom = scrollY + clientHeight >= scrollHeight - 50;
+
+      let activeIndex = 0;
+
+      if (isAtBottom) {
+        activeIndex = unitElements.length - 1;
+      } else {
+        for (let i = 0; i < unitElements.length; i++) {
+          const el = unitElements[i];
+          const nodes = el.querySelectorAll('.learn-path-node');
+          if (nodes.length > 0) {
+            const lastNode = nodes[nodes.length - 1];
+            const lastNodeRect = lastNode.getBoundingClientRect();
+            
+            // If the bottom of the last node of this unit has not scrolled past the threshold,
+            // then this unit is the active one!
+            if (lastNodeRect.bottom > threshold) {
+              activeIndex = i;
+              break;
+            }
+          }
+          activeIndex = i; // fallback/last unit
+        }
+      }
+
+      const activeUnit = categoryUnits[activeIndex];
+      if (activeUnit && activeUnit.id !== activeUnitId) {
+        setActiveUnitId(activeUnit.id);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    
+    // Check initially after a brief delay to allow React to commit nodes to the DOM
+    const timer = setTimeout(handleScroll, 100);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timer);
+    };
+  }, [categoryUnits, activeUnitId]);
+
   if (!activeCategoryId) {
     return null; // Return empty while redirecting
   }
 
-  const categoryInfo = studyCategories.find((c) => c.id === activeCategoryId) || studyCategories[0];
-  const categoryUnits = units.filter((u) => u.category === categoryInfo.id);
-  const nextLesson = getNextLesson(user.completedLessons, categoryUnits);
-
-
+  const currentUnitId = activeUnitId || (categoryUnits[0]?.id);
+  const activeUnitHeader = categoryUnits.find((u) => Number(u.id) === Number(currentUnitId)) || categoryUnits[0];
 
   return (
     <div className="learn-page" id="learn-page">
+      {/* Sticky active unit header */}
+      {activeUnitHeader && (
+        <div
+          className="learn-unit-header pinned-header animate-fade-in"
+          style={{ backgroundColor: activeUnitHeader.color }}
+          key={activeUnitHeader.id}
+        >
+          <div className="learn-unit-header-content">
+            <div>
+              <div className="learn-unit-section">{activeUnitHeader.section}</div>
+              <h2 className="learn-unit-title">{activeUnitHeader.title}</h2>
+            </div>
+            <div className="learn-unit-guide-btn" title="Guidebook">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z" />
+              </svg>
+              <span className="learn-unit-guide-label">GUIDEBOOK</span>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="learn-scroll-area">
         {categoryUnits.map((unit, unitIndex) => (
-          <div key={unit.id} className="learn-unit">
-            {/* Unit Header */}
-            <div
-              className="learn-unit-header"
-              style={{ backgroundColor: unit.color }}
-            >
-              <div className="learn-unit-header-content">
-                <div>
-                  <div className="learn-unit-section">{unit.section}</div>
-                  <h2 className="learn-unit-title">{unit.title}</h2>
-                </div>
-                <div className="learn-unit-guide-btn" title="Guidebook">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                    <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/>
-                  </svg>
-                  <span className="learn-unit-guide-label">GUIDEBOOK</span>
-                </div>
-              </div>
-            </div>
-
+          <div
+            key={unit.id}
+            className="learn-unit"
+            data-unit-id={unit.id}
+          >
             {/* Lesson Path */}
             <div className="learn-path">
               {unit.levels.map((level, levelIndex) => {

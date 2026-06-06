@@ -3,7 +3,7 @@
 }
 
 .learn-scroll-area {
-  padding-bottom: 20px;
+  padding-bottom: 120px;
 }
 
 @media (min-width: 1024px) {
@@ -14,9 +14,13 @@
 
 /* Unit Header */
 .learn-unit-header {
+  position: sticky;
+  top: 24px;
+  z-index: 100;
   border-radius: 16px;
   padding: 16px 16px !important;
   margin-bottom: 24px;
+  transition: background-color 0.4s ease;
 }
 
 .learn-unit-header-content {
@@ -70,7 +74,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0;
-  padding: 0;
+  padding: 28px 0 0;
   position: relative;
 }
 
@@ -131,8 +135,8 @@
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  padding: 16px 0;
-  margin-bottom: 8px;
+  padding: 24px 0;
+  margin-bottom: 0;
 }
 
 .learn-jump-divider {
@@ -192,6 +196,7 @@
     margin-top: 16px !important;
     margin-bottom: 16px !important;
     padding: 16px 16px !important;
+    transition: background-color 0.4s ease;
   }
 
   .learn-unit-guide-label {
