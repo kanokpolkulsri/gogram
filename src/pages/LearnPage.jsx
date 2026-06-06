@@ -108,7 +108,6 @@ export default function LearnPage() {
                 <div className="learn-jump-divider">
                   <span className="learn-jump-text">{categoryUnits[unitIndex + 1].title}</span>
                 </div>
-                <button className="learn-jump-btn">JUMP HERE?</button>
               </div>
             )}
           </div>

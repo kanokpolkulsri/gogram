@@ -160,24 +160,6 @@
   color: var(--color-text-light);
 }
 
-.learn-jump-btn {
-  padding: 8px 20px;
-  background: transparent;
-  border: 2px solid var(--color-green);
-  border-radius: 12px;
-  color: var(--color-green);
-  font-family: var(--font-family);
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.learn-jump-btn:hover {
-  background: var(--color-green-bg);
-}
-
 /* Complete message */
 .learn-complete-message {
   text-align: center;
