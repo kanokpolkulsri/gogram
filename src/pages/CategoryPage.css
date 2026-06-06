@@ -32,11 +32,14 @@
 .category-section-title-wrapper {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  background: #FFF5E6; /* Soft orange matching active categories tab */
+  padding: 6px 14px;
+  border-radius: 12px;
 }
 
 .category-section-header h2 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 800;
   color: var(--color-text);
   margin: 0;
