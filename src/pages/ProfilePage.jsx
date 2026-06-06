@@ -3,10 +3,9 @@ import {
   GearIcon,
   EditIcon,
   EnglishFlagIcon,
+  ProfileIcon,
 } from '../components/icons';
 import './ProfilePage.css';
-
-
 
 export default function ProfilePage() {
   const user = useUser();
@@ -15,7 +14,12 @@ export default function ProfilePage() {
   return (
     <div className="profile-page" id="profile-page">
       <div className="profile-header">
-        <h1 className="profile-header-title">Profile</h1>
+        <div className="profile-title-wrapper">
+          <div className="profile-icon-wrapper">
+            <ProfileIcon active={true} size={24} />
+          </div>
+          <h2 className="profile-header-title">Profile</h2>
+        </div>
         <button
           className="profile-settings-btn"
           onClick={() => {

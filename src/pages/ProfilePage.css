@@ -11,12 +11,26 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
-  border-bottom: 2px solid var(--color-gray);
-  padding-bottom: 12px;
+}
+
+.profile-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F3E8FF; /* Soft purple matching profile active tab */
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
 }
 
 .profile-header-title {
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 800;
   color: var(--color-text);
   margin: 0;
