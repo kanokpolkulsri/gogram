@@ -2,7 +2,7 @@
   animation: fadeIn var(--transition-normal) ease;
   max-width: 600px;
   margin: 0 auto;
-  padding: 24px 16px 80px;
+  padding: 16px 16px 100px;
 }
 
 /* Header with Title and Gear */
@@ -34,22 +34,6 @@
   font-weight: 800;
   color: var(--color-text);
   margin: 0;
-}
-
-.profile-settings-btn {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 6px;
-  border-radius: 50%;
-  transition: background var(--transition-fast) ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.profile-settings-btn:hover {
-  background: var(--color-gray-light);
 }
 
 .profile-scroll {
@@ -186,11 +170,11 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  background: #E8F5E9;
-  border: 2px solid #C8E6C9;
+  background: #F3E8FF;
+  border: 2px solid #E9D5FF;
   border-radius: 20px;
   padding: 20px;
-  box-shadow: 0 4px 0 #C8E6C9;
+  box-shadow: 0 4px 0 #E9D5FF;
 }
 
 .profile-invite-owl {
@@ -210,19 +194,19 @@
 .profile-invite-title {
   font-size: 18px;
   font-weight: 800;
-  color: #2E7D32;
+  color: #7E22CE;
   margin: 0;
 }
 
 .profile-invite-desc {
   font-size: 13px;
-  color: #4C8C50;
+  color: #9333EA;
   margin: 0;
   line-height: 1.4;
 }
 
 .profile-invite-btn {
-  background: #4CAF50;
+  background: #A855F7;
   border: none;
   border-radius: 12px;
   color: var(--color-white);
@@ -231,7 +215,7 @@
   font-size: 12px;
   font-weight: 800;
   cursor: pointer;
-  box-shadow: 0 3px 0 #388E3C;
+  box-shadow: 0 3px 0 #7E22CE;
   align-self: flex-start;
   margin-top: 4px;
   transition: transform var(--transition-fast) ease;

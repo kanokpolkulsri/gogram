@@ -1,6 +1,5 @@
 import { useUser, useUserDispatch } from '../data/userStore';
 import {
-  GearIcon,
   EditIcon,
   EnglishFlagIcon,
   ProfileIcon,
@@ -20,17 +19,6 @@ export default function ProfilePage() {
           </div>
           <h2 className="profile-header-title">Profile</h2>
         </div>
-        <button
-          className="profile-settings-btn"
-          onClick={() => {
-            if (window.confirm('Are you sure you want to reset all progress?')) {
-              dispatch({ type: 'RESET_PROGRESS' });
-            }
-          }}
-          title="Reset Progress"
-        >
-          <GearIcon size={24} color="#AFAFAF" />
-        </button>
       </div>
 
       <div className="profile-scroll">

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../data/userStore';
 import { studyCategories, units } from '../data/mockData';
-import { Category3DIcon, HomeIcon, LettersIcon } from '../components/icons';
+import { Category3DIcon, HomeIcon, CategoriesIcon } from '../components/icons';
 import './CategoryPage.css';
 
 export default function CategoryPage() {
@@ -147,7 +147,7 @@ export default function CategoryPage() {
               <div className="category-section-header">
                 <div className="category-section-title-wrapper other-categories-header">
                   <div className="category-section-icon-wrapper blue-icon">
-                    <LettersIcon active={true} size={24} />
+                    <CategoriesIcon active={true} size={24} />
                   </div>
                   <h2>More Categories</h2>
                 </div>
@@ -176,7 +176,7 @@ export default function CategoryPage() {
             <div className="category-section-header">
               <div className="category-section-title-wrapper study-categories-header">
                 <div className="category-section-icon-wrapper blue-icon">
-                  <LettersIcon active={true} size={24} />
+                  <CategoriesIcon active={true} size={24} />
                 </div>
                 <h2>Study Categories</h2>
               </div>

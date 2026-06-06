@@ -274,6 +274,30 @@ export const LettersIcon = ({ active, size = 32 }) => (
   </svg>
 );
 
+// ─── Categories (4 rounded squares grid) ──────────────────────────────
+export const CategoriesIcon = ({ active, size = 32 }) => (
+  <svg width={size} height={size} viewBox="0 0 48 48" fill="none">
+    {/* Top-left */}
+    <rect x="8" y="8" width="13" height="13" rx="4" fill={active ? '#1CB0F6' : '#AFAFAF'} />
+    {/* Top-right */}
+    <rect x="27" y="8" width="13" height="13" rx="4" fill={active ? '#1CB0F6' : '#AFAFAF'} />
+    {/* Bottom-left */}
+    <rect x="8" y="27" width="13" height="13" rx="4" fill={active ? '#1CB0F6' : '#AFAFAF'} />
+    {/* Bottom-right */}
+    <rect x="27" y="27" width="13" height="13" rx="4" fill={active ? '#1CB0F6' : '#AFAFAF'} />
+    {active && (
+      <>
+        {/* Premium subtle inner overlays */}
+        <rect x="10" y="10" width="9" height="9" rx="2" fill="white" opacity="0.25" />
+        <rect x="29" y="10" width="9" height="9" rx="2" fill="white" opacity="0.25" />
+        <rect x="10" y="29" width="9" height="9" rx="2" fill="white" opacity="0.25" />
+        <rect x="29" y="29" width="9" height="9" rx="2" fill="white" opacity="0.25" />
+      </>
+    )}
+  </svg>
+);
+
+
 // ─── Practice (Duo owl face + hearts) ──────────────────────────────────
 export const PracticeIcon = ({ active, size = 32 }) => (
   <svg width={size} height={size} viewBox="0 0 48 48" fill="none">
