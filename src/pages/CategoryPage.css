@@ -38,11 +38,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #FFF5E6;
-  /* Soft orange matching active categories tab */
   width: 38px;
   height: 38px;
   border-radius: 10px;
+}
+
+.category-section-icon-wrapper.orange-icon {
+  background: #FFF5E6; /* Soft orange matching active Home path */
+}
+
+.category-section-icon-wrapper.blue-icon {
+  background: #EBF8FF; /* Soft blue matching active Letters/Categories tab */
 }
 
 .category-section-header h2 {
