@@ -33,19 +33,6 @@ export default function LearnHeader() {
           onClick={() => navigate('/dashboard')}
           title="Back to Categories"
         >
-          <svg 
-            className="learn-header-back-arrow" 
-            width="20" 
-            height="20" 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            stroke="currentColor" 
-            strokeWidth="3" 
-            strokeLinecap="round" 
-            strokeLinejoin="round"
-          >
-            <polyline points="15 18 9 12 15 6" />
-          </svg>
           <Category3DIcon letter={categoryInfo.iconChar} color={categoryInfo.color} size={32} />
           <span className="learn-header-category-name">{categoryInfo.title}</span>
         </div>

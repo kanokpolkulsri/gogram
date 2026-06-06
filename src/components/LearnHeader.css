@@ -31,15 +31,7 @@
   transform: scale(0.97);
 }
 
-.learn-header-back-arrow {
-  color: var(--color-text-light);
-  transition: color var(--transition-fast) ease, transform var(--transition-fast) ease;
-}
 
-.learn-header-category:hover .learn-header-back-arrow {
-  color: var(--color-text);
-  transform: translateX(-2px);
-}
 
 .learn-header-category-name {
   font-size: 20px;
