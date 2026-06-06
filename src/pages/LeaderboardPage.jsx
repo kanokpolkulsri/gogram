@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useUser } from '../data/userStore';
 import { leagueData, studyCategories, units } from '../data/mockData';
+import { LeaderboardIcon } from '../components/icons';
 import './LeaderboardPage.css';
 
 function ShieldIcon({ color, letter, isActive, size = 76 }) {
@@ -144,6 +145,16 @@ export default function LeaderboardPage() {
 
   return (
     <div className="leaderboard-page" id="leaderboard-page">
+      {/* Leaderboard Section Header */}
+      <div className="leaderboard-header">
+        <div className="leaderboard-title-wrapper">
+          <div className="leaderboard-icon-wrapper">
+            <LeaderboardIcon active={true} size={24} />
+          </div>
+          <h2 className="leaderboard-header-title">Leaderboard</h2>
+        </div>
+      </div>
+
       {/* Category Shield Row */}
       <div className="leaderboard-shields-row" id="leaderboard-shields-row">
         {studyCategories.map((cat) => {
