@@ -261,6 +261,7 @@
   justify-content: center;
   flex-shrink: 0;
   z-index: 5;
+  animation: fadeInDown 0.5s ease both;
 }
 
 .linkedin-avatar-image {
@@ -291,7 +292,6 @@
   margin-top: 0;
   position: relative;
   z-index: 2;
-  animation: fadeInDown 0.5s ease both;
 }
 
 .linkedin-greeting-row {
@@ -300,6 +300,7 @@
   align-items: flex-start;
   gap: 4px;
   text-align: left;
+  animation: fadeInDown 0.5s ease both;
 }
 
 .linkedin-name-row {
