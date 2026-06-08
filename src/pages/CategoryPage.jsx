@@ -66,35 +66,6 @@ export default function CategoryPage() {
 
   const userRank = allLeaderboardUsers.findIndex(u => u.isYou) + 1;
 
-  // Generate 7 days of the week status based on streakHistory
-  const getStreakWeekStatus = () => {
-    const daysOfWeek = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
-    const today = new Date();
-    const currentDay = today.getDay();
-    const dayOffset = currentDay === 0 ? 6 : currentDay - 1;
-    
-    const monday = new Date(today);
-    monday.setDate(today.getDate() - dayOffset);
-    
-    const todayStr = today.toISOString().split('T')[0];
-    
-    return daysOfWeek.map((dayName, idx) => {
-      const targetDate = new Date(monday);
-      targetDate.setDate(monday.getDate() + idx);
-      const dateStr = targetDate.toISOString().split('T')[0];
-      
-      const isCompleted = user.streakHistory && user.streakHistory.includes(dateStr);
-      const isToday = dateStr === todayStr;
-      
-      return {
-        name: dayName,
-        isCompleted,
-        isToday,
-      };
-    });
-  };
-
-  const weekStreak = getStreakWeekStatus();
 
   const renderCategoryCard = (category) => {
     const isCurrent = lastCategoryId && category.id === lastCategoryId;
@@ -263,30 +234,7 @@ export default function CategoryPage() {
               </div>
             </div>
 
-            {/* Weekly Streak Row */}
-            <div className="profile-weekly-streak">
-              <span className="profile-weekly-streak-title">Weekly Streak</span>
-              <div className="profile-weekly-days-row">
-                {weekStreak.map((day, idx) => (
-                  <div key={idx} className="profile-weekly-day-item">
-                    <div
-                      className={`profile-weekly-day-circle ${day.isCompleted ? 'active' : ''} ${day.isToday ? 'today' : ''}`}
-                      title={day.isToday ? "Today" : ""}
-                    >
-                      {day.isCompleted ? (
-                        /* Mini flame */
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M12 2C12 2 7 9 7 14C7 16.76 9.24 19 12 19C14.76 19 17 16.76 17 14C17 9 12 2 12 2Z" fill="#FF9600" />
-                        </svg>
-                      ) : (
-                        day.name
-                      )}
-                    </div>
-                    <span className={`profile-weekly-day-name ${day.isToday ? 'today' : ''}`}>{day.name}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+
           </div>
         </div>
 
