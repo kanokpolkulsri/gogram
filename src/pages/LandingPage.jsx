@@ -1,9 +1,7 @@
-import { useNavigate } from 'react-router-dom';
 import { auth, googleProvider, signInWithPopup } from '../data/firebase';
 import './LandingPage.css';
 
 export default function LandingPage() {
-  const navigate = useNavigate();
 
   const handleGoogleLogin = async () => {
     try {
@@ -91,13 +89,8 @@ export default function LandingPage() {
             </g>
           </svg>
         </div>
-
-        {/* Middle Product Info */}
-        <div className="landing-product-info">
-          <h2 className="landing-product-name">GoGram</h2>
-          <p className="landing-product-desc">Practice English exams, unlimited and free.</p>
-        </div>
       </div>
+
 
       {/* Buttons */}
       <div className="landing-buttons">

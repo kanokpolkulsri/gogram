@@ -26,30 +26,6 @@
   letter-spacing: -0.5px;
 }
 
-.landing-product-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  margin-top: 24px;
-  text-align: center;
-}
-
-.landing-product-name {
-  font-size: 30px;
-  font-weight: 900;
-  color: var(--color-text);
-  margin: 0;
-  letter-spacing: -0.5px;
-}
-
-.landing-product-desc {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--color-text-light);
-  margin: 0;
-  max-width: 320px;
-}
 
 .landing-hero {
   display: flex;
