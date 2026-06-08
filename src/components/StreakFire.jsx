@@ -1,69 +1,55 @@
 import './StreakFire.css';
 
 export default function StreakFire({ size = 64, active = true, customColor = null, isRainbow = false }) {
-  // If isRainbow is true, we use rainbow gradients
-  const outerFill = isRainbow 
-    ? "url(#rainbowGradient)" 
-    : (customColor ? customColor : "url(#fireGradient)");
-  
-  const innerFill = isRainbow 
-    ? "url(#rainbowInnerGradient)" 
-    : (customColor ? "rgba(255, 255, 255, 0.35)" : "url(#fireInnerGradient)");
-  
-  const coreFill = isRainbow 
-    ? "#FFFFFF" 
-    : (customColor ? "rgba(255, 255, 255, 0.7)" : "#FFC800");
+  const shieldFill = isRainbow
+    ? 'url(#rainbowGradient)'
+    : (customColor ? customColor : '#FFC800');
+
+  const shieldHighlight = isRainbow
+    ? '#FFFFFF'
+    : (customColor ? 'rgba(255,255,255,0.45)' : '#FFE57F');
+
+  const shieldDark = isRainbow
+    ? 'rgba(0,0,0,0.2)'
+    : (customColor ? 'rgba(0,0,0,0.18)' : '#FF9600');
+
+  const inactiveFill = '#E5E5E5';
+  const inactiveDark = '#AFAFAF';
 
   return (
     <div className="streak-fire" style={{ width: size, height: size }}>
-      <svg viewBox="0 0 64 64" width={size} height={size} className="streak-fire-svg">
-        <defs>
-          <linearGradient id="fireGradient" x1="0%" y1="100%" x2="0%" y2="0%">
-            <stop offset="0%" stopColor="#FF9600" />
-            <stop offset="50%" stopColor="#FFC800" />
-            <stop offset="100%" stopColor="#FFDE00" />
-          </linearGradient>
-          <linearGradient id="fireInnerGradient" x1="0%" y1="100%" x2="0%" y2="0%">
-            <stop offset="0%" stopColor="#FF6B00" />
-            <stop offset="100%" stopColor="#FF9600" />
-          </linearGradient>
-          <linearGradient id="rainbowGradient" x1="0%" y1="100%" x2="0%" y2="0%">
-            <stop offset="0%" stopColor="#FF007F" />
-            <stop offset="35%" stopColor="#FF7F00" />
-            <stop offset="65%" stopColor="#FFFF00" />
-            <stop offset="85%" stopColor="#00FF66" />
-            <stop offset="100%" stopColor="#00F0FF" />
-          </linearGradient>
-          <linearGradient id="rainbowInnerGradient" x1="0%" y1="100%" x2="0%" y2="0%">
-            <stop offset="0%" stopColor="#E040FB" />
-            <stop offset="50%" stopColor="#00E5FF" />
-            <stop offset="100%" stopColor="#1DE9B6" />
-          </linearGradient>
-        </defs>
-        {/* Outer flame */}
+      <svg viewBox="0 0 48 48" width={size} height={size} className="streak-fire-svg">
+        {isRainbow && (
+          <defs>
+            <linearGradient id="rainbowGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#FF007F" />
+              <stop offset="35%" stopColor="#FF7F00" />
+              <stop offset="65%" stopColor="#FFFF00" />
+              <stop offset="85%" stopColor="#00FF66" />
+              <stop offset="100%" stopColor="#00F0FF" />
+            </linearGradient>
+          </defs>
+        )}
+        {/* Shield shadow / dark rim */}
         <path
-          d="M32 4C32 4 14 22 14 38C14 48.5 22 56 32 58C42 56 50 48.5 50 38C50 22 32 4 32 4Z"
-          fill={active ? outerFill : "#E5E5E5"}
-          className="flame-outer"
+          d="M24 4L8 8v14c0 10.4 6.8 20.1 16 22 9.2-1.9 16-11.6 16-22V8L24 4z"
+          fill={active ? shieldDark : inactiveDark}
+          transform="translate(0, 2)"
         />
-        {/* Inner flame */}
+        {/* Shield body */}
         <path
-          d="M32 20C32 20 22 32 22 40C22 46 26.5 50 32 52C37.5 50 42 46 42 40C42 32 32 20 32 20Z"
-          fill={active ? innerFill : "#AFAFAF"}
-          className="flame-inner"
+          d="M24 4L8 8v14c0 10.4 6.8 20.1 16 22 9.2-1.9 16-11.6 16-22V8L24 4z"
+          fill={active ? shieldFill : inactiveFill}
         />
-        {/* Core glow */}
-        <ellipse 
-          cx="32" 
-          cy="46" 
-          rx="6" 
-          ry="8" 
-          fill={active ? coreFill : "#CCCCCC"} 
-          opacity={isRainbow ? "0.9" : (customColor ? "1" : "0.8")} 
-          className="flame-core" 
-        />
+        {/* Top highlight */}
+        {active && (
+          <path
+            d="M24 7L11 10.5v8c0 1 0.2 2 0.5 3C14 18 19 15 24 14c5 1 10 4 12.5 7.5 0.3-1 0.5-2 0.5-3v-8L24 7z"
+            fill={shieldHighlight}
+            opacity="0.4"
+          />
+        )}
       </svg>
     </div>
   );
 }
-

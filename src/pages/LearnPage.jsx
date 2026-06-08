@@ -59,7 +59,7 @@ export default function LearnPage() {
     const handleScroll = () => {
       const unitElements = document.querySelectorAll('.learn-unit');
       if (unitElements.length === 0) return;
-      
+
       // Determine threshold dynamically based on screen width
       const isMobile = window.innerWidth < 1024;
       const threshold = isMobile ? 160 : 110;
@@ -81,7 +81,7 @@ export default function LearnPage() {
           if (nodes.length > 0) {
             const lastNode = nodes[nodes.length - 1];
             const lastNodeRect = lastNode.getBoundingClientRect();
-            
+
             // If the bottom of the last node of this unit has not scrolled past the threshold,
             // then this unit is the active one!
             if (lastNodeRect.bottom > threshold) {
@@ -100,7 +100,7 @@ export default function LearnPage() {
     };
 
     window.addEventListener('scroll', handleScroll);
-    
+
     // Check initially after a brief delay to allow React to commit nodes to the DOM
     const timer = setTimeout(handleScroll, 100);
 

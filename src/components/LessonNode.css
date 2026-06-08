@@ -23,7 +23,9 @@
 /* Classic Speech-Bubble Tooltip */
 .lesson-node-tooltip {
   position: absolute;
-  top: -16px;
+  left: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
   background: var(--color-white);
   color: var(--node-color, var(--color-green));
   font-weight: 800;
@@ -41,22 +43,22 @@
 .lesson-node-tooltip::after {
   content: '';
   position: absolute;
-  bottom: -6px;
-  left: 50%;
-  transform: translateX(-50%) rotate(45deg);
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
   width: 8px;
   height: 8px;
   background: var(--color-white);
-  border-right: 2px solid var(--color-gray);
+  border-left: 2px solid var(--color-gray);
   border-bottom: 2px solid var(--color-gray);
 }
 
 @keyframes tooltipBounce {
   0%, 100% {
-    transform: translateY(0);
+    transform: translateY(-50%) translateX(0);
   }
   50% {
-    transform: translateY(-4px);
+    transform: translateY(-50%) translateX(4px);
   }
 }
 

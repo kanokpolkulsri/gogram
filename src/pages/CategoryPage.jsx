@@ -80,11 +80,11 @@ export default function CategoryPage() {
           <div className="category-card-progress">
             <div className="category-card-progress-bar">
               <div
-                 className="category-card-progress-fill"
-                 style={{
-                   width: `${progressPercent}%`,
-                   background: category.color
-                 }}
+                className="category-card-progress-fill"
+                style={{
+                  width: `${progressPercent}%`,
+                  background: category.color
+                }}
               />
             </div>
             <span className="category-card-progress-text">
