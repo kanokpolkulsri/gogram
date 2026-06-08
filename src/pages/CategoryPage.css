@@ -283,9 +283,10 @@
 }
 
 .linkedin-profile-details {
-  padding: 8px 0;
+  padding: 12px 0 16px 0;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 16px;
   background: transparent;
   border-radius: 0;
@@ -352,8 +353,8 @@
   }
 
   .linkedin-profile-details {
-    padding: 8px 16px;
-    gap: 12px;
+    padding: 16px;
+    gap: 16px;
     background: var(--color-white);
     border-radius: 20px 20px 0 0;
     margin-top: -20px;
@@ -454,4 +455,151 @@
 @keyframes flapDown {
   0%, 100% { opacity: 0; }
   50% { opacity: 1; }
+}
+
+/* --- Profile Details Stats Grid & Weekly Streak --- */
+
+.linkedin-profile-main-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.profile-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  width: 100%;
+  animation: fadeInUp 0.4s ease both;
+  animation-delay: 0.05s;
+}
+
+.profile-stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 8px;
+  background: var(--color-gray-light);
+  border: 2px solid var(--color-gray);
+  border-radius: 16px;
+  text-align: center;
+  gap: 6px;
+  transition: transform var(--transition-fast) ease, border-color var(--transition-fast) ease;
+}
+
+.profile-stat-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-gray-medium);
+}
+
+.profile-stat-value {
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.profile-stat-label {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--color-text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.profile-weekly-streak {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--color-white);
+  border: 2px solid var(--color-gray);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: fadeInUp 0.4s ease both;
+  animation-delay: 0.1s;
+}
+
+.profile-weekly-streak-title {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--color-text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+.profile-weekly-days-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.profile-weekly-day-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.profile-weekly-day-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--color-gray-light);
+  border: 2px solid var(--color-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 900;
+  color: var(--color-gray-medium);
+  transition: all var(--transition-fast) ease;
+}
+
+.profile-weekly-day-circle.active {
+  background: var(--color-orange-bg);
+  border-color: var(--color-orange);
+  color: var(--color-orange);
+}
+
+.profile-weekly-day-circle.today {
+  border-color: var(--color-blue);
+  box-shadow: 0 0 0 3px var(--color-blue-bg);
+  color: var(--color-blue-dark);
+}
+
+.profile-weekly-day-circle.today.active {
+  border-color: var(--color-orange);
+  box-shadow: 0 0 0 3px var(--color-orange-bg);
+  color: var(--color-orange-dark);
+}
+
+.profile-weekly-day-name {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--color-text-light);
+  text-transform: uppercase;
+}
+
+.profile-weekly-day-name.today {
+  color: var(--color-blue-dark);
+  font-weight: 900;
+}
+
+/* Mobile responsive details styling overrides */
+@media (max-width: 1023px) {
+  .profile-weekly-streak {
+    border: none;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  .profile-stat-card {
+    background: var(--color-white);
+  }
 }

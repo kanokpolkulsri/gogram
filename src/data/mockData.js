@@ -6,7 +6,11 @@ export const initialUser = {
   hearts: 5,
   maxHearts: 5,
   streak: 3,
-  streakHistory: [], // array of date strings 'YYYY-MM-DD'
+  streakHistory: [
+    new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+    new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+    new Date(Date.now()).toISOString().split('T')[0]
+  ], // Mock 3 active days matching streak of 3
   currentUnit: 1,
   completedLessons: [], // array of 'unitId-levelId' strings
   gems: 660,
