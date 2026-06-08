@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import GogramOwl from '../components/GogramOwl';
 import { auth, googleProvider, signInWithPopup } from '../data/firebase';
 import './LandingPage.css';
 
@@ -101,11 +100,6 @@ export default function LandingPage() {
           <ellipse cx="100" cy="102" rx="7" ry="4" fill="#FFC800" />
         </svg>
         <span className="landing-logo-text">gogram</span>
-      </div>
-
-      {/* Illustration */}
-      <div className="landing-illustration">
-        <GogramOwl size={180} />
       </div>
 
       {/* Tagline */}
