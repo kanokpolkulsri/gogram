@@ -85,29 +85,6 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        {/* Invite Friends */}
-        <div className="profile-invite-card">
-          <div className="profile-invite-owl">
-            <svg width="72" height="72" viewBox="0 0 80 80" fill="none">
-              <circle cx="40" cy="40" r="32" fill="#58CC02" />
-              <circle cx="40" cy="43" r="24" fill="#89E219" />
-              <circle cx="30" cy="36" r="9" fill="white" />
-              <circle cx="50" cy="36" r="9" fill="white" />
-              <circle cx="32" cy="36" r="4.5" fill="#333" />
-              <circle cx="52" cy="36" r="4.5" fill="#333" />
-              <circle cx="33" cy="34.5" r="1.5" fill="white" />
-              <circle cx="53" cy="34.5" r="1.5" fill="white" />
-              <ellipse cx="40" cy="46" rx="5" ry="3.5" fill="#FFC800" />
-              <ellipse cx="32" cy="70" rx="6" ry="3.5" fill="#FFC800" />
-              <ellipse cx="48" cy="70" rx="6" ry="3.5" fill="#FFC800" />
-            </svg>
-          </div>
-          <div className="profile-invite-content">
-            <h3 className="profile-invite-title">Invite Friends</h3>
-            <p className="profile-invite-desc">Learning English is better with friends!</p>
-            <button className="profile-invite-btn">INVITE FRIENDS</button>
-          </div>
-        </div>
 
         {/* Log Out Button */}
         <button className="profile-logout-btn" onClick={handleLogout}>
