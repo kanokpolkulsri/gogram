@@ -45,11 +45,13 @@
 }
 
 .category-section-icon-wrapper.orange-icon {
-  background: #FFF5E6; /* Soft orange matching active Home path */
+  background: #FFF5E6;
+  /* Soft orange matching active Home path */
 }
 
 .category-section-icon-wrapper.blue-icon {
-  background: #EBF8FF; /* Soft blue matching active Letters/Categories tab */
+  background: #EBF8FF;
+  /* Soft blue matching active Letters/Categories tab */
 }
 
 .category-section-header h2 {
@@ -228,14 +230,16 @@
   background: transparent;
   border: none;
   border-radius: 0;
-  overflow: visible; /* Let overlapping details container corners show correctly */
+  overflow: visible;
+  /* Let overlapping details container corners show correctly */
   position: relative;
   margin-bottom: 4px;
   box-shadow: none;
 }
 
 .linkedin-hero-wrapper {
-  display: none; /* Hidden on desktop */
+  display: none;
+  /* Hidden on desktop */
   width: 100%;
   height: 90px;
   overflow: hidden;
@@ -283,10 +287,9 @@
 }
 
 .linkedin-profile-details {
-  padding: 12px 0 16px 0;
+  padding: 8px 0;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 16px;
   background: transparent;
   border-radius: 0;
@@ -349,12 +352,13 @@
   }
 
   .linkedin-hero-wrapper {
-    display: block; /* Visible on mobile */
+    display: block;
+    /* Visible on mobile */
   }
 
   .linkedin-profile-details {
-    padding: 16px;
-    gap: 16px;
+    padding: 8px 16px;
+    gap: 12px;
     background: var(--color-white);
     border-radius: 20px 20px 0 0;
     margin-top: -20px;
@@ -403,18 +407,33 @@
 }
 
 @keyframes driftBack {
-  0% { transform: translate(-100px, 15px); }
-  100% { transform: translate(650px, 15px); }
+  0% {
+    transform: translate(-100px, 15px);
+  }
+
+  100% {
+    transform: translate(650px, 15px);
+  }
 }
 
 @keyframes driftMid {
-  0% { transform: translate(-80px, 35px); }
-  100% { transform: translate(650px, 35px); }
+  0% {
+    transform: translate(-80px, 35px);
+  }
+
+  100% {
+    transform: translate(650px, 35px);
+  }
 }
 
 @keyframes driftFront {
-  0% { transform: translate(-60px, 8px); }
-  100% { transform: translate(650px, 8px); }
+  0% {
+    transform: translate(-60px, 8px);
+  }
+
+  100% {
+    transform: translate(650px, 8px);
+  }
 }
 
 /* Birds Flying & Flapping */
@@ -429,13 +448,23 @@
 }
 
 @keyframes birdFlyRightToLeft {
-  0% { transform: translate(620px, 12px) scale(0.75); }
-  100% { transform: translate(-40px, 22px) scale(0.75); }
+  0% {
+    transform: translate(620px, 12px) scale(0.75);
+  }
+
+  100% {
+    transform: translate(-40px, 22px) scale(0.75);
+  }
 }
 
 @keyframes birdFlyLeftToRight {
-  0% { transform: translate(-40px, 30px) scale(0.55) scaleX(-1); }
-  100% { transform: translate(620px, 18px) scale(0.55) scaleX(-1); }
+  0% {
+    transform: translate(-40px, 30px) scale(0.55) scaleX(-1);
+  }
+
+  100% {
+    transform: translate(620px, 18px) scale(0.55) scaleX(-1);
+  }
 }
 
 /* 2-Frame Flapping Animation */
@@ -448,70 +477,25 @@
 }
 
 @keyframes flapUp {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }
 
 @keyframes flapDown {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 1; }
-}
 
-/* --- Profile Details Stats Grid & Weekly Streak --- */
+  0%,
+  100% {
+    opacity: 0;
+  }
 
-.linkedin-profile-main-row {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  width: 100%;
-}
-
-.profile-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  width: 100%;
-  animation: fadeInUp 0.4s ease both;
-  animation-delay: 0.05s;
-}
-
-.profile-stat-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 8px;
-  background: var(--color-gray-light);
-  border: 2px solid var(--color-gray);
-  border-radius: 16px;
-  text-align: center;
-  gap: 6px;
-  transition: transform var(--transition-fast) ease, border-color var(--transition-fast) ease;
-}
-
-.profile-stat-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--color-gray-medium);
-}
-
-.profile-stat-value {
-  font-size: 14px;
-  font-weight: 900;
-  color: var(--color-text);
-  line-height: 1.2;
-}
-
-.profile-stat-label {
-  font-size: 10px;
-  font-weight: 800;
-  color: var(--color-text-light);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* Mobile responsive details styling overrides */
-@media (max-width: 1023px) {
-  .profile-stat-card {
-    background: var(--color-white);
+  50% {
+    opacity: 1;
   }
 }

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../data/userStore';
-import { studyCategories, units, leagueData } from '../data/mockData';
-import { Category3DIcon, HomeIcon, CategoriesIcon, TrophyIcon, LeaderboardIcon } from '../components/icons';
+import { studyCategories, units } from '../data/mockData';
+import { Category3DIcon, HomeIcon, CategoriesIcon } from '../components/icons';
 import './CategoryPage.css';
 
 export default function CategoryPage() {
@@ -31,41 +31,6 @@ export default function CategoryPage() {
     ).length;
     return sum + (1 + completedUnitsForCat);
   }, 0);
-
-  // Get active category ID for leaderboard calculations
-  const activeCategoryId = lastCategoryId || 'grammar-foundation';
-
-  // Calculate user level in active category
-  const activeUnits = units.filter((u) => u.category === activeCategoryId);
-  const activeCompletedUnitsCount = activeUnits.filter(unit =>
-    ['easy', 'medium1', 'medium2', 'hard1', 'hard2'].every(lvl =>
-      user.completedLessons.includes(`${unit.id}-${lvl}`)
-    )
-  ).length;
-  const userActiveLevel = 1 + activeCompletedUnitsCount;
-
-  // Mock list of user rankings (matches LeaderboardPage logic)
-  const getMockUserLevel = (uName) => {
-    const strVal = (activeCategoryId + uName).length;
-    return 1 + (strVal % 5); // Level 1 to 5
-  };
-
-  const allLeaderboardUsers = [
-    ...(leagueData?.weeklyLeaderboard?.slice(0, 8) || []).map(u => ({ ...u, isYou: false })),
-    { name: user.authProfile?.displayName || user.name || 'You', xp: user.totalXP, isYou: true },
-    ...(leagueData?.weeklyLeaderboard?.slice(8) || []).map(u => ({ ...u, isYou: false })),
-  ].map(u => {
-    const level = u.isYou ? userActiveLevel : getMockUserLevel(u.name);
-    return { ...u, level };
-  });
-
-  allLeaderboardUsers.sort((a, b) => {
-    if (b.level !== a.level) return b.level - a.level;
-    return b.xp - a.xp;
-  });
-
-  const userRank = allLeaderboardUsers.findIndex(u => u.isYou) + 1;
-
 
   const renderCategoryCard = (category) => {
     const isCurrent = lastCategoryId && category.id === lastCategoryId;
@@ -187,54 +152,22 @@ export default function CategoryPage() {
             </svg>
           </div>
 
-          {/* Details Section (containing profile photo, greeting, stats, and weekly streak) */}
+          {/* Details Section (containing profile photo and greeting) */}
           <div className="linkedin-profile-details">
-            <div className="linkedin-profile-main-row">
-              <div className="linkedin-avatar-container-static">
-                {user.authProfile?.photoURL ? (
-                  <img src={user.authProfile.photoURL} alt="Avatar" className="linkedin-avatar-image" />
-                ) : (
-                  <div className="linkedin-avatar-placeholder">
-                    {(user.authProfile?.displayName || user.name || 'L').slice(0, 1).toUpperCase()}
-                  </div>
-                )}
-              </div>
-              <div className="linkedin-greeting-row">
-                <h2 className="linkedin-name-row">
-                  Hi, {(user.authProfile?.displayName || user.name || 'Learner').split(' ')[0]}! 👋
-                </h2>
-              </div>
+            <div className="linkedin-avatar-container-static">
+              {user.authProfile?.photoURL ? (
+                <img src={user.authProfile.photoURL} alt="Avatar" className="linkedin-avatar-image" />
+              ) : (
+                <div className="linkedin-avatar-placeholder">
+                  {(user.authProfile?.displayName || user.name || 'L').slice(0, 1).toUpperCase()}
+                </div>
+              )}
             </div>
-
-            {/* Profile Statistics Grid */}
-            <div className="profile-stats-grid">
-              {/* Stat 1: Streak */}
-              <div className="profile-stat-card">
-                {/* Custom Inline Orange Flame SVG */}
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 2C12 2 7 9 7 14C7 16.76 9.24 19 12 19C14.76 19 17 16.76 17 14C17 9 12 2 12 2Z" fill="#FF9600" />
-                  <path d="M12 7C12 7 9.5 11.5 9.5 14C9.5 15.38 10.62 16.5 12 16.5C13.38 16.5 14.5 15.38 14.5 14C14.5 11.5 12 7 12 7Z" fill="#FFC800" />
-                </svg>
-                <span className="profile-stat-value">{user.streak || 0} Day{user.streak !== 1 && 's'}</span>
-                <span className="profile-stat-label">Streak</span>
-              </div>
-
-              {/* Stat 2: Total Levels */}
-              <div className="profile-stat-card" onClick={() => navigate('/dashboard')} style={{ cursor: 'pointer' }}>
-                <TrophyIcon size={24} />
-                <span className="profile-stat-value">LV. {totalLevels}</span>
-                <span className="profile-stat-label">Total Levels</span>
-              </div>
-
-              {/* Stat 3: Server Rank */}
-              <div className="profile-stat-card" onClick={() => navigate('/leaderboard')} style={{ cursor: 'pointer' }}>
-                <LeaderboardIcon active={true} size={24} />
-                <span className="profile-stat-value">Rank #{userRank}</span>
-                <span className="profile-stat-label">Server Rank</span>
-              </div>
+            <div className="linkedin-greeting-row">
+              <h2 className="linkedin-name-row">
+                Hi, {(user.authProfile?.displayName || user.name || 'Learner').split(' ')[0]}! 👋
+              </h2>
             </div>
-
-
           </div>
         </div>
 

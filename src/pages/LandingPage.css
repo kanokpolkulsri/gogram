@@ -6,6 +6,120 @@
   min-height: 100dvh;
   padding: 40px 24px;
   animation: fadeIn 0.6s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.landing-sky-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Clouds Parallax Drift on Landing Page */
+.cloud-back-1 {
+  animation: landingDriftBack1 90s linear infinite;
+  animation-delay: -35s;
+}
+
+.cloud-back-2 {
+  animation: landingDriftBack2 75s linear infinite;
+  animation-delay: -10s;
+}
+
+.cloud-mid-1 {
+  animation: landingDriftMid1 55s linear infinite;
+  animation-delay: -20s;
+}
+
+.cloud-mid-2 {
+  animation: landingDriftMid2 48s linear infinite;
+  animation-delay: -5s;
+}
+
+.cloud-front-1 {
+  animation: landingDriftFront1 35s linear infinite;
+  animation-delay: -15s;
+}
+
+@keyframes landingDriftBack1 {
+  0% { transform: translate(-150px, 120px) scale(1.2); }
+  100% { transform: translate(850px, 120px) scale(1.2); }
+}
+
+@keyframes landingDriftBack2 {
+  0% { transform: translate(-120px, 280px); }
+  100% { transform: translate(850px, 280px); }
+}
+
+@keyframes landingDriftMid1 {
+  0% { transform: translate(-100px, 420px) scale(0.9); }
+  100% { transform: translate(850px, 420px) scale(0.9); }
+}
+
+@keyframes landingDriftMid2 {
+  0% { transform: translate(-90px, 180px) scale(0.8); }
+  100% { transform: translate(850px, 180px) scale(0.8); }
+}
+
+@keyframes landingDriftFront1 {
+  0% { transform: translate(-80px, 580px) scale(0.7); }
+  100% { transform: translate(850px, 580px) scale(0.7); }
+}
+
+/* Birds Flying & Flapping on Landing Page */
+.bird-fly-slow {
+  animation: landingBirdFlySlow 32s linear infinite;
+  animation-delay: -5s;
+}
+
+.bird-fly-normal {
+  animation: landingBirdFlyNormal 24s linear infinite;
+  animation-delay: -15s;
+}
+
+.bird-fly-fast {
+  animation: landingBirdFlyFast 18s linear infinite;
+  animation-delay: -8s;
+}
+
+@keyframes landingBirdFlySlow {
+  0% { transform: translate(820px, 100px) scale(0.75); }
+  100% { transform: translate(-40px, 160px) scale(0.75); }
+}
+
+@keyframes landingBirdFlyNormal {
+  0% { transform: translate(-40px, 320px) scale(0.6) scaleX(-1); }
+  100% { transform: translate(820px, 240px) scale(0.6) scaleX(-1); }
+}
+
+@keyframes landingBirdFlyFast {
+  0% { transform: translate(820px, 500px) scale(0.5); }
+  100% { transform: translate(-40px, 460px) scale(0.5); }
+}
+
+/* 2-Frame Flapping Animation */
+.bird-wing-up {
+  animation: flapUp 0.5s infinite steps(1);
+}
+
+.bird-wing-down {
+  animation: flapDown 0.5s infinite steps(1);
+}
+
+@keyframes flapUp {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes flapDown {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
 }
 
 .landing-logo {

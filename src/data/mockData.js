@@ -6,18 +6,14 @@ export const initialUser = {
   hearts: 5,
   maxHearts: 5,
   streak: 3,
-  streakHistory: [
-    new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-    new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-    new Date(Date.now()).toISOString().split('T')[0]
-  ], // Mock 3 active days matching streak of 3
+  streakHistory: [], // array of date strings 'YYYY-MM-DD'
   currentUnit: 1,
   completedLessons: [], // array of 'unitId-levelId' strings
   gems: 660,
   league: 'Gold',
   following: 12,
   followers: 8,
-};export const units = [
+}; export const units = [
   {
     id: 1,
     category: 'grammar-foundation',
