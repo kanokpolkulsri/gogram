@@ -103,7 +103,7 @@ export default function CategoryPage() {
   return (
     <div className="category-page" id="category-page">
       <div className="category-scroll">
-        <div className="linkedin-profile-card animate-fade-in" id="category-welcome-banner">
+        <div className="linkedin-profile-card" id="category-welcome-banner">
           {/* Hero Banner SVG */}
           <div className="linkedin-hero-wrapper">
             <svg className="linkedin-hero-banner" viewBox="0 0 600 90" width="100%" height="90" preserveAspectRatio="xMidYMid slice" style={{ display: 'block' }}>

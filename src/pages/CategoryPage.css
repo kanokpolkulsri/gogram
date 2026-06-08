@@ -231,7 +231,6 @@
   position: relative;
   margin-bottom: 4px;
   box-shadow: none;
-  animation: fadeInUp 0.5s ease both;
 }
 
 .linkedin-hero-wrapper {
@@ -292,6 +291,7 @@
   margin-top: 0;
   position: relative;
   z-index: 2;
+  animation: fadeInDown 0.5s ease both;
 }
 
 .linkedin-greeting-row {
