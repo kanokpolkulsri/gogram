@@ -103,27 +103,73 @@ export default function CategoryPage() {
   return (
     <div className="category-page" id="category-page">
       <div className="category-scroll">
-        {!lastCategoryId && (
-          <div className="category-welcome-banner animate-fade-in" id="category-welcome-banner">
-            <div className="welcome-banner-owl">
-              <svg width="48" height="48" viewBox="0 0 200 200" fill="none">
-                <circle cx="100" cy="100" r="90" fill="#58CC02" />
-                <ellipse cx="100" cy="110" rx="50" ry="55" fill="#89E219" />
-                <circle cx="82" cy="85" r="14" fill="white" />
-                <circle cx="118" cy="85" r="14" fill="white" />
-                <circle cx="86" cy="85" r="7" fill="#333" />
-                <circle cx="122" cy="85" r="7" fill="#333" />
-                <circle cx="88" cy="83" r="2.5" fill="white" />
-                <circle cx="124" cy="83" r="2.5" fill="white" />
-                <ellipse cx="100" cy="102" rx="7" ry="4" fill="#FFC800" />
-              </svg>
+        <div className="linkedin-profile-card animate-fade-in" id="category-welcome-banner">
+          {/* Hero Banner SVG */}
+          <div className="linkedin-hero-wrapper">
+            <svg className="linkedin-hero-banner" viewBox="0 0 600 90" width="100%" height="90" preserveAspectRatio="xMidYMid slice" style={{ display: 'block' }}>
+              <defs>
+                <linearGradient id="skyGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#75D2FF" />
+                  <stop offset="100%" stopColor="#BBE7FF" />
+                </linearGradient>
+              </defs>
+
+              {/* Sky Background */}
+              <rect width="600" height="90" fill="url(#skyGradient)" />
+
+              {/* Cloud 1 (Back Layer) */}
+              <g className="banner-cloud cloud-back">
+                <rect x="0" y="0" width="70" height="22" rx="11" fill="white" />
+                <circle cx="25" cy="0" r="16" fill="white" />
+                <circle cx="45" cy="-2" r="14" fill="white" />
+              </g>
+
+              {/* Cloud 2 (Mid Layer) */}
+              <g className="banner-cloud cloud-mid">
+                <rect x="0" y="0" width="50" height="16" rx="8" fill="white" />
+                <circle cx="18" cy="-2" r="12" fill="white" />
+                <circle cx="32" cy="-4" r="10" fill="white" />
+              </g>
+
+              {/* Bird 1 (Right to Left) */}
+              <g className="bird-container bird-fly-1">
+                <path className="bird-wing-up" d="M 0,6 Q 4,-2 8,4 Q 12,-2 16,6 Q 10,3 8,5 Q 6,3 0,6 Z" fill="#5B8FB9" />
+                <path className="bird-wing-down" d="M 0,2 Q 4,10 8,4 Q 12,10 16,2 Q 10,3 8,5 Q 6,3 0,2 Z" fill="#5B8FB9" />
+              </g>
+
+              {/* Bird 2 (Left to Right, flipped) */}
+              <g className="bird-container bird-fly-2">
+                <path className="bird-wing-up" d="M 0,6 Q 4,-2 8,4 Q 12,-2 16,6 Q 10,3 8,5 Q 6,3 0,6 Z" fill="#5B8FB9" opacity="0.8" />
+                <path className="bird-wing-down" d="M 0,2 Q 4,10 8,4 Q 12,10 16,2 Q 10,3 8,5 Q 6,3 0,2 Z" fill="#5B8FB9" opacity="0.8" />
+              </g>
+
+              {/* Cloud 3 (Front Layer) */}
+              <g className="banner-cloud cloud-front">
+                <rect x="0" y="0" width="36" height="12" rx="6" fill="white" />
+                <circle cx="13" cy="-1" r="8" fill="white" />
+                <circle cx="23" cy="-2" r="7" fill="white" />
+              </g>
+            </svg>
+          </div>
+
+          {/* Details Section (containing profile photo and greeting) */}
+          <div className="linkedin-profile-details">
+            <div className="linkedin-avatar-container-static">
+              {user.authProfile?.photoURL ? (
+                <img src={user.authProfile.photoURL} alt="Avatar" className="linkedin-avatar-image" />
+              ) : (
+                <div className="linkedin-avatar-placeholder">
+                  {(user.authProfile?.displayName || user.name || 'L').slice(0, 1).toUpperCase()}
+                </div>
+              )}
             </div>
-            <div className="welcome-banner-text">
-              <h3>Welcome to Gogram!</h3>
-              <p>Select a category below to start your English learning journey.</p>
+            <div className="linkedin-greeting-row">
+              <h2 className="linkedin-name-row">
+                Hi, {(user.authProfile?.displayName || user.name || 'Learner').split(' ')[0]}! 👋
+              </h2>
             </div>
           </div>
-        )}
+        </div>
 
         {lastCategoryId ? (
           <>

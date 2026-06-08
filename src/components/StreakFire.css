@@ -2,23 +2,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  animation: float 3s ease-in-out infinite;
 }
 
 .streak-fire-svg {
-  filter: drop-shadow(0 4px 8px rgba(255, 150, 0, 0.3));
-}
-
-.flame-outer {
-  animation: flicker 1.5s ease-in-out infinite;
-  transform-origin: center bottom;
-}
-
-.flame-inner {
-  animation: flicker 1s ease-in-out infinite 0.2s;
-  transform-origin: center bottom;
-}
-
-.flame-core {
-  animation: pulse 1.2s ease-in-out infinite;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
 }
