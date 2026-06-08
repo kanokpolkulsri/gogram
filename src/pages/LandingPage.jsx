@@ -18,94 +18,86 @@ export default function LandingPage() {
 
   return (
     <div className="landing-page" id="landing-page">
-      {/* Sky Background */}
-      <div className="landing-sky-bg">
-        <svg viewBox="0 0 800 800" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" style={{ display: 'block' }}>
-          <defs>
-            <linearGradient id="landingSkyGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#75D2FF" />
-              <stop offset="100%" stopColor="#BBE7FF" />
-            </linearGradient>
-          </defs>
-
-          {/* Sky background rect */}
-          <rect width="800" height="800" fill="url(#landingSkyGradient)" />
-
-          {/* Cloud 1 (Back Layer) */}
-          <g className="banner-cloud cloud-back-1">
-            <rect x="0" y="0" width="100" height="30" rx="15" fill="white" />
-            <circle cx="35" cy="0" r="22" fill="white" />
-            <circle cx="65" cy="-2" r="20" fill="white" />
-          </g>
-
-          {/* Cloud 2 (Back Layer) */}
-          <g className="banner-cloud cloud-back-2">
-            <rect x="0" y="0" width="80" height="24" rx="12" fill="white" />
-            <circle cx="28" cy="0" r="18" fill="white" />
-            <circle cx="52" cy="-2" r="15" fill="white" />
-          </g>
-
-          {/* Cloud 3 (Mid Layer) */}
-          <g className="banner-cloud cloud-mid-1">
-            <rect x="0" y="0" width="70" height="22" rx="11" fill="white" />
-            <circle cx="25" cy="0" r="16" fill="white" />
-            <circle cx="45" cy="-2" r="14" fill="white" />
-          </g>
-
-          {/* Cloud 4 (Mid Layer) */}
-          <g className="banner-cloud cloud-mid-2">
-            <rect x="0" y="0" width="60" height="18" rx="9" fill="white" />
-            <circle cx="20" cy="-1" r="13" fill="white" />
-            <circle cx="38" cy="-2" r="11" fill="white" />
-          </g>
-
-          {/* Bird 1 (Right to Left) */}
-          <g className="bird-container bird-fly-slow">
-            <path className="bird-wing-up" d="M 0,6 Q 4,-2 8,4 Q 12,-2 16,6 Q 10,3 8,5 Q 6,3 0,6 Z" fill="#5B8FB9" />
-            <path className="bird-wing-down" d="M 0,2 Q 4,10 8,4 Q 12,10 16,2 Q 10,3 8,5 Q 6,3 0,2 Z" fill="#5B8FB9" />
-          </g>
-
-          {/* Bird 2 (Left to Right, flipped) */}
-          <g className="bird-container bird-fly-normal">
-            <path className="bird-wing-up" d="M 0,6 Q 4,-2 8,4 Q 12,-2 16,6 Q 10,3 8,5 Q 6,3 0,6 Z" fill="#5B8FB9" opacity="0.8" />
-            <path className="bird-wing-down" d="M 0,2 Q 4,10 8,4 Q 12,10 16,2 Q 10,3 8,5 Q 6,3 0,2 Z" fill="#5B8FB9" opacity="0.8" />
-          </g>
-
-          {/* Bird 3 (Right to Left) */}
-          <g className="bird-container bird-fly-fast">
-            <path className="bird-wing-up" d="M 0,6 Q 4,-2 8,4 Q 12,-2 16,6 Q 10,3 8,5 Q 6,3 0,6 Z" fill="#5B8FB9" opacity="0.9" />
-            <path className="bird-wing-down" d="M 0,2 Q 4,10 8,4 Q 12,10 16,2 Q 10,3 8,5 Q 6,3 0,2 Z" fill="#5B8FB9" opacity="0.9" />
-          </g>
-
-          {/* Cloud 5 (Front Layer) */}
-          <g className="banner-cloud cloud-front-1">
-            <rect x="0" y="0" width="50" height="16" rx="8" fill="white" />
-            <circle cx="18" cy="-2" r="12" fill="white" />
-            <circle cx="32" cy="-4" r="10" fill="white" />
-          </g>
-        </svg>
-      </div>
-
-      {/* Logo */}
+      {/* Top Header Logo */}
       <div className="landing-logo">
-        <svg width="36" height="36" viewBox="0 0 200 200" fill="none">
-          <circle cx="100" cy="100" r="90" fill="#58CC02" />
-          <ellipse cx="100" cy="110" rx="50" ry="55" fill="#89E219" />
-          <circle cx="82" cy="85" r="14" fill="white" />
-          <circle cx="118" cy="85" r="14" fill="white" />
-          <circle cx="86" cy="85" r="7" fill="#333" />
-          <circle cx="122" cy="85" r="7" fill="#333" />
-          <circle cx="88" cy="83" r="2.5" fill="white" />
-          <circle cx="124" cy="83" r="2.5" fill="white" />
-          <ellipse cx="100" cy="102" rx="7" ry="4" fill="#FFC800" />
-        </svg>
-        <span className="landing-logo-text">gogram</span>
+        <span className="landing-logo-text">GoGram</span>
       </div>
 
-      {/* Tagline */}
-      <h1 className="landing-tagline">
-        The free, fun, and effective way to learn English!
-      </h1>
+      {/* Hero Section with Speech Bubble */}
+      <div className="landing-hero">
+        <div className="speech-bubble">
+          Hey, what's good?!
+        </div>
+
+        {/* Circle containing the animated sky banner */}
+        <div className="banner-circle">
+          <svg viewBox="0 0 200 200" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" style={{ display: 'block' }}>
+            <defs>
+              <linearGradient id="circleSkyGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#75D2FF" />
+                <stop offset="100%" stopColor="#BBE7FF" />
+              </linearGradient>
+            </defs>
+
+            {/* Sky Background */}
+            <rect width="200" height="200" fill="url(#circleSkyGradient)" />
+
+            {/* Cloud 1 (Back Layer, Y=30) */}
+            <g className="banner-cloud cloud-back-y30">
+              <rect width="60" height="18" rx="9" fill="white" />
+              <circle cx="20" cy="0" r="14" fill="white" />
+              <circle cx="38" cy="-2" r="12" fill="white" />
+            </g>
+
+
+            {/* Cloud 3 (Front Layer, Y=140) */}
+            <g className="banner-cloud cloud-front-y140">
+              <rect width="50" height="16" rx="8" fill="white" />
+              <circle cx="18" cy="-2" r="12" fill="white" />
+              <circle cx="32" cy="-4" r="10" fill="white" />
+            </g>
+
+            {/* Bird 1 (Right to Left, Y=45) */}
+            <g className="bird-container bird-fly-r2l-y45">
+              <path className="bird-wing-up" d="M 0,6 Q 4,-2 8,4 Q 12,-2 16,6 Q 10,3 8,5 Q 6,3 0,6 Z" fill="#5B8FB9" />
+              <path className="bird-wing-down" d="M 0,2 Q 4,10 8,4 Q 12,10 16,2 Q 10,3 8,5 Q 6,3 0,2 Z" fill="#5B8FB9" />
+            </g>
+
+            {/* Bird 2 (Left to Right, Y=125) */}
+            <g className="bird-container bird-fly-l2r-y125">
+              <path className="bird-wing-up" d="M 0,6 Q 4,-2 8,4 Q 12,-2 16,6 Q 10,3 8,5 Q 6,3 0,6 Z" fill="#5B8FB9" opacity="0.8" />
+              <path className="bird-wing-down" d="M 0,2 Q 4,10 8,4 Q 12,10 16,2 Q 10,3 8,5 Q 6,3 0,2 Z" fill="#5B8FB9" opacity="0.8" />
+            </g>
+
+            {/* Mascot Face Overlay */}
+            <g className="mascot-face-overlay" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.15))' }}>
+              {/* Left & Right Eye Whites (Static) */}
+              <circle cx="68" cy="80" r="19" fill="white" />
+              <circle cx="132" cy="80" r="19" fill="white" />
+
+              {/* Grouped Eyeballs (Animated together) */}
+              <g className="mascot-eyeballs">
+                {/* Left Eyeball */}
+                <circle cx="68" cy="80" r="9.5" fill="#333" />
+                <circle cx="70" cy="78" r="3.2" fill="white" />
+
+                {/* Right Eyeball */}
+                <circle cx="132" cy="80" r="9.5" fill="#333" />
+                <circle cx="134" cy="78" r="3.2" fill="white" />
+              </g>
+
+              {/* Beak */}
+              <ellipse cx="100" cy="112" rx="9" ry="5" fill="#FFC800" />
+            </g>
+          </svg>
+        </div>
+
+        {/* Middle Product Info */}
+        <div className="landing-product-info">
+          <h2 className="landing-product-name">GoGram</h2>
+          <p className="landing-product-desc">Practice English exams, unlimited and free.</p>
+        </div>
+      </div>
 
       {/* Buttons */}
       <div className="landing-buttons">
@@ -115,13 +107,6 @@ export default function LandingPage() {
           id="btn-get-started"
         >
           GET STARTED
-        </button>
-        <button
-          className="btn btn-secondary"
-          onClick={handleGoogleLogin}
-          id="btn-login"
-        >
-          I ALREADY HAVE AN ACCOUNT
         </button>
       </div>
     </div>

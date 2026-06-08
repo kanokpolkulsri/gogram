@@ -2,45 +2,214 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   min-height: 100vh;
   min-height: 100dvh;
-  padding: 40px 24px;
+  padding: 40px 24px 0 24px;
   animation: fadeIn 0.6s ease;
+  box-sizing: border-box;
 }
+
 
 .landing-logo {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 24px;
+  justify-content: center;
+  margin-top: 10px;
+  animation: fadeInDown 0.6s ease;
 }
 
 .landing-logo-text {
-  font-size: 28px;
-  font-weight: 800;
+  font-size: 26px;
+  font-weight: 900;
   color: var(--color-green);
   letter-spacing: -0.5px;
 }
 
-
-
-.landing-tagline {
-  font-size: 24px;
-  font-weight: 800;
-  color: var(--color-text);
+.landing-product-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
   text-align: center;
-  line-height: 1.3;
-  margin-bottom: 48px;
-  max-width: 340px;
+}
+
+.landing-product-name {
+  font-size: 30px;
+  font-weight: 900;
+  color: var(--color-text);
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.landing-product-desc {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-light);
+  margin: 0;
+  max-width: 320px;
+}
+
+.landing-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  width: 100%;
   animation: fadeInUp 0.6s ease 0.2s backwards;
 }
 
+.speech-bubble {
+  position: relative;
+  background: #ffffff;
+  border: 2px solid #e5e5e5;
+  border-radius: 16px;
+  padding: 12px 24px;
+  font-size: 19px;
+  font-weight: 700;
+  color: #3c3c3c;
+  text-align: center;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 0 #e5e5e5;
+}
+
+/* Arrow pointer pointing down */
+.speech-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px 10px 0;
+  border-style: solid;
+  border-color: #e5e5e5 transparent;
+  display: block;
+  width: 0;
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px 8px 0;
+  border-style: solid;
+  border-color: #ffffff transparent;
+  display: block;
+  width: 0;
+}
 .landing-buttons {
   width: 100%;
+  max-width: 480px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding-bottom: max(24px, env(safe-area-inset-bottom));
+  padding: 24px 0 max(24px, env(safe-area-inset-bottom));
   animation: fadeInUp 0.6s ease 0.4s backwards;
+  box-sizing: border-box;
+}
+
+
+/* --- Banner Circle --- */
+.banner-circle {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 4px solid #e5e5e5;
+  overflow: hidden;
+  background: linear-gradient(180deg, #75D2FF 0%, #BBE7FF 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 10px;
+}
+
+.banner-circle svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Animations within the circle */
+/* Clouds at different heights and speeds */
+.banner-circle .cloud-back-y30 {
+  animation: driftBackCircle30 35s linear infinite;
+  animation-delay: -8s;
+}
+
+
+.banner-circle .cloud-front-y140 {
+  animation: driftFrontCircle140 14s linear infinite;
+  animation-delay: -5s;
+}
+
+
+@keyframes driftBackCircle30 {
+  0% { transform: translate(-80px, 30px); }
+  100% { transform: translate(220px, 30px); }
+}
+
+
+@keyframes driftFrontCircle140 {
+  0% { transform: translate(-80px, 155px); }
+  100% { transform: translate(220px, 155px); }
+}
+
+
+/* Birds at different heights and speeds */
+.banner-circle .bird-fly-r2l-y45 {
+  animation: birdFlyRightToLeft45 12s linear infinite;
+  animation-delay: -1s;
+}
+
+.banner-circle .bird-fly-l2r-y125 {
+  animation: birdFlyLeftToRight125 15s linear infinite;
+  animation-delay: -5s;
+}
+
+
+@keyframes birdFlyRightToLeft45 {
+  0% { transform: translate(220px, 45px) scale(0.65); }
+  100% { transform: translate(-40px, 45px) scale(0.65); }
+}
+
+@keyframes birdFlyLeftToRight125 {
+  0% { transform: translate(-40px, 125px) scale(0.5) scaleX(-1); }
+  100% { transform: translate(220px, 125px) scale(0.5) scaleX(-1); }
+}
+
+
+.banner-circle .bird-wing-up {
+  animation: flapUpCircle 0.4s infinite steps(1);
+}
+
+.banner-circle .bird-wing-down {
+  animation: flapDownCircle 0.4s infinite steps(1);
+}
+
+@keyframes flapUpCircle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes flapDownCircle {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.mascot-eyeballs {
+  animation: lookAround 8s ease-in-out infinite;
+}
+
+@keyframes lookAround {
+  0%, 100% { transform: translate(0, 0); } /* look straight */
+  20%, 35% { transform: translate(0, -5px); } /* look up at the message above */
+  45%, 55% { transform: translate(-3px, 1px); } /* look left */
+  65%, 75% { transform: translate(3px, 1px); } /* look right */
+  85%, 95% { transform: translate(0, 0); } /* look straight */
 }
