@@ -173,13 +173,7 @@ export default function RightSidebar() {
           </div>
         </div>
 
-        {/* Progress Bar */}
-        <div className="vocab-progress-container" title={`${learnedIndices.length} / ${dailyVocab.length} words learned`}>
-          <div 
-            className="vocab-progress-bar" 
-            style={{ width: `${(learnedIndices.length / dailyVocab.length) * 100}%` }}
-          />
-        </div>
+
 
         <div className="vocab-content animate-fade-in" key={vocabIndex}>
           <div className="vocab-word-row">
