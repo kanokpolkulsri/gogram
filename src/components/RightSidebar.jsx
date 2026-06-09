@@ -38,6 +38,15 @@ const dailyVocab = [
   }
 ];
 
+const formatExample = (sentence, word) => {
+  if (!sentence) return '';
+  const regex = new RegExp(`(${word})`, 'gi');
+  const parts = sentence.split(regex);
+  return parts.map((part, i) =>
+    part.toLowerCase() === word.toLowerCase() ? <strong key={i}>{part}</strong> : part
+  );
+};
+
 export default function RightSidebar() {
   const user = useUser();
   const [vocabIndex, setVocabIndex] = useState(0);
@@ -97,7 +106,9 @@ export default function RightSidebar() {
             <span className="vocab-type">{dailyVocab[vocabIndex].type}</span>
           </div>
           <p className="vocab-translation">{dailyVocab[vocabIndex].thai}</p>
-          <p className="vocab-example-sentence">"{dailyVocab[vocabIndex].example}"</p>
+          <p className="vocab-example-sentence">
+            "{formatExample(dailyVocab[vocabIndex].example, dailyVocab[vocabIndex].word)}"
+          </p>
         </div>
 
         <div className="vocab-carousel-controls">
