@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useUser } from '../data/userStore';
 import { leagueData } from '../data/mockData';
-import { EnglishFlagIcon, GemIcon, HeartIcon } from './icons';
-import StreakFire from './StreakFire';
 import './RightSidebar.css';
 
 const dailyVocab = [
@@ -129,36 +127,6 @@ export default function RightSidebar() {
 
   return (
     <aside className="right-sidebar" id="right-sidebar">
-      {/* Top stats bar */}
-      <div className="right-sidebar-stats" id="right-sidebar-stats">
-        <div className="right-sidebar-stat" title="Language">
-          <span className="right-sidebar-flag">
-            <EnglishFlagIcon size={24} />
-          </span>
-          <span className="right-sidebar-stat-val">
-            {Math.floor((user.totalXP || 0) / 10)}
-          </span>
-        </div>
-        <div className="right-sidebar-stat" title="Streak">
-          <StreakFire size={20} />
-          <span className="right-sidebar-stat-val stat-streak">
-            {user.streak}
-          </span>
-        </div>
-        <div className="right-sidebar-stat" title="Gems">
-          <GemIcon size={18} />
-          <span className="right-sidebar-stat-val stat-gems">
-            {user.gems || 0}
-          </span>
-        </div>
-        <div className="right-sidebar-stat" title="Hearts">
-          <HeartIcon size={18} />
-          <span className="right-sidebar-stat-val stat-hearts">
-            {user.hearts}
-          </span>
-        </div>
-      </div>
-
       {/* 5 Vocabs a Day Carousel Card */}
       <div className="right-sidebar-card vocab-card" id="vocab-card">
         <div className="vocab-card-header">

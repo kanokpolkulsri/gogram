@@ -12,44 +12,7 @@
   gap: 16px;
 }
 
-/* Top stats bar */
-.right-sidebar-stats {
-  display: flex;
-  justify-content: flex-end;
-  gap: 20px;
-  padding: 8px 0;
-  margin-bottom: 4px;
-}
 
-.right-sidebar-stat {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  transition: opacity var(--transition-fast);
-}
-
-.right-sidebar-stat:hover {
-  opacity: 0.7;
-}
-
-.right-sidebar-flag {
-  font-size: 20px;
-}
-
-.right-sidebar-gem {
-  font-size: 18px;
-}
-
-.right-sidebar-heart {
-  font-size: 18px;
-}
-
-.right-sidebar-stat-val {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--color-text);
-}
 
 /* Cards */
 .right-sidebar-card {
