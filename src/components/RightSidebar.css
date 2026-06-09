@@ -191,9 +191,13 @@
 @media (min-width: 1024px) {
   .right-sidebar {
     position: sticky;
-    top: 0;
+    top: 24px;
     right: auto;
-    border-left: 2px solid var(--color-gray);
+    border-left: none;
+    height: calc(100vh - 48px);
+    height: calc(100dvh - 48px);
+    box-sizing: border-box;
+    padding: 0;
   }
 }
 
@@ -208,6 +212,6 @@
 @media (max-width: 1280px) and (min-width: 1024px) {
   .right-sidebar {
     width: 300px;
-    padding: 16px;
+    padding: 0;
   }
 }

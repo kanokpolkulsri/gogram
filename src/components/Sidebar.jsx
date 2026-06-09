@@ -4,7 +4,6 @@ import { auth, signOut } from '../data/firebase';
 import {
   HomeIcon,
   LeaderboardIcon,
-  QuestsIcon,
   GemIcon,
   ProfileIcon,
   MoreIcon,
@@ -15,37 +14,37 @@ import './Sidebar.css';
 const sidebarTabs = [
   {
     id: 'categories',
-    label: 'CATEGORIES',
+    label: 'Categories',
     path: '/dashboard',
     Icon: HomeIcon,
   },
   {
     id: 'learn',
-    label: 'LEARN',
+    label: 'Learn',
     path: '/learn',
     Icon: LettersIcon,
   },
   {
     id: 'leaderboards',
-    label: 'LEADERBOARDS',
+    label: 'Leaderboards',
     path: '/leaderboard',
     Icon: LeaderboardIcon,
   },
   {
     id: 'shop',
-    label: 'SHOP',
+    label: 'Shop',
     path: '/shop',
     Icon: GemIcon,
   },
   {
     id: 'profile',
-    label: 'PROFILE',
+    label: 'Profile',
     path: '/profile',
     Icon: ProfileIcon,
   },
   {
     id: 'more',
-    label: 'MORE',
+    label: 'More',
     path: null,
     Icon: MoreIcon,
   },
@@ -82,7 +81,7 @@ export default function Sidebar() {
 
   return (
     <aside className="sidebar" id="sidebar">
-      {/* Logo — owl icon only */}
+      {/* Logo — owl icon + text */}
       <Link to="/learn" className="sidebar-logo" id="sidebar-logo">
         <svg width="32" height="32" viewBox="0 0 200 200" fill="none">
           <circle cx="100" cy="100" r="90" fill="#58CC02" />
@@ -95,9 +94,10 @@ export default function Sidebar() {
           <circle cx="124" cy="83" r="2.5" fill="white" />
           <ellipse cx="100" cy="102" rx="7" ry="4" fill="#FFC800" />
         </svg>
+        <span className="sidebar-logo-text">GoGram</span>
       </Link>
 
-      {/* Navigation — icon only */}
+      {/* Navigation — icon + label */}
       <nav className="sidebar-nav">
         {sidebarTabs.map((tab) => {
           const isActive = tab.path && (
@@ -108,7 +108,7 @@ export default function Sidebar() {
 
           if (!tab.path) {
             return (
-              <div key={tab.id} className="sidebar-more-container" ref={dropdownRef} style={{ position: 'relative' }}>
+              <div key={tab.id} className="sidebar-more-container" ref={dropdownRef} style={{ position: 'relative', width: '100%' }}>
                 <button
                   className={`sidebar-tab ${showMoreMenu ? 'active' : ''}`}
                   id={`sidebar-${tab.id}`}
@@ -118,21 +118,22 @@ export default function Sidebar() {
                   <span className="sidebar-tab-icon">
                     <tab.Icon active={showMoreMenu} />
                   </span>
+                  <span className="sidebar-tab-label">{tab.label}</span>
                 </button>
                 {showMoreMenu && (
                   <div className="sidebar-more-dropdown" id="sidebar-more-dropdown">
                     <Link to="/profile" className="dropdown-item" onClick={() => setShowMoreMenu(false)}>
                       <span className="dropdown-item-emoji">⚙️</span>
-                      <span className="dropdown-item-label">SETTINGS</span>
+                      <span className="dropdown-item-label">Settings</span>
                     </Link>
                     <a href="https://github.com/kanokpolkulsri/gogram" target="_blank" rel="noopener noreferrer" className="dropdown-item" onClick={() => setShowMoreMenu(false)}>
                       <span className="dropdown-item-emoji">❓</span>
-                      <span className="dropdown-item-label">HELP</span>
+                      <span className="dropdown-item-label">Help</span>
                     </a>
                     <hr className="dropdown-divider" />
                     <button className="dropdown-item logout" onClick={handleLogout}>
                       <span className="dropdown-item-emoji">🚪</span>
-                      <span className="dropdown-item-label">LOG OUT</span>
+                      <span className="dropdown-item-label">Log out</span>
                     </button>
                   </div>
                 )}
@@ -151,6 +152,7 @@ export default function Sidebar() {
               <span className="sidebar-tab-icon">
                 <tab.Icon active={isActive} />
               </span>
+              <span className="sidebar-tab-label">{tab.label}</span>
             </Link>
           );
         })}
@@ -158,3 +160,5 @@ export default function Sidebar() {
     </aside>
   );
 }
+
+
