@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useUser } from '../data/userStore';
 import { leagueData } from '../data/mockData';
 import { EnglishFlagIcon, GemIcon, HeartIcon } from './icons';
@@ -47,9 +47,54 @@ const formatExample = (sentence, word) => {
   );
 };
 
+const getTodayDateString = () => {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+};
+
+const getDaysBetween = (dateStr1, dateStr2) => {
+  if (!dateStr1 || !dateStr2) return 0;
+  const d1 = new Date(dateStr1 + 'T00:00:00');
+  const d2 = new Date(dateStr2 + 'T00:00:00');
+  const diffTime = Math.abs(d2 - d1);
+  return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+};
+
 export default function RightSidebar() {
   const user = useUser();
   const [vocabIndex, setVocabIndex] = useState(0);
+
+  const [learnedIndices, setLearnedIndices] = useState(() => {
+    const today = getTodayDateString();
+    const lastActive = localStorage.getItem('gogram_vocab_last_active_date');
+    if (lastActive !== today) {
+      localStorage.setItem('gogram_vocab_last_active_date', today);
+      localStorage.setItem('gogram_learned_vocabs', JSON.stringify([]));
+      return [];
+    }
+    const saved = localStorage.getItem('gogram_learned_vocabs');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  const [vocabStreak, setVocabStreak] = useState(() => {
+    const streak = localStorage.getItem('gogram_vocab_streak');
+    return streak ? parseInt(streak, 10) : 0;
+  });
+
+  useEffect(() => {
+    const today = getTodayDateString();
+    const lastCompleted = localStorage.getItem('gogram_vocab_last_completed_date');
+    if (lastCompleted) {
+      const daysSinceCompletion = getDaysBetween(lastCompleted, today);
+      if (daysSinceCompletion > 1) {
+        setVocabStreak(0);
+        localStorage.setItem('gogram_vocab_streak', '0');
+      }
+    } else {
+      setVocabStreak(0);
+      localStorage.setItem('gogram_vocab_streak', '0');
+    }
+  }, []);
 
   const nextVocab = () => {
     setVocabIndex((prev) => (prev + 1) % dailyVocab.length);
@@ -57,6 +102,29 @@ export default function RightSidebar() {
 
   const prevVocab = () => {
     setVocabIndex((prev) => (prev - 1 + dailyVocab.length) % dailyVocab.length);
+  };
+
+  const handleMarkAsLearned = () => {
+    if (learnedIndices.includes(vocabIndex)) return;
+
+    const newLearned = [...learnedIndices, vocabIndex];
+    setLearnedIndices(newLearned);
+    localStorage.setItem('gogram_learned_vocabs', JSON.stringify(newLearned));
+
+    if (newLearned.length === dailyVocab.length) {
+      const today = getTodayDateString();
+      const lastCompleted = localStorage.getItem('gogram_vocab_last_completed_date');
+      if (lastCompleted !== today) {
+        const newStreak = vocabStreak + 1;
+        setVocabStreak(newStreak);
+        localStorage.setItem('gogram_vocab_streak', String(newStreak));
+        localStorage.setItem('gogram_vocab_last_completed_date', today);
+      }
+    }
+
+    setTimeout(() => {
+      setVocabIndex((prev) => (prev + 1) % dailyVocab.length);
+    }, 400);
   };
 
   return (
@@ -96,8 +164,21 @@ export default function RightSidebar() {
         <div className="vocab-card-header">
           <div className="vocab-card-title-row">
             <span className="vocab-badge">DAILY VOCAB</span>
+            {vocabStreak > 0 && (
+              <span className="vocab-streak-badge" title="Daily Vocab Streak">
+                🔥 {vocabStreak} {vocabStreak === 1 ? 'day' : 'days'}
+              </span>
+            )}
             <span className="vocab-counter">{vocabIndex + 1} / {dailyVocab.length}</span>
           </div>
+        </div>
+
+        {/* Progress Bar */}
+        <div className="vocab-progress-container" title={`${learnedIndices.length} / ${dailyVocab.length} words learned`}>
+          <div 
+            className="vocab-progress-bar" 
+            style={{ width: `${(learnedIndices.length / dailyVocab.length) * 100}%` }}
+          />
         </div>
 
         <div className="vocab-content animate-fade-in" key={vocabIndex}>
@@ -111,6 +192,22 @@ export default function RightSidebar() {
           </p>
         </div>
 
+        {/* Learn Action Button */}
+        <button 
+          className={`vocab-learn-action-btn ${learnedIndices.includes(vocabIndex) ? 'learned' : ''}`}
+          onClick={handleMarkAsLearned}
+          disabled={learnedIndices.includes(vocabIndex)}
+        >
+          {learnedIndices.includes(vocabIndex) ? 'Learned ✓' : 'Mark as Learned'}
+        </button>
+
+        {/* Congratulatory Completion Message */}
+        {learnedIndices.length === dailyVocab.length && (
+          <div className="vocab-completion-message">
+            🎉 All 5 words learned today!
+          </div>
+        )}
+
         <div className="vocab-carousel-controls">
           <button 
             className="vocab-carousel-arrow" 
@@ -123,7 +220,7 @@ export default function RightSidebar() {
             {dailyVocab.map((_, i) => (
               <span
                 key={i}
-                className={`vocab-carousel-dot ${i === vocabIndex ? 'active' : ''}`}
+                className={`vocab-carousel-dot ${i === vocabIndex ? 'active' : ''} ${learnedIndices.includes(i) ? 'learned' : ''}`}
                 onClick={() => setVocabIndex(i)}
               />
             ))}

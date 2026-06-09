@@ -65,13 +65,104 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
-  min-height: 220px;
+  min-height: 310px;
 }
 
 .vocab-card-title-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+/* Progress Bar */
+.vocab-progress-container {
+  width: 100%;
+  height: 8px;
+  background-color: var(--color-gray);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: -6px;
+}
+
+.vocab-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #58cc02, #78e824);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* Learn Action Button */
+.vocab-learn-action-btn {
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast) ease;
+  outline: none;
+  box-shadow: 0 4px 0 var(--color-blue-dark);
+  background-color: var(--color-blue);
+  color: var(--color-white);
+}
+
+.vocab-learn-action-btn:hover:not(:disabled) {
+  background-color: #35BFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 var(--color-blue-dark);
+}
+
+.vocab-learn-action-btn:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--color-blue-dark);
+}
+
+.vocab-learn-action-btn.learned {
+  background-color: var(--color-gray-light);
+  color: var(--color-text-light);
+  border: 2px solid var(--color-gray);
+  box-shadow: none;
+  cursor: default;
+  transform: none;
+}
+
+/* Streak Badge */
+.vocab-streak-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #ff9600;
+  animation: vocabPulse 1.5s infinite ease-in-out;
+}
+
+@keyframes vocabPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* Completion Message */
+.vocab-completion-message {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--color-green-dark);
+  text-align: center;
+  margin-top: -4px;
+  animation: fadeIn var(--transition-fast) ease-out;
+}
+
+/* Learned Carousel Dots */
+.vocab-carousel-dot.learned {
+  border: 1px solid #58cc02;
+  background-color: #eefbe7;
+}
+
+.vocab-carousel-dot.learned.active {
+  background-color: #58cc02;
 }
 
 .vocab-badge {
