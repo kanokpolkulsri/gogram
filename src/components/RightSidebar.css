@@ -120,12 +120,6 @@
   letter-spacing: 0.5px;
 }
 
-.vocab-counter {
-  font-size: 12px;
-  font-weight: 800;
-  color: var(--color-text-light);
-}
-
 .vocab-content {
   display: flex;
   flex-direction: column;

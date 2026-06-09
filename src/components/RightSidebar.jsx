@@ -139,9 +139,6 @@ export default function RightSidebar() {
                 🔥 {vocabStreak} {vocabStreak === 1 ? 'day' : 'days'}
               </span>
             )}
-            {!isExpanded && (
-              <span className="vocab-counter">{vocabIndex + 1} / {dailyVocab.length}</span>
-            )}
             <button 
               className="vocab-expand-toggle-btn"
               onClick={() => setIsExpanded(!isExpanded)}
