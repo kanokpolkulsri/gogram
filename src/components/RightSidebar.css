@@ -123,14 +123,15 @@
 .vocab-content {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0;
   animation: fadeIn var(--transition-fast) ease-out;
 }
 
 .vocab-word-row {
   display: flex;
   align-items: baseline;
-  gap: 8px;
+  gap: 6px;
+  margin-bottom: 4px;
 }
 
 .vocab-word {
@@ -141,7 +142,7 @@
 }
 
 .vocab-type {
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 700;
   color: var(--color-text-light);
   font-style: italic;
@@ -151,14 +152,14 @@
   font-size: 14.5px;
   font-weight: 700;
   color: var(--color-text-light);
-  margin: 0;
+  margin: 0 0 4px 0;
 }
 
 .vocab-example-sentence {
-  font-size: 14px;
+  font-size: 12.5px;
   color: var(--color-text-light);
-  line-height: 1.5;
-  margin: 6px 0 0 0;
+  line-height: 1.4;
+  margin: 0;
 }
 
 .vocab-example-sentence strong {
