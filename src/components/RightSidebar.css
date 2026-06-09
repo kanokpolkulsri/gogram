@@ -201,10 +201,10 @@
   }
 }
 
-/* Hide on mobile */
-@media (max-width: 1023px) {
+/* Hide on mobile and small desktops */
+@media (max-width: 1199px) {
   .right-sidebar {
-    display: none;
+    display: none !important;
   }
 }
 
