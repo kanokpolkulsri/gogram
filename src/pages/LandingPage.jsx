@@ -1,7 +1,77 @@
+import { useState, useEffect, useRef } from 'react';
 import { auth, googleProvider, signInWithPopup } from '../data/firebase';
 import './LandingPage.css';
 
+const MESSAGES = [
+  "Hey, what's good?!",
+  "What's up, chat?!",
+  "Hey, Howdy?",
+];
+const CHAR_DELAY = 60;
+const ERASE_DELAY = 35;
+const PAUSE_BETWEEN = 5000;
+
 export default function LandingPage() {
+  const [displayedText, setDisplayedText] = useState('');
+  const [isTyping, setIsTyping] = useState(true);
+  const msgIndex = useRef(0);
+
+  useEffect(() => {
+    let timeout;
+    let cancelled = false;
+
+    const typeMessage = (text, onDone) => {
+      let i = 0;
+      setIsTyping(true);
+      const next = () => {
+        if (cancelled) return;
+        if (i <= text.length) {
+          setDisplayedText(text.slice(0, i));
+          i++;
+          timeout = setTimeout(next, CHAR_DELAY);
+        } else {
+          setIsTyping(false);
+          onDone();
+        }
+      };
+      next();
+    };
+
+    const eraseMessage = (text, onDone) => {
+      let i = text.length;
+      setIsTyping(true);
+      const next = () => {
+        if (cancelled) return;
+        if (i >= 0) {
+          setDisplayedText(text.slice(0, i));
+          i--;
+          timeout = setTimeout(next, ERASE_DELAY);
+        } else {
+          onDone();
+        }
+      };
+      next();
+    };
+
+    const cycle = () => {
+      if (cancelled) return;
+      const text = MESSAGES[msgIndex.current];
+      typeMessage(text, () => {
+        if (cancelled) return;
+        timeout = setTimeout(() => {
+          if (cancelled) return;
+          eraseMessage(text, () => {
+            if (cancelled) return;
+            msgIndex.current = (msgIndex.current + 1) % MESSAGES.length;
+            timeout = setTimeout(cycle, 300);
+          });
+        }, PAUSE_BETWEEN);
+      });
+    };
+
+    timeout = setTimeout(cycle, 400);
+    return () => { cancelled = true; clearTimeout(timeout); };
+  }, []);
 
   const handleGoogleLogin = async () => {
     try {
@@ -24,7 +94,8 @@ export default function LandingPage() {
       {/* Hero Section with Speech Bubble */}
       <div className="landing-hero">
         <div className="speech-bubble">
-          Hey, what's good?!
+          <span className="speech-typed">{displayedText}</span>
+          {isTyping && <span className="speech-cursor" />}
         </div>
 
         {/* Circle containing the animated sky banner */}
@@ -99,7 +170,7 @@ export default function LandingPage() {
           onClick={handleGoogleLogin}
           id="btn-get-started"
         >
-          GET STARTED
+          I'M READY
         </button>
       </div>
     </div>

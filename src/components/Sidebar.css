@@ -67,19 +67,23 @@
 
 /* Tab-specific active background colors */
 #sidebar-categories.active {
-  background: #FFF5E6; /* Soft orange for HomeIcon */
+  background: #FFF5E6;
+  /* Soft orange for HomeIcon */
 }
 
 #sidebar-learn.active {
-  background: #E8F7FF; /* Soft blue for LettersIcon */
+  background: #E8F7FF;
+  /* Soft blue for LettersIcon */
 }
 
 #sidebar-leaderboards.active {
-  background: #FFFBE5; /* Soft yellow for LeaderboardIcon */
+  background: #FFFBE5;
+  /* Soft yellow for LeaderboardIcon */
 }
 
 #sidebar-profile.active {
-  background: #FAF0FF; /* Soft purple for ProfileIcon */
+  background: #FAF0FF;
+  /* Soft purple for ProfileIcon */
 }
 
 .sidebar-tab svg path,
@@ -166,11 +170,11 @@
     border: 1px solid #e5e5e5;
     border-radius: 16px;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
-    padding: 0;
+    padding: 24px 16px;
     margin: 0;
     box-sizing: border-box;
     align-items: flex-start;
-    overflow: hidden;
+    overflow: visible;
 
   }
 
@@ -261,20 +265,29 @@
 
   /* Special handling for active profile face details (skin-tone face with blue background/shoulders) */
   #sidebar-profile.active svg circle:first-of-type {
-    fill: #1262d1 !important; /* Blue active background circle */
+    fill: #1262d1 !important;
+    /* Blue active background circle */
   }
+
   #sidebar-profile.active svg circle:nth-of-type(2) {
-    fill: #FFD0A1 !important; /* Skin tone face */
+    fill: #FFD0A1 !important;
+    /* Skin tone face */
   }
+
   #sidebar-profile.active svg ellipse {
-    fill: #1262d1 !important; /* Blue active shoulders/clothes */
+    fill: #1262d1 !important;
+    /* Blue active shoulders/clothes */
   }
+
   #sidebar-profile.active svg circle:nth-of-type(3),
   #sidebar-profile.active svg circle:nth-of-type(4) {
-    fill: #333333 !important; /* Black eyes */
+    fill: #333333 !important;
+    /* Black eyes */
   }
+
   #sidebar-profile.active svg path {
-    stroke: #FF4B4B !important; /* Red smile line */
+    stroke: #FF4B4B !important;
+    /* Red smile line */
     fill: none !important;
   }
 
@@ -291,54 +304,6 @@
   }
 }
 
-/* Sidebar Banner & Content styles */
-.sidebar-banner {
-  display: none;
-}
-
-.sidebar-content {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding: 16px 8px;
-}
-
-@media (min-width: 1024px) {
-  .sidebar-banner {
-    display: block;
-    width: 100%;
-    height: 90px;
-    position: relative;
-    border-bottom: 1px solid #e5e5e5;
-    background: linear-gradient(180deg, #75D2FF 0%, #BBE7FF 100%);
-  }
-
-  .sidebar-content {
-    padding: 24px 16px;
-  }
-}
-
-/* Sidebar Banner Keyframe Animations */
-.sidebar-banner .cloud-back {
-  animation: sidebarDriftBack 45s linear infinite;
-  animation-delay: -10s;
-}
-
-.sidebar-banner .cloud-front {
-  animation: sidebarDriftFront 20s linear infinite;
-  animation-delay: -5s;
-}
-
-@keyframes sidebarDriftBack {
-  0% { transform: translate(-60px, 15px); }
-  100% { transform: translate(270px, 15px); }
-}
-
-@keyframes sidebarDriftFront {
-  0% { transform: translate(-70px, 45px); }
-  100% { transform: translate(270px, 45px); }
-}
 
 .sidebar-banner .bird-r2l {
   animation: sidebarBirdR2L 16s linear infinite;
@@ -351,13 +316,23 @@
 }
 
 @keyframes sidebarBirdR2L {
-  0% { transform: translate(270px, 25px) scale(0.65); }
-  100% { transform: translate(-30px, 25px) scale(0.65); }
+  0% {
+    transform: translate(270px, 25px) scale(0.65);
+  }
+
+  100% {
+    transform: translate(-30px, 25px) scale(0.65);
+  }
 }
 
 @keyframes sidebarBirdL2R {
-  0% { transform: translate(-30px, 55px) scale(0.5) scaleX(-1); }
-  100% { transform: translate(270px, 55px) scale(0.5) scaleX(-1); }
+  0% {
+    transform: translate(-30px, 55px) scale(0.5) scaleX(-1);
+  }
+
+  100% {
+    transform: translate(270px, 55px) scale(0.5) scaleX(-1);
+  }
 }
 
 .sidebar-banner .bird-wing-up {
@@ -369,12 +344,25 @@
 }
 
 @keyframes sidebarFlapUp {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }
 
 @keyframes sidebarFlapDown {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 1; }
-}
 
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
