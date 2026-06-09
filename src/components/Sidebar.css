@@ -259,24 +259,6 @@
     stroke: none !important;
   }
 
-  /* Special handling for active profile face details */
-  #sidebar-profile.active svg circle:first-of-type {
-    fill: transparent !important; /* Hide purple background circle */
-  }
-  #sidebar-profile.active svg circle:nth-of-type(2) {
-    fill: #ffffff !important; /* Face white */
-  }
-  #sidebar-profile.active svg ellipse {
-    fill: #ffffff !important; /* Shoulders white */
-  }
-  #sidebar-profile.active svg circle:nth-of-type(3),
-  #sidebar-profile.active svg circle:nth-of-type(4) {
-    fill: #1262d1 !important; /* Eyes blue to match active background */
-  }
-  #sidebar-profile.active svg path {
-    stroke: #1262d1 !important; /* Smile line blue */
-    fill: none !important;
-  }
 
 
 
