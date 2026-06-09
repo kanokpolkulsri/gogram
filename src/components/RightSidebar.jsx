@@ -58,6 +58,7 @@ const getDaysBetween = (dateStr1, dateStr2) => {
 
 export default function RightSidebar() {
   const [vocabIndex, setVocabIndex] = useState(0);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const [learnedIndices, setLearnedIndices] = useState(() => {
     const today = getTodayDateString();
@@ -99,10 +100,10 @@ export default function RightSidebar() {
     setVocabIndex((prev) => (prev - 1 + dailyVocab.length) % dailyVocab.length);
   };
 
-  const handleMarkAsLearned = () => {
-    if (learnedIndices.includes(vocabIndex)) return;
+  const learnWord = (index) => {
+    if (learnedIndices.includes(index)) return;
 
-    const newLearned = [...learnedIndices, vocabIndex];
+    const newLearned = [...learnedIndices, index];
     setLearnedIndices(newLearned);
     localStorage.setItem('gogram_learned_vocabs', JSON.stringify(newLearned));
 
@@ -116,6 +117,10 @@ export default function RightSidebar() {
         localStorage.setItem('gogram_vocab_last_completed_date', today);
       }
     }
+  };
+
+  const handleMarkAsLearned = () => {
+    learnWord(vocabIndex);
 
     setTimeout(() => {
       setVocabIndex((prev) => (prev + 1) % dailyVocab.length);
@@ -134,56 +139,98 @@ export default function RightSidebar() {
                 🔥 {vocabStreak} {vocabStreak === 1 ? 'day' : 'days'}
               </span>
             )}
-            <span className="vocab-counter">{vocabIndex + 1} / {dailyVocab.length}</span>
+            {!isExpanded && (
+              <span className="vocab-counter">{vocabIndex + 1} / {dailyVocab.length}</span>
+            )}
+            <button 
+              className="vocab-expand-toggle-btn"
+              onClick={() => setIsExpanded(!isExpanded)}
+            >
+              {isExpanded ? 'COLLAPSE' : 'VIEW LIST'}
+            </button>
           </div>
         </div>
 
-
-
-        <div className="vocab-content animate-fade-in" key={vocabIndex}>
-          <div className="vocab-word-row">
-            <h3 className="vocab-word">{dailyVocab[vocabIndex].word}</h3>
-            <span className="vocab-type">{dailyVocab[vocabIndex].type}</span>
+        {isExpanded ? (
+          <div className="vocab-vertical-list">
+            {dailyVocab.map((item, index) => (
+              <div 
+                key={index} 
+                className={`vocab-vertical-item ${learnedIndices.includes(index) ? 'learned' : ''}`}
+              >
+                <div className="vocab-vertical-item-header">
+                  <div className="vocab-vertical-word-group">
+                    <h4 className="vocab-vertical-word">{item.word}</h4>
+                    <span className="vocab-vertical-type">{item.type}</span>
+                  </div>
+                  <button 
+                    className={`vocab-vertical-action-btn ${learnedIndices.includes(index) ? 'learned' : ''}`}
+                    onClick={() => learnWord(index)}
+                    disabled={learnedIndices.includes(index)}
+                  >
+                    {learnedIndices.includes(index) ? 'Learned ✓' : 'Learn'}
+                  </button>
+                </div>
+                <p className="vocab-vertical-translation">{item.thai}</p>
+                <p className="vocab-vertical-example">
+                  "{formatExample(item.example, item.word)}"
+                </p>
+              </div>
+            ))}
+            {learnedIndices.length === dailyVocab.length && (
+              <div className="vocab-completion-message" style={{ marginTop: '12px' }}>
+                🎉 All 5 words learned today!
+              </div>
+            )}
           </div>
-          <p className="vocab-translation">{dailyVocab[vocabIndex].thai}</p>
-          <p className="vocab-example-sentence">
-            "{formatExample(dailyVocab[vocabIndex].example, dailyVocab[vocabIndex].word)}"
-          </p>
-        </div>
+        ) : (
+          <>
+            <div className="vocab-content animate-fade-in" key={vocabIndex}>
+              <div className="vocab-word-row">
+                <h3 className="vocab-word">{dailyVocab[vocabIndex].word}</h3>
+                <span className="vocab-type">{dailyVocab[vocabIndex].type}</span>
+              </div>
+              <p className="vocab-translation">{dailyVocab[vocabIndex].thai}</p>
+              <p className="vocab-example-sentence">
+                "{formatExample(dailyVocab[vocabIndex].example, dailyVocab[vocabIndex].word)}"
+              </p>
+            </div>
 
-        {/* Congratulatory Completion Message */}
-        {learnedIndices.length === dailyVocab.length && (
-          <div className="vocab-completion-message">
-            🎉 All 5 words learned today!
-          </div>
+            {/* Congratulatory Completion Message */}
+            {learnedIndices.length === dailyVocab.length && (
+              <div className="vocab-completion-message">
+                🎉 All 5 words learned today!
+              </div>
+            )}
+
+            <div className="vocab-carousel-controls">
+              <button 
+                className="vocab-carousel-arrow" 
+                onClick={prevVocab}
+                title="Previous word"
+              >
+                ‹
+              </button>
+
+              {/* Learn Action Button in the middle */}
+              <button 
+                className={`vocab-learn-action-btn ${learnedIndices.includes(vocabIndex) ? 'learned' : ''}`}
+                onClick={handleMarkAsLearned}
+                disabled={learnedIndices.includes(vocabIndex)}
+              >
+                {learnedIndices.includes(vocabIndex) ? 'Learned ✓' : 'Learn'}
+              </button>
+
+              <button 
+                className="vocab-carousel-arrow" 
+                onClick={nextVocab}
+                title="Next word"
+              >
+                ›
+              </button>
+            </div>
+          </>
         )}
-
-        <div className="vocab-carousel-controls">
-          <button 
-            className="vocab-carousel-arrow" 
-            onClick={prevVocab}
-            title="Previous word"
-          >
-            ‹
-          </button>
-
-          {/* Learn Action Button in the middle */}
-          <button 
-            className={`vocab-learn-action-btn ${learnedIndices.includes(vocabIndex) ? 'learned' : ''}`}
-            onClick={handleMarkAsLearned}
-            disabled={learnedIndices.includes(vocabIndex)}
-          >
-            {learnedIndices.includes(vocabIndex) ? 'Learned ✓' : 'Learn'}
-          </button>
-
-          <button 
-            className="vocab-carousel-arrow" 
-            onClick={nextVocab}
-            title="Next word"
-          >
-            ›
-          </button>
-        </div>
       </div>
     </aside>
   );

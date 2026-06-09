@@ -206,6 +206,119 @@
   border-color: var(--color-gray-medium);
 }
 
+/* Expand Toggle Button */
+.vocab-expand-toggle-btn {
+  font-family: var(--font-family);
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--color-blue);
+  background: none;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-left: auto; /* Push to the far right */
+  padding: 0;
+}
+
+.vocab-expand-toggle-btn:hover {
+  text-decoration: underline;
+}
+
+/* Vertical List View styling */
+.vocab-vertical-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.vocab-vertical-item {
+  border-bottom: 1px solid var(--color-gray-light);
+  padding-bottom: 12px;
+}
+
+.vocab-vertical-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.vocab-vertical-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.vocab-vertical-word-group {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.vocab-vertical-word {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.vocab-vertical-type {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-text-light);
+  font-style: italic;
+}
+
+.vocab-vertical-action-btn {
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-family: var(--font-family);
+  font-size: 11px;
+  font-weight: 800;
+  border: 1px solid var(--color-gray);
+  cursor: pointer;
+  transition: all var(--transition-fast) ease;
+  outline: none;
+  background-color: #f8f9fa;
+  color: var(--color-text);
+  box-shadow: 0 1px 0 var(--color-gray);
+}
+
+.vocab-vertical-action-btn:hover:not(:disabled) {
+  background-color: var(--color-gray-light);
+  border-color: var(--color-gray-medium);
+  box-shadow: 0 1px 0 var(--color-gray-medium);
+}
+
+.vocab-vertical-action-btn:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+.vocab-vertical-action-btn.learned {
+  background-color: var(--color-gray-light);
+  color: var(--color-text-light);
+  border: 1px solid var(--color-gray);
+  box-shadow: none;
+  cursor: default;
+  transform: none;
+}
+
+.vocab-vertical-translation {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--color-green-dark);
+  margin: 0 0 4px 0;
+}
+
+.vocab-vertical-example {
+  font-size: 12.5px;
+  color: var(--color-text-light);
+  line-height: 1.4;
+  margin: 0;
+}
+
 /* Scrollbar for right sidebar */
 .right-sidebar::-webkit-scrollbar {
   width: 4px;
