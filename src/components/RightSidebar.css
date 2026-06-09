@@ -233,7 +233,7 @@
 }
 
 .vocab-vertical-item:first-child {
-  padding-top: 4px;
+  padding-top: 0;
 }
 
 .vocab-vertical-item:last-child {
