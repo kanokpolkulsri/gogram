@@ -1,12 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { auth, signOut } from '../data/firebase';
 import {
   HomeIcon,
   LeaderboardIcon,
-  GemIcon,
   ProfileIcon,
-  MoreIcon,
   LettersIcon,
 } from './icons';
 import './Sidebar.css';
@@ -31,53 +27,15 @@ const sidebarTabs = [
     Icon: LeaderboardIcon,
   },
   {
-    id: 'shop',
-    label: 'Shop',
-    path: '/shop',
-    Icon: GemIcon,
-  },
-  {
     id: 'profile',
     label: 'Profile',
     path: '/profile',
     Icon: ProfileIcon,
   },
-  {
-    id: 'more',
-    label: 'More',
-    path: null,
-    Icon: MoreIcon,
-  },
 ];
 
 export default function Sidebar() {
   const location = useLocation();
-  const [showMoreMenu, setShowMoreMenu] = useState(false);
-  const dropdownRef = useRef(null);
-
-  const handleLogout = async () => {
-    setShowMoreMenu(false);
-    try {
-      await signOut(auth);
-    } catch (e) {
-      console.error('Failed to sign out:', e);
-    }
-  };
-
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setShowMoreMenu(false);
-      }
-    }
-
-    if (showMoreMenu) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [showMoreMenu]);
 
   return (
     <aside className="sidebar" id="sidebar">
@@ -100,46 +58,9 @@ export default function Sidebar() {
       {/* Navigation — icon + label */}
       <nav className="sidebar-nav">
         {sidebarTabs.map((tab) => {
-          const isActive = tab.path && (
-            tab.path === '/learn'
-              ? location.pathname.startsWith('/learn')
-              : location.pathname === tab.path
-          );
-
-          if (!tab.path) {
-            return (
-              <div key={tab.id} className="sidebar-more-container" ref={dropdownRef} style={{ position: 'relative', width: '100%' }}>
-                <button
-                  className={`sidebar-tab ${showMoreMenu ? 'active' : ''}`}
-                  id={`sidebar-${tab.id}`}
-                  title={tab.label}
-                  onClick={() => setShowMoreMenu(!showMoreMenu)}
-                >
-                  <span className="sidebar-tab-icon">
-                    <tab.Icon active={showMoreMenu} />
-                  </span>
-                  <span className="sidebar-tab-label">{tab.label}</span>
-                </button>
-                {showMoreMenu && (
-                  <div className="sidebar-more-dropdown" id="sidebar-more-dropdown">
-                    <Link to="/profile" className="dropdown-item" onClick={() => setShowMoreMenu(false)}>
-                      <span className="dropdown-item-emoji">⚙️</span>
-                      <span className="dropdown-item-label">Settings</span>
-                    </Link>
-                    <a href="https://github.com/kanokpolkulsri/gogram" target="_blank" rel="noopener noreferrer" className="dropdown-item" onClick={() => setShowMoreMenu(false)}>
-                      <span className="dropdown-item-emoji">❓</span>
-                      <span className="dropdown-item-label">Help</span>
-                    </a>
-                    <hr className="dropdown-divider" />
-                    <button className="dropdown-item logout" onClick={handleLogout}>
-                      <span className="dropdown-item-emoji">🚪</span>
-                      <span className="dropdown-item-label">Log out</span>
-                    </button>
-                  </div>
-                )}
-              </div>
-            );
-          }
+          const isActive = tab.path === '/learn'
+            ? location.pathname.startsWith('/learn')
+            : location.pathname === tab.path;
 
           return (
             <Link
@@ -160,5 +81,3 @@ export default function Sidebar() {
     </aside>
   );
 }
-
-
