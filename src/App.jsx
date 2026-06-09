@@ -83,9 +83,9 @@ function AppContent() {
             <Route path="/quiz/:unitId/:levelId" element={<QuizPage />} />
             <Route path="/lesson-complete" element={<LessonCompletePage />} />
             <Route path="/streak" element={<StreakPage />} />
-            <Route path="/leaderboard" element={<DesktopPage showRightSidebar={false}><LeaderboardPage /></DesktopPage>} />
+            <Route path="/leaderboard" element={<DesktopPage><LeaderboardPage /></DesktopPage>} />
             <Route path="/shop" element={<DesktopPage showRightSidebar={false}><ShopPage /></DesktopPage>} />
-            <Route path="/profile" element={<DesktopPage showRightSidebar={false}><ProfilePage /></DesktopPage>} />
+            <Route path="/profile" element={<DesktopPage><ProfilePage /></DesktopPage>} />
           </>
         )}
 
