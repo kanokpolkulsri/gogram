@@ -241,8 +241,7 @@
     top: 24px;
     left: auto;
     width: 250px;
-    height: calc(100vh - 48px);
-    height: calc(100dvh - 48px);
+    height: fit-content;
     background: #ffffff;
     border: 1px solid #e5e5e5;
     border-radius: 16px;
@@ -251,6 +250,8 @@
     margin: 0;
     box-sizing: border-box;
     align-items: flex-start;
+    overflow: visible;
+
   }
 
   .sidebar-logo {
