@@ -60,7 +60,7 @@
 /* Standard Desktop: Show 3 columns */
 @media (min-width: 1200px) {
   .desktop-layout {
-    grid-template-columns: 250px 1fr 250px;
+    grid-template-columns: 250px 1fr 350px;
     max-width: 1440px;
   }
 }
@@ -68,7 +68,7 @@
 /* Narrower 3-column Desktop */
 @media (min-width: 1200px) and (max-width: 1280px) {
   .desktop-layout {
-    grid-template-columns: 250px 1fr 250px;
+    grid-template-columns: 250px 1fr 350px;
   }
 }
 @media (max-width: 1023px) {
