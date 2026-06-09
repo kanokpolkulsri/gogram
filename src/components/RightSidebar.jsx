@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useUser } from '../data/userStore';
-import { leagueData } from '../data/mockData';
+import { leagueData, units } from '../data/mockData';
 import { useNavigate } from 'react-router-dom';
 import './RightSidebar.css';
 
@@ -62,6 +62,8 @@ const getDaysBetween = (dateStr1, dateStr2) => {
 export default function RightSidebar() {
   const user = useUser();
   const navigate = useNavigate();
+  const totalLevels = units.reduce((acc, u) => acc + (u.levels?.length || 0), 0);
+  const completedLevels = user.completedLessons?.length || 0;
   const [vocabIndex, setVocabIndex] = useState(0);
 
   const [learnedIndices, setLearnedIndices] = useState(() => {
@@ -216,6 +218,19 @@ export default function RightSidebar() {
             </div>
             <span className="league-mini-name">{user.name || 'You'}</span>
             <span className="league-mini-xp">{user.totalXP || 0} XP</span>
+          </div>
+          <div className="league-mini-divider" />
+          <div className="league-progress-section">
+            <div className="league-progress-header">
+              <span className="league-progress-label">Total Levels Completed</span>
+              <span className="league-progress-value">{completedLevels} / {totalLevels}</span>
+            </div>
+            <div className="league-progress-track">
+              <div 
+                className="league-progress-fill" 
+                style={{ width: `${(completedLevels / Math.max(1, totalLevels)) * 100}%` }}
+              />
+            </div>
           </div>
         </div>
       </div>
