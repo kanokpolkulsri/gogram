@@ -220,11 +220,9 @@
   text-decoration: underline;
 }
 
-/* Vertical List View styling */
 .vocab-vertical-list {
   display: flex;
   flex-direction: column;
-  margin-top: 4px;
 }
 
 .vocab-vertical-item {
