@@ -97,10 +97,7 @@ export default function RightSidebar() {
             <span className="vocab-type">{dailyVocab[vocabIndex].type}</span>
           </div>
           <p className="vocab-translation">{dailyVocab[vocabIndex].thai}</p>
-          <div className="vocab-example-container">
-            <span className="vocab-example-label">Example:</span>
-            <p className="vocab-example-sentence">"{dailyVocab[vocabIndex].example}"</p>
-          </div>
+          <p className="vocab-example-sentence">"{dailyVocab[vocabIndex].example}"</p>
         </div>
 
         <div className="vocab-carousel-controls">
