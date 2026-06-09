@@ -179,7 +179,6 @@
   opacity: 1;
 }
 
-
 /* Responsive adjustments */
 @media (max-width: 1023px) {
   .leaderboard-page {
@@ -188,5 +187,20 @@
 
   .leaderboard-sticky-footer {
     bottom: 60px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .leaderboard-sticky-footer {
+    position: sticky;
+    bottom: 24px;
+    margin-top: 24px;
+    padding: 0;
+    background: transparent;
+    width: 100%;
+    left: auto;
+    right: auto;
+    max-width: none;
+    margin: 0;
   }
 }
