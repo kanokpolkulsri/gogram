@@ -215,7 +215,7 @@
     width: 100%;
     height: auto;
     border-radius: 8px;
-    color: #3c3c3c;
+    color: var(--color-gray-dark);
     font-size: 15px;
     font-weight: 700;
     gap: 12px;
@@ -226,7 +226,7 @@
 
   .sidebar-tab:hover:not(.active) {
     background: #f4f6f9;
-    color: #1262d1;
+    color: var(--color-text);
   }
 
   .sidebar-tab-label {
@@ -236,50 +236,39 @@
     letter-spacing: 0.2px;
   }
 
-  /* Solid Blue Active Styling */
-  #sidebar-categories.active,
-  #sidebar-learn.active,
-  #sidebar-leaderboards.active,
+  /* Category-specific Active Styling matching bottom-nav */
+  #sidebar-categories.active {
+    background: #FFF5E6 !important;
+    color: #FF9600 !important;
+  }
+  #sidebar-categories.active .sidebar-tab-label {
+    color: #FF9600 !important;
+  }
+
+  #sidebar-learn.active {
+    background: #E8F7FF !important;
+    color: #1CB0F6 !important;
+  }
+  #sidebar-learn.active .sidebar-tab-label {
+    color: #1CB0F6 !important;
+  }
+
+  #sidebar-leaderboards.active {
+    background: #FFFBE5 !important;
+    color: #E5B400 !important;
+  }
+  #sidebar-leaderboards.active .sidebar-tab-label {
+    color: #E5B400 !important;
+  }
+
   #sidebar-profile.active {
-    background: #1262d1 !important;
-    color: #ffffff !important;
+    background: #FAF0FF !important;
+    color: #CE82FF !important;
+  }
+  #sidebar-profile.active .sidebar-tab-label {
+    color: #CE82FF !important;
   }
 
-  /* Active Icon SVG white color override */
-  .sidebar-tab.active svg path,
-  .sidebar-tab.active svg rect,
-  .sidebar-tab.active svg circle,
-  .sidebar-tab.active svg ellipse,
-  .sidebar-tab.active svg text {
-    fill: #ffffff !important;
-    stroke: none !important;
-  }
-
-  /* Special handling for active profile face details */
-  #sidebar-profile.active svg circle:first-of-type {
-    fill: transparent !important; /* Hide purple background circle */
-  }
-  #sidebar-profile.active svg circle:nth-of-type(2) {
-    fill: #ffffff !important; /* Face white */
-  }
-  #sidebar-profile.active svg ellipse {
-    fill: #ffffff !important; /* Shoulders white */
-  }
-  #sidebar-profile.active svg circle:nth-of-type(3),
-  #sidebar-profile.active svg circle:nth-of-type(4) {
-    fill: #1262d1 !important; /* Eyes blue to match active background */
-  }
-  #sidebar-profile.active svg path {
-    stroke: #1262d1 !important; /* Smile line blue */
-    fill: none !important;
-  }
-
-  /* Hover state icon color highlight */
-  .sidebar-tab:hover:not(.active) svg path,
-  .sidebar-tab:hover:not(.active) svg rect,
-  .sidebar-tab:hover:not(.active) svg text {
-    fill: #1262d1 !important;
-  }
 
 }
 
