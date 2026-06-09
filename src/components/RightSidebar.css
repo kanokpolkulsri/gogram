@@ -99,24 +99,24 @@
   font-family: var(--font-family);
   font-size: 14px;
   font-weight: 800;
-  border: none;
+  border: 2px solid var(--color-gray-medium);
   cursor: pointer;
   transition: all var(--transition-fast) ease;
   outline: none;
-  box-shadow: 0 4px 0 var(--color-blue-dark);
-  background-color: var(--color-blue);
-  color: var(--color-white);
+  background-color: var(--color-white);
+  color: var(--color-text);
+  box-shadow: 0 2px 0 var(--color-gray-medium);
 }
 
 .vocab-learn-action-btn:hover:not(:disabled) {
-  background-color: #35BFFF;
-  transform: translateY(-1px);
-  box-shadow: 0 5px 0 var(--color-blue-dark);
+  background-color: var(--color-gray-light);
+  border-color: var(--color-gray-dark);
+  box-shadow: 0 2px 0 var(--color-gray-dark);
 }
 
 .vocab-learn-action-btn:active:not(:disabled) {
-  transform: translateY(3px);
-  box-shadow: 0 1px 0 var(--color-blue-dark);
+  transform: translateY(2px);
+  box-shadow: none;
 }
 
 .vocab-learn-action-btn.learned {
@@ -157,12 +157,11 @@
 
 /* Learned Carousel Dots */
 .vocab-carousel-dot.learned {
-  border: 1px solid #58cc02;
-  background-color: #eefbe7;
+  background-color: var(--color-gray-dark);
 }
 
 .vocab-carousel-dot.learned.active {
-  background-color: #58cc02;
+  background-color: var(--color-blue);
 }
 
 .vocab-badge {
