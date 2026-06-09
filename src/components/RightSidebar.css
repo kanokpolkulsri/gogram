@@ -237,27 +237,74 @@
   text-decoration: underline;
 }
 
-.league-card-body {
+/* League Mini List */
+.league-mini-list {
   display: flex;
-  gap: 14px;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.league-card-icon {
-  flex-shrink: 0;
-  width: 55px;
-  height: 55px;
-  background: #FFF8E1;
-  border-radius: 12px;
+.league-mini-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 8px;
+  border-radius: 10px;
+  font-size: 13.5px;
+}
+
+.league-mini-row.active {
+  background-color: var(--color-gray-light);
+  font-weight: 700;
+}
+
+.league-mini-rank {
+  font-weight: 800;
+  width: 16px;
+  color: var(--color-text-light);
+  text-align: center;
+}
+
+.league-mini-row:nth-child(1) .league-mini-rank {
+  color: #ffc800; /* Gold */
+}
+.league-mini-row:nth-child(2) .league-mini-rank {
+  color: #a0aec0; /* Silver */
+}
+.league-mini-row:nth-child(3) .league-mini-rank {
+  color: #b7791f; /* Bronze */
+}
+
+.league-mini-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  color: white;
+  font-size: 10px;
+  font-weight: 800;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
-.league-card-text {
-  font-size: 14px;
+.league-mini-name {
+  color: var(--color-text);
+  flex-grow: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.league-mini-xp {
+  font-size: 12.5px;
   color: var(--color-text-light);
-  line-height: 1.5;
+  font-weight: 800;
+}
+
+.league-mini-divider {
+  border-top: 1px dashed var(--color-gray);
+  margin: 4px 0;
 }
 
 /* Scrollbar for right sidebar */

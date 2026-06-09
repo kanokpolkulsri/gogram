@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useUser } from '../data/userStore';
 import { leagueData } from '../data/mockData';
+import { useNavigate } from 'react-router-dom';
 import './RightSidebar.css';
 
 const dailyVocab = [
@@ -60,6 +61,7 @@ const getDaysBetween = (dateStr1, dateStr2) => {
 
 export default function RightSidebar() {
   const user = useUser();
+  const navigate = useNavigate();
   const [vocabIndex, setVocabIndex] = useState(0);
 
   const [learnedIndices, setLearnedIndices] = useState(() => {
@@ -193,17 +195,28 @@ export default function RightSidebar() {
       <div className="right-sidebar-card league-card" id="league-card">
         <div className="league-card-header">
           <h3>{leagueData.currentLeague} League</h3>
-          <button className="league-card-link">VIEW LEAGUE</button>
+          <button className="league-card-link" onClick={() => navigate('/leaderboard')}>VIEW ALL</button>
         </div>
-        <div className="league-card-body">
-          <div className="league-card-icon">
-            <svg width="50" height="50" viewBox="0 0 24 24" fill="#FFC800">
-              <path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2z" />
-            </svg>
+        <div className="league-mini-list">
+          {leagueData.weeklyLeaderboard.slice(0, 3).map((player) => (
+            <div key={player.rank} className="league-mini-row">
+              <span className="league-mini-rank">{player.rank}</span>
+              <div className="league-mini-avatar" style={{ backgroundColor: player.avatar }}>
+                {player.initials}
+              </div>
+              <span className="league-mini-name">{player.name}</span>
+              <span className="league-mini-xp">{player.xp} XP</span>
+            </div>
+          ))}
+          <div className="league-mini-divider" />
+          <div className="league-mini-row active">
+            <span className="league-mini-rank">9</span>
+            <div className="league-mini-avatar" style={{ backgroundColor: '#1CB0F6' }}>
+              ME
+            </div>
+            <span className="league-mini-name">{user.name || 'You'}</span>
+            <span className="league-mini-xp">{user.totalXP || 0} XP</span>
           </div>
-          <p className="league-card-text">
-            Complete a lesson to join this week&apos;s leaderboard and compete against other learners
-          </p>
         </div>
       </div>
     </aside>
