@@ -176,7 +176,7 @@ export default function RightSidebar() {
             onClick={handleMarkAsLearned}
             disabled={learnedIndices.includes(vocabIndex)}
           >
-            {learnedIndices.includes(vocabIndex) ? 'Learned ✓' : 'Mark as Learned'}
+            {learnedIndices.includes(vocabIndex) ? 'Learned ✓' : 'Learn'}
           </button>
 
           <button 
