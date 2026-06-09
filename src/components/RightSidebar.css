@@ -59,65 +59,151 @@
   background: var(--color-white);
 }
 
-/* Promo Card */
-.promo-card {
+/* Vocab Card styling */
+.vocab-card {
   background: var(--color-white);
-}
-
-.promo-card-header {
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 16px;
-  position: relative;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 220px;
 }
 
-.promo-badge {
+.vocab-card-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vocab-badge {
   display: inline-block;
-  padding: 2px 8px;
-  background: linear-gradient(135deg, #FFC800, #FF9600);
+  padding: 3px 8px;
+  background: linear-gradient(135deg, var(--color-blue), var(--color-blue-dark));
   color: white;
   font-size: 11px;
   font-weight: 800;
   border-radius: 6px;
   letter-spacing: 0.5px;
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 
-.promo-card-text {
-  flex: 1;
-  padding-top: 24px;
-}
-
-.promo-card-text h3 {
-  font-size: 17px;
+.vocab-counter {
+  font-size: 12px;
   font-weight: 800;
-  color: var(--color-text);
-  margin-bottom: 4px;
-}
-
-.promo-card-text p {
-  font-size: 13px;
   color: var(--color-text-light);
+}
+
+.vocab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: fadeIn var(--transition-fast) ease-out;
+}
+
+.vocab-word-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.vocab-word {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.vocab-type {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-light);
+  font-style: italic;
+}
+
+.vocab-translation {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-green-dark);
+  margin: 0;
+}
+
+.vocab-example-container {
+  background: var(--color-gray-light);
+  border-radius: 12px;
+  padding: 10px 14px;
+  border: 1px dashed var(--color-gray);
+}
+
+.vocab-example-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--color-text-light);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  letter-spacing: 0.2px;
+}
+
+.vocab-example-sentence {
+  font-size: 13.5px;
+  color: var(--color-text);
   line-height: 1.4;
+  margin: 0;
+  font-style: italic;
 }
 
-.promo-card-owl {
-  flex-shrink: 0;
+/* Carousel controls */
+.vocab-carousel-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
 }
 
-.promo-card-btn {
-  background: var(--color-blue) !important;
-  color: var(--color-white) !important;
-  box-shadow: var(--shadow-button) var(--color-blue-dark) !important;
-  font-size: 14px !important;
-  padding: 12px 24px !important;
+.vocab-carousel-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--color-gray);
+  background: var(--color-white);
+  color: var(--color-text-light);
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  outline: none;
+  line-height: 1;
+  padding-bottom: 2px;
 }
 
-.promo-card-btn:hover {
-  background: #2BC0FF !important;
+.vocab-carousel-arrow:hover {
+  background: var(--color-gray-light);
+  color: var(--color-text);
+  border-color: var(--color-gray-medium);
+}
+
+.vocab-carousel-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.vocab-carousel-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-gray);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.vocab-carousel-dot:hover {
+  background: var(--color-gray-medium);
+}
+
+.vocab-carousel-dot.active {
+  background: var(--color-blue);
+  transform: scale(1.25);
 }
 
 /* League Card */

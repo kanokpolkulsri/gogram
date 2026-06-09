@@ -1,11 +1,54 @@
+import { useState } from 'react';
 import { useUser } from '../data/userStore';
 import { leagueData } from '../data/mockData';
 import { EnglishFlagIcon, GemIcon, HeartIcon } from './icons';
 import StreakFire from './StreakFire';
 import './RightSidebar.css';
 
+const dailyVocab = [
+  {
+    word: 'Ambitious',
+    type: 'adj.',
+    thai: 'ทะเยอทะยาน',
+    example: 'She has ambitious plans for her business expansion.'
+  },
+  {
+    word: 'Resilient',
+    type: 'adj.',
+    thai: 'ยืดหยุ่น / ฟื้นตัวเร็ว',
+    example: 'The local community proved resilient after the severe storm.'
+  },
+  {
+    word: 'Eloquent',
+    type: 'adj.',
+    thai: 'พูดจาคมคาย / มีวาทศิลป์',
+    example: 'His eloquent speech inspired everyone in the audience.'
+  },
+  {
+    word: 'Inevitable',
+    type: 'adj.',
+    thai: 'หลีกเลี่ยงไม่ได้',
+    example: 'Getting older is an inevitable part of life.'
+  },
+  {
+    word: 'Ubiquitous',
+    type: 'adj.',
+    thai: 'พบเห็นได้ทั่วไป / มีอยู่ทุกหนทุกแห่ง',
+    example: 'Smartphones are ubiquitous in modern society.'
+  }
+];
+
 export default function RightSidebar() {
   const user = useUser();
+  const [vocabIndex, setVocabIndex] = useState(0);
+
+  const nextVocab = () => {
+    setVocabIndex((prev) => (prev + 1) % dailyVocab.length);
+  };
+
+  const prevVocab = () => {
+    setVocabIndex((prev) => (prev - 1 + dailyVocab.length) % dailyVocab.length);
+  };
 
   return (
     <aside className="right-sidebar" id="right-sidebar">
@@ -39,30 +82,52 @@ export default function RightSidebar() {
         </div>
       </div>
 
-      {/* Super gogram promo */}
-      <div className="right-sidebar-card promo-card" id="promo-card">
-        <div className="promo-card-header">
-          <span className="promo-badge">SUPER</span>
-          <div className="promo-card-text">
-            <h3>Try Super gogram</h3>
-            <p>No ads, personalized practice, and unlimited Legendary!</p>
-          </div>
-          <div className="promo-card-owl">
-            <svg width="60" height="60" viewBox="0 0 200 200" fill="none">
-              <circle cx="100" cy="100" r="80" fill="#1CB0F6" />
-              <circle cx="100" cy="100" r="65" fill="#58CC02" />
-              <ellipse cx="100" cy="115" rx="40" ry="40" fill="#89E219" />
-              <circle cx="82" cy="88" r="14" fill="white" />
-              <circle cx="118" cy="88" r="14" fill="white" />
-              <circle cx="86" cy="88" r="7" fill="#333" />
-              <circle cx="122" cy="88" r="7" fill="#333" />
-              <circle cx="88" cy="86" r="2.5" fill="white" />
-              <circle cx="124" cy="86" r="2.5" fill="white" />
-              <ellipse cx="100" cy="105" rx="7" ry="4" fill="#FFC800" />
-            </svg>
+      {/* 5 Vocabs a Day Carousel Card */}
+      <div className="right-sidebar-card vocab-card" id="vocab-card">
+        <div className="vocab-card-header">
+          <div className="vocab-card-title-row">
+            <span className="vocab-badge">DAILY VOCAB</span>
+            <span className="vocab-counter">{vocabIndex + 1} / {dailyVocab.length}</span>
           </div>
         </div>
-        <button className="promo-card-btn btn">TRY 1 WEEK FREE</button>
+
+        <div className="vocab-content animate-fade-in" key={vocabIndex}>
+          <div className="vocab-word-row">
+            <h3 className="vocab-word">{dailyVocab[vocabIndex].word}</h3>
+            <span className="vocab-type">{dailyVocab[vocabIndex].type}</span>
+          </div>
+          <p className="vocab-translation">{dailyVocab[vocabIndex].thai}</p>
+          <div className="vocab-example-container">
+            <span className="vocab-example-label">Example:</span>
+            <p className="vocab-example-sentence">"{dailyVocab[vocabIndex].example}"</p>
+          </div>
+        </div>
+
+        <div className="vocab-carousel-controls">
+          <button 
+            className="vocab-carousel-arrow" 
+            onClick={prevVocab}
+            title="Previous word"
+          >
+            ‹
+          </button>
+          <div className="vocab-carousel-dots">
+            {dailyVocab.map((_, i) => (
+              <span
+                key={i}
+                className={`vocab-carousel-dot ${i === vocabIndex ? 'active' : ''}`}
+                onClick={() => setVocabIndex(i)}
+              />
+            ))}
+          </div>
+          <button 
+            className="vocab-carousel-arrow" 
+            onClick={nextVocab}
+            title="Next word"
+          >
+            ›
+          </button>
+        </div>
       </div>
 
       {/* League card */}
