@@ -192,15 +192,6 @@ export default function RightSidebar() {
           </p>
         </div>
 
-        {/* Learn Action Button */}
-        <button 
-          className={`vocab-learn-action-btn ${learnedIndices.includes(vocabIndex) ? 'learned' : ''}`}
-          onClick={handleMarkAsLearned}
-          disabled={learnedIndices.includes(vocabIndex)}
-        >
-          {learnedIndices.includes(vocabIndex) ? 'Learned ✓' : 'Mark as Learned'}
-        </button>
-
         {/* Congratulatory Completion Message */}
         {learnedIndices.length === dailyVocab.length && (
           <div className="vocab-completion-message">
@@ -216,15 +207,16 @@ export default function RightSidebar() {
           >
             ‹
           </button>
-          <div className="vocab-carousel-dots">
-            {dailyVocab.map((_, i) => (
-              <span
-                key={i}
-                className={`vocab-carousel-dot ${i === vocabIndex ? 'active' : ''} ${learnedIndices.includes(i) ? 'learned' : ''}`}
-                onClick={() => setVocabIndex(i)}
-              />
-            ))}
-          </div>
+
+          {/* Learn Action Button in the middle */}
+          <button 
+            className={`vocab-learn-action-btn ${learnedIndices.includes(vocabIndex) ? 'learned' : ''}`}
+            onClick={handleMarkAsLearned}
+            disabled={learnedIndices.includes(vocabIndex)}
+          >
+            {learnedIndices.includes(vocabIndex) ? 'Learned ✓' : 'Mark as Learned'}
+          </button>
+
           <button 
             className="vocab-carousel-arrow" 
             onClick={nextVocab}
