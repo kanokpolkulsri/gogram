@@ -4,8 +4,9 @@ import './LandingPage.css';
 
 const MESSAGES = [
   "Hey, what's good?!",
-  "What's up, chat?!",
-  "Hey, Howdy?",
+  "What's up?!",
+  "Howdy!",
+  "Greetings Earthlings!",
 ];
 const CHAR_DELAY = 60;
 const ERASE_DELAY = 35;
