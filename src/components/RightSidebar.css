@@ -34,6 +34,7 @@
   flex-direction: column;
   gap: 14px;
   min-height: 260px;
+  padding-bottom: 24px;
 }
 
 .vocab-card-title-row {
