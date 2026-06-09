@@ -39,19 +39,8 @@ export default function Sidebar() {
 
   return (
     <aside className="sidebar" id="sidebar">
-      {/* Logo — owl icon + text */}
+      {/* Logo — text only */}
       <Link to="/learn" className="sidebar-logo" id="sidebar-logo">
-        <svg width="32" height="32" viewBox="0 0 200 200" fill="none">
-          <circle cx="100" cy="100" r="90" fill="#58CC02" />
-          <ellipse cx="100" cy="110" rx="50" ry="55" fill="#89E219" />
-          <circle cx="82" cy="85" r="14" fill="white" />
-          <circle cx="118" cy="85" r="14" fill="white" />
-          <circle cx="86" cy="85" r="7" fill="#333" />
-          <circle cx="122" cy="85" r="7" fill="#333" />
-          <circle cx="88" cy="83" r="2.5" fill="white" />
-          <circle cx="124" cy="83" r="2.5" fill="white" />
-          <ellipse cx="100" cy="102" rx="7" ry="4" fill="#FFC800" />
-        </svg>
         <span className="sidebar-logo-text">GoGram</span>
       </Link>
 
