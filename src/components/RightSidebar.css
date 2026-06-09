@@ -16,15 +16,20 @@
 
 /* Cards */
 .right-sidebar-card {
-  border: 2px solid var(--color-gray);
-  border-radius: 16px;
-  padding: 20px;
-  background: var(--color-white);
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.right-sidebar-card:not(:last-child) {
+  border-bottom: 1px solid var(--color-gray);
+  padding-bottom: 24px;
 }
 
 /* Vocab Card styling */
 .vocab-card {
-  background: var(--color-white);
+  background: transparent;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -276,11 +281,19 @@
     position: sticky;
     top: 24px;
     right: auto;
-    border-left: none;
-    height: calc(100vh - 48px);
-    height: calc(100dvh - 48px);
+    width: 250px;
+    height: fit-content;
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+    padding: 24px 16px;
+    margin: 0;
     box-sizing: border-box;
-    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    overflow: visible;
   }
 }
 
@@ -295,6 +308,5 @@
 @media (max-width: 1280px) and (min-width: 1024px) {
   .right-sidebar {
     width: 250px;
-    padding: 0;
   }
 }
