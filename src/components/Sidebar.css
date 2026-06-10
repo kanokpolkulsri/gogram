@@ -199,7 +199,7 @@
     display: block;
     font-size: 22px;
     font-weight: 900;
-    color: var(--color-green);
+    color: var(--color-orange);
     letter-spacing: -0.5px;
   }
 
@@ -245,12 +245,12 @@
   #sidebar-learn.active,
   #sidebar-leaderboards.active,
   #sidebar-profile.active {
-    background: #e8f2ff !important;
-    color: #1262d1 !important;
+    background: var(--color-blue-bg) !important;
+    color: var(--color-blue-dark) !important;
   }
 
   .sidebar-tab.active .sidebar-tab-label {
-    color: #1262d1 !important;
+    color: var(--color-blue-dark) !important;
   }
 
   /* Active Icon SVG color override */
@@ -259,13 +259,13 @@
   .sidebar-tab.active svg circle,
   .sidebar-tab.active svg ellipse,
   .sidebar-tab.active svg text {
-    fill: #1262d1 !important;
+    fill: var(--color-blue-dark) !important;
     stroke: none !important;
   }
 
   /* Special handling for active profile face details (skin-tone face with blue background/shoulders) */
   #sidebar-profile.active svg circle:first-of-type {
-    fill: #1262d1 !important;
+    fill: var(--color-blue-dark) !important;
     /* Blue active background circle */
   }
 
@@ -275,7 +275,7 @@
   }
 
   #sidebar-profile.active svg ellipse {
-    fill: #1262d1 !important;
+    fill: var(--color-blue-dark) !important;
     /* Blue active shoulders/clothes */
   }
 
@@ -291,9 +291,10 @@
     fill: none !important;
   }
 
-
-
-
+  #sidebar-leaderboards.active svg path:nth-of-type(3) {
+    fill: #FFD0A1 !important;
+    opacity: 1 !important;
+  }
 
 }
 
