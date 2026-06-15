@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useUser, useUserDispatch } from '../data/userStore';
 import { auth, signOut } from '../data/firebase';
 import {
-  EditIcon,
   EnglishFlagIcon,
   ProfileIcon,
 } from '../components/icons';
@@ -14,6 +13,7 @@ export default function ProfilePage() {
   const dispatch = useUserDispatch();
   const navigate = useNavigate();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showProgressModal, setShowProgressModal] = useState(false);
 
   const handleLogout = async () => {
     try {
@@ -71,9 +71,6 @@ export default function ProfilePage() {
             {user.authProfile?.photoURL ? (
               <div className="profile-avatar-wrapper">
                 <img src={user.authProfile.photoURL} alt="Avatar" className="profile-avatar-image" />
-                <button className="profile-avatar-edit-btn" title="Edit Avatar">
-                  <EditIcon size={14} />
-                </button>
               </div>
             ) : (
               <div className="profile-avatar-silhouette">
@@ -88,9 +85,6 @@ export default function ProfilePage() {
                     <path d="M12 7v10M7 12h10" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
                   </svg>
                 </div>
-                <button className="profile-avatar-edit-btn" title="Edit Avatar">
-                  <EditIcon size={14} />
-                </button>
               </div>
             )}
           </div>
@@ -153,9 +147,9 @@ export default function ProfilePage() {
 
             {/* Legal Documents Links */}
             <div className="profile-settings-links">
-              <a href="/privacy-policy" onClick={(e) => { e.preventDefault(); alert('Redirecting to Privacy Policy (standard template)...'); }} className="profile-legal-link">Privacy Policy</a>
+              <a href="/privacy-policy" onClick={(e) => { e.preventDefault(); setShowProgressModal(true); }} className="profile-legal-link">Privacy Policy</a>
               <span className="profile-legal-divider">•</span>
-              <a href="/terms-of-service" onClick={(e) => { e.preventDefault(); alert('Redirecting to Terms of Service (standard template)...'); }} className="profile-legal-link">Terms of Service</a>
+              <a href="/terms-of-service" onClick={(e) => { e.preventDefault(); setShowProgressModal(true); }} className="profile-legal-link">Terms of Service</a>
             </div>
           </div>
         </div>
@@ -179,6 +173,21 @@ export default function ProfilePage() {
               </button>
               <button className="btn btn-primary" style={{ backgroundColor: 'var(--color-red)', boxShadow: '0 4px 0 var(--color-red-dark)' }} onClick={handleDeleteAccount} id="confirm-delete-btn">
                 DELETE PERMANENTLY
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Work In Progress Modal */}
+      {showProgressModal && (
+        <div className="profile-modal-overlay">
+          <div className="profile-modal">
+            <h3>Under Construction</h3>
+            <p>This document is currently being drafted and will be ready soon.</p>
+            <div className="profile-modal-actions">
+              <button className="btn btn-primary" onClick={() => setShowProgressModal(false)}>
+                OK
               </button>
             </div>
           </div>
