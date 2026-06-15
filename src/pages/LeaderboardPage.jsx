@@ -119,7 +119,7 @@ export default function LeaderboardPage() {
   // Construct leaderboard users list
   const allUsers = [
     ...leagueData.weeklyLeaderboard.slice(0, 8).map(u => ({ ...u, isYou: false })),
-    { name: userName, country: '🇺🇸', avatar: userAvatar, initials: userInitials, isYou: true, xp: user.totalXP },
+    ...(!user.isPrivate ? [{ name: userName, country: '🇺🇸', avatar: userAvatar, initials: userInitials, isYou: true, xp: user.totalXP }] : []),
     ...leagueData.weeklyLeaderboard.slice(8).map(u => ({ ...u, isYou: false })),
   ].map(u => {
     const level = getLevel(u.name, u.isYou);
@@ -139,8 +139,8 @@ export default function LeaderboardPage() {
 
   // Find logged in user rank
   const youUser = allUsers.find(u => u.isYou);
-  const youRank = youUser ? youUser.rank : 9;
-  const youLevel = youUser ? youUser.level : 1;
+  const youRank = youUser ? youUser.rank : null;
+  const youLevel = youUser ? youUser.level : null;
 
   return (
     <div className="leaderboard-page" id="leaderboard-page">
@@ -173,6 +173,22 @@ export default function LeaderboardPage() {
           See who has reached the highest level in this study track
         </p>
       </div>
+
+      {user.isPrivate && (
+        <div className="leaderboard-private-warning" style={{
+          background: 'var(--color-orange-bg)',
+          color: 'var(--color-orange-dark)',
+          padding: '12px 16px',
+          borderRadius: '12px',
+          marginBottom: '16px',
+          fontSize: '14px',
+          fontWeight: 700,
+          textAlign: 'center',
+          border: '2px solid var(--color-orange)'
+        }}>
+          🔒 You are in Private Mode. Enable your public profile in settings to appear on the leaderboard!
+        </div>
+      )}
 
       {/* Leaderboard list */}
       <div className="leaderboard-list" key={selectedCategoryId}>
@@ -218,30 +234,32 @@ export default function LeaderboardPage() {
         })}
       </div>
 
-      {/* Sticky footer for the current user */}
-      <div className="leaderboard-sticky-footer" id="leaderboard-sticky-footer">
-        <div className="leaderboard-row leaderboard-row-you">
-          <span className="leaderboard-rank">
-            {youRank}
-          </span>
-          <div className="leaderboard-avatar-container">
-            {userAvatar.startsWith('#') ? (
-              <div className="leaderboard-avatar" style={{ background: userAvatar }}>
-                {userInitials}
-              </div>
-            ) : (
-              <img src={userAvatar} alt={userName} className="leaderboard-avatar-img" />
-            )}
-            <span className="leaderboard-status-dot" />
+      {/* Sticky footer for the current user (only when public) */}
+      {!user.isPrivate && youUser && (
+        <div className="leaderboard-sticky-footer" id="leaderboard-sticky-footer">
+          <div className="leaderboard-row leaderboard-row-you">
+            <span className="leaderboard-rank">
+              {youRank}
+            </span>
+            <div className="leaderboard-avatar-container">
+              {userAvatar.startsWith('#') ? (
+                <div className="leaderboard-avatar" style={{ background: userAvatar }}>
+                  {userInitials}
+                </div>
+              ) : (
+                <img src={userAvatar} alt={userName} className="leaderboard-avatar-img" />
+              )}
+              <span className="leaderboard-status-dot" />
+            </div>
+            <div className="leaderboard-user-info">
+              <span className="leaderboard-name">{userName}</span>
+            </div>
+            <span className="leaderboard-xp">
+              LV. {youLevel}
+            </span>
           </div>
-          <div className="leaderboard-user-info">
-            <span className="leaderboard-name">{userName}</span>
-          </div>
-          <span className="leaderboard-xp">
-            LV. {youLevel}
-          </span>
         </div>
-      </div>
+      )}
 
     </div>
   );

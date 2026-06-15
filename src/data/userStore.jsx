@@ -142,6 +142,14 @@ function userReducer(state, action) {
       break;
     }
 
+    case 'SET_PRIVACY': {
+      newState = {
+        ...state,
+        isPrivate: action.isPrivate,
+      };
+      break;
+    }
+
     case 'RESET_PROGRESS': {
       newState = { ...initialUser, lastCategoryId: null };
       break;
