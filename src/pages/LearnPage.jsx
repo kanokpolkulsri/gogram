@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { units, studyCategories } from '../data/mockData';
 import { useUser, useUserDispatch } from '../data/userStore';
@@ -32,10 +32,16 @@ export default function LearnPage() {
     }
   }, [activeCategoryId, dispatch]);
 
-  const categoryInfo = studyCategories.find((c) => c.id === activeCategoryId) || studyCategories[0];
-  const categoryUnits = activeCategoryId
-    ? units.filter((u) => u.category === categoryInfo.id)
-    : [];
+  const categoryInfo = useMemo(() => {
+    return studyCategories.find((c) => c.id === activeCategoryId) || studyCategories[0];
+  }, [activeCategoryId]);
+
+  const categoryUnits = useMemo(() => {
+    return activeCategoryId
+      ? units.filter((u) => u.category === categoryInfo.id)
+      : [];
+  }, [activeCategoryId, categoryInfo.id]);
+
   const nextLesson = getNextLesson(user.completedLessons, categoryUnits);
 
   // Initialize activeUnitId state
@@ -48,9 +54,34 @@ export default function LearnPage() {
   // Reset activeUnitId when activeCategoryId changes
   useEffect(() => {
     if (categoryUnits.length > 0) {
-      setActiveUnitId(categoryUnits[0].id);
+      const targetUnit = nextLesson
+        ? (categoryUnits.find((u) => u.id === nextLesson.unitId) || categoryUnits[0])
+        : categoryUnits[0];
+      setActiveUnitId(targetUnit?.id || categoryUnits[0].id);
     }
   }, [activeCategoryId]);
+
+  const hasScrolledRef = useRef(false);
+
+  // Reset scroll tracker when category changes
+  useEffect(() => {
+    hasScrolledRef.current = false;
+  }, [activeCategoryId]);
+
+  // Scroll current node into view when first landing on the page
+  useEffect(() => {
+    if (categoryUnits.length === 0 || hasScrolledRef.current) return;
+
+    const timer = setTimeout(() => {
+      const activeNode = document.querySelector('.learn-path-node.current-node');
+      if (activeNode) {
+        activeNode.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        hasScrolledRef.current = true;
+      }
+    }, 150);
+
+    return () => clearTimeout(timer);
+  }, [activeCategoryId, categoryUnits]);
 
   // Track which unit is currently in view using scroll position detection
   useEffect(() => {
@@ -128,7 +159,11 @@ export default function LearnPage() {
         >
           <div className="learn-unit-header-content">
             <div>
-              <div className="learn-unit-section">{activeUnitHeader.section}</div>
+              <div className="learn-unit-section">
+                {activeUnitHeader.section.includes(',')
+                  ? activeUnitHeader.section.split(',')[1].trim()
+                  : activeUnitHeader.section}
+              </div>
               <h2 className="learn-unit-title">{activeUnitHeader.title}</h2>
             </div>
           </div>
@@ -161,7 +196,7 @@ export default function LearnPage() {
                 return (
                   <div
                     key={level.id}
-                    className="learn-path-node"
+                    className={`learn-path-node ${isNext ? 'current-node' : ''}`}
                     style={{ transform: `translateX(${snakeOffsets[levelIndex]}px)` }}
                   >
                     <LessonNode
