@@ -380,3 +380,161 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 18px;
   font-weight: 900;
 }
+
+.auth-loading-text-only {
+  font-family: var(--font-family);
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--color-text-light);
+  letter-spacing: -0.5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.auth-loading-text-only::after {
+  content: '';
+  animation: loadingDots 1.6s steps(4, end) infinite;
+  display: block;
+  width: 30px;
+  height: 24px;
+  text-align: left;
+}
+
+@keyframes loadingDots {
+  0% { content: ''; }
+  25% { content: '.'; }
+  50% { content: '..'; }
+  75% { content: '...'; }
+  100% { content: ''; }
+}
+
+/* --- Banner Circle --- */
+.banner-circle {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 4px solid #e5e5e5;
+  overflow: hidden;
+  background: linear-gradient(180deg, #75D2FF 0%, #BBE7FF 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 10px;
+}
+
+.banner-circle svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Animations within the circle */
+/* Clouds at different heights and speeds */
+.banner-circle .cloud-back-y30 {
+  animation: driftBackCircle30 35s linear infinite;
+  animation-delay: -8s;
+}
+
+.banner-circle .cloud-front-y140 {
+  animation: driftFrontCircle140 14s linear infinite;
+  animation-delay: -5s;
+}
+
+@keyframes driftBackCircle30 {
+  0% {
+    transform: translate(-80px, 30px);
+  }
+  100% {
+    transform: translate(220px, 30px);
+  }
+}
+
+@keyframes driftFrontCircle140 {
+  0% {
+    transform: translate(-80px, 155px);
+  }
+  100% {
+    transform: translate(220px, 155px);
+  }
+}
+
+/* Birds at different heights and speeds */
+.banner-circle .bird-fly-r2l-y45 {
+  animation: birdFlyRightToLeft45 12s linear infinite;
+  animation-delay: -1s;
+}
+
+.banner-circle .bird-fly-l2r-y125 {
+  animation: birdFlyLeftToRight125 15s linear infinite;
+  animation-delay: -5s;
+}
+
+@keyframes birdFlyRightToLeft45 {
+  0% {
+    transform: translate(220px, 45px) scale(0.65);
+  }
+  100% {
+    transform: translate(-40px, 45px) scale(0.65);
+  }
+}
+
+@keyframes birdFlyLeftToRight125 {
+  0% {
+    transform: translate(-40px, 125px) scale(0.5) scaleX(-1);
+  }
+  100% {
+    transform: translate(220px, 125px) scale(0.5) scaleX(-1);
+  }
+}
+
+.banner-circle .bird-wing-up {
+  animation: flapUpCircle 0.4s infinite steps(1);
+}
+
+.banner-circle .bird-wing-down {
+  animation: flapDownCircle 0.4s infinite steps(1);
+}
+
+@keyframes flapUpCircle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes flapDownCircle {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.mascot-eyeballs {
+  animation: lookAround 8s ease-in-out infinite;
+}
+
+@keyframes lookAround {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  20%, 35% {
+    transform: translate(0, -5px);
+  }
+  45%, 55% {
+    transform: translate(-3px, 1px);
+  }
+  65%, 75% {
+    transform: translate(3px, 1px);
+  }
+  85%, 95% {
+    transform: translate(0, 0);
+  }
+}

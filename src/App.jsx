@@ -48,10 +48,8 @@ function AppContent() {
   if (user.isAuthLoading) {
     return (
       <div className="auth-loading-screen">
-        <div className="auth-loading-modal">
-          <button className="btn btn-primary auth-loading-btn">
-            ...
-          </button>
+        <div className="auth-loading-text-only">
+          loading
         </div>
       </div>
     );
