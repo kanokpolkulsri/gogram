@@ -31,7 +31,14 @@
   transform: scale(0.97);
 }
 
+.learn-header-back-arrow {
+  color: var(--color-gray-medium);
+  transition: color var(--transition-fast) ease;
+}
 
+.learn-header-category:hover .learn-header-back-arrow {
+  color: var(--color-text);
+}
 
 .learn-header-category-name {
   font-size: 20px;
@@ -44,17 +51,15 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 12px;
+  padding: 4px 8px;
   border-radius: 12px;
 }
 
 .learn-header-streak-val {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 800;
   color: var(--color-text);
-  /* Base text color */
 }
-
 
 /* Hide on desktop */
 @media (min-width: 1024px) {

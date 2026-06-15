@@ -177,6 +177,15 @@ export default function LearnPage() {
             className="learn-unit"
             data-unit-id={unit.id}
           >
+            {/* Unit Header / Jump divider */}
+            {unitIndex > 0 && (
+              <div className="learn-jump-here">
+                <div className="learn-jump-divider">
+                  <span className="learn-jump-text">{unit.title}</span>
+                </div>
+              </div>
+            )}
+
             {/* Lesson Path */}
             <div className="learn-path">
               {unit.levels.map((level, levelIndex) => {
@@ -212,15 +221,6 @@ export default function LearnPage() {
                 );
               })}
             </div>
-
-            {/* Jump here button between units */}
-            {unitIndex < categoryUnits.length - 1 && (
-              <div className="learn-jump-here">
-                <div className="learn-jump-divider">
-                  <span className="learn-jump-text">{categoryUnits[unitIndex + 1].title}</span>
-                </div>
-              </div>
-            )}
           </div>
         ))}
 

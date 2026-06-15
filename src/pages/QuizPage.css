@@ -73,7 +73,7 @@
 }
 
 .quiz-content-exit {
-  animation: fadeOut 0.3s ease;
+  animation: fadeOut 0.3s ease forwards;
 }
 
 @keyframes fadeOut {

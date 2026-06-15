@@ -27,11 +27,12 @@ export default function QuizPage() {
   const [encouragement, setEncouragement] = useState('');
   const [animating, setAnimating] = useState(false);
   const [showOutOfHearts, setShowOutOfHearts] = useState(false);
+  const [firstAttempt, setFirstAttempt] = useState(true);
 
   const currentQuestion = questions[currentIndex];
 
   const handleSelect = (answer) => {
-    if (isAnswered) return;
+    if (isAnswered || user.hearts === 0) return;
     setSelectedAnswer(answer);
   };
 
@@ -43,19 +44,33 @@ export default function QuizPage() {
     setIsAnswered(true);
 
     if (correct) {
-      setCorrectStreak((s) => s + 1);
-      setScore((s) => s + 1);
+      if (firstAttempt) {
+        setCorrectStreak((s) => s + 1);
+        setScore((s) => s + 1);
+      }
       setEncouragement(getRandomEncouragement());
     } else {
       setCorrectStreak(0);
+      setFirstAttempt(false);
       dispatch({ type: 'LOSE_HEART' });
       if (user.hearts - 1 <= 0) {
         setTimeout(() => setShowOutOfHearts(true), 800);
       }
     }
-  }, [selectedAnswer, isAnswered, currentQuestion, dispatch, user.hearts]);
+  }, [selectedAnswer, isAnswered, currentQuestion, dispatch, user.hearts, firstAttempt]);
 
   const handleContinue = useCallback(() => {
+    if (!isCorrect) {
+      // Stay on the same question, let them try again
+      // We skip the full exit/enter animation since the question text remains the same,
+      // letting the option buttons transition back to gray smoothly in place.
+      setSelectedAnswer(null);
+      setIsAnswered(false);
+      setIsCorrect(false);
+      setEncouragement('');
+      return;
+    }
+
     if (currentIndex + 1 >= totalQuestions) {
       // Lesson complete!
       const xp = level?.xpReward || 15;
@@ -75,11 +90,12 @@ export default function QuizPage() {
         setSelectedAnswer(null);
         setIsAnswered(false);
         setIsCorrect(false);
+        setFirstAttempt(true);
         setEncouragement('');
         setAnimating(false);
       }, 300);
     }
-  }, [currentIndex, totalQuestions, level, unitId, levelId, score, dispatch, navigate]);
+  }, [currentIndex, totalQuestions, level, unitId, levelId, score, dispatch, navigate, isCorrect]);
 
   const handleClose = () => {
     if (unit && unit.category) {
@@ -134,7 +150,7 @@ export default function QuizPage() {
           {correctStreak > 0 && (
             <span className="quiz-streak-badge">{correctStreak} IN A ROW</span>
           )}
-          <ProgressBar current={currentIndex + (isAnswered ? 1 : 0)} total={totalQuestions} />
+          <ProgressBar current={currentIndex + (isAnswered && isCorrect ? 1 : 0)} total={totalQuestions} />
         </div>
         <Hearts count={user.hearts} />
       </div>
@@ -162,7 +178,7 @@ export default function QuizPage() {
                 key={index}
                 className={optionClass}
                 onClick={() => handleSelect(option)}
-                disabled={isAnswered}
+                disabled={isAnswered || user.hearts === 0}
                 id={`quiz-option-${index}`}
               >
                 <span className="quiz-option-number">{index + 1}</span>
@@ -176,10 +192,15 @@ export default function QuizPage() {
       {/* Bottom area: Check button or Feedback */}
       {!isAnswered ? (
         <div className="quiz-bottom">
+          {user.hearts === 0 && (
+            <div className="quiz-no-hearts-warning" style={{ color: 'var(--color-red)', fontWeight: 800, textAlign: 'center', marginBottom: '16px' }}>
+              ❤️ No hearts left! Practice or visit the shop to get more.
+            </div>
+          )}
           <button
-            className={`btn ${selectedAnswer ? 'btn-primary' : 'btn-disabled'}`}
+            className={`btn ${selectedAnswer && user.hearts > 0 ? 'btn-primary' : 'btn-disabled'}`}
             onClick={handleCheck}
-            disabled={!selectedAnswer}
+            disabled={!selectedAnswer || user.hearts === 0}
             id="quiz-check-btn"
           >
             CHECK

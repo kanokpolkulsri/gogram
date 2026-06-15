@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from '../data/userStore';
 import { studyCategories, units } from '../data/mockData';
 import { Category3DIcon, HomeIcon, CategoriesIcon } from '../components/icons';
+import Hearts from '../components/Hearts';
 import './CategoryPage.css';
 
 export default function CategoryPage() {
@@ -165,8 +166,12 @@ export default function CategoryPage() {
             </div>
             <div className="linkedin-greeting-row">
               <h2 className="linkedin-name-row">
-                Hi, {(user.authProfile?.displayName || user.name || 'Learner').split(' ')[0]}! 👋
+                Hi, {(user.authProfile?.displayName || user.name || 'Learner').split(' ')[0]}!
               </h2>
+            </div>
+            {/* Hearts displayed at the rightmost end */}
+            <div style={{ marginLeft: 'auto' }}>
+              <Hearts count={user.hearts} />
             </div>
           </div>
         </div>
