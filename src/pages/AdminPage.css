@@ -258,6 +258,8 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  padding-right: 4px;
+  scrollbar-gutter: stable;
 }
 
 .learner-item-card {
