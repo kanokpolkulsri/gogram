@@ -33,12 +33,6 @@ const sidebarTabs = [
     path: '/profile',
     Icon: ProfileIcon,
   },
-  {
-    id: 'admin',
-    label: 'Admin Panel',
-    path: '/admin',
-    Icon: GearIcon,
-  },
 ];
 
 export default function Sidebar() {

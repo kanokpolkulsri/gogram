@@ -95,6 +95,51 @@ export default function AdminPage() {
   const [userRoleFilter, setUserRoleFilter] = useState('all');
   const [userStatusFilter, setUserStatusFilter] = useState('all');
 
+  // 6. Custom Modals & Toasts States
+  const [confirmModal, setConfirmModal] = useState({
+    isOpen: false,
+    title: '',
+    message: '',
+    onConfirm: null,
+    confirmText: 'Confirm',
+    cancelText: 'Cancel',
+    isDanger: false
+  });
+  const [toast, setToast] = useState({ show: false, message: '' });
+
+  // 7. Draft Questions State
+  const [draftQuestions, setDraftQuestions] = useState([]);
+
+  // 8. Edit Topic States
+  const [showEditTopicModal, setShowEditTopicModal] = useState(false);
+  const [editingTopicObj, setEditingTopicObj] = useState(null);
+  const [etTitle, setEtTitle] = useState('');
+  const [etDesc, setEtDesc] = useState('');
+
+  // Toast helper
+  const showToast = (message) => {
+    setToast({ show: true, message });
+    setTimeout(() => {
+      setToast({ show: false, message: '' });
+    }, 3000);
+  };
+
+  // Confirm helper
+  const triggerConfirm = (options) => {
+    setConfirmModal({
+      isOpen: true,
+      title: options.title || 'Confirm Action',
+      message: options.message || 'Are you sure you want to proceed?',
+      confirmText: options.confirmText || 'Confirm',
+      cancelText: options.cancelText || 'Cancel',
+      isDanger: !!options.isDanger,
+      onConfirm: () => {
+        options.onConfirm();
+        setConfirmModal(prev => ({ ...prev, isOpen: false }));
+      }
+    });
+  };
+
   // ==========================================
   // HELPER FUNCTIONS
   // ==========================================
@@ -132,6 +177,25 @@ export default function AdminPage() {
     const options = [eqOpt1, eqOpt2];
     if (eqOpt3.trim()) options.push(eqOpt3);
 
+    // If it is a draft question (local state only)
+    if (editingQuestionObj.id.toString().startsWith('draft-')) {
+      setDraftQuestions(prev => prev.map(q => {
+        if (q.id === editingQuestionObj.id) {
+          return {
+            ...q,
+            question: eqText,
+            options,
+            correctAnswer: eqCorrect
+          };
+        }
+        return q;
+      }));
+      setShowEditQuestionModal(false);
+      setEditingQuestionObj(null);
+      showToast('Draft question updated.');
+      return;
+    }
+
     // Find unit
     const unitId = editingQuestionObj.unitId;
     const targetUnit = units.find(u => Number(u.id) === Number(unitId));
@@ -166,6 +230,7 @@ export default function AdminPage() {
 
     setShowEditQuestionModal(false);
     setEditingQuestionObj(null);
+    showToast('Question details saved.');
   };
 
   const handleStartQuestionEdit = (q) => {
@@ -179,25 +244,72 @@ export default function AdminPage() {
   };
 
   const handleDeleteQuestion = (q) => {
-    if (window.confirm('Are you sure you want to delete this question?')) {
-      let targetLevelId = 'easy';
-      if (q.difficulty === 'MEDIUM') targetLevelId = 'medium1';
-      if (q.difficulty === 'HARD') targetLevelId = 'hard1';
-
-      const targetUnit = units.find(u => Number(u.id) === Number(q.unitId));
-      if (!targetUnit) return;
-
-      const targetLevel = targetUnit.levels.find(l => l.id === targetLevelId);
-      if (!targetLevel) return;
-
-      const updatedQs = targetLevel.questions.filter(item => item.id !== q.id);
-      dispatch({
-        type: 'UPDATE_LEVEL_QUESTIONS',
-        unitId: q.unitId,
-        levelId: targetLevelId,
-        questions: updatedQs
+    // If it is a draft question
+    if (q.id.toString().startsWith('draft-')) {
+      triggerConfirm({
+        title: 'Discard Draft Question',
+        message: 'Are you sure you want to discard this draft question?',
+        confirmText: 'Discard',
+        isDanger: true,
+        onConfirm: () => {
+          setDraftQuestions(prev => prev.filter(item => item.id !== q.id));
+          showToast('Draft question discarded.');
+        }
       });
+      return;
     }
+
+    triggerConfirm({
+      title: 'Delete Question',
+      message: 'Are you sure you want to permanently delete this question from the active database? This action cannot be undone.',
+      confirmText: 'Delete',
+      isDanger: true,
+      onConfirm: () => {
+        let targetLevelId = 'easy';
+        if (q.difficulty === 'MEDIUM') targetLevelId = 'medium1';
+        if (q.difficulty === 'HARD') targetLevelId = 'hard1';
+
+        const targetUnit = units.find(u => Number(u.id) === Number(q.unitId));
+        if (!targetUnit) return;
+
+        const targetLevel = targetUnit.levels.find(l => l.id === targetLevelId);
+        if (!targetLevel) return;
+
+        const updatedQs = targetLevel.questions.filter(item => item.id !== q.id);
+        dispatch({
+          type: 'UPDATE_LEVEL_QUESTIONS',
+          unitId: q.unitId,
+          levelId: targetLevelId,
+          questions: updatedQs
+        });
+        showToast('Question deleted from database.');
+      }
+    });
+  };
+
+  // Start Topic Editing
+  const handleStartTopicEdit = (topic) => {
+    setEditingTopicObj(topic);
+    setEtTitle(topic.title);
+    setEtDesc(topic.description);
+    setShowEditTopicModal(true);
+  };
+
+  // Save Topic Edit Handler
+  const handleSaveTopicEdit = (e) => {
+    e.preventDefault();
+    if (!editingTopicObj) return;
+
+    dispatch({
+      type: 'UPDATE_TOPIC',
+      unitId: editingTopicObj.id,
+      title: etTitle,
+      description: etDesc
+    });
+
+    setShowEditTopicModal(false);
+    setEditingTopicObj(null);
+    showToast('Topic updated successfully.');
   };
 
   // Add Category Handler
@@ -230,34 +342,213 @@ export default function AdminPage() {
     setShowAddTopicModal(false);
   };
 
-  // AI Bulk Generator triggers
+  // AI Bulk/Draft Generator triggers
   const handleTriggerBulkGeneration = () => {
     setIsGeneratingBulk(true);
     setGenerationProgressMsg('Connecting to AI drafting queue...');
+
+    const categoryTopics = units.filter(u => u.category === aiCategory);
+    let targetLevelId = 'easy';
+    if (aiDifficulty === 'medium') targetLevelId = 'medium1';
+    if (aiDifficulty === 'hard') targetLevelId = 'hard1';
+
+    const zeroQuestionTopics = categoryTopics.filter(u => {
+      const lvl = u.levels.find(l => l.id === targetLevelId);
+      return !lvl || !lvl.questions || lvl.questions.length === 0;
+    });
+
+    const topicsToProcessList = aiOnlyZero ? zeroQuestionTopics : categoryTopics;
 
     setTimeout(() => {
       setGenerationProgressMsg('Validating selected nodes and topic counts...');
       setTimeout(() => {
         setGenerationProgressMsg('Generating questions schemas...');
         setTimeout(() => {
-          dispatch({
-            type: 'BULK_GENERATE_CMS',
-            categoryId: aiCategory,
-            difficultyLevel: aiDifficulty,
-            questionsPerTopic: aiCount,
-            onlyZero: aiOnlyZero
-          });
-          setIsGeneratingBulk(false);
-          setGenerationProgressMsg('');
-          alert('Bulk questions successfully injected into units!');
+          if (aiMode === 'draft') {
+            const generated = [];
+            topicsToProcessList.forEach(unit => {
+              const catObj = categories.find(c => c.id === unit.category);
+              for (let i = 0; i < aiCount; i++) {
+                generated.push({
+                  id: `draft-${Date.now()}-${unit.id}-${i}-${Math.random().toString(36).substr(2, 9)}`,
+                  question: `Draft question #${i+1} for ${unit.title} (${aiDifficulty})`,
+                  options: [`Option A for ${unit.title}`, `Option B for ${unit.title}`, `Option C for ${unit.title}`],
+                  correctAnswer: `Option A for ${unit.title}`,
+                  unitId: unit.id,
+                  unitTitle: unit.title,
+                  categoryId: unit.category,
+                  categoryTitle: catObj?.title || unit.category,
+                  difficulty: aiDifficulty.toUpperCase()
+                });
+              }
+            });
+            setDraftQuestions(prev => [...prev, ...generated]);
+            setIsGeneratingBulk(false);
+            setGenerationProgressMsg('');
+            showToast(`Draft questions successfully generated! Review them below.`);
+          } else {
+            dispatch({
+              type: 'BULK_GENERATE_CMS',
+              categoryId: aiCategory,
+              difficultyLevel: aiDifficulty,
+              questionsPerTopic: aiCount,
+              onlyZero: aiOnlyZero
+            });
+            setIsGeneratingBulk(false);
+            setGenerationProgressMsg('');
+            showToast('Bulk questions successfully injected into active database!');
+          }
         }, 800);
       }, 700);
     }, 700);
   };
 
-  // CSV Export Mock
+  const handleApproveDraft = (dq) => {
+    const unitId = dq.unitId;
+    const targetUnit = units.find(u => Number(u.id) === Number(unitId));
+    if (!targetUnit) return;
+
+    let targetLevelId = 'easy';
+    if (dq.difficulty === 'MEDIUM') targetLevelId = 'medium1';
+    if (dq.difficulty === 'HARD') targetLevelId = 'hard1';
+
+    const targetLevel = targetUnit.levels.find(l => l.id === targetLevelId);
+    if (!targetLevel) return;
+
+    const newQ = {
+      id: `q-approved-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`,
+      question: dq.question,
+      options: dq.options,
+      correctAnswer: dq.correctAnswer
+    };
+
+    const updatedQuestions = [...(targetLevel.questions || []), newQ];
+
+    dispatch({
+      type: 'UPDATE_LEVEL_QUESTIONS',
+      unitId,
+      levelId: targetLevelId,
+      questions: updatedQuestions
+    });
+
+    setDraftQuestions(prev => prev.filter(item => item.id !== dq.id));
+    showToast('Question approved and added to active database.');
+  };
+
+  const handleDiscardDraft = (id) => {
+    setDraftQuestions(prev => prev.filter(item => item.id !== id));
+    showToast('Draft question discarded.');
+  };
+
+  const handleApproveAllDrafts = () => {
+    if (draftQuestions.length === 0) return;
+
+    const grouped = {};
+    draftQuestions.forEach(dq => {
+      let targetLevelId = 'easy';
+      if (dq.difficulty === 'MEDIUM') targetLevelId = 'medium1';
+      if (dq.difficulty === 'HARD') targetLevelId = 'hard1';
+
+      const key = `${dq.unitId}|${targetLevelId}`;
+      if (!grouped[key]) {
+        grouped[key] = [];
+      }
+      grouped[key].push({
+        id: `q-approved-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+        question: dq.question,
+        options: dq.options,
+        correctAnswer: dq.correctAnswer
+      });
+    });
+
+    Object.keys(grouped).forEach(key => {
+      const [unitId, levelId] = key.split('|');
+      const targetUnit = units.find(u => Number(u.id) === Number(unitId));
+      if (!targetUnit) return;
+
+      const targetLevel = targetUnit.levels.find(l => l.id === levelId);
+      if (!targetLevel) return;
+
+      const updatedQuestions = [...(targetLevel.questions || []), ...grouped[key]];
+
+      dispatch({
+        type: 'UPDATE_LEVEL_QUESTIONS',
+        unitId,
+        levelId,
+        questions: updatedQuestions
+      });
+    });
+
+    setDraftQuestions([]);
+    showToast(`All ${draftQuestions.length} draft questions approved and saved.`);
+  };
+
+  const handleDiscardAllDrafts = () => {
+    triggerConfirm({
+      title: 'Discard All Drafts',
+      message: `Are you sure you want to discard all ${draftQuestions.length} draft questions currently in the queue?`,
+      confirmText: 'Discard All',
+      isDanger: true,
+      onConfirm: () => {
+        setDraftQuestions([]);
+        showToast('All draft questions discarded.');
+      }
+    });
+  };
+
+  // CSV Export Functionality
   const handleExportCSV = () => {
-    alert('Exporting selected content as CSV file...');
+    const filteredQuestions = allQuestions.filter(q => {
+      const matchQuery = q.question.toLowerCase().includes(searchQuestionQuery.toLowerCase());
+      const matchCategory = searchCategoryFilter === 'all' || q.categoryId === searchCategoryFilter;
+      const matchTopic = searchTopicFilter === 'all' || Number(q.unitId) === Number(searchTopicFilter);
+      const matchDifficulty = searchDifficultyFilter === 'all' || q.difficulty === searchDifficultyFilter.toUpperCase();
+      return matchQuery && matchCategory && matchTopic && matchDifficulty;
+    });
+
+    if (filteredQuestions.length === 0) {
+      showToast('No questions found matching current filters to export.');
+      return;
+    }
+
+    const escapeCSV = (text) => {
+      if (text === null || text === undefined) return '';
+      const str = String(text);
+      if (str.includes(',') || str.includes('"') || str.includes('\n')) {
+        return `"${str.replace(/"/g, '""')}"`;
+      }
+      return str;
+    };
+
+    const headers = ['Question ID', 'Category', 'Topic', 'Difficulty', 'Question Text', 'Option A', 'Option B', 'Option C', 'Correct Answer'];
+    const rows = filteredQuestions.map(q => [
+      q.id,
+      q.categoryTitle,
+      q.unitTitle,
+      q.difficulty,
+      q.question,
+      q.options[0] || '',
+      q.options[1] || '',
+      q.options[2] || '',
+      q.correctAnswer
+    ]);
+
+    const csvContent = [
+      headers.join(','),
+      ...rows.map(r => r.map(escapeCSV).join(','))
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `gogram_questions_export_${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    showToast(`Successfully exported ${filteredQuestions.length} questions as CSV.`);
   };
 
   // ==========================================
@@ -451,17 +742,23 @@ export default function AdminPage() {
                   <button
                     className="btn-reset-progress"
                     onClick={() => {
-                      if (window.confirm(`Reset all progress for ${selectedUser.name}?`)) {
-                        categories.forEach(c => {
-                          dispatch({
-                            type: 'RESET_USER_PROGRESS_IN_CATEGORY',
-                            userId: selectedUser.uid,
-                            categoryId: c.id,
-                            isCurrentUser: selectedUser.uid === 'admin-1'
+                      triggerConfirm({
+                        title: 'Reset User Progress',
+                        message: `Are you sure you want to reset all learning progress for ${selectedUser.name}? This will wipe their category scores and completed lesson keys.`,
+                        confirmText: 'Reset Progress',
+                        isDanger: true,
+                        onConfirm: () => {
+                          categories.forEach(c => {
+                            dispatch({
+                              type: 'RESET_USER_PROGRESS_IN_CATEGORY',
+                              userId: selectedUser.uid,
+                              categoryId: c.id,
+                              isCurrentUser: selectedUser.uid === 'admin-1'
+                            });
                           });
-                        });
-                        alert('All learning progress reset successfully.');
-                      }
+                          showToast(`Learning progress has been reset for ${selectedUser.name}.`);
+                        }
+                      });
                     }}
                   >
                     🔄 RESET PROGRESS
@@ -750,7 +1047,7 @@ export default function AdminPage() {
           {/* Left panel: Bulk Settings */}
           <div className="cms-card">
             <div className="card-header">
-              <h3 className="card-title">⚡ Bulk Settings</h3>
+              <h3 className="card-title">⚡ {aiMode === 'draft' ? 'Draft Settings' : 'Bulk Settings'}</h3>
             </div>
 
             <div className="bulk-settings-form">
@@ -831,31 +1128,145 @@ export default function AdminPage() {
                 onClick={handleTriggerBulkGeneration}
                 disabled={topicsToProcess === 0 || isGeneratingBulk}
               >
-                ⚡ Bulk Generate {totalGeneratedQs} Questions
+                ⚡ {aiMode === 'draft' ? `Generate Draft ${totalGeneratedQs} Questions` : `Bulk Generate ${totalGeneratedQs} Questions`}
               </button>
             </div>
           </div>
 
           {/* Right panel: Information Card */}
           <div className="cms-card info-card">
-            <div className="bulk-intro-view">
-              <div className="intro-icon">⚡</div>
-              <h4>Bulk Generation Mode</h4>
-              <p className="intro-subtitle">Bulk mode generates and approves questions directly into the database.</p>
+            {aiMode === 'draft' ? (
+              <div className="bulk-intro-view">
+                <div className="intro-icon">📝</div>
+                <h4>Draft Generation Mode</h4>
+                <p className="intro-subtitle">Draft mode generates questions in a local queue so you can review them first.</p>
 
-              <div className="intro-features">
-                <div className="feature-item-box">
-                  <strong>HOW IT WORKS</strong>
-                  <p>Iterates through every topic in the selected category and generates the requested number of difficulty-specific questions automatically.</p>
-                </div>
-                <div className="feature-item-box">
-                  <strong>DIRECT APPROVAL</strong>
-                  <p>Questions are saved as 'Approved' immediately and appear in the study sessions. Use Draft Mode if you want to preview before saving.</p>
+                <div className="intro-features">
+                  <div className="feature-item-box">
+                    <strong>PREVIEW BEFORE SAVE</strong>
+                    <p>Generated questions appear in the queue table below. You can modify their texts, answers, or discard any that do not meet standards.</p>
+                  </div>
+                  <div className="feature-item-box">
+                    <strong>BATCH APPROVAL</strong>
+                    <p>Admins can approve individual draft questions one-by-one, or click "Approve All" to write the entire batch into the learning modules.</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : (
+              <div className="bulk-intro-view">
+                <div className="intro-icon">⚡</div>
+                <h4>Bulk Generation Mode</h4>
+                <p className="intro-subtitle">Bulk mode generates and approves questions directly into the database.</p>
+
+                <div className="intro-features">
+                  <div className="feature-item-box">
+                    <strong>HOW IT WORKS</strong>
+                    <p>Iterates through every topic in the selected category and generates the requested number of difficulty-specific questions automatically.</p>
+                  </div>
+                  <div className="feature-item-box">
+                    <strong>DIRECT APPROVAL</strong>
+                    <p>Questions are saved as 'Approved' immediately and appear in the study sessions. Use Draft Mode if you want to preview before saving.</p>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
+
+        {/* Draft Questions Review Queue Section */}
+        {aiMode === 'draft' && draftQuestions.length > 0 && (
+          <div className="cms-card animate-fade-in" style={{ marginTop: '16px' }}>
+            <div className="card-header" style={{ borderBottom: 'none', marginBottom: '8px' }}>
+              <div style={{ textAlign: 'left' }}>
+                <h3 className="card-title">📋 Draft Review Queue</h3>
+                <p style={{ margin: '4px 0 0 0', fontSize: '12px', color: 'var(--color-text-light)' }}>
+                  Review, edit, or reject the following {draftQuestions.length} AI-generated question drafts before saving.
+                </p>
+              </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <button className="btn btn-secondary btn-danger-outline" onClick={handleDiscardAllDrafts}>
+                  🗑️ Discard All
+                </button>
+                <button className="btn btn-primary" onClick={handleApproveAllDrafts}>
+                  ✓ Approve & Save All ({draftQuestions.length})
+                </button>
+              </div>
+            </div>
+
+            <div className="cms-table-wrapper scrollbar" style={{ maxHeight: '500px', overflowY: 'auto' }}>
+              <table className="cms-table text-left">
+                <thead>
+                  <tr>
+                    <th>TOPIC & LEVEL</th>
+                    <th>DRAFT QUESTION CONTENT</th>
+                    <th>ACTIONS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {draftQuestions.map((dq) => (
+                    <tr key={dq.id}>
+                      <td style={{ width: '220px' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                          <span className="topic-cell-title">{dq.unitTitle}</span>
+                          <div style={{ display: 'flex', gap: '6px' }}>
+                            <span className="category-cell-badge">{dq.categoryTitle}</span>
+                            <span className={`difficulty-badge-text ${dq.difficulty.toLowerCase()}`}>
+                              {dq.difficulty}
+                            </span>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div className="q-content-cell">
+                          <span className="q-text-bold">{dq.question}</span>
+                          <div className="q-options-row">
+                            {dq.options.map((opt) => {
+                              const isCorrect = opt === dq.correctAnswer;
+                              return (
+                                <span
+                                  key={opt}
+                                  className={`q-option-pill ${isCorrect ? 'correct' : ''}`}
+                                >
+                                  {opt}
+                                </span>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </td>
+                      <td style={{ width: '120px' }}>
+                        <div className="action-buttons-cell">
+                          <button
+                            className="icon-action-btn edit"
+                            title="Edit Draft"
+                            onClick={() => handleStartQuestionEdit(dq)}
+                          >
+                            ✏️
+                          </button>
+                          <button
+                            className="icon-action-btn"
+                            style={{ color: '#10B981', background: '#ECFDF5', fontSize: '14px', padding: '4px 8px', borderRadius: '6px' }}
+                            title="Approve Draft"
+                            onClick={() => handleApproveDraft(dq)}
+                          >
+                            ✓ Approve
+                          </button>
+                          <button
+                            className="icon-action-btn delete"
+                            title="Discard Draft"
+                            onClick={() => handleDiscardDraft(dq.id)}
+                          >
+                            🗑️
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
       </div>
     );
   };
@@ -934,9 +1345,17 @@ export default function AdminPage() {
     const categoryTopicsList = units.filter(u => u.category === selectedTopicCatId);
 
     const handleDeleteTopic = (unitId) => {
-      if (window.confirm('Are you sure you want to delete this topic and all its questions?')) {
-        dispatch({ type: 'DELETE_TOPIC', unitId });
-      }
+      const topicObj = units.find(u => Number(u.id) === Number(unitId));
+      triggerConfirm({
+        title: 'Delete Topic',
+        message: `Are you sure you want to delete the topic "${topicObj?.title || ''}" and all of its questions? This cannot be undone.`,
+        confirmText: 'Delete Topic',
+        isDanger: true,
+        onConfirm: () => {
+          dispatch({ type: 'DELETE_TOPIC', unitId });
+          showToast('Topic successfully deleted.');
+        }
+      });
     };
 
     return (
@@ -1001,7 +1420,14 @@ export default function AdminPage() {
                         <p>{topic.description}</p>
                       </div>
                     </div>
-                    <div className="topic-card-right">
+                    <div className="topic-card-right" style={{ display: 'flex', gap: '6px' }}>
+                      <button
+                        className="icon-action-btn edit"
+                        onClick={() => handleStartTopicEdit(topic)}
+                        title="Edit Topic"
+                      >
+                        ✏️
+                      </button>
                       <button
                         className="btn-delete-topic"
                         onClick={() => handleDeleteTopic(topic.id)}
@@ -1241,9 +1667,16 @@ export default function AdminPage() {
                           <button
                             className="btn btn-secondary table-action-btn btn-danger-outline"
                             onClick={() => {
-                              if (window.confirm(`Are you sure you want to remove ${u.name}?`)) {
-                                dispatch({ type: 'DELETE_USER', userId: u.uid });
-                              }
+                              triggerConfirm({
+                                title: 'Remove User',
+                                message: `Are you sure you want to remove ${u.name} from the directory? This will permanently delete their account information and learning progress.`,
+                                confirmText: 'Remove User',
+                                isDanger: true,
+                                onConfirm: () => {
+                                  dispatch({ type: 'DELETE_USER', userId: u.uid });
+                                  showToast(`User ${u.name} has been removed.`);
+                                }
+                              });
                             }}
                           >
                             REMOVE
@@ -1446,6 +1879,81 @@ export default function AdminPage() {
               </div>
             </form>
           </div>
+        </div>
+      )}
+
+      {/* MODAL: EDIT TOPIC */}
+      {showEditTopicModal && editingTopicObj && (
+        <div className="admin-modal-overlay">
+          <div className="admin-modal">
+            <h3>Edit Topic</h3>
+            <form onSubmit={handleSaveTopicEdit}>
+              <div className="form-group-cms">
+                <label>TOPIC TITLE *</label>
+                <input
+                  type="text"
+                  value={etTitle}
+                  onChange={(e) => setEtTitle(e.target.value)}
+                  placeholder="e.g. Present Continuous Tense"
+                  required
+                />
+              </div>
+              <div className="form-group-cms">
+                <label>DESCRIPTION</label>
+                <input
+                  type="text"
+                  value={etDesc}
+                  onChange={(e) => setEtDesc(e.target.value)}
+                  placeholder="e.g. Talking about activities happening right now."
+                />
+              </div>
+              <div className="form-actions">
+                <button type="button" className="btn btn-secondary" onClick={() => setShowEditTopicModal(false)}>
+                  CANCEL
+                </button>
+                <button type="submit" className="btn btn-primary">
+                  SAVE TOPIC
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* CONFIRMATION DIALOG OVERLAY */}
+      {confirmModal.isOpen && (
+        <div className="admin-modal-overlay">
+          <div className="admin-modal confirm-modal animate-scale-up">
+            <h3>{confirmModal.title}</h3>
+            <p className="confirm-modal-message" style={{ margin: '12px 0 24px 0', fontSize: '14px', color: 'var(--color-text-light)', lineHeight: '1.5' }}>
+              {confirmModal.message}
+            </p>
+            <div className="form-actions">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => setConfirmModal(prev => ({ ...prev, isOpen: false }))}
+              >
+                {confirmModal.cancelText}
+              </button>
+              <button
+                type="button"
+                className="btn"
+                style={confirmModal.isDanger ? { backgroundColor: '#EF4444', borderColor: '#EF4444', color: '#fff' } : { backgroundColor: 'var(--color-blue-dark)', borderColor: 'var(--color-blue-dark)', color: '#fff' }}
+                onClick={confirmModal.onConfirm}
+              >
+                {confirmModal.confirmText}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* TOAST NOTIFICATION */}
+      {toast.show && (
+        <div className="toast-notification animate-slide-in">
+          <span className="toast-icon">✓</span>
+          <span className="toast-message">{toast.message}</span>
         </div>
       )}
     </div>

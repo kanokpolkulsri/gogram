@@ -1368,3 +1368,161 @@
 .scrollbar::-webkit-scrollbar-thumb:hover {
   background: var(--color-gray-medium);
 }
+
+/* ===== Custom Admin Modals & Dialogs ===== */
+.admin-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: modal-fade-in 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.admin-modal {
+  background-color: var(--color-white);
+  border: 2px solid var(--color-gray);
+  border-radius: 24px;
+  padding: 32px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  animation: modal-slide-up 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-sizing: border-box;
+}
+
+.admin-modal.confirm-modal {
+  max-width: 440px;
+  text-align: center;
+}
+
+.admin-modal h3 {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--color-text);
+  margin: 0;
+  text-align: left;
+}
+
+.admin-modal.confirm-modal h3 {
+  text-align: center;
+}
+
+.confirm-modal-message {
+  font-size: 14px;
+  color: var(--color-text-light);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.admin-modal .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.admin-modal.confirm-modal .form-actions {
+  justify-content: center;
+}
+
+/* Modal Form control buttons */
+.admin-modal .btn {
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.admin-modal .btn-secondary {
+  background-color: var(--color-white);
+  border-color: var(--color-gray);
+  color: var(--color-text);
+}
+
+.admin-modal .btn-secondary:hover {
+  background-color: var(--color-gray-light);
+}
+
+.admin-modal .btn-primary {
+  background-color: var(--color-blue-dark);
+  color: var(--color-white);
+}
+
+.admin-modal .btn-primary:hover {
+  background-color: var(--color-blue);
+}
+
+/* Toast Notification Styling */
+.toast-notification {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  background-color: var(--color-text);
+  color: var(--color-white);
+  padding: 14px 24px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 2000;
+  font-weight: 800;
+  font-size: 14px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+  animation: toast-slide-in 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast-icon {
+  background-color: #10B981;
+  color: var(--color-white);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+/* Animations */
+@keyframes modal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modal-slide-up {
+  from {
+    transform: translateY(20px) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes toast-slide-in {
+  from {
+    transform: translateY(40px) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
