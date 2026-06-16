@@ -86,6 +86,10 @@
   /* Soft purple for ProfileIcon */
 }
 
+#sidebar-admin.active {
+  background: var(--color-blue-bg);
+}
+
 .sidebar-tab svg path,
 .sidebar-tab svg circle,
 .sidebar-tab svg ellipse,
@@ -244,7 +248,8 @@
   #sidebar-categories.active,
   #sidebar-learn.active,
   #sidebar-leaderboards.active,
-  #sidebar-profile.active {
+  #sidebar-profile.active,
+  #sidebar-admin.active {
     background: var(--color-blue-bg) !important;
     color: var(--color-blue-dark) !important;
   }

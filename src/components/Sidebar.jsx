@@ -4,6 +4,7 @@ import {
   LeaderboardIcon,
   ProfileIcon,
   LettersIcon,
+  GearIcon,
 } from './icons';
 import './Sidebar.css';
 
@@ -31,6 +32,12 @@ const sidebarTabs = [
     label: 'Profile',
     path: '/profile',
     Icon: ProfileIcon,
+  },
+  {
+    id: 'admin',
+    label: 'Admin Panel',
+    path: '/admin',
+    Icon: GearIcon,
   },
 ];
 

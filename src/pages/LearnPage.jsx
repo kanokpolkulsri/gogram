@@ -1,6 +1,5 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { units, studyCategories } from '../data/mockData';
 import { useUser, useUserDispatch } from '../data/userStore';
 import { isLessonUnlocked, isLessonCompleted, getNextLesson } from '../data/progressHelpers';
 import LessonNode from '../components/LessonNode';
@@ -14,6 +13,9 @@ export default function LearnPage() {
   const navigate = useNavigate();
   const user = useUser();
   const dispatch = useUserDispatch();
+
+  const studyCategories = user.categories || [];
+  const units = user.units || [];
 
   // Load the active category from the parameter, defaulting to the last studied category (can be null)
   const activeCategoryId = categoryId || user.lastCategoryId;

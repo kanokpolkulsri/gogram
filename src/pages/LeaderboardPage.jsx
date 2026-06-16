@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useUser } from '../data/userStore';
-import { leagueData, studyCategories, units } from '../data/mockData';
+import { leagueData } from '../data/mockData';
 import './LeaderboardPage.css';
 
 function ShieldIcon({ color, letter, isActive, size = 76 }) {
@@ -87,12 +87,15 @@ function ShieldIcon({ color, letter, isActive, size = 76 }) {
 
 export default function LeaderboardPage() {
   const user = useUser();
+  
+  const studyCategories = user.categories || [];
+  const units = user.units || [];
 
   // Load the active category or fallback to the first one
   const initialCategoryId = user.lastCategoryId || 'grammar-foundation';
   const [selectedCategoryId, setSelectedCategoryId] = useState(initialCategoryId);
 
-  const selectedCategory = studyCategories.find((c) => c.id === selectedCategoryId) || studyCategories[0];
+  const selectedCategory = studyCategories.find((c) => c.id === selectedCategoryId) || (studyCategories.length > 0 ? studyCategories[0] : null);
 
   // Helper to calculate or get level for each user
   const getLevel = (uName, isYou) => {

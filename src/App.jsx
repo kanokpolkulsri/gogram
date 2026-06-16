@@ -11,6 +11,7 @@ import ProfilePage from './pages/ProfilePage';
 import QuizPage from './pages/QuizPage';
 import LessonCompletePage from './pages/LessonCompletePage';
 import StreakPage from './pages/StreakPage';
+import AdminPage from './pages/AdminPage';
 
 function DesktopPage({ children, showRightSidebar = true }) {
   return (
@@ -74,6 +75,8 @@ function AppContent() {
             <Route path="/leaderboard" element={<DesktopPage><LeaderboardPage /></DesktopPage>} />
             <Route path="/shop" element={<DesktopPage showRightSidebar={false}><ShopPage /></DesktopPage>} />
             <Route path="/profile" element={<DesktopPage><ProfilePage /></DesktopPage>} />
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/admin/:section" element={<AdminPage />} />
           </>
         )}
 

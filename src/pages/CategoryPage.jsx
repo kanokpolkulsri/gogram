@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../data/userStore';
-import { studyCategories, units } from '../data/mockData';
 import { Category3DIcon, HomeIcon, CategoriesIcon } from '../components/icons';
 import Hearts from '../components/Hearts';
 import './CategoryPage.css';
@@ -8,6 +7,9 @@ import './CategoryPage.css';
 export default function CategoryPage() {
   const navigate = useNavigate();
   const user = useUser();
+  
+  const studyCategories = user.categories || [];
+  const units = user.units || [];
 
   // Determine the last studied category
   const lastCategoryId = user.lastCategoryId;

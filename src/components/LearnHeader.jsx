@@ -1,6 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useUser } from '../data/userStore';
-import { studyCategories, units } from '../data/mockData';
 import { Category3DIcon } from './icons';
 import Hearts from './Hearts';
 import './LearnHeader.css';
@@ -10,9 +9,12 @@ export default function LearnHeader() {
   const navigate = useNavigate();
   const { categoryId } = useParams();
 
+  const studyCategories = user.categories || [];
+  const units = user.units || [];
+
   // Load the active category from the parameter, defaulting to last studied or 'grammar-foundation'
   const activeCategoryId = categoryId || user.lastCategoryId || 'grammar-foundation';
-  const categoryInfo = studyCategories.find((c) => c.id === activeCategoryId) || studyCategories[0];
+  const categoryInfo = studyCategories.find((c) => c.id === activeCategoryId) || (studyCategories.length > 0 ? studyCategories[0] : null);
 
   // Calculate completed units count for this category
   const unitsForCat = units.filter(unit => unit.category === activeCategoryId);

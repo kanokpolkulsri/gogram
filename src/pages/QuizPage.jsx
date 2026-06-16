@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { units, getRandomEncouragement } from '../data/mockData';
+import { getRandomEncouragement } from '../data/mockData';
 import { useUser, useUserDispatch } from '../data/userStore';
 import ProgressBar from '../components/ProgressBar';
 import Hearts from '../components/Hearts';
@@ -11,6 +11,8 @@ export default function QuizPage() {
   const navigate = useNavigate();
   const user = useUser();
   const dispatch = useUserDispatch();
+
+  const units = user.units || [];
 
   // Find the right unit and level
   const unit = units.find((u) => u.id === parseInt(unitId));
