@@ -1296,9 +1296,6 @@ export default function AdminPage() {
                   <tr key={fb.id}>
                     <td>
                       <div className="table-user-cell">
-                        <div className="user-cell-avatar" style={{ background: '#FCE7F3', color: '#DB2777' }}>
-                          {fb.userName[0].toUpperCase()}
-                        </div>
                         <div className="user-cell-info">
                           <span className="user-cell-name">{fb.userName}</span>
                           <span className="user-cell-email">{fb.userEmail}</span>
@@ -1612,9 +1609,6 @@ export default function AdminPage() {
                     <tr key={u.uid} style={{ opacity: isBlocked ? 0.6 : 1 }}>
                       <td>
                         <div className="table-user-cell">
-                          <div className="user-cell-avatar" style={{ background: '#E0E7FF', color: '#4F46E5' }}>
-                            {initials}
-                          </div>
                           <div className="user-cell-info">
                             <span className="user-cell-name">{u.name}</span>
                             <span className="user-cell-email">{u.email}</span>
