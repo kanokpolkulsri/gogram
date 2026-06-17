@@ -162,7 +162,7 @@
   font-size: 14px;
   color: var(--color-text-light);
   margin: 0;
-  margin-top: -12px;
+  margin-top: 4px;
   text-align: left;
 }
 
@@ -690,6 +690,29 @@
   padding: 30px;
   color: var(--color-text-light);
   font-size: 14px;
+}
+
+.table-user-cell {
+  display: flex;
+  align-items: center;
+}
+
+.user-cell-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.user-cell-name {
+  font-weight: 800;
+  color: var(--color-text);
+  font-size: 14px;
+}
+
+.user-cell-email {
+  font-size: 11px;
+  color: var(--color-text-light);
 }
 
 /* ===== Search Content Sub-Page ===== */
@@ -1339,12 +1362,6 @@
   cursor: pointer;
 }
 
-/* User identity in tables */
-.user-cell-id {
-  font-size: 10px;
-  color: var(--color-gray-medium);
-  font-family: monospace;
-}
 
 /* Feedbacks star style */
 .stars-container {

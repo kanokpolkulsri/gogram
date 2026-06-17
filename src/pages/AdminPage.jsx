@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useUser, useUserDispatch } from '../data/userStore';
 import {
@@ -30,7 +30,7 @@ export default function AdminPage() {
   // Parse deep-link parameter or default to 'dashboard'
   const getActiveSection = () => {
     const path = location.pathname;
-    if (path.includes('/admin/progress')) return 'progress';
+    if (path.includes('/admin/progress')) return 'users';
     if (path.includes('/admin/search')) return 'search';
     if (path.includes('/admin/generate')) return 'generate';
     if (path.includes('/admin/feedback')) return 'feedback';
@@ -54,14 +54,14 @@ export default function AdminPage() {
   // ==========================================
 
   // 1. User Progress States
-  const [selectedUserId, setSelectedUserId] = useState(mockUsers[0]?.uid || 'admin-1');
-  const [progressSearchTerm, setProgressSearchTerm] = useState('');
+  const [expandedUserIds, setExpandedUserIds] = useState([]);
 
   // 2. Search Content States
   const [searchQuestionQuery, setSearchQuestionQuery] = useState('');
   const [searchCategoryFilter, setSearchCategoryFilter] = useState('all');
   const [searchTopicFilter, setSearchTopicFilter] = useState('all');
   const [searchDifficultyFilter, setSearchDifficultyFilter] = useState('all');
+  const [searchCurrentPage, setSearchCurrentPage] = useState(1);
   const [selectedQuestions, setSelectedQuestions] = useState([]);
   const [showEditQuestionModal, setShowEditQuestionModal] = useState(false);
   const [editingQuestionObj, setEditingQuestionObj] = useState(null);
@@ -559,8 +559,6 @@ export default function AdminPage() {
     switch (activeSection) {
       case 'dashboard':
         return renderDashboardHome();
-      case 'progress':
-        return renderUserProgress();
       case 'search':
         return renderSearchContent();
       case 'generate':
@@ -665,158 +663,9 @@ export default function AdminPage() {
     );
   };
 
-  // 2. Sub-page: User Progress (Screenshot #1)
-  const renderUserProgress = () => {
-    // Filter learners list
-    const filteredLearners = mockUsers.filter(u =>
-      u.name.toLowerCase().includes(progressSearchTerm.toLowerCase()) ||
-      u.email.toLowerCase().includes(progressSearchTerm.toLowerCase())
-    );
 
-    const selectedUser = mockUsers.find(u => u.uid === selectedUserId) || mockUsers[0];
 
-    return (
-      <div className="cms-page-content animate-fade-in">
-        <h2 className="cms-section-title">User Progress</h2>
-        <p className="cms-section-subtitle">Monitor learning activities and track student performance.</p>
-
-        <div className="cms-split-layout">
-          {/* Left panel: Learners List */}
-          <div className="cms-left-panel">
-            <div className="panel-search">
-              <input
-                type="text"
-                placeholder="Search users..."
-                value={progressSearchTerm}
-                onChange={(e) => setProgressSearchTerm(e.target.value)}
-              />
-            </div>
-            <div className="learners-list-header">
-              <span>LEARNERS</span>
-              <span>🔍</span>
-            </div>
-            <div className="learners-list scrollbar">
-              {filteredLearners.map((learner) => {
-                const isSelected = learner.uid === selectedUserId;
-                const initials = learner.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
-                return (
-                  <div
-                    key={learner.uid}
-                    className={`learner-item-card ${isSelected ? 'active' : ''}`}
-                    onClick={() => setSelectedUserId(learner.uid)}
-                  >
-                    <div className="learner-avatar-circle">
-                      {initials}
-                    </div>
-                    <div className="learner-details">
-                      <span className="learner-name">{learner.name}</span>
-                      <span className="learner-email">{learner.email}</span>
-                    </div>
-                    <span className="arrow-icon">›</span>
-                  </div>
-                );
-              })}
-              {filteredLearners.length === 0 && (
-                <div className="no-data">No users match search criteria.</div>
-              )}
-            </div>
-          </div>
-
-          {/* Right panel: User details Progress */}
-          <div className="cms-right-panel">
-            {selectedUser ? (
-              <div className="learner-details-card">
-                <div className="learner-details-header">
-                  <div className="learner-identity">
-                    <div className="large-avatar-circle">
-                      {selectedUser.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()}
-                    </div>
-                    <div className="identity-text">
-                      <h3>{selectedUser.name}</h3>
-                      <p className="joined-date">Joined {new Date(selectedUser.joined).toLocaleDateString()}</p>
-                      <span className={`tier-badge ${selectedUser.authLevel}`}>
-                        {selectedUser.authLevel.toUpperCase()}
-                      </span>
-                    </div>
-                  </div>
-                  <button
-                    className="btn-reset-progress"
-                    onClick={() => {
-                      triggerConfirm({
-                        title: 'Reset User Progress',
-                        message: `Are you sure you want to reset all learning progress for ${selectedUser.name}? This will wipe their category scores and completed lesson keys.`,
-                        confirmText: 'Reset Progress',
-                        isDanger: true,
-                        onConfirm: () => {
-                          categories.forEach(c => {
-                            dispatch({
-                              type: 'RESET_USER_PROGRESS_IN_CATEGORY',
-                              userId: selectedUser.uid,
-                              categoryId: c.id,
-                              isCurrentUser: selectedUser.uid === 'admin-1'
-                            });
-                          });
-                          showToast(`Learning progress has been reset for ${selectedUser.name}.`);
-                        }
-                      });
-                    }}
-                  >
-                    🔄 RESET PROGRESS
-                  </button>
-                </div>
-
-                <div className="topic-breakdown-section">
-                  <h4 className="breakdown-title">TOPIC BREAKDOWN</h4>
-                  <div className="breakdown-list">
-                    {categories.map((cat) => {
-                      // Total questions count for this category
-                      const totalQsInCat = units
-                        .filter(u => u.category === cat.id)
-                        .reduce((sum, u) => sum + u.levels.reduce((ls, l) => ls + (l.questions?.length || 0), 0), 0);
-
-                      // Topics (units) count for this category
-                      const topicsCount = units.filter(u => u.category === cat.id).length;
-
-                      // Completed questions count
-                      let completedCount = selectedUser.progress?.[cat.id] || 0;
-
-                      // Sync admin user progress with actual completion array
-                      if (selectedUser.uid === 'admin-1') {
-                        const catUnits = units.filter(un => un.category === cat.id);
-                        completedCount = catUnits.reduce((sum, un) => {
-                          return sum + un.levels.filter(l => user.completedLessons.includes(`${un.id}-${l.id}`)).length;
-                        }, 0);
-                      }
-
-                      return (
-                        <div key={cat.id} className="breakdown-item">
-                          <div className="item-left">
-                            <span className="toggle-bullet">›</span>
-                            <span className="item-label">{cat.title}</span>
-                          </div>
-                          <div className="item-right">
-                            <span className="item-ratio">{completedCount} / {totalQsInCat}</span>
-                            <span className="item-separator">|</span>
-                            <span className="item-topics-count">{topicsCount} Topics</span>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className="no-selection-prompt">
-                Select a user from the learners list to see progress breakdown.
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  // 3. Sub-page: Search Content (Screenshot #5)
+  // 3. Sub-page: Search Content
   const renderSearchContent = () => {
     // Filter questions list
     const filteredQuestions = allQuestions.filter(q => {
@@ -827,13 +676,24 @@ export default function AdminPage() {
       return matchQuery && matchCategory && matchTopic && matchDifficulty;
     });
 
-    const isAllSelected = filteredQuestions.length > 0 && selectedQuestions.length === filteredQuestions.length;
+    // Pagination configurations
+    const itemsPerPage = 30;
+    const totalPages = Math.ceil(filteredQuestions.length / itemsPerPage);
+    const activePage = Math.min(searchCurrentPage, totalPages || 1);
+    const startIndex = (activePage - 1) * itemsPerPage;
+    const paginatedQuestions = filteredQuestions.slice(startIndex, startIndex + itemsPerPage);
+
+    // Bounded selection on current page
+    const isAllSelected = paginatedQuestions.length > 0 && paginatedQuestions.every(q => selectedQuestions.includes(q.id));
 
     const handleSelectAll = () => {
       if (isAllSelected) {
-        setSelectedQuestions([]);
+        setSelectedQuestions(prev => prev.filter(id => !paginatedQuestions.some(pq => pq.id === id)));
       } else {
-        setSelectedQuestions(filteredQuestions.map(q => q.id));
+        setSelectedQuestions(prev => {
+          const union = new Set([...prev, ...paginatedQuestions.map(pq => pq.id)]);
+          return Array.from(union);
+        });
       }
     };
 
@@ -865,7 +725,10 @@ export default function AdminPage() {
               type="text"
               placeholder="Search by question text..."
               value={searchQuestionQuery}
-              onChange={(e) => setSearchQuestionQuery(e.target.value)}
+              onChange={(e) => {
+                setSearchQuestionQuery(e.target.value);
+                setSearchCurrentPage(1);
+              }}
             />
           </div>
 
@@ -875,6 +738,7 @@ export default function AdminPage() {
               onChange={(e) => {
                 setSearchCategoryFilter(e.target.value);
                 setSearchTopicFilter('all'); // reset topic
+                setSearchCurrentPage(1);
               }}
             >
               <option value="all">All Categories</option>
@@ -883,7 +747,10 @@ export default function AdminPage() {
 
             <select
               value={searchTopicFilter}
-              onChange={(e) => setSearchTopicFilter(e.target.value)}
+              onChange={(e) => {
+                setSearchTopicFilter(e.target.value);
+                setSearchCurrentPage(1);
+              }}
             >
               <option value="all">All Topics</option>
               {units
@@ -894,7 +761,10 @@ export default function AdminPage() {
 
             <select
               value={searchDifficultyFilter}
-              onChange={(e) => setSearchDifficultyFilter(e.target.value)}
+              onChange={(e) => {
+                setSearchDifficultyFilter(e.target.value);
+                setSearchCurrentPage(1);
+              }}
             >
               <option value="all">All Difficulties</option>
               <option value="easy">Easy</option>
@@ -925,7 +795,7 @@ export default function AdminPage() {
                 </tr>
               </thead>
               <tbody>
-                {filteredQuestions.map((q) => {
+                {paginatedQuestions.map((q) => {
                   const isSelected = selectedQuestions.includes(q.id);
                   return (
                     <tr key={q.id} className={isSelected ? 'selected-row' : ''}>
@@ -986,6 +856,55 @@ export default function AdminPage() {
               </tbody>
             </table>
           </div>
+
+          {/* Pagination Controls */}
+          {totalPages > 1 && (
+            <div className="pagination-bar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '20px', borderTop: '1.5px solid var(--color-gray)', paddingTop: '16px' }}>
+              <span style={{ fontSize: '13px', color: 'var(--color-text-light)', fontWeight: 600 }}>
+                Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredQuestions.length)} of {filteredQuestions.length} questions
+              </span>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <button
+                  className="btn btn-secondary"
+                  style={{ padding: '6px 12px', fontSize: '13px', borderRadius: '8px', cursor: 'pointer' }}
+                  disabled={activePage === 1}
+                  onClick={() => setSearchCurrentPage(p => Math.max(1, p - 1))}
+                >
+                  ◀ Prev
+                </button>
+                <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
+                  {Array.from({ length: totalPages }).map((_, i) => {
+                     const pageNum = i + 1;
+                     const isCurrent = pageNum === activePage;
+                     if (totalPages > 6 && Math.abs(pageNum - activePage) > 2 && pageNum !== 1 && pageNum !== totalPages) {
+                       if (pageNum === 2 || pageNum === totalPages - 1) {
+                         return <span key={pageNum} style={{ color: 'var(--color-text-light)', padding: '0 4px' }}>...</span>;
+                       }
+                       return null;
+                     }
+                     return (
+                       <button
+                         key={pageNum}
+                         className={`btn ${isCurrent ? 'btn-primary' : 'btn-secondary'}`}
+                         style={{ padding: '6px 12px', fontSize: '13px', borderRadius: '8px', minWidth: '32px', cursor: 'pointer', backgroundColor: isCurrent ? 'var(--color-blue-dark)' : 'transparent', color: isCurrent ? '#fff' : 'var(--color-text)', borderColor: 'var(--color-gray)' }}
+                         onClick={() => setSearchCurrentPage(pageNum)}
+                       >
+                         {pageNum}
+                       </button>
+                     );
+                  })}
+                </div>
+                <button
+                  className="btn btn-secondary"
+                  style={{ padding: '6px 12px', fontSize: '13px', borderRadius: '8px', cursor: 'pointer' }}
+                  disabled={activePage === totalPages}
+                  onClick={() => setSearchCurrentPage(p => Math.min(totalPages, p + 1))}
+                >
+                  Next ▶
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     );
@@ -1555,6 +1474,14 @@ export default function AdminPage() {
       return matchSearch && matchRole && matchStatus;
     });
 
+    const toggleUserExpanded = (userId) => {
+      if (expandedUserIds.includes(userId)) {
+        setExpandedUserIds(expandedUserIds.filter(id => id !== userId));
+      } else {
+        setExpandedUserIds([...expandedUserIds, userId]);
+      }
+    };
+
     return (
       <div className="cms-page-content animate-fade-in">
         <h2 className="cms-section-title">User Management</h2>
@@ -1596,7 +1523,6 @@ export default function AdminPage() {
                 <tr>
                   <th>USER INFO</th>
                   <th>ROLE</th>
-                  <th>PRO STATUS</th>
                   <th>JOINED</th>
                   <th>ACTIONS</th>
                 </tr>
@@ -1604,80 +1530,205 @@ export default function AdminPage() {
               <tbody>
                 {filteredUsers.map((u) => {
                   const isBlocked = u.status === 'blocked';
-                  const initials = u.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+                  const isExpanded = expandedUserIds.includes(u.uid);
                   return (
-                    <tr key={u.uid} style={{ opacity: isBlocked ? 0.6 : 1 }}>
-                      <td>
-                        <div className="table-user-cell">
-                          <div className="user-cell-info">
-                            <span className="user-cell-name">{u.name}</span>
-                            <span className="user-cell-email">{u.email}</span>
-                            <span className="user-cell-id">ID: {u.uid}</span>
+                    <Fragment key={u.uid}>
+                      <tr style={{ opacity: isBlocked ? 0.6 : 1 }}>
+                        <td>
+                          <div className="table-user-cell">
+                            <div className="user-cell-info">
+                              <span 
+                                className="user-cell-name clickable-name"
+                                onClick={() => toggleUserExpanded(u.uid)}
+                                style={{ 
+                                  cursor: 'pointer', 
+                                  color: 'var(--color-blue-dark)', 
+                                  textDecoration: 'underline',
+                                  display: 'inline-flex',
+                                  alignItems: 'center',
+                                  gap: '6px'
+                                }}
+                                title="Click to view/hide progress breakdown"
+                              >
+                                {u.name} <span style={{ fontSize: '10px' }}>{isExpanded ? '▲' : '▼'}</span>
+                              </span>
+                              <span className="user-cell-email">{u.email}</span>
+                            </div>
                           </div>
-                        </div>
-                      </td>
-                      <td>
-                        <span className={`role-badge-text ${u.authLevel}`}>
-                          {u.authLevel === 'free' ? 'USER' : u.authLevel.toUpperCase()}
-                        </span>
-                      </td>
-                      <td>
-                        <div className="pro-status-cell">
-                          {u.authLevel === 'subscribed' || u.authLevel === 'admin' ? (
-                            <span className="pro-premium"><span className="check-icon">✓</span> Premium</span>
-                          ) : (
-                            <span className="pro-free"><span className="cancel-icon">✗</span> Free Tier</span>
-                          )}
-                        </div>
-                      </td>
-                      <td>
-                        <span className="joined-date-cell">
-                          {new Date(u.joined).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'numeric',
-                            day: 'numeric'
-                          })}
-                        </span>
-                      </td>
-                      <td>
-                        <div className="action-buttons-cell">
-                          <select
-                            className="role-dropdown-cms"
-                            value={u.authLevel}
-                            onChange={(e) => dispatch({ type: 'UPDATE_USER_ROLE', userId: u.uid, role: e.target.value })}
-                          >
-                            <option value="free">Make Free</option>
-                            <option value="subscribed">Make Premium</option>
-                            <option value="admin">Make Admin</option>
-                          </select>
+                        </td>
+                        <td>
+                          <span className={`role-badge-text ${u.authLevel}`}>
+                            {u.authLevel === 'free' ? 'USER' : u.authLevel.toUpperCase()}
+                          </span>
+                        </td>
 
-                          <button
-                            className="btn btn-secondary table-action-btn"
-                            onClick={() => dispatch({ type: 'BLOCK_USER', userId: u.uid })}
-                          >
-                            {isBlocked ? 'UNBLOCK' : 'BLOCK'}
-                          </button>
+                        <td>
+                          <span className="joined-date-cell">
+                            {new Date(u.joined).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'numeric',
+                              day: 'numeric'
+                            })}
+                          </span>
+                        </td>
+                        <td>
+                          <div className="action-buttons-cell" style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                            <select
+                              className="role-dropdown-cms"
+                              value={u.authLevel}
+                              onChange={(e) => dispatch({ type: 'UPDATE_USER_ROLE', userId: u.uid, role: e.target.value })}
+                              style={{ padding: '6px 10px', borderRadius: '8px', border: '1.5px solid var(--color-gray)', fontSize: '13px' }}
+                            >
+                              <option value="free">Free</option>
+                              <option value="subscribed">Premium</option>
+                              <option value="admin">Admin</option>
+                            </select>
 
-                          <button
-                            className="btn btn-secondary table-action-btn btn-danger-outline"
-                            onClick={() => {
-                              triggerConfirm({
-                                title: 'Remove User',
-                                message: `Are you sure you want to remove ${u.name} from the directory? This will permanently delete their account information and learning progress.`,
-                                confirmText: 'Remove User',
-                                isDanger: true,
-                                onConfirm: () => {
-                                  dispatch({ type: 'DELETE_USER', userId: u.uid });
-                                  showToast(`User ${u.name} has been removed.`);
-                                }
-                              });
-                            }}
-                          >
-                            REMOVE
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
+                            <button
+                              className="icon-action-btn"
+                              style={{
+                                fontSize: '16px',
+                                padding: '6px',
+                                borderRadius: '6px',
+                                border: '1.5px solid var(--color-gray)',
+                                background: isBlocked ? '#ECFDF5' : '#FEF2F2',
+                                borderColor: isBlocked ? '#10B981' : '#EF4444',
+                                color: isBlocked ? '#10B981' : '#EF4444',
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                              }}
+                              onClick={() => dispatch({ type: 'BLOCK_USER', userId: u.uid })}
+                              title={isBlocked ? 'Unblock User' : 'Block User'}
+                            >
+                              {isBlocked ? '🔓' : '🚫'}
+                            </button>
+
+                            <button
+                              className="icon-action-btn delete"
+                              style={{
+                                fontSize: '16px',
+                                padding: '6px',
+                                borderRadius: '6px',
+                                border: '1.5px solid var(--color-gray)',
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                              }}
+                              onClick={() => {
+                                triggerConfirm({
+                                  title: 'Remove User',
+                                  message: `Are you sure you want to remove ${u.name} from the directory? This will permanently delete their account information and learning progress.`,
+                                  confirmText: 'Remove User',
+                                  isDanger: true,
+                                  onConfirm: () => {
+                                    dispatch({ type: 'DELETE_USER', userId: u.uid });
+                                    showToast(`User ${u.name} has been removed.`);
+                                  }
+                                });
+                              }}
+                              title="Remove User"
+                            >
+                              🗑️
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      {isExpanded && (
+                        <tr className="expanded-progress-row">
+                          <td colSpan="4" style={{ padding: '20px 24px', backgroundColor: '#F9FAFB', borderBottom: '1.5px solid var(--color-gray)' }}>
+                            <div className="expanded-progress-container">
+                              <h4 style={{ margin: '0 0 16px 0', fontSize: '13px', fontWeight: 800, color: 'var(--color-text-light)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                📈 Category Progress for {u.name}
+                              </h4>
+                              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
+                                {categories.map(cat => {
+                                  const catUnits = units.filter(un => un.category === cat.id);
+                                  const totalNodes = catUnits.reduce((sum, un) => sum + un.levels.length, 0);
+
+                                  let completedCount = u.progress?.[cat.id] || 0;
+                                  if (u.uid === 'admin-1') {
+                                    completedCount = catUnits.reduce((sum, un) => {
+                                      return sum + un.levels.filter(l => user.completedLessons.includes(`${un.id}-${l.id}`)).length;
+                                    }, 0);
+                                  }
+
+                                  const computedLevel = Math.floor(completedCount / 5) + 1;
+
+                                  return (
+                                    <div 
+                                      key={cat.id} 
+                                      style={{
+                                        padding: '16px',
+                                        border: '2px solid var(--color-gray)',
+                                        borderRadius: '16px',
+                                        backgroundColor: 'var(--color-white)',
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                        alignItems: 'center',
+                                        boxShadow: 'var(--shadow-card)'
+                                      }}
+                                    >
+                                      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', alignItems: 'flex-start' }}>
+                                        <span style={{ fontSize: '13px', fontWeight: 800 }}>{cat.title}</span>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                          <span style={{ fontSize: '12px', fontWeight: 800, color: 'var(--color-blue-dark)', backgroundColor: 'var(--color-blue-bg)', padding: '2px 8px', borderRadius: '6px' }}>
+                                            LV {computedLevel}
+                                          </span>
+                                          <span style={{ fontSize: '12px', color: 'var(--color-text-light)', fontWeight: 600 }}>
+                                            {completedCount} / {totalNodes} nodes
+                                          </span>
+                                        </div>
+                                      </div>
+                                      {completedCount > 0 && (
+                                        <button
+                                          className="icon-action-btn"
+                                          style={{
+                                            fontSize: '12px',
+                                            padding: '6px 8px',
+                                            borderRadius: '8px',
+                                            cursor: 'pointer',
+                                            background: '#FEF3C7',
+                                            border: '1.5px solid #F59E0B',
+                                            color: '#B45309',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            transition: 'background 0.2s'
+                                          }}
+                                          title={`Reset ${cat.title} progress`}
+                                          onClick={() => {
+                                            triggerConfirm({
+                                              title: 'Reset Category Progress',
+                                              message: `Are you sure you want to reset progress in "${cat.title}" for ${u.name}? This will wipe their category scores and completed lesson keys for this category.`,
+                                              confirmText: 'Reset Progress',
+                                              isDanger: true,
+                                              onConfirm: () => {
+                                                dispatch({
+                                                  type: 'RESET_USER_PROGRESS_IN_CATEGORY',
+                                                  userId: u.uid,
+                                                  categoryId: cat.id,
+                                                  isCurrentUser: u.uid === 'admin-1'
+                                                });
+                                                showToast(`Progress reset for ${u.name} in ${cat.title}.`);
+                                              }
+                                            });
+                                          }}
+                                        >
+                                          🔄
+                                        </button>
+                                      )}
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      )}
+                    </Fragment>
                   );
                 })}
                 {filteredUsers.length === 0 && (
@@ -1692,6 +1743,7 @@ export default function AdminPage() {
       </div>
     );
   };
+
 
   return (
     <div className="admin-cms-container">
@@ -1729,16 +1781,7 @@ export default function AdminPage() {
             <span className="nav-item-label" id="admin-cms-nav-label-dashboard">Dashboard</span>
           </button>
 
-          <button
-            id="admin-cms-nav-item-progress"
-            className={`admin-cms-nav-item admin-cms-nav-item-progress ${activeSection === 'progress' ? 'active' : ''}`}
-            onClick={() => handleNavigateSection('progress')}
-          >
-            <span className="nav-item-icon" id="admin-cms-nav-icon-progress">
-              <LeaderboardIcon active={activeSection === 'progress'} size={22} />
-            </span>
-            <span className="nav-item-label" id="admin-cms-nav-label-progress">User Progress</span>
-          </button>
+
 
           <button
             id="admin-cms-nav-item-search"
