@@ -24,7 +24,6 @@ export default function AdminPage() {
   const categories = user.categories || [];
   const units = user.units || [];
   const mockUsers = user.mockUsers || [];
-  const feedbacks = user.feedbacks || [];
   const auditLogs = user.auditLogs || [];
 
   // Parse deep-link parameter or default to 'dashboard'
@@ -33,7 +32,6 @@ export default function AdminPage() {
     if (path.includes('/admin/progress')) return 'users';
     if (path.includes('/admin/search')) return 'search';
     if (path.includes('/admin/generate')) return 'generate';
-    if (path.includes('/admin/feedback')) return 'feedback';
     if (path.includes('/admin/topics')) return 'topics';
     if (path.includes('/admin/users')) return 'users';
     return 'dashboard';
@@ -563,8 +561,6 @@ export default function AdminPage() {
         return renderSearchContent();
       case 'generate':
         return renderAiDraftGen();
-      case 'feedback':
-        return renderUserFeedback();
       case 'topics':
         return renderTopicManagement();
       case 'users':
@@ -612,15 +608,6 @@ export default function AdminPage() {
               <span className="kpi-label">Active Questions</span>
               <span className="kpi-value">{totalQs}</span>
               <span className="kpi-trend">Live across categories</span>
-            </div>
-          </div>
-
-          <div className="kpi-card">
-            <div className="kpi-icon-wrapper" style={{ background: '#FDF2F8', color: '#EC4899' }}>⭐</div>
-            <div className="kpi-details">
-              <span className="kpi-label">User Feedbacks</span>
-              <span className="kpi-value">{feedbacks.length} items</span>
-              <span className="kpi-trend">Avg Rating: 4.0 / 5.0</span>
             </div>
           </div>
         </div>
@@ -1190,71 +1177,6 @@ export default function AdminPage() {
     );
   };
 
-  // 5. Sub-page: User Feedback
-  const renderUserFeedback = () => {
-    return (
-      <div className="cms-page-content animate-fade-in">
-        <h2 className="cms-section-title">User Feedback</h2>
-        <p className="cms-section-subtitle">Review learner comments, rating stars, and report tickets.</p>
-
-        <div className="cms-card">
-          <div className="cms-table-wrapper scrollbar">
-            <table className="cms-table">
-              <thead>
-                <tr>
-                  <th>User</th>
-                  <th>Topic Context</th>
-                  <th>Rating</th>
-                  <th>Review Comments</th>
-                  <th>Date</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {feedbacks.map((fb) => (
-                  <tr key={fb.id}>
-                    <td>
-                      <div className="table-user-cell">
-                        <div className="user-cell-info">
-                          <span className="user-cell-name">{fb.userName}</span>
-                          <span className="user-cell-email">{fb.userEmail}</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td><strong>{fb.topic}</strong></td>
-                    <td>
-                      <span className="stars-container" style={{ color: '#F59E0B' }}>
-                        {'★'.repeat(fb.rating)}{'☆'.repeat(5 - fb.rating)}
-                      </span>
-                    </td>
-                    <td>{fb.comment}</td>
-                    <td>{new Date(fb.date).toLocaleDateString()}</td>
-                    <td>
-                      <button
-                        className="btn btn-secondary table-action-btn"
-                        onClick={() => {
-                          dispatch({ type: 'RESOLVE_FEEDBACK', feedbackId: fb.id });
-                          alert('Feedback successfully resolved.');
-                        }}
-                      >
-                        RESOLVED
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-                {feedbacks.length === 0 && (
-                  <tr>
-                    <td colSpan="6" className="no-data">No pending feedback tickets. All resolved!</td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   // 6. Sub-page: Topic Management (Screenshot #4)
   const renderTopicManagement = () => {
     const selectedCategoryObj = categories.find(c => c.id === selectedTopicCatId);
@@ -1479,6 +1401,12 @@ export default function AdminPage() {
         setExpandedUserIds(expandedUserIds.filter(id => id !== userId));
       } else {
         setExpandedUserIds([...expandedUserIds, userId]);
+        setTimeout(() => {
+          const element = document.getElementById(`user-progress-${userId}`);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 100);
       }
     };
 
@@ -1516,7 +1444,7 @@ export default function AdminPage() {
         </div>
 
         {/* Users Table */}
-        <div className="cms-card">
+        <div className="cms-card table-card">
           <div className="cms-table-wrapper scrollbar">
             <table className="cms-table text-left">
               <thead>
@@ -1524,6 +1452,7 @@ export default function AdminPage() {
                   <th>USER INFO</th>
                   <th>ROLE</th>
                   <th>JOINED</th>
+                  <th>PROGRESS</th>
                   <th>ACTIONS</th>
                 </tr>
               </thead>
@@ -1533,32 +1462,24 @@ export default function AdminPage() {
                   const isExpanded = expandedUserIds.includes(u.uid);
                   return (
                     <Fragment key={u.uid}>
-                      <tr style={{ opacity: isBlocked ? 0.6 : 1 }}>
+                      <tr className={isBlocked ? 'blocked-user-row' : ''}>
                         <td>
                           <div className="table-user-cell">
                             <div className="user-cell-info">
                               <span 
                                 className="user-cell-name clickable-name"
                                 onClick={() => toggleUserExpanded(u.uid)}
-                                style={{ 
-                                  cursor: 'pointer', 
-                                  color: 'var(--color-blue-dark)', 
-                                  textDecoration: 'underline',
-                                  display: 'inline-flex',
-                                  alignItems: 'center',
-                                  gap: '6px'
-                                }}
                                 title="Click to view/hide progress breakdown"
                               >
-                                {u.name} <span style={{ fontSize: '10px' }}>{isExpanded ? '▲' : '▼'}</span>
+                                <span className="user-name-text">{u.name}</span>
                               </span>
                               <span className="user-cell-email">{u.email}</span>
                             </div>
                           </div>
                         </td>
                         <td>
-                          <span className={`role-badge-text ${u.authLevel}`}>
-                            {u.authLevel === 'free' ? 'USER' : u.authLevel.toUpperCase()}
+                          <span className={`role-badge-text ${isBlocked ? 'blocked' : u.authLevel}`}>
+                            {isBlocked ? 'BLOCKED' : (u.authLevel === 'free' ? 'USER' : u.authLevel === 'subscribed' ? 'PREMIUM' : 'ADMIN')}
                           </span>
                         </td>
 
@@ -1572,51 +1493,48 @@ export default function AdminPage() {
                           </span>
                         </td>
                         <td>
-                          <div className="action-buttons-cell" style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                          <button
+                            className="icon-action-btn view-progress-btn"
+                            onClick={() => toggleUserExpanded(u.uid)}
+                            title="View category progress breakdown"
+                            style={{
+                              color: isExpanded ? 'var(--color-blue-dark)' : 'var(--color-text-light)',
+                              borderColor: isExpanded ? 'var(--color-blue-dark)' : 'var(--color-gray)'
+                            }}
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-eye">
+                              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                              <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                          </button>
+                        </td>
+                        <td>
+                          <div className="action-buttons-cell">
                             <select
                               className="role-dropdown-cms"
-                              value={u.authLevel}
-                              onChange={(e) => dispatch({ type: 'UPDATE_USER_ROLE', userId: u.uid, role: e.target.value })}
-                              style={{ padding: '6px 10px', borderRadius: '8px', border: '1.5px solid var(--color-gray)', fontSize: '13px' }}
+                              value={isBlocked ? 'blocked' : u.authLevel}
+                              onChange={(e) => {
+                                const val = e.target.value;
+                                if (val === 'blocked') {
+                                  if (!isBlocked) {
+                                    dispatch({ type: 'BLOCK_USER', userId: u.uid });
+                                  }
+                                } else {
+                                  if (isBlocked) {
+                                    dispatch({ type: 'BLOCK_USER', userId: u.uid });
+                                  }
+                                  dispatch({ type: 'UPDATE_USER_ROLE', userId: u.uid, role: val });
+                                }
+                              }}
                             >
-                              <option value="free">Free</option>
+                              <option value="free">User</option>
                               <option value="subscribed">Premium</option>
                               <option value="admin">Admin</option>
+                              <option value="blocked">Blocked</option>
                             </select>
 
                             <button
-                              className="icon-action-btn"
-                              style={{
-                                fontSize: '16px',
-                                padding: '6px',
-                                borderRadius: '6px',
-                                border: '1.5px solid var(--color-gray)',
-                                background: isBlocked ? '#ECFDF5' : '#FEF2F2',
-                                borderColor: isBlocked ? '#10B981' : '#EF4444',
-                                color: isBlocked ? '#10B981' : '#EF4444',
-                                cursor: 'pointer',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                              }}
-                              onClick={() => dispatch({ type: 'BLOCK_USER', userId: u.uid })}
-                              title={isBlocked ? 'Unblock User' : 'Block User'}
-                            >
-                              {isBlocked ? '🔓' : '🚫'}
-                            </button>
-
-                            <button
-                              className="icon-action-btn delete"
-                              style={{
-                                fontSize: '16px',
-                                padding: '6px',
-                                borderRadius: '6px',
-                                border: '1.5px solid var(--color-gray)',
-                                cursor: 'pointer',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                              }}
+                              className="icon-action-btn delete-btn"
                               onClick={() => {
                                 triggerConfirm({
                                   title: 'Remove User',
@@ -1638,12 +1556,12 @@ export default function AdminPage() {
                       </tr>
                       {isExpanded && (
                         <tr className="expanded-progress-row">
-                          <td colSpan="4" style={{ padding: '20px 24px', backgroundColor: '#F9FAFB', borderBottom: '1.5px solid var(--color-gray)' }}>
-                            <div className="expanded-progress-container">
-                              <h4 style={{ margin: '0 0 16px 0', fontSize: '13px', fontWeight: 800, color: 'var(--color-text-light)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                          <td colSpan="5">
+                            <div className="expanded-progress-container" id={`user-progress-${u.uid}`}>
+                              <h4 className="expanded-progress-title">
                                 📈 Category Progress for {u.name}
                               </h4>
-                              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
+                              <div className="expanded-progress-grid">
                                 {categories.map(cat => {
                                   const catUnits = units.filter(un => un.category === cat.id);
                                   const totalNodes = catUnits.reduce((sum, un) => sum + un.levels.length, 0);
@@ -1658,46 +1576,21 @@ export default function AdminPage() {
                                   const computedLevel = Math.floor(completedCount / 5) + 1;
 
                                   return (
-                                    <div 
-                                      key={cat.id} 
-                                      style={{
-                                        padding: '16px',
-                                        border: '2px solid var(--color-gray)',
-                                        borderRadius: '16px',
-                                        backgroundColor: 'var(--color-white)',
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
-                                        alignItems: 'center',
-                                        boxShadow: 'var(--shadow-card)'
-                                      }}
-                                    >
-                                      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', alignItems: 'flex-start' }}>
-                                        <span style={{ fontSize: '13px', fontWeight: 800 }}>{cat.title}</span>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                          <span style={{ fontSize: '12px', fontWeight: 800, color: 'var(--color-blue-dark)', backgroundColor: 'var(--color-blue-bg)', padding: '2px 8px', borderRadius: '6px' }}>
+                                    <div key={cat.id} className="progress-category-card">
+                                      <div className="progress-category-info">
+                                        <span className="progress-category-title">{cat.title}</span>
+                                        <div className="progress-category-stats">
+                                          <span className="progress-level-badge">
                                             LV {computedLevel}
                                           </span>
-                                          <span style={{ fontSize: '12px', color: 'var(--color-text-light)', fontWeight: 600 }}>
+                                          <span className="progress-nodes-text">
                                             {completedCount} / {totalNodes} nodes
                                           </span>
                                         </div>
                                       </div>
                                       {completedCount > 0 && (
                                         <button
-                                          className="icon-action-btn"
-                                          style={{
-                                            fontSize: '12px',
-                                            padding: '6px 8px',
-                                            borderRadius: '8px',
-                                            cursor: 'pointer',
-                                            background: '#FEF3C7',
-                                            border: '1.5px solid #F59E0B',
-                                            color: '#B45309',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            transition: 'background 0.2s'
-                                          }}
+                                          className="icon-action-btn reset-progress-btn"
                                           title={`Reset ${cat.title} progress`}
                                           onClick={() => {
                                             triggerConfirm({
@@ -1803,17 +1696,6 @@ export default function AdminPage() {
               <PracticeIcon active={activeSection === 'generate'} size={22} />
             </span>
             <span className="nav-item-label" id="admin-cms-nav-label-generate">AI Draft Gen</span>
-          </button>
-
-          <button
-            id="admin-cms-nav-item-feedback"
-            className={`admin-cms-nav-item admin-cms-nav-item-feedback ${activeSection === 'feedback' ? 'active' : ''}`}
-            onClick={() => handleNavigateSection('feedback')}
-          >
-            <span className="nav-item-icon" id="admin-cms-nav-icon-feedback">
-              <LettersIcon active={activeSection === 'feedback'} size={22} />
-            </span>
-            <span className="nav-item-label" id="admin-cms-nav-label-feedback">User Feedback</span>
           </button>
 
           <button

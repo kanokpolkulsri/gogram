@@ -3,7 +3,8 @@
   display: flex;
   min-height: 100vh;
   min-height: 100dvh;
-  background-color: #f9fafb; /* Premium soft background */
+  background-color: #f9fafb;
+  /* Premium soft background */
   font-family: var(--font-family);
   color: var(--color-text);
 }
@@ -38,7 +39,8 @@
 .admin-cms-logo-text {
   font-size: 22px;
   font-weight: 900;
-  color: var(--color-orange); /* Matching GoGram logo text color */
+  color: var(--color-orange);
+  /* Matching GoGram logo text color */
   letter-spacing: -0.5px;
 }
 
@@ -115,7 +117,8 @@
   font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.2px;
-  color: var(--color-blue-dark); /* Accent blue for user mode redirection */
+  color: var(--color-blue-dark);
+  /* Accent blue for user mode redirection */
   cursor: pointer;
   text-align: left;
   transition: all var(--transition-fast) ease;
@@ -165,7 +168,6 @@
   text-align: left;
 }
 
-/* Component wrapper card */
 .cms-card {
   background-color: var(--color-white);
   border: 2px solid var(--color-gray);
@@ -174,6 +176,21 @@
   box-shadow: var(--shadow-card);
   box-sizing: border-box;
   text-align: left;
+}
+
+.cms-card.table-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.cms-card.table-card .cms-table th:first-child,
+.cms-card.table-card .cms-table td:first-child {
+  padding-left: 24px;
+}
+
+.cms-card.table-card .cms-table th:last-child,
+.cms-card.table-card .cms-table td:last-child {
+  padding-right: 24px;
 }
 
 .card-header {
@@ -633,6 +650,7 @@
   .cms-grid-two-columns {
     grid-template-columns: 1.2fr 0.8fr;
   }
+
   .cms-grid-two-columns.equal-panes {
     grid-template-columns: 1fr 1fr;
   }
@@ -932,7 +950,7 @@
 .mode-toggle-btn.active {
   background-color: var(--color-white);
   color: var(--color-blue-dark);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .bulk-settings-form {
@@ -1293,11 +1311,13 @@
 
 /* ===== User Management Sub-Page ===== */
 .role-badge-text {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 800;
-  padding: 4px 8px;
+  padding: 5px 10px;
   border-radius: 6px;
   text-transform: uppercase;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .role-badge-text.free {
@@ -1313,6 +1333,11 @@
 .role-badge-text.admin {
   background-color: #F5F3FF;
   color: #7C3AED;
+}
+
+.role-badge-text.blocked {
+  background-color: #FEE2E2;
+  color: #EF4444;
 }
 
 .pro-status-cell {
@@ -1350,15 +1375,17 @@
 
 .role-dropdown-cms {
   font-family: var(--font-family);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
-  padding: 6px 10px;
+  padding: 5px 10px;
   border: 1.5px solid var(--color-gray);
-  border-radius: 8px;
+  border-radius: 6px;
   background-color: var(--color-white);
   color: var(--color-text);
   outline: none;
   cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 
@@ -1410,7 +1437,7 @@
   padding: 32px;
   width: 90%;
   max-width: 500px;
-  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -1519,8 +1546,13 @@
 
 /* Animations */
 @keyframes modal-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes modal-slide-up {
@@ -1528,6 +1560,7 @@
     transform: translateY(20px) scale(0.95);
     opacity: 0;
   }
+
   to {
     transform: translateY(0) scale(1);
     opacity: 1;
@@ -1539,8 +1572,154 @@
     transform: translateY(40px) scale(0.9);
     opacity: 0;
   }
+
   to {
     transform: translateY(0) scale(1);
     opacity: 1;
   }
+}
+
+/* User Management Table Styles */
+.cms-card .blocked-user-row {
+  opacity: 1;
+}
+
+.cms-card .blocked-user-row .user-cell-name {
+  text-decoration: line-through;
+}
+
+.user-cell-name.clickable-name {
+  cursor: pointer;
+  color: #000000;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.user-cell-name.clickable-name:hover {
+  text-decoration: none;
+}
+
+.view-progress-btn {
+  background: transparent;
+  border: 1.5px solid var(--color-gray);
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast) ease;
+}
+
+.view-progress-btn:hover {
+  background-color: var(--color-blue-bg);
+  border-color: var(--color-blue-dark);
+}
+
+/* Action button overrides */
+.icon-action-btn.delete-btn {
+  font-size: 16px;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1.5px solid var(--color-gray);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FEF2F2;
+  border-color: var(--color-gray);
+  color: #EF4444;
+}
+
+.icon-action-btn.delete-btn:hover {
+  background: #FEE2E2;
+  border-color: #EF4444;
+}
+
+/* Expanded Progress Sub-table and Grid */
+.expanded-progress-row td {
+  padding: 20px 24px;
+  background-color: #F9FAFB;
+  border-bottom: 1.5px solid var(--color-gray);
+}
+
+.expanded-progress-title {
+  margin: 0 0 16px 0;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--color-text-light);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.expanded-progress-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.progress-category-card {
+  padding: 16px;
+  border: 2px solid var(--color-gray);
+  border-radius: 16px;
+  background-color: var(--color-white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-card);
+}
+
+.progress-category-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+}
+
+.progress-category-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.progress-category-stats {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.progress-level-badge {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--color-blue-dark);
+  background-color: var(--color-blue-bg);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.progress-nodes-text {
+  font-size: 12px;
+  color: var(--color-text-light);
+  font-weight: 600;
+}
+
+.icon-action-btn.reset-progress-btn {
+  font-size: 12px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #FEF3C7;
+  border: 1.5px solid #F59E0B;
+  color: #B45309;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.icon-action-btn.reset-progress-btn:hover {
+  background: #FDE68A;
 }

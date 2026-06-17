@@ -20,13 +20,6 @@ export default function LearnPage() {
   // Load the active category from the parameter, defaulting to the last studied category (can be null)
   const activeCategoryId = categoryId || user.lastCategoryId;
 
-  // Redirect to categories selection page if no category is selected
-  useEffect(() => {
-    if (!activeCategoryId) {
-      navigate('/dashboard', { replace: true });
-    }
-  }, [activeCategoryId, navigate]);
-
   // Keep userStore updated with the last studied category
   useEffect(() => {
     if (activeCategoryId) {
@@ -144,7 +137,21 @@ export default function LearnPage() {
   }, [categoryUnits, activeUnitId]);
 
   if (!activeCategoryId) {
-    return null; // Return empty while redirecting
+    return (
+      <div className="learn-modal-overlay">
+        <div className="learn-modal">
+          <div className="learn-modal-icon">📚</div>
+          <h3>Select a Category</h3>
+          <p>Please select a learning category first to begin your grammar journey!</p>
+          <button 
+            className="learn-modal-btn" 
+            onClick={() => navigate('/dashboard')}
+          >
+            GO TO DASHBOARD
+          </button>
+        </div>
+      </div>
+    );
   }
 
   const currentUnitId = activeUnitId || (categoryUnits[0]?.id);
