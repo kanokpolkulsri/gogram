@@ -124,6 +124,15 @@ function loadUser() {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       const parsed = JSON.parse(saved);
+      
+      // Auto-patch loaded localStorage data to ensure question 'a1' has 4 choices as mockData was updated
+      if (parsed.units && parsed.units[0]?.levels[0]?.questions[0]) {
+        const firstQ = parsed.units[0].levels[0].questions[0];
+        if (firstQ.id === 'a1' && firstQ.options && firstQ.options.length < 4) {
+          firstQ.options = ['a', 'an', 'the', 'none of these'];
+        }
+      }
+
       return {
         ...parsed,
         categories: parsed.categories || studyCategories,

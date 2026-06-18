@@ -11,7 +11,7 @@ import ProfilePage from './pages/ProfilePage';
 import QuizPage from './pages/QuizPage';
 import LessonCompletePage from './pages/LessonCompletePage';
 import StreakPage from './pages/StreakPage';
-import AdminPage from './pages/AdminPage';
+import AdminPage from './pages/admin/AdminPage';
 
 function DesktopPage({ children, showRightSidebar = true }) {
   return (

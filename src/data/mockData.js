@@ -31,7 +31,7 @@ export const initialUser = {
           {
             id: 'a1',
             question: "Which article is used before 'book'?",
-            options: ['a', 'an', 'the'],
+            options: ['a', 'an', 'the', 'none of these'],
             correctAnswer: 'a',
           },
           {

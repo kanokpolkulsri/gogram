@@ -196,7 +196,7 @@ export const HeadphonesIcon = ({ size = 56 }) => (
 );
 
 // ─── Open Book (purple, for stories) ────────────────────────────────
-export const BookIcon = ({ size = 56 }) => (
+export const BookIcon = ({ active = true, size = 56 }) => (
   <svg
     width={size}
     height={size}
@@ -204,12 +204,12 @@ export const BookIcon = ({ size = 56 }) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <rect x="6" y="10" width="36" height="28" rx="4" fill="#F3E8FF" />
-    <path d="M24 14v20" stroke="#CE82FF" strokeWidth="2" />
-    <path d="M24 14c-4 0-8 2-12 4v16c4-2 8-4 12-4" fill="#CE82FF" opacity="0.3" />
-    <path d="M24 14c4 0 8 2 12 4v16c-4-2-8-4-12-4" fill="#CE82FF" opacity="0.2" />
-    <path d="M14 22h6M14 27h6" stroke="#CE82FF" strokeWidth="1.5" strokeLinecap="round" />
-    <path d="M28 22h6M28 27h6" stroke="#CE82FF" strokeWidth="1.5" strokeLinecap="round" />
+    <rect x="6" y="10" width="36" height="28" rx="4" fill={active ? '#F3E8FF' : '#E5E5E5'} />
+    <path d="M24 14v20" stroke={active ? '#CE82FF' : '#AFAFAF'} strokeWidth="2" />
+    <path d="M24 14c-4 0-8 2-12 4v16c4-2 8-4 12-4" fill={active ? '#CE82FF' : '#AFAFAF'} opacity="0.3" />
+    <path d="M24 14c4 0 8 2 12 4v16c-4-2-8-4-12-4" fill={active ? '#CE82FF' : '#AFAFAF'} opacity="0.2" />
+    <path d="M14 22h6M14 27h6" stroke={active ? '#CE82FF' : '#AFAFAF'} strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M28 22h6M28 27h6" stroke={active ? '#CE82FF' : '#AFAFAF'} strokeWidth="1.5" strokeLinecap="round" />
   </svg>
 );
 
