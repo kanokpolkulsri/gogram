@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useUserDispatch } from '../data/userStore';
-import GogramOwl from '../components/GogramOwl';
+import { useUserDispatch } from '../../data/userStore';
+import GogramOwl from '../../components/GogramOwl';
 import './LessonCompletePage.css';
 
 export default function LessonCompletePage() {

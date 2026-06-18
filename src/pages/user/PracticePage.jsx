@@ -1,5 +1,5 @@
-import { HeadphonesIcon, BookIcon, RecycleIcon } from '../components/icons';
-import GogramOwl from '../components/GogramOwl';
+import { HeadphonesIcon, BookIcon, RecycleIcon } from '../../components/icons';
+import GogramOwl from '../../components/GogramOwl';
 import './PracticePage.css';
 
 export default function PracticePage() {

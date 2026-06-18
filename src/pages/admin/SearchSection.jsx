@@ -76,21 +76,26 @@ export default function SearchSection({
   };
 
   return (
-    <div className="cms-page-content animate-fade-in">
-      <div className="cms-section-header-row">
+    <div className="cms-page-content animate-fade-in cms-search-page">
+      <div className="cms-section-header-row cms-search-section-header">
         <div>
-          <h2 className="cms-section-title">Search Content</h2>
-          <p className="cms-section-subtitle">Find, filter, and manage all content across the platform.</p>
+          <h2 className="cms-section-title cms-search-title">Search Content</h2>
+          <p className="cms-section-subtitle cms-search-subtitle">Find, filter, and manage all content across the platform.</p>
         </div>
-        <button className="cms-btn-export-csv" onClick={handleExportCSV}>
+        <button className="cms-btn-export-csv cms-search-export-btn" onClick={handleExportCSV}>
           📥 Export CSV
         </button>
       </div>
 
       {/* Filters Bar */}
-      <div className="cms-search-filters-bar">
-        <div className="cms-search-input-wrapper">
-          <span className="cms-search-icon">🔍</span>
+      <div className="cms-search-filters-bar cms-search-filters-bar-row">
+        <div className="cms-search-input-wrapper cms-search-input-wrapper-search">
+          <span className="cms-search-icon cms-search-search-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="m21 21-4.3-4.3"/>
+            </svg>
+          </span>
           <input
             type="text"
             placeholder="Search by question text..."
@@ -102,7 +107,7 @@ export default function SearchSection({
           />
         </div>
 
-        <div className="cms-filters-dropdowns">
+        <div className="cms-filters-dropdowns cms-search-filters-dropdowns">
           <select
             value={searchCategoryFilter}
             onChange={(e) => {
@@ -145,9 +150,9 @@ export default function SearchSection({
       </div>
 
       {/* Questions Table */}
-      <div className="cms-card cms-table-card">
-        <div className="cms-table-wrapper scrollbar">
-          <table className="cms-table text-left">
+      <div className="cms-card cms-table-card cms-search-table-card">
+        <div className="cms-table-wrapper scrollbar cms-search-table-wrapper">
+          <table className="cms-table text-left cms-search-table">
             <thead>
               <tr>
                 <th className="th-question-content">QUESTION CONTENT</th>
@@ -160,11 +165,11 @@ export default function SearchSection({
             <tbody>
               {paginatedQuestions.map((q) => {
                 return (
-                  <tr key={q.id}>
+                  <tr key={q.id} className="cms-search-question-row">
                     <td>
-                      <div className="cms-q-content-cell">
-                        <span className="cms-q-text-bold">{q.question}</span>
-                        <div className="cms-q-options-row">
+                      <div className="cms-q-content-cell cms-search-q-content-cell">
+                        <span className="cms-q-text-bold cms-search-q-text">{q.question}</span>
+                        <div className="cms-q-options-row cms-search-q-options-row">
                           {q.options.map((opt) => {
                             const isCorrect = opt === q.correctAnswer;
                             return (
@@ -180,10 +185,10 @@ export default function SearchSection({
                       </div>
                     </td>
                     <td>
-                      <span className="cms-category-cell-badge">{q.categoryTitle}</span>
+                      <span className="cms-category-cell-badge cms-search-category-badge">{q.categoryTitle}</span>
                     </td>
                     <td>
-                      <span className="cms-topic-cell-title">{q.unitTitle}</span>
+                      <span className="cms-topic-cell-title cms-search-topic-title">{q.unitTitle}</span>
                     </td>
                     <td>
                       <span className={`cms-difficulty-badge-text ${q.difficulty.toLowerCase()}`}>
@@ -191,7 +196,7 @@ export default function SearchSection({
                       </span>
                     </td>
                     <td>
-                      <div className="action-buttons-cell">
+                      <div className="action-buttons-cell cms-search-action-buttons">
                         <button className="icon-action-btn edit" title="Edit Question" onClick={() => handleStartQuestionEdit(q)}>
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-pencil cms-question-edit-icon">
                             <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
@@ -223,8 +228,8 @@ export default function SearchSection({
 
         {/* Pagination Controls */}
         {filteredQuestions.length > 0 && (
-          <div className="pagination-bar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '20px', borderTop: '1.5px solid var(--color-gray)', paddingTop: '16px', paddingBottom: '20px', paddingLeft: '24px', paddingRight: '24px' }}>
-            <span style={{ fontSize: '13px', color: 'var(--color-text-light)', fontWeight: 600 }}>
+          <div className="pagination-bar cms-search-pagination-bar">
+            <span className="pagination-bar-info">
               Showing {Math.min(visibleCount, filteredQuestions.length)} results (Page Limit: {visibleCount})
             </span>
             {filteredQuestions.length > visibleCount && (

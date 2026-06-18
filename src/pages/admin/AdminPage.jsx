@@ -407,8 +407,8 @@ export default function AdminPage() {
 
       {/* MODAL: EDIT QUESTION */}
       {showEditQuestionModal && editingQuestionObj && (
-        <div className="admin-modal-overlay">
-          <div className="admin-modal">
+        <div className="admin-modal-overlay animate-fade-in">
+          <div className="admin-modal edit-question-modal animate-scale-up">
             <h3>Edit Question</h3>
             <form onSubmit={handleSaveQuestionEdit}>
               <div className="form-group-cms">
@@ -439,19 +439,21 @@ export default function AdminPage() {
                 />
               </div>
               <div className="form-group-cms">
-                <label>OPTION C (OPTIONAL)</label>
+                <label>OPTION C *</label>
                 <input
                   type="text"
                   value={eqOpt3}
                   onChange={(e) => setEqOpt3(e.target.value)}
+                  required
                 />
               </div>
               <div className="form-group-cms">
-                <label>OPTION D (OPTIONAL)</label>
+                <label>OPTION D *</label>
                 <input
                   type="text"
                   value={eqOpt4}
                   onChange={(e) => setEqOpt4(e.target.value)}
+                  required
                 />
               </div>
               <div className="form-group-cms">
@@ -479,7 +481,7 @@ export default function AdminPage() {
 
       {/* CONFIRMATION DIALOG OVERLAY */}
       {confirmModal.isOpen && (
-        <div className="admin-modal-overlay">
+        <div className="admin-modal-overlay animate-fade-in">
           <div className="admin-modal confirm-modal animate-scale-up">
             <h3>{confirmModal.title}</h3>
             <p className="confirm-modal-message" style={{ margin: '12px 0 24px 0', fontSize: '14px', color: 'var(--color-text-light)', lineHeight: '1.5' }}>

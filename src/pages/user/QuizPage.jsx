@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getRandomEncouragement } from '../data/mockData';
-import { useUser, useUserDispatch } from '../data/userStore';
-import ProgressBar from '../components/ProgressBar';
-import Hearts from '../components/Hearts';
+import { getRandomEncouragement } from '../../data/mockData';
+import { useUser, useUserDispatch } from '../../data/userStore';
+import ProgressBar from '../../components/ProgressBar';
+import Hearts from '../../components/Hearts';
 import './QuizPage.css';
 
 export default function QuizPage() {

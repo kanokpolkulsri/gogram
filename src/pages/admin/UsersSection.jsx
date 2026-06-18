@@ -41,14 +41,19 @@ export default function UsersSection({
   };
 
   return (
-    <div className="cms-page-content animate-fade-in">
+    <div className="cms-page-content animate-fade-in cms-users-page">
       <h2 className="cms-section-title">User Management</h2>
       <p className="cms-section-subtitle">Manage user roles, pro access, and account status.</p>
 
       {/* Filter controls */}
       <div className="cms-search-filters-bar">
         <div className="cms-search-input-wrapper">
-          <span className="cms-search-icon">🔍</span>
+          <span className="cms-search-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="m21 21-4.3-4.3"/>
+            </svg>
+          </span>
           <input
             type="text"
             placeholder="Search by name, email or ID..."
@@ -76,7 +81,7 @@ export default function UsersSection({
       {/* Users Table */}
       <div className="cms-card cms-table-card">
         <div className="cms-table-wrapper scrollbar">
-          <table className="cms-table text-left">
+          <table className="cms-table text-left cms-users-table">
             <thead>
               <tr>
                 <th className="th-user-info">USER INFO</th>

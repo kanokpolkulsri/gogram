@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { useUser } from '../data/userStore';
-import StreakFire from '../components/StreakFire';
+import { useUser } from '../../data/userStore';
+import StreakFire from '../../components/StreakFire';
 import './StreakPage.css';
 
 const dayLabels = ['Su', 'M', 'Tu', 'W', 'Th', 'F', 'Sa'];

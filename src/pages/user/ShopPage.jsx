@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { shopItems } from '../data/mockData';
-import { useUser, useUserDispatch } from '../data/userStore';
+import { shopItems } from '../../data/mockData';
+import { useUser, useUserDispatch } from '../../data/userStore';
 import './ShopPage.css';
 
 export default function ShopPage() {

@@ -105,18 +105,18 @@ export default function TopicsSection({
   };
 
   return (
-    <div className="cms-page-content animate-fade-in">
+    <div className="cms-page-content animate-fade-in cms-topics-page">
       <div className="cms-section-header-row">
         <div>
           <h2 className="cms-section-title">Topic Management</h2>
           <p className="cms-section-subtitle">Organize your content into categories and topics.</p>
         </div>
 
-        <div className="topic-actions">
-          <button className="btn-add-category" onClick={() => setShowAddCategoryModal(true)}>
+        <div className="topic-actions cms-topics-actions">
+          <button className="btn-add-category cms-topics-btn-add-category" onClick={() => setShowAddCategoryModal(true)}>
             + Category
           </button>
-          <button className="btn-add-topic" onClick={() => setShowAddTopicModal(true)}>
+          <button className="btn-add-topic cms-topics-btn-add-topic" onClick={() => setShowAddTopicModal(true)}>
             + Topic
           </button>
         </div>
@@ -134,7 +134,7 @@ export default function TopicsSection({
               return (
                 <div
                   key={cat.id}
-                  className={`category-item-card ${isSelected ? 'active' : ''}`}
+                  className={`cms-category-item-card ${isSelected ? 'active' : ''}`}
                   onClick={() => setSelectedTopicCatId(cat.id)}
                 >
                   <span className="folder-icon">
@@ -143,7 +143,7 @@ export default function TopicsSection({
                     </svg>
                   </span>
                   <span className="category-label-text">{cat.title}</span>
-                  {cat.id === 'reading' && <span className="cat-premium-label">PREMIUM</span>}
+
                 </div>
               );
             })}
@@ -152,24 +152,24 @@ export default function TopicsSection({
 
         {/* Right panel: Topics in Category */}
         <div className="cms-right-panel flex-column">
-          <div className="panel-list-header">
-            <h4>TOPICS IN {selectedCategoryObj?.title.toUpperCase()}</h4>
-            <span className="topics-count-badge">{categoryTopicsList.length} topics found</span>
+          <div className="panel-list-header cms-topics-panel-header">
+            <h4 className="cms-topics-panel-title">TOPICS IN {selectedCategoryObj?.title.toUpperCase()}</h4>
+            <span className="topics-count-badge cms-topics-count-badge">{categoryTopicsList.length} topics found</span>
           </div>
 
-          <div className="topics-listing scrollbar">
+          <div className="topics-listing scrollbar cms-topics-listing">
             {categoryTopicsList.map((topic, idx) => {
               const totalTopicQuestions = topic.levels.reduce((sum, l) => sum + (l.questions?.length || 0), 0);
               return (
-                <div key={topic.id} className="topic-detail-card">
-                  <div className="topic-card-left">
-                    <div className="topic-index-badge">{idx + 1}</div>
-                    <div className="topic-info-text">
-                      <h5>{topic.title} <span className="q-count-indicator">{totalTopicQuestions} Questions</span></h5>
-                      <p>{topic.description}</p>
+                <div key={topic.id} className="topic-detail-card cms-topics-detail-card">
+                  <div className="topic-card-left cms-topics-card-left">
+                    <div className="topic-index-badge cms-topics-index-badge">{idx + 1}</div>
+                    <div className="topic-info-text cms-topics-info-text">
+                      <h5 className="cms-topics-info-title">{topic.title} <span className="q-count-indicator cms-topics-q-count">{totalTopicQuestions} Questions</span></h5>
+                      <p className="cms-topics-info-desc">{topic.description}</p>
                     </div>
                   </div>
-                  <div className="topic-card-right" style={{ display: 'flex', gap: '6px' }}>
+                  <div className="topic-card-right cms-topics-card-right" style={{ display: 'flex', gap: '6px' }}>
                     <button
                       className="icon-action-btn edit"
                       onClick={() => handleStartTopicEdit(topic)}
@@ -206,8 +206,8 @@ export default function TopicsSection({
 
       {/* MODAL: ADD CATEGORY */}
       {showAddCategoryModal && (
-        <div className="admin-modal-overlay">
-          <div className="admin-modal">
+        <div className="admin-modal-overlay animate-fade-in">
+          <div className="admin-modal add-category-modal animate-scale-up">
             <h3>Create Category</h3>
             <form onSubmit={handleCreateCategory}>
               <div className="form-group-cms">
@@ -257,8 +257,8 @@ export default function TopicsSection({
 
       {/* MODAL: ADD TOPIC */}
       {showAddTopicModal && (
-        <div className="admin-modal-overlay">
-          <div className="admin-modal">
+        <div className="admin-modal-overlay animate-fade-in">
+          <div className="admin-modal add-topic-modal animate-scale-up">
             <h3>Create Topic</h3>
             <form onSubmit={handleCreateTopic}>
               <div className="form-group-cms">
@@ -304,8 +304,8 @@ export default function TopicsSection({
 
       {/* MODAL: EDIT TOPIC */}
       {showEditTopicModal && editingTopicObj && (
-        <div className="admin-modal-overlay">
-          <div className="admin-modal">
+        <div className="admin-modal-overlay animate-fade-in">
+          <div className="admin-modal edit-topic-modal animate-scale-up">
             <h3>Edit Topic</h3>
             <form onSubmit={handleSaveTopicEdit}>
               <div className="form-group-cms">

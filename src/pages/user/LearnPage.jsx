@@ -1,8 +1,8 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useUser, useUserDispatch } from '../data/userStore';
-import { isLessonUnlocked, isLessonCompleted, getNextLesson } from '../data/progressHelpers';
-import LessonNode from '../components/LessonNode';
+import { useUser, useUserDispatch } from '../../data/userStore';
+import { isLessonUnlocked, isLessonCompleted, getNextLesson } from '../../data/progressHelpers';
+import LessonNode from '../../components/LessonNode';
 import './LearnPage.css';
 
 // Snake path offsets: zigzag pattern for 5 nodes per unit

@@ -274,7 +274,7 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  padding-right: 4px;
+  padding: 4px;
   scrollbar-gutter: stable;
 }
 
@@ -357,21 +357,23 @@
 }
 
 /* Category panel list item styles */
-.category-item-card {
+.cms-category-item-card {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 16px;
-  border-bottom: 1px solid var(--color-gray);
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin: 4px 8px;
   cursor: pointer;
   transition: all var(--transition-fast);
+  border: none;
 }
 
-.category-item-card:hover {
+.cms-category-item-card:hover {
   background-color: var(--color-gray-light);
 }
 
-.category-item-card.active {
+.cms-category-item-card.active {
   background-color: var(--color-blue-bg);
   color: var(--color-blue-dark);
   font-weight: 800;
@@ -392,15 +394,7 @@
   text-align: left;
 }
 
-.cat-premium-label {
-  font-size: 9px;
-  font-weight: 900;
-  background-color: var(--color-yellow-bg);
-  color: var(--color-yellow-dark);
-  padding: 2px 6px;
-  border-radius: 6px;
-  letter-spacing: 0.5px;
-}
+
 
 /* Right Detail Pane Progress list */
 .cms-right-panel {
@@ -415,7 +409,6 @@
 .cms-right-panel.flex-column {
   display: flex;
   flex-direction: column;
-  gap: 16px;
 }
 
 .learner-details-header {
@@ -794,8 +787,11 @@
 }
 
 .cms-search-icon {
-  color: var(--color-gray-medium);
+  color: var(--color-gray-dark);
   font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cms-filters-dropdowns {
@@ -1229,14 +1225,17 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px;
-  border: 2px solid var(--color-gray);
-  border-radius: 14px;
+  border-bottom: 1.5px solid var(--color-gray);
   background-color: var(--color-white);
-  transition: border-color 0.2s;
+  transition: background-color 0.2s;
 }
 
 .topic-detail-card:hover {
-  border-color: var(--color-gray-medium);
+  background-color: var(--color-gray-light);
+}
+
+.topic-detail-card:last-child {
+  border-bottom: none;
 }
 
 .topic-card-left {
@@ -1871,4 +1870,22 @@
 .cms-btn-load-more:hover {
   background-color: var(--color-gray-light);
   border-color: var(--color-gray-medium);
+}
+
+/* =========================================
+   PAGINATION BAR (shared across all pages)
+   ========================================= */
+.pagination-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1.5px solid var(--color-gray);
+  padding: 16px 24px 20px 24px;
+  margin-top: 0;
+}
+
+.pagination-bar-info {
+  font-size: 13px;
+  color: var(--color-text-light);
+  font-weight: 600;
 }

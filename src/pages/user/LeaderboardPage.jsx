@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useUser } from '../data/userStore';
-import { leagueData } from '../data/mockData';
+import { useUser } from '../../data/userStore';
+import { leagueData } from '../../data/mockData';
 import './LeaderboardPage.css';
 
 function ShieldIcon({ color, letter, isActive, size = 76 }) {

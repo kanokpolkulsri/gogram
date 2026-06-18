@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useUser, useUserDispatch } from '../data/userStore';
-import { auth, signOut } from '../data/firebase';
+import { useUser, useUserDispatch } from '../../data/userStore';
+import { auth, signOut } from '../../data/firebase';
 import {
   EnglishFlagIcon,
   ProfileIcon,
-} from '../components/icons';
+} from '../../components/icons';
 import './ProfilePage.css';
 
 export default function ProfilePage() {

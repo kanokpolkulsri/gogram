@@ -392,31 +392,31 @@ function userReducer(state, action) {
         {
           id: `q-${Date.now()}-1`,
           question: `Which of the following is correct for ${action.levelId} level?`,
-          options: ['Correct Choice', 'Incorrect Choice A', 'Incorrect Choice B'],
+          options: ['Correct Choice', 'Incorrect Choice A', 'Incorrect Choice B', 'Incorrect Choice C'],
           correctAnswer: 'Correct Choice',
         },
         {
           id: `q-${Date.now()}-2`,
           question: `Complete the sentence appropriately for this node.`,
-          options: ['Answer X', 'Answer Y'],
+          options: ['Answer X', 'Answer Y', 'Answer Z', 'Answer W'],
           correctAnswer: 'Answer X',
         },
         {
           id: `q-${Date.now()}-3`,
           question: `Select the most suitable synonym.`,
-          options: ['Option 1', 'Option 2', 'Option 3'],
+          options: ['Option 1', 'Option 2', 'Option 3', 'Option 4'],
           correctAnswer: 'Option 2',
         },
         {
           id: `q-${Date.now()}-4`,
           question: `True or False: This grammar construct is valid.`,
-          options: ['True', 'False'],
+          options: ['True', 'False', 'Not Enough Info', 'N/A'],
           correctAnswer: 'True',
         },
         {
           id: `q-${Date.now()}-5`,
           question: `Choose the correct form of the word.`,
-          options: ['Form A', 'Form B', 'Form C'],
+          options: ['Form A', 'Form B', 'Form C', 'Form D'],
           correctAnswer: 'Form C',
         },
       ];

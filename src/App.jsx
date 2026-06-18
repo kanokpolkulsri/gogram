@@ -3,14 +3,14 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate } from
 import { UserProvider, useUser } from './data/userStore';
 import DesktopLayout from './components/DesktopLayout';
 import LandingPage from './pages/LandingPage';
-import CategoryPage from './pages/CategoryPage';
-import LearnPage from './pages/LearnPage';
-import LeaderboardPage from './pages/LeaderboardPage';
-import ShopPage from './pages/ShopPage';
-import ProfilePage from './pages/ProfilePage';
-import QuizPage from './pages/QuizPage';
-import LessonCompletePage from './pages/LessonCompletePage';
-import StreakPage from './pages/StreakPage';
+import CategoryPage from './pages/user/CategoryPage';
+import LearnPage from './pages/user/LearnPage';
+import LeaderboardPage from './pages/user/LeaderboardPage';
+import ShopPage from './pages/user/ShopPage';
+import ProfilePage from './pages/user/ProfilePage';
+import QuizPage from './pages/user/QuizPage';
+import LessonCompletePage from './pages/user/LessonCompletePage';
+import StreakPage from './pages/user/StreakPage';
 import AdminPage from './pages/admin/AdminPage';
 
 function DesktopPage({ children, showRightSidebar = true }) {

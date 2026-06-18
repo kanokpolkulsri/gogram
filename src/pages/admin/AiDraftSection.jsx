@@ -57,7 +57,7 @@ export default function AiDraftSection({
                 generated.push({
                   id: `draft-${Date.now()}-${unit.id}-${i}-${Math.random().toString(36).substr(2, 9)}`,
                   question: `Draft question #${i+1} for ${unit.title} (${aiDifficulty})`,
-                  options: [`Option A for ${unit.title}`, `Option B for ${unit.title}`, `Option C for ${unit.title}`],
+                  options: [`Option A for ${unit.title}`, `Option B for ${unit.title}`, `Option C for ${unit.title}`, `Option D for ${unit.title}`],
                   correctAnswer: `Option A for ${unit.title}`,
                   unitId: unit.id,
                   unitTitle: unit.title,
@@ -182,7 +182,7 @@ export default function AiDraftSection({
   };
 
   return (
-    <div className="cms-page-content animate-fade-in">
+    <div className="cms-page-content animate-fade-in cms-generate-page">
       <div className="cms-section-header-row">
         <div>
           <h2 className="cms-section-title">AI Content Generation</h2>
@@ -348,7 +348,7 @@ export default function AiDraftSection({
           </div>
 
           <div className="cms-table-wrapper scrollbar" style={{ maxHeight: '500px', overflowY: 'auto' }}>
-            <table className="cms-table text-left">
+            <table className="cms-table text-left cms-aidraft-table">
               <thead>
                 <tr>
                   <th className="th-topic-level">TOPIC & LEVEL</th>

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { useUser } from '../data/userStore';
-import { Category3DIcon, HomeIcon, CategoriesIcon } from '../components/icons';
-import Hearts from '../components/Hearts';
+import { useUser } from '../../data/userStore';
+import { Category3DIcon, HomeIcon, CategoriesIcon } from '../../components/icons';
+import Hearts from '../../components/Hearts';
 import './CategoryPage.css';
 
 export default function CategoryPage() {
