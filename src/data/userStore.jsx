@@ -352,10 +352,29 @@ function userReducer(state, action) {
     }
 
     case 'DELETE_CATEGORY': {
+      const unitsToDelete = state.units.filter((unit) => unit.category === action.categoryId);
+      const unitIdsToDelete = unitsToDelete.map((u) => Number(u.id));
+      
+      const newCompletedLessons = state.completedLessons.filter((key) => {
+        const [unitId] = key.split('-');
+        return !unitIdsToDelete.includes(Number(unitId));
+      });
+
+      const updatedUsers = state.mockUsers.map(u => {
+        const progressCopy = { ...(u.progress || {}) };
+        delete progressCopy[action.categoryId];
+        return {
+          ...u,
+          progress: progressCopy
+        };
+      });
+
       newState = {
         ...state,
         categories: state.categories.filter((cat) => cat.id !== action.categoryId),
         units: state.units.filter((unit) => unit.category !== action.categoryId),
+        mockUsers: updatedUsers,
+        completedLessons: newCompletedLessons,
         lastCategoryId: state.lastCategoryId === action.categoryId ? null : state.lastCategoryId,
       };
       break;
@@ -592,6 +611,10 @@ function userReducer(state, action) {
 
     case 'DELETE_TOPIC': {
       const targetUnit = state.units.find(u => Number(u.id) === Number(action.unitId));
+      const newCompletedLessons = state.completedLessons.filter((key) => {
+        const [unitId] = key.split('-');
+        return Number(unitId) !== Number(action.unitId);
+      });
       const newLog = {
         id: `log-${Date.now()}`,
         adminName: 'Kanokpol Kulsri',
@@ -601,6 +624,7 @@ function userReducer(state, action) {
       newState = {
         ...state,
         units: state.units.filter(u => Number(u.id) !== Number(action.unitId)),
+        completedLessons: newCompletedLessons,
         auditLogs: [newLog, ...(state.auditLogs || [])]
       };
       break;
