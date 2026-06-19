@@ -46,9 +46,9 @@ export default function UsersSection({
       <p className="cms-section-subtitle">Manage user roles, pro access, and account status.</p>
 
       {/* Filter controls */}
-      <div className="cms-search-filters-bar">
-        <div className="cms-search-input-wrapper">
-          <span className="cms-search-icon">
+      <div className="cms-search-filters-bar cms-users-filters-bar">
+        <div className="cms-search-input-wrapper cms-users-input-wrapper">
+          <span className="cms-search-icon cms-users-search-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search">
               <circle cx="11" cy="11" r="8"/>
               <path d="m21 21-4.3-4.3"/>
@@ -62,7 +62,7 @@ export default function UsersSection({
           />
         </div>
 
-        <div className="cms-filters-dropdowns">
+        <div className="cms-filters-dropdowns cms-users-filters-dropdowns">
           <select value={userRoleFilter} onChange={(e) => setUserRoleFilter(e.target.value)}>
             <option value="all">All Roles</option>
             <option value="free">User</option>
@@ -79,8 +79,8 @@ export default function UsersSection({
       </div>
 
       {/* Users Table */}
-      <div className="cms-card cms-table-card">
-        <div className="cms-table-wrapper scrollbar">
+      <div className="cms-card cms-table-card cms-users-table-card">
+        <div className="cms-table-wrapper scrollbar cms-users-table-wrapper">
           <table className="cms-table text-left cms-users-table">
             <thead>
               <tr>
@@ -144,7 +144,7 @@ export default function UsersSection({
                         </button>
                       </td>
                       <td>
-                        <div className="action-buttons-cell">
+                        <div className="action-buttons-cell cms-users-action-buttons">
                           <select
                             className="role-dropdown-cms"
                             value={isBlocked ? 'blocked' : u.authLevel}

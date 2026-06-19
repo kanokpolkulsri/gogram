@@ -127,7 +127,7 @@ export default function TopicsSection({
 
   return (
     <div className="cms-page-content animate-fade-in cms-topics-page">
-      <div className="cms-section-header-row">
+      <div className="cms-section-header-row cms-topics-section-header">
         <div>
           <h2 className="cms-section-title">Topic Management</h2>
           <p className="cms-section-subtitle">Organize your content into categories and topics.</p>
@@ -143,13 +143,13 @@ export default function TopicsSection({
         </div>
       </div>
 
-      <div className="cms-split-layout">
+      <div className="cms-split-layout cms-topics-split-layout">
         {/* Left panel: Categories */}
-        <div className="cms-left-panel">
-          <div className="learners-list-header">
+        <div className="cms-left-panel cms-topics-left-panel">
+          <div className="learners-list-header cms-topics-list-header">
             <span>CATEGORIES</span>
           </div>
-          <div className="learners-list scrollbar">
+          <div className="learners-list scrollbar cms-topics-categories-list">
             {categories.map((cat) => {
               const isSelected = cat.id === selectedTopicCatId;
               return (
@@ -182,7 +182,7 @@ export default function TopicsSection({
         </div>
 
         {/* Right panel: Topics in Category */}
-        <div className="cms-right-panel flex-column">
+        <div className="cms-right-panel flex-column cms-topics-right-panel">
           <div className="panel-list-header cms-topics-panel-header">
             <h4 className="cms-topics-panel-title">TOPICS IN {selectedCategoryObj?.title?.toUpperCase() || ''}</h4>
             <span className="topics-count-badge cms-topics-count-badge">{categoryTopicsList.length} topics found</span>

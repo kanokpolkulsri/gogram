@@ -201,7 +201,7 @@ Requirements:
       <div className="cms-grid-two-columns" style={{ gridTemplateColumns: '1.2fr 0.8fr' }}>
         
         {/* Left Column: Generation Controls */}
-        <div className="cms-card">
+        <div className="cms-card cms-ai-config-card">
           <div className="cms-card-header">
             <h3 className="cms-card-title">⚡ Generation Configuration</h3>
           </div>
@@ -355,7 +355,7 @@ Requirements:
         </div>
 
         {/* Right Column: Stats Card */}
-        <div className="cms-card">
+        <div className="cms-card cms-ai-stats-card">
           <div className="cms-card-header">
             <h3 className="cms-card-title">📈 Category Overview</h3>
           </div>
