@@ -124,7 +124,8 @@ function loadUser() {
       // Migration to rename 'grammar-foundation' to 'grammar' and update topics to match screenshot
       const hasOldCategory = parsed.categories && parsed.categories.some(c => c.id === 'grammar-foundation');
       const hasOldUnits = parsed.units && parsed.units.some(u => u.category === 'grammar-foundation');
-      if (hasOldCategory || hasOldUnits) {
+      const isNewCategoryMissing = parsed.categories && !parsed.categories.some(c => c.id === 'grammar');
+      if (hasOldCategory || hasOldUnits || isNewCategoryMissing) {
         parsed.categories = studyCategories;
         parsed.units = units;
         parsed.completedLessons = [];
