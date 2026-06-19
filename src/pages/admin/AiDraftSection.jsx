@@ -4,207 +4,187 @@ export default function AiDraftSection({
   categories,
   units,
   dispatch,
-  draftQuestions,
-  setDraftQuestions,
-  handleStartQuestionEdit,
-  triggerConfirm,
   showToast
 }) {
-  // Local Settings State
-  const [aiCategory, setAiCategory] = useState(categories[0]?.id || 'grammar-foundation');
-  const [aiDifficulty, setAiDifficulty] = useState('easy'); // 'easy', 'medium', 'hard'
-  const [aiCount, setAiCount] = useState(10);
-  const [aiOnlyZero, setAiOnlyZero] = useState(true);
-  const [aiMode, setAiMode] = useState('bulk'); // 'draft', 'bulk'
+  // 1. Core States
+  const [categoryId, setCategoryId] = useState(categories[0]?.id || 'grammar-foundation');
+  const [topic, setTopic] = useState('all'); // 'all' or specific topic ID (unit ID)
+  const [level, setLevel] = useState('all'); // 'all', 'easy', 'medium1', 'medium2', 'hard1', 'hard2'
+  const [onlyZero, setOnlyZero] = useState(true);
+  const [showPromptPreview, setShowPromptPreview] = useState(false);
 
-  // Local Processing State
+  // 2. Processing / Progress States
   const [isGeneratingBulk, setIsGeneratingBulk] = useState(false);
   const [generationProgressMsg, setGenerationProgressMsg] = useState('');
 
-  // Determine topics to process
-  const categoryTopics = units.filter(u => u.category === aiCategory);
+  // 3. Derived Data matching the selected category
+  const categoryTopics = units.filter(u => u.category === categoryId);
   const topicsCount = categoryTopics.length;
 
-  let targetLevelId = 'easy';
-  if (aiDifficulty === 'medium') targetLevelId = 'medium1';
-  if (aiDifficulty === 'hard') targetLevelId = 'hard1';
+  // Filter topics based on topic selector
+  const activeTopics = topic === 'all'
+    ? categoryTopics
+    : categoryTopics.filter(t => Number(t.id) === Number(topic));
 
-  const zeroQuestionTopics = categoryTopics.filter(u => {
-    const lvl = u.levels.find(l => l.id === targetLevelId);
-    return !lvl || !lvl.questions || lvl.questions.length === 0;
-  });
-
-  const topicsToProcess = aiOnlyZero ? zeroQuestionTopics.length : topicsCount;
-  const totalGeneratedQs = topicsToProcess * aiCount;
-
-  // AI Bulk/Draft Generator trigger
-  const handleTriggerBulkGeneration = () => {
-    setIsGeneratingBulk(true);
-    setGenerationProgressMsg('Connecting to AI drafting queue...');
-
-    const topicsToProcessList = aiOnlyZero ? zeroQuestionTopics : categoryTopics;
-
-    setTimeout(() => {
-      setGenerationProgressMsg('Validating selected nodes and topic counts...');
-      setTimeout(() => {
-        setGenerationProgressMsg('Generating questions schemas...');
-        setTimeout(() => {
-          if (aiMode === 'draft') {
-            const generated = [];
-            topicsToProcessList.forEach(unit => {
-              const catObj = categories.find(c => c.id === unit.category);
-              for (let i = 0; i < aiCount; i++) {
-                generated.push({
-                  id: `draft-${Date.now()}-${unit.id}-${i}-${Math.random().toString(36).substr(2, 9)}`,
-                  question: `Draft question #${i+1} for ${unit.title} (${aiDifficulty})`,
-                  options: [`Option A for ${unit.title}`, `Option B for ${unit.title}`, `Option C for ${unit.title}`, `Option D for ${unit.title}`],
-                  correctAnswer: `Option A for ${unit.title}`,
-                  unitId: unit.id,
-                  unitTitle: unit.title,
-                  categoryId: unit.category,
-                  categoryTitle: catObj?.title || unit.category,
-                  difficulty: aiDifficulty.toUpperCase()
-                });
-              }
-            });
-            setDraftQuestions(prev => [...prev, ...generated]);
-            setIsGeneratingBulk(false);
-            setGenerationProgressMsg('');
-            showToast(`Draft questions successfully generated! Review them below.`);
-          } else {
-            dispatch({
-              type: 'BULK_GENERATE_CMS',
-              categoryId: aiCategory,
-              difficultyLevel: aiDifficulty,
-              questionsPerTopic: aiCount,
-              onlyZero: aiOnlyZero
-            });
-            setIsGeneratingBulk(false);
-            setGenerationProgressMsg('');
-            showToast('Bulk questions successfully injected into active database!');
-          }
-        }, 800);
-      }, 700);
-    }, 700);
+  const levelList = ['easy', 'medium1', 'medium2', 'hard1', 'hard2'];
+  const levelLabels = {
+    easy: 'Easy (O-NET M.3)',
+    medium1: 'Medium 1 (O-NET M.6)',
+    medium2: 'Medium 2 (O-NET M.6 / PAT)',
+    hard1: 'Hard 1 (PAT 1/2, A-Level)',
+    hard2: 'Hard 2 (IELTS/TOEFL)'
   };
 
-  const handleApproveDraft = (dq) => {
-    const unitId = dq.unitId;
-    const targetUnit = units.find(u => Number(u.id) === Number(unitId));
-    if (!targetUnit) return;
+  // Determine tasks to generate (topics & levels combination)
+  const getTasksToProcess = () => {
+    const tasks = [];
+    const targetLevels = level === 'all' ? levelList : [level];
 
-    let targetLevelId = 'easy';
-    if (dq.difficulty === 'MEDIUM') targetLevelId = 'medium1';
-    if (dq.difficulty === 'HARD') targetLevelId = 'hard1';
+    activeTopics.forEach(t => {
+      targetLevels.forEach(lvlId => {
+        const lvl = t.levels.find(l => l.id === lvlId);
+        const hasQs = (lvl?.questions?.length || 0) > 0;
+        if (!onlyZero || !hasQs) {
+          tasks.push({ topic: t, levelId: lvlId });
+        }
+      });
+    });
+    return tasks;
+  };
 
-    const targetLevel = targetUnit.levels.find(l => l.id === targetLevelId);
-    if (!targetLevel) return;
+  const tasksToProcess = getTasksToProcess();
 
-    const newQ = {
-      id: `q-approved-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`,
-      question: dq.question,
-      options: dq.options,
-      correctAnswer: dq.correctAnswer
+  // Category statistics calculations
+  const totalSlotsAll = topicsCount * 50; // 5 levels * 10 questions each = 50 per topic
+  const totalFilledAll = categoryTopics.reduce((acc, t) => {
+    return acc + t.levels.reduce((sum, l) => sum + (l.questions?.length || 0), 0);
+  }, 0);
+  const totalEmptyAll = totalSlotsAll - totalFilledAll;
+
+  // Level statistics calculations for selected category
+  const getLevelStats = (lvlId) => {
+    const filled = categoryTopics.reduce((acc, t) => {
+      const lvl = t.levels.find(l => l.id === lvlId);
+      return acc + (lvl?.questions?.length || 0);
+    }, 0);
+    const total = topicsCount * 10;
+    const pct = total > 0 ? (filled / total) * 100 : 0;
+    return { filled, total, pct };
+  };
+
+  // Trigger Bulk Generation simulation (calling mock engine, API wired later)
+  const handleTriggerBulkGeneration = () => {
+    if (tasksToProcess.length === 0) {
+      showToast('No slots match the generation criteria.');
+      return;
+    }
+
+    setIsGeneratingBulk(true);
+    setGenerationProgressMsg('Connecting to Gemini API...');
+
+    let taskIndex = 0;
+
+    const runNextTask = () => {
+      if (taskIndex >= tasksToProcess.length) {
+        // Dispatch bulk generate action
+        dispatch({
+          type: 'BULK_GENERATE_CMS',
+          categoryId,
+          topicId: topic,
+          levelId: level,
+          questionsPerTopic: 10,
+          onlyZero
+        });
+        setIsGeneratingBulk(false);
+        setGenerationProgressMsg('');
+        showToast(`AI Bulk Generation completed! Generated 10 questions for ${tasksToProcess.length} slots.`);
+        return;
+      }
+
+      const currentTask = tasksToProcess[taskIndex];
+      const levelLabel = levelLabels[currentTask.levelId] || currentTask.levelId;
+      setGenerationProgressMsg(`Generating: "${currentTask.topic.title}" — ${levelLabel}`);
+      
+      taskIndex++;
+      setTimeout(runNextTask, 600); // 600ms per level/topic combo for a smooth, impressive visual animation
     };
 
-    const updatedQuestions = [...(targetLevel.questions || []), newQ];
-
-    dispatch({
-      type: 'UPDATE_LEVEL_QUESTIONS',
-      unitId,
-      levelId: targetLevelId,
-      questions: updatedQuestions
-    });
-
-    setDraftQuestions(prev => prev.filter(item => item.id !== dq.id));
-    showToast('Question approved and added to active database.');
+    setTimeout(runNextTask, 800);
   };
 
-  const handleDiscardDraft = (id) => {
-    setDraftQuestions(prev => prev.filter(item => item.id !== id));
-    showToast('Draft question discarded.');
-  };
+  // Dynamically build prompt preview text
+  const getPromptPreviewText = () => {
+    const selectedCategoryObj = categories.find(c => c.id === categoryId);
+    const categoryTitle = selectedCategoryObj?.title || categoryId;
 
-  const handleApproveAllDrafts = () => {
-    if (draftQuestions.length === 0) return;
+    const levelDetails = {
+      easy: { label: 'Easy', target: 'O-NET M.3', style: 'Straightforward fill-in-the-blank, clear rules' },
+      medium1: { label: 'Medium 1', target: 'O-NET M.6', style: 'Rule application, common exceptions' },
+      medium2: { label: 'Medium 2', target: 'O-NET M.6 / PAT', style: 'Multiple rules in context, sentence-level' },
+      hard1: { label: 'Hard 1', target: 'PAT 1/2, A-Level', style: 'Tricky edge cases, paragraph context' },
+      hard2: { label: 'Hard 2', target: 'IELTS/TOEFL', style: 'Nuanced, deceptive distractors, academic register' }
+    };
 
-    const grouped = {};
-    draftQuestions.forEach(dq => {
-      let targetLevelId = 'easy';
-      if (dq.difficulty === 'MEDIUM') targetLevelId = 'medium1';
-      if (dq.difficulty === 'HARD') targetLevelId = 'hard1';
+    let levelPromptPart = '';
+    if (level === 'all') {
+      levelPromptPart = `Difficulty Levels targets:
+- Easy: O-NET M.3 (Straightforward fill-in-the-blank, clear rules)
+- Medium 1: O-NET M.6 (Rule application, common exceptions)
+- Medium 2: O-NET M.6 / PAT (Multiple rules in context, sentence-level)
+- Hard 1: PAT 1/2, A-Level (Tricky edge cases, paragraph context)
+- Hard 2: IELTS/TOEFL (Nuanced, deceptive distractors, academic register)`;
+    } else {
+      const details = levelDetails[level] || { label: level, target: 'General', style: 'Standard multiple choice' };
+      levelPromptPart = `Difficulty Level: ${details.label}
+Exam Target: ${details.target}
+Style Guide: ${details.style}`;
+    }
 
-      const key = `${dq.unitId}|${targetLevelId}`;
-      if (!grouped[key]) {
-        grouped[key] = [];
-      }
-      grouped[key].push({
-        id: `q-approved-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-        question: dq.question,
-        options: dq.options,
-        correctAnswer: dq.correctAnswer
+    const selectedTopicObj = categoryTopics.find(t => Number(t.id) === Number(topic));
+    const topicTitle = topic === 'all' ? 'All Topics' : (selectedTopicObj?.title || topic);
+    const difficultyText = level === 'all' ? 'All Levels' : level;
+
+    // Deduplication context (existing questions list)
+    const existingQs = activeTopics.flatMap(t => {
+      const targetLevels = level === 'all' ? levelList : [level];
+      return targetLevels.flatMap(lvlId => {
+        const lvl = t.levels.find(l => l.id === lvlId);
+        return lvl?.questions || [];
       });
     });
 
-    Object.keys(grouped).forEach(key => {
-      const [unitId, levelId] = key.split('|');
-      const targetUnit = units.find(u => Number(u.id) === Number(unitId));
-      if (!targetUnit) return;
+    const existingContext = existingQs.length > 0
+      ? `Avoid duplicating the following existing questions: ${JSON.stringify(existingQs.map(q => q.question))}`
+      : "";
 
-      const targetLevel = targetUnit.levels.find(l => l.id === levelId);
-      if (!targetLevel) return;
+    return `Act as an expert English assessment writer for Thai learners.
+Generate 10 multiple-choice English learning questions for the category: "${categoryTitle}" and topic: "${topicTitle}" at ${difficultyText} difficulty level. ${existingContext}
 
-      const updatedQuestions = [...(targetLevel.questions || []), ...grouped[key]];
-
-      dispatch({
-        type: 'UPDATE_LEVEL_QUESTIONS',
-        unitId,
-        levelId,
-        questions: updatedQuestions
-      });
-    });
-
-    setDraftQuestions([]);
-    showToast(`All ${draftQuestions.length} draft questions approved and saved.`);
-  };
-
-  const handleDiscardAllDrafts = () => {
-    triggerConfirm({
-      title: 'Discard All Drafts',
-      message: `Are you sure you want to discard all ${draftQuestions.length} draft questions currently in the queue?`,
-      confirmText: 'Discard All',
-      isDanger: true,
-      onConfirm: () => {
-        setDraftQuestions([]);
-        showToast('All draft questions discarded.');
-      }
-    });
+Requirements:
+- Target user: Thai beginner/intermediate learner.
+- Use natural, practical English.
+- Prioritize daily conversation and common real-life usage.
+- 4 answer choices per question, exactly 1 correct answer.
+- Include short English explanation (explanation) and comprehensive Thai explanation (explanationTh).
+- For EVERY question, the Thai explanation (explanationTh) MUST include the Thai meanings of all key vocabulary words from the question and ALL four answer choices.
+- For "Reading" category, include a short passage before the questions if appropriate, or make each question a mini-reading task.
+- For "Vocabulary" category:
+  * Focus on word usage in context.
+  * Ensure the Thai explanation contains a clear "Vocabulary List" style breakdown of all answer options and key terms from the question text.
+- For "Grammar" category, focus on the specific rule of the topic.`;
   };
 
   return (
     <div className="cms-page-content animate-fade-in cms-generate-page">
+      {/* Header */}
       <div className="cms-section-header-row">
         <div>
           <h2 className="cms-section-title">AI Content Generation</h2>
-          <p className="cms-section-subtitle">Scale your curriculum with AI-powered draft and bulk generation.</p>
-        </div>
-
-        <div className="ai-mode-toggles">
-          <button
-            className={`mode-toggle-btn ${aiMode === 'draft' ? 'active' : ''}`}
-            onClick={() => setAiMode('draft')}
-          >
-            Draft Mode
-          </button>
-          <button
-            className={`mode-toggle-btn ${aiMode === 'bulk' ? 'active' : ''}`}
-            onClick={() => setAiMode('bulk')}
-          >
-            Bulk Mode
-          </button>
+          <p className="cms-section-subtitle">Scale your curriculum with Gemini-powered bulk question generation.</p>
         </div>
       </div>
 
+      {/* Generation Overlay */}
       {isGeneratingBulk && (
         <div className="ai-generation-overlay">
           <div className="ai-loader-card">
@@ -215,220 +195,208 @@ export default function AiDraftSection({
         </div>
       )}
 
-      <div className="cms-grid-two-columns">
-        {/* Left panel: Bulk Settings */}
+      {/* Two Columns Grid */}
+      <div className="cms-grid-two-columns" style={{ gridTemplateColumns: '1.2fr 0.8fr' }}>
+        
+        {/* Left Column: Generation Controls */}
         <div className="cms-card">
           <div className="cms-card-header">
-            <h3 className="cms-card-title">⚡ {aiMode === 'draft' ? 'Draft Settings' : 'Bulk Settings'}</h3>
+            <h3 className="cms-card-title">⚡ Generation Configuration</h3>
           </div>
 
           <div className="bulk-settings-form">
+            {/* 1. Category Selection */}
             <div className="form-group-cms">
-              <label>TARGET CATEGORY</label>
+              <label>1. TARGET CATEGORY</label>
               <select
-                value={aiCategory}
-                onChange={(e) => setAiCategory(e.target.value)}
+                value={categoryId}
+                onChange={(e) => {
+                  setCategoryId(e.target.value);
+                  setTopic('all'); // Reset topic when category changes
+                }}
               >
                 {categories.map(c => <option key={c.id} value={c.id}>{c.title}</option>)}
               </select>
             </div>
 
+            {/* 2. Topic Selection */}
             <div className="form-group-cms">
-              <label>DIFFICULTY LEVEL</label>
-              <div className="pills-selector">
-                {['easy', 'medium', 'hard'].map((d) => (
+              <label>2. TARGET TOPIC</label>
+              <select
+                value={topic}
+                onChange={(e) => setTopic(e.target.value)}
+              >
+                <option value="all">All Topics in Category</option>
+                {categoryTopics.map(t => <option key={t.id} value={t.id}>{t.title}</option>)}
+              </select>
+            </div>
+
+            {/* 3. Level Selection */}
+            <div className="form-group-cms">
+              <label>3. DIFFICULTY LEVEL</label>
+              <div className="pills-selector" style={{ flexWrap: 'wrap' }}>
+                <button
+                  type="button"
+                  className={`pill-select-btn ${level === 'all' ? 'active' : ''}`}
+                  onClick={() => setLevel('all')}
+                  style={{ minWidth: '80px' }}
+                >
+                  ALL LEVELS
+                </button>
+                {levelList.map((l) => (
                   <button
-                    key={d}
+                    key={l}
                     type="button"
-                    className={`pill-select-btn ${aiDifficulty === d ? 'active' : ''}`}
-                    onClick={() => setAiDifficulty(d)}
+                    className={`pill-select-btn ${level === l ? 'active' : ''}`}
+                    onClick={() => setLevel(l)}
                   >
-                    {d.toUpperCase()}
+                    {l.toUpperCase()}
                   </button>
                 ))}
               </div>
             </div>
 
-            <div className="form-group-cms">
-              <label>QUESTIONS PER TOPIC</label>
-              <select
-                value={aiCount}
-                onChange={(e) => setAiCount(Number(e.target.value))}
-              >
-                <option value={5}>5 Questions</option>
-                <option value={10}>10 Questions</option>
-                <option value={15}>15 Questions</option>
-              </select>
-            </div>
-
-            <div className="zero-questions-box">
+            {/* 4. Fill Mode (Checkbox/Toggle style) */}
+            <div className="zero-questions-box" style={{ marginTop: '4px' }}>
               <div className="box-checkbox-row">
                 <input
                   type="checkbox"
                   id="onlyZeroQs"
-                  checked={aiOnlyZero}
-                  onChange={(e) => setAiOnlyZero(e.target.checked)}
+                  checked={onlyZero}
+                  onChange={(e) => setOnlyZero(e.target.checked)}
                 />
-                <label htmlFor="onlyZeroQs"><strong>Only Zero Questions</strong></label>
-                <span className="cms-badge-recommended">Recommended</span>
+                <label htmlFor="onlyZeroQs"><strong>Only Fill Empty Slots</strong></label>
+                <span className="cms-badge-recommended" style={{ backgroundColor: '#1A73E8', color: '#FFF' }}>Recommended</span>
               </div>
+              <p style={{ margin: '6px 0 0 24px', fontSize: '12px', color: '#B45309' }}>
+                {onlyZero 
+                  ? "Safely bypasses topics/levels that already contain questions." 
+                  : "WARNING: This will overwrite and replace existing questions for the selected targets."}
+              </p>
             </div>
 
-            {/* Stats Block */}
-            <div className="bulk-stats-box">
-              <div className="stat-row">
-                <span>Topics found:</span>
-                <strong>{topicsCount}</strong>
-              </div>
-              <div className="stat-row">
-                <span>Topics to process:</span>
-                <strong>{topicsToProcess}</strong>
-              </div>
-              <div className="stat-row">
-                <span>Total generated questions:</span>
-                <strong>{totalGeneratedQs}</strong>
-              </div>
+            {/* 5. Collapsible Prompt Preview Drawer */}
+            <div className="prompt-preview-container" style={{ border: '1px solid #dadce0', borderRadius: '8px', overflow: 'hidden' }}>
+              <button
+                type="button"
+                className="prompt-preview-toggle-btn"
+                onClick={() => setShowPromptPreview(p => !p)}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  width: '100%',
+                  padding: '12px 16px',
+                  background: '#f8f9fa',
+                  border: 'none',
+                  borderBottom: showPromptPreview ? '1px solid #dadce0' : 'none',
+                  fontFamily: 'inherit',
+                  fontWeight: '700',
+                  fontSize: '13px',
+                  color: '#4a4a4a',
+                  cursor: 'pointer'
+                }}
+              >
+                <span>🔍 Gemini Prompt Preview</span>
+                <span>{showPromptPreview ? 'Hide ▴' : 'Show ▾'}</span>
+              </button>
+              {showPromptPreview && (
+                <div className="prompt-preview-content" style={{ padding: '16px', background: '#fafafa', maxHeight: '250px', overflowY: 'auto' }}>
+                  <pre style={{ margin: 0, whiteSpace: 'pre-wrap', fontSize: '11px', fontFamily: 'Courier, monospace', color: '#333', lineHeight: '1.5' }}>
+                    {getPromptPreviewText()}
+                  </pre>
+                </div>
+              )}
             </div>
 
+            {/* 6. Generate Trigger */}
             <button
               className="btn btn-primary btn-cms-bulk-generate"
-              disabled={topicsToProcess === 0}
+              disabled={tasksToProcess.length === 0}
               onClick={handleTriggerBulkGeneration}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                width: '100%',
+                padding: '14px',
+                fontSize: '15px',
+                fontWeight: '700',
+                backgroundColor: tasksToProcess.length === 0 ? '#dadce0' : '#1A73E8',
+                borderColor: tasksToProcess.length === 0 ? '#dadce0' : '#1A73E8',
+                color: tasksToProcess.length === 0 ? '#999' : '#fff',
+                cursor: tasksToProcess.length === 0 ? 'not-allowed' : 'pointer'
+              }}
             >
-              {aiMode === 'draft' ? '🚀 Generate AI Drafts' : '⚡ Inject Bulk Questions'}
+              ⚡ Generate AI Questions ({tasksToProcess.length} Slots)
             </button>
           </div>
         </div>
 
-        {/* Right panel: Information */}
-        <div className="cms-card info-card">
+        {/* Right Column: Stats Card */}
+        <div className="cms-card">
           <div className="cms-card-header">
-            <h3 className="cms-card-title">📖 Content Architecture Guide</h3>
+            <h3 className="cms-card-title">📈 Category Overview</h3>
           </div>
-          <div className="bulk-intro-view">
-            <p className="intro-subtitle">How AI Generation Works</p>
-            <div className="intro-features">
-              <div className="feature-item-box">
-                <span className="intro-icon">📝</span>
-                <div>
-                  <h6>Draft Mode</h6>
-                  <p>Generates mock schemas and enqueues them in the Draft Review Queue for manual proofreading before DB injection.</p>
-                </div>
+          
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            
+            {/* Numeric Indicators */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+              <div style={{ padding: '12px', border: '1px solid #dadce0', borderRadius: '8px', textAlign: 'left' }}>
+                <span style={{ fontSize: '11px', fontWeight: '900', color: 'var(--color-text-light)', display: 'block', textTransform: 'uppercase' }}>Topic Count</span>
+                <strong style={{ fontSize: '20px', color: 'var(--color-text)' }}>{topicsCount}</strong>
               </div>
-              <div className="feature-item-box">
-                <span className="intro-icon">⚡</span>
-                <div>
-                  <h6>Bulk Mode</h6>
-                  <p>Bypasses the staging queue, injecting the generated questions immediately into the active database.</p>
-                </div>
+              <div style={{ padding: '12px', border: '1px solid #dadce0', borderRadius: '8px', textAlign: 'left' }}>
+                <span style={{ fontSize: '11px', fontWeight: '900', color: 'var(--color-text-light)', display: 'block', textTransform: 'uppercase' }}>Total Slots</span>
+                <strong style={{ fontSize: '20px', color: 'var(--color-text)' }}>{totalSlotsAll}</strong>
+              </div>
+              <div style={{ padding: '12px', border: '1px solid #dadce0', borderRadius: '8px', textAlign: 'left' }}>
+                <span style={{ fontSize: '11px', fontWeight: '900', color: 'var(--color-text-light)', display: 'block', textTransform: 'uppercase' }}>Filled Slots</span>
+                <strong style={{ fontSize: '20px', color: '#1E8E3E' }}>{totalFilledAll}</strong>
+              </div>
+              <div style={{ padding: '12px', border: '1px solid #dadce0', borderRadius: '8px', textAlign: 'left' }}>
+                <span style={{ fontSize: '11px', fontWeight: '900', color: 'var(--color-text-light)', display: 'block', textTransform: 'uppercase' }}>Empty Slots</span>
+                <strong style={{ fontSize: '20px', color: '#D93025' }}>{totalEmptyAll}</strong>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
 
-      {/* Draft Questions Review Queue Section */}
-      {aiMode === 'draft' && draftQuestions.length > 0 && (
-        <div className="cms-card animate-fade-in" style={{ marginTop: '16px' }}>
-          <div className="cms-card-header" style={{ borderBottom: 'none', marginBottom: '8px' }}>
+            {/* Level breakdown progress bars */}
             <div style={{ textAlign: 'left' }}>
-              <h3 className="cms-card-title">📋 Draft Review Queue</h3>
-              <p style={{ margin: '4px 0 0 0', fontSize: '12px', color: 'var(--color-text-light)' }}>
-                Review, edit, or reject the following {draftQuestions.length} AI-generated question drafts before saving.
-              </p>
+              <h5 style={{ margin: '0 0 12px 0', fontSize: '12px', fontWeight: '900', color: 'var(--color-text-light)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                Level Saturation
+              </h5>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                {levelList.map(lvlId => {
+                  const stats = getLevelStats(lvlId);
+                  return (
+                    <div key={lvlId} style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', fontWeight: '700' }}>
+                        <span style={{ color: 'var(--color-text)' }}>{levelLabels[lvlId]?.split(' ')[0] || lvlId}</span>
+                        <span style={{ color: 'var(--color-text-light)' }}>{stats.filled} / {stats.total} Qs</span>
+                      </div>
+                      <div style={{ height: '8px', background: '#f1f3f4', borderRadius: '4px', overflow: 'hidden', border: '1px solid #dadce0' }}>
+                        <div
+                          style={{
+                            height: '100%',
+                            background: '#1A73E8',
+                            width: `${stats.pct}%`,
+                            borderRadius: '4px',
+                            transition: 'width 0.3s ease'
+                          }}
+                        ></div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-            <div style={{ display: 'flex', gap: '8px' }}>
-              <button className="btn btn-secondary btn-danger-outline" onClick={handleDiscardAllDrafts}>
-                🗑️ Discard All
-              </button>
-              <button className="btn btn-primary" onClick={handleApproveAllDrafts}>
-                ✓ Approve & Save All ({draftQuestions.length})
-              </button>
-            </div>
-          </div>
 
-          <div className="cms-table-wrapper scrollbar" style={{ maxHeight: '500px', overflowY: 'auto' }}>
-            <table className="cms-table text-left cms-aidraft-table">
-              <thead>
-                <tr>
-                  <th className="th-topic-level">TOPIC & LEVEL</th>
-                  <th className="th-draft-question-content">DRAFT QUESTION CONTENT</th>
-                  <th className="th-draft-actions">ACTIONS</th>
-                </tr>
-              </thead>
-              <tbody>
-                {draftQuestions.map((dq) => (
-                  <tr key={dq.id}>
-                    <td style={{ width: '220px' }}>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                        <span className="cms-topic-cell-title">{dq.unitTitle}</span>
-                        <span style={{ fontSize: '11px', color: 'var(--color-text-light)' }}>{dq.categoryTitle}</span>
-                        <span className={`cms-difficulty-badge-text ${dq.difficulty.toLowerCase()}`} style={{ width: 'fit-content' }}>
-                          {dq.difficulty}
-                        </span>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="cms-q-content-cell">
-                        <span className="cms-q-text-bold">{dq.question}</span>
-                        <div className="cms-q-options-row">
-                          {dq.options.map((opt) => {
-                            const isCorrect = opt === dq.correctAnswer;
-                            return (
-                              <span
-                                key={opt}
-                                className={`cms-q-option-pill ${isCorrect ? 'correct' : ''}`}
-                              >
-                                {opt}
-                              </span>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    </td>
-                    <td style={{ width: '120px' }}>
-                      <div className="action-buttons-cell">
-                        <button
-                          className="icon-action-btn edit"
-                          title="Edit Draft"
-                          onClick={() => handleStartQuestionEdit(dq)}
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-pencil cms-draft-edit-icon">
-                            <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
-                            <path d="m15 5 4 4"/>
-                          </svg>
-                        </button>
-                        <button
-                          className="icon-action-btn approve"
-                          title="Approve Draft"
-                          onClick={() => handleApproveDraft(dq)}
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-check cms-draft-approve-icon">
-                            <path d="M20 6 9 17l-5-5"/>
-                          </svg>
-                        </button>
-                        <button
-                          className="icon-action-btn delete"
-                          title="Discard Draft"
-                          onClick={() => handleDiscardDraft(dq.id)}
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-trash-2 cms-draft-discard-icon">
-                            <path d="M3 6h18"/>
-                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
-                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
-                            <line x1="10" x2="10" y1="11" y2="17"/>
-                            <line x1="14" x2="14" y1="11" y2="17"/>
-                          </svg>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
           </div>
         </div>
-      )}
+
+      </div>
     </div>
   );
 }

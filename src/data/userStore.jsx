@@ -3,6 +3,7 @@ import { createContext, useContext, useReducer, useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { initialUser, studyCategories, units } from './mockData';
 import { auth } from './firebase';
+import { getMockQuestions } from './mockGenerator';
 
 const initialMockUsers = [
   {
@@ -648,48 +649,125 @@ function userReducer(state, action) {
     }
 
     case 'BULK_GENERATE_CMS': {
-      const targetLevelId = action.difficultyLevel === 'easy' ? 'easy' : action.difficultyLevel === 'medium' ? 'medium1' : 'hard1';
-      const numQuestions = action.questionsPerTopic || 10;
+      const { categoryId, topicId, levelId, questionsPerTopic = 10, onlyZero = true } = action;
       
+      const levelsToProcess = levelId === 'all'
+        ? ['easy', 'medium1', 'medium2', 'hard1', 'hard2']
+        : [levelId];
+
       let processedCount = 0;
+
+      // Track all unique question texts currently under the same category to prevent duplicates
+      const existingQuestionTexts = new Set();
+      state.units.forEach(unit => {
+        if (unit.category === categoryId) {
+          unit.levels.forEach(lvl => {
+            if (lvl.questions) {
+              lvl.questions.forEach(q => {
+                existingQuestionTexts.add(q.question.trim().toLowerCase());
+              });
+            }
+          });
+        }
+      });
+      
       const updatedUnits = state.units.map(unit => {
-        if (unit.category === action.categoryId) {
-          const targetLevel = unit.levels.find(l => l.id === targetLevelId);
-          const hasQuestions = (targetLevel?.questions?.length || 0) > 0;
-          
-          if (!action.onlyZero || !hasQuestions) {
-            processedCount++;
-            const generated = Array.from({ length: numQuestions }).map((_, i) => ({
-              id: `q-bulk-${Date.now()}-${unit.id}-${i}`,
-              question: `Generated question #${i+1} for ${unit.title} (${action.difficultyLevel})`,
-              options: ['Option A (Correct)', 'Option B', 'Option C'],
-              correctAnswer: 'Option A (Correct)'
-            }));
-            
-            return {
-              ...unit,
-              levels: unit.levels.map(l => {
-                if (l.id === targetLevelId) {
+        if (unit.category === categoryId) {
+          const isTopicMatch = topicId === 'all' || Number(unit.id) === Number(topicId);
+          if (isTopicMatch) {
+            const updatedLevels = unit.levels.map(l => {
+              if (levelsToProcess.includes(l.id)) {
+                const hasQuestions = (l.questions?.length || 0) > 0;
+                if (!onlyZero || !hasQuestions) {
+                  processedCount++;
+                  
+                  const levelLabels = {
+                    easy: 'Easy (O-NET M.3)',
+                    medium1: 'Medium 1 (O-NET M.6)',
+                    medium2: 'Medium 2 (O-NET M.6 / PAT)',
+                    hard1: 'Hard 1 (PAT 1/2, A-Level)',
+                    hard2: 'Hard 2 (IELTS/TOEFL)'
+                  };
+                  const labelStr = levelLabels[l.id] || l.id;
+
+                  const sourceQuestions = getMockQuestions(categoryId, unit.id, l.id, unit.title);
+                  const generated = [];
+                  let itemIndex = 0;
+
+                  while (generated.length < questionsPerTopic && itemIndex < sourceQuestions.length) {
+                    const qObj = sourceQuestions[itemIndex];
+                    const normalizedQ = qObj.question.trim().toLowerCase();
+
+                    if (!existingQuestionTexts.has(normalizedQ)) {
+                      existingQuestionTexts.add(normalizedQ);
+                      generated.push({
+                        id: `q-bulk-${Date.now()}-${unit.id}-${l.id}-${generated.length}`,
+                        question: qObj.question,
+                        options: qObj.options,
+                        correctAnswer: qObj.correctAnswer,
+                        explanation: qObj.explanation
+                      });
+                    }
+                    itemIndex++;
+                  }
+
+                  let qIndex = 1;
+                  while (generated.length < questionsPerTopic) {
+                    const levelLabels = {
+                      easy: 'Easy (O-NET M.3)',
+                      medium1: 'Medium 1 (O-NET M.6)',
+                      medium2: 'Medium 2 (O-NET M.6 / PAT)',
+                      hard1: 'Hard 1 (PAT 1/2, A-Level)',
+                      hard2: 'Hard 2 (IELTS/TOEFL)'
+                    };
+                    const labelStr = levelLabels[l.id] || l.id;
+                    const qText = `[AI Mock] Question #${qIndex} on "${unit.title}" for ${labelStr} level.`;
+                    const normalizedQ = qText.trim().toLowerCase();
+
+                    if (!existingQuestionTexts.has(normalizedQ)) {
+                      existingQuestionTexts.add(normalizedQ);
+                      generated.push({
+                        id: `q-bulk-${Date.now()}-${unit.id}-${l.id}-${generated.length}`,
+                        question: qText,
+                        options: [
+                          `Correct option for ${unit.title} [${l.id}] Q${qIndex}`,
+                          `Incorrect option A for ${unit.title} [${l.id}] Q${qIndex}`,
+                          `Incorrect option B for ${unit.title} [${l.id}] Q${qIndex}`,
+                          `Incorrect option C for ${unit.title} [${l.id}] Q${qIndex}`
+                        ],
+                        correctAnswer: `Correct option for ${unit.title} [${l.id}] Q${qIndex}`,
+                        explanation: `ENGLISH\nThis is a mock explanation for question #${qIndex} on "${unit.title}" at the ${l.id} difficulty level.\n\nTHAI\nนี่คือคำอธิบายจำลองสำหรับข้อที่ #${qIndex} เรื่อง "${unit.title}" ในระดับความยาก ${l.id}`
+                      });
+                    }
+                    qIndex++;
+                    if (qIndex > 1000) break;
+                  }
+
                   return {
                     ...l,
-                    questions: [...(l.questions || []), ...generated]
+                    questions: generated
                   };
                 }
-                return l;
-              })
+              }
+              return l;
+            });
+
+            return {
+              ...unit,
+              levels: updatedLevels
             };
           }
         }
         return unit;
       });
-      
+
       const newLog = {
         id: `log-${Date.now()}`,
         adminName: 'Kanokpol Kulsri',
-        action: `AI Bulk Generated questions for ${processedCount} topics in category "${action.categoryId}"`,
+        action: `AI Bulk Generated questions for category "${categoryId}", topic "${topicId}", level "${levelId}" (Processed ${processedCount} levels)`,
         timestamp: new Date().toISOString()
       };
-      
+
       newState = {
         ...state,
         units: updatedUnits,

@@ -30,6 +30,7 @@ export default function QuizPage() {
   const [animating, setAnimating] = useState(false);
   const [showOutOfHearts, setShowOutOfHearts] = useState(false);
   const [firstAttempt, setFirstAttempt] = useState(true);
+  const [showExplanation, setShowExplanation] = useState(false);
 
   const currentQuestion = questions[currentIndex];
 
@@ -70,6 +71,7 @@ export default function QuizPage() {
       setIsAnswered(false);
       setIsCorrect(false);
       setEncouragement('');
+      setShowExplanation(false);
       return;
     }
 
@@ -94,6 +96,7 @@ export default function QuizPage() {
         setIsCorrect(false);
         setFirstAttempt(true);
         setEncouragement('');
+        setShowExplanation(false);
         setAnimating(false);
       }, 300);
     }
@@ -210,16 +213,58 @@ export default function QuizPage() {
         </div>
       ) : (
         <div className={`quiz-feedback ${isCorrect ? 'quiz-feedback-correct' : 'quiz-feedback-wrong'}`}>
-          <div className="quiz-feedback-header">
-            <span className="quiz-feedback-text">
-              {isCorrect ? encouragement : `Correct answer: ${currentQuestion.correctAnswer}`}
-            </span>
-            {isCorrect && (
-              <svg width="24" height="24" viewBox="0 0 24 24" fill={isCorrect ? 'var(--color-green)' : 'var(--color-red)'} className="quiz-feedback-icon">
-                <path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/>
-              </svg>
+          <div className="quiz-feedback-main">
+            <div className="quiz-feedback-header">
+              <span className="quiz-feedback-text">
+                {isCorrect ? encouragement : `Correct answer: ${currentQuestion.correctAnswer}`}
+              </span>
+              {isCorrect && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill={isCorrect ? 'var(--color-green)' : 'var(--color-red)'} className="quiz-feedback-icon">
+                  <path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/>
+                </svg>
+              )}
+            </div>
+            
+            {currentQuestion?.explanation && (
+              <button
+                type="button"
+                className="quiz-explanation-toggle-btn"
+                onClick={() => setShowExplanation(s => !s)}
+                id="quiz-explanation-toggle"
+              >
+                {showExplanation ? 'Hide Explanation ▴' : 'Show Explanation ▾'}
+              </button>
+            )}
+
+            {showExplanation && currentQuestion?.explanation && (
+              <div className="quiz-explanation-content animate-fade-in">
+                {currentQuestion.explanation.includes('ENGLISH') && currentQuestion.explanation.includes('THAI') ? (
+                  (() => {
+                    const parts = currentQuestion.explanation.split(/THAI:?/i);
+                    const engText = parts[0].replace(/ENGLISH:?/i, '').trim();
+                    const thaiText = parts[1]?.trim() || '';
+                    return (
+                      <>
+                        <div className="explanation-section">
+                          <span className="explanation-label">ENGLISH</span>
+                          <p className="explanation-text">{engText}</p>
+                        </div>
+                        {thaiText && (
+                          <div className="explanation-section" style={{ marginTop: '12px' }}>
+                            <span className="explanation-label">THAI</span>
+                            <p className="explanation-text">{thaiText}</p>
+                          </div>
+                        )}
+                      </>
+                    );
+                  })()
+                ) : (
+                  <p className="explanation-text">{currentQuestion.explanation}</p>
+                )}
+              </div>
             )}
           </div>
+          
           <button
             className={`btn ${isCorrect ? 'btn-primary' : 'quiz-btn-wrong'}`}
             onClick={handleContinue}

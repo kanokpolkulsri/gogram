@@ -361,7 +361,7 @@ export default function AdminPage() {
             <span className="nav-item-icon" id="admin-cms-nav-icon-generate">
               <PracticeIcon active={activeSection === 'generate'} size={22} />
             </span>
-            <span className="nav-item-label" id="admin-cms-nav-label-generate">AI Draft Gen</span>
+            <span className="nav-item-label" id="admin-cms-nav-label-generate">AI Generation</span>
           </button>
 
           <button
