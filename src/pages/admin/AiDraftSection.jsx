@@ -55,24 +55,6 @@ export default function AiDraftSection({
 
   const tasksToProcess = getTasksToProcess();
 
-  // Category statistics calculations
-  const totalSlotsAll = topicsCount * 50; // 5 levels * 10 questions each = 50 per topic
-  const totalFilledAll = categoryTopics.reduce((acc, t) => {
-    return acc + t.levels.reduce((sum, l) => sum + (l.questions?.length || 0), 0);
-  }, 0);
-  const totalEmptyAll = totalSlotsAll - totalFilledAll;
-
-  // Level statistics calculations for selected category
-  const getLevelStats = (lvlId) => {
-    const filled = categoryTopics.reduce((acc, t) => {
-      const lvl = t.levels.find(l => l.id === lvlId);
-      return acc + (lvl?.questions?.length || 0);
-    }, 0);
-    const total = topicsCount * 10;
-    const pct = total > 0 ? (filled / total) * 100 : 0;
-    return { filled, total, pct };
-  };
-
   // Trigger Bulk Generation simulation (calling mock engine, API wired later)
   const handleTriggerBulkGeneration = () => {
     if (tasksToProcess.length === 0) {
@@ -197,11 +179,9 @@ Requirements:
         </div>
       )}
 
-      {/* Two Columns Grid */}
-      <div className="cms-grid-two-columns" style={{ gridTemplateColumns: '1.2fr 0.8fr' }}>
-        
-        {/* Left Column: Generation Controls */}
-        <div className="cms-card cms-ai-config-card">
+
+      {/* Config Card */}
+      <div className="cms-card cms-ai-config-card">
           <div className="cms-card-header">
             <h3 className="cms-card-title">⚡ Generation Configuration</h3>
           </div>
@@ -353,70 +333,6 @@ Requirements:
             </button>
           </div>
         </div>
-
-        {/* Right Column: Stats Card */}
-        <div className="cms-card cms-ai-stats-card">
-          <div className="cms-card-header">
-            <h3 className="cms-card-title">📈 Category Overview</h3>
-          </div>
-          
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            
-            {/* Numeric Indicators */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-              <div style={{ padding: '12px', border: '1px solid #dadce0', borderRadius: '8px', textAlign: 'left' }}>
-                <span style={{ fontSize: '11px', fontWeight: '900', color: 'var(--color-text-light)', display: 'block', textTransform: 'uppercase' }}>Topic Count</span>
-                <strong style={{ fontSize: '20px', color: 'var(--color-text)' }}>{topicsCount}</strong>
-              </div>
-              <div style={{ padding: '12px', border: '1px solid #dadce0', borderRadius: '8px', textAlign: 'left' }}>
-                <span style={{ fontSize: '11px', fontWeight: '900', color: 'var(--color-text-light)', display: 'block', textTransform: 'uppercase' }}>Total Slots</span>
-                <strong style={{ fontSize: '20px', color: 'var(--color-text)' }}>{totalSlotsAll}</strong>
-              </div>
-              <div style={{ padding: '12px', border: '1px solid #dadce0', borderRadius: '8px', textAlign: 'left' }}>
-                <span style={{ fontSize: '11px', fontWeight: '900', color: 'var(--color-text-light)', display: 'block', textTransform: 'uppercase' }}>Filled Slots</span>
-                <strong style={{ fontSize: '20px', color: '#1E8E3E' }}>{totalFilledAll}</strong>
-              </div>
-              <div style={{ padding: '12px', border: '1px solid #dadce0', borderRadius: '8px', textAlign: 'left' }}>
-                <span style={{ fontSize: '11px', fontWeight: '900', color: 'var(--color-text-light)', display: 'block', textTransform: 'uppercase' }}>Empty Slots</span>
-                <strong style={{ fontSize: '20px', color: '#D93025' }}>{totalEmptyAll}</strong>
-              </div>
-            </div>
-
-            {/* Level breakdown progress bars */}
-            <div style={{ textAlign: 'left' }}>
-              <h5 style={{ margin: '0 0 12px 0', fontSize: '12px', fontWeight: '900', color: 'var(--color-text-light)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                Level Saturation
-              </h5>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                {levelList.map(lvlId => {
-                  const stats = getLevelStats(lvlId);
-                  return (
-                    <div key={lvlId} style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', fontWeight: '700' }}>
-                        <span style={{ color: 'var(--color-text)' }}>{levelLabels[lvlId]?.split(' ')[0] || lvlId}</span>
-                        <span style={{ color: 'var(--color-text-light)' }}>{stats.filled} / {stats.total} Qs</span>
-                      </div>
-                      <div style={{ height: '8px', background: '#f1f3f4', borderRadius: '4px', overflow: 'hidden', border: '1px solid #dadce0' }}>
-                        <div
-                          style={{
-                            height: '100%',
-                            background: '#1A73E8',
-                            width: `${stats.pct}%`,
-                            borderRadius: '4px',
-                            transition: 'width 0.3s ease'
-                          }}
-                        ></div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
     </div>
   );
 }
