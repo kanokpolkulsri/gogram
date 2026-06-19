@@ -290,15 +290,18 @@
 /* Explanation styles */
 .quiz-feedback-main {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 8px;
+  flex-direction: column;
   width: 100%;
+  gap: 0;
 }
 
-.quiz-feedback-body {
-  flex: 1;
-  min-width: 0;
+.quiz-feedback-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
 }
 
 .quiz-explanation-toggle-btn {
@@ -333,28 +336,32 @@
   background-color: rgba(234, 43, 43, 0.12);
 }
 
-/* Explanation drawer — slides up from 0 height when opened */
+/* Explanation drawer — slides open from 0 height when toggled */
 .quiz-explanation-drawer {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    margin-top 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
-  margin-top: 8px;
+  width: 100%;
+  margin-top: 0;   /* no space when collapsed */
 }
 
 .quiz-explanation-drawer-open {
   grid-template-rows: 1fr;
+  margin-top: 10px;  /* space appears as drawer opens */
 }
 
 .quiz-explanation-drawer > .quiz-explanation-content {
-  min-height: 0;            /* required for grid 0fr to work */
+  min-height: 0;   /* required for 0fr collapse */
   overflow: hidden;
 }
 
 .quiz-explanation-content {
   font-size: 14px;
   line-height: 1.5;
-  margin-bottom: 16px;
+  margin-bottom: 0;   /* never leak through the grid */
   text-align: left;
   border-radius: 12px;
   padding: 16px 20px;
