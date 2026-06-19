@@ -210,6 +210,10 @@
   animation: slideUp 0.3s ease;
 }
 
+.quiz-feedback > .btn {
+  margin-top: 16px;
+}
+
 .quiz-feedback-correct {
   background: var(--color-green-bg);
 }
@@ -353,15 +357,18 @@
   margin-top: 10px;  /* space appears as drawer opens */
 }
 
-.quiz-explanation-drawer > .quiz-explanation-content {
-  min-height: 0;   /* required for 0fr collapse */
+/* grid child: NO padding so 0fr collapses cleanly */
+.quiz-explanation-content {
+  min-height: 0;
   overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.quiz-explanation-content {
+/* inner wrapper carries all visual styling */
+.quiz-explanation-inner {
   font-size: 14px;
   line-height: 1.5;
-  margin-bottom: 0;   /* never leak through the grid */
   text-align: left;
   border-radius: 12px;
   padding: 16px 20px;
@@ -371,11 +378,11 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
-.quiz-feedback-correct .quiz-explanation-content {
+.quiz-feedback-correct .quiz-explanation-inner {
   border: 1.5px solid rgba(88, 204, 2, 0.35);
 }
 
-.quiz-feedback-wrong .quiz-explanation-content {
+.quiz-feedback-wrong .quiz-explanation-inner {
   border: 1.5px solid rgba(234, 43, 43, 0.35);
 }
 
