@@ -222,7 +222,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .quiz-feedback-text {
@@ -238,9 +238,7 @@
   color: var(--color-red-dark);
 }
 
-.quiz-feedback-icon {
-  cursor: pointer;
-}
+
 
 .quiz-btn-wrong {
   background-color: var(--color-red);
