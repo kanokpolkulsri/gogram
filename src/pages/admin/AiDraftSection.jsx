@@ -172,7 +172,8 @@ Requirements:
 - For "Vocabulary" category:
   * Focus on word usage in context.
   * Ensure the Thai explanation contains a clear "Vocabulary List" style breakdown of all answer options and key terms from the question text.
-- For "Grammar" category, focus on the specific rule of the topic.`;
+- For "Grammar" category, focus on the specific rule of the topic.
+- Do NOT prefix the question with phrases like "Complete:" or wrap it in single/double quotes. Write the question sentence directly (e.g., "She ___ a doctor at the hospital." instead of "Complete: 'She ___ a doctor at the hospital.'").`;
   };
 
   return (

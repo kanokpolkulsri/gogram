@@ -116,11 +116,39 @@ const UserDispatchContext = createContext(null);
 
 const STORAGE_KEY = 'gogram-user';
 
+export function cleanQuestion(q) {
+  if (!q) return q;
+  let cleaned = q.trim();
+  if (cleaned.toLowerCase().startsWith('complete:')) {
+    cleaned = cleaned.substring('complete:'.length).trim();
+  }
+  const match = cleaned.match(/^['"](.*?)['"](\s*\(.*?\))?$/);
+  if (match) {
+    cleaned = match[1] + (match[2] ? match[2] : '');
+  }
+  return cleaned;
+}
+
 function loadUser() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       const parsed = JSON.parse(saved);
+      
+      // Clean up existing questions if they have the 'Complete:' prefix
+      if (parsed.units) {
+        parsed.units = parsed.units.map(unit => ({
+          ...unit,
+          levels: unit.levels.map(level => ({
+            ...level,
+            questions: (level.questions || []).map(q => ({
+              ...q,
+              question: cleanQuestion(q.question)
+            }))
+          }))
+        }));
+      }
+
       // Migration to rename 'grammar-foundation' to 'grammar' and update topics to match screenshot
       const hasOldCategory = parsed.categories && parsed.categories.some(c => c.id === 'grammar-foundation');
       const hasOldUnits = parsed.units && parsed.units.some(u => u.category === 'grammar-foundation');
@@ -733,13 +761,14 @@ function userReducer(state, action) {
 
                   while (generated.length < questionsPerTopic && itemIndex < sourceQuestions.length) {
                     const qObj = sourceQuestions[itemIndex];
-                    const normalizedQ = qObj.question.trim().toLowerCase();
+                    const cleanedQ = cleanQuestion(qObj.question);
+                    const normalizedQ = cleanedQ.trim().toLowerCase();
 
                     if (!existingQuestionTexts.has(normalizedQ)) {
                       existingQuestionTexts.add(normalizedQ);
                       generated.push({
                         id: `q-bulk-${Date.now()}-${unit.id}-${l.id}-${generated.length}`,
-                        question: qObj.question,
+                        question: cleanedQ,
                         options: qObj.options,
                         correctAnswer: qObj.correctAnswer,
                         explanation: qObj.explanation

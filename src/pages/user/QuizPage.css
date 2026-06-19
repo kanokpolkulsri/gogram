@@ -336,40 +336,48 @@
   line-height: 1.5;
   margin-bottom: 16px;
   text-align: left;
-  border-radius: 8px;
-  padding: 10px 12px;
+  border-radius: 12px;
+  padding: 16px 20px;
   width: 100%;
   box-sizing: border-box;
+  background-color: var(--color-white);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
 .quiz-feedback-correct .quiz-explanation-content {
-  background-color: rgba(255, 255, 255, 0.5);
-  color: var(--color-green-dark);
-  border: 1px solid rgba(88, 204, 2, 0.2);
+  border: 1.5px solid rgba(88, 204, 2, 0.35);
 }
 
 .quiz-feedback-wrong .quiz-explanation-content {
-  background-color: rgba(255, 255, 255, 0.5);
-  color: var(--color-red-dark);
-  border: 1px solid rgba(234, 43, 43, 0.2);
+  border: 1.5px solid rgba(234, 43, 43, 0.35);
 }
 
 .explanation-section {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .explanation-label {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 800;
-  color: var(--color-text-light);
   letter-spacing: 0.8px;
   text-transform: uppercase;
 }
 
-.explanation-text {
-  font-size: 14px;
-  line-height: 1.4;
-  margin: 0;
+.quiz-feedback-correct .explanation-label {
+  color: var(--color-green-dark);
 }
+
+.quiz-feedback-wrong .explanation-label {
+  color: var(--color-red-dark);
+}
+
+.explanation-text {
+  font-size: 14.5px;
+  line-height: 1.5;
+  margin: 0;
+  color: var(--color-text);
+  font-weight: 500;
+}
+

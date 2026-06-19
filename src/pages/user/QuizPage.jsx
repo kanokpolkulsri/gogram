@@ -152,9 +152,6 @@ export default function QuizPage() {
           </svg>
         </button>
         <div className="quiz-progress-wrapper">
-          {correctStreak > 0 && (
-            <span className="quiz-streak-badge">{correctStreak} IN A ROW</span>
-          )}
           <ProgressBar current={currentIndex + (isAnswered && isCorrect ? 1 : 0)} total={totalQuestions} />
         </div>
         <Hearts count={user.hearts} />
