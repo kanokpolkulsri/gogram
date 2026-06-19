@@ -14,10 +14,9 @@ const initialMockUsers = [
     authLevel: 'admin',
     status: 'active',
     progress: {
-      'grammar-foundation': 12,
+      'grammar': 12,
       'vocabulary': 8,
       'reading': 0,
-      'exam-grammars': 0,
     }
   },
   {
@@ -28,10 +27,9 @@ const initialMockUsers = [
     authLevel: 'subscribed',
     status: 'active',
     progress: {
-      'grammar-foundation': 20,
+      'grammar': 20,
       'vocabulary': 15,
       'reading': 5,
-      'exam-grammars': 0,
     }
   },
   {
@@ -42,10 +40,9 @@ const initialMockUsers = [
     authLevel: 'free',
     status: 'active',
     progress: {
-      'grammar-foundation': 3,
+      'grammar': 3,
       'vocabulary': 0,
       'reading': 0,
-      'exam-grammars': 0,
     }
   },
   {
@@ -56,10 +53,9 @@ const initialMockUsers = [
     authLevel: 'free',
     status: 'blocked',
     progress: {
-      'grammar-foundation': 0,
+      'grammar': 0,
       'vocabulary': 0,
       'reading': 0,
-      'exam-grammars': 0,
     }
   }
 ];
@@ -125,7 +121,23 @@ function loadUser() {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       const parsed = JSON.parse(saved);
-      
+      // Migration to rename 'grammar-foundation' to 'grammar' and update topics to match screenshot
+      const hasOldCategory = parsed.categories && parsed.categories.some(c => c.id === 'grammar-foundation');
+      const hasOldUnits = parsed.units && parsed.units.some(u => u.category === 'grammar-foundation');
+      if (hasOldCategory || hasOldUnits) {
+        parsed.categories = studyCategories;
+        parsed.units = units;
+        parsed.completedLessons = [];
+        if (parsed.mockUsers) {
+          parsed.mockUsers = parsed.mockUsers.map(u => {
+            const p = { ...(u.progress || {}) };
+            delete p['grammar-foundation'];
+            p['grammar'] = 0;
+            return { ...u, progress: p };
+          });
+        }
+      }
+
       // Auto-patch loaded localStorage data to ensure question 'a1' has 4 choices as mockData was updated
       if (parsed.units && parsed.units[0]?.levels[0]?.questions[0]) {
         const firstQ = parsed.units[0].levels[0].questions[0];

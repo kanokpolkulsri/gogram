@@ -379,6 +379,30 @@
   font-weight: 800;
 }
 
+.delete-category-btn {
+  opacity: 0;
+  transition: opacity 0.2s ease, background-color 0.2s, color 0.2s;
+  color: var(--color-gray-dark);
+  padding: 4px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.cms-category-item-card:hover .delete-category-btn {
+  opacity: 0.7;
+}
+
+.cms-category-item-card:hover .delete-category-btn:hover {
+  opacity: 1;
+  background-color: #FEE2E2 !important;
+  color: #EF4444 !important;
+}
+
 .folder-icon {
   display: inline-flex;
   align-items: center;

@@ -92,7 +92,7 @@ export default function LeaderboardPage() {
   const units = user.units || [];
 
   // Load the active category or fallback to the first one
-  const initialCategoryId = user.lastCategoryId || 'grammar-foundation';
+  const initialCategoryId = user.lastCategoryId || 'grammar';
   const [selectedCategoryId, setSelectedCategoryId] = useState(initialCategoryId);
 
   const selectedCategory = studyCategories.find((c) => c.id === selectedCategoryId) || (studyCategories.length > 0 ? studyCategories[0] : null);

@@ -7,7 +7,7 @@ export default function AiDraftSection({
   showToast
 }) {
   // 1. Core States
-  const [categoryId, setCategoryId] = useState(categories[0]?.id || 'grammar-foundation');
+  const [categoryId, setCategoryId] = useState(categories[0]?.id || 'grammar');
   const [topic, setTopic] = useState('all'); // 'all' or specific topic ID (unit ID)
   const [level, setLevel] = useState('all'); // 'all', 'easy', 'medium1', 'medium2', 'hard1', 'hard2'
   const [onlyZero, setOnlyZero] = useState(true);

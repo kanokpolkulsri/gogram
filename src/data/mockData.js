@@ -16,10 +16,10 @@ export const initialUser = {
 }; export const units = [
   {
     id: 1,
-    category: 'grammar-foundation',
-    title: 'Basics: English Articles',
+    category: 'grammar',
+    title: 'Verb to Be',
     section: 'SECTION 1, UNIT 1',
-    description: 'Learn how to use "a", "an", and "the"',
+    description: 'Master the forms of am, is, are, was, were',
     color: '#58CC02',
     levels: [
       {
@@ -29,155 +29,117 @@ export const initialUser = {
         icon: 'star',
         questions: [
           {
-            id: 'a1',
-            question: "Which article is used before 'book'?",
-            options: ['a', 'an', 'the', 'none of these'],
-            correctAnswer: 'a',
+            id: 'vtb_e1',
+            question: "Complete: 'She ___ a doctor at the hospital.'",
+            options: ["is", "am", "are", "be"],
+            correctAnswer: "is",
+            explanation: "ENGLISH\nSingular subject 'She' takes 'is' in the present tense.\n\nTHAI\nประธานเอกพจน์ 'She' ใช้คู่กับ 'is' ในปัจจุบันกาล\nVocabulary: doctor = หมอ, hospital = โรงพยาบาล"
           },
           {
-            id: 'a2',
-            question: "Which article is used before 'apple'?",
-            options: ['a', 'an', 'the'],
-            correctAnswer: 'an',
-          },
-          {
-            id: 'a3',
-            question: "Complete: '___ sun is hot.'",
-            options: ['A', 'An', 'The'],
-            correctAnswer: 'The',
-          },
-        ],
+            id: 'vtb_e2',
+            question: "Complete: 'They ___ playing football in the garden.'",
+            options: ["are", "is", "am", "be"],
+            correctAnswer: "are",
+            explanation: "ENGLISH\nPlural subject 'They' takes 'are' in the present continuous tense.\n\nTHAI\nประธานพหูพจน์ 'They' ใช้คู่กับ 'are' ใน Present Continuous Tense\nVocabulary: playing = กำลังเล่น, garden = สวน"
+          }
+        ]
       },
       {
         id: 'medium1',
-        label: 'Medium',
+        label: 'Medium 1',
         xpReward: 15,
         icon: 'star',
         questions: [
           {
-            id: 'a4',
-            question: "Which article is used before 'hour'?",
-            options: ['a', 'an', 'the'],
-            correctAnswer: 'an',
+            id: 'vtb_m1_1',
+            question: "Complete: 'The news about the change of plans ___ true.'",
+            options: ["is", "are", "am", "be"],
+            correctAnswer: "is",
+            explanation: "ENGLISH\nThe word 'news' is an uncountable noun and is always singular.\n\nTHAI\nคำว่า 'news' (ข่าว) เป็นคำนามนับไม่ได้และถือเป็นเอกพจน์เสมอ จึงใช้ 'is'\nVocabulary: news = ข่าว, change = การเปลี่ยนแปลง, true = จริง"
           },
           {
-            id: 'a5',
-            question: "Which article is used before 'university'?",
-            options: ['a', 'an', 'the'],
-            correctAnswer: 'a',
-          },
-          {
-            id: 'a6',
-            question: "Complete: 'I saw ___ elephant.'",
-            options: ['a', 'an', 'the'],
-            correctAnswer: 'an',
-          },
-        ],
+            id: 'vtb_m1_2',
+            question: "Complete: 'Neither of my brothers ___ going to the party.'",
+            options: ["is", "are", "was", "be"],
+            correctAnswer: "is",
+            explanation: "ENGLISH\n'Neither' functions as a singular subject and takes 'is'.\n\nTHAI\n'Neither of...' (ไม่มีคนใดคนหนึ่ง) มีความหมายเป็นเอกพจน์ จึงใช้ 'is'\nVocabulary: neither = ไม่มีใครเลย, brothers = พี่ชาย/น้องชาย, party = งานปาร์ตี้"
+          }
+        ]
       },
       {
         id: 'medium2',
-        label: 'Medium',
+        label: 'Medium 2',
         xpReward: 15,
         icon: 'dumbbell',
         questions: [
           {
-            id: 'a7',
-            question: "Complete: 'She is ___ honest girl.'",
-            options: ['a', 'an', 'the'],
-            correctAnswer: 'an',
+            id: 'vtb_m2_1',
+            question: "Complete: 'A number of candidates ___ already waiting outside.'",
+            options: ["are", "is", "was", "be"],
+            correctAnswer: "are",
+            explanation: "ENGLISH\n'A number of' functions as plural and takes a plural verb 'are'.\n\nTHAI\n'A number of' แปลว่า จำนวนหลายคน/หลายสิ่ง มีความหมายเป็นพหูพจน์ จึงใช้ 'are'\nVocabulary: number = จำนวน, candidates = ผู้สมัคร, waiting = กำลังรอ, outside = ข้างนอก"
           },
           {
-            id: 'a8',
-            question: "Complete: '___ earth goes around the sun.'",
-            options: ['A', 'An', 'The'],
-            correctAnswer: 'The',
-          },
-          {
-            id: 'a9',
-            question: "Complete: 'He is ___ teacher.'",
-            options: ['a', 'an', 'the'],
-            correctAnswer: 'a',
-          },
-        ],
+            id: 'vtb_m2_2',
+            question: "Complete: 'The number of students in this group ___ small.'",
+            options: ["is", "are", "were", "be"],
+            correctAnswer: "is",
+            explanation: "ENGLISH\n'The number of' refers to the numerical count itself, which is singular.\n\nTHAI\n'The number of' (จำนวนของ...) หมายถึงหน่วยตัวเลขจำนวนนั้นที่เป็นเอกพจน์ จึงใช้ 'is'\nVocabulary: number = จำนวน, students = นักเรียน, group = กลุ่ม, small = เล็ก"
+          }
+        ]
       },
       {
         id: 'hard1',
-        label: 'Level 1',
+        label: 'Hard 1',
         xpReward: 20,
         icon: 'level-up',
         questions: [
           {
-            id: 'a10',
-            question: 'Which is correct?',
-            options: ['I have an umbrella', 'I have a umbrella', 'I have the umbrella'],
-            correctAnswer: 'I have an umbrella',
+            id: 'vtb_h1_1',
+            question: "Complete: 'It is essential that he ___ present at the conference.'",
+            options: ["be", "is", "was", "were"],
+            correctAnswer: "be",
+            explanation: "ENGLISH\nSubjunctive mood is used after adjectives of necessity like 'essential', requiring the bare form 'be'.\n\nTHAI\nโครงสร้าง Subjunctive หลังคำคุณศัพท์แสดงความสำคัญ/จำเป็น (essential) ต้องใช้กริยาฐานรูปปกติ 'be'\nVocabulary: essential = จำเป็น/สำคัญ, present = เข้าร่วม/แสดงตัว, conference = การประชุม"
           },
           {
-            id: 'a11',
-            question: "Complete: '___ water in this bottle is clean.'",
-            options: ['A', 'An', 'The'],
-            correctAnswer: 'The',
-          },
-          {
-            id: 'a12',
-            question: "Complete: 'They live in ___ old house.'",
-            options: ['a', 'an', 'the'],
-            correctAnswer: 'an',
-          },
-        ],
+            id: 'vtb_h1_2',
+            question: "Complete: 'If I ___ in your position, I would accept the job offer.'",
+            options: ["were", "was", "is", "be"],
+            correctAnswer: "were",
+            explanation: "ENGLISH\nUse 'were' for all subjects in unreal hypothetical conditional clauses (second conditional).\n\nTHAI\nใช้ 'were' กับประธานทุกพจน์ในประโยคเงื่อนไขสมมติที่ไม่เป็นจริงในปัจจุบัน (If Clause type 2)\nVocabulary: position = ตำแหน่ง/สถานการณ์, accept = ยอมรับ, job offer = ข้อเสนอการทำงาน"
+          }
+        ]
       },
       {
         id: 'hard2',
-        label: 'Boss Challenge',
+        label: 'Hard 2',
         xpReward: 35,
         icon: 'boss',
         questions: [
           {
-            id: 'a4_b',
-            question: "Which article is used before 'hour'?",
-            options: ['a', 'an', 'the'],
-            correctAnswer: 'an',
+            id: 'vtb_h2_1',
+            question: "Complete: 'So intense ___ the storm that many trees fell down.'",
+            options: ["was", "were", "are", "be"],
+            correctAnswer: "was",
+            explanation: "ENGLISH\nInverted structure 'So + adj + verb + subject' requires 'was' to agree with 'the storm' (singular).\n\nTHAI\nโครงสร้างกลับหัว (Inversion) ขึ้นด้วย 'So + Adj' ใช้กริยาเอกพจน์ 'was' เพื่อสอดคล้องตามประธาน 'the storm' (พายุ)\nVocabulary: intense = รุนแรง/เข้มข้น, storm = พายุ, trees = ต้นไม้, fell down = ล้มลง"
           },
           {
-            id: 'a5_b',
-            question: "Which article is used before 'university'?",
-            options: ['a', 'an', 'the'],
-            correctAnswer: 'a',
-          },
-          {
-            id: 'a6_b',
-            question: "Complete: 'I saw ___ elephant.'",
-            options: ['a', 'an', 'the'],
-            correctAnswer: 'an',
-          },
-          {
-            id: 'a10_b',
-            question: 'Which is correct?',
-            options: ['I have an umbrella', 'I have a umbrella', 'I have the umbrella'],
-            correctAnswer: 'I have an umbrella',
-          },
-          {
-            id: 'a11_b',
-            question: "Complete: '___ water in this bottle is clean.'",
-            options: ['A', 'An', 'The'],
-            correctAnswer: 'The',
-          },
-          {
-            id: 'a12_b',
-            question: "Complete: 'She is ___ honest girl.'",
-            options: ['a', 'an', 'the'],
-            correctAnswer: 'an',
-          },
-        ],
-      },
-    ],
+            id: 'vtb_h2_2',
+            question: "Complete: 'The jury ___ divided in their opinions about the verdict.'",
+            options: ["were", "was", "is", "be"],
+            correctAnswer: "were",
+            explanation: "ENGLISH\nWhen members of a collective noun act individually or disagree, use the plural verb.\n\nTHAI\nเมื่อสมาชิกในกลุ่มคำนามรวมกลุ่ม (jury - คณะลูกขุน) มีความเห็นขัดแย้งกันแยกเป็นคนๆ จะใช้กริยาพหูพจน์ 'were'\nVocabulary: jury = คณะลูกขุน, divided = แบ่งแยก/เห็นต่าง, opinions = ความคิดเห็น, verdict = คำตัดสิน"
+          }
+        ]
+      }
+    ]
   },
   {
     id: 2,
-    category: 'grammar-foundation',
-    title: 'Basics: The verb "être" (is/am/are)',
+    category: 'grammar',
+    title: 'Subject and Object Pronouns',
     section: 'SECTION 1, UNIT 2',
-    description: 'Learn English verb "to be" (am, is, are)',
+    description: 'Learn when to use he/him, she/her, they/them, and I/me',
     color: '#CE82FF',
     levels: [
       {
@@ -187,155 +149,117 @@ export const initialUser = {
         icon: 'star',
         questions: [
           {
-            id: 'p1',
-            question: "Complete: 'I ___ a student.'",
-            options: ['am', 'is', 'are'],
-            correctAnswer: 'am',
+            id: 'sop_e1',
+            question: "Complete: 'Sarah is my friend. ___ plays tennis with me.'",
+            options: ["She", "Her", "He", "Him"],
+            correctAnswer: "She",
+            explanation: "ENGLISH\nUse subject pronoun 'She' to refer to a female singular subject (Sarah).\n\nTHAI\nใช้สรรพนามรูปประธาน 'She' เพื่อแทนคำนามเอกพจน์เพศหญิง (Sarah)\nVocabulary: friend = เพื่อน, plays = เล่น, tennis = เทนนิส"
           },
           {
-            id: 'p2',
-            question: "Complete: 'You ___ my friend.'",
-            options: ['am', 'is', 'are'],
-            correctAnswer: 'are',
-          },
-          {
-            id: 'p3',
-            question: "Complete: 'He ___ a doctor.'",
-            options: ['am', 'is', 'are'],
-            correctAnswer: 'is',
-          },
-        ],
+            id: 'sop_e2',
+            question: "Complete: 'Can you help ___? I cannot lift this heavy box.'",
+            options: ["me", "I", "my", "myself"],
+            correctAnswer: "me",
+            explanation: "ENGLISH\nUse object pronoun 'me' after the verb 'help'.\n\nTHAI\nใช้สรรพนามรูปกรรม 'me' ตามหลังคำกริยา 'help'\nVocabulary: help = ช่วยเหลือ, lift = ยก, heavy = หนัก, box = กล่อง"
+          }
+        ]
       },
       {
         id: 'medium1',
-        label: 'Medium',
+        label: 'Medium 1',
         xpReward: 15,
         icon: 'star',
         questions: [
           {
-            id: 'p4',
-            question: "Complete: 'She ___ very happy.'",
-            options: ['am', 'is', 'are'],
-            correctAnswer: 'is',
+            id: 'sop_m1_1',
+            question: "Complete: 'My parents are arriving today, and I will meet ___ at the airport.'",
+            options: ["them", "they", "their", "theirs"],
+            correctAnswer: "them",
+            explanation: "ENGLISH\nUse object pronoun 'them' to refer to the plural noun 'parents' acting as an object.\n\nTHAI\nใช้สรรพนามรูปกรรมพหูพจน์ 'them' เพื่อแทนคำนาม 'parents' (พ่อแม่) ที่ทำหน้าที่เป็นกรรม\nVocabulary: parents = พ่อแม่, arriving = มาถึง, meet = พบ/รับ, airport = สนามบิน"
           },
           {
-            id: 'p5',
-            question: "Complete: 'We ___ from Thailand.'",
-            options: ['am', 'is', 'are'],
-            correctAnswer: 'are',
-          },
-          {
-            id: 'p6',
-            question: "Complete: 'It ___ a beautiful day.'",
-            options: ['am', 'is', 'are'],
-            correctAnswer: 'is',
-          },
-        ],
+            id: 'sop_m1_2',
+            question: "Complete: 'John and ___ went to the bookstore yesterday.'",
+            options: ["I", "me", "my", "myself"],
+            correctAnswer: "I",
+            explanation: "ENGLISH\nUse subject pronoun 'I' because it is part of the compound subject 'John and I'.\n\nTHAI\nใช้สรรพนามรูปประธาน 'I' เนื่องจากเป็นส่วนหนึ่งของประธานร่วม 'John and I'\nVocabulary: went = ไป, bookstore = ร้านหนังสือ, yesterday = เมื่อวาน"
+          }
+        ]
       },
       {
         id: 'medium2',
-        label: 'Medium',
+        label: 'Medium 2',
         xpReward: 15,
         icon: 'dumbbell',
         questions: [
           {
-            id: 'p7',
-            question: "Complete: 'They ___ playing football.'",
-            options: ['am', 'is', 'are'],
-            correctAnswer: 'are',
+            id: 'sop_m2_1',
+            question: "Complete: 'Between you and ___, I think this plan is not going to work.'",
+            options: ["me", "I", "my", "myself"],
+            correctAnswer: "me",
+            explanation: "ENGLISH\nAfter prepositions like 'between', always use object pronouns ('me', not 'I').\n\nTHAI\nหลังคำบุพบท เช่น 'between' ต้องใช้สรรพนามรูปกรรมเสมอ จึงใช้ 'between you and me'\nVocabulary: between = ระหว่าง, think = คิดว่า, plan = แผนการ, work = ได้ผล/ทำงาน"
           },
           {
-            id: 'p8',
-            question: "Complete: 'The cats ___ sleeping.'",
-            options: ['am', 'is', 'are'],
-            correctAnswer: 'are',
-          },
-          {
-            id: 'p9',
-            question: "Complete: 'John ___ at home.'",
-            options: ['am', 'is', 'are'],
-            correctAnswer: 'is',
-          },
-        ],
+            id: 'sop_m2_2',
+            question: "Complete: 'The teacher asked you and ___ to clean the classroom.'",
+            options: ["him", "he", "his", "himself"],
+            correctAnswer: "him",
+            explanation: "ENGLISH\nUse object pronoun 'him' because it is part of the compound object 'you and him'.\n\nTHAI\nใช้สรรพนามรูปกรรม 'him' เนื่องจากเป็นส่วนหนึ่งของกรรมร่วม 'you and him' ตามหลังกริยา 'asked'\nVocabulary: asked = ขอร้อง/ถาม, clean = ทำความสะอาด, classroom = ห้องเรียน"
+          }
+        ]
       },
       {
         id: 'hard1',
-        label: 'Level 2',
+        label: 'Hard 1',
         xpReward: 20,
         icon: 'level-up',
         questions: [
           {
-            id: 'p10',
-            question: "Complete: 'My parents ___ here.'",
-            options: ['am', 'is', 'are'],
-            correctAnswer: 'are',
+            id: 'sop_h1_1',
+            question: "Complete: 'Who is knocking at the door? It is ___.'",
+            options: ["I", "me", "my", "myself"],
+            correctAnswer: "I",
+            explanation: "ENGLISH\nIn formal English, use a subject pronoun ('I') after the linking verb 'is'.\n\nTHAI\nในไวยากรณ์ภาษาอังกฤษแบบทางการ หลังกริยาเชื่อมโยง (linking verb) เช่น is/am/are จะใช้สรรพนามรูปประธาน 'I'\nVocabulary: knocking = เคาะ, door = ประตู"
           },
           {
-            id: 'p11',
-            question: 'Which is correct?',
-            options: ['I am tired', 'I is tired', 'I are tired'],
-            correctAnswer: 'I am tired',
-          },
-          {
-            id: 'p12',
-            question: "Complete: 'Neither of them ___ ready.'",
-            options: ['am', 'is', 'are'],
-            correctAnswer: 'is',
-          },
-        ],
+            id: 'sop_h1_2',
+            question: "Complete: 'We are much faster than ___ in this project.'",
+            options: ["they", "them", "their", "theirs"],
+            correctAnswer: "they",
+            explanation: "ENGLISH\nFormally, 'than' is a conjunction introducing an incomplete clause, so subject pronoun 'they' is correct.\n\nTHAI\nในทางไวยากรณ์ทางการ 'than' ทำหน้าที่เป็นคำสันธานเชื่อมประโยคที่ละกริยาไว้ จึงใช้รูปประธาน 'they'\nVocabulary: faster = เร็วกว่า, project = โครงการ"
+          }
+        ]
       },
       {
         id: 'hard2',
-        label: 'Boss Challenge',
+        label: 'Hard 2',
         xpReward: 35,
         icon: 'boss',
         questions: [
           {
-            id: 'p4_b',
-            question: "Complete: 'She ___ very happy.'",
-            options: ['am', 'is', 'are'],
-            correctAnswer: 'is',
+            id: 'sop_h2_1',
+            question: "Complete: 'It was ___ who solved the mystery, not the police.'",
+            options: ["he", "him", "his", "himself"],
+            correctAnswer: "he",
+            explanation: "ENGLISH\nIn cleft sentences 'It was [subject] who...', use the subject pronoun 'he'.\n\nTHAI\nในประโยคเน้นความ (Cleft sentence) โครงสร้าง 'It was + ประธาน + who...' ต้องใช้รูปประธาน 'he'\nVocabulary: solved = แก้ปัญหา/ไขคดี, mystery = ความลึกลับ/ปริศนา, police = ตำรวจ"
           },
           {
-            id: 'p5_b',
-            question: "Complete: 'We ___ from Thailand.'",
-            options: ['am', 'is', 'are'],
-            correctAnswer: 'are',
-          },
-          {
-            id: 'p6_b',
-            question: "Complete: 'They ___ playing football.'",
-            options: ['am', 'is', 'are'],
-            correctAnswer: 'are',
-          },
-          {
-            id: 'p11_b',
-            question: "Complete: 'My parents ___ here.'",
-            options: ['am', 'is', 'are'],
-            correctAnswer: 'are',
-          },
-          {
-            id: 'p13_b',
-            question: 'Which is correct?',
-            options: ['I am tired', 'I is tired', 'I are tired'],
-            correctAnswer: 'I am tired',
-          },
-          {
-            id: 'p15_b',
-            question: "Complete: 'It ___ a beautiful day.'",
-            options: ['am', 'is', 'are'],
-            correctAnswer: 'is',
-          },
-        ],
-      },
-    ],
+            id: 'sop_h2_2',
+            question: "Complete: 'Let ___ who is without sin cast the first stone.'",
+            options: ["him", "he", "his", "himself"],
+            correctAnswer: "him",
+            explanation: "ENGLISH\nThe verb 'let' is transitive and requires the object pronoun 'him'.\n\nTHAI\nคำกริยา 'let' (ปล่อยให้/อนุญาต) เป็นสกรรมกริยาที่ต้องการกรรมมารองรับ จึงต้องใช้รูปกรรม 'him'\nVocabulary: without = ปราศจาก, sin = บาป, cast = ขว้าง/ปา, stone = ก้อนหิน"
+          }
+        ]
+      }
+    ]
   },
   {
     id: 3,
-    category: 'grammar-foundation',
-    title: 'Basics: The verb "avoir" (to have)',
+    category: 'grammar',
+    title: 'Possessive Adjectives, Possessive Pronouns, and Reflexive Pronouns',
     section: 'SECTION 1, UNIT 3',
-    description: 'Learn English verb "to have" (have, has)',
+    description: 'Master my/mine/myself, its/itself, their/theirs/themselves',
     color: '#1CB0F6',
     levels: [
       {
@@ -345,148 +269,110 @@ export const initialUser = {
         icon: 'star',
         questions: [
           {
-            id: 'v1',
-            question: "Complete: 'I ___ a new car.'",
-            options: ['have', 'has', 'had'],
-            correctAnswer: 'have',
+            id: 'ppr_e1',
+            question: "Complete: 'I washed ___ car yesterday because it was dirty.'",
+            options: ["my", "mine", "me", "myself"],
+            correctAnswer: "my",
+            explanation: "ENGLISH\nUse possessive adjective 'my' before the noun 'car'.\n\nTHAI\nใช้คำคุณศัพท์แสดงความเป็นเจ้าของ 'my' นำหน้าคำนาม 'car'\nVocabulary: washed = ล้าง, car = รถยนต์, yesterday = เมื่อวาน, dirty = สกปรก"
           },
           {
-            id: 'v2',
-            question: "Complete: 'He ___ a big dog.'",
-            options: ['have', 'has', 'had'],
-            correctAnswer: 'has',
-          },
-          {
-            id: 'v3',
-            question: "Complete: 'They ___ many books.'",
-            options: ['have', 'has', 'had'],
-            correctAnswer: 'have',
-          },
-        ],
+            id: 'ppr_e2',
+            question: "Complete: 'This book belongs to me. It is ___.'",
+            options: ["mine", "my", "me", "myself"],
+            correctAnswer: "mine",
+            explanation: "ENGLISH\nUse possessive pronoun 'mine' to replace 'my book'.\n\nTHAI\nใช้สรรพนามแสดงความเป็นเจ้าของ 'mine' เพื่อแทนคำว่า 'my book' โดยไม่ต้องมีนามตามหลัง\nVocabulary: belongs to = เป็นของ, book = หนังสือ"
+          }
+        ]
       },
       {
         id: 'medium1',
-        label: 'Medium',
+        label: 'Medium 1',
         xpReward: 15,
         icon: 'star',
         questions: [
           {
-            id: 'v4',
-            question: "Complete: 'She ___ a sister.'",
-            options: ['have', 'has', 'had'],
-            correctAnswer: 'has',
+            id: 'ppr_m1_1',
+            question: "Complete: 'The cat licked ___ paw after eating the fish.'",
+            options: ["its", "it's", "it", "itself"],
+            correctAnswer: "its",
+            explanation: "ENGLISH\nUse possessive adjective 'its' before the noun 'paw'.\n\nTHAI\nใช้คำคุณศัพท์แสดงความเป็นเจ้าของ 'its' นำหน้าคำนาม 'paw' (อุ้งเท้า)\nVocabulary: licked = เลีย, paw = อุ้งเท้า, eating = กิน, fish = ปลา"
           },
           {
-            id: 'v5',
-            question: "Complete: 'We ___ a test today.'",
-            options: ['have', 'has', 'had'],
-            correctAnswer: 'have',
-          },
-          {
-            id: 'v6',
-            question: "Complete: 'You ___ a great smile.'",
-            options: ['have', 'has', 'had'],
-            correctAnswer: 'have',
-          },
-        ],
+            id: 'ppr_m1_2',
+            question: "Complete: 'He cut ___ while preparing dinner in the kitchen.'",
+            options: ["himself", "him", "his", "he"],
+            correctAnswer: "himself",
+            explanation: "ENGLISH\nUse reflexive pronoun 'himself' because the subject and object are the same person.\n\nTHAI\nใช้สรรพนามสะท้อน 'himself' (ตัวเขาเอง) เมื่อประธานและกรรมเป็นบุคคลเดียวกัน\nVocabulary: cut = บาด/ตัด, preparing = เตรียม, dinner = มื้อเย็น, kitchen = ห้องครัว"
+          }
+        ]
       },
       {
         id: 'medium2',
-        label: 'Medium',
+        label: 'Medium 2',
         xpReward: 15,
         icon: 'dumbbell',
         questions: [
           {
-            id: 'v7',
-            question: "Complete: 'It ___ four legs.'",
-            options: ['have', 'has', 'had'],
-            correctAnswer: 'has',
+            id: 'ppr_m2_1',
+            question: "Complete: 'They painted the entire house ___ without any help.'",
+            options: ["themselves", "theirselves", "them", "themselves"],
+            correctAnswer: "themselves",
+            explanation: "ENGLISH\nUse reflexive pronoun 'themselves' to emphasize that they did it on their own.\n\nTHAI\nใช้สรรพนามสะท้อน 'themselves' (ด้วยตัวพวกเขาเอง) เพื่อเน้นว่าทำเองโดยไม่มีใครช่วย\nVocabulary: painted = ทาสี, entire = ทั้งหมด, house = บ้าน, without = ปราศจาก, help = ความช่วยเหลือ"
           },
           {
-            id: 'v8',
-            question: "Complete: 'The children ___ toys.'",
-            options: ['have', 'has', 'had'],
-            correctAnswer: 'have',
-          },
-          {
-            id: 'v9',
-            question: "Complete: 'Anna ___ a computer.'",
-            options: ['have', 'has', 'had'],
-            correctAnswer: 'has',
-          },
-        ],
+            id: 'ppr_m2_2',
+            question: "Complete: 'Our car is red, but ___ is blue.'",
+            options: ["theirs", "their", "them", "themselves"],
+            correctAnswer: "theirs",
+            explanation: "ENGLISH\nUse possessive pronoun 'theirs' to mean 'their car'.\n\nTHAI\nใช้สรรพนามแสดงความเป็นเจ้าของ 'theirs' เพื่อแทนคำว่า 'their car'\nVocabulary: car = รถยนต์, red = สีแดง, blue = สีน้ำเงิน"
+          }
+        ]
       },
       {
         id: 'hard1',
-        label: 'Level 3',
+        label: 'Hard 1',
         xpReward: 20,
         icon: 'level-up',
         questions: [
           {
-            id: 'v10',
-            question: "Complete: 'My friend ___ a blue bike.'",
-            options: ['have', 'has', 'had'],
-            correctAnswer: 'has',
+            id: 'ppr_h1_1',
+            question: "Complete: 'One should always take care of ___ health.'",
+            options: ["one's", "his", "her", "oneself"],
+            correctAnswer: "one's",
+            explanation: "ENGLISH\nThe pronoun 'one' requires the possessive form 'one's' to remain consistent.\n\nTHAI\nสรรพนามไม่ชี้เฉพาะ 'one' ต้องใช้คู่กับรูปแสดงความเป็นเจ้าของ 'one's' เสมอเพื่อความสอดคล้อง\nVocabulary: should = ควรจะ, always = เสมอ, take care = ดูแล, health = สุขภาพ"
           },
           {
-            id: 'v11',
-            question: 'Which is correct?',
-            options: ['I have a cat', 'I has a cat', 'I having a cat'],
-            correctAnswer: 'I have a cat',
-          },
-          {
-            id: 'v12',
-            question: "Complete: 'Everyone ___ problems.'",
-            options: ['have', 'has', 'had'],
-            correctAnswer: 'has',
-          },
-        ],
+            id: 'ppr_h1_2',
+            question: "Complete: 'We enjoyed ___ very much at the beach last weekend.'",
+            options: ["ourselves", "ourself", "us", "ours"],
+            correctAnswer: "ourselves",
+            explanation: "ENGLISH\nUse reflexive pronoun 'ourselves' (plural spelling) with the plural subject 'We'.\n\nTHAI\nใช้สรรพนามสะท้อน 'ourselves' (พหูพจน์ สะกดด้วย -ves) คู่กับประธาน 'We'\nVocabulary: enjoyed = สนุกสนาน, beach = ชายหาด, weekend = สุดสัปดาห์"
+          }
+        ]
       },
       {
         id: 'hard2',
-        label: 'Boss Challenge',
+        label: 'Hard 2',
         xpReward: 35,
         icon: 'boss',
         questions: [
           {
-            id: 'v4_b',
-            question: "Complete: 'She ___ a sister.'",
-            options: ['have', 'has', 'had'],
-            correctAnswer: 'has',
+            id: 'ppr_h2_1',
+            question: "Complete: 'He was sitting all by ___ in the corner of the library.'",
+            options: ["himself", "his", "him", "he"],
+            correctAnswer: "himself",
+            explanation: "ENGLISH\nThe idiom 'by oneself' means alone or without companionship.\n\nTHAI\nสำนวน 'by oneself' (เช่น by himself) แปลว่า เพียงลำพัง หรือ คนเดียว\nVocabulary: sitting = กำลังนั่ง, corner = มุม, library = ห้องสมุด"
           },
           {
-            id: 'v5_b',
-            question: "Complete: 'We ___ a test today.'",
-            options: ['have', 'has', 'had'],
-            correctAnswer: 'have',
-          },
-          {
-            id: 'v6_b',
-            question: "Complete: 'The children ___ toys.'",
-            options: ['have', 'has', 'had'],
-            correctAnswer: 'have',
-          },
-          {
-            id: 'v11_b',
-            question: 'Which is correct?',
-            options: ['I have a cat', 'I has a cat', 'I having a cat'],
-            correctAnswer: 'I have a cat',
-          },
-          {
-            id: 'v13_b',
-            question: "Complete: 'Anna ___ a computer.'",
-            options: ['have', 'has', 'had'],
-            correctAnswer: 'has',
-          },
-          {
-            id: 'v15_b',
-            question: "Complete: 'My friend ___ a blue bike.'",
-            options: ['have', 'has', 'had'],
-            correctAnswer: 'has',
-          },
-        ],
-      },
-    ],
+            id: 'ppr_h2_2',
+            question: "Complete: 'The responsibility for this decision is ___.'",
+            options: ["yours", "your", "you", "yourself"],
+            correctAnswer: "yours",
+            explanation: "ENGLISH\nUse possessive pronoun 'yours' as a predicate pronoun showing ownership of 'responsibility'.\n\nTHAI\nใช้สรรพนามแสดงความเป็นเจ้าของ 'yours' ทำหน้าที่เป็นส่วนเติมเต็มของกริยาแสดงความเป็นเจ้าของ\nVocabulary: responsibility = ความรับผิดชอบ, decision = การตัดสินใจ"
+          }
+        ]
+      }
+    ]
   },
   {
     id: 4,
@@ -825,9 +711,9 @@ export const initialUser = {
 
 export const studyCategories = [
   {
-    id: 'grammar-foundation',
-    title: 'Grammar Foundation',
-    description: 'Master structural and sentence patterns',
+    id: 'grammar',
+    title: 'Grammar',
+    description: 'Explore this category',
     color: '#58CC02',
     iconChar: 'G',
   },
@@ -844,13 +730,6 @@ export const studyCategories = [
     description: 'Improve comprehension with short stories',
     color: '#CE82FF',
     iconChar: 'R',
-  },
-  {
-    id: 'exam-grammars',
-    title: 'Exam Grammars',
-    description: 'Prepare for formal proficiency standards',
-    color: '#1CB0F6',
-    iconChar: 'E',
   },
 ];
 

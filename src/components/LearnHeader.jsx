@@ -12,9 +12,9 @@ export default function LearnHeader() {
   const studyCategories = user.categories || [];
   const units = user.units || [];
 
-  // Load the active category from the parameter, defaulting to last studied or 'grammar-foundation'
-  const activeCategoryId = categoryId || user.lastCategoryId || 'grammar-foundation';
-  const categoryInfo = studyCategories.find((c) => c.id === activeCategoryId) || (studyCategories.length > 0 ? studyCategories[0] : null);
+  // Load the active category from the parameter, defaulting to last studied or 'grammar'
+  const activeCategoryId = categoryId || user.lastCategoryId || 'grammar';
+  const categoryInfo = studyCategories.find((c) => c.id === activeCategoryId) || (studyCategories.length > 0 ? studyCategories[0] : { iconChar: 'G', color: '#58CC02' });
 
   // Calculate completed units count for this category
   const unitsForCat = units.filter(unit => unit.category === activeCategoryId);

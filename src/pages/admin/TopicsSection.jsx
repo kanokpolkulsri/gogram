@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function TopicsSection({
   categories,
@@ -8,7 +8,14 @@ export default function TopicsSection({
   showToast
 }) {
   // Local Category Navigation State
-  const [selectedTopicCatId, setSelectedTopicCatId] = useState(categories[0]?.id || 'grammar-foundation');
+  const [selectedTopicCatId, setSelectedTopicCatId] = useState(categories[0]?.id || 'grammar');
+
+  // Keep selectedTopicCatId valid when categories are deleted
+  useEffect(() => {
+    if (categories.length > 0 && !categories.some(c => c.id === selectedTopicCatId)) {
+      setSelectedTopicCatId(categories[0].id);
+    }
+  }, [categories, selectedTopicCatId]);
 
   // Add Category/Topic Modals States
   const [showAddCategoryModal, setShowAddCategoryModal] = useState(false);
@@ -104,6 +111,20 @@ export default function TopicsSection({
     });
   };
 
+  const handleDeleteCategory = (e, cat) => {
+    e.stopPropagation(); // Avoid selecting the category card on click
+    triggerConfirm({
+      title: 'Delete Category',
+      message: `Are you sure you want to delete the category "${cat.title}"? This will permanently delete all topics, questions, and student progress under this category. This action cannot be undone.`,
+      confirmText: 'Delete Category',
+      isDanger: true,
+      onConfirm: () => {
+        dispatch({ type: 'DELETE_CATEGORY', categoryId: cat.id });
+        showToast('Category successfully deleted.');
+      }
+    });
+  };
+
   return (
     <div className="cms-page-content animate-fade-in cms-topics-page">
       <div className="cms-section-header-row">
@@ -143,7 +164,17 @@ export default function TopicsSection({
                     </svg>
                   </span>
                   <span className="category-label-text">{cat.title}</span>
-
+                  <button
+                    className="icon-action-btn delete-category-btn"
+                    onClick={(e) => handleDeleteCategory(e, cat)}
+                    title="Delete Category"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-trash-2">
+                      <path d="M3 6h18"/>
+                      <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                      <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                    </svg>
+                  </button>
                 </div>
               );
             })}
@@ -153,7 +184,7 @@ export default function TopicsSection({
         {/* Right panel: Topics in Category */}
         <div className="cms-right-panel flex-column">
           <div className="panel-list-header cms-topics-panel-header">
-            <h4 className="cms-topics-panel-title">TOPICS IN {selectedCategoryObj?.title.toUpperCase()}</h4>
+            <h4 className="cms-topics-panel-title">TOPICS IN {selectedCategoryObj?.title?.toUpperCase() || ''}</h4>
             <span className="topics-count-badge cms-topics-count-badge">{categoryTopicsList.length} topics found</span>
           </div>
 
