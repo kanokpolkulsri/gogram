@@ -241,7 +241,7 @@ export default function TopicsSection({
           <div className="admin-modal add-category-modal animate-scale-up">
             <h3>Create Category</h3>
             <form onSubmit={handleCreateCategory}>
-              <div className="form-group-cms">
+              <div className="add-category-form-group">
                 <label>CATEGORY TITLE *</label>
                 <input
                   type="text"
@@ -251,7 +251,7 @@ export default function TopicsSection({
                   required
                 />
               </div>
-              <div className="form-group-cms">
+              <div className="add-category-form-group">
                 <label>DESCRIPTION</label>
                 <input
                   type="text"
@@ -260,7 +260,7 @@ export default function TopicsSection({
                   placeholder="e.g. Focus on vocabulary pronunciation"
                 />
               </div>
-              <div className="form-group-cms">
+              <div className="add-category-form-group">
                 <label>THEME COLOR</label>
                 <div className="color-selector-grid">
                   {['#58CC02', '#FF4B4B', '#CE82FF', '#1CB0F6', '#FF9600'].map((color) => (
