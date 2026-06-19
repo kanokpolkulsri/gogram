@@ -1560,8 +1560,8 @@
   background-color: var(--color-gray-light);
 }
 
-.admin-cms-container .btn-primary,
-.admin-modal .btn-primary {
+.admin-cms-container .btn-primary:not(:disabled),
+.admin-modal .btn-primary:not(:disabled) {
   background-color: var(--color-orange) !important;
   color: var(--color-white) !important;
   box-shadow: var(--shadow-button) var(--color-orange-dark) !important;
@@ -1569,14 +1569,14 @@
   transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s !important;
 }
 
-.admin-cms-container .btn-primary:hover,
-.admin-modal .btn-primary:hover {
+.admin-cms-container .btn-primary:not(:disabled):hover,
+.admin-modal .btn-primary:not(:disabled):hover {
   background-color: #FFA21A !important;
   color: var(--color-white) !important;
 }
 
-.admin-cms-container .btn-primary:active,
-.admin-modal .btn-primary:active {
+.admin-cms-container .btn-primary:not(:disabled):active,
+.admin-modal .btn-primary:not(:disabled):active {
   background-color: var(--color-orange-dark) !important;
   box-shadow: none !important;
   transform: translateY(4px) !important;

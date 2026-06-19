@@ -12,6 +12,7 @@ export default function AiDraftSection({
   const [level, setLevel] = useState('all'); // 'all', 'easy', 'medium1', 'medium2', 'hard1', 'hard2'
   const [onlyZero, setOnlyZero] = useState(true);
   const [showPromptPreview, setShowPromptPreview] = useState(false);
+  const [questionsCount, setQuestionsCount] = useState(10);
 
   // 2. Processing / Progress States
   const [isGeneratingBulk, setIsGeneratingBulk] = useState(false);
@@ -92,12 +93,12 @@ export default function AiDraftSection({
           categoryId,
           topicId: topic,
           levelId: level,
-          questionsPerTopic: 10,
+          questionsPerTopic: questionsCount,
           onlyZero
         });
         setIsGeneratingBulk(false);
         setGenerationProgressMsg('');
-        showToast(`AI Bulk Generation completed! Generated 10 questions for ${tasksToProcess.length} slots.`);
+        showToast(`AI Bulk Generation completed! Generated ${questionsCount} questions for ${tasksToProcess.length} slots.`);
         return;
       }
 
@@ -158,7 +159,7 @@ Style Guide: ${details.style}`;
       : "";
 
     return `Act as an expert English assessment writer for Thai learners.
-Generate 10 multiple-choice English learning questions for the category: "${categoryTitle}" and topic: "${topicTitle}" at ${difficultyText} difficulty level. ${existingContext}
+Generate ${questionsCount} multiple-choice English learning questions for the category: "${categoryTitle}" and topic: "${topicTitle}" at ${difficultyText} difficulty level. ${existingContext}
 
 Requirements:
 - Target user: Thai beginner/intermediate learner.
@@ -256,7 +257,25 @@ Requirements:
               </div>
             </div>
 
-            {/* 4. Fill Mode (Checkbox/Toggle style) */}
+            {/* 4. Number of Questions */}
+            <div className="form-group-cms">
+              <label>4. QUESTIONS PER SLOT (MAX 10)</label>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <input
+                  type="range"
+                  min="1"
+                  max="10"
+                  value={questionsCount}
+                  onChange={(e) => setQuestionsCount(Number(e.target.value))}
+                  style={{ flex: 1, accentColor: 'var(--color-orange)' }}
+                />
+                <span style={{ fontSize: '15px', fontWeight: '800', minWidth: '50px', textAlign: 'right', color: 'var(--color-text)' }}>
+                  {questionsCount} Qs
+                </span>
+              </div>
+            </div>
+
+            {/* 5. Fill Mode (Checkbox/Toggle style) */}
             <div className="zero-questions-box" style={{ marginTop: '4px' }}>
               <div className="box-checkbox-row">
                 <input
@@ -309,7 +328,7 @@ Requirements:
               )}
             </div>
 
-            {/* 6. Generate Trigger */}
+            {/* 7. Generate Trigger */}
             <button
               className="btn btn-primary btn-cms-bulk-generate"
               disabled={tasksToProcess.length === 0}
@@ -323,13 +342,13 @@ Requirements:
                 padding: '14px',
                 fontSize: '15px',
                 fontWeight: '700',
-                backgroundColor: tasksToProcess.length === 0 ? '#dadce0' : '#1A73E8',
-                borderColor: tasksToProcess.length === 0 ? '#dadce0' : '#1A73E8',
+                backgroundColor: tasksToProcess.length === 0 ? '#dadce0' : 'var(--color-orange)',
+                borderColor: tasksToProcess.length === 0 ? '#dadce0' : 'var(--color-orange)',
                 color: tasksToProcess.length === 0 ? '#999' : '#fff',
                 cursor: tasksToProcess.length === 0 ? 'not-allowed' : 'pointer'
               }}
             >
-              ⚡ Generate AI Questions ({tasksToProcess.length} Slots)
+              ⚡ Generate {questionsCount} Questions Per Slot ({tasksToProcess.length} Slots)
             </button>
           </div>
         </div>
