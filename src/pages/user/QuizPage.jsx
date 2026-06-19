@@ -211,50 +211,55 @@ export default function QuizPage() {
       ) : (
         <div className={`quiz-feedback ${isCorrect ? 'quiz-feedback-correct' : 'quiz-feedback-wrong'}`}>
           <div className="quiz-feedback-main">
-            <div className="quiz-feedback-header">
-              <span className="quiz-feedback-text">
-                {isCorrect ? encouragement : `Correct answer: ${currentQuestion.correctAnswer}`}
-              </span>
+            {/* Left body: text + explanation drawer */}
+            <div className="quiz-feedback-body">
+              <div className="quiz-feedback-header">
+                <span className="quiz-feedback-text">
+                  {isCorrect ? encouragement : `Correct answer: ${currentQuestion.correctAnswer}`}
+                </span>
+              </div>
+
               {currentQuestion?.explanation && (
-                <button
-                  type="button"
-                  className="quiz-explanation-toggle-btn"
-                  onClick={() => setShowExplanation(s => !s)}
-                  id="quiz-explanation-toggle"
-                >
-                  {showExplanation ? 'Hide ▴' : 'Explanation ▾'}
-                </button>
+                <div className={`quiz-explanation-drawer${showExplanation ? ' quiz-explanation-drawer-open' : ''}`}>
+                  <div className="quiz-explanation-content">
+                    {currentQuestion.explanation.includes('ENGLISH') && currentQuestion.explanation.includes('THAI') ? (
+                      (() => {
+                        const parts = currentQuestion.explanation.split(/THAI:?/i);
+                        const engText = parts[0].replace(/ENGLISH:?/i, '').trim();
+                        const thaiText = parts[1]?.trim() || '';
+                        return (
+                          <>
+                            <div className="explanation-section">
+                              <span className="explanation-label">ENGLISH</span>
+                              <p className="explanation-text">{engText}</p>
+                            </div>
+                            {thaiText && (
+                              <div className="explanation-section" style={{ marginTop: '12px' }}>
+                                <span className="explanation-label">THAI</span>
+                                <p className="explanation-text">{thaiText}</p>
+                              </div>
+                            )}
+                          </>
+                        );
+                      })()
+                    ) : (
+                      <p className="explanation-text">{currentQuestion.explanation}</p>
+                    )}
+                  </div>
+                </div>
               )}
             </div>
-            
+
+            {/* Toggle button — rightmost of quiz-feedback-main */}
             {currentQuestion?.explanation && (
-              <div className={`quiz-explanation-drawer${showExplanation ? ' quiz-explanation-drawer-open' : ''}`}>
-                <div className="quiz-explanation-content">
-                  {currentQuestion.explanation.includes('ENGLISH') && currentQuestion.explanation.includes('THAI') ? (
-                    (() => {
-                      const parts = currentQuestion.explanation.split(/THAI:?/i);
-                      const engText = parts[0].replace(/ENGLISH:?/i, '').trim();
-                      const thaiText = parts[1]?.trim() || '';
-                      return (
-                        <>
-                          <div className="explanation-section">
-                            <span className="explanation-label">ENGLISH</span>
-                            <p className="explanation-text">{engText}</p>
-                          </div>
-                          {thaiText && (
-                            <div className="explanation-section" style={{ marginTop: '12px' }}>
-                              <span className="explanation-label">THAI</span>
-                              <p className="explanation-text">{thaiText}</p>
-                            </div>
-                          )}
-                        </>
-                      );
-                    })()
-                  ) : (
-                    <p className="explanation-text">{currentQuestion.explanation}</p>
-                  )}
-                </div>
-              </div>
+              <button
+                type="button"
+                className="quiz-explanation-toggle-btn"
+                onClick={() => setShowExplanation(s => !s)}
+                id="quiz-explanation-toggle"
+              >
+                {showExplanation ? 'Hide ▴' : 'Explanation ▾'}
+              </button>
             )}
           </div>
           

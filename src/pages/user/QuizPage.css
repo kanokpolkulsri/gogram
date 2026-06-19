@@ -219,10 +219,7 @@
 }
 
 .quiz-feedback-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .quiz-feedback-text {
@@ -293,9 +290,15 @@
 /* Explanation styles */
 .quiz-feedback-main {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
+  gap: 8px;
   width: 100%;
+}
+
+.quiz-feedback-body {
+  flex: 1;
+  min-width: 0;
 }
 
 .quiz-explanation-toggle-btn {
@@ -313,6 +316,7 @@
   gap: 4px;
   white-space: nowrap;
   flex-shrink: 0;
+  align-self: flex-start;
 }
 
 .quiz-feedback-correct .quiz-explanation-toggle-btn {
