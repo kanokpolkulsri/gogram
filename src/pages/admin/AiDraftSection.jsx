@@ -259,19 +259,19 @@ Requirements:
 
             {/* 4. Number of Questions */}
             <div className="form-group-cms">
-              <label>4. QUESTIONS PER SLOT (MAX 10)</label>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <input
-                  type="range"
-                  min="1"
-                  max="10"
-                  value={questionsCount}
-                  onChange={(e) => setQuestionsCount(Number(e.target.value))}
-                  style={{ flex: 1, accentColor: 'var(--color-orange)' }}
-                />
-                <span style={{ fontSize: '15px', fontWeight: '800', minWidth: '50px', textAlign: 'right', color: 'var(--color-text)' }}>
-                  {questionsCount} Qs
-                </span>
+              <label>4. QUESTIONS PER SLOT</label>
+              <div className="pills-selector" style={{ display: 'flex', gap: '8px' }}>
+                {[1, 2, 3, 5, 10].map((num) => (
+                  <button
+                    key={num}
+                    type="button"
+                    className={`pill-select-btn ${questionsCount === num ? 'active' : ''}`}
+                    onClick={() => setQuestionsCount(num)}
+                    style={{ flex: 1, padding: '10px 0', minWidth: '0' }}
+                  >
+                    {num}
+                  </button>
+                ))}
               </div>
             </div>
 
