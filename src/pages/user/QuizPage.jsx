@@ -227,31 +227,33 @@ export default function QuizPage() {
               )}
             </div>
             
-            {showExplanation && currentQuestion?.explanation && (
-              <div className="quiz-explanation-content animate-fade-in">
-                {currentQuestion.explanation.includes('ENGLISH') && currentQuestion.explanation.includes('THAI') ? (
-                  (() => {
-                    const parts = currentQuestion.explanation.split(/THAI:?/i);
-                    const engText = parts[0].replace(/ENGLISH:?/i, '').trim();
-                    const thaiText = parts[1]?.trim() || '';
-                    return (
-                      <>
-                        <div className="explanation-section">
-                          <span className="explanation-label">ENGLISH</span>
-                          <p className="explanation-text">{engText}</p>
-                        </div>
-                        {thaiText && (
-                          <div className="explanation-section" style={{ marginTop: '12px' }}>
-                            <span className="explanation-label">THAI</span>
-                            <p className="explanation-text">{thaiText}</p>
+            {currentQuestion?.explanation && (
+              <div className={`quiz-explanation-drawer${showExplanation ? ' quiz-explanation-drawer-open' : ''}`}>
+                <div className="quiz-explanation-content">
+                  {currentQuestion.explanation.includes('ENGLISH') && currentQuestion.explanation.includes('THAI') ? (
+                    (() => {
+                      const parts = currentQuestion.explanation.split(/THAI:?/i);
+                      const engText = parts[0].replace(/ENGLISH:?/i, '').trim();
+                      const thaiText = parts[1]?.trim() || '';
+                      return (
+                        <>
+                          <div className="explanation-section">
+                            <span className="explanation-label">ENGLISH</span>
+                            <p className="explanation-text">{engText}</p>
                           </div>
-                        )}
-                      </>
-                    );
-                  })()
-                ) : (
-                  <p className="explanation-text">{currentQuestion.explanation}</p>
-                )}
+                          {thaiText && (
+                            <div className="explanation-section" style={{ marginTop: '12px' }}>
+                              <span className="explanation-label">THAI</span>
+                              <p className="explanation-text">{thaiText}</p>
+                            </div>
+                          )}
+                        </>
+                      );
+                    })()
+                  ) : (
+                    <p className="explanation-text">{currentQuestion.explanation}</p>
+                  )}
+                </div>
               </div>
             )}
           </div>

@@ -302,17 +302,17 @@
   background: transparent;
   border: none;
   font-family: var(--font-family);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   cursor: pointer;
-  padding: 4px 8px;
-  margin-top: -8px;
-  margin-bottom: 12px;
-  border-radius: 6px;
+  padding: 4px 10px;
+  border-radius: 20px;
   transition: background-color 0.2s;
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .quiz-feedback-correct .quiz-explanation-toggle-btn {
@@ -327,6 +327,24 @@
 }
 .quiz-feedback-wrong .quiz-explanation-toggle-btn:hover {
   background-color: rgba(234, 43, 43, 0.12);
+}
+
+/* Explanation drawer — slides up from 0 height when opened */
+.quiz-explanation-drawer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.quiz-explanation-drawer-open {
+  grid-template-rows: 1fr;
+}
+
+.quiz-explanation-drawer > .quiz-explanation-content {
+  min-height: 0;            /* required for grid 0fr to work */
+  overflow: hidden;
 }
 
 .quiz-explanation-content {
