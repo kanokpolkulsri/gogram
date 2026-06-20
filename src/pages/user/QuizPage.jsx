@@ -78,6 +78,27 @@ export default function QuizPage() {
     if (currentIndex + 1 >= totalQuestions) {
       // Lesson complete!
       const xp = level?.xpReward || 15;
+
+      // Determine if completing this level causes a level up
+      const isLastLevelOfUnit = levelId === (unit?.levels[unit.levels.length - 1]?.id || 'hard2');
+      const lessonKey = `${unitId}-${levelId}`;
+      const isAlreadyCompleted = user.completedLessons.includes(lessonKey);
+      
+      const levelUp = isLastLevelOfUnit && !isAlreadyCompleted;
+      
+      let newLevel = 1;
+      let categoryTitle = '';
+      if (levelUp && unit) {
+        const unitsForCat = user.units.filter((u) => u.category === unit.category);
+        const completedUnitsCount = unitsForCat.filter((u) =>
+          ['easy', 'medium1', 'medium2', 'hard1', 'hard2'].every((lvl) =>
+            user.completedLessons.includes(`${u.id}-${lvl}`) || (Number(u.id) === Number(unitId) && lvl === levelId)
+          )
+        ).length;
+        newLevel = 1 + completedUnitsCount;
+        categoryTitle = user.categories.find((c) => c.id === unit.category)?.title || 'Category';
+      }
+
       dispatch({
         type: 'COMPLETE_LESSON',
         unitId: parseInt(unitId),
@@ -85,7 +106,7 @@ export default function QuizPage() {
         xp,
       });
       navigate('/lesson-complete', {
-        state: { score, total: totalQuestions, xp },
+        state: { score, total: totalQuestions, xp, levelUp, newLevel, categoryTitle, categoryId: unit?.category },
       });
     } else {
       setAnimating(true);
@@ -100,7 +121,7 @@ export default function QuizPage() {
         setAnimating(false);
       }, 300);
     }
-  }, [currentIndex, totalQuestions, level, unitId, levelId, score, dispatch, navigate, isCorrect]);
+  }, [currentIndex, totalQuestions, level, unitId, levelId, score, dispatch, navigate, isCorrect, user, unit]);
 
   const handleClose = () => {
     if (unit && unit.category) {

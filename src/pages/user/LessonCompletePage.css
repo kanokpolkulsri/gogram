@@ -8,148 +8,147 @@
   padding: 40px 24px;
   position: relative;
   overflow: hidden;
+  background-color: var(--color-white);
+  transition: background-color var(--transition-slow);
 }
 
-/* Sparkles */
-.complete-sparkles {
+/* Level Up specific background tint */
+.complete-page.level-up-theme {
+  background: radial-gradient(circle, var(--color-orange-bg) 0%, var(--color-white) 80%);
+}
+
+
+
+/* Content Containers */
+.lesson-complete-container,
+.level-up-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto 0;
+  width: 100%;
+}
+
+/* Redesigned Badge / Visual Elements */
+.lesson-complete-shield {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) backwards;
+  animation-delay: 0.2s;
+}
+
+.shield-stars {
   position: absolute;
-  inset: 0;
+  inset: -15px;
   pointer-events: none;
 }
 
-.sparkle {
+.shield-star {
   position: absolute;
   font-size: 24px;
-  animation: sparkle 2s ease-in-out infinite;
+  animation: starFloat 2s ease-in-out infinite alternate;
 }
 
-.sparkle-1 {
-  top: 10%;
-  right: 20%;
-  color: #CE82FF;
+.shield-star-1 {
+  top: 15%;
+  left: -5%;
   animation-delay: 0s;
 }
 
-.sparkle-2 {
-  top: 15%;
-  left: 15%;
-  color: var(--color-blue);
-  animation-delay: 0.4s;
-  font-size: 18px;
-}
-
-.sparkle-3 {
-  top: 8%;
-  right: 35%;
-  color: var(--color-yellow);
-  animation-delay: 0.8s;
-  font-size: 30px;
-}
-
-.sparkle-4 {
-  top: 20%;
-  left: 30%;
-  color: var(--color-green);
-  animation-delay: 1.2s;
-  font-size: 16px;
-}
-
-.sparkle-5 {
-  top: 5%;
-  right: 10%;
-  color: var(--color-red);
-  animation-delay: 1.6s;
+.shield-star-2 {
+  top: -15%;
+  right: 15%;
   font-size: 20px;
+  animation-delay: 0.6s;
 }
 
-/* Owl */
-.complete-owl {
-  animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) backwards;
+.shield-star-3 {
+  bottom: 15%;
+  right: -5%;
+  font-size: 26px;
+  animation-delay: 1.2s;
+}
+
+@keyframes starFloat {
+  0% {
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-8px) scale(1.15) rotate(15deg);
+  }
+}
+
+.level-up-badge-container {
+  margin-bottom: 28px;
+  animation: badgeBounce 1.5s infinite ease-in-out alternate, bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) backwards;
   animation-delay: 0.2s;
-  margin-bottom: 24px;
 }
 
-/* Title */
+
+/* Title styling */
 .complete-title {
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 900;
-  background: linear-gradient(135deg, var(--color-yellow), var(--color-green));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 32px;
+  color: var(--color-text);
+  margin-bottom: 16px;
+  text-align: center;
   animation: fadeInUp 0.6s ease backwards;
   animation-delay: 0.5s;
 }
 
-/* Stats */
-.complete-stats {
-  display: flex;
-  gap: 16px;
-  width: 100%;
-  animation: fadeInUp 0.6s ease backwards;
-  animation-delay: 0.7s;
-  margin-bottom: 40px;
-}
 
-.complete-stat {
-  flex: 1;
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  text-align: center;
-}
 
-.complete-stat-xp {
-  border: 2px solid var(--color-yellow);
-}
-
-.complete-stat-score {
-  border: 2px solid var(--color-green);
-}
-
-.complete-stat-label {
-  padding: 8px;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  color: white;
-}
-
-.complete-stat-xp .complete-stat-label {
-  background: var(--color-yellow);
-}
-
-.complete-stat-score .complete-stat-label {
-  background: var(--color-green);
-}
-
-.complete-stat-value {
-  padding: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 28px;
-  font-weight: 800;
-}
-
-.complete-stat-xp .complete-stat-value {
-  color: var(--color-yellow-dark);
-}
-
-.complete-stat-score .complete-stat-value {
-  color: var(--color-green-dark);
-}
-
-.complete-stat-icon {
-  font-size: 24px;
-}
-
-/* Bottom */
+/* Bottom spacing / Continue Button */
 .complete-bottom {
   width: 100%;
   margin-top: auto;
   animation: fadeInUp 0.6s ease backwards;
   animation-delay: 0.9s;
   padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+
+/* Keyframes */
+
+
+@keyframes badgeBounce {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

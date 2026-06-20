@@ -152,6 +152,20 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--color-green-dark);
 }
 
+.btn-orange {
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  box-shadow: var(--shadow-button) var(--color-orange-dark);
+}
+
+.btn-orange:hover {
+  background-color: #FFAC26;
+}
+
+.btn-orange:active {
+  background-color: var(--color-orange-dark);
+}
+
 .btn-secondary {
   background-color: var(--color-white);
   color: var(--color-blue);

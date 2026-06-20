@@ -10,7 +10,6 @@ import ShopPage from './pages/user/ShopPage';
 import ProfilePage from './pages/user/ProfilePage';
 import QuizPage from './pages/user/QuizPage';
 import LessonCompletePage from './pages/user/LessonCompletePage';
-import StreakPage from './pages/user/StreakPage';
 import AdminPage from './pages/admin/AdminPage';
 
 function DesktopPage({ children, showRightSidebar = true }) {
@@ -71,7 +70,6 @@ function AppContent() {
             <Route path="/practice" element={<Navigate to="/learn" replace />} />
             <Route path="/quiz/:unitId/:levelId" element={<QuizPage />} />
             <Route path="/lesson-complete" element={<LessonCompletePage />} />
-            <Route path="/streak" element={<StreakPage />} />
             <Route path="/leaderboard" element={<DesktopPage><LeaderboardPage /></DesktopPage>} />
             <Route path="/shop" element={<DesktopPage showRightSidebar={false}><ShopPage /></DesktopPage>} />
             <Route path="/profile" element={<DesktopPage><ProfilePage /></DesktopPage>} />
