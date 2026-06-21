@@ -12,10 +12,28 @@
   transition: background-color var(--transition-slow);
 }
 
-/* Level Up specific background tint */
-.complete-page.level-up-theme {
-  background: radial-gradient(circle, var(--color-orange-bg) 0%, var(--color-white) 80%);
+.complete-close-btn {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background var(--transition-fast);
+  z-index: 10;
+  -webkit-tap-highlight-color: transparent;
 }
+
+.complete-close-btn:hover {
+  background: var(--color-gray-light);
+}
+
 
 
 
@@ -96,10 +114,18 @@
   font-size: 32px;
   font-weight: 900;
   color: var(--color-text);
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   text-align: center;
   animation: fadeInUp 0.6s ease backwards;
   animation-delay: 0.5s;
+}
+
+.level-up-number {
+  display: block;
+  font-size: 26px;
+  font-weight: 800;
+  color: #000000;
+  margin-top: 8px;
 }
 
 
@@ -151,4 +177,40 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Unique level card styled component on complete page */
+.lesson-complete-level-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 18px;
+  border-radius: 16px;
+  background: #FAFDFF;
+  border: 2px solid #84D8FF;
+  border-bottom-width: 4px;
+  box-shadow: 0 4px 12px rgba(28, 176, 246, 0.08);
+  font-size: 16px;
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto 24px auto;
+  box-sizing: border-box;
+  animation: fadeInUp 0.6s ease both;
+  animation-delay: 0.6s;
+}
+
+.lesson-complete-level-card:hover {
+  background: var(--color-gray-light);
+  transform: translateY(-1px);
+}
+
+.complete-level-subtitle {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--color-text-light);
+  margin: 0 0 20px 0;
+  text-align: center;
+  animation: fadeInUp 0.6s ease backwards;
+  animation-delay: 0.55s;
 }

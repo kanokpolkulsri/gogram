@@ -13,6 +13,9 @@ const initialMockUsers = [
     joined: '2026-05-10',
     authLevel: 'admin',
     status: 'active',
+    hearts: 'infinity',
+    usedPromoCodes: ['INFINITY'],
+    suspendedPromoCodes: [],
     progress: {
       'grammar': 12,
       'vocabulary': 8,
@@ -26,6 +29,9 @@ const initialMockUsers = [
     joined: '2026-06-01',
     authLevel: 'subscribed',
     status: 'active',
+    hearts: 10,
+    usedPromoCodes: ['WELCOME100'],
+    suspendedPromoCodes: [],
     progress: {
       'grammar': 20,
       'vocabulary': 15,
@@ -39,6 +45,9 @@ const initialMockUsers = [
     joined: '2026-06-12',
     authLevel: 'free',
     status: 'active',
+    hearts: 3,
+    usedPromoCodes: ['WELCOME100'],
+    suspendedPromoCodes: [],
     progress: {
       'grammar': 3,
       'vocabulary': 0,
@@ -52,6 +61,9 @@ const initialMockUsers = [
     joined: '2026-04-15',
     authLevel: 'free',
     status: 'blocked',
+    hearts: 0,
+    usedPromoCodes: [],
+    suspendedPromoCodes: [],
     progress: {
       'grammar': 0,
       'vocabulary': 0,
@@ -175,6 +187,52 @@ function loadUser() {
         }
       }
 
+      // Ensure default hearts properties exist
+      if (parsed.hearts === undefined) parsed.hearts = 10;
+      if (parsed.maxHearts === undefined) parsed.maxHearts = 10;
+      if (!parsed.usedPromoCodes) parsed.usedPromoCodes = [];
+      if (!parsed.lastHeartRefillTime) parsed.lastHeartRefillTime = Date.now();
+      if (!parsed.promoCodes) {
+        parsed.promoCodes = [
+          { code: 'INFINITY', type: 'infinity', reward: 'infinity', description: 'Infinite hearts promo', usedBy: ['admin-1'] },
+          { code: 'WELCOME100', type: 'hearts', reward: 100, description: 'Get 100 hearts', usedBy: ['user-2', 'user-3'] },
+          { code: 'REF-ADMIN', type: 'infinity', reward: 'infinity', description: 'Admin referral code', usedBy: [] }
+        ];
+      } else {
+        parsed.promoCodes = parsed.promoCodes.map(c => {
+          if (!c.usedBy) {
+            if (c.code === 'INFINITY') return { ...c, usedBy: ['admin-1'] };
+            if (c.code === 'WELCOME100') return { ...c, usedBy: ['user-2', 'user-3'] };
+            return { ...c, usedBy: [] };
+          }
+          return c;
+        });
+      }
+
+      if (parsed.mockUsers) {
+        const activePromoCodes = (parsed.promoCodes || []).map(c => c.code.toUpperCase());
+        parsed.mockUsers = parsed.mockUsers.map(u => {
+          if (!u.usedPromoCodes) u.usedPromoCodes = [];
+          if (!u.suspendedPromoCodes) u.suspendedPromoCodes = [];
+
+          if (u.uid === 'admin-1' && u.usedPromoCodes.length === 0 && activePromoCodes.includes('INFINITY')) {
+            u.usedPromoCodes = ['INFINITY'];
+          }
+          if (u.uid === 'user-2' && u.usedPromoCodes.length === 0 && activePromoCodes.includes('WELCOME100')) {
+            u.usedPromoCodes = ['WELCOME100'];
+          }
+          if (u.uid === 'user-3' && u.usedPromoCodes.length === 0 && activePromoCodes.includes('WELCOME100')) {
+            u.usedPromoCodes = ['WELCOME100'];
+          }
+
+          // Cleanup non-existent codes from user histories (excluding referral codes)
+          u.usedPromoCodes = u.usedPromoCodes.filter(c => activePromoCodes.includes(c.toUpperCase()) || c.toUpperCase().startsWith('REF-'));
+          u.suspendedPromoCodes = u.suspendedPromoCodes.filter(c => activePromoCodes.includes(c.toUpperCase()) || c.toUpperCase().startsWith('REF-'));
+
+          return u;
+        });
+      }
+
       return {
         ...parsed,
         categories: parsed.categories || studyCategories,
@@ -192,6 +250,15 @@ function loadUser() {
   }
   return {
     ...initialUser,
+    hearts: 'infinity',
+    maxHearts: 10,
+    usedPromoCodes: ['INFINITY'],
+    lastHeartRefillTime: Date.now(),
+    promoCodes: [
+      { code: 'INFINITY', type: 'infinity', reward: 'infinity', description: 'Infinite hearts promo', usedBy: ['admin-1'] },
+      { code: 'WELCOME100', type: 'hearts', reward: 100, description: 'Get 100 hearts', usedBy: ['user-2', 'user-3'] },
+      { code: 'REF-ADMIN', type: 'infinity', reward: 'infinity', description: 'Admin referral code', usedBy: [] }
+    ],
     categories: studyCategories,
     units: units,
     mockUsers: initialMockUsers,
@@ -269,9 +336,18 @@ function userReducer(state, action) {
     }
 
     case 'LOSE_HEART': {
+      if (state.hearts === 'infinity') {
+        newState = state;
+        break;
+      }
+      const currentHearts = typeof state.hearts === 'number' ? state.hearts : 10;
+      const nextHearts = Math.max(0, currentHearts - 1);
+      const wasFull = currentHearts >= 10;
+      const nextRefillTime = wasFull ? Date.now() : state.lastHeartRefillTime;
       newState = {
         ...state,
-        hearts: Math.max(0, state.hearts - 1),
+        hearts: nextHearts,
+        lastHeartRefillTime: nextRefillTime,
       };
       break;
     }
@@ -279,7 +355,572 @@ function userReducer(state, action) {
     case 'RESET_HEARTS': {
       newState = {
         ...state,
-        hearts: state.maxHearts,
+        hearts: 10,
+        lastHeartRefillTime: Date.now(),
+      };
+      break;
+    }
+  
+    case 'CHECK_HEARTS_REFILL': {
+      let tempState = state;
+      if (state.promoExpiresAt && Date.now() > state.promoExpiresAt) {
+        const restoredHearts = state.heartsBeforePromo !== undefined ? state.heartsBeforePromo : 10;
+        tempState = {
+          ...state,
+          hearts: restoredHearts,
+          promoExpiresAt: null,
+          promoCodeActive: null,
+          heartsBeforePromo: null,
+          promoExpiredMessage: `Your promotion '${state.promoCodeActive}' has expired! Hearts reverted back to ${restoredHearts}.`
+        };
+      }
+
+      if (tempState.hearts === 'infinity' || tempState.hearts >= 10) {
+        newState = {
+          ...tempState,
+          lastHeartRefillTime: Date.now()
+        };
+        break;
+      }
+      const now = Date.now();
+      const elapsedMs = now - (tempState.lastHeartRefillTime || now);
+      const ONE_HOUR = 3600000;
+      if (elapsedMs >= ONE_HOUR) {
+        const heartsToAdd = Math.floor(elapsedMs / ONE_HOUR);
+        const newHeartsCount = Math.min(10, tempState.hearts + heartsToAdd);
+        const remainingMs = elapsedMs % ONE_HOUR;
+        newState = {
+          ...tempState,
+          hearts: newHeartsCount,
+          lastHeartRefillTime: now - remainingMs
+        };
+      } else {
+        newState = tempState;
+      }
+      break;
+    }
+
+    case 'APPLY_PROMO_CODE': {
+      const codeUpper = action.code.trim().toUpperCase();
+      if (state.usedPromoCodes?.includes(codeUpper)) {
+        action.onError && action.onError('You have already used this promo code.');
+        newState = state;
+        break;
+      }
+      const matchedPromo = state.promoCodes?.find(c => c.code.toUpperCase() === codeUpper);
+      let isReferral = false;
+      let referrer = null;
+      if (!matchedPromo) {
+        const match = codeUpper.match(/^REF-(.+)$/);
+        if (match) {
+          const refName = match[1].toLowerCase();
+          referrer = state.mockUsers?.find(u => u.name.toLowerCase().replace(/\s+/g, '') === refName || u.uid.toLowerCase() === refName);
+          if (referrer) {
+            isReferral = true;
+          }
+        }
+      }
+      if (!matchedPromo && !isReferral) {
+        action.onError && action.onError('Invalid promo or referral code.');
+        newState = state;
+        break;
+      }
+
+      // Check code expiry
+      if (matchedPromo && matchedPromo.expiresAt) {
+        const now = Date.now();
+        const expiryTime = new Date(matchedPromo.expiresAt).getTime() + 86400000;
+        if (now > expiryTime) {
+          action.onError && action.onError('This promo code has expired.');
+          newState = state;
+          break;
+        }
+      }
+
+      // Check max redemptions limit
+      if (matchedPromo && matchedPromo.maxRedemptions) {
+        const redemptionsCount = matchedPromo.usedBy ? matchedPromo.usedBy.length : 0;
+        if (redemptionsCount >= matchedPromo.maxRedemptions) {
+          action.onError && action.onError('This promo code has reached its maximum redemptions limit.');
+          newState = state;
+          break;
+        }
+      }
+
+      let rewardHearts = 10;
+      let rewardType = 'hearts';
+      if (matchedPromo) {
+        rewardType = matchedPromo.type;
+        rewardHearts = matchedPromo.reward;
+      } else if (isReferral) {
+        rewardType = 'hearts';
+        rewardHearts = 10;
+      }
+
+      let nextHearts = state.hearts;
+      let nextPromoExpiresAt = state.promoExpiresAt;
+      let nextPromoCodeActive = state.promoCodeActive;
+      let nextHeartsBeforePromo = state.heartsBeforePromo;
+
+      if (rewardType === 'infinity') {
+        nextHearts = 'infinity';
+        nextPromoCodeActive = codeUpper;
+        if (matchedPromo && matchedPromo.infinityDuration) {
+          nextPromoExpiresAt = Date.now() + matchedPromo.infinityDuration;
+        } else {
+          nextPromoExpiresAt = null; // No expiration
+        }
+        // Save current numeric hearts if we aren't already in infinity
+        if (state.hearts !== 'infinity') {
+          nextHeartsBeforePromo = typeof state.hearts === 'number' ? state.hearts : 10;
+        }
+      } else {
+        const amt = Number(rewardHearts);
+        if (state.hearts === 'infinity') {
+          // If already in infinity, add to heartsBeforePromo
+          const currentVal = typeof state.heartsBeforePromo === 'number' ? state.heartsBeforePromo : 10;
+          nextHeartsBeforePromo = currentVal + amt;
+        } else {
+          const currentVal = typeof state.hearts === 'number' ? state.hearts : 10;
+          nextHearts = currentVal + amt;
+        }
+      }
+
+      // Record this user's claim in the promo codes list
+      const userId = state.authProfile?.uid || 'admin-1';
+      const updatedPromoCodes = (state.promoCodes || []).map(c => {
+        if (c.code.toUpperCase() === codeUpper) {
+          const usedByList = c.usedBy || [];
+          if (!usedByList.includes(userId)) {
+            return {
+              ...c,
+              usedBy: [...usedByList, userId]
+            };
+          }
+        }
+        return c;
+      });
+
+      const updatedUsers = (state.mockUsers || []).map(u => {
+        if (u.uid === userId) {
+          return {
+            ...u,
+            hearts: nextHearts,
+            promoExpiresAt: nextPromoExpiresAt,
+            promoCodeActive: nextPromoCodeActive,
+            heartsBeforePromo: nextHeartsBeforePromo,
+            usedPromoCodes: [...new Set([...(u.usedPromoCodes || []), codeUpper])]
+          };
+        }
+        return u;
+      });
+
+      newState = {
+        ...state,
+        hearts: nextHearts,
+        promoExpiresAt: nextPromoExpiresAt,
+        promoCodeActive: nextPromoCodeActive,
+        heartsBeforePromo: nextHeartsBeforePromo,
+        promoCodes: updatedPromoCodes,
+        usedPromoCodes: [...new Set([...(state.usedPromoCodes || []), codeUpper])],
+        mockUsers: updatedUsers
+      };
+
+      action.onSuccess && action.onSuccess({
+        type: rewardType,
+        reward: rewardHearts,
+        message: rewardType === 'infinity' 
+          ? (nextPromoExpiresAt 
+              ? `Premium active! You now have infinite hearts until ${new Date(nextPromoExpiresAt).toLocaleString()}.` 
+              : 'Premium active! You now have infinite hearts.')
+          : `Successfully added ${rewardHearts} hearts!`
+      });
+      break;
+    }
+
+    case 'UPDATE_USER_HEARTS': {
+      const { userId, heartsValue } = action;
+      const updatedUsers = state.mockUsers.map((u) => {
+        if (u.uid === userId) {
+          const isSettingInfinity = heartsValue === 'infinity';
+          return {
+            ...u,
+            hearts: heartsValue,
+            ...(isSettingInfinity ? {} : {
+              promoExpiresAt: null,
+              promoCodeActive: null,
+              heartsBeforePromo: null
+            })
+          };
+        }
+        return u;
+      });
+      let nextHearts = state.hearts;
+      let nextPromoExpiresAt = state.promoExpiresAt;
+      let nextPromoCodeActive = state.promoCodeActive;
+      let nextHeartsBeforePromo = state.heartsBeforePromo;
+
+      if (userId === 'admin-1') {
+        nextHearts = heartsValue;
+        if (heartsValue !== 'infinity') {
+          nextPromoExpiresAt = null;
+          nextPromoCodeActive = null;
+          nextHeartsBeforePromo = null;
+        }
+      }
+      newState = {
+        ...state,
+        mockUsers: updatedUsers,
+        hearts: nextHearts,
+        promoExpiresAt: nextPromoExpiresAt,
+        promoCodeActive: nextPromoCodeActive,
+        heartsBeforePromo: nextHeartsBeforePromo
+      };
+      break;
+    }
+
+    case 'UPDATE_USER_PROGRESS_LEVEL': {
+      const { userId, categoryId, levelValue } = action;
+      const progressNodes = (levelValue - 1) * 5;
+      const updatedUsers = state.mockUsers.map((u) => {
+        if (u.uid === userId) {
+          return {
+            ...u,
+            progress: {
+              ...(u.progress || {}),
+              [categoryId]: progressNodes,
+            },
+          };
+        }
+        return u;
+      });
+      let nextCompletedLessons = state.completedLessons;
+      if (userId === 'admin-1') {
+        const catUnits = state.units.filter(u => u.category === categoryId);
+        const targetLessons = [];
+        let nodesCount = 0;
+        catUnits.forEach(unit => {
+          unit.levels.forEach(lvl => {
+            if (nodesCount < progressNodes) {
+              targetLessons.push(`${unit.id}-${lvl.id}`);
+              nodesCount++;
+            }
+          });
+        });
+        const unrelatedLessons = state.completedLessons.filter(key => {
+          const [unitId] = key.split('-');
+          const matchedUnit = state.units.find(u => Number(u.id) === Number(unitId));
+          return matchedUnit?.category !== categoryId;
+        });
+        nextCompletedLessons = [...unrelatedLessons, ...targetLessons];
+      }
+      newState = {
+        ...state,
+        mockUsers: updatedUsers,
+        completedLessons: nextCompletedLessons,
+      };
+      break;
+    }
+
+    case 'ADD_PROMO_CODE': {
+      const { code, promoType, reward, description, expiresAt, infinityDuration, maxRedemptions } = action;
+      newState = {
+        ...state,
+        promoCodes: [
+          ...(state.promoCodes || []),
+          { 
+            code: code.toUpperCase(), 
+            type: promoType, 
+            reward, 
+            description, 
+            expiresAt, 
+            infinityDuration, 
+            maxRedemptions: maxRedemptions || null,
+            usedBy: [] 
+          }
+        ]
+      };
+      break;
+    }
+
+    case 'DELETE_PROMO_CODE': {
+      const { code } = action;
+      const codeUpper = code.toUpperCase();
+
+      const updatedUsers = (state.mockUsers || []).map(u => {
+        const hasUsed = (u.usedPromoCodes || []).includes(codeUpper);
+        const isActive = u.promoCodeActive === codeUpper;
+        
+        let nextUsed = (u.usedPromoCodes || []).filter(c => c !== codeUpper);
+        let nextSuspended = (u.suspendedPromoCodes || []).filter(c => c !== codeUpper);
+        
+        let nextHearts = u.hearts;
+        let nextPromoExpiresAt = u.promoExpiresAt;
+        let nextPromoCodeActive = u.promoCodeActive;
+        let nextHeartsBeforePromo = u.heartsBeforePromo;
+        let nextMessage = u.promoExpiredMessage || null;
+
+        if (isActive) {
+          nextHearts = typeof u.heartsBeforePromo === 'number' ? u.heartsBeforePromo : 10;
+          nextPromoExpiresAt = null;
+          nextPromoCodeActive = null;
+          nextHeartsBeforePromo = null;
+          nextMessage = `Your promotion '${codeUpper}' has been disabled by the administrator and is no longer effective.`;
+        }
+
+        return {
+          ...u,
+          usedPromoCodes: nextUsed,
+          suspendedPromoCodes: nextSuspended,
+          hearts: nextHearts,
+          promoExpiresAt: nextPromoExpiresAt,
+          promoCodeActive: nextPromoCodeActive,
+          heartsBeforePromo: nextHeartsBeforePromo,
+          promoExpiredMessage: nextMessage
+        };
+      });
+
+      let nextHearts = state.hearts;
+      let nextPromoExpiresAt = state.promoExpiresAt;
+      let nextPromoCodeActive = state.promoCodeActive;
+      let nextHeartsBeforePromo = state.heartsBeforePromo;
+      let nextMessage = state.promoExpiredMessage || null;
+      let nextUsedPromoCodes = state.usedPromoCodes || [];
+
+      if (state.promoCodeActive === codeUpper) {
+        nextHearts = typeof state.heartsBeforePromo === 'number' ? state.heartsBeforePromo : 10;
+        nextPromoExpiresAt = null;
+        nextPromoCodeActive = null;
+        nextHeartsBeforePromo = null;
+        nextMessage = `Your promotion '${codeUpper}' has been disabled by the administrator and is no longer effective.`;
+      }
+      nextUsedPromoCodes = nextUsedPromoCodes.filter(c => c !== codeUpper);
+
+      newState = {
+        ...state,
+        promoCodes: (state.promoCodes || []).filter(c => c.code.toUpperCase() !== codeUpper),
+        mockUsers: updatedUsers,
+        hearts: nextHearts,
+        promoExpiresAt: nextPromoExpiresAt,
+        promoCodeActive: nextPromoCodeActive,
+        heartsBeforePromo: nextHeartsBeforePromo,
+        promoExpiredMessage: nextMessage,
+        usedPromoCodes: nextUsedPromoCodes
+      };
+      break;
+    }
+
+    case 'EDIT_PROMO_CODE': {
+      const { originalCode, updatedPromo } = action;
+      newState = {
+        ...state,
+        promoCodes: (state.promoCodes || []).map(c => {
+          if (c.code === originalCode) {
+            return {
+              ...c,
+              ...updatedPromo,
+              code: updatedPromo.code ? updatedPromo.code.toUpperCase() : c.code
+            };
+          }
+          return c;
+        })
+      };
+      break;
+    }
+
+    case 'REMOVE_USER_PROMO_CODE': {
+      const { userId, code } = action;
+      const codeUpper = code.toUpperCase();
+      
+      const updatedUsers = (state.mockUsers || []).map(u => {
+        if (u.uid === userId) {
+          const nextUsed = (u.usedPromoCodes || []).filter(c => c !== codeUpper);
+          const nextSuspended = (u.suspendedPromoCodes || []).filter(c => c !== codeUpper);
+          
+          let nextHearts = u.hearts;
+          let nextPromoExpiresAt = u.promoExpiresAt;
+          let nextPromoCodeActive = u.promoCodeActive;
+          let nextHeartsBeforePromo = u.heartsBeforePromo;
+
+          const matchedPromo = state.promoCodes?.find(p => p.code.toUpperCase() === codeUpper);
+          if (matchedPromo && matchedPromo.type === 'infinity') {
+            nextHearts = typeof u.heartsBeforePromo === 'number' ? u.heartsBeforePromo : 10;
+            nextPromoExpiresAt = null;
+            nextPromoCodeActive = null;
+            nextHeartsBeforePromo = null;
+          }
+
+          return {
+            ...u,
+            usedPromoCodes: nextUsed,
+            suspendedPromoCodes: nextSuspended,
+            hearts: nextHearts,
+            promoExpiresAt: nextPromoExpiresAt,
+            promoCodeActive: nextPromoCodeActive,
+            heartsBeforePromo: nextHeartsBeforePromo
+          };
+        }
+        return u;
+      });
+
+      const updatedPromoCodes = (state.promoCodes || []).map(p => {
+        if (p.code.toUpperCase() === codeUpper) {
+          return {
+            ...p,
+            usedBy: (p.usedBy || []).filter(id => id !== userId)
+          };
+        }
+        return p;
+      });
+
+      let nextHearts = state.hearts;
+      let nextPromoExpiresAt = state.promoExpiresAt;
+      let nextPromoCodeActive = state.promoCodeActive;
+      let nextHeartsBeforePromo = state.heartsBeforePromo;
+      let nextUsedPromoCodes = state.usedPromoCodes || [];
+
+      if (userId === 'admin-1' || userId === state.authProfile?.uid) {
+        const matchedPromo = state.promoCodes?.find(p => p.code.toUpperCase() === codeUpper);
+        if (matchedPromo && matchedPromo.type === 'infinity') {
+          nextHearts = typeof state.heartsBeforePromo === 'number' ? state.heartsBeforePromo : 10;
+          nextPromoExpiresAt = null;
+          nextPromoCodeActive = null;
+          nextHeartsBeforePromo = null;
+        }
+        nextUsedPromoCodes = nextUsedPromoCodes.filter(c => c !== codeUpper);
+      }
+
+      newState = {
+        ...state,
+        mockUsers: updatedUsers,
+        promoCodes: updatedPromoCodes,
+        hearts: nextHearts,
+        promoExpiresAt: nextPromoExpiresAt,
+        promoCodeActive: nextPromoCodeActive,
+        heartsBeforePromo: nextHeartsBeforePromo,
+        usedPromoCodes: nextUsedPromoCodes
+      };
+      break;
+    }
+
+    case 'SUSPEND_USER_PROMO_CODE': {
+      const { userId, code } = action;
+      const codeUpper = code.toUpperCase();
+      
+      const updatedUsers = (state.mockUsers || []).map(u => {
+        if (u.uid === userId) {
+          const nextSuspended = [...new Set([...(u.suspendedPromoCodes || []), codeUpper])];
+          
+          let nextHearts = u.hearts;
+          let nextPromoExpiresAt = u.promoExpiresAt;
+          let nextPromoCodeActive = u.promoCodeActive;
+          let nextHeartsBeforePromo = u.heartsBeforePromo;
+
+          const matchedPromo = state.promoCodes?.find(p => p.code.toUpperCase() === codeUpper);
+          if (matchedPromo && matchedPromo.type === 'infinity') {
+            nextHearts = typeof u.heartsBeforePromo === 'number' ? u.heartsBeforePromo : 10;
+            nextPromoExpiresAt = null;
+            nextPromoCodeActive = null;
+            nextHeartsBeforePromo = null;
+          }
+
+          return {
+            ...u,
+            suspendedPromoCodes: nextSuspended,
+            hearts: nextHearts,
+            promoExpiresAt: nextPromoExpiresAt,
+            promoCodeActive: nextPromoCodeActive,
+            heartsBeforePromo: nextHeartsBeforePromo
+          };
+        }
+        return u;
+      });
+
+      let nextHearts = state.hearts;
+      let nextPromoExpiresAt = state.promoExpiresAt;
+      let nextPromoCodeActive = state.promoCodeActive;
+      let nextHeartsBeforePromo = state.heartsBeforePromo;
+
+      if (userId === 'admin-1' || userId === state.authProfile?.uid) {
+        const matchedPromo = state.promoCodes?.find(p => p.code.toUpperCase() === codeUpper);
+        if (matchedPromo && matchedPromo.type === 'infinity') {
+          nextHearts = typeof state.heartsBeforePromo === 'number' ? state.heartsBeforePromo : 10;
+          nextPromoExpiresAt = null;
+          nextPromoCodeActive = null;
+          nextHeartsBeforePromo = null;
+        }
+      }
+
+      newState = {
+        ...state,
+        mockUsers: updatedUsers,
+        hearts: nextHearts,
+        promoExpiresAt: nextPromoExpiresAt,
+        promoCodeActive: nextPromoCodeActive,
+        heartsBeforePromo: nextHeartsBeforePromo
+      };
+      break;
+    }
+
+    case 'UNSUSPEND_USER_PROMO_CODE': {
+      const { userId, code } = action;
+      const codeUpper = code.toUpperCase();
+      
+      const matchedPromo = state.promoCodes?.find(p => p.code.toUpperCase() === codeUpper);
+      
+      const updatedUsers = (state.mockUsers || []).map(u => {
+        if (u.uid === userId) {
+          const nextSuspended = (u.suspendedPromoCodes || []).filter(c => c !== codeUpper);
+          
+          let nextHearts = u.hearts;
+          let nextPromoExpiresAt = u.promoExpiresAt;
+          let nextPromoCodeActive = u.promoCodeActive;
+          let nextHeartsBeforePromo = u.heartsBeforePromo;
+
+          if (matchedPromo && matchedPromo.type === 'infinity') {
+            nextHearts = 'infinity';
+            nextPromoCodeActive = codeUpper;
+            nextPromoExpiresAt = matchedPromo.infinityDuration ? Date.now() + matchedPromo.infinityDuration : null;
+            if (u.hearts !== 'infinity') {
+              nextHeartsBeforePromo = typeof u.hearts === 'number' ? u.hearts : 10;
+            }
+          }
+
+          return {
+            ...u,
+            suspendedPromoCodes: nextSuspended,
+            hearts: nextHearts,
+            promoExpiresAt: nextPromoExpiresAt,
+            promoCodeActive: nextPromoCodeActive,
+            heartsBeforePromo: nextHeartsBeforePromo
+          };
+        }
+        return u;
+      });
+
+      let nextHearts = state.hearts;
+      let nextPromoExpiresAt = state.promoExpiresAt;
+      let nextPromoCodeActive = state.promoCodeActive;
+      let nextHeartsBeforePromo = state.heartsBeforePromo;
+
+      if (userId === 'admin-1' || userId === state.authProfile?.uid) {
+        if (matchedPromo && matchedPromo.type === 'infinity') {
+          nextHearts = 'infinity';
+          nextPromoCodeActive = codeUpper;
+          nextPromoExpiresAt = matchedPromo.infinityDuration ? Date.now() + matchedPromo.infinityDuration : null;
+          if (state.hearts !== 'infinity') {
+            nextHeartsBeforePromo = typeof state.hearts === 'number' ? state.hearts : 10;
+          }
+        }
+      }
+
+      newState = {
+        ...state,
+        mockUsers: updatedUsers,
+        hearts: nextHearts,
+        promoExpiresAt: nextPromoExpiresAt,
+        promoCodeActive: nextPromoCodeActive,
+        heartsBeforePromo: nextHeartsBeforePromo
       };
       break;
     }
@@ -317,6 +958,14 @@ function userReducer(state, action) {
       newState = {
         ...state,
         isPrivate: action.isPrivate,
+      };
+      break;
+    }
+
+    case 'CLEAR_PROMO_EXPIRED_MESSAGE': {
+      newState = {
+        ...state,
+        promoExpiredMessage: null,
       };
       break;
     }
@@ -873,6 +1522,18 @@ export function UserProvider({ children }) {
       dispatch({ type: 'AUTH_STATE_CHANGED', user: firebaseUser });
     });
     return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    // Initial check on load
+    dispatch({ type: 'CHECK_HEARTS_REFILL' });
+
+    // Tick every 10 seconds to update countdowns and refill hearts in real time
+    const interval = setInterval(() => {
+      dispatch({ type: 'CHECK_HEARTS_REFILL' });
+    }, 10000);
+
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {

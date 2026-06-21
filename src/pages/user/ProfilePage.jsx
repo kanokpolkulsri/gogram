@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useUser, useUserDispatch } from '../../data/userStore';
 import { auth, signOut } from '../../data/firebase';
 import {
-  EnglishFlagIcon,
   ProfileIcon,
 } from '../../components/icons';
+import Hearts from '../../components/Hearts';
+import HeartsModal from '../../components/HeartsModal';
 import './ProfilePage.css';
 
 export default function ProfilePage() {
@@ -14,6 +15,29 @@ export default function ProfilePage() {
   const navigate = useNavigate();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showProgressModal, setShowProgressModal] = useState(false);
+  const [isHeartsOpen, setIsHeartsOpen] = useState(false);
+  const [promoCode, setPromoCode] = useState('');
+  const [promoMessage, setPromoMessage] = useState('');
+  const [promoStatus, setPromoStatus] = useState(''); // 'success' or 'error'
+
+
+  const handleApplyPromo = (e) => {
+    e.preventDefault();
+    if (!promoCode.trim()) return;
+    dispatch({
+      type: 'APPLY_PROMO_CODE',
+      code: promoCode,
+      onSuccess: (res) => {
+        setPromoMessage(res.message);
+        setPromoStatus('success');
+        setPromoCode('');
+      },
+      onError: (err) => {
+        setPromoMessage(err);
+        setPromoStatus('error');
+      }
+    });
+  };
 
   const handleLogout = async () => {
     try {
@@ -94,12 +118,54 @@ export default function ProfilePage() {
               {user.authProfile?.displayName || user.name}
             </h2>
             <p className="profile-joined">Joined May 2026</p>
-            <div className="profile-flags">
-              <EnglishFlagIcon size={24} />
-            </div>
+          </div>
+
+          <div className="profile-hearts-display-wrapper" style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
+            <Hearts count={user.hearts} onClick={() => setIsHeartsOpen(true)} />
           </div>
         </div>
 
+
+        {/* Promo & Referral Codes Card */}
+        <div className="profile-settings-card animate-fade-in">
+          <h3 className="profile-settings-title">Promo & Referral Codes</h3>
+          <div className="profile-settings-list">
+            <div className="profile-settings-item" style={{ flexDirection: 'column', alignItems: 'stretch', gap: '12px' }}>
+              <div className="profile-settings-item-info">
+                <span className="profile-settings-item-label">Apply a Code</span>
+                <span className="profile-settings-item-desc">Enter a promo code or friend's referral code.</span>
+              </div>
+              
+              <div className="profile-promo-input-group">
+                <input
+                  type="text"
+                  placeholder="e.g. PREMIUM2026"
+                  value={promoCode}
+                  onChange={(e) => {
+                    setPromoCode(e.target.value);
+                    setPromoMessage('');
+                  }}
+                  className="profile-promo-input"
+                />
+                <button 
+                  onClick={handleApplyPromo} 
+                  className="profile-settings-btn btn-primary" 
+                  id="profile-apply-promo-btn"
+                  style={{ padding: '10px 20px', borderRadius: '12px', height: '44px' }}
+                >
+                  APPLY
+                </button>
+              </div>
+
+              {promoMessage && (
+                <p className={`profile-promo-message ${promoStatus}`}>
+                  {promoStatus === 'success' ? '✔' : '✖'} {promoMessage}
+                </p>
+              )}
+            </div>
+
+          </div>
+        </div>
 
         {/* Account & Privacy Settings Card */}
         <div className="profile-settings-card">
@@ -193,6 +259,8 @@ export default function ProfilePage() {
           </div>
         </div>
       )}
+
+      <HeartsModal isOpen={isHeartsOpen} onClose={() => setIsHeartsOpen(false)} />
     </div>
   );
 }

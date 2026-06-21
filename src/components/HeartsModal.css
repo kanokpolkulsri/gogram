@@ -1,0 +1,171 @@
+.hearts-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.hearts-modal-card {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius);
+  width: 100%;
+  max-width: 420px;
+  padding: 32px 24px;
+  position: relative;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 2px solid var(--color-gray);
+  animation: modalScaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes modalScaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.hearts-modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: var(--color-gray-medium);
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px;
+  transition: color var(--transition-fast);
+}
+
+.hearts-modal-close-btn:hover {
+  color: var(--color-text);
+}
+
+.hearts-modal-header-icon {
+  margin-bottom: 16px;
+}
+
+.hearts-modal-title {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.hearts-modal-refill-info {
+  margin-bottom: 24px;
+}
+
+.hearts-modal-desc {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-light);
+}
+
+.hearts-modal-subdesc {
+  font-size: 13px;
+  color: var(--color-gray-medium);
+  margin-top: 4px;
+}
+
+.countdown-timer {
+  font-family: monospace;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--color-red);
+  background-color: var(--color-red-bg);
+  padding: 2px 6px;
+  border-radius: var(--border-radius-xs);
+  margin-left: 4px;
+}
+
+.premium-active-desc {
+  color: var(--color-orange-dark);
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.hearts-modal-promo-box {
+  width: 100%;
+  border-top: 2px solid var(--color-gray);
+  padding-top: 24px;
+}
+
+.hearts-modal-promo-box h3 {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+
+.promo-box-sub {
+  font-size: 13px;
+  color: var(--color-text-light);
+  margin-bottom: 16px;
+}
+
+.hearts-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.hearts-modal-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-weight: 700;
+  border: 2px solid var(--color-gray);
+  border-radius: var(--border-radius-sm);
+  background-color: var(--color-gray-light);
+  text-align: center;
+  transition: border-color var(--transition-fast);
+}
+
+.hearts-modal-input:focus {
+  border-color: var(--color-orange);
+  outline: none;
+}
+
+.hearts-modal-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.hearts-modal-status {
+  margin-top: 12px;
+  padding: 8px 12px;
+  border-radius: var(--border-radius-xs);
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.hearts-modal-status.success {
+  background-color: var(--color-green-bg);
+  color: var(--color-green-darker);
+  border: 1px solid var(--color-green-dark);
+}
+
+.hearts-modal-status.error {
+  background-color: var(--color-red-bg);
+  color: var(--color-red-dark);
+  border: 1px solid var(--color-red);
+}

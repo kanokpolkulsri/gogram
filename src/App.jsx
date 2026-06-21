@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
-import { UserProvider, useUser } from './data/userStore';
+import { UserProvider, useUser, useUserDispatch } from './data/userStore';
 import DesktopLayout from './components/DesktopLayout';
 import LandingPage from './pages/LandingPage';
 import CategoryPage from './pages/user/CategoryPage';
@@ -19,11 +19,18 @@ function DesktopPage({ children, showRightSidebar = true }) {
     </DesktopLayout>
   );
 }
-
 function AppContent() {
   const user = useUser();
+  const dispatch = useUserDispatch();
   const location = useLocation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user.promoExpiredMessage) {
+      alert(user.promoExpiredMessage);
+      dispatch({ type: 'CLEAR_PROMO_EXPIRED_MESSAGE' });
+    }
+  }, [user.promoExpiredMessage, dispatch]);
 
   useEffect(() => {
     if (user.isAuthLoading) return;

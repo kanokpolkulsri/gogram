@@ -399,3 +399,83 @@
 .profile-modal-actions .btn {
   flex: 1;
 }
+
+/* Promo Code Section styles */
+.profile-promo-input-group {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.profile-promo-input {
+  flex: 1;
+  padding: 10px 16px;
+  font-family: var(--font-family);
+  font-size: 15px;
+  font-weight: 700;
+  border: 2px solid var(--color-gray);
+  border-radius: 12px;
+  background-color: var(--color-gray-light);
+  outline: none;
+  transition: border-color var(--transition-fast) ease;
+}
+
+.profile-promo-input:focus {
+  border-color: var(--color-orange);
+}
+
+.profile-settings-btn.btn-primary {
+  background: var(--color-orange);
+  border-color: var(--color-orange);
+  color: var(--color-white);
+  box-shadow: 0 4px 0 var(--color-orange-dark);
+}
+
+.profile-settings-btn.btn-primary:hover {
+  background: #FFAD33;
+  border-color: #FFAD33;
+}
+
+.profile-promo-message {
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 8px;
+  text-align: left;
+  margin-top: 4px;
+}
+
+.profile-promo-message.success {
+  background-color: var(--color-green-bg);
+  color: var(--color-green-darker);
+  border: 1px solid var(--color-green-dark);
+}
+
+.profile-promo-message.error {
+  background-color: var(--color-red-bg);
+  color: var(--color-red-dark);
+  border: 1px solid var(--color-red);
+}
+
+.profile-ref-code-badge {
+  background: var(--color-yellow-bg);
+  border: 2px dashed var(--color-yellow-dark);
+  padding: 6px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  user-select: none;
+  transition: transform var(--transition-fast) ease, background-color var(--transition-fast) ease;
+}
+
+.profile-ref-code-badge:hover {
+  transform: scale(1.05);
+  background-color: #FFF0B3;
+}
+
+.profile-ref-code-badge code {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--color-yellow-dark);
+  font-family: monospace;
+}
+

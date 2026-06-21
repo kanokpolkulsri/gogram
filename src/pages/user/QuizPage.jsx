@@ -4,6 +4,7 @@ import { getRandomEncouragement } from '../../data/mockData';
 import { useUser, useUserDispatch } from '../../data/userStore';
 import ProgressBar from '../../components/ProgressBar';
 import Hearts from '../../components/Hearts';
+import HeartsModal from '../../components/HeartsModal';
 import './QuizPage.css';
 
 export default function QuizPage() {
@@ -11,6 +12,7 @@ export default function QuizPage() {
   const navigate = useNavigate();
   const user = useUser();
   const dispatch = useUserDispatch();
+  const [isHeartsOpen, setIsHeartsOpen] = useState(false);
 
   const units = user.units || [];
 
@@ -55,9 +57,11 @@ export default function QuizPage() {
     } else {
       setCorrectStreak(0);
       setFirstAttempt(false);
-      dispatch({ type: 'LOSE_HEART' });
-      if (user.hearts - 1 <= 0) {
-        setTimeout(() => setShowOutOfHearts(true), 800);
+      if (user.hearts !== 'infinity') {
+        dispatch({ type: 'LOSE_HEART' });
+        if (user.hearts - 1 <= 0) {
+          setTimeout(() => setShowOutOfHearts(true), 800);
+        }
       }
     }
   }, [selectedAnswer, isAnswered, currentQuestion, dispatch, user.hearts, firstAttempt]);
@@ -175,7 +179,7 @@ export default function QuizPage() {
         <div className="quiz-progress-wrapper">
           <ProgressBar current={currentIndex + (isAnswered && isCorrect ? 1 : 0)} total={totalQuestions} />
         </div>
-        <Hearts count={user.hearts} />
+        <Hearts count={user.hearts} onClick={() => setIsHeartsOpen(true)} />
       </div>
 
       {/* Question */}
@@ -293,7 +297,6 @@ export default function QuizPage() {
         </div>
       )}
 
-      {/* Out of Hearts Modal */}
       {showOutOfHearts && (
         <div className="quiz-modal-overlay">
           <div className="quiz-modal">
@@ -310,6 +313,7 @@ export default function QuizPage() {
           </div>
         </div>
       )}
+      <HeartsModal isOpen={isHeartsOpen} onClose={() => setIsHeartsOpen(false)} />
     </div>
   );
 }

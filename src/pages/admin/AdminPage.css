@@ -144,14 +144,16 @@
 }
 
 /* General CMS sub-page headers */
-.cms-page-content {
+.cms-page-content,
+.cms-promo-page-content {
   display: flex;
   flex-direction: column;
   gap: 20px;
   max-width: 100%;
 }
 
-.cms-section-title {
+.cms-section-title,
+.cms-promo-section-title {
   font-size: 24px;
   font-weight: 800;
   color: var(--color-text);
@@ -159,7 +161,8 @@
   text-align: left;
 }
 
-.cms-section-subtitle {
+.cms-section-subtitle,
+.cms-promo-section-subtitle {
   font-size: 14px;
   color: var(--color-text-light);
   margin: 0;
@@ -167,7 +170,9 @@
   text-align: left;
 }
 
-.cms-card {
+.cms-card,
+.cms-promo-form-card,
+.cms-promo-table-card {
   background-color: var(--color-white);
   border: 1px solid #dadce0;
   border-radius: 8px;
@@ -1777,21 +1782,22 @@
 }
 
 .icon-action-btn.cms-reset-progress-btn {
-  font-size: 12px;
-  padding: 6px 8px;
-  border-radius: 8px;
+  font-size: 14px;
+  padding: 6px;
+  border-radius: 6px;
   cursor: pointer;
-  background: #FEF3C7;
-  border: 1.5px solid #F59E0B;
-  color: #B45309;
+  background: transparent;
+  border: none;
+  color: var(--color-gray-dark);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s;
+  transition: all 0.2s ease;
 }
 
 .icon-action-btn.cms-reset-progress-btn:hover {
-  background: #FDE68A;
+  background-color: var(--color-gray-light);
+  color: var(--color-text);
 }
 
 .text-left,
@@ -1959,4 +1965,129 @@
   font-size: 13px;
   color: var(--color-text-light);
   font-weight: 600;
+}
+
+/* =========================================
+   ADMIN USER DETAILS ACCORDION
+   ========================================= */
+.expanded-progress-container,
+.cms-user-details-card {
+  padding: 20px;
+  background-color: var(--color-gray-light);
+  border-radius: 12px;
+  border: 1px solid var(--color-gray);
+  margin: 8px 0;
+}
+
+.cms-user-details-title {
+  font-size: 15px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.cms-user-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.cms-user-details-progress-block {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--color-gray);
+}
+
+.cms-user-details-progress-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-gray-light);
+}
+
+.cms-user-details-progress-row:last-child {
+  border-bottom: none;
+}
+
+.cms-user-details-progress-title {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.cms-user-details-progress-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.cms-user-details-settings-block {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--color-gray);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cms-user-details-settings-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.cms-user-details-settings-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.cms-user-details-settings-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.cms-user-details-settings-label {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.cms-user-details-promo-block {
+  border-top: 1px solid var(--color-gray-light);
+  padding-top: 12px;
+  text-align: left;
+}
+
+.cms-user-details-promo-title {
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--color-text);
+}
+
+.cms-user-details-promo-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.cms-user-details-promo-badge {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--color-yellow-bg);
+  color: var(--color-yellow-dark);
+  border: 1px solid var(--color-yellow);
+}
+
+.cms-user-details-promo-none {
+  font-size: 12px;
+  color: var(--color-text-light);
+  font-style: italic;
 }

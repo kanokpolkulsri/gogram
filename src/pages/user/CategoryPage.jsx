@@ -1,12 +1,15 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../data/userStore';
 import { Category3DIcon, HomeIcon, CategoriesIcon } from '../../components/icons';
 import Hearts from '../../components/Hearts';
+import HeartsModal from '../../components/HeartsModal';
 import './CategoryPage.css';
 
 export default function CategoryPage() {
   const navigate = useNavigate();
   const user = useUser();
+  const [isHeartsOpen, setIsHeartsOpen] = useState(false);
   
   const studyCategories = user.categories || [];
   const units = user.units || [];
@@ -173,7 +176,7 @@ export default function CategoryPage() {
             </div>
             {/* Hearts displayed at the rightmost end */}
             <div style={{ marginLeft: 'auto' }}>
-              <Hearts count={user.hearts} />
+              <Hearts count={user.hearts} onClick={() => setIsHeartsOpen(true)} />
             </div>
           </div>
         </div>
@@ -251,6 +254,7 @@ export default function CategoryPage() {
           </div>
         )}
       </div>
+      <HeartsModal isOpen={isHeartsOpen} onClose={() => setIsHeartsOpen(false)} />
     </div>
   );
 }

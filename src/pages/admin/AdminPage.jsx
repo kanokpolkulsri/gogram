@@ -6,7 +6,8 @@ import {
   ProfileIcon,
   BookIcon,
   PracticeIcon,
-  QuestsIcon
+  QuestsIcon,
+  HeartIcon
 } from '../../components/icons';
 import './AdminPage.css';
 
@@ -16,6 +17,7 @@ import SearchSection from './SearchSection';
 import AiDraftSection from './AiDraftSection';
 import TopicsSection from './TopicsSection';
 import UsersSection from './UsersSection';
+import PromoCodesSection from './PromoCodesSection';
 
 export default function AdminPage() {
   const user = useUser();
@@ -37,6 +39,7 @@ export default function AdminPage() {
     if (path.includes('/admin/generate')) return 'generate';
     if (path.includes('/admin/topics')) return 'topics';
     if (path.includes('/admin/users')) return 'users';
+    if (path.includes('/admin/promo-codes')) return 'promo-codes';
     return 'dashboard';
   };
 
@@ -308,6 +311,15 @@ export default function AdminPage() {
             showToast={showToast}
           />
         );
+      case 'promo-codes':
+        return (
+          <PromoCodesSection
+            user={user}
+            dispatch={dispatch}
+            triggerConfirm={triggerConfirm}
+            showToast={showToast}
+          />
+        );
       default:
         return (
           <DashboardSection
@@ -384,6 +396,17 @@ export default function AdminPage() {
               <ProfileIcon active={activeSection === 'users'} size={22} />
             </span>
             <span className="nav-item-label" id="admin-cms-nav-label-users">User Management</span>
+          </button>
+
+          <button
+            id="admin-cms-nav-item-promo-codes"
+            className={`admin-cms-nav-item admin-cms-nav-item-promo-codes ${activeSection === 'promo-codes' ? 'active' : ''}`}
+            onClick={() => handleNavigateSection('promo-codes')}
+          >
+            <span className="nav-item-icon" id="admin-cms-nav-icon-promo-codes">
+              <HeartIcon active={activeSection === 'promo-codes'} size={22} />
+            </span>
+            <span className="nav-item-label" id="admin-cms-nav-label-promo-codes">Promo Codes</span>
           </button>
         </nav>
 

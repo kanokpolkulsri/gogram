@@ -58,7 +58,7 @@ const getDaysBetween = (dateStr1, dateStr2) => {
 
 export default function RightSidebar() {
   const [vocabIndex, setVocabIndex] = useState(0);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
 
   const [learnedIndices, setLearnedIndices] = useState(() => {
     const today = getTodayDateString();
