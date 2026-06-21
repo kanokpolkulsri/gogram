@@ -131,13 +131,19 @@ const STORAGE_KEY = 'gogram-user';
 export function cleanQuestion(q) {
   if (!q) return q;
   let cleaned = q.trim();
-  if (cleaned.toLowerCase().startsWith('complete:')) {
-    cleaned = cleaned.substring('complete:'.length).trim();
+  
+  // 1. Remove common introductory prefixes
+  cleaned = cleaned.replace(/^(?:complete|fill in)(?:\s+the\s+sentence)?:\s*/i, '');
+  cleaned = cleaned.replace(/^(?:which|choose|select)\s+[\w\s]+\s+completes?(?:\s+the\s+sentence)?:\s*/i, '');
+  
+  cleaned = cleaned.trim();
+  
+  // 2. Remove surrounding quotes if they wrap the entire question
+  const quoteMatch = cleaned.match(/^['"](.*?)['"]/);
+  if (quoteMatch) {
+    cleaned = quoteMatch[1].trim();
   }
-  const match = cleaned.match(/^['"](.*?)['"](\s*\(.*?\))?$/);
-  if (match) {
-    cleaned = match[1] + (match[2] ? match[2] : '');
-  }
+  
   return cleaned;
 }
 
@@ -174,6 +180,17 @@ function loadUser() {
         }
         parsed.completedLessons = []; // Reset progress since there are no questions to complete
         parsed.hasWipedQuestionsV2 = true;
+      }
+
+      // One-time force reset of user progress history to starting stats
+      if (!parsed.hasResetProgressV5) {
+        parsed.completedLessons = [];
+        parsed.totalXP = 0;
+        parsed.streak = 0;
+        parsed.streakHistory = [];
+        parsed.gems = 0;
+        parsed.hearts = 5;
+        parsed.hasResetProgressV5 = true;
       }
 
       // Migration to rename 'grammar-foundation' to 'grammar' and update topics to match screenshot

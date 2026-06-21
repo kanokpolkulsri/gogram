@@ -170,14 +170,39 @@ export default function QuizPage() {
 
   if (totalQuestions === 0) {
     return (
-      <div className="quiz-page quiz-error quiz-empty-state-container" id="quiz-empty-state-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '300px', textAlign: 'center', gap: '16px', padding: '32px' }}>
-        <h2 className="quiz-empty-state-title" id="quiz-empty-state-title">No questions available yet</h2>
-        <p className="quiz-empty-state-desc" id="quiz-empty-state-desc" style={{ color: 'var(--color-text-light)', maxWidth: '400px', margin: '0 auto', lineHeight: '1.6' }}>
-          This level is currently empty. Go to the Admin AI Content Generation page to generate questions for this topic and level!
-        </p>
-        <button className="btn btn-primary quiz-empty-state-back-btn" id="quiz-empty-state-back-btn" onClick={handleClose} style={{ marginTop: '16px' }}>
-          Back to Learn
-        </button>
+      <div className="quiz-page quiz-empty-state-page" id="quiz-page">
+        {/* Top Bar */}
+        <div className="quiz-top-bar" id="quiz-empty-top-bar">
+          <button className="quiz-close-btn" onClick={handleClose} id="quiz-close" aria-label="Close quiz">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#AFAFAF">
+              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
+            </svg>
+          </button>
+          <div className="quiz-progress-wrapper" id="quiz-empty-progress-wrapper">
+            <ProgressBar current={0} total={10} />
+          </div>
+          <Hearts count={user.hearts} onClick={() => setIsHeartsOpen(true)} />
+        </div>
+
+        {/* Content */}
+        <div className="quiz-content quiz-empty-state-content" id="quiz-empty-state-content" style={{ justifyContent: 'center', alignItems: 'center', textAlign: 'center', gap: '16px' }}>
+          <h2 className="quiz-question quiz-empty-state-title" id="quiz-empty-state-title">No questions available yet</h2>
+          <p className="quiz-empty-state-desc" id="quiz-empty-state-desc" style={{ color: 'var(--color-text-light)', maxWidth: '400px', margin: '0 auto', lineHeight: '1.6' }}>
+            This level is currently empty. Go to the Admin AI Content Generation page to generate questions for this topic and level!
+          </p>
+        </div>
+
+        {/* Bottom / Back Button */}
+        <div className="quiz-bottom quiz-empty-state-bottom" id="quiz-empty-state-bottom">
+          <button
+            className="btn btn-primary quiz-empty-state-back-btn"
+            id="quiz-empty-state-back-btn"
+            onClick={handleClose}
+          >
+            Back to Learn
+          </button>
+        </div>
+        <HeartsModal isOpen={isHeartsOpen} onClose={() => setIsHeartsOpen(false)} />
       </div>
     );
   }

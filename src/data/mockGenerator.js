@@ -3,61 +3,61 @@
 const articlesQuestions = {
   easy: [
     {
-      question: "Which article completes: 'I have ___ apple for lunch'?",
+      question: "I have ___ apple for lunch",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "an",
       explanation: "ENGLISH\nUse 'an' before words starting with a vowel sound (a, e, i, o, u).\n\nTHAI\nใช้ 'an' นำหน้าคำที่ขึ้นต้นด้วยเสียงสระ (ออ) เช่น apple ออกเสียง /æ/ จึงต้องใช้ 'an'"
     },
     {
-      question: "Which article completes: '___ sun is very bright today'?",
+      question: "___ sun is very bright today",
       options: ["A", "An", "The", "No article"],
       correctAnswer: "The",
       explanation: "ENGLISH\nUse 'the' for unique celestial objects that there is only one of.\n\nTHAI\nใช้ 'the' นำหน้าสิ่งที่มีเพียงหนึ่งเดียวในธรรมชาติ เช่น พระอาทิตย์ (sun)"
     },
     {
-      question: "Which article completes: 'She is reading ___ book'?",
+      question: "She is reading ___ book",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "a",
       explanation: "ENGLISH\nUse 'a' for singular countable nouns that start with a consonant sound when speaking generally.\n\nTHAI\nใช้ 'a' นำหน้าคำนามนับได้เอกพจน์ทั่วไปที่ขึ้นต้นด้วยเสียงพยัญชนะ เช่น book ออกเสียง /b/"
     },
     {
-      question: "Which article completes: 'He wants to be ___ doctor'?",
+      question: "He wants to be ___ doctor",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "a",
       explanation: "ENGLISH\nUse 'a' or 'an' when mentioning someone's profession for the first time.\n\nTHAI\nใช้ 'a' หรือ 'an' นำหน้าอาชีพเมื่อกล่าวถึงเป็นครั้งแรก เช่น a doctor"
     },
     {
-      question: "Which article completes: 'Do you want ___ orange?'",
+      question: "Do you want ___ orange?",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "an",
       explanation: "ENGLISH\nUse 'an' before 'orange' because it starts with the vowel sound /ɒ/.\n\nTHAI\nใช้ 'an' นำหน้า orange เพราะออกเสียงขึ้นต้นด้วยเสียงสระ"
     },
     {
-      question: "Which article completes: '___ earth is our home planet'?",
+      question: "___ earth is our home planet",
       options: ["A", "An", "The", "No article"],
       correctAnswer: "The",
       explanation: "ENGLISH\nUse 'the' for specific, unique entities like planets.\n\nTHAI\nใช้ 'the' นำหน้าคำว่า earth เพราะเป็นโลกที่มีเพียงหนึ่งเดียว"
     },
     {
-      question: "Which article completes: 'I saw ___ cat on the roof'?",
+      question: "I saw ___ cat on the roof",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "a",
       explanation: "ENGLISH\nUse 'a' for a non-specific singular countable noun.\n\nTHAI\nใช้ 'a' สำหรับการเอ่ยถึงแมวตัวหนึ่งแบบไม่เฉพาะเจาะจง"
     },
     {
-      question: "Which article completes: 'We live in ___ old house'?",
+      question: "We live in ___ old house",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "an",
       explanation: "ENGLISH\n'Old' starts with a vowel sound /oʊ/, so we use 'an'.\n\nTHAI\nคำคุณศัพท์ 'old' ขึ้นต้นด้วยเสียงสระ จึงต้องใช้ 'an'"
     },
     {
-      question: "Which article completes: '___ water in that glass is dirty'?",
+      question: "___ water in that glass is dirty",
       options: ["A", "An", "The", "No article"],
       correctAnswer: "The",
       explanation: "ENGLISH\nUse 'the' for uncountable nouns when they are specified or defined.\n\nTHAI\nใช้ 'the' นำหน้าคำนามนับไม่ได้เมื่อระบุเฉพาะเจาะจง (น้ำในแก้วนั้น)"
     },
     {
-      question: "Which article completes: 'He is playing ___ guitar'?",
+      question: "He is playing ___ guitar",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "the",
       explanation: "ENGLISH\nUse 'the' before musical instruments when playing them.\n\nTHAI\nใช้ 'the' นำหน้าเครื่องดนตรีเสมอเมื่อใช้คู่กับกริยา play"
@@ -65,61 +65,61 @@ const articlesQuestions = {
   ],
   medium1: [
     {
-      question: "Which article completes: 'It will take ___ hour to get there'?",
+      question: "It will take ___ hour to get there",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "an",
       explanation: "ENGLISH\n'Hour' starts with a silent 'h', so the initial sound is the vowel sound /aʊər/.\n\nTHAI\nคำว่า 'hour' ตัว h ไม่ออกเสียง (ออกเสียงออ) จึงถือเป็นเสียงสระ ต้องใช้ 'an'"
     },
     {
-      question: "Which article completes: 'She goes to ___ university in Bangkok'?",
+      question: "She goes to ___ university in Bangkok",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "a",
       explanation: "ENGLISH\n'University' starts with the consonant sound /juː/, so we use 'a'.\n\nTHAI\nคำว่า 'university' ขึ้นต้นด้วยเสียงพยัญชนะ /juː/ (ยู) จึงต้องใช้ 'a'"
     },
     {
-      question: "Which article completes: 'He is ___ honest man'?",
+      question: "He is ___ honest man",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "an",
       explanation: "ENGLISH\n'Honest' has a silent 'h', starting with the vowel sound /ɒ/.\n\nTHAI\nคำว่า 'honest' ออกเสียงขึ้นต้นด้วย อ. อ่าง (เสียงสระ) จึงต้องใช้ 'an'"
     },
     {
-      question: "Which article completes: '___ unit 1 is very easy'?",
+      question: "___ unit 1 is very easy",
       options: ["A", "An", "The", "No article"],
       correctAnswer: "No article",
       explanation: "ENGLISH\nDo not use articles before nouns followed by a number.\n\nTHAI\nไม่ใช้ article นำหน้าคำนามที่มีตัวเลขตามหลัง เช่น Unit 1 หรือ Room 5"
     },
     {
-      question: "Which article completes: 'We traveled around ___ Europe'?",
+      question: "We traveled around ___ Europe",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "no article",
       explanation: "ENGLISH\nDo not use articles before names of continents.\n\nTHAI\nไม่ใช้ article นำหน้าชื่อทวีป เช่น Europe, Asia, Africa"
     },
     {
-      question: "Which article completes: 'She plays ___ tennis every Saturday'?",
+      question: "She plays ___ tennis every Saturday",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "no article",
       explanation: "ENGLISH\nDo not use articles before names of sports.\n\nTHAI\nไม่ใช้ article นำหน้ากีฬา เช่น play tennis, play football"
     },
     {
-      question: "Which article completes: 'They speak ___ English very well'?",
+      question: "They speak ___ English very well",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "no article",
       explanation: "ENGLISH\nDo not use articles before names of languages.\n\nTHAI\nไม่ใช้ article นำหน้าภาษา เช่น speak English, speak Thai"
     },
     {
-      question: "Which article completes: '___ lunch we had yesterday was delicious'?",
+      question: "___ lunch we had yesterday was delicious",
       options: ["A", "An", "The", "No article"],
       correctAnswer: "The",
       explanation: "ENGLISH\nUse 'the' for meals when referencing a specific, past meal.\n\nTHAI\nโดยทั่วไปมื้ออาหารไม่ใส่ article แต่ข้อนี้เจาะจงถึงมื้อกลางวันที่กินเมื่อวาน จึงใช้ 'the'"
     },
     {
-      question: "Which article completes: 'She has ___ unique style'?",
+      question: "She has ___ unique style",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "a",
       explanation: "ENGLISH\n'Unique' begins with the consonant sound /juː/ (y-sound), so it takes 'a'.\n\nTHAI\n'Unique' ขึ้นต้นด้วยเสียง /juː/ (ย) ซึ่งเป็นเสียงพยัญชนะ จึงใช้ 'a'"
     },
     {
-      question: "Which article completes: '___ CEO of Google is Sundar Pichai'?",
+      question: "___ CEO of Google is Sundar Pichai",
       options: ["A", "An", "The", "No article"],
       correctAnswer: "The",
       explanation: "ENGLISH\nUse 'the' for specific unique titles or roles in a company/country.\n\nTHAI\nใช้ 'the' นำหน้าชื่อตำแหน่งที่มีเพียงคนเดียวในองค์กรหรือประเทศ เช่น The CEO, The President"
@@ -127,61 +127,61 @@ const articlesQuestions = {
   ],
   medium2: [
     {
-      question: "Which article completes: '___ Chao Phraya River flows through Bangkok'?",
+      question: "___ Chao Phraya River flows through Bangkok",
       options: ["A", "An", "The", "No article"],
       correctAnswer: "The",
       explanation: "ENGLISH\nUse 'the' before names of rivers, seas, and oceans.\n\nTHAI\nใช้ 'the' นำหน้าชื่อแม่น้ำ ทะเล และมหาสมุทรเสมอ เช่น The Chao Phraya River"
     },
     {
-      question: "Which article completes: 'They are staying at ___ Hilton Hotel'?",
+      question: "They are staying at ___ Hilton Hotel",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "the",
       explanation: "ENGLISH\nUse 'the' before names of hotels, cinemas, and museums.\n\nTHAI\nใช้ 'the' นำหน้าชื่อโรงแรม โรงภาพยนตร์ และพิพิธภัณฑ์ เช่น The Hilton Hotel"
     },
     {
-      question: "Which article completes: 'I want to travel to ___ United States'?",
+      question: "I want to travel to ___ United States",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "the",
       explanation: "ENGLISH\nUse 'the' for country names containing 'United', 'Republic', or pluralized states.\n\nTHAI\nใช้ 'the' นำหน้าประเทศที่มีคำว่า United, Republic, Kingdom หรือเป็นพหูพจน์ เช่น The USA"
     },
     {
-      question: "Which article completes: '___ Mount Everest is the highest peak'?",
+      question: "___ Mount Everest is the highest peak",
       options: ["A", "An", "The", "No article"],
       correctAnswer: "No article",
       explanation: "ENGLISH\nDo not use articles before names of single mountains (but use 'the' for mountain ranges).\n\nTHAI\nไม่ใช้ article นำหน้าชื่อยอดเขาเดี่ยวๆ เช่น Mount Everest แต่เทือกเขาจะใช้ the"
     },
     {
-      question: "Which article completes: '___ Pacific Ocean is the largest ocean'?",
+      question: "___ Pacific Ocean is the largest ocean",
       options: ["A", "An", "The", "No article"],
       correctAnswer: "The",
       explanation: "ENGLISH\nUse 'the' before names of oceans.\n\nTHAI\nใช้ 'the' นำหน้าชื่อมหาสมุทรเสมอ เช่น The Pacific Ocean"
     },
     {
-      question: "Which article completes: 'He plays ___ piano beautifully'?",
+      question: "He plays ___ piano beautifully",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "the",
       explanation: "ENGLISH\nAlways use 'the' before musical instruments when expressing ability or playing.\n\nTHAI\nใช้ 'the' นำหน้าเครื่องดนตรีในการเล่น เช่น play the piano"
     },
     {
-      question: "Which article completes: 'She is ___ most intelligent student in class'?",
+      question: "She is ___ most intelligent student in class",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "the",
       explanation: "ENGLISH\nAlways use 'the' before superlative adjectives (most, -est).\n\nTHAI\nใช้ 'the' นำหน้าการเปรียบเทียบขั้นสูงสุด (superlative) เสมอ เช่น the most intelligent"
     },
     {
-      question: "Which article completes: '___ rich should help the poor'?",
+      question: "___ rich should help the poor",
       options: ["A", "An", "The", "No article"],
       correctAnswer: "The",
       explanation: "ENGLISH\nUse 'the' before adjectives to represent a group of people collectively.\n\nTHAI\nใช้ 'the' นำหน้าคำคุณศัพท์เพื่อแทนกลุ่มคนเป็นพหูพจน์ เช่น the rich (คนรวย), the poor (คนจน)"
     },
     {
-      question: "Which article completes: 'I go to ___ bed at 10 PM'?",
+      question: "I go to ___ bed at 10 PM",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "no article",
       explanation: "ENGLISH\nWe say 'go to bed' without articles when referring to the primary purpose (sleeping).\n\nTHAI\nวลี 'go to bed' (เข้านอน) ไม่ต้องใส่ article เพราะใช้เตียงตามวัตถุประสงค์หลัก"
     },
     {
-      question: "Which article completes: '___ happiness is hard to define'?",
+      question: "___ happiness is hard to define",
       options: ["A", "An", "The", "No article"],
       correctAnswer: "No article",
       explanation: "ENGLISH\nDo not use articles for abstract nouns used in a general sense.\n\nTHAI\nไม่ใช้ article นำหน้าคำนามที่เป็นนามธรรม (abstract nouns) เมื่อกล่าวลอยๆ เช่น happiness, love"
@@ -189,61 +189,61 @@ const articlesQuestions = {
   ],
   hard1: [
     {
-      question: "Which article completes: '___ French are known for their cuisine'?",
+      question: "___ French are known for their cuisine",
       options: ["A", "An", "The", "No article"],
       correctAnswer: "The",
       explanation: "ENGLISH\nUse 'the' before national adjectives ending in -ch, -sh, -ese to represent the people.\n\nTHAI\nใช้ 'the' นำหน้าคำสัญชาติเพื่อแทนประชาชนของประเทศนั้นๆ เช่น The French (ชาวฝรั่งเศส)"
     },
     {
-      question: "Which article completes: 'The criminal was sent to ___ prison for his crimes'?",
+      question: "The criminal was sent to ___ prison for his crimes",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "no article",
       explanation: "ENGLISH\nNo article is used before prison/school/hospital when referred to for its primary function.\n\nTHAI\nไม่ใช้ article นำหน้าสถานที่อย่าง prison/school/hospital ถ้าประธานไปใช้บริการตามหน้าที่หลัก (นักโทษเข้าคุก)"
     },
     {
-      question: "Which article completes: 'The tourist visited ___ prison to take photos'?",
+      question: "The tourist visited ___ prison to take photos",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "the",
       explanation: "ENGLISH\nUse 'the' before hospital/prison/school when visiting it as a building, not for its primary purpose.\n\nTHAI\nใช้ 'the' นำหน้าสถานที่อย่างคุก/โรงพยาบาล เมื่อไปในฐานะสถานที่/ตึกเฉยๆ ไม่ใช่เพื่อรักษาตัวหรือติดคุก"
     },
     {
-      question: "Which article completes: 'He is ___ historical novelist'?",
+      question: "He is ___ historical novelist",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "a",
       explanation: "ENGLISH\n'Historical' starts with a pronounced consonant sound /h/, so it takes 'a'.\n\nTHAI\n'Historical' ตัว h ออกเสียงปกติเป็นเสียงพยัญชนะ จึงใช้ 'a' ไม่ใช่ 'an'"
     },
     {
-      question: "Which article completes: 'She plays ___ violin in the orchestra'?",
+      question: "She plays ___ violin in the orchestra",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "the",
       explanation: "ENGLISH\nUse 'the' before musical instruments when playing them.\n\nTHAI\nเครื่องดนตรีในการเล่นใช้ 'the' เสมอ เช่น play the violin"
     },
     {
-      question: "Which article completes: '___ life is full of surprises'?",
+      question: "___ life is full of surprises",
       options: ["A", "An", "The", "No article"],
       correctAnswer: "No article",
       explanation: "ENGLISH\nAbstract uncountable nouns like 'life' take no article in general statements.\n\nTHAI\nคำว่า 'life' เมื่อพูดถึงชีวิตทั่วไป ไม่ต้องใช้ article นำหน้า"
     },
     {
-      question: "Which article completes: 'I have ___ head for heights'?",
+      question: "I have ___ head for heights",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "a",
       explanation: "ENGLISH\n'Have a head for heights' is an idiom meaning not to be afraid of high places.\n\nTHAI\nเป็นสำนวน 'have a head for heights' แปลว่าไม่กลัวความสูง"
     },
     {
-      question: "Which article completes: '___ more you study, the wiser you get'?",
+      question: "___ more you study, the wiser you get",
       options: ["A", "An", "The", "No article"],
       correctAnswer: "The",
       explanation: "ENGLISH\nUse 'the... the...' structure for comparative correlation.\n\nTHAI\nโครงสร้าง The + ขั้นกว่า..., the + ขั้นกว่า... (ยิ่ง... ก็ยิ่ง...) เช่น The more... the wiser..."
     },
     {
-      question: "Which article completes: 'He was elected ___ President of the association'?",
+      question: "He was elected ___ President of the association",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "no article",
       explanation: "ENGLISH\nDo not use an article before unique titles after verbs of appointment (elect, appoint, make).\n\nTHAI\nไม่ใส่ article หลังคำกริยาที่แต่งตั้งตำแหน่งที่มีเพียงหนึ่งเดียว เช่น elect, appoint"
     },
     {
-      question: "Which article completes: 'She is ___ authority on constitutional law'?",
+      question: "She is ___ authority on constitutional law",
       options: ["a", "an", "the", "no article"],
       correctAnswer: "an",
       explanation: "ENGLISH\n'Authority' starts with a vowel sound, meaning an expert in a field.\n\nTHAI\n'Authority' ขึ้นต้นด้วยเสียงสระ หมายถึง ผู้เชี่ยวชาญ/ผู้มีอิทธิพลทางความรู้ด้านนั้นๆ จึงใช้ 'an'"
@@ -251,61 +251,61 @@ const articlesQuestions = {
   ],
   hard2: [
     {
-      question: "Which article completes: '___ uniform is required, but ___ individual exceptions are allowed'?",
+      question: "___ uniform is required, but ___ individual exceptions are allowed",
       options: ["A / no article", "An / no article", "The / the", "A / the"],
       correctAnswer: "A / no article",
       explanation: "ENGLISH\n'Uniform' starts with consonant /juː/ sound (a). Plural nouns used in general statements take no article.\n\nTHAI\n'Uniform' ใช้ a นำหน้า ส่วน 'individual exceptions' เป็นพหูพจน์เอ่ยทั่วไปไม่ต้องมี article"
     },
     {
-      question: "Which article completes: 'They sailed across ___ Mediterranean in ___ summer'?",
+      question: "They sailed across ___ Mediterranean in ___ summer",
       options: ["the / no article", "no article / the", "the / the", "no article / no article"],
       correctAnswer: "the / no article",
       explanation: "ENGLISH\nUse 'the' before seas (the Mediterranean). Seasons (summer) take no article in general usage.\n\nTHAI\nชื่อทะเลต้องใช้ 'the' ส่วนฤดูกาลตามปกติทั่วไปไม่ต้องใช้ article"
     },
     {
-      question: "Which article completes: '___ gold is ___ precious metal'?",
+      question: "___ gold is ___ precious metal",
       options: ["No article / a", "The / a", "No article / no article", "The / the"],
       correctAnswer: "No article / a",
       explanation: "ENGLISH\nUncountable nouns (gold) take no article when general. Singular countable descriptions take 'a'.\n\nTHAI\nแร่ธาตุ (gold) พูดลอยๆ ไม่ใช้ article ส่วนคำว่า precious metal เป็นคำนามนับได้ทั่วไปจึงใช้ 'a'"
     },
     {
-      question: "Which article completes: 'In ___ search of ___ truth, he read many books'?",
+      question: "In ___ search of ___ truth, he read many books",
       options: ["no article / no article", "the / no article", "a / the", "the / the"],
       correctAnswer: "no article / no article",
       explanation: "ENGLISH\n'In search of' is a fixed prepositional phrase taking no article. 'Truth' as abstract noun is general here.\n\nTHAI\n'In search of' เป็นวลีเฉพาะที่ไม่ต้องมี article และ 'truth' (ความจริง) เอ่ยลอยๆ ไม่ต้องใช้"
     },
     {
-      question: "Which article completes: '___ Mount Everest belongs to ___ Himalayas'?",
+      question: "___ Mount Everest belongs to ___ Himalayas",
       options: ["No article / the", "The / the", "No article / no article", "The / no article"],
       correctAnswer: "No article / the",
       explanation: "ENGLISH\nSingle mountain (Mount Everest) = no article. Mountain ranges (Himalayas) = the.\n\nTHAI\nยอดเขาเดี่ยวไม่ใช้ article แต่เทือกเขา (Himalayas) ต้องใช้ 'the'"
     },
     {
-      question: "Which article completes: '___ computer has revolutionized ___ modern office'?",
+      question: "___ computer has revolutionized ___ modern office",
       options: ["The / the", "A / no article", "No article / the", "The / no article"],
       correctAnswer: "The / the",
       explanation: "ENGLISH\n'The computer' is used generically for the invention class. 'The modern office' is specified.\n\nTHAI\nใช้ 'the' นำหน้าคอมพิวเตอร์เพื่อเป็นตัวแทนของนวัตกรรม/ประเภทเทคโนโลยี และเจาะจงสำนักงานยุคใหม่"
     },
     {
-      question: "Which article completes: 'He acted as ___ go-between in ___ negotiations'?",
+      question: "He acted as ___ go-between in ___ negotiations",
       options: ["a / the", "the / no article", "a / no article", "no article / the"],
       correctAnswer: "a / the",
       explanation: "ENGLISH\n'Go-between' is countable singular (a). Negotiations are specified in this context (the).\n\nTHAI\n'go-between' (คนกลาง) เป็นนามนับได้ ใช้ 'a' และการเจรจามีการเจาะจงจึงใช้ 'the'"
     },
     {
-      question: "Which article completes: 'She graduated with ___ M.A. in English literature'?",
+      question: "She graduated with ___ M.A. in English literature",
       options: ["an", "a", "the", "no article"],
       correctAnswer: "an",
       explanation: "ENGLISH\n'M.A.' starts with the vowel sound /ɛm/, so it takes 'an'.\n\nTHAI\n'M.A.' เริ่มต้นด้วยตัวอักษร M ออกเสียงเป็น เอ็ม /ɛm/ (เสียงสระ) จึงต้องใช้ 'an'"
     },
     {
-      question: "Which article completes: '___ water is essential for ___ life'?",
+      question: "___ water is essential for ___ life",
       options: ["No article / no article", "The / the", "No article / the", "The / no article"],
       correctAnswer: "No article / no article",
       explanation: "ENGLISH\nUncountable nouns (water, life) used in a general statement take no articles.\n\nTHAI\nคำนามนับไม่ได้สองตัวที่พูดถึงหลักความจริงทั่วไป ไม่ใส่ article นำหน้า"
     },
     {
-      question: "Which article completes: 'He was ___ first man to walk on ___ moon'?",
+      question: "He was ___ first man to walk on ___ moon",
       options: ["the / the", "a / the", "the / a", "no article / the"],
       correctAnswer: "the / the",
       explanation: "ENGLISH\nUse 'the' before ordinal numbers (first) and unique objects (moon).\n\nTHAI\nใช้ 'the' นำหน้าลำดับที่ (first) และสิ่งที่มีเพียงหนึ่งเดียวอย่างดวงจันทร์ (moon)"

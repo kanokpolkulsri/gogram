@@ -140,13 +140,32 @@ Requirements:
 - Prioritize daily conversation and common real-life usage.
 - 4 answer choices per question, exactly 1 correct answer.
 - Include short English explanation (explanation) and comprehensive Thai explanation (explanationTh).
-- For EVERY question, the Thai explanation (explanationTh) MUST include the Thai meanings of all key vocabulary words from the question and ALL four answer choices. Separate each vocabulary word and its translation/meaning clearly (e.g., place each word and translation on a new line using '\n', or separate them clearly with commas).
+- For EVERY question, the Thai explanation (explanationTh) MUST include the Thai meanings of all key vocabulary words from the question and ALL four answer choices. Separate each vocabulary word and its translation/meaning clearly (e.g., place each word and translation on a new line using '\\n', or separate them clearly with commas).
 - For "Reading" category, include a short passage before the questions if appropriate, or make each question a mini-reading task.
 - For "Vocabulary" category:
   * Focus on word usage in context.
-  * Ensure the Thai explanation contains a clear "Vocabulary List" style breakdown of all answer options and key terms from the question text, with each vocabulary word and its translation clearly separated on a new line (using '\n') or by commas.
+  * Ensure the Thai explanation contains a clear "Vocabulary List" style breakdown of all answer options and key terms from the question text, with each vocabulary word and its translation clearly separated on a new line (using '\\n') or by commas.
 - For "Grammar" category, focus on the specific rule of the topic.
-- Do NOT prefix the question with phrases like "Complete:" or wrap it in single/double quotes. Write the question sentence directly (e.g., "She ___ a doctor at the hospital." instead of "Complete: 'She ___ a doctor at the hospital.'").`;
+
+CRITICAL FORMATTING RULES FOR THE QUESTION TEXT:
+1. The "question" field MUST consist ONLY of the fill-in-the-blank sentence itself, containing '___' as the blank.
+2. Do NOT prefix the question with phrases like "Complete:", "Which completes the sentence:", or "Which word/article/preposition completes:".
+3. Do NOT wrap the sentence in single or double quotes within the JSON string. Write the question sentence directly.
+   - CORRECT: "She ___ a doctor at the hospital."
+   - INCORRECT: "Complete: 'She ___ a doctor at the hospital.'"
+   - INCORRECT: "Which article completes: 'She ___ a doctor at the hospital'?"
+
+Output Format:
+You MUST output a valid JSON array of objects with the following JSON schema:
+[
+  {
+    "question": "She ___ a doctor at the hospital.",
+    "options": ["a", "an", "the", "no article"],
+    "correctAnswer": "a",
+    "explanation": "Use 'a' before singular nouns starting with consonant sounds.",
+    "explanationTh": "ใช้ 'a' นำหน้าคำนามเอกพจน์นับได้ทั่วไปที่ขึ้นต้นด้วยเสียงพยัญชนะ\\n\\nคำศัพท์:\\ndoctor = หมอ\\nhospital = โรงพยาบาล"
+  }
+]`;
   };
 
   return (
