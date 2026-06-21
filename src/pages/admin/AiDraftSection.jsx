@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 
 const LEVEL_LIST = ['easy', 'medium1', 'medium2', 'hard1', 'hard2'];
 const LEVEL_LABELS = {
@@ -55,25 +55,7 @@ export default function AiDraftSection({
 
   const tasksToProcess = getTasksToProcess();
 
-  const previewQuestions = useMemo(() => {
-    const list = [];
-    activeTopics.forEach(t => {
-      const targetLevels = level === 'all' ? LEVEL_LIST : [level];
-      targetLevels.forEach(lvlId => {
-        const lvl = t.levels.find(l => l.id === lvlId);
-        if (lvl && lvl.questions) {
-          lvl.questions.forEach(q => {
-            list.push({
-              ...q,
-              unitTitle: t.title,
-              levelId: lvlId
-            });
-          });
-        }
-      });
-    });
-    return list;
-  }, [activeTopics, level]);
+
 
   // Trigger Bulk Generation simulation (calling mock engine, API wired later)
   const handleTriggerBulkGeneration = () => {
@@ -343,76 +325,7 @@ Requirements:
         </div>
       </div>
 
-      {/* Live Preview of Selected Slots */}
-      {previewQuestions.length > 0 && (
-        <div className="cms-card" style={{ marginTop: '24px' }}>
-          <div className="cms-card-header" style={{ textAlign: 'left', borderBottom: 'none' }}>
-            <h3 className="cms-card-title">👁️ Live Questions Preview ({previewQuestions.length})</h3>
-            <p style={{ margin: '4px 0 0 0', fontSize: '12px', color: 'var(--color-text-light)' }}>
-              Below are the active questions currently saved in the selected category/topic/level slots.
-            </p>
-          </div>
-          <div className="cms-table-wrapper scrollbar" style={{ maxHeight: '400px', overflowY: 'auto' }}>
-            <table className="cms-table text-left">
-              <thead>
-                <tr>
-                  <th style={{ width: '180px' }}>Topic & Level</th>
-                  <th>Question Content & Choices</th>
-                </tr>
-              </thead>
-              <tbody>
-                {previewQuestions.map((q, idx) => (
-                  <tr key={q.id || idx}>
-                    <td>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                        <strong style={{ fontSize: '13px' }}>{q.unitTitle}</strong>
-                        <span className={`cms-difficulty-badge-text ${q.levelId.toLowerCase()}`} style={{ width: 'fit-content', fontSize: '10px', padding: '2px 6px' }}>
-                          {q.levelId.toUpperCase()}
-                        </span>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="cms-q-content-cell">
-                        <span className="cms-q-text-bold" style={{ fontSize: '14px', color: 'var(--color-text)', display: 'block', marginBottom: '8px' }}>
-                          {q.question}
-                        </span>
-                        <div className="cms-q-options-row" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                          {q.options.map((opt) => {
-                            const isCorrect = opt === q.correctAnswer;
-                            return (
-                              <span
-                                key={opt}
-                                className={`cms-q-option-pill ${isCorrect ? 'correct' : ''}`}
-                                style={{
-                                  fontSize: '11px',
-                                  padding: '4px 10px',
-                                  borderRadius: '8px',
-                                  backgroundColor: isCorrect ? 'var(--color-green-bg)' : 'var(--color-gray-light)',
-                                  color: isCorrect ? 'var(--color-green-dark)' : 'var(--color-text)',
-                                  border: isCorrect ? '1.5px solid var(--color-green)' : '1.5px solid var(--color-gray)',
-                                  fontWeight: isCorrect ? '800' : '600'
-                                }}
-                              >
-                                {isCorrect ? '✓ ' : ''}{opt}
-                              </span>
-                            );
-                          })}
-                        </div>
-                        {(q.explanation || q.explanationTh) && (
-                          <div style={{ marginTop: '8px', fontSize: '12px', color: 'var(--color-text-light)', fontStyle: 'italic', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                            {q.explanation && <span>💡 {q.explanation}</span>}
-                            {q.explanationTh && <span>🇹🇭 {q.explanationTh}</span>}
-                          </div>
-                        )}
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )}
+
     </div>
   );
 }
