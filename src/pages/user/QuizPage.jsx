@@ -26,6 +26,7 @@ export default function QuizPage() {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [correctStreak, setCorrectStreak] = useState(0);
   const [score, setScore] = useState(0);
   const [encouragement, setEncouragement] = useState('');
@@ -161,6 +162,21 @@ export default function QuizPage() {
       <div className="quiz-page quiz-error">
         <p>Lesson not found!</p>
         <button className="btn btn-primary" onClick={() => navigate('/learn')}>
+          Back to Learn
+        </button>
+      </div>
+    );
+  }
+
+  if (totalQuestions === 0) {
+    return (
+      <div className="quiz-page quiz-error" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '300px', textAlign: 'center', gap: '16px', padding: '32px' }}>
+        <div style={{ fontSize: '48px' }}>⚡</div>
+        <h2>No questions available yet</h2>
+        <p style={{ color: 'var(--color-text-light)', maxWidth: '400px', margin: '0 auto', lineHeight: '1.6' }}>
+          This level is currently empty. Go to the Admin AI Content Generation page to generate questions for this topic and level!
+        </p>
+        <button className="btn btn-primary" onClick={handleClose} style={{ marginTop: '16px' }}>
           Back to Learn
         </button>
       </div>

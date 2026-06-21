@@ -161,6 +161,21 @@ function loadUser() {
         }));
       }
 
+      // One-time force wipe of initial questions to allow generating them fresh
+      if (!parsed.hasWipedQuestionsV2) {
+        if (parsed.units) {
+          parsed.units = parsed.units.map(unit => ({
+            ...unit,
+            levels: unit.levels.map(level => ({
+              ...level,
+              questions: []
+            }))
+          }));
+        }
+        parsed.completedLessons = []; // Reset progress since there are no questions to complete
+        parsed.hasWipedQuestionsV2 = true;
+      }
+
       // Migration to rename 'grammar-foundation' to 'grammar' and update topics to match screenshot
       const hasOldCategory = parsed.categories && parsed.categories.some(c => c.id === 'grammar-foundation');
       const hasOldUnits = parsed.units && parsed.units.some(u => u.category === 'grammar-foundation');
@@ -274,6 +289,7 @@ function loadUser() {
 function saveUser(user) {
   if (!user) return;
   try {
+    // eslint-disable-next-line no-unused-vars
     const { isAuthenticated, authProfile, isAuthLoading, ...rest } = user;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(rest));
   } catch (e) {
@@ -409,12 +425,11 @@ function userReducer(state, action) {
       }
       const matchedPromo = state.promoCodes?.find(c => c.code.toUpperCase() === codeUpper);
       let isReferral = false;
-      let referrer = null;
       if (!matchedPromo) {
         const match = codeUpper.match(/^REF-(.+)$/);
         if (match) {
           const refName = match[1].toLowerCase();
-          referrer = state.mockUsers?.find(u => u.name.toLowerCase().replace(/\s+/g, '') === refName || u.uid.toLowerCase() === refName);
+          const referrer = state.mockUsers?.find(u => u.name.toLowerCase().replace(/\s+/g, '') === refName || u.uid.toLowerCase() === refName);
           if (referrer) {
             isReferral = true;
           }
@@ -648,7 +663,6 @@ function userReducer(state, action) {
       const codeUpper = code.toUpperCase();
 
       const updatedUsers = (state.mockUsers || []).map(u => {
-        const hasUsed = (u.usedPromoCodes || []).includes(codeUpper);
         const isActive = u.promoCodeActive === codeUpper;
         
         let nextUsed = (u.usedPromoCodes || []).filter(c => c !== codeUpper);
@@ -1395,15 +1409,6 @@ function userReducer(state, action) {
                 if (!onlyZero || !hasQuestions) {
                   processedCount++;
                   
-                  const levelLabels = {
-                    easy: 'Easy (O-NET M.3)',
-                    medium1: 'Medium 1 (O-NET M.6)',
-                    medium2: 'Medium 2 (O-NET M.6 / PAT)',
-                    hard1: 'Hard 1 (PAT 1/2, A-Level)',
-                    hard2: 'Hard 2 (IELTS/TOEFL)'
-                  };
-                  const labelStr = levelLabels[l.id] || l.id;
-
                   const sourceQuestions = getMockQuestions(categoryId, unit.id, l.id, unit.title);
                   const generated = [];
                   let itemIndex = 0;
