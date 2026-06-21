@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default function AiDraftSection({
   categories,
@@ -20,7 +20,7 @@ export default function AiDraftSection({
 
   // 3. Derived Data matching the selected category
   const categoryTopics = units.filter(u => u.category === categoryId);
-  const topicsCount = categoryTopics.length;
+
 
   // Filter topics based on topic selector
   const activeTopics = topic === 'all'
@@ -87,7 +87,7 @@ export default function AiDraftSection({
       const currentTask = tasksToProcess[taskIndex];
       const levelLabel = levelLabels[currentTask.levelId] || currentTask.levelId;
       setGenerationProgressMsg(`Generating: "${currentTask.topic.title}" — ${levelLabel}`);
-      
+
       taskIndex++;
       setTimeout(runNextTask, 600); // 600ms per level/topic combo for a smooth, impressive visual animation
     };
@@ -108,7 +108,7 @@ export default function AiDraftSection({
       hard2: { label: 'Hard 2', target: 'IELTS/TOEFL', style: 'Nuanced, deceptive distractors, academic register' }
     };
 
-    let levelPromptPart = '';
+    let levelPromptPart;
     if (level === 'all') {
       levelPromptPart = `Difficulty Levels targets:
 - Easy: O-NET M.3 (Straightforward fill-in-the-blank, clear rules)
@@ -127,21 +127,10 @@ Style Guide: ${details.style}`;
     const topicTitle = topic === 'all' ? 'All Topics' : (selectedTopicObj?.title || topic);
     const difficultyText = level === 'all' ? 'All Levels' : level;
 
-    // Deduplication context (existing questions list)
-    const existingQs = activeTopics.flatMap(t => {
-      const targetLevels = level === 'all' ? levelList : [level];
-      return targetLevels.flatMap(lvlId => {
-        const lvl = t.levels.find(l => l.id === lvlId);
-        return lvl?.questions || [];
-      });
-    });
-
-    const existingContext = existingQs.length > 0
-      ? `Avoid duplicating the following existing questions: ${JSON.stringify(existingQs.map(q => q.question))}`
-      : "";
-
     return `Act as an expert English assessment writer for Thai learners.
-Generate ${questionsCount} multiple-choice English learning questions for the category: "${categoryTitle}" and topic: "${topicTitle}" at ${difficultyText} difficulty level. ${existingContext}
+Generate ${questionsCount} multiple-choice English learning questions for the category: "${categoryTitle}" and topic: "${topicTitle}" at ${difficultyText} difficulty level.
+
+${levelPromptPart}
 
 Requirements:
 - Target user: Thai beginner/intermediate learner.
@@ -182,157 +171,157 @@ Requirements:
 
       {/* Config Card */}
       <div className="cms-card cms-ai-config-card">
-          <div className="cms-card-header">
-            <h3 className="cms-card-title">⚡ Generation Configuration</h3>
-          </div>
+        <div className="cms-card-header">
+          <h3 className="cms-card-title">⚡ Generation Configuration</h3>
+        </div>
 
-          <div className="bulk-settings-form">
-            {/* 1. Category Selection */}
-            <div className="form-group-cms">
-              <label>1. TARGET CATEGORY</label>
-              <select
-                value={categoryId}
-                onChange={(e) => {
-                  setCategoryId(e.target.value);
-                  setTopic('all'); // Reset topic when category changes
-                }}
-              >
-                {categories.map(c => <option key={c.id} value={c.id}>{c.title}</option>)}
-              </select>
-            </div>
-
-            {/* 2. Topic Selection */}
-            <div className="form-group-cms">
-              <label>2. TARGET TOPIC</label>
-              <select
-                value={topic}
-                onChange={(e) => setTopic(e.target.value)}
-              >
-                <option value="all">All Topics in Category</option>
-                {categoryTopics.map(t => <option key={t.id} value={t.id}>{t.title}</option>)}
-              </select>
-            </div>
-
-            {/* 3. Level Selection */}
-            <div className="form-group-cms">
-              <label>3. DIFFICULTY LEVEL</label>
-              <div className="pills-selector" style={{ flexWrap: 'wrap' }}>
-                <button
-                  type="button"
-                  className={`pill-select-btn ${level === 'all' ? 'active' : ''}`}
-                  onClick={() => setLevel('all')}
-                  style={{ minWidth: '80px' }}
-                >
-                  ALL LEVELS
-                </button>
-                {levelList.map((l) => (
-                  <button
-                    key={l}
-                    type="button"
-                    className={`pill-select-btn ${level === l ? 'active' : ''}`}
-                    onClick={() => setLevel(l)}
-                  >
-                    {l.toUpperCase()}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* 4. Number of Questions */}
-            <div className="form-group-cms">
-              <label>4. QUESTIONS PER SLOT</label>
-              <div className="pills-selector" style={{ display: 'flex', gap: '8px' }}>
-                {[1, 2, 3, 5, 10].map((num) => (
-                  <button
-                    key={num}
-                    type="button"
-                    className={`pill-select-btn ${questionsCount === num ? 'active' : ''}`}
-                    onClick={() => setQuestionsCount(num)}
-                    style={{ flex: 1, padding: '10px 0', minWidth: '0' }}
-                  >
-                    {num}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* 5. Fill Mode (Checkbox/Toggle style) */}
-            <div className="zero-questions-box" style={{ marginTop: '4px' }}>
-              <div className="box-checkbox-row">
-                <input
-                  type="checkbox"
-                  id="onlyZeroQs"
-                  checked={onlyZero}
-                  onChange={(e) => setOnlyZero(e.target.checked)}
-                />
-                <label htmlFor="onlyZeroQs"><strong>Only Fill Empty Slots</strong></label>
-                <span className="cms-badge-recommended" style={{ backgroundColor: '#1A73E8', color: '#FFF' }}>Recommended</span>
-              </div>
-              <p style={{ margin: '6px 0 0 24px', fontSize: '12px', color: '#B45309' }}>
-                {onlyZero 
-                  ? "Safely bypasses topics/levels that already contain questions." 
-                  : "WARNING: This will overwrite and replace existing questions for the selected targets."}
-              </p>
-            </div>
-
-            {/* 5. Collapsible Prompt Preview Drawer */}
-            <div className="prompt-preview-container" style={{ border: '1px solid #dadce0', borderRadius: '8px', overflow: 'hidden' }}>
-              <button
-                type="button"
-                className="prompt-preview-toggle-btn"
-                onClick={() => setShowPromptPreview(p => !p)}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  width: '100%',
-                  padding: '12px 16px',
-                  background: '#f8f9fa',
-                  border: 'none',
-                  borderBottom: showPromptPreview ? '1px solid #dadce0' : 'none',
-                  fontFamily: 'inherit',
-                  fontWeight: '700',
-                  fontSize: '13px',
-                  color: '#4a4a4a',
-                  cursor: 'pointer'
-                }}
-              >
-                <span>🔍 Gemini Prompt Preview</span>
-                <span>{showPromptPreview ? 'Hide ▴' : 'Show ▾'}</span>
-              </button>
-              {showPromptPreview && (
-                <div className="prompt-preview-content" style={{ padding: '16px', background: '#fafafa', maxHeight: '250px', overflowY: 'auto' }}>
-                  <pre style={{ margin: 0, whiteSpace: 'pre-wrap', fontSize: '11px', fontFamily: 'Courier, monospace', color: '#333', lineHeight: '1.5' }}>
-                    {getPromptPreviewText()}
-                  </pre>
-                </div>
-              )}
-            </div>
-
-            {/* 7. Generate Trigger */}
-            <button
-              className="btn btn-primary btn-cms-bulk-generate"
-              disabled={tasksToProcess.length === 0}
-              onClick={handleTriggerBulkGeneration}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '8px',
-                width: '100%',
-                padding: '14px',
-                fontSize: '15px',
-                fontWeight: '700',
-                backgroundColor: tasksToProcess.length === 0 ? '#dadce0' : 'var(--color-orange)',
-                borderColor: tasksToProcess.length === 0 ? '#dadce0' : 'var(--color-orange)',
-                color: tasksToProcess.length === 0 ? '#999' : '#fff',
-                cursor: tasksToProcess.length === 0 ? 'not-allowed' : 'pointer'
+        <div className="bulk-settings-form">
+          {/* 1. Category Selection */}
+          <div className="form-group-cms">
+            <label>1. TARGET CATEGORY</label>
+            <select
+              value={categoryId}
+              onChange={(e) => {
+                setCategoryId(e.target.value);
+                setTopic('all'); // Reset topic when category changes
               }}
             >
-              ⚡ Generate {questionsCount} Questions Per Slot ({tasksToProcess.length} Slots)
-            </button>
+              {categories.map(c => <option key={c.id} value={c.id}>{c.title}</option>)}
+            </select>
           </div>
+
+          {/* 2. Topic Selection */}
+          <div className="form-group-cms">
+            <label>2. TARGET TOPIC</label>
+            <select
+              value={topic}
+              onChange={(e) => setTopic(e.target.value)}
+            >
+              <option value="all">All Topics in Category</option>
+              {categoryTopics.map(t => <option key={t.id} value={t.id}>{t.title}</option>)}
+            </select>
+          </div>
+
+          {/* 3. Level Selection */}
+          <div className="form-group-cms">
+            <label>3. DIFFICULTY LEVEL</label>
+            <div className="pills-selector" style={{ flexWrap: 'wrap' }}>
+              <button
+                type="button"
+                className={`pill-select-btn ${level === 'all' ? 'active' : ''}`}
+                onClick={() => setLevel('all')}
+                style={{ minWidth: '80px' }}
+              >
+                ALL LEVELS
+              </button>
+              {levelList.map((l) => (
+                <button
+                  key={l}
+                  type="button"
+                  className={`pill-select-btn ${level === l ? 'active' : ''}`}
+                  onClick={() => setLevel(l)}
+                >
+                  {l.toUpperCase()}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* 4. Number of Questions */}
+          <div className="form-group-cms">
+            <label>4. QUESTIONS PER SLOT</label>
+            <div className="pills-selector" style={{ display: 'flex', gap: '8px' }}>
+              {[1, 2, 3, 5, 10].map((num) => (
+                <button
+                  key={num}
+                  type="button"
+                  className={`pill-select-btn ${questionsCount === num ? 'active' : ''}`}
+                  onClick={() => setQuestionsCount(num)}
+                  style={{ flex: 1, padding: '10px 0', minWidth: '0' }}
+                >
+                  {num}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* 5. Fill Mode (Checkbox/Toggle style) */}
+          <div className="zero-questions-box" style={{ marginTop: '4px' }}>
+            <div className="box-checkbox-row">
+              <input
+                type="checkbox"
+                id="onlyZeroQs"
+                checked={onlyZero}
+                onChange={(e) => setOnlyZero(e.target.checked)}
+              />
+              <label htmlFor="onlyZeroQs"><strong>Only Fill Empty Slots</strong></label>
+              <span className="cms-badge-recommended" style={{ backgroundColor: '#1A73E8', color: '#FFF' }}>Recommended</span>
+            </div>
+            <p style={{ margin: '6px 0 0 24px', fontSize: '12px', color: '#B45309' }}>
+              {onlyZero
+                ? "Safely bypasses topics/levels that already contain questions."
+                : "WARNING: This will overwrite and replace existing questions for the selected targets."}
+            </p>
+          </div>
+
+          {/* 5. Collapsible Prompt Preview Drawer */}
+          <div className="prompt-preview-container" style={{ border: '1px solid #dadce0', borderRadius: '8px', overflow: 'hidden' }}>
+            <button
+              type="button"
+              className="prompt-preview-toggle-btn"
+              onClick={() => setShowPromptPreview(p => !p)}
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                width: '100%',
+                padding: '12px 16px',
+                background: '#f8f9fa',
+                border: 'none',
+                borderBottom: showPromptPreview ? '1px solid #dadce0' : 'none',
+                fontFamily: 'inherit',
+                fontWeight: '700',
+                fontSize: '13px',
+                color: '#4a4a4a',
+                cursor: 'pointer'
+              }}
+            >
+              <span>🔍 Gemini Prompt Preview</span>
+              <span>{showPromptPreview ? 'Hide ▴' : 'Show ▾'}</span>
+            </button>
+            {showPromptPreview && (
+              <div className="prompt-preview-content" style={{ padding: '16px', background: '#fafafa', maxHeight: '250px', overflowY: 'auto' }}>
+                <pre style={{ margin: 0, whiteSpace: 'pre-wrap', fontSize: '11px', fontFamily: 'Courier, monospace', color: '#333', lineHeight: '1.5' }}>
+                  {getPromptPreviewText()}
+                </pre>
+              </div>
+            )}
+          </div>
+
+          {/* 7. Generate Trigger */}
+          <button
+            className="btn btn-primary btn-cms-bulk-generate"
+            disabled={tasksToProcess.length === 0}
+            onClick={handleTriggerBulkGeneration}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              width: '100%',
+              padding: '14px',
+              fontSize: '15px',
+              fontWeight: '700',
+              backgroundColor: tasksToProcess.length === 0 ? '#dadce0' : 'var(--color-orange)',
+              borderColor: tasksToProcess.length === 0 ? '#dadce0' : 'var(--color-orange)',
+              color: tasksToProcess.length === 0 ? '#999' : '#fff',
+              cursor: tasksToProcess.length === 0 ? 'not-allowed' : 'pointer'
+            }}
+          >
+            ⚡ Generate {questionsCount} Questions Per Slot ({tasksToProcess.length} Slots)
+          </button>
         </div>
+      </div>
     </div>
   );
 }
