@@ -229,11 +229,11 @@ export default function ProfilePage() {
 
       {/* Delete Account Confirmation Modal */}
       {showDeleteModal && (
-        <div className="profile-modal-overlay">
-          <div className="profile-modal">
-            <h3>Delete Account?</h3>
-            <p>This action is permanent and will completely erase all your XP, stats, and completed lessons. You cannot undo this.</p>
-            <div className="profile-modal-actions">
+        <div className="profile-modal-overlay" id="profile-delete-modal-overlay">
+          <div className="profile-modal" id="profile-delete-modal">
+            <h3 className="profile-modal-title" id="profile-delete-modal-title">Delete Account?</h3>
+            <p className="profile-modal-desc" id="profile-delete-modal-desc">This action is permanent and will completely erase all your XP, stats, and completed lessons. You cannot undo this.</p>
+            <div className="profile-modal-actions" id="profile-delete-modal-actions">
               <button className="btn btn-secondary" onClick={() => setShowDeleteModal(false)} id="cancel-delete-btn">
                 CANCEL
               </button>
@@ -247,12 +247,12 @@ export default function ProfilePage() {
 
       {/* Work In Progress Modal */}
       {showProgressModal && (
-        <div className="profile-modal-overlay">
-          <div className="profile-modal">
-            <h3>Under Construction</h3>
-            <p>This document is currently being drafted and will be ready soon.</p>
-            <div className="profile-modal-actions">
-              <button className="btn btn-primary" onClick={() => setShowProgressModal(false)}>
+        <div className="profile-modal-overlay" id="profile-construction-modal-overlay">
+          <div className="profile-modal" id="profile-construction-modal">
+            <h3 className="profile-modal-title" id="profile-construction-modal-title">Under Construction</h3>
+            <p className="profile-modal-desc" id="profile-construction-modal-desc">This document is currently being drafted and will be ready soon.</p>
+            <div className="profile-modal-actions" id="profile-construction-modal-actions">
+              <button className="btn btn-primary" onClick={() => setShowProgressModal(false)} id="profile-construction-modal-ok-btn">
                 OK
               </button>
             </div>

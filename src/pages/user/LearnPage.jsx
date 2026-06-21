@@ -14,9 +14,6 @@ export default function LearnPage() {
   const user = useUser();
   const dispatch = useUserDispatch();
 
-  const studyCategories = user.categories || [];
-  const units = user.units || [];
-
   // Load the active category from the parameter, defaulting to the last studied category (can be null)
   const activeCategoryId = categoryId || user.lastCategoryId;
 
@@ -28,14 +25,16 @@ export default function LearnPage() {
   }, [activeCategoryId, dispatch]);
 
   const categoryInfo = useMemo(() => {
+    const studyCategories = user.categories || [];
     return studyCategories.find((c) => c.id === activeCategoryId) || studyCategories[0];
-  }, [activeCategoryId]);
+  }, [activeCategoryId, user.categories]);
 
   const categoryUnits = useMemo(() => {
+    const units = user.units || [];
     return activeCategoryId
       ? units.filter((u) => u.category === categoryInfo.id)
       : [];
-  }, [activeCategoryId, categoryInfo.id]);
+  }, [activeCategoryId, categoryInfo.id, user.units]);
 
   const nextLesson = getNextLesson(user.completedLessons, categoryUnits);
 
@@ -52,8 +51,10 @@ export default function LearnPage() {
       const targetUnit = nextLesson
         ? (categoryUnits.find((u) => u.id === nextLesson.unitId) || categoryUnits[0])
         : categoryUnits[0];
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setActiveUnitId(targetUnit?.id || categoryUnits[0].id);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeCategoryId]);
 
   const hasScrolledRef = useRef(false);
@@ -138,13 +139,14 @@ export default function LearnPage() {
 
   if (!activeCategoryId) {
     return (
-      <div className="learn-modal-overlay">
-        <div className="learn-modal">
-          <div className="learn-modal-icon">📚</div>
-          <h3>Select a Category</h3>
-          <p>Please select a learning category first to begin your grammar journey!</p>
+      <div className="learn-modal-overlay" id="learn-category-select-overlay">
+        <div className="learn-modal" id="learn-category-select-modal">
+          <div className="learn-modal-icon" id="learn-category-select-icon">📚</div>
+          <h3 className="learn-modal-title" id="learn-category-select-title">Select a Category</h3>
+          <p className="learn-modal-desc" id="learn-category-select-desc">Please select a learning category first to begin your grammar journey!</p>
           <button 
             className="learn-modal-btn" 
+            id="learn-category-select-btn"
             onClick={() => navigate('/dashboard')}
           >
             GO TO DASHBOARD
@@ -235,10 +237,10 @@ export default function LearnPage() {
 
         {/* All done message if completed everything in this category */}
         {!nextLesson && (
-          <div className="learn-complete-message">
-            <h3>🎉 Category completed!</h3>
-            <p>You&apos;ve completed all lessons in {categoryInfo.title}! Choose another category on the dashboard.</p>
-            <button className="btn btn-primary" onClick={() => navigate('/dashboard')} style={{ marginTop: '16px' }}>
+          <div className="learn-complete-message" id="learn-category-complete-message">
+            <h3 className="learn-complete-title" id="learn-category-complete-title">🎉 Category completed!</h3>
+            <p className="learn-complete-desc" id="learn-category-complete-desc">You&apos;ve completed all lessons in {categoryInfo.title}! Choose another category on the dashboard.</p>
+            <button className="btn btn-primary learn-complete-btn" id="learn-category-complete-btn" onClick={() => navigate('/dashboard')} style={{ marginTop: '16px' }}>
               BACK TO DASHBOARD
             </button>
           </div>

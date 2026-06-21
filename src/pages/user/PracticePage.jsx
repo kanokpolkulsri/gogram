@@ -29,10 +29,10 @@ export default function PracticePage() {
             <HeadphonesIcon size={56} />
           </div>
           <div className="practice-card-duo-body">
-            <h3>Listen</h3>
-            <p>Practise your listening skills with immersive exercises</p>
+            <h3 className="practice-card-duo-title" id="practice-listen-title">Listen</h3>
+            <p className="practice-card-duo-desc" id="practice-listen-desc">Practise your listening skills with immersive exercises</p>
           </div>
-          <button className="practice-card-duo-btn btn btn-primary">START</button>
+          <button className="practice-card-duo-btn btn btn-primary" id="practice-listen-start-btn">START</button>
         </div>
       </div>
 
@@ -45,11 +45,11 @@ export default function PracticePage() {
             <div className="practice-collection-icon">
               <BookIcon size={52} />
             </div>
-            <h3 className="practice-collection-title">Stories</h3>
-            <p className="practice-collection-desc">
+            <h3 className="practice-collection-title" id="practice-stories-title">Stories</h3>
+            <p className="practice-collection-desc" id="practice-stories-desc">
               Read and listen to short stories in English
             </p>
-            <button className="practice-collection-btn">START</button>
+            <button className="practice-collection-btn" id="practice-stories-start-btn">START</button>
           </div>
 
           {/* Mistakes Review Card */}
@@ -74,14 +74,14 @@ export default function PracticePage() {
       <div className="practice-personalized">
         <div className="practice-personalized-content">
           <GogramOwl size={70} />
-          <div>
-            <h3>Personalized Practice</h3>
-            <p>
+          <div className="practice-personalized-text-wrapper" id="practice-personalized-text-wrapper">
+            <h3 className="practice-personalized-title" id="practice-personalized-title">Personalized Practice</h3>
+            <p className="practice-personalized-desc" id="practice-personalized-desc">
               Complete more lessons to unlock practice sessions tailored to your weaknesses!
             </p>
           </div>
         </div>
-        <button className="btn btn-primary practice-personalized-btn">
+        <button className="btn btn-primary practice-personalized-btn" id="practice-personalized-start-btn">
           START REVIEW
         </button>
       </div>

@@ -170,13 +170,12 @@ export default function QuizPage() {
 
   if (totalQuestions === 0) {
     return (
-      <div className="quiz-page quiz-error" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '300px', textAlign: 'center', gap: '16px', padding: '32px' }}>
-        <div style={{ fontSize: '48px' }}>⚡</div>
-        <h2>No questions available yet</h2>
-        <p style={{ color: 'var(--color-text-light)', maxWidth: '400px', margin: '0 auto', lineHeight: '1.6' }}>
+      <div className="quiz-page quiz-error quiz-empty-state-container" id="quiz-empty-state-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '300px', textAlign: 'center', gap: '16px', padding: '32px' }}>
+        <h2 className="quiz-empty-state-title" id="quiz-empty-state-title">No questions available yet</h2>
+        <p className="quiz-empty-state-desc" id="quiz-empty-state-desc" style={{ color: 'var(--color-text-light)', maxWidth: '400px', margin: '0 auto', lineHeight: '1.6' }}>
           This level is currently empty. Go to the Admin AI Content Generation page to generate questions for this topic and level!
         </p>
-        <button className="btn btn-primary" onClick={handleClose} style={{ marginTop: '16px' }}>
+        <button className="btn btn-primary quiz-empty-state-back-btn" id="quiz-empty-state-back-btn" onClick={handleClose} style={{ marginTop: '16px' }}>
           Back to Learn
         </button>
       </div>
@@ -314,16 +313,16 @@ export default function QuizPage() {
       )}
 
       {showOutOfHearts && (
-        <div className="quiz-modal-overlay">
-          <div className="quiz-modal">
-            <div className="quiz-modal-hearts">
-              <svg width="60" height="60" viewBox="0 0 24 24" fill="#E5E5E5">
+        <div className="quiz-modal-overlay" id="quiz-out-of-hearts-overlay">
+          <div className="quiz-modal" id="quiz-out-of-hearts-modal">
+            <div className="quiz-modal-hearts" id="quiz-out-of-hearts-icon-wrapper">
+              <svg width="60" height="60" viewBox="0 0 24 24" fill="#E5E5E5" id="quiz-out-of-hearts-svg">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
               </svg>
             </div>
-            <h3>You ran out of hearts!</h3>
-            <p>Practice more to earn hearts back.</p>
-            <button className="btn btn-primary" onClick={handleOutOfHeartsBack} id="quiz-back-btn">
+            <h3 className="quiz-out-of-hearts-title" id="quiz-out-of-hearts-title">You ran out of hearts!</h3>
+            <p className="quiz-out-of-hearts-desc" id="quiz-out-of-hearts-desc">Practice more to earn hearts back.</p>
+            <button className="btn btn-primary quiz-out-of-hearts-back-btn" onClick={handleOutOfHeartsBack} id="quiz-back-btn">
               BACK TO LEARN
             </button>
           </div>

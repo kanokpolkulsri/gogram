@@ -20,23 +20,7 @@ export default function CategoryPage() {
     ? (studyCategories.find((cat) => cat.id === lastCategoryId) || studyCategories[0])
     : null;
 
-  // Sort categories so that the active category is on top of the list (if any)
-  const sortedCategories = lastCategoryId
-    ? [...studyCategories].sort((a, b) => {
-      if (a.id === lastCategoryId) return -1;
-      if (b.id === lastCategoryId) return 1;
-      return 0;
-    })
-    : studyCategories;
 
-  // Calculate the total of levels of all categories
-  const totalLevels = studyCategories.reduce((sum, category) => {
-    const unitsForCat = units.filter((u) => u.category === category.id);
-    const completedUnitsForCat = unitsForCat.filter(unit =>
-      unit.levels.every(level => user.completedLessons.includes(`${unit.id}-${level.id}`))
-    ).length;
-    return sum + (1 + completedUnitsForCat);
-  }, 0);
 
   const renderCategoryCard = (category) => {
     const isCurrent = lastCategoryId && category.id === lastCategoryId;
@@ -190,7 +174,7 @@ export default function CategoryPage() {
                   <div className="category-section-icon-wrapper orange-icon">
                     <HomeIcon active={true} size={24} />
                   </div>
-                  <h2>Continue Learning</h2>
+                  <h2 className="category-section-heading continue-learning" id="category-continue-learning-title">Continue Learning</h2>
                 </div>
               </div>
               <div className="category-grid">
@@ -205,7 +189,7 @@ export default function CategoryPage() {
                   <div className="category-section-icon-wrapper blue-icon">
                     <CategoriesIcon active={true} size={24} />
                   </div>
-                  <h2>More Categories</h2>
+                  <h2 className="category-section-heading more-categories" id="category-more-categories-title">More Categories</h2>
                 </div>
               </div>
               <div className="category-grid">
@@ -234,7 +218,7 @@ export default function CategoryPage() {
                 <div className="category-section-icon-wrapper blue-icon">
                   <CategoriesIcon active={true} size={24} />
                 </div>
-                <h2>Study Categories</h2>
+                <h2 className="category-section-heading study-categories" id="category-study-categories-title">Study Categories</h2>
               </div>
             </div>
             <div className="category-grid">
