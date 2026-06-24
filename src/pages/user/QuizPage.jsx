@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getRandomEncouragement } from '../../data/mockData';
 import { useUser, useUserDispatch } from '../../data/userStore';
+import { api } from '../../data/api';
 import ProgressBar from '../../components/ProgressBar';
 import Hearts from '../../components/Hearts';
 import HeartsModal from '../../components/HeartsModal';
@@ -15,14 +16,14 @@ export default function QuizPage() {
   const [isHeartsOpen, setIsHeartsOpen] = useState(false);
 
   const units = user.units || [];
-
-  // Find the right unit and level
   const unit = units.find((u) => u.id === parseInt(unitId));
-  const level = unit?.levels.find((l) => l.id === levelId);
-  const questions = level?.questions || [];
-  const totalQuestions = questions.length;
 
+  // Dynamic quiz data loaded from API
+  const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
@@ -35,14 +36,42 @@ export default function QuizPage() {
   const [firstAttempt, setFirstAttempt] = useState(true);
   const [showExplanation, setShowExplanation] = useState(false);
 
+  const totalQuestions = questions.length;
   const currentQuestion = questions[currentIndex];
+
+  // Load questions and current progress index from the backend API
+  useEffect(() => {
+    let isMounted = true;
+    async function loadQuizSession() {
+      try {
+        setLoading(true);
+        const data = await api.post('/quiz/session/start', {
+          unitId: parseInt(unitId),
+          levelId
+        });
+        if (isMounted) {
+          setQuestions(data.questions);
+          setCurrentIndex(data.currentIndex);
+          setLoading(false);
+        }
+      } catch (err) {
+        console.error('Failed to load quiz session:', err);
+        if (isMounted) {
+          setError(err.message || 'Failed to load quiz questions.');
+          setLoading(false);
+        }
+      }
+    }
+    loadQuizSession();
+    return () => { isMounted = false; };
+  }, [unitId, levelId]);
 
   const handleSelect = (answer) => {
     if (isAnswered || user.hearts === 0) return;
     setSelectedAnswer(answer);
   };
 
-  const handleCheck = useCallback(() => {
+  const handleCheck = useCallback(async () => {
     if (!selectedAnswer || isAnswered) return;
 
     const correct = selectedAnswer === currentQuestion.correctAnswer;
@@ -60,18 +89,18 @@ export default function QuizPage() {
       setFirstAttempt(false);
       if (user.hearts !== 'infinity') {
         dispatch({ type: 'LOSE_HEART' });
-        if (user.hearts - 1 <= 0) {
+        // Hearts logic maps to user.heartsCount in backend
+        const remainingHearts = user.heartsCount - 1;
+        if (remainingHearts <= 0) {
           setTimeout(() => setShowOutOfHearts(true), 800);
         }
       }
     }
-  }, [selectedAnswer, isAnswered, currentQuestion, dispatch, user.hearts, firstAttempt]);
+  }, [selectedAnswer, isAnswered, currentQuestion, dispatch, user.hearts, user.heartsCount, firstAttempt]);
 
-  const handleContinue = useCallback(() => {
+  const handleContinue = useCallback(async () => {
     if (!isCorrect) {
       // Stay on the same question, let them try again
-      // We skip the full exit/enter animation since the question text remains the same,
-      // letting the option buttons transition back to gray smoothly in place.
       setSelectedAnswer(null);
       setIsAnswered(false);
       setIsCorrect(false);
@@ -82,41 +111,39 @@ export default function QuizPage() {
 
     if (currentIndex + 1 >= totalQuestions) {
       // Lesson complete!
-      const xp = level?.xpReward || 15;
-
-      // Determine if completing this level causes a level up
-      const isLastLevelOfUnit = levelId === (unit?.levels[unit.levels.length - 1]?.id || 'hard2');
-      const lessonKey = `${unitId}-${levelId}`;
-      const isAlreadyCompleted = user.completedLessons.includes(lessonKey);
-      
-      const levelUp = isLastLevelOfUnit && !isAlreadyCompleted;
-      
-      let newLevel = 1;
-      let categoryTitle = '';
-      if (levelUp && unit) {
-        const unitsForCat = user.units.filter((u) => u.category === unit.category);
-        const completedUnitsCount = unitsForCat.filter((u) =>
-          ['easy', 'medium1', 'medium2', 'hard1', 'hard2'].every((lvl) =>
-            user.completedLessons.includes(`${u.id}-${lvl}`) || (Number(u.id) === Number(unitId) && lvl === levelId)
-          )
-        ).length;
-        newLevel = 1 + completedUnitsCount;
-        categoryTitle = user.categories.find((c) => c.id === unit.category)?.title || 'Category';
-      }
-
       dispatch({
         type: 'COMPLETE_LESSON',
         unitId: parseInt(unitId),
         levelId,
-        xp,
-      });
-      navigate('/lesson-complete', {
-        state: { score, total: totalQuestions, xp, levelUp, newLevel, categoryTitle, categoryId: unit?.category },
+        onSuccess: (res) => {
+          navigate('/lesson-complete', {
+            state: { 
+              score, 
+              total: totalQuestions, 
+              xp: res.unitCompleted ? 1 : 0, 
+              levelUp: res.unitCompleted, 
+              newLevel: res.unitCompleted ? 2 : 1, 
+              categoryTitle: res.unitTitle || 'Grammar', 
+              categoryId: unit?.category 
+            },
+          });
+        }
       });
     } else {
+      const nextIdx = currentIndex + 1;
+      try {
+        await api.post('/quiz/session/progress', {
+          unitId: parseInt(unitId),
+          levelId,
+          nextIndex: nextIdx
+        });
+      } catch (err) {
+        console.warn('Failed to update question progress index on backend:', err);
+      }
+
       setAnimating(true);
       setTimeout(() => {
-        setCurrentIndex((i) => i + 1);
+        setCurrentIndex(nextIdx);
         setSelectedAnswer(null);
         setIsAnswered(false);
         setIsCorrect(false);
@@ -126,7 +153,7 @@ export default function QuizPage() {
         setAnimating(false);
       }, 300);
     }
-  }, [currentIndex, totalQuestions, level, unitId, levelId, score, dispatch, navigate, isCorrect, user, unit]);
+  }, [currentIndex, totalQuestions, unitId, levelId, score, dispatch, navigate, isCorrect, unit]);
 
   const handleClose = () => {
     if (unit && unit.category) {
@@ -137,7 +164,6 @@ export default function QuizPage() {
   };
 
   const handleOutOfHeartsBack = () => {
-    dispatch({ type: 'RESET_HEARTS' });
     if (unit && unit.category) {
       navigate(`/learn/${unit.category}`);
     } else {
@@ -157,10 +183,18 @@ export default function QuizPage() {
     return () => window.removeEventListener('keydown', handleKey);
   }, [isAnswered, handleCheck, handleContinue]);
 
-  if (!unit || !level) {
+  if (loading) {
+    return (
+      <div className="quiz-page quiz-loading">
+        <div className="quiz-loading-spinner">Loading quiz questions...</div>
+      </div>
+    );
+  }
+
+  if (error || !unit) {
     return (
       <div className="quiz-page quiz-error">
-        <p>Lesson not found!</p>
+        <p>{error || 'Lesson not found!'}</p>
         <button className="btn btn-primary" onClick={() => navigate('/learn')}>
           Back to Learn
         </button>

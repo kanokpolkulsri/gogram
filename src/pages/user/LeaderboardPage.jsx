@@ -100,11 +100,7 @@ export default function LeaderboardPage() {
   // Helper to calculate or get level for each user
   const getLevel = (uName, isYou) => {
     if (isYou) {
-      const unitsForCat = units.filter((u) => u.category === selectedCategoryId);
-      const completedUnitsCount = unitsForCat.filter(unit =>
-        unit.levels.every(level => user.completedLessons.includes(`${unit.id}-${level.id}`))
-      ).length;
-      return 1 + completedUnitsCount;
+      return 1 + (user.progress?.[selectedCategoryId] || 0);
     }
     // Dynamic mock user levels based on categoryId and username hashing
     const strVal = (selectedCategoryId + uName).length;

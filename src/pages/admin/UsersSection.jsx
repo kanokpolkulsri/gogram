@@ -345,30 +345,35 @@ export default function UsersSection({
 
                             {/* Account settings, Hearts and Promo Codes inside expanded-progress-container */}
                             <div className="cms-user-details-settings-container" style={{ marginTop: '20px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
-                              <div className="cms-user-details-settings-block" style={{ background: 'white', padding: '16px', borderRadius: '12px', border: '1px solid var(--color-gray)', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                                <div className="cms-user-details-settings-group" style={{ display: 'flex', flexDirection: 'column', gap: '8px', textAlign: 'left' }}>
-                                  <h5 className="cms-user-details-settings-title" style={{ fontSize: '14px', fontWeight: '800', color: 'var(--color-text)', margin: 0 }}>Account Role & Status</h5>
+                              <div className="cms-user-details-settings-block" style={{ background: 'white', padding: '16px', borderRadius: '12px', border: '1px solid var(--color-gray)', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                <div className="cms-user-details-settings-group" style={{ display: 'flex', flexDirection: 'column', gap: '6px', textAlign: 'left' }}>
+                                  <h5 className="cms-user-details-settings-title" style={{ fontSize: '14px', fontWeight: '800', color: 'var(--color-text)', margin: 0, marginBottom: '4px' }}>Account Settings</h5>
+                                  
+                                  <label style={{ fontSize: '11px', fontWeight: '800', color: 'var(--color-text-light)' }}>ROLE</label>
                                   <select
                                     className="role-dropdown-cms"
-                                    value={isBlocked ? 'blocked' : u.authLevel}
+                                    value={u.role || 'user'}
                                     onChange={(e) => {
-                                      const val = e.target.value;
-                                      if (val === 'blocked') {
-                                        if (!isBlocked) {
-                                          dispatch({ type: 'BLOCK_USER', userId: u.uid });
-                                        }
-                                      } else {
-                                        if (isBlocked) {
-                                          dispatch({ type: 'BLOCK_USER', userId: u.uid });
-                                        }
-                                        dispatch({ type: 'UPDATE_USER_ROLE', userId: u.uid, role: val });
-                                      }
+                                      dispatch({ type: 'UPDATE_USER_ROLE', userId: u.uid, role: e.target.value });
+                                      showToast(`Role updated to ${e.target.value.toUpperCase()}`);
                                     }}
-                                    style={{ padding: '6px 12px', borderRadius: '8px', border: '2px solid var(--color-gray)', fontSize: '13px', fontWeight: '700', backgroundColor: 'white', cursor: 'pointer', width: '100%', maxWidth: '200px' }}
+                                    style={{ padding: '6px 12px', borderRadius: '8px', border: '2px solid var(--color-gray)', fontSize: '13px', fontWeight: '700', backgroundColor: 'white', cursor: 'pointer', width: '100%', marginBottom: '8px' }}
                                   >
-                                    <option value="free">User (Free)</option>
-                                    <option value="subscribed">Premium (Subscribed)</option>
+                                    <option value="user">User</option>
                                     <option value="admin">Admin</option>
+                                  </select>
+
+                                  <label style={{ fontSize: '11px', fontWeight: '800', color: 'var(--color-text-light)' }}>STATUS</label>
+                                  <select
+                                    className="status-dropdown-cms"
+                                    value={u.status || 'active'}
+                                    onChange={() => {
+                                      dispatch({ type: 'BLOCK_USER', userId: u.uid });
+                                      showToast(`Account status toggled`);
+                                    }}
+                                    style={{ padding: '6px 12px', borderRadius: '8px', border: '2px solid var(--color-gray)', fontSize: '13px', fontWeight: '700', backgroundColor: 'white', cursor: 'pointer', width: '100%' }}
+                                  >
+                                    <option value="active">Active</option>
                                     <option value="blocked">Blocked</option>
                                   </select>
                                 </div>
@@ -410,6 +415,33 @@ export default function UsersSection({
                                       dispatch={dispatch}
                                       showToast={showToast}
                                     />
+                                  </div>
+                                  
+                                  {/* Premium Subscription Controls */}
+                                  <div style={{ marginTop: '12px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                                    <label style={{ fontSize: '11px', fontWeight: '800', color: 'var(--color-text-light)' }}>PREMIUM SUBSCRIPTION</label>
+                                    <div style={{ display: 'flex', gap: '8px' }}>
+                                      <button
+                                        onClick={() => {
+                                          const date = new Date();
+                                          date.setDate(date.getDate() + 30);
+                                          dispatch({ type: 'UPDATE_USER_SUBSCRIPTION', userId: u.uid, expiresAt: date.toISOString() });
+                                          showToast('Premium granted/extended by 30 days');
+                                        }}
+                                        style={{ flex: 1, padding: '6px 8px', background: 'var(--color-green)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: 'bold', fontSize: '11px', cursor: 'pointer' }}
+                                      >
+                                        +30 Days
+                                      </button>
+                                      <button
+                                        onClick={() => {
+                                          dispatch({ type: 'UPDATE_USER_SUBSCRIPTION', userId: u.uid, expiresAt: null });
+                                          showToast('Premium revoked');
+                                        }}
+                                        style={{ flex: 1, padding: '6px 8px', background: 'var(--color-red)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: 'bold', fontSize: '11px', cursor: 'pointer' }}
+                                      >
+                                        Revoke
+                                      </button>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
