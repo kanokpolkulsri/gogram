@@ -35,13 +35,13 @@ async function request(endpoint, options = {}) {
       const stored = localStorage.getItem('gogram-user');
       if (stored) {
         const parsed = JSON.parse(stored);
-        const activeUid = parsed.authProfile?.uid || parsed.uid || 'admin-1';
+        const activeUid = parsed.authProfile?.uid || parsed.uid || '18JCe75AVxZEZF3Y1h0gBNo93ti2';
         idToken = `mock-${activeUid}`;
       } else {
-        idToken = 'mock-admin-1';
+        idToken = 'mock-18JCe75AVxZEZF3Y1h0gBNo93ti2';
       }
     } catch (e) {
-      idToken = 'mock-admin-1';
+      idToken = 'mock-18JCe75AVxZEZF3Y1h0gBNo93ti2';
     }
   }
 

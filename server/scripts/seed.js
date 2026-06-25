@@ -103,13 +103,12 @@ async function seed() {
       }
     }
 
-    // 4. Seed a default system administrator user for convenience
     console.log('Seeding default administrator user...');
     await client.query(
       `INSERT INTO users (uid, email, name, role, status, total_xp, hearts_count)
        VALUES ($1, $2, $3, $4, $5, $6, $7)
        ON CONFLICT (uid) DO NOTHING`,
-      ['admin-1', 'alex@gogram.com', 'Alex (Admin)', 'admin', 'active', 0, 10]
+      ['18JCe75AVxZEZF3Y1h0gBNo93ti2', 'kanokpolkulsri@gmail.com', 'Kanokpol Kulsri (Admin)', 'admin', 'active', 0, 10]
     );
 
     // 5. Seed some initial promo codes

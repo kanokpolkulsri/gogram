@@ -16,8 +16,8 @@ router.post('/sync', authenticate, async (req, res) => {
     let user;
 
     if (userRes.rows.length === 0) {
-      // Determine default role (Alex is Admin)
-      const role = (email === 'alex@gogram.com') ? 'admin' : 'user';
+      // Determine default role
+      const role = 'user';
       
       const insertRes = await query(
         `INSERT INTO users (uid, email, name, role, status)

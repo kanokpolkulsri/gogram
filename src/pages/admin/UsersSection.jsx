@@ -278,7 +278,7 @@ export default function UsersSection({
                               {categories.map(cat => {
                                 const catUnits = units.filter(un => un.category === cat.id);
                                 let completedCount = u.progress?.[cat.id] || 0;
-                                if (u.uid === 'admin-1') {
+                                if (u.uid === currentUser?.uid) {
                                   completedCount = catUnits.reduce((sum, un) => {
                                     return sum + un.levels.filter(l => currentUser?.completedLessons?.includes(`${un.id}-${l.id}`)).length;
                                   }, 0);
@@ -302,13 +302,18 @@ export default function UsersSection({
                                               confirmText: 'Reset Progress',
                                               isDanger: true,
                                               onConfirm: () => {
-                                                dispatch({
-                                                  type: 'RESET_USER_PROGRESS_IN_CATEGORY',
-                                                  userId: u.uid,
-                                                  categoryId: cat.id,
-                                                  isCurrentUser: u.uid === 'admin-1'
-                                                });
-                                                showToast(`Progress reset for ${u.name} in ${cat.title}.`);
+                                                const updatedProgress = { ...(u.progress || {}), [cat.id]: 0 };
+                                                apiUpdateUser(u.uid, { progress: updatedProgress })
+                                                  .then(() => {
+                                                    dispatch({
+                                                      type: 'RESET_USER_PROGRESS_IN_CATEGORY',
+                                                      userId: u.uid,
+                                                      categoryId: cat.id,
+                                                      isCurrentUser: u.uid === currentUser?.uid
+                                                    });
+                                                    showToast(`Progress reset for ${u.name} in ${cat.title}.`);
+                                                  })
+                                                  .catch(err => showToast(`Failed to reset progress: ${err.message}`));
                                               }
                                             });
                                           }}
