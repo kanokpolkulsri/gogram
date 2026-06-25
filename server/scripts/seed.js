@@ -16,7 +16,6 @@ async function seed() {
   const client = await pool.connect();
 
   try {
-    await client.query('BEGIN');
 
     // 2. Seed Categories
     console.log('Seeding categories...');
@@ -131,10 +130,8 @@ async function seed() {
       );
     }
 
-    await client.query('COMMIT');
     console.log('Database seeded successfully!');
   } catch (error) {
-    await client.query('ROLLBACK');
     console.error('Error seeding database:', error);
   } finally {
     client.release();

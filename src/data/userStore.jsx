@@ -205,7 +205,7 @@ export function UserProvider({ children }) {
 
   // Hearts refill automatic background checker hook
   useEffect(() => {
-    if (!user.isAuthenticated) return;
+    if (!user || !user.isAuthenticated || user.hearts === 'infinity' || user.heartsCount >= 10) return;
 
     const interval = setInterval(async () => {
       try {
@@ -226,7 +226,7 @@ export function UserProvider({ children }) {
     }, 20000); // Check every 20 seconds
 
     return () => clearInterval(interval);
-  }, [user.isAuthenticated]);
+  }, [user.isAuthenticated, user.hearts, user.heartsCount]);
 
   // Persist backup state to localStorage when changed
   useEffect(() => {
