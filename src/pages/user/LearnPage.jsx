@@ -46,17 +46,15 @@ export default function LearnPage() {
 
   const [activeUnitId, setActiveUnitId] = useState(initialActiveUnit?.id);
 
-  // Reset activeUnitId when activeCategoryId changes
+  // Reset activeUnitId when category or units load/change
   useEffect(() => {
     if (categoryUnits.length > 0) {
       const targetUnit = nextLesson
         ? (categoryUnits.find((u) => u.id === nextLesson.unitId) || categoryUnits[0])
         : categoryUnits[0];
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setActiveUnitId(targetUnit?.id || categoryUnits[0].id);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeCategoryId]);
+  }, [activeCategoryId, categoryUnits, nextLesson]);
 
   const hasScrolledRef = useRef(false);
 

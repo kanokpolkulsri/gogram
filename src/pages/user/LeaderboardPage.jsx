@@ -141,6 +141,20 @@ export default function LeaderboardPage() {
   const youRank = youUser ? youUser.rank : null;
   const youLevel = youUser ? youUser.level : null;
 
+  if (!user.categories || user.categories.length === 0 || !user.units || user.units.length === 0) {
+    return (
+      <div className="leaderboard-page" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '80vh', gap: '16px' }}>
+        <div className="cms-loading-spinner" style={{ width: '40px', height: '40px', border: '4px solid var(--color-gray)', borderTopColor: 'var(--color-blue-dark)', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+        <p style={{ fontWeight: '700', color: 'var(--color-text-light)' }}>Loading leaderboard...</p>
+        <style>{`
+          @keyframes spin {
+            to { transform: rotate(360deg); }
+          }
+        `}</style>
+      </div>
+    );
+  }
+
   return (
     <div className="leaderboard-page" id="leaderboard-page">
       {/* Category Shield Row */}
