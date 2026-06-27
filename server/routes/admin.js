@@ -36,62 +36,327 @@ const logAction = async (adminId, adminName, action) => {
   }
 };
 
-// 1. Fetch all users
+// Fetch system stats for dashboard
+router.get('/stats', async (req, res) => {
+  try {
+    const usersCount = await query('SELECT COUNT(*)::int AS count FROM users');
+    const premiumCount = await query(
+      `SELECT COUNT(*)::int AS count FROM users 
+       WHERE subscription_expires_at > CURRENT_TIMESTAMP`
+    );
+    const questionsCount = await query('SELECT COUNT(*)::int AS count FROM questions');
+    const promosCount = await query(
+      `SELECT COUNT(*)::int AS count FROM promo_codes 
+       WHERE expires_at IS NULL OR expires_at > CURRENT_TIMESTAMP`
+    );
+    res.json({
+      totalUsers: usersCount.rows[0].count,
+      premiumUsers: premiumCount.rows[0].count,
+      totalQuestions: questionsCount.rows[0].count,
+      activePromoCodesCount: promosCount.rows[0].count
+    });
+  } catch (error) {
+    console.error('Error fetching admin stats:', error);
+    res.status(500).json({ error: 'Server error while fetching system stats' });
+  }
+});
+
+// Fetch detailed progress & promo claims for a single user
+router.get('/users/:uid/details', async (req, res) => {
+  const { uid } = req.params;
+
+  try {
+    const userRes = await query('SELECT uid, name FROM users WHERE uid = $1', [uid]);
+    if (userRes.rows.length === 0) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Get category progress metrics completed
+    const progressRes = await query(
+      `SELECT category_id, xp FROM user_category_progress WHERE user_id = $1`,
+      [uid]
+    );
+    const progress = {};
+    progressRes.rows.forEach(p => {
+      progress[p.category_id] = p.xp;
+    });
+
+    // Get promo codes used
+    const promoCodesRes = await query(
+      `SELECT pc.code, up.is_suspended FROM user_promo_codes up
+       JOIN promo_codes pc ON up.code = pc.code
+       WHERE up.user_id = $1`,
+      [uid]
+    );
+    
+    const usedPromoCodes = promoCodesRes.rows.map(p => p.code);
+    const suspendedPromoCodes = promoCodesRes.rows.filter(p => p.is_suspended).map(p => p.code);
+
+    res.json({
+      progress,
+      usedPromoCodes,
+      suspendedPromoCodes
+    });
+  } catch (error) {
+    console.error('Error fetching admin user details:', error);
+    res.status(500).json({ error: 'Server error while fetching user profile details' });
+  }
+});
+
+// Fetch paginated questions list with filters
+router.get('/questions', async (req, res) => {
+  try {
+    const search = req.query.search || '';
+    const categoryId = req.query.categoryId || 'all';
+    const unitId = req.query.unitId || 'all';
+    const difficulty = req.query.difficulty || 'all';
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const offset = (page - 1) * limit;
+
+    const queryParams = [];
+    let paramIndex = 1;
+    const whereClauses = [];
+
+    if (search.trim() !== '') {
+      whereClauses.push(`q.question ILIKE $${paramIndex}`);
+      queryParams.push(`%${search}%`);
+      paramIndex++;
+    }
+
+    if (categoryId !== 'all') {
+      whereClauses.push(`u.category_id = $${paramIndex}`);
+      queryParams.push(categoryId);
+      paramIndex++;
+    }
+
+    if (unitId !== 'all') {
+      whereClauses.push(`q.unit_id = $${paramIndex}`);
+      queryParams.push(parseInt(unitId));
+      paramIndex++;
+    }
+
+    if (difficulty !== 'all') {
+      const dbLvlPattern = difficulty.toLowerCase() === 'easy' 
+        ? 'easy' 
+        : difficulty.toLowerCase() === 'medium' 
+        ? 'medium%' 
+        : 'hard%';
+
+      whereClauses.push(`q.level_id LIKE $${paramIndex}`);
+      queryParams.push(dbLvlPattern);
+      paramIndex++;
+    }
+
+    const whereClauseStr = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
+
+    // Total count query
+    const countRes = await query(
+      `SELECT COUNT(*)::int AS count 
+       FROM questions q
+       JOIN units u ON q.unit_id = u.id
+       ${whereClauseStr}`,
+      queryParams
+    );
+    const total = countRes.rows[0].count;
+
+    // Paginated questions query
+    const queryStr = `
+      SELECT q.id, q.unit_id AS "unitId", q.level_id AS "levelId", q.question, q.options, 
+             q.correct_answer AS "correctAnswer", q.explanation, q.explanation_th AS "explanationTh",
+             u.title AS "unitTitle", u.category_id AS "categoryId", c.title AS "categoryTitle"
+       FROM questions q
+       JOIN units u ON q.unit_id = u.id
+       JOIN categories c ON u.category_id = c.id
+       ${whereClauseStr}
+       ORDER BY q.unit_id, q.level_id, q.id
+       LIMIT $${paramIndex} OFFSET $${paramIndex + 1}
+    `;
+
+    queryParams.push(limit);
+    queryParams.push(offset);
+
+    const questionsRes = await query(queryStr, queryParams);
+    const questions = questionsRes.rows.map(q => {
+      let parsedOptions = q.options;
+      if (typeof q.options === 'string') {
+        try {
+          parsedOptions = JSON.parse(q.options);
+        } catch (err) {
+          parsedOptions = [];
+        }
+      }
+      return {
+        id: q.id,
+        unitId: q.unitId,
+        unitTitle: q.unitTitle,
+        categoryId: q.categoryId,
+        categoryTitle: q.categoryTitle,
+        question: q.question,
+        options: parsedOptions,
+        correctAnswer: q.correctAnswer,
+        explanation: q.explanation,
+        explanationTh: q.explanationTh,
+        difficulty: q.levelId.includes('easy') ? 'EASY' : q.levelId.includes('medium') ? 'MEDIUM' : 'HARD'
+      };
+    });
+
+    res.json({
+      questions,
+      total,
+      page,
+      limit,
+      pages: Math.ceil(total / limit)
+    });
+  } catch (error) {
+    console.error('Error fetching admin questions:', error);
+    res.status(500).json({ error: 'Server error while fetching questions' });
+  }
+});
+
+// Delete a single question
+router.delete('/questions/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const qRes = await query('SELECT question FROM questions WHERE id = $1', [id]);
+    if (qRes.rows.length === 0) {
+      return res.status(404).json({ error: 'Question not found' });
+    }
+    const qText = qRes.rows[0].question;
+
+    await query('DELETE FROM questions WHERE id = $1', [id]);
+    await logAction(req.user.uid, req.adminName, `Deleted question: "${qText.substring(0, 40)}..."`);
+    
+    res.json({ success: true });
+  } catch (error) {
+    console.error('Error deleting question:', error);
+    res.status(500).json({ error: 'Server error during question deletion' });
+  }
+});
+
+// Edit a single question
+router.put('/questions/:id', async (req, res) => {
+  const { id } = req.params;
+  const { question, options, correctAnswer, explanation, explanationTh } = req.body;
+
+  if (!question || !options || !correctAnswer) {
+    return res.status(400).json({ error: 'question, options, and correctAnswer are required' });
+  }
+
+  try {
+    const qRes = await query('SELECT id FROM questions WHERE id = $1', [id]);
+    if (qRes.rows.length === 0) {
+      return res.status(404).json({ error: 'Question not found' });
+    }
+
+    await query(
+      `UPDATE questions 
+       SET question = $1, options = $2, correct_answer = $3, explanation = $4, explanation_th = $5
+       WHERE id = $6`,
+      [
+        question,
+        JSON.stringify(options),
+        correctAnswer,
+        explanation || null,
+        explanationTh || null,
+        id
+      ]
+    );
+
+    await logAction(req.user.uid, req.adminName, `Edited question details for question ID: ${id}`);
+    res.json({ success: true });
+  } catch (error) {
+    console.error('Error editing question:', error);
+    res.status(500).json({ error: 'Server error during question update' });
+  }
+});
+
+// 1. Fetch users (paginated and filtered)
 router.get('/users', async (req, res) => {
   try {
-    const usersRes = await query(`
-      SELECT uid, email, name, role, status, joined_at AS "joined", total_xp AS "totalXp", 
-             hearts_count AS "heartsCount", subscription_expires_at AS "subscriptionExpiresAt", 
-             last_heart_refill_at AS "lastHeartRefillAt", streak
-      FROM users 
+    const search = req.query.search || '';
+    const role = req.query.role || 'all';
+    const status = req.query.status || 'all';
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const offset = (page - 1) * limit;
+
+    const queryParams = [];
+    let paramIndex = 1;
+    const whereClauses = [];
+
+    if (search.trim() !== '') {
+      whereClauses.push(`(name ILIKE $${paramIndex} OR email ILIKE $${paramIndex})`);
+      queryParams.push(`%${search}%`);
+      paramIndex++;
+    }
+
+    if (role !== 'all') {
+      if (role === 'admin' || role === 'user') {
+        whereClauses.push(`role = $${paramIndex}`);
+        queryParams.push(role);
+        paramIndex++;
+      } else if (role === 'subscribed') {
+        whereClauses.push(`subscription_expires_at > CURRENT_TIMESTAMP`);
+      } else if (role === 'free') {
+        whereClauses.push(`role = 'user' AND (subscription_expires_at IS NULL OR subscription_expires_at <= CURRENT_TIMESTAMP)`);
+      }
+    }
+
+    if (status !== 'all') {
+      whereClauses.push(`status = $${paramIndex}`);
+      queryParams.push(status);
+      paramIndex++;
+    }
+
+    const whereClauseStr = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
+
+    // Query for total matching count
+    const countRes = await query(
+      `SELECT COUNT(*)::int AS count FROM users ${whereClauseStr}`,
+      queryParams
+    );
+    const total = countRes.rows[0].count;
+
+    // Query for paginated users
+    const usersQueryStr = `
+      SELECT uid, email, name, role, status, joined_at AS "joined", 
+             hearts_count AS "heartsCount", subscription_expires_at AS "subscriptionExpiresAt"
+      FROM users
+      ${whereClauseStr}
       ORDER BY joined_at DESC
-    `);
+      LIMIT $${paramIndex} OFFSET $${paramIndex + 1}
+    `;
+
+    queryParams.push(limit);
+    queryParams.push(offset);
+
+    const usersRes = await query(usersQueryStr, queryParams);
     
-    const users = [];
-
-    for (const u of usersRes.rows) {
-      // Get category progress nodes completed
-      const progressRes = await query(
-        `SELECT category_id, xp FROM user_category_progress WHERE user_id = $1`,
-        [u.uid]
-      );
-      const progress = {};
-      progressRes.rows.forEach(p => {
-        progress[p.category_id] = p.xp;
-      });
-
-      // Get promo codes used
-      const promoCodesRes = await query(
-        `SELECT pc.code, up.is_suspended FROM user_promo_codes up
-         JOIN promo_codes pc ON up.code = pc.code
-         WHERE up.user_id = $1`,
-        [u.uid]
-      );
-      
-      const usedPromoCodes = promoCodesRes.rows.map(p => p.code);
-      const suspendedPromoCodes = promoCodesRes.rows.filter(p => p.is_suspended).map(p => p.code);
-
-      // Determine active hearts structure matching frontend expectation
+    const users = usersRes.rows.map(u => {
       const now = new Date();
       const hasInfinity = u.subscriptionExpiresAt && new Date(u.subscriptionExpiresAt) > now;
-
-      users.push({
+      return {
         uid: u.uid,
         name: u.name,
         email: u.email,
-        authLevel: hasInfinity ? 'subscribed' : (u.role === 'user' ? 'free' : u.role), // Frontend uses authLevel for active roles badge styling
+        authLevel: hasInfinity ? 'subscribed' : (u.role === 'user' ? 'free' : u.role),
         role: u.role,
         joined: u.joined,
         status: u.status,
         hearts: hasInfinity ? 'infinity' : u.heartsCount,
-        promoExpiresAt: u.subscriptionExpiresAt ? new Date(u.subscriptionExpiresAt).getTime() : null,
-        progress,
-        usedPromoCodes,
-        suspendedPromoCodes
-      });
-    }
+        promoExpiresAt: u.subscriptionExpiresAt ? new Date(u.subscriptionExpiresAt).getTime() : null
+      };
+    });
 
-    res.json(users);
+    res.json({
+      users,
+      total,
+      page,
+      limit,
+      pages: Math.ceil(total / limit)
+    });
   } catch (error) {
     console.error('Error fetching admin users list:', error);
     res.status(500).json({ error: 'Server error while fetching users directory' });
@@ -607,12 +872,19 @@ router.put('/promo-codes/:code', async (req, res) => {
 // 14. Fetch audit logs
 router.get('/audit-logs', async (req, res) => {
   try {
-    const logsRes = await query(`
+    const limit = parseInt(req.query.limit) || null;
+    let queryStr = `
       SELECT a.id, u.name AS "adminName", a.action, a.timestamp 
       FROM audit_logs a
       JOIN users u ON a.admin_id = u.uid
       ORDER BY a.timestamp DESC
-    `);
+    `;
+    const params = [];
+    if (limit) {
+      queryStr += ` LIMIT $1`;
+      params.push(limit);
+    }
+    const logsRes = await query(queryStr, params);
     res.json(logsRes.rows);
   } catch (error) {
     console.error('Error fetching audit logs:', error);

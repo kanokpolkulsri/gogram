@@ -1,12 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { api } from '../../data/api';
 
-export default function DashboardSection({ categories, mockUsers, allQuestions, auditLogs }) {
-  const totalLearners = mockUsers.length;
-  const premiumUsers = mockUsers.filter(u => u.authLevel === 'subscribed').length;
-  const premiumRatio = totalLearners > 0 ? Math.round((premiumUsers / totalLearners) * 100) : 0;
-  const totalQs = allQuestions.length;
-
+export default function DashboardSection({ categories }) {
+  const [stats, setStats] = useState({ totalUsers: 0, premiumUsers: 0, totalQuestions: 0, activePromoCodesCount: 0 });
+  const [auditLogs, setAuditLogs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [visibleCount, setVisibleCount] = useState(10);
+
+  useEffect(() => {
+    async function loadData() {
+      try {
+        setIsLoading(true);
+        const [statsData, logsData] = await Promise.all([
+          api.get('/admin/stats'),
+          api.get('/admin/audit-logs?limit=100')
+        ]);
+        setStats(statsData);
+        setAuditLogs(logsData);
+      } catch (err) {
+        console.error('Error loading dashboard data:', err);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    loadData();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="cms-page-content animate-fade-in" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '60vh', gap: '16px' }}>
+        <div className="cms-loading-spinner" style={{ width: '40px', height: '40px', border: '4px solid var(--color-gray)', borderTopColor: 'var(--color-blue-dark)', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+        <p style={{ fontWeight: '700', color: 'var(--color-text-light)' }}>Loading Dashboard Overview...</p>
+        <style>{`
+          @keyframes spin {
+            to { transform: rotate(360deg); }
+          }
+        `}</style>
+      </div>
+    );
+  }
+
+  const totalLearners = stats.totalUsers;
+  const premiumUsers = stats.premiumUsers;
+  const premiumRatio = totalLearners > 0 ? Math.round((premiumUsers / totalLearners) * 100) : 0;
+  const totalQs = stats.totalQuestions;
+
   const visibleLogs = auditLogs.slice(0, visibleCount);
 
   return (
@@ -94,4 +132,3 @@ export default function DashboardSection({ categories, mockUsers, allQuestions, 
     </div>
   );
 }
-

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { api } from '../../data/api';
 
 export default function SearchSection({
   categories,
   units,
-  allQuestions,
+  questionsRefreshTrigger,
   handleStartQuestionEdit,
   handleDeleteQuestion,
   showToast
@@ -13,66 +14,91 @@ export default function SearchSection({
   const [searchCategoryFilter, setSearchCategoryFilter] = useState('all');
   const [searchTopicFilter, setSearchTopicFilter] = useState('all');
   const [searchDifficultyFilter, setSearchDifficultyFilter] = useState('all');
-  const [visibleCount, setVisibleCount] = useState(10);
 
-  // Filter questions list
-  const filteredQuestions = allQuestions.filter(q => {
-    const matchQuery = q.question.toLowerCase().includes(searchQuestionQuery.toLowerCase());
-    const matchCategory = searchCategoryFilter === 'all' || q.categoryId === searchCategoryFilter;
-    const matchTopic = searchTopicFilter === 'all' || Number(q.unitId) === Number(searchTopicFilter);
-    const matchDifficulty = searchDifficultyFilter === 'all' || q.difficulty === searchDifficultyFilter.toUpperCase();
-    return matchQuery && matchCategory && matchTopic && matchDifficulty;
-  });
+  // Paginated questions states
+  const [questions, setQuestions] = useState([]);
+  const [totalQuestions, setTotalQuestions] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const paginatedQuestions = filteredQuestions.slice(0, visibleCount);
-
-
-  // CSV Export Functionality
-  const handleExportCSV = () => {
-    if (filteredQuestions.length === 0) {
-      showToast('No questions found matching current filters to export.');
-      return;
+  const fetchQuestions = async (page = 1) => {
+    try {
+      setIsLoading(true);
+      const data = await api.get(`/admin/questions?search=${searchQuestionQuery}&categoryId=${searchCategoryFilter}&unitId=${searchTopicFilter}&difficulty=${searchDifficultyFilter}&page=${page}&limit=10`);
+      setQuestions(data.questions);
+      setTotalQuestions(data.total);
+      setCurrentPage(data.page);
+      setTotalPages(data.pages);
+    } catch (err) {
+      showToast(`Error fetching questions: ${err.message}`);
+    } finally {
+      setIsLoading(false);
     }
+  };
 
-    const escapeCSV = (text) => {
-      if (text === null || text === undefined) return '';
-      const str = String(text);
-      if (str.includes(',') || str.includes('"') || str.includes('\n')) {
-        return `"${str.replace(/"/g, '""')}"`;
+  // Trigger search on filter changes or refresh triggers
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      fetchQuestions(1);
+    }, 400);
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchQuestionQuery, searchCategoryFilter, searchTopicFilter, searchDifficultyFilter, questionsRefreshTrigger]);
+
+  // CSV Export Functionality (Loads all matching search results up to 10,000 items)
+  const handleExportCSV = async () => {
+    try {
+      showToast('Generating CSV export file...');
+      const data = await api.get(`/admin/questions?search=${searchQuestionQuery}&categoryId=${searchCategoryFilter}&unitId=${searchTopicFilter}&difficulty=${searchDifficultyFilter}&page=1&limit=10000`);
+      
+      const allQs = data.questions || [];
+      if (allQs.length === 0) {
+        showToast('No questions found matching current filters to export.');
+        return;
       }
-      return str;
-    };
 
-    const headers = ['Question ID', 'Category', 'Topic', 'Difficulty', 'Question Text', 'Option A', 'Option B', 'Option C', 'Option D', 'Correct Answer'];
-    const rows = filteredQuestions.map(q => [
-      q.id,
-      q.categoryTitle,
-      q.unitTitle,
-      q.difficulty,
-      q.question,
-      q.options[0] || '',
-      q.options[1] || '',
-      q.options[2] || '',
-      q.options[3] || '',
-      q.correctAnswer
-    ]);
+      const escapeCSV = (text) => {
+        if (text === null || text === undefined) return '';
+        const str = String(text);
+        if (str.includes(',') || str.includes('"') || str.includes('\n')) {
+          return `"${str.replace(/"/g, '""')}"`;
+        }
+        return str;
+      };
 
-    const csvContent = [
-      headers.join(','),
-      ...rows.map(r => r.map(escapeCSV).join(','))
-    ].join('\n');
+      const headers = ['Question ID', 'Category', 'Topic', 'Difficulty', 'Question Text', 'Option A', 'Option B', 'Option C', 'Option D', 'Correct Answer'];
+      const rows = allQs.map(q => [
+        q.id,
+        q.categoryTitle,
+        q.unitTitle,
+        q.difficulty,
+        q.question,
+        q.options[0] || '',
+        q.options[1] || '',
+        q.options[2] || '',
+        q.options[3] || '',
+        q.correctAnswer
+      ]);
 
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', `gogram_questions_export_${new Date().toISOString().split('T')[0]}.csv`);
-    link.style.display = 'none';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+      const csvContent = [
+        headers.join(','),
+        ...rows.map(r => r.map(escapeCSV).join(','))
+      ].join('\n');
 
-    showToast(`Successfully exported ${filteredQuestions.length} questions as CSV.`);
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `gogram_questions_export_${new Date().toISOString().split('T')[0]}.csv`);
+      link.style.display = 'none';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      showToast(`Successfully exported ${allQs.length} questions as CSV.`);
+    } catch (err) {
+      showToast(`Failed to export questions: ${err.message}`);
+    }
   };
 
   return (
@@ -100,10 +126,7 @@ export default function SearchSection({
             type="text"
             placeholder="Search by question text..."
             value={searchQuestionQuery}
-            onChange={(e) => {
-              setSearchQuestionQuery(e.target.value);
-              setVisibleCount(10);
-            }}
+            onChange={(e) => setSearchQuestionQuery(e.target.value)}
           />
         </div>
 
@@ -113,7 +136,6 @@ export default function SearchSection({
             onChange={(e) => {
               setSearchCategoryFilter(e.target.value);
               setSearchTopicFilter('all'); // reset topic
-              setVisibleCount(10);
             }}
           >
             <option value="all">All Categories</option>
@@ -124,7 +146,6 @@ export default function SearchSection({
             value={searchTopicFilter}
             onChange={(e) => {
               setSearchTopicFilter(e.target.value);
-              setVisibleCount(10);
             }}
           >
             <option value="all">All Topics</option>
@@ -138,7 +159,6 @@ export default function SearchSection({
             value={searchDifficultyFilter}
             onChange={(e) => {
               setSearchDifficultyFilter(e.target.value);
-              setVisibleCount(10);
             }}
           >
             <option value="all">All Difficulties</option>
@@ -163,61 +183,70 @@ export default function SearchSection({
               </tr>
             </thead>
             <tbody>
-              {paginatedQuestions.map((q) => {
-                return (
-                  <tr key={q.id} className="cms-search-question-row">
-                    <td>
-                      <div className="cms-q-content-cell cms-search-q-content-cell">
-                        <span className="cms-q-text-bold cms-search-q-text">{q.question}</span>
-                        <div className="cms-q-options-row cms-search-q-options-row">
-                          {q.options.map((opt) => {
-                            const isCorrect = opt === q.correctAnswer;
-                            return (
-                              <span
-                                key={opt}
-                                className={`cms-q-option-pill ${isCorrect ? 'correct' : ''}`}
-                              >
-                                {opt}
-                              </span>
-                            );
-                          })}
+              {isLoading ? (
+                <tr>
+                  <td colSpan="5" style={{ textAlign: 'center', padding: '40px' }}>
+                    <div className="cms-loading-spinner" style={{ display: 'inline-block', width: '24px', height: '24px', border: '3px solid var(--color-gray)', borderTopColor: 'var(--color-blue-dark)', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+                    <p style={{ marginTop: '8px', fontSize: '13px', fontWeight: 'bold', color: 'var(--color-text-light)' }}>Loading Questions...</p>
+                  </td>
+                </tr>
+              ) : (
+                questions.map((q) => {
+                  return (
+                    <tr key={q.id} className="cms-search-question-row">
+                      <td>
+                        <div className="cms-q-content-cell cms-search-q-content-cell">
+                          <span className="cms-q-text-bold cms-search-q-text">{q.question}</span>
+                          <div className="cms-q-options-row cms-search-q-options-row">
+                            {q.options.map((opt) => {
+                              const isCorrect = opt === q.correctAnswer;
+                              return (
+                                <span
+                                  key={opt}
+                                  className={`cms-q-option-pill ${isCorrect ? 'correct' : ''}`}
+                                >
+                                  {opt}
+                                </span>
+                              );
+                            })}
+                          </div>
                         </div>
-                      </div>
-                    </td>
-                    <td>
-                      <span className="cms-category-cell-badge cms-search-category-badge">{q.categoryTitle}</span>
-                    </td>
-                    <td>
-                      <span className="cms-topic-cell-title cms-search-topic-title">{q.unitTitle}</span>
-                    </td>
-                    <td>
-                      <span className={`cms-difficulty-badge-text ${q.difficulty.toLowerCase()}`}>
-                        {q.difficulty}
-                      </span>
-                    </td>
-                    <td>
-                      <div className="action-buttons-cell cms-search-action-buttons">
-                        <button className="icon-action-btn edit" title="Edit Question" onClick={() => handleStartQuestionEdit(q)}>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-pencil cms-question-edit-icon">
-                            <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
-                            <path d="m15 5 4 4"/>
-                          </svg>
-                        </button>
-                        <button className="icon-action-btn delete" title="Delete Question" onClick={() => handleDeleteQuestion(q)}>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-trash-2 cms-question-delete-icon">
-                            <path d="M3 6h18"/>
-                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
-                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
-                            <line x1="10" x2="10" y1="11" y2="17"/>
-                            <line x1="14" x2="14" y1="11" y2="17"/>
-                          </svg>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })}
-              {filteredQuestions.length === 0 && (
+                      </td>
+                      <td>
+                        <span className="cms-category-cell-badge cms-search-category-badge">{q.categoryTitle}</span>
+                      </td>
+                      <td>
+                        <span className="cms-topic-cell-title cms-search-topic-title">{q.unitTitle}</span>
+                      </td>
+                      <td>
+                        <span className={`cms-difficulty-badge-text ${q.difficulty.toLowerCase()}`}>
+                          {q.difficulty}
+                        </span>
+                      </td>
+                      <td>
+                        <div className="action-buttons-cell cms-search-action-buttons">
+                          <button className="icon-action-btn edit" title="Edit Question" onClick={() => handleStartQuestionEdit(q)}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-pencil cms-question-edit-icon">
+                              <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                              <path d="m15 5 4 4"/>
+                            </svg>
+                          </button>
+                          <button className="icon-action-btn delete" title="Delete Question" onClick={() => handleDeleteQuestion(q)}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-trash-2 cms-question-delete-icon">
+                              <path d="M3 6h18"/>
+                              <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                              <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                              <line x1="10" x2="10" y1="11" y2="17"/>
+                              <line x1="14" x2="14" y1="11" y2="17"/>
+                            </svg>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })
+              )}
+              {!isLoading && questions.length === 0 && (
                 <tr>
                   <td colSpan="5" className="cms-no-data">No questions found matching your search.</td>
                 </tr>
@@ -226,23 +255,54 @@ export default function SearchSection({
           </table>
         </div>
 
-        {/* Pagination Controls */}
-        {filteredQuestions.length > 0 && (
-          <div className="pagination-bar cms-search-pagination-bar">
-            <span className="pagination-bar-info">
-              Showing {Math.min(visibleCount, filteredQuestions.length)} results (Page Limit: {visibleCount})
+        {/* Pagination Bar */}
+        {!isLoading && totalPages > 1 && (
+          <div className="pagination-bar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 24px', borderTop: '2px solid var(--color-gray)' }}>
+            <span style={{ fontSize: '13px', color: 'var(--color-text-light)', fontWeight: 'bold' }}>
+              Showing Page {currentPage} of {totalPages} ({totalQuestions} total questions)
             </span>
-            {filteredQuestions.length > visibleCount && (
+            <div style={{ display: 'flex', gap: '8px' }}>
               <button
-                className="cms-btn-load-more"
-                onClick={() => setVisibleCount(prev => prev + 10)}
+                disabled={currentPage === 1}
+                onClick={() => fetchQuestions(currentPage - 1)}
+                style={{
+                  padding: '6px 12px',
+                  borderRadius: '8px',
+                  border: '1.5px solid var(--color-gray)',
+                  backgroundColor: 'white',
+                  cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
+                  fontWeight: 'bold',
+                  fontSize: '12px',
+                  opacity: currentPage === 1 ? 0.5 : 1
+                }}
               >
-                LOAD MORE CONTENT
+                Previous
               </button>
-            )}
+              <button
+                disabled={currentPage === totalPages}
+                onClick={() => fetchQuestions(currentPage + 1)}
+                style={{
+                  padding: '6px 12px',
+                  borderRadius: '8px',
+                  border: '1.5px solid var(--color-gray)',
+                  backgroundColor: 'white',
+                  cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',
+                  fontWeight: 'bold',
+                  fontSize: '12px',
+                  opacity: currentPage === totalPages ? 0.5 : 1
+                }}
+              >
+                Next
+              </button>
+            </div>
           </div>
         )}
       </div>
+      <style>{`
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
     </div>
   );
 }

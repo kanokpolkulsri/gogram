@@ -1,37 +1,23 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
+import { api } from '../../data/api';
 
-function HeartsEditControl({ userId, currentHearts, dispatch, showToast }) {
+function HeartsEditControl({ userId, currentHearts, onUpdate, showToast }) {
   const [isEditing, setIsEditing] = useState(false);
   const [tempVal, setTempVal] = useState(currentHearts === 'infinity' ? 10 : (currentHearts ?? 10));
 
   const handleSave = () => {
-    dispatch({
-      type: 'UPDATE_USER_HEARTS',
-      userId: userId,
-      heartsValue: parseInt(tempVal) || 0
-    });
+    onUpdate(parseInt(tempVal) || 0);
     setIsEditing(false);
-    showToast('Hearts updated successfully');
   };
 
   const handleMakeInfinity = () => {
-    dispatch({
-      type: 'UPDATE_USER_HEARTS',
-      userId: userId,
-      heartsValue: 'infinity'
-    });
+    onUpdate('infinity');
     setIsEditing(false);
-    showToast('Hearts status set to Infinity');
   };
 
   const handleResetHearts = () => {
-    dispatch({
-      type: 'UPDATE_USER_HEARTS',
-      userId: userId,
-      heartsValue: 10
-    });
+    onUpdate(10);
     setIsEditing(false);
-    showToast('Hearts reset to default (10)');
   };
 
   if (isEditing) {
@@ -94,10 +80,7 @@ function HeartsEditControl({ userId, currentHearts, dispatch, showToast }) {
 
 export default function UsersSection({
   categories,
-  units,
-  mockUsers,
   currentUser,
-  dispatch,
   triggerConfirm,
   showToast
 }) {
@@ -106,29 +89,179 @@ export default function UsersSection({
   const [userRoleFilter, setUserRoleFilter] = useState('all');
   const [userStatusFilter, setUserStatusFilter] = useState('all');
 
+  // Users paginated data states
+  const [users, setUsers] = useState([]);
+  const [totalUsers, setTotalUsers] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
+
   // Local Expand State for User Progress Details
   const [expandedUserIds, setExpandedUserIds] = useState([]);
+  const [userDetails, setUserDetails] = useState({});
+  const [loadingDetails, setLoadingDetails] = useState({});
 
-  // Filter users list
-  const filteredUsers = mockUsers.filter(u => {
-    const matchSearch = u.name.toLowerCase().includes(userSearchQuery.toLowerCase()) ||
-                        u.email.toLowerCase().includes(userSearchQuery.toLowerCase());
-    const matchRole = userRoleFilter === 'all' || u.authLevel === userRoleFilter;
-    const matchStatus = userStatusFilter === 'all' || u.status === userStatusFilter;
-    return matchSearch && matchRole && matchStatus;
-  });
+  const fetchUsers = async (page = 1) => {
+    try {
+      setIsLoading(true);
+      const data = await api.get(`/admin/users?search=${userSearchQuery}&role=${userRoleFilter}&status=${userStatusFilter}&page=${page}&limit=10`);
+      setUsers(data.users);
+      setTotalUsers(data.total);
+      setCurrentPage(data.page);
+      setTotalPages(data.pages);
+    } catch (err) {
+      showToast(`Error fetching users: ${err.message}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-  const toggleUserExpanded = (userId) => {
+  // Fetch users list with debounce on search query
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      fetchUsers(1);
+    }, 400);
+    return () => clearTimeout(delayDebounceFn);
+  }, [userSearchQuery, userRoleFilter, userStatusFilter]);
+
+  const toggleUserExpanded = async (userId) => {
     if (expandedUserIds.includes(userId)) {
       setExpandedUserIds(expandedUserIds.filter(id => id !== userId));
     } else {
       setExpandedUserIds([...expandedUserIds, userId]);
+
+      // If user details not loaded yet, fetch them lazily
+      if (!userDetails[userId]) {
+        try {
+          setLoadingDetails(prev => ({ ...prev, [userId]: true }));
+          const detailsData = await api.get(`/admin/users/${userId}/details`);
+          setUserDetails(prev => ({ ...prev, [userId]: detailsData }));
+        } catch (err) {
+          showToast(`Error loading details: ${err.message}`);
+        } finally {
+          setLoadingDetails(prev => ({ ...prev, [userId]: false }));
+        }
+      }
+
       setTimeout(() => {
         const element = document.getElementById(`user-progress-${userId}`);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       }, 100);
+    }
+  };
+
+  // Admin Actions Handlers
+  const handleUpdateRole = async (userId, role) => {
+    try {
+      await api.put(`/admin/users/${userId}/role`, { role });
+      showToast(`Role updated to ${role.toUpperCase()}`);
+      setUsers(prev => prev.map(u => u.uid === userId ? { ...u, role } : u));
+    } catch (err) {
+      showToast(`Error updating role: ${err.message}`);
+    }
+  };
+
+  const handleToggleBlock = async (userId, currentStatus) => {
+    const status = currentStatus === 'blocked' ? 'active' : 'blocked';
+    try {
+      await api.put(`/admin/users/${userId}/status`, { status });
+      showToast(`Account status updated to ${status.toUpperCase()}`);
+      setUsers(prev => prev.map(u => u.uid === userId ? { ...u, status, authLevel: status === 'blocked' ? 'blocked' : u.authLevel } : u));
+    } catch (err) {
+      showToast(`Error: ${err.message}`);
+    }
+  };
+
+  const handleUpdateHearts = async (userId, heartsValue) => {
+    try {
+      await api.put(`/admin/users/${userId}/hearts`, { heartsValue });
+      showToast(heartsValue === 'infinity' ? 'Hearts set to Infinity' : `Hearts updated to ${heartsValue}`);
+      setUsers(prev => prev.map(u => {
+        if (u.uid === userId) {
+          const hasInfinity = heartsValue === 'infinity';
+          return {
+            ...u,
+            hearts: heartsValue,
+            authLevel: hasInfinity ? 'subscribed' : (u.role === 'admin' ? 'admin' : 'free')
+          };
+        }
+        return u;
+      }));
+    } catch (err) {
+      showToast(`Error: ${err.message}`);
+    }
+  };
+
+  const handleUpdateSubscription = async (userId, expiresAt) => {
+    try {
+      await api.put(`/admin/users/${userId}/subscription`, { expiresAt });
+      showToast(expiresAt ? 'Premium granted/extended by 30 days' : 'Premium revoked');
+      setUsers(prev => prev.map(u => {
+        if (u.uid === userId) {
+          const hasInfinity = expiresAt && new Date(expiresAt) > new Date();
+          return {
+            ...u,
+            promoExpiresAt: expiresAt ? new Date(expiresAt).getTime() : null,
+            authLevel: hasInfinity ? 'subscribed' : (u.role === 'admin' ? 'admin' : 'free'),
+            hearts: hasInfinity ? 'infinity' : u.hearts
+          };
+        }
+        return u;
+      }));
+    } catch (err) {
+      showToast(`Error: ${err.message}`);
+    }
+  };
+
+  const handleSuspendPromo = async (userId, code, isSuspended) => {
+    try {
+      await api.post(`/admin/users/${userId}/promo-codes/${code}/suspend`, { isSuspended });
+      showToast(isSuspended ? `Suspended ${code}` : `Reactivated ${code}`);
+      setUserDetails(prev => {
+        const uDetails = prev[userId] || {};
+        const suspended = uDetails.suspendedPromoCodes || [];
+        const updatedSuspended = isSuspended 
+          ? [...suspended, code] 
+          : suspended.filter(c => c !== code);
+        return {
+          ...prev,
+          [userId]: { ...uDetails, suspendedPromoCodes: updatedSuspended }
+        };
+      });
+    } catch (err) {
+      showToast(`Error: ${err.message}`);
+    }
+  };
+
+  const handleRemovePromo = async (userId, code) => {
+    try {
+      await api.delete(`/admin/users/${userId}/promo-codes/${code}`);
+      showToast(`Removed promo code ${code}`);
+      setUserDetails(prev => {
+        const uDetails = prev[userId] || {};
+        return {
+          ...prev,
+          [userId]: {
+            ...uDetails,
+            usedPromoCodes: (uDetails.usedPromoCodes || []).filter(c => c !== code),
+            suspendedPromoCodes: (uDetails.suspendedPromoCodes || []).filter(c => c !== code)
+          }
+        };
+      });
+    } catch (err) {
+      showToast(`Error: ${err.message}`);
+    }
+  };
+
+  const handleDeleteUser = async (userId, name) => {
+    try {
+      await api.delete(`/admin/users/${userId}`);
+      showToast(`User ${name} has been removed.`);
+      fetchUsers(currentPage);
+    } catch (err) {
+      showToast(`Error deleting user: ${err.message}`);
     }
   };
 
@@ -148,7 +281,7 @@ export default function UsersSection({
           </span>
           <input
             type="text"
-            placeholder="Search by name, email or ID..."
+            placeholder="Search by name or email..."
             value={userSearchQuery}
             onChange={(e) => setUserSearchQuery(e.target.value)}
           />
@@ -183,319 +316,314 @@ export default function UsersSection({
               </tr>
             </thead>
             <tbody>
-              {filteredUsers.map((u) => {
-                const isBlocked = u.status === 'blocked';
-                const isExpanded = expandedUserIds.includes(u.uid);
-                const userHearts = u.uid === currentUser?.uid ? currentUser.hearts : u.hearts;
-                const userPromoExpiresAt = u.uid === currentUser?.uid ? currentUser.promoExpiresAt : u.promoExpiresAt;
-                return (
-                  <Fragment key={u.uid}>
-                    <tr className={isBlocked ? 'cms-blocked-user-row' : ''}>
-                      <td>
-                        <div className="cms-table-user-cell">
-                          <div className="cms-user-cell-info">
-                            <span
-                              className="cms-user-cell-name cms-clickable-name"
-                              onClick={() => toggleUserExpanded(u.uid)}
-                              title="Click to view/edit details"
-                            >
-                              <span className="user-name-text">{u.name.split(' (')[0]}</span>
-                            </span>
-                            <span className="cms-user-cell-email">{u.email}</span>
-                          </div>
-                        </div>
-                      </td>
+              {isLoading ? (
+                <tr>
+                  <td colSpan="4" style={{ textAlign: 'center', padding: '40px' }}>
+                    <div className="cms-loading-spinner" style={{ display: 'inline-block', width: '24px', height: '24px', border: '3px solid var(--color-gray)', borderTopColor: 'var(--color-blue-dark)', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+                    <p style={{ marginTop: '8px', fontSize: '13px', fontWeight: 'bold', color: 'var(--color-text-light)' }}>Loading Users List...</p>
+                  </td>
+                </tr>
+              ) : (
+                users.map((u) => {
+                  const isBlocked = u.status === 'blocked';
+                  const isExpanded = expandedUserIds.includes(u.uid);
+                  const userHearts = u.uid === currentUser?.uid ? currentUser.hearts : u.hearts;
+                  const userPromoExpiresAt = u.uid === currentUser?.uid ? currentUser.promoExpiresAt : u.promoExpiresAt;
 
-                      <td>
-                        <span className={`role-badge-text ${isBlocked ? 'blocked' : u.authLevel}`}>
-                          {isBlocked ? 'BLOCKED' : (u.authLevel === 'free' ? 'USER' : u.authLevel === 'subscribed' ? 'PREMIUM' : u.authLevel.toUpperCase())}
-                        </span>
-                      </td>
+                  const details = userDetails[u.uid] || {};
+                  const isDetailsLoading = loadingDetails[u.uid];
 
-                      <td>
-                        <span className="joined-date-cell">
-                          {new Date(u.joined).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'numeric',
-                            day: 'numeric'
-                          })}
-                        </span>
-                      </td>
-                      <td>
-                        <div className="action-buttons-cell cms-users-action-buttons">
-                          {/* Expanded view button in Actions */}
-                          <button
-                            className="icon-action-btn view-progress-btn"
-                            onClick={() => toggleUserExpanded(u.uid)}
-                            title="View/Edit Details"
-                            style={{
-                              color: isExpanded ? 'var(--color-blue-dark)' : 'var(--color-text-light)',
-                              borderColor: isExpanded ? 'var(--color-blue-dark)' : 'var(--color-gray)'
-                            }}
-                          >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-eye cms-user-view-progress-icon">
-                              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
-                              <circle cx="12" cy="12" r="3"/>
-                            </svg>
-                          </button>
-
-                          <button
-                            className="icon-action-btn delete"
-                            onClick={() => {
-                              triggerConfirm({
-                                title: 'Remove User',
-                                message: `Are you sure you want to remove ${u.name} from the directory? This will permanently delete their account information and learning progress.`,
-                                confirmText: 'Remove User',
-                                isDanger: true,
-                                onConfirm: () => {
-                                  dispatch({ type: 'DELETE_USER', userId: u.uid });
-                                  showToast(`User ${u.name} has been removed.`);
-                                }
-                              });
-                            }}
-                            title="Remove User"
-                          >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-trash-2 cms-user-delete-icon">
-                              <path d="M3 6h18"/>
-                              <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
-                              <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
-                              <line x1="10" x2="10" y1="11" y2="17"/>
-                              <line x1="14" x2="14" y1="11" y2="17"/>
-                            </svg>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    {isExpanded && (
-                      <tr className="cms-expanded-progress-row">
-                        <td colSpan="4">
-                          <div className="expanded-progress-container" id={`user-progress-${u.uid}`}>
-                            <h4 className="cms-expanded-progress-title">
-                              Details for {u.name.split(' (')[0]}
-                            </h4>
-                            
-                            {/* Account settings, Hearts and Promo Codes inside expanded-progress-container */}
-                            <div className="cms-user-details-settings-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
-                              <div className="cms-user-details-settings-block" style={{ background: 'white', padding: '16px', borderRadius: '12px', border: '1px solid var(--color-gray)', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                                <div className="cms-user-details-settings-group" style={{ display: 'flex', flexDirection: 'column', gap: '6px', textAlign: 'left' }}>
-                                  <h5 className="cms-user-details-settings-title" style={{ fontSize: '14px', fontWeight: '800', color: 'var(--color-text)', margin: 0, marginBottom: '4px' }}>Account Settings</h5>
-                                  
-                                  <label style={{ fontSize: '11px', fontWeight: '800', color: 'var(--color-text-light)' }}>ROLE</label>
-                                  <select
-                                    className="role-dropdown-cms"
-                                    value={u.role || 'user'}
-                                    onChange={(e) => {
-                                      dispatch({ type: 'UPDATE_USER_ROLE', userId: u.uid, role: e.target.value });
-                                      showToast(`Role updated to ${e.target.value.toUpperCase()}`);
-                                    }}
-                                    style={{ padding: '6px 12px', borderRadius: '8px', border: '2px solid var(--color-gray)', fontSize: '13px', fontWeight: '700', backgroundColor: 'white', cursor: 'pointer', width: '100%', marginBottom: '8px' }}
-                                  >
-                                    <option value="user">User</option>
-                                    <option value="admin">Admin</option>
-                                  </select>
-
-                                  <label style={{ fontSize: '11px', fontWeight: '800', color: 'var(--color-text-light)' }}>STATUS</label>
-                                  <select
-                                    className="status-dropdown-cms"
-                                    value={u.status || 'active'}
-                                    onChange={() => {
-                                      dispatch({ type: 'BLOCK_USER', userId: u.uid });
-                                      showToast(`Account status toggled`);
-                                    }}
-                                    style={{ padding: '6px 12px', borderRadius: '8px', border: '2px solid var(--color-gray)', fontSize: '13px', fontWeight: '700', backgroundColor: 'white', cursor: 'pointer', width: '100%' }}
-                                  >
-                                    <option value="active">Active</option>
-                                    <option value="blocked">Blocked</option>
-                                  </select>
-                                </div>
-                              </div>
-
-                              <div className="cms-user-details-settings-block" style={{ background: 'white', padding: '16px', borderRadius: '12px', border: '1px solid var(--color-gray)', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                                <div className="cms-user-details-settings-group" style={{ display: 'flex', flexDirection: 'column', gap: '8px', textAlign: 'left' }}>
-                                  <h5 className="cms-user-details-settings-title" style={{ fontSize: '14px', fontWeight: '800', color: 'var(--color-text)', margin: 0 }}>Hearts Status</h5>
-                                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '13px', color: 'var(--color-text-light)' }}>
-                                    <div>
-                                      <span style={{ fontWeight: '700' }}>Mode: </span>
-                                      <span>{userHearts === 'infinity' ? '♾️ Infinity' : 'Numeric'}</span>
-                                    </div>
-                                    <div>
-                                      <span style={{ fontWeight: '700' }}>Current Hearts: </span>
-                                      <span>{userHearts === 'infinity' ? '∞' : (userHearts ?? 10)}</span>
-                                    </div>
-                                    {userHearts === 'infinity' && (
-                                      <div>
-                                        <span style={{ fontWeight: '700' }}>Expiration: </span>
-                                        <span>
-                                          {userPromoExpiresAt 
-                                            ? new Date(userPromoExpiresAt).toLocaleString('en-US', {
-                                                year: 'numeric',
-                                                month: 'short',
-                                                day: 'numeric',
-                                                hour: '2-digit',
-                                                minute: '2-digit'
-                                              })
-                                            : 'Never Expires'}
-                                        </span>
-                                      </div>
-                                    )}
-                                  </div>
-                                  <div className="cms-user-details-settings-row" style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap', marginTop: '4px' }}>
-                                    <HeartsEditControl
-                                      userId={u.uid}
-                                      currentHearts={userHearts}
-                                      dispatch={dispatch}
-                                      showToast={showToast}
-                                    />
-                                  </div>
-                                  
-                                  {/* Premium Subscription Controls */}
-                                  <div style={{ marginTop: '12px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                                    <label style={{ fontSize: '11px', fontWeight: '800', color: 'var(--color-text-light)' }}>PREMIUM SUBSCRIPTION</label>
-                                    <div style={{ display: 'flex', gap: '8px' }}>
-                                      <button
-                                        onClick={() => {
-                                          const date = new Date();
-                                          date.setDate(date.getDate() + 30);
-                                          dispatch({ type: 'UPDATE_USER_SUBSCRIPTION', userId: u.uid, expiresAt: date.toISOString() });
-                                          showToast('Premium granted/extended by 30 days');
-                                        }}
-                                        style={{ flex: 1, padding: '6px 8px', background: 'var(--color-green)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: 'bold', fontSize: '11px', cursor: 'pointer' }}
-                                      >
-                                        +30 Days
-                                      </button>
-                                      <button
-                                        onClick={() => {
-                                          dispatch({ type: 'UPDATE_USER_SUBSCRIPTION', userId: u.uid, expiresAt: null });
-                                          showToast('Premium revoked');
-                                        }}
-                                        style={{ flex: 1, padding: '6px 8px', background: 'var(--color-red)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: 'bold', fontSize: '11px', cursor: 'pointer' }}
-                                      >
-                                        Revoke
-                                      </button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div className="cms-user-details-settings-block" style={{ background: 'white', padding: '16px', borderRadius: '12px', border: '1px solid var(--color-gray)', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                                <div className="cms-user-details-promo-block" style={{ textAlign: 'left' }}>
-                                  <h5 className="cms-user-details-promo-title" style={{ fontSize: '13px', fontWeight: '800', marginBottom: '8px', color: 'var(--color-text)' }}>Promo Codes Redeemed</h5>
-                                  <div className="cms-user-details-promo-list" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                                    {(u.usedPromoCodes && u.usedPromoCodes.length > 0) ? (
-                                      u.usedPromoCodes.map(code => {
-                                        const isSuspended = u.suspendedPromoCodes?.includes(code);
-                                        return (
-                                          <div key={code} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 12px', borderRadius: '8px', border: '1px solid var(--color-gray)', backgroundColor: '#F9FAFB' }}>
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                              <span style={{ fontSize: '12px', fontWeight: '800', color: isSuspended ? 'var(--color-text-light)' : 'var(--color-text)', textDecoration: isSuspended ? 'line-through' : 'none' }}>
-                                                {code}
-                                              </span>
-                                              {isSuspended && (
-                                                <span style={{ fontSize: '10px', fontWeight: '800', padding: '2px 6px', borderRadius: '4px', backgroundColor: '#FEE2E2', color: '#EF4444' }}>
-                                                  Suspended
-                                                </span>
-                                              )}
-                                            </div>
-                                            <div style={{ display: 'flex', gap: '6px' }}>
-                                              {isSuspended ? (
-                                                <button
-                                                  title="Reactivate/Unsuspend Promo Code"
-                                                  onClick={() => {
-                                                    dispatch({ type: 'UNSUSPEND_USER_PROMO_CODE', userId: u.uid, code });
-                                                    showToast(`Reactivated ${code} for ${u.name.split(' (')[0]}`);
-                                                  }}
-                                                  style={{ padding: '4px 8px', background: 'var(--color-green)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: 'bold', fontSize: '11px', cursor: 'pointer' }}
-                                                >
-                                                  Activate
-                                                </button>
-                                              ) : (
-                                                <button
-                                                  title="Suspend/Deactivate Promo Code"
-                                                  onClick={() => {
-                                                    dispatch({ type: 'SUSPEND_USER_PROMO_CODE', userId: u.uid, code });
-                                                    showToast(`Suspended ${code} for ${u.name.split(' (')[0]}`);
-                                                  }}
-                                                  style={{ padding: '4px 8px', background: 'var(--color-orange)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: 'bold', fontSize: '11px', cursor: 'pointer' }}
-                                                >
-                                                  Suspend
-                                                </button>
-                                              )}
-                                              <button
-                                                title="Remove Promo Code completely"
-                                                onClick={() => {
-                                                  triggerConfirm({
-                                                    title: 'Remove Promo Code',
-                                                    message: `Are you sure you want to remove the promo code "${code}" from ${u.name}? This will revoke its benefits and allow the user to redeem this code again.`,
-                                                    confirmText: 'Remove Code',
-                                                    isDanger: true,
-                                                    onConfirm: () => {
-                                                      dispatch({ type: 'REMOVE_USER_PROMO_CODE', userId: u.uid, code });
-                                                      showToast(`Removed ${code} from ${u.name.split(' (')[0]}`);
-                                                    }
-                                                  });
-                                                }}
-                                                style={{ padding: '4px 8px', background: 'var(--color-red)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: 'bold', fontSize: '11px', cursor: 'pointer' }}
-                                              >
-                                                Remove
-                                              </button>
-                                            </div>
-                                          </div>
-                                        );
-                                      })
-                                    ) : (
-                                      <span className="cms-user-details-promo-none" style={{ fontSize: '12px', color: 'var(--color-text-light)', fontStyle: 'italic' }}>None used yet</span>
-                                    )}
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            {/* Learning Progress Section */}
-                            <h5 style={{ fontSize: '13px', fontWeight: '800', color: 'var(--color-text-light)', marginTop: '24px', marginBottom: '12px', textAlign: 'left', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Category Progress</h5>
-                            <div className="cms-expanded-progress-grid">
-                              {categories.map(cat => {
-                                const catUnits = units.filter(un => un.category === cat.id);
-                                let completedCount = u.progress?.[cat.id] || 0;
-                                if (u.uid === currentUser?.uid) {
-                                  completedCount = catUnits.reduce((sum, un) => {
-                                    return sum + un.levels.filter(l => currentUser?.completedLessons?.includes(`${un.id}-${l.id}`)).length;
-                                  }, 0);
-                                }
-                                const computedLevel = Math.floor(completedCount / 5) + 1;
-
-                                return (
-                                  <div key={cat.id} className="cms-progress-category-card">
-                                    <div className="cms-progress-category-info">
-                                      <span className="cms-progress-category-title">{cat.title}</span>
-                                    </div>
-                                    <div className="cms-progress-category-stats" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                      <span
-                                        className="cms-level-badge"
-                                        style={{
-                                          padding: '4px 12px',
-                                          borderRadius: '8px',
-                                          border: '1px solid var(--color-gray)',
-                                          fontSize: '13px',
-                                          fontWeight: '700',
-                                          backgroundColor: '#F3F4F6',
-                                          color: 'var(--color-text)'
-                                        }}
-                                      >
-                                        LV {computedLevel}
-                                      </span>
-                                    </div>
-                                  </div>
-                                );
-                              })}
+                  return (
+                    <Fragment key={u.uid}>
+                      <tr className={isBlocked ? 'cms-blocked-user-row' : ''}>
+                        <td>
+                          <div className="cms-table-user-cell">
+                            <div className="cms-user-cell-info">
+                              <span
+                                className="cms-user-cell-name cms-clickable-name"
+                                onClick={() => toggleUserExpanded(u.uid)}
+                                title="Click to view/edit details"
+                              >
+                                <span className="user-name-text">{u.name.split(' (')[0]}</span>
+                              </span>
+                              <span className="cms-user-cell-email">{u.email}</span>
                             </div>
                           </div>
                         </td>
+
+                        <td>
+                          <span className={`role-badge-text ${isBlocked ? 'blocked' : u.authLevel}`}>
+                            {isBlocked ? 'BLOCKED' : (u.authLevel === 'free' ? 'USER' : u.authLevel === 'subscribed' ? 'PREMIUM' : u.authLevel.toUpperCase())}
+                          </span>
+                        </td>
+
+                        <td>
+                          <span className="joined-date-cell">
+                            {new Date(u.joined).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'numeric',
+                              day: 'numeric'
+                            })}
+                          </span>
+                        </td>
+                        <td>
+                          <div className="action-buttons-cell cms-users-action-buttons">
+                            <button
+                              className="icon-action-btn view-progress-btn"
+                              onClick={() => toggleUserExpanded(u.uid)}
+                              title="View/Edit Details"
+                              style={{
+                                color: isExpanded ? 'var(--color-blue-dark)' : 'var(--color-text-light)',
+                                borderColor: isExpanded ? 'var(--color-blue-dark)' : 'var(--color-gray)'
+                              }}
+                            >
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-eye cms-user-view-progress-icon">
+                                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                              </svg>
+                            </button>
+
+                            <button
+                              className="icon-action-btn delete"
+                              onClick={() => {
+                                triggerConfirm({
+                                  title: 'Remove User',
+                                  message: `Are you sure you want to remove ${u.name} from the directory? This will permanently delete their account information and learning progress.`,
+                                  confirmText: 'Remove User',
+                                  isDanger: true,
+                                  onConfirm: () => handleDeleteUser(u.uid, u.name)
+                                });
+                              }}
+                              title="Remove User"
+                            >
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-trash-2 cms-user-delete-icon">
+                                <path d="M3 6h18"/>
+                                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                                <line x1="10" x2="10" y1="11" y2="17"/>
+                                <line x1="14" x2="14" y1="11" y2="17"/>
+                              </svg>
+                            </button>
+                          </div>
+                        </td>
                       </tr>
-                    )}
-                  </Fragment>
-                );
-              })}
-              {filteredUsers.length === 0 && (
+                      {isExpanded && (
+                        <tr className="cms-expanded-progress-row">
+                          <td colSpan="4">
+                            <div className="expanded-progress-container" id={`user-progress-${u.uid}`}>
+                              <h4 className="cms-expanded-progress-title">
+                                Details for {u.name.split(' (')[0]}
+                              </h4>
+
+                              {isDetailsLoading ? (
+                                <div style={{ padding: '24px', textAlign: 'center' }}>
+                                  <div className="cms-loading-spinner" style={{ display: 'inline-block', width: '20px', height: '20px', border: '3px solid var(--color-gray)', borderTopColor: 'var(--color-blue-dark)', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+                                  <span style={{ marginLeft: '8px', fontSize: '13px', color: 'var(--color-text-light)' }}>Loading profile progress...</span>
+                                </div>
+                              ) : (
+                                <>
+                                  {/* Account settings, Hearts and Promo Codes inside expanded-progress-container */}
+                                  <div className="cms-user-details-settings-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
+                                    <div className="cms-user-details-settings-block" style={{ background: 'white', padding: '16px', borderRadius: '12px', border: '1px solid var(--color-gray)', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                      <div className="cms-user-details-settings-group" style={{ display: 'flex', flexDirection: 'column', gap: '6px', textAlign: 'left' }}>
+                                        <h5 className="cms-user-details-settings-title" style={{ fontSize: '14px', fontWeight: '800', color: 'var(--color-text)', margin: 0, marginBottom: '4px' }}>Account Settings</h5>
+                                        
+                                        <label style={{ fontSize: '11px', fontWeight: '800', color: 'var(--color-text-light)' }}>ROLE</label>
+                                        <select
+                                          className="role-dropdown-cms"
+                                          value={u.role || 'user'}
+                                          onChange={(e) => handleUpdateRole(u.uid, e.target.value)}
+                                          style={{ padding: '6px 12px', borderRadius: '8px', border: '2px solid var(--color-gray)', fontSize: '13px', fontWeight: '700', backgroundColor: 'white', cursor: 'pointer', width: '100%', marginBottom: '8px' }}
+                                        >
+                                          <option value="user">User</option>
+                                          <option value="admin">Admin</option>
+                                        </select>
+
+                                        <label style={{ fontSize: '11px', fontWeight: '800', color: 'var(--color-text-light)' }}>STATUS</label>
+                                        <select
+                                          className="status-dropdown-cms"
+                                          value={u.status || 'active'}
+                                          onChange={() => handleToggleBlock(u.uid, u.status)}
+                                          style={{ padding: '6px 12px', borderRadius: '8px', border: '2px solid var(--color-gray)', fontSize: '13px', fontWeight: '700', backgroundColor: 'white', cursor: 'pointer', width: '100%' }}
+                                        >
+                                          <option value="active">Active</option>
+                                          <option value="blocked">Blocked</option>
+                                        </select>
+                                      </div>
+                                    </div>
+
+                                    <div className="cms-user-details-settings-block" style={{ background: 'white', padding: '16px', borderRadius: '12px', border: '1px solid var(--color-gray)', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                                      <div className="cms-user-details-settings-group" style={{ display: 'flex', flexDirection: 'column', gap: '8px', textAlign: 'left' }}>
+                                        <h5 className="cms-user-details-settings-title" style={{ fontSize: '14px', fontWeight: '800', color: 'var(--color-text)', margin: 0 }}>Hearts Status</h5>
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '13px', color: 'var(--color-text-light)' }}>
+                                          <div>
+                                            <span style={{ fontWeight: '700' }}>Mode: </span>
+                                            <span>{userHearts === 'infinity' ? '♾️ Infinity' : 'Numeric'}</span>
+                                          </div>
+                                          <div>
+                                            <span style={{ fontWeight: '700' }}>Current Hearts: </span>
+                                            <span>{userHearts === 'infinity' ? '∞' : (userHearts ?? 10)}</span>
+                                          </div>
+                                          {userHearts === 'infinity' && (
+                                            <div>
+                                              <span style={{ fontWeight: '700' }}>Expiration: </span>
+                                              <span>
+                                                {userPromoExpiresAt 
+                                                  ? new Date(userPromoExpiresAt).toLocaleString('en-US', {
+                                                      year: 'numeric',
+                                                      month: 'short',
+                                                      day: 'numeric',
+                                                      hour: '2-digit',
+                                                      minute: '2-digit'
+                                                    })
+                                                  : 'Never Expires'}
+                                              </span>
+                                            </div>
+                                          )}
+                                        </div>
+                                        <div className="cms-user-details-settings-row" style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap', marginTop: '4px' }}>
+                                          <HeartsEditControl
+                                            userId={u.uid}
+                                            currentHearts={userHearts}
+                                            onUpdate={(val) => handleUpdateHearts(u.uid, val)}
+                                            showToast={showToast}
+                                          />
+                                        </div>
+                                        
+                                        {/* Premium Subscription Controls */}
+                                        <div style={{ marginTop: '12px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                                          <label style={{ fontSize: '11px', fontWeight: '800', color: 'var(--color-text-light)' }}>PREMIUM SUBSCRIPTION</label>
+                                          <div style={{ display: 'flex', gap: '8px' }}>
+                                            <button
+                                              onClick={() => {
+                                                const date = new Date();
+                                                date.setDate(date.getDate() + 30);
+                                                handleUpdateSubscription(u.uid, date.toISOString());
+                                              }}
+                                              style={{ flex: 1, padding: '6px 8px', background: 'var(--color-green)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: 'bold', fontSize: '11px', cursor: 'pointer' }}
+                                            >
+                                              +30 Days
+                                            </button>
+                                            <button
+                                              onClick={() => {
+                                                handleUpdateSubscription(u.uid, null);
+                                              }}
+                                              style={{ flex: 1, padding: '6px 8px', background: 'var(--color-red)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: 'bold', fontSize: '11px', cursor: 'pointer' }}
+                                            >
+                                              Revoke
+                                            </button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div className="cms-user-details-settings-block" style={{ background: 'white', padding: '16px', borderRadius: '12px', border: '1px solid var(--color-gray)', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                                      <div className="cms-user-details-promo-block" style={{ textAlign: 'left' }}>
+                                        <h5 className="cms-user-details-promo-title" style={{ fontSize: '13px', fontWeight: '800', marginBottom: '8px', color: 'var(--color-text)' }}>Promo Codes Redeemed</h5>
+                                        <div className="cms-user-details-promo-list" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                                          {(details.usedPromoCodes && details.usedPromoCodes.length > 0) ? (
+                                            details.usedPromoCodes.map(code => {
+                                              const isSuspended = details.suspendedPromoCodes?.includes(code);
+                                              return (
+                                                <div key={code} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 12px', borderRadius: '8px', border: '1px solid var(--color-gray)', backgroundColor: '#F9FAFB' }}>
+                                                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                                    <span style={{ fontSize: '12px', fontWeight: '800', color: isSuspended ? 'var(--color-text-light)' : 'var(--color-text)', textDecoration: isSuspended ? 'line-through' : 'none' }}>
+                                                      {code}
+                                                    </span>
+                                                    {isSuspended && (
+                                                      <span style={{ fontSize: '10px', fontWeight: '800', padding: '2px 6px', borderRadius: '4px', backgroundColor: '#FEE2E2', color: '#EF4444' }}>
+                                                        Suspended
+                                                      </span>
+                                                    )}
+                                                  </div>
+                                                  <div style={{ display: 'flex', gap: '6px' }}>
+                                                    {isSuspended ? (
+                                                      <button
+                                                        title="Reactivate/Unsuspend Promo Code"
+                                                        onClick={() => handleSuspendPromo(u.uid, code, false)}
+                                                        style={{ padding: '4px 8px', background: 'var(--color-green)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: 'bold', fontSize: '11px', cursor: 'pointer' }}
+                                                      >
+                                                        Activate
+                                                      </button>
+                                                    ) : (
+                                                      <button
+                                                        title="Suspend/Deactivate Promo Code"
+                                                        onClick={() => handleSuspendPromo(u.uid, code, true)}
+                                                        style={{ padding: '4px 8px', background: 'var(--color-orange)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: 'bold', fontSize: '11px', cursor: 'pointer' }}
+                                                      >
+                                                        Suspend
+                                                      </button>
+                                                    )}
+                                                    <button
+                                                      title="Remove Promo Code completely"
+                                                      onClick={() => {
+                                                        triggerConfirm({
+                                                          title: 'Remove Promo Code',
+                                                          message: `Are you sure you want to remove the promo code "${code}" from ${u.name}? This will revoke its benefits and allow the user to redeem this code again.`,
+                                                          confirmText: 'Remove Code',
+                                                          isDanger: true,
+                                                          onConfirm: () => handleRemovePromo(u.uid, code)
+                                                        });
+                                                      }}
+                                                      style={{ padding: '4px 8px', background: 'var(--color-red)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: 'bold', fontSize: '11px', cursor: 'pointer' }}
+                                                    >
+                                                      Remove
+                                                    </button>
+                                                  </div>
+                                                </div>
+                                              );
+                                            })
+                                          ) : (
+                                            <span className="cms-user-details-promo-none" style={{ fontSize: '12px', color: 'var(--color-text-light)', fontStyle: 'italic' }}>None used yet</span>
+                                          )}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  {/* Learning Progress Section */}
+                                  <h5 style={{ fontSize: '13px', fontWeight: '800', color: 'var(--color-text-light)', marginTop: '24px', marginBottom: '12px', textAlign: 'left', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Category Progress</h5>
+                                  <div className="cms-expanded-progress-grid">
+                                    {categories.map(cat => {
+                                      const completedCount = details.progress?.[cat.id] || 0;
+                                      const computedLevel = completedCount + 1;
+
+                                      return (
+                                        <div key={cat.id} className="cms-progress-category-card">
+                                          <div className="cms-progress-category-info">
+                                            <span className="cms-progress-category-title">{cat.title}</span>
+                                          </div>
+                                          <div className="cms-progress-category-stats" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                            <span
+                                              className="cms-level-badge"
+                                              style={{
+                                                padding: '4px 12px',
+                                                borderRadius: '8px',
+                                                border: '1px solid var(--color-gray)',
+                                                fontSize: '13px',
+                                                fontWeight: '700',
+                                                backgroundColor: '#F3F4F6',
+                                                color: 'var(--color-text)'
+                                              }}
+                                            >
+                                              LV {computedLevel}
+                                            </span>
+                                          </div>
+                                        </div>
+                                      );
+                                    })}
+                                  </div>
+                                </>
+                              )}
+                            </div>
+                          </td>
+                        </tr>
+                      )}
+                    </Fragment>
+                  );
+                })
+              )}
+              {!isLoading && users.length === 0 && (
                 <tr>
                   <td colSpan="4" className="cms-no-data">No users match search conditions.</td>
                 </tr>
@@ -503,7 +631,55 @@ export default function UsersSection({
             </tbody>
           </table>
         </div>
+
+        {/* Pagination Bar */}
+        {!isLoading && totalPages > 1 && (
+          <div className="pagination-bar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 24px', borderTop: '2px solid var(--color-gray)' }}>
+            <span style={{ fontSize: '13px', color: 'var(--color-text-light)', fontWeight: 'bold' }}>
+              Showing Page {currentPage} of {totalPages} ({totalUsers} total users)
+            </span>
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <button
+                disabled={currentPage === 1}
+                onClick={() => fetchUsers(currentPage - 1)}
+                style={{
+                  padding: '6px 12px',
+                  borderRadius: '8px',
+                  border: '1.5px solid var(--color-gray)',
+                  backgroundColor: 'white',
+                  cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
+                  fontWeight: 'bold',
+                  fontSize: '12px',
+                  opacity: currentPage === 1 ? 0.5 : 1
+                }}
+              >
+                Previous
+              </button>
+              <button
+                disabled={currentPage === totalPages}
+                onClick={() => fetchUsers(currentPage + 1)}
+                style={{
+                  padding: '6px 12px',
+                  borderRadius: '8px',
+                  border: '1.5px solid var(--color-gray)',
+                  backgroundColor: 'white',
+                  cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',
+                  fontWeight: 'bold',
+                  fontSize: '12px',
+                  opacity: currentPage === totalPages ? 0.5 : 1
+                }}
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        )}
       </div>
+      <style>{`
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
     </div>
   );
 }

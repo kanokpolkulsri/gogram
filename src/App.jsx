@@ -33,6 +33,12 @@ function AppContent() {
   }, [user.promoExpiredMessage, dispatch]);
 
   useEffect(() => {
+    if (user.isAuthenticated && !location.pathname.startsWith('/admin')) {
+      dispatch({ type: 'ENSURE_LEARN_DATA' });
+    }
+  }, [user.isAuthenticated, location.pathname, dispatch]);
+
+  useEffect(() => {
     if (user.isAuthLoading) return;
 
     const isPublicRoute = location.pathname === '/welcome';

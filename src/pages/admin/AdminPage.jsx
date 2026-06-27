@@ -1,4 +1,4 @@
-import { useState, Fragment } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useUser, useUserDispatch } from '../../data/userStore';
 import {
@@ -104,37 +104,23 @@ export default function AdminPage() {
   const [eqOpt4, setEqOpt4] = useState('');
   const [eqCorrect, setEqCorrect] = useState('');
 
+  // On-demand lazy load categories & units for specific tabs
+  useEffect(() => {
+    const sectionsRequiringLearnData = ['search', 'generate', 'topics', 'users'];
+    if (sectionsRequiringLearnData.includes(activeSection)) {
+      dispatch({ type: 'ENSURE_LEARN_DATA' });
+    }
+  }, [activeSection, dispatch]);
+
   // ==========================================
   // QUESTIONS UTILITIES & HANDLERS
   // ==========================================
 
-  // Extract all questions list
-  const getAllQuestionsList = () => {
-    const list = [];
-    units.forEach(unit => {
-      const catObj = categories.find(c => c.id === unit.category);
-      unit.levels.forEach(level => {
-        if (level.questions) {
-          level.questions.forEach(q => {
-            list.push({
-              ...q,
-              unitId: unit.id,
-              unitTitle: unit.title,
-              categoryId: unit.category,
-              categoryTitle: catObj?.title || unit.category,
-              difficulty: level.id.includes('easy') ? 'EASY' : level.id.includes('medium') ? 'MEDIUM' : 'HARD'
-            });
-          });
-        }
-      });
-    });
-    return list;
-  };
-
-  const allQuestions = getAllQuestionsList();
+  // Refresh trigger to reload SearchSection when a question is edited/deleted
+  const [questionsRefreshTrigger, setQuestionsRefreshTrigger] = useState(0);
 
   // Handle saving question edits
-  const handleSaveQuestionEdit = (e) => {
+  const handleSaveQuestionEdit = async (e) => {
     e.preventDefault();
     if (!editingQuestionObj) return;
 
@@ -161,41 +147,21 @@ export default function AdminPage() {
       return;
     }
 
-    // Find unit
-    const unitId = editingQuestionObj.unitId;
-    const targetUnit = units.find(u => Number(u.id) === Number(unitId));
-    if (!targetUnit) return;
-
-    // Find level
-    let targetLevelId = 'easy';
-    if (editingQuestionObj.difficulty === 'MEDIUM') targetLevelId = 'medium1';
-    if (editingQuestionObj.difficulty === 'HARD') targetLevelId = 'hard1';
-
-    const targetLevel = targetUnit.levels.find(l => l.id === targetLevelId);
-    if (!targetLevel) return;
-
-    const updatedQuestions = targetLevel.questions.map(q => {
-      if (q.id === editingQuestionObj.id) {
-        return {
-          ...q,
-          question: eqText,
-          options,
-          correctAnswer: eqCorrect
-        };
-      }
-      return q;
-    });
-
-    dispatch({
-      type: 'UPDATE_LEVEL_QUESTIONS',
-      unitId,
-      levelId: targetLevelId,
-      questions: updatedQuestions
-    });
-
-    setShowEditQuestionModal(false);
-    setEditingQuestionObj(null);
-    showToast('Question details saved.');
+    try {
+      await api.put(`/admin/questions/${editingQuestionObj.id}`, {
+        question: eqText,
+        options,
+        correctAnswer: eqCorrect,
+        explanation: editingQuestionObj.explanation || null,
+        explanationTh: editingQuestionObj.explanationTh || null
+      });
+      setShowEditQuestionModal(false);
+      setEditingQuestionObj(null);
+      showToast('Question details saved.');
+      setQuestionsRefreshTrigger(prev => prev + 1);
+    } catch (err) {
+      showToast(`Error updating question: ${err.message}`);
+    }
   };
 
   const handleStartQuestionEdit = (q) => {
@@ -210,7 +176,6 @@ export default function AdminPage() {
   };
 
   const handleDeleteQuestion = (q) => {
-    // If it is a draft question
     if (q.id.toString().startsWith('draft-')) {
       triggerConfirm({
         title: 'Discard Draft Question',
@@ -230,25 +195,14 @@ export default function AdminPage() {
       message: 'Are you sure you want to permanently delete this question from the active database? This action cannot be undone.',
       confirmText: 'Delete',
       isDanger: true,
-      onConfirm: () => {
-        let targetLevelId = 'easy';
-        if (q.difficulty === 'MEDIUM') targetLevelId = 'medium1';
-        if (q.difficulty === 'HARD') targetLevelId = 'hard1';
-
-        const targetUnit = units.find(u => Number(u.id) === Number(q.unitId));
-        if (!targetUnit) return;
-
-        const targetLevel = targetUnit.levels.find(l => l.id === targetLevelId);
-        if (!targetLevel) return;
-
-        const updatedQs = targetLevel.questions.filter(item => item.id !== q.id);
-        dispatch({
-          type: 'UPDATE_LEVEL_QUESTIONS',
-          unitId: q.unitId,
-          levelId: targetLevelId,
-          questions: updatedQs
-        });
-        showToast('Question deleted from database.');
+      onConfirm: async () => {
+        try {
+          await api.delete(`/admin/questions/${q.id}`);
+          showToast('Question deleted from database.');
+          setQuestionsRefreshTrigger(prev => prev + 1);
+        } catch (err) {
+          showToast(`Error deleting question: ${err.message}`);
+        }
       }
     });
   };
@@ -260,9 +214,6 @@ export default function AdminPage() {
         return (
           <DashboardSection
             categories={categories}
-            mockUsers={mockUsers}
-            allQuestions={allQuestions}
-            auditLogs={auditLogs}
           />
         );
       case 'search':
@@ -270,7 +221,7 @@ export default function AdminPage() {
           <SearchSection
             categories={categories}
             units={units}
-            allQuestions={allQuestions}
+            questionsRefreshTrigger={questionsRefreshTrigger}
             handleStartQuestionEdit={handleStartQuestionEdit}
             handleDeleteQuestion={handleDeleteQuestion}
             showToast={showToast}
@@ -303,10 +254,7 @@ export default function AdminPage() {
         return (
           <UsersSection
             categories={categories}
-            units={units}
-            mockUsers={mockUsers}
             currentUser={user}
-            dispatch={dispatch}
             triggerConfirm={triggerConfirm}
             showToast={showToast}
           />
@@ -314,8 +262,6 @@ export default function AdminPage() {
       case 'promo-codes':
         return (
           <PromoCodesSection
-            user={user}
-            dispatch={dispatch}
             triggerConfirm={triggerConfirm}
             showToast={showToast}
           />
@@ -324,9 +270,6 @@ export default function AdminPage() {
         return (
           <DashboardSection
             categories={categories}
-            mockUsers={mockUsers}
-            allQuestions={allQuestions}
-            auditLogs={auditLogs}
           />
         );
     }

@@ -26,16 +26,19 @@ router.get('/categories', authenticate, async (req, res) => {
 // Retrieve units for a specific category with levels
 router.get('/units', authenticate, async (req, res) => {
   const { categoryId } = req.query;
-  if (!categoryId) {
-    return res.status(400).json({ error: 'categoryId parameter is required' });
-  }
 
   try {
-    // 1. Fetch units for category ordered by unit_number
-    const unitsRes = await query(
-      `SELECT * FROM units WHERE category_id = $1 ORDER BY unit_number`,
-      [categoryId]
-    );
+    let unitsRes;
+    if (categoryId) {
+      unitsRes = await query(
+        `SELECT * FROM units WHERE category_id = $1 ORDER BY unit_number`,
+        [categoryId]
+      );
+    } else {
+      unitsRes = await query(
+        `SELECT * FROM units ORDER BY category_id, unit_number`
+      );
+    }
 
     const units = [];
 

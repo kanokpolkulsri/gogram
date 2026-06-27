@@ -50,6 +50,13 @@ function userReducer(state, action) {
         ...action.payload
       };
 
+    case 'SET_CATEGORIES_AND_UNITS':
+      return {
+        ...state,
+        categories: action.categories,
+        units: action.units
+      };
+
     case 'UPDATE_HEARTS_AND_SUB':
       return {
         ...state,
@@ -142,34 +149,6 @@ export function UserProvider({ children }) {
       // 1. Sync auth profile record
       const profile = await api.post('/auth/sync', { name: firebaseUser.displayName });
       
-      // 2. Fetch categories
-      const categories = await api.get('/learn/categories');
-      
-      // 3. Fetch units for all active categories
-      const allUnits = [];
-      for (const cat of categories) {
-        try {
-          const catUnits = await api.get(`/learn/units?categoryId=${cat.id}`);
-          allUnits.push(...catUnits);
-        } catch (err) {
-          console.warn(`Failed to fetch units for category ${cat.id}:`, err);
-        }
-      }
-
-      // 4. Fetch admin directories if user is Admin
-      let mockUsers = [];
-      let promoCodes = [];
-      let auditLogs = [];
-      if (profile.role === 'admin') {
-        try {
-          mockUsers = await api.get('/admin/users');
-          promoCodes = await api.get('/admin/promo-codes');
-          auditLogs = await api.get('/admin/audit-logs');
-        } catch (adminErr) {
-          console.warn('Failed to load admin directories:', adminErr);
-        }
-      }
-
       rawDispatch({
         type: 'INIT_APP_DATA',
         payload: {
@@ -181,11 +160,11 @@ export function UserProvider({ children }) {
             displayName: firebaseUser.displayName || profile.name,
             photoURL: firebaseUser.photoURL,
           },
-          categories,
-          units: allUnits,
-          mockUsers,
-          promoCodes,
-          auditLogs,
+          categories: [],
+          units: [],
+          mockUsers: [],
+          promoCodes: [],
+          auditLogs: [],
           isAuthLoading: false
         }
       });
@@ -323,195 +302,33 @@ export function UserProvider({ children }) {
         }
         break;
 
+      case 'ENSURE_LEARN_DATA':
+        if (user.categories && user.categories.length > 0 && user.units && user.units.length > 0) {
+          if (action.onSuccess) action.onSuccess();
+          break;
+        }
+        try {
+          const [categories, units] = await Promise.all([
+            api.get('/learn/categories'),
+            api.get('/learn/units')
+          ]);
+          rawDispatch({ type: 'SET_CATEGORIES_AND_UNITS', categories, units });
+          if (action.onSuccess) action.onSuccess();
+        } catch (err) {
+          console.error('Failed to load lazy categories/units:', err);
+        }
+        break;
+
       case 'SET_LAST_CATEGORY':
         rawDispatch(action);
         break;
 
-      // =======================================
-      // ADMIN PANEL ACTION WRAPPERS
-      // =======================================
-      case 'UPDATE_USER_ROLE':
-        try {
-          await api.put(`/admin/users/${action.userId}/role`, { role: action.role });
-          const mockUsers = await api.get('/admin/users');
-          const auditLogs = await api.get('/admin/audit-logs');
-          rawDispatch({ type: 'SET_ADMIN_DATA', payload: { mockUsers, auditLogs } });
-        } catch (e) {
-          console.error('Admin failed to update user role:', e);
-        }
-        break;
-
-      case 'BLOCK_USER':
-        try {
-          // Toggle user block status
-          const target = user.mockUsers?.find(u => u.uid === action.userId);
-          const newStatus = target && target.status === 'blocked' ? 'active' : 'blocked';
-          await api.put(`/admin/users/${action.userId}/status`, { status: newStatus });
-          const mockUsers = await api.get('/admin/users');
-          const auditLogs = await api.get('/admin/audit-logs');
-          rawDispatch({ type: 'SET_ADMIN_DATA', payload: { mockUsers, auditLogs } });
-        } catch (e) {
-          console.error('Admin failed to toggle user blocked status:', e);
-        }
-        break;
-
-      case 'DELETE_USER':
-        try {
-          await api.delete(`/admin/users/${action.userId}`);
-          const mockUsers = await api.get('/admin/users');
-          const auditLogs = await api.get('/admin/audit-logs');
-          rawDispatch({ type: 'SET_ADMIN_DATA', payload: { mockUsers, auditLogs } });
-        } catch (e) {
-          console.error('Admin failed to delete user account:', e);
-        }
-        break;
-
-      case 'UPDATE_USER_HEARTS':
-        try {
-          await api.put(`/admin/users/${action.userId}/hearts`, { heartsValue: action.heartsValue });
-          const mockUsers = await api.get('/admin/users');
-          const auditLogs = await api.get('/admin/audit-logs');
-          rawDispatch({ type: 'SET_ADMIN_DATA', payload: { mockUsers, auditLogs } });
-        } catch (e) {
-          console.error('Admin failed to update user hearts pool:', e);
-        }
-        break;
-
-      case 'UPDATE_USER_SUBSCRIPTION':
-        try {
-          await api.put(`/admin/users/${action.userId}/subscription`, { expiresAt: action.expiresAt });
-          const mockUsers = await api.get('/admin/users');
-          const auditLogs = await api.get('/admin/audit-logs');
-          rawDispatch({ type: 'SET_ADMIN_DATA', payload: { mockUsers, auditLogs } });
-        } catch (e) {
-          console.error('Admin failed to update user subscription:', e);
-        }
-        break;
-
-      case 'UPDATE_USER_PROGRESS_LEVEL':
-        try {
-          await api.put(`/admin/users/${action.userId}/progress`, {
-            categoryId: action.categoryId,
-            levelValue: action.levelValue
-          });
-          const mockUsers = await api.get('/admin/users');
-          const auditLogs = await api.get('/admin/audit-logs');
-          rawDispatch({ type: 'SET_ADMIN_DATA', payload: { mockUsers, auditLogs } });
-        } catch (e) {
-          console.error('Admin failed to update user progress level:', e);
-        }
-        break;
-
-      case 'RESET_USER_PROGRESS_IN_CATEGORY':
-        try {
-          await api.post(`/admin/users/${action.userId}/reset-progress`, {
-            categoryId: action.categoryId
-          });
-          const mockUsers = await api.get('/admin/users');
-          const auditLogs = await api.get('/admin/audit-logs');
-          rawDispatch({ type: 'SET_ADMIN_DATA', payload: { mockUsers, auditLogs } });
-        } catch (e) {
-          console.error('Admin failed to reset user category progress:', e);
-        }
-        break;
-
-      case 'REMOVE_USER_PROMO_CODE':
-        try {
-          await api.delete(`/admin/users/${action.userId}/promo-codes/${action.code}`);
-          const mockUsers = await api.get('/admin/users');
-          const auditLogs = await api.get('/admin/audit-logs');
-          rawDispatch({ type: 'SET_ADMIN_DATA', payload: { mockUsers, auditLogs } });
-        } catch (e) {
-          console.error('Admin failed to remove user claimed promo code:', e);
-        }
-        break;
-
-      case 'SUSPEND_USER_PROMO_CODE':
-      case 'UNSUSPEND_USER_PROMO_CODE':
-        try {
-          const isSuspended = action.type === 'SUSPEND_USER_PROMO_CODE';
-          await api.post(`/admin/users/${action.userId}/promo-codes/${action.code}/suspend`, {
-            isSuspended
-          });
-          const mockUsers = await api.get('/admin/users');
-          const auditLogs = await api.get('/admin/audit-logs');
-          rawDispatch({ type: 'SET_ADMIN_DATA', payload: { mockUsers, auditLogs } });
-        } catch (e) {
-          console.error('Admin failed to change user promo code suspension state:', e);
-        }
-        break;
-
-      case 'ADD_PROMO_CODE':
-        try {
-          await api.post('/admin/promo-codes', {
-            code: action.code,
-            type: action.promoType,
-            reward: action.reward,
-            description: action.description,
-            expiresAt: action.expiresAt,
-            infinityDuration: action.infinityDuration,
-            maxRedemptions: action.maxRedemptions
-          });
-          const promoCodes = await api.get('/admin/promo-codes');
-          const auditLogs = await api.get('/admin/audit-logs');
-          rawDispatch({ type: 'SET_ADMIN_DATA', payload: { promoCodes, auditLogs } });
-        } catch (e) {
-          console.error('Admin failed to add global promo code:', e);
-        }
-        break;
-
-      case 'DELETE_PROMO_CODE':
-        try {
-          await api.delete(`/admin/promo-codes/${action.code}`);
-          const promoCodes = await api.get('/admin/promo-codes');
-          const auditLogs = await api.get('/admin/audit-logs');
-          rawDispatch({ type: 'SET_ADMIN_DATA', payload: { promoCodes, auditLogs } });
-        } catch (e) {
-          console.error('Admin failed to delete global promo code:', e);
-        }
-        break;
-
-      case 'EDIT_PROMO_CODE':
-        try {
-          await api.put(`/admin/promo-codes/${action.originalCode}`, action.updatedPromo);
-          const promoCodes = await api.get('/admin/promo-codes');
-          const auditLogs = await api.get('/admin/audit-logs');
-          rawDispatch({ type: 'SET_ADMIN_DATA', payload: { promoCodes, auditLogs } });
-        } catch (e) {
-          console.error('Admin failed to edit global promo code parameters:', e);
-        }
-        break;
-
-      case 'UPDATE_LEVEL_QUESTIONS':
-        try {
-          await api.post('/admin/questions/publish', {
-            unitId: action.unitId,
-            levelId: action.levelId,
-            questions: action.questions
-          });
-          
-          // Refetch units to update level questions on learn page view
-          const categories = await api.get('/learn/categories');
-          const allUnits = [];
-          for (const cat of categories) {
-            const catUnits = await api.get(`/learn/units?categoryId=${cat.id}`);
-            allUnits.push(...catUnits);
-          }
-          const auditLogs = await api.get('/admin/audit-logs');
-
-          rawDispatch({
-            type: 'SET_ADMIN_DATA',
-            payload: { units: allUnits, auditLogs }
-          });
-        } catch (e) {
-          console.error('Admin failed to publish level questions:', e);
-        }
-        break;
+      // Admin actions are now handled locally within each Admin page/component using local states and direct api calls.
 
       default:
         rawDispatch(action);
     }
-  }, [syncProfile, user.mockUsers]);
+  }, [syncProfile, user.categories, user.units]);
 
   return (
     <UserContext.Provider value={user}>

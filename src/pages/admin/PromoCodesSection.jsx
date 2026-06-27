@@ -1,24 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { api } from '../../data/api';
 
-function formatDuration(ms) {
-  if (!ms) return 'Never';
-  if (ms === 30000) return '30 seconds';
-  if (ms === 60000) return '1 minute';
-  if (ms === 300000) return '5 minutes';
-  if (ms === 30 * 24 * 3600 * 1000) return '1 month';
-  if (ms === 90 * 24 * 3600 * 1000) return '3 months';
-  if (ms === 180 * 24 * 3600 * 1000) return '6 months';
-  if (ms === 365 * 24 * 3600 * 1000) return '1 year';
-  return `${Math.round(ms / (24 * 3600 * 1000))} days`;
+function formatDuration(minutes) {
+  if (!minutes) return 'Never';
+  if (minutes === 0.5) return '30 seconds';
+  if (minutes === 1) return '1 minute';
+  if (minutes === 5) return '5 minutes';
+  if (minutes === 30 * 24 * 60) return '1 month';
+  if (minutes === 90 * 24 * 60) return '3 months';
+  if (minutes === 180 * 24 * 60) return '6 months';
+  if (minutes === 365 * 24 * 60) return '1 year';
+  
+  if (minutes >= 24 * 60) {
+    return `${Math.round(minutes / (24 * 60))} days`;
+  }
+  return `${minutes} minutes`;
 }
 
 export default function PromoCodesSection({
-  user,
-  dispatch,
   triggerConfirm,
   showToast
 }) {
-  const promoCodes = user.promoCodes || [];
+  const [promoCodes, setPromoCodes] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Form State for Adding Promo Code
   const [newCode, setNewCode] = useState('');
@@ -38,7 +42,23 @@ export default function PromoCodesSection({
   const [editInfinityDuration, setEditInfinityDuration] = useState('3mo');
   const [editMaxRedemptions, setEditMaxRedemptions] = useState('');
 
-  const handleAddCode = (e) => {
+  const fetchPromoCodes = async () => {
+    try {
+      setIsLoading(true);
+      const data = await api.get('/admin/promo-codes');
+      setPromoCodes(data);
+    } catch (err) {
+      showToast(`Error fetching promo codes: ${err.message}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchPromoCodes();
+  }, []);
+
+  const handleAddCode = async (e) => {
     e.preventDefault();
     if (!newCode.trim()) {
       alert('Please enter a code name.');
@@ -53,36 +73,40 @@ export default function PromoCodesSection({
       return;
     }
 
-    let infinityDurationMs = null;
+    let infinityDurationMinutes = null;
     if (newType === 'infinity') {
-      if (newInfinityDuration === '30s') infinityDurationMs = 30000;
-      else if (newInfinityDuration === '1m') infinityDurationMs = 60000;
-      else if (newInfinityDuration === '5m') infinityDurationMs = 300000;
-      else if (newInfinityDuration === '1mo') infinityDurationMs = 30 * 24 * 3600 * 1000;
-      else if (newInfinityDuration === '3mo') infinityDurationMs = 90 * 24 * 3600 * 1000;
-      else if (newInfinityDuration === '6mo') infinityDurationMs = 180 * 24 * 3600 * 1000;
-      else if (newInfinityDuration === '1y') infinityDurationMs = 365 * 24 * 3600 * 1000;
+      if (newInfinityDuration === '30s') infinityDurationMinutes = 0.5;
+      else if (newInfinityDuration === '1m') infinityDurationMinutes = 1;
+      else if (newInfinityDuration === '5m') infinityDurationMinutes = 5;
+      else if (newInfinityDuration === '1mo') infinityDurationMinutes = 30 * 24 * 60;
+      else if (newInfinityDuration === '3mo') infinityDurationMinutes = 90 * 24 * 60;
+      else if (newInfinityDuration === '6mo') infinityDurationMinutes = 180 * 24 * 60;
+      else if (newInfinityDuration === '1y') infinityDurationMinutes = 365 * 24 * 60;
     }
 
-    dispatch({
-      type: 'ADD_PROMO_CODE',
-      code: codeUpper,
-      promoType: newType,
-      reward: newType === 'infinity' ? 'infinity' : parseInt(newReward) || 10,
-      description: newDesc.trim() || `${newType === 'infinity' ? 'Infinite hearts' : `${newReward} hearts`} promo code`,
-      expiresAt: newExpiresAt || null,
-      infinityDuration: infinityDurationMs,
-      maxRedemptions: newMaxRedemptions ? parseInt(newMaxRedemptions) || null : null
-    });
+    try {
+      await api.post('/admin/promo-codes', {
+        code: codeUpper,
+        type: newType,
+        reward: newType === 'infinity' ? 'infinity' : parseInt(newReward) || 10,
+        description: newDesc.trim() || `${newType === 'infinity' ? 'Infinite hearts' : `${newReward} hearts`} promo code`,
+        expiresAt: newExpiresAt || null,
+        infinityDuration: infinityDurationMinutes,
+        maxRedemptions: newMaxRedemptions ? parseInt(newMaxRedemptions) || null : null
+      });
+      showToast(`Promo code ${codeUpper} created successfully!`);
+      
+      // Clear form
+      setNewCode('');
+      setNewDesc('');
+      setNewExpiresAt('');
+      setNewInfinityDuration('3mo');
+      setNewMaxRedemptions('');
 
-    showToast(`Promo code ${codeUpper} created successfully!`);
-    
-    // Clear form
-    setNewCode('');
-    setNewDesc('');
-    setNewExpiresAt('');
-    setNewInfinityDuration('3mo');
-    setNewMaxRedemptions('');
+      fetchPromoCodes();
+    } catch (err) {
+      showToast(`Failed to create promo code: ${err.message}`);
+    }
   };
 
   const startEditing = (c) => {
@@ -94,45 +118,55 @@ export default function PromoCodesSection({
     
     let durVal = 'none';
     if (c.infinityDuration) {
-      if (c.infinityDuration === 30000) durVal = '30s';
-      else if (c.infinityDuration === 60000) durVal = '1m';
-      else if (c.infinityDuration === 300000) durVal = '5m';
-      else if (c.infinityDuration === 30 * 24 * 3600 * 1000) durVal = '1mo';
-      else if (c.infinityDuration === 90 * 24 * 3600 * 1000) durVal = '3mo';
-      else if (c.infinityDuration === 180 * 24 * 3600 * 1000) durVal = '6mo';
-      else if (c.infinityDuration === 365 * 24 * 3600 * 1000) durVal = '1y';
+      if (c.infinityDuration === 0.5) durVal = '30s';
+      else if (c.infinityDuration === 1) durVal = '1m';
+      else if (c.infinityDuration === 5) durVal = '5m';
+      else if (c.infinityDuration === 30 * 24 * 60) durVal = '1mo';
+      else if (c.infinityDuration === 90 * 24 * 60) durVal = '3mo';
+      else if (c.infinityDuration === 180 * 24 * 60) durVal = '6mo';
+      else if (c.infinityDuration === 365 * 24 * 60) durVal = '1y';
     }
     setEditInfinityDuration(durVal);
     setEditMaxRedemptions(c.maxRedemptions ? String(c.maxRedemptions) : '');
   };
 
-  const handleSaveEdit = (originalCode) => {
-    let infinityDurationMs = null;
+  const handleSaveEdit = async (originalCode) => {
+    let infinityDurationMinutes = null;
     if (editType === 'infinity') {
-      if (editInfinityDuration === '30s') infinityDurationMs = 30000;
-      else if (editInfinityDuration === '1m') infinityDurationMs = 60000;
-      else if (editInfinityDuration === '5m') infinityDurationMs = 300000;
-      else if (editInfinityDuration === '1mo') infinityDurationMs = 30 * 24 * 3600 * 1000;
-      else if (editInfinityDuration === '3mo') infinityDurationMs = 90 * 24 * 3600 * 1000;
-      else if (editInfinityDuration === '6mo') infinityDurationMs = 180 * 24 * 3600 * 1000;
-      else if (editInfinityDuration === '1y') infinityDurationMs = 365 * 24 * 3600 * 1000;
+      if (editInfinityDuration === '30s') infinityDurationMinutes = 0.5;
+      else if (editInfinityDuration === '1m') infinityDurationMinutes = 1;
+      else if (editInfinityDuration === '5m') infinityDurationMinutes = 5;
+      else if (editInfinityDuration === '1mo') infinityDurationMinutes = 30 * 24 * 60;
+      else if (editInfinityDuration === '3mo') infinityDurationMinutes = 90 * 24 * 60;
+      else if (editInfinityDuration === '6mo') infinityDurationMinutes = 180 * 24 * 60;
+      else if (editInfinityDuration === '1y') infinityDurationMinutes = 365 * 24 * 60;
     }
 
-    dispatch({
-      type: 'EDIT_PROMO_CODE',
-      originalCode,
-      updatedPromo: {
+    try {
+      await api.put(`/admin/promo-codes/${originalCode}`, {
         type: editType,
         reward: editType === 'infinity' ? 'infinity' : parseInt(editReward) || 10,
         description: editDesc.trim(),
         expiresAt: editExpiresAt || null,
-        infinityDuration: infinityDurationMs,
+        infinityDuration: infinityDurationMinutes,
         maxRedemptions: editMaxRedemptions ? parseInt(editMaxRedemptions) || null : null
-      }
-    });
+      });
+      setEditingCode(null);
+      showToast(`Promo code ${originalCode} updated successfully.`);
+      fetchPromoCodes();
+    } catch (err) {
+      showToast(`Error updating promo code: ${err.message}`);
+    }
+  };
 
-    setEditingCode(null);
-    showToast(`Promo code ${originalCode} updated successfully.`);
+  const handleDeleteCode = async (code) => {
+    try {
+      await api.delete(`/admin/promo-codes/${code}`);
+      showToast(`Promo code ${code} has been deleted.`);
+      fetchPromoCodes();
+    } catch (err) {
+      showToast(`Error deleting promo code: ${err.message}`);
+    }
   };
 
   return (
@@ -266,161 +300,167 @@ export default function PromoCodesSection({
               </tr>
             </thead>
             <tbody>
-              {promoCodes.map((c) => {
-                const isEditing = editingCode === c.code;
-                const redemptionsCount = c.usedBy ? c.usedBy.length : 0;
-                
-                if (isEditing) {
-                  return (
-                    <tr key={c.code} style={{ borderBottom: '1px solid var(--color-gray-light)', backgroundColor: '#F9FAFB' }}>
-                      <td style={{ padding: '12px 8px', fontWeight: '800' }}>{c.code}</td>
-                      <td style={{ padding: '12px 8px' }}>
-                        <select
-                          value={editType}
-                          onChange={(e) => setEditType(e.target.value)}
-                          style={{ padding: '6px 8px', borderRadius: '8px', border: '1px solid var(--color-gray)', fontSize: '13px', fontWeight: '700' }}
-                        >
-                          <option value="hearts">HEARTS</option>
-                          <option value="infinity">INFINITY</option>
-                        </select>
-                      </td>
-                      <td style={{ padding: '12px 8px' }}>
-                        {editType === 'hearts' ? (
-                          <input
-                            type="number"
-                            value={editReward}
-                            onChange={(e) => setEditReward(e.target.value)}
-                            style={{ width: '60px', padding: '6px 8px', borderRadius: '8px', border: '1px solid var(--color-gray)', fontSize: '13px', fontWeight: '700' }}
-                          />
-                        ) : '∞'}
-                      </td>
-                      <td style={{ padding: '12px 8px' }}>
-                        <input
-                          type="date"
-                          value={editExpiresAt}
-                          onChange={(e) => setEditExpiresAt(e.target.value)}
-                          style={{ padding: '6px 8px', borderRadius: '8px', border: '1px solid var(--color-gray)', fontSize: '13px', fontWeight: '700' }}
-                        />
-                      </td>
-                      <td style={{ padding: '12px 8px' }}>
-                        {editType === 'infinity' ? (
+              {isLoading ? (
+                <tr>
+                  <td colSpan="8" style={{ textAlign: 'center', padding: '40px' }}>
+                    <div className="cms-loading-spinner" style={{ display: 'inline-block', width: '24px', height: '24px', border: '3px solid var(--color-gray)', borderTopColor: 'var(--color-blue-dark)', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+                    <p style={{ marginTop: '8px', fontSize: '13px', fontWeight: 'bold', color: 'var(--color-text-light)' }}>Loading Promo Codes...</p>
+                  </td>
+                </tr>
+              ) : (
+                promoCodes.map((c) => {
+                  const isEditing = editingCode === c.code;
+                  const redemptionsCount = c.usedByCount || 0;
+                  
+                  if (isEditing) {
+                    return (
+                      <tr key={c.code} style={{ borderBottom: '1px solid var(--color-gray-light)', backgroundColor: '#F9FAFB' }}>
+                        <td style={{ padding: '12px 8px', fontWeight: '800' }}>{c.code}</td>
+                        <td style={{ padding: '12px 8px' }}>
                           <select
-                            value={editInfinityDuration}
-                            onChange={(e) => setEditInfinityDuration(e.target.value)}
+                            value={editType}
+                            onChange={(e) => setEditType(e.target.value)}
                             style={{ padding: '6px 8px', borderRadius: '8px', border: '1px solid var(--color-gray)', fontSize: '13px', fontWeight: '700' }}
                           >
-                            <option value="3mo">3 Months</option>
-                            <option value="1mo">1 Month</option>
-                            <option value="6mo">6 Months</option>
-                            <option value="1y">1 Year</option>
-                            <option value="5m">5 Minutes</option>
-                            <option value="30s">30 Seconds</option>
-                            <option value="none">Never Expires</option>
+                            <option value="hearts">HEARTS</option>
+                            <option value="infinity">INFINITY</option>
                           </select>
-                        ) : 'N/A'}
-                      </td>
+                        </td>
+                        <td style={{ padding: '12px 8px' }}>
+                          {editType === 'hearts' ? (
+                            <input
+                              type="number"
+                              value={editReward}
+                              onChange={(e) => setEditReward(e.target.value)}
+                              style={{ width: '60px', padding: '6px 8px', borderRadius: '8px', border: '1px solid var(--color-gray)', fontSize: '13px', fontWeight: '700' }}
+                            />
+                          ) : '∞'}
+                        </td>
+                        <td style={{ padding: '12px 8px' }}>
+                          <input
+                            type="date"
+                            value={editExpiresAt}
+                            onChange={(e) => setEditExpiresAt(e.target.value)}
+                            style={{ padding: '6px 8px', borderRadius: '8px', border: '1px solid var(--color-gray)', fontSize: '13px', fontWeight: '700' }}
+                          />
+                        </td>
+                        <td style={{ padding: '12px 8px' }}>
+                          {editType === 'infinity' ? (
+                            <select
+                              value={editInfinityDuration}
+                              onChange={(e) => setEditInfinityDuration(e.target.value)}
+                              style={{ padding: '6px 8px', borderRadius: '8px', border: '1px solid var(--color-gray)', fontSize: '13px', fontWeight: '700' }}
+                            >
+                              <option value="3mo">3 Months</option>
+                              <option value="1mo">1 Month</option>
+                              <option value="6mo">6 Months</option>
+                              <option value="1y">1 Year</option>
+                              <option value="5m">5 Minutes</option>
+                              <option value="30s">30 Seconds</option>
+                              <option value="none">Never Expires</option>
+                            </select>
+                          ) : 'N/A'}
+                        </td>
+                        <td style={{ padding: '12px 8px' }}>
+                          <input
+                            type="number"
+                            placeholder="No Limit"
+                            value={editMaxRedemptions}
+                            onChange={(e) => setEditMaxRedemptions(e.target.value)}
+                            style={{ width: '70px', padding: '6px 8px', borderRadius: '8px', border: '1px solid var(--color-gray)', fontSize: '13px', fontWeight: '700' }}
+                          />
+                        </td>
+                        <td style={{ padding: '12px 8px' }}>
+                          <input
+                            type="text"
+                            value={editDesc}
+                            onChange={(e) => setEditDesc(e.target.value)}
+                            style={{ width: '120px', padding: '6px 8px', borderRadius: '8px', border: '1px solid var(--color-gray)', fontSize: '13px', fontWeight: '700' }}
+                          />
+                        </td>
+                        <td style={{ padding: '12px 8px' }}>
+                          <div style={{ display: 'flex', gap: '8px' }}>
+                            <button
+                              onClick={() => handleSaveEdit(c.code)}
+                              className="cms-promo-icon-btn"
+                              style={{ padding: '4px 8px', backgroundColor: 'var(--color-green)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: '800', cursor: 'pointer', fontSize: '12px' }}
+                            >
+                              Save
+                            </button>
+                            <button
+                              onClick={() => setEditingCode(null)}
+                              className="cms-promo-icon-btn"
+                              style={{ padding: '4px 8px', backgroundColor: 'var(--color-gray-dark)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: '800', cursor: 'pointer', fontSize: '12px' }}
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  }
+
+                  return (
+                    <tr key={c.code} style={{ borderBottom: '1px solid var(--color-gray-light)' }}>
+                      <td style={{ padding: '12px 8px', fontWeight: '800' }}>{c.code}</td>
                       <td style={{ padding: '12px 8px' }}>
-                        <input
-                          type="number"
-                          placeholder="No Limit"
-                          value={editMaxRedemptions}
-                          onChange={(e) => setEditMaxRedemptions(e.target.value)}
-                          style={{ width: '70px', padding: '6px 8px', borderRadius: '8px', border: '1px solid var(--color-gray)', fontSize: '13px', fontWeight: '700' }}
-                        />
+                        <span className={`cms-promo-role-badge-text role-badge-text ${c.type === 'infinity' ? 'subscribed' : 'free'}`}>
+                          {c.type === 'infinity' ? 'INFINITY' : 'HEARTS'}
+                        </span>
                       </td>
-                      <td style={{ padding: '12px 8px' }}>
-                        <input
-                          type="text"
-                          value={editDesc}
-                          onChange={(e) => setEditDesc(e.target.value)}
-                          style={{ width: '120px', padding: '6px 8px', borderRadius: '8px', border: '1px solid var(--color-gray)', fontSize: '13px', fontWeight: '700' }}
-                        />
+                      <td style={{ padding: '12px 8px', fontWeight: '800', color: c.type === 'infinity' ? 'var(--color-orange-dark)' : 'var(--color-text)' }}>
+                        {c.type === 'infinity' ? '∞' : c.reward}
                       </td>
+                      <td style={{ padding: '12px 8px', fontWeight: '800', color: 'var(--color-text-light)', fontSize: '13px' }}>
+                        {c.expiresAt ? new Date(c.expiresAt).toLocaleDateString('en-US', { year: 'numeric', month: 'numeric', day: 'numeric' }) : 'Never'}
+                      </td>
+                      <td style={{ padding: '12px 8px', fontWeight: '800', color: 'var(--color-text-light)', fontSize: '13px' }}>
+                        {c.type === 'infinity' ? (c.infinityDuration ? formatDuration(c.infinityDuration) : 'Never') : 'N/A'}
+                      </td>
+                      <td style={{ padding: '12px 8px', fontWeight: '800', color: 'var(--color-text-light)', fontSize: '13px' }}>
+                        {c.maxRedemptions ? `${redemptionsCount} / ${c.maxRedemptions}` : `${redemptionsCount} claims`}
+                      </td>
+                      <td style={{ padding: '12px 8px', color: 'var(--color-text-light)', fontSize: '13px' }}>{c.description}</td>
                       <td style={{ padding: '12px 8px' }}>
                         <div style={{ display: 'flex', gap: '8px' }}>
                           <button
-                            onClick={() => handleSaveEdit(c.code)}
-                            className="cms-promo-icon-btn"
-                            style={{ padding: '4px 8px', backgroundColor: 'var(--color-green)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: '800', cursor: 'pointer', fontSize: '12px' }}
+                            className="cms-promo-icon-btn cms-promo-edit-btn icon-action-btn"
+                            onClick={() => startEditing(c)}
+                            title="Edit Promo Code"
                           >
-                            Save
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-pencil">
+                              <path d="M12 20h9"/>
+                              <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+                            </svg>
                           </button>
                           <button
-                            onClick={() => setEditingCode(null)}
-                            className="cms-promo-icon-btn"
-                            style={{ padding: '4px 8px', backgroundColor: 'var(--color-gray-dark)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: '800', cursor: 'pointer', fontSize: '12px' }}
+                            className="cms-promo-icon-btn cms-promo-delete-btn icon-action-btn delete"
+                            onClick={() => {
+                              triggerConfirm({
+                                title: 'Delete Promo Code',
+                                message: `Are you sure you want to delete promo code "${c.code}"? Users will no longer be able to claim it.`,
+                                confirmText: 'Delete Code',
+                                isDanger: true,
+                                onConfirm: () => handleDeleteCode(c.code)
+                              });
+                            }}
+                            title="Delete Promo Code"
                           >
-                            Cancel
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-trash-2">
+                              <path d="M3 6h18"/>
+                              <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                              <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                              <line x1="10" x2="10" y1="11" y2="17"/>
+                              <line x1="14" x2="14" y1="11" y2="17"/>
+                            </svg>
                           </button>
                         </div>
                       </td>
                     </tr>
                   );
-                }
-
-                return (
-                  <tr key={c.code} style={{ borderBottom: '1px solid var(--color-gray-light)' }}>
-                    <td style={{ padding: '12px 8px', fontWeight: '800' }}>{c.code}</td>
-                    <td style={{ padding: '12px 8px' }}>
-                      <span className={`cms-promo-role-badge-text role-badge-text ${c.type === 'infinity' ? 'subscribed' : 'free'}`}>
-                        {c.type === 'infinity' ? 'INFINITY' : 'HEARTS'}
-                      </span>
-                    </td>
-                    <td style={{ padding: '12px 8px', fontWeight: '800', color: c.type === 'infinity' ? 'var(--color-orange-dark)' : 'var(--color-text)' }}>
-                      {c.type === 'infinity' ? '∞' : c.reward}
-                    </td>
-                    <td style={{ padding: '12px 8px', fontWeight: '800', color: 'var(--color-text-light)', fontSize: '13px' }}>
-                      {c.expiresAt ? new Date(c.expiresAt).toLocaleDateString('en-US', { year: 'numeric', month: 'numeric', day: 'numeric' }) : 'Never'}
-                    </td>
-                    <td style={{ padding: '12px 8px', fontWeight: '800', color: 'var(--color-text-light)', fontSize: '13px' }}>
-                      {c.type === 'infinity' ? (c.infinityDuration ? formatDuration(c.infinityDuration) : 'Never') : 'N/A'}
-                    </td>
-                    <td style={{ padding: '12px 8px', fontWeight: '800', color: 'var(--color-text-light)', fontSize: '13px' }}>
-                      {c.maxRedemptions ? `${redemptionsCount} / ${c.maxRedemptions}` : `${redemptionsCount} claims`}
-                    </td>
-                    <td style={{ padding: '12px 8px', color: 'var(--color-text-light)', fontSize: '13px' }}>{c.description}</td>
-                    <td style={{ padding: '12px 8px' }}>
-                      <div style={{ display: 'flex', gap: '8px' }}>
-                        <button
-                          className="cms-promo-icon-btn cms-promo-edit-btn icon-action-btn"
-                          onClick={() => startEditing(c)}
-                          title="Edit Promo Code"
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-pencil">
-                            <path d="M12 20h9"/>
-                            <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
-                          </svg>
-                        </button>
-                        <button
-                          className="cms-promo-icon-btn cms-promo-delete-btn icon-action-btn delete"
-                          onClick={() => {
-                            triggerConfirm({
-                              title: 'Delete Promo Code',
-                              message: `Are you sure you want to delete promo code "${c.code}"? Users will no longer be able to claim it.`,
-                              confirmText: 'Delete Code',
-                              isDanger: true,
-                              onConfirm: () => {
-                                dispatch({ type: 'DELETE_PROMO_CODE', code: c.code });
-                                showToast(`Promo code ${c.code} has been deleted.`);
-                              }
-                            });
-                          }}
-                          title="Delete Promo Code"
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-trash-2">
-                            <path d="M3 6h18"/>
-                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
-                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
-                            <line x1="10" x2="10" y1="11" y2="17"/>
-                            <line x1="14" x2="14" y1="11" y2="17"/>
-                          </svg>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })}
-              {promoCodes.length === 0 && (
+                })
+              )}
+              {!isLoading && promoCodes.length === 0 && (
                 <tr>
                   <td colSpan="8" className="cms-promo-no-data" style={{ padding: '20px 8px', color: 'var(--color-text-light)', fontStyle: 'italic', textAlign: 'center' }}>No custom promo codes found. Create one above!</td>
                 </tr>
@@ -429,6 +469,11 @@ export default function PromoCodesSection({
           </table>
         </div>
       </div>
+      <style>{`
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
     </div>
   );
 }
