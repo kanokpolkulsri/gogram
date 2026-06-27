@@ -30,6 +30,7 @@ const initialStoreState = {
   mockUsers: [],
   promoCodes: [],
   auditLogs: [],
+  quizCache: {},
   lastCategoryId: null,
   isAuthenticated: false,
   authProfile: null,
@@ -38,6 +39,27 @@ const initialStoreState = {
 
 function userReducer(state, action) {
   switch (action.type) {
+    case 'SET_QUIZ_CACHE':
+      return {
+        ...state,
+        quizCache: {
+          ...state.quizCache,
+          [`${action.unitId}-${action.levelId}`]: {
+            questions: action.questions,
+            currentIndex: action.currentIndex
+          }
+        }
+      };
+
+    case 'REMOVE_QUIZ_CACHE_KEY': {
+      const newCache = { ...state.quizCache };
+      delete newCache[`${action.unitId}-${action.levelId}`];
+      return {
+        ...state,
+        quizCache: newCache
+      };
+    }
+
     case 'SET_AUTH_LOADING':
       return {
         ...state,
@@ -317,6 +339,28 @@ export function UserProvider({ children }) {
         } catch (err) {
           console.error('Failed to load lazy categories/units:', err);
         }
+        break;
+
+      case 'PREFETCH_QUIZ':
+        try {
+          const res = await api.post('/quiz/session/start', {
+            unitId: parseInt(action.unitId),
+            levelId: action.levelId
+          });
+          rawDispatch({
+            type: 'SET_QUIZ_CACHE',
+            unitId: action.unitId,
+            levelId: action.levelId,
+            questions: res.questions,
+            currentIndex: res.currentIndex
+          });
+        } catch (err) {
+          console.warn(`Prefetch failed for level ${action.unitId}-${action.levelId}:`, err);
+        }
+        break;
+
+      case 'REMOVE_QUIZ_CACHE_KEY':
+        rawDispatch(action);
         break;
 
       case 'SET_LAST_CATEGORY':

@@ -39,10 +39,21 @@ export default function QuizPage() {
   const totalQuestions = questions.length;
   const currentQuestion = questions[currentIndex];
 
-  // Load questions and current progress index from the backend API
+  // Load questions and current progress index from cache or backend API
   useEffect(() => {
     let isMounted = true;
     async function loadQuizSession() {
+      // 1. Check if the session is cached in userStore
+      const cacheKey = `${unitId}-${levelId}`;
+      if (user.quizCache && user.quizCache[cacheKey]) {
+        const cached = user.quizCache[cacheKey];
+        setQuestions(cached.questions);
+        setCurrentIndex(cached.currentIndex);
+        setLoading(false);
+        return;
+      }
+
+      // 2. Fallback to API call if not cached
       try {
         setLoading(true);
         const data = await api.post('/quiz/session/start', {
@@ -64,7 +75,7 @@ export default function QuizPage() {
     }
     loadQuizSession();
     return () => { isMounted = false; };
-  }, [unitId, levelId]);
+  }, [unitId, levelId, user.quizCache]);
 
   const handleSelect = (answer) => {
     if (isAnswered || user.hearts === 0) return;
@@ -110,7 +121,13 @@ export default function QuizPage() {
     }
 
     if (currentIndex + 1 >= totalQuestions) {
-      // Lesson complete!
+      // Lesson complete! Clear this level from cache
+      dispatch({
+        type: 'REMOVE_QUIZ_CACHE_KEY',
+        unitId: parseInt(unitId),
+        levelId
+      });
+
       dispatch({
         type: 'COMPLETE_LESSON',
         unitId: parseInt(unitId),

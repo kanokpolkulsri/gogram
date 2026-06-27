@@ -78,6 +78,32 @@ export default function LearnPage() {
     return () => clearTimeout(timer);
   }, [activeCategoryId, categoryUnits]);
 
+  // Pre-fetch quiz sessions for contiguous units (previous, current, next) in the background
+  useEffect(() => {
+    if (categoryUnits.length === 0 || !nextLesson) return;
+
+    const currentUnitIndex = categoryUnits.findIndex(u => u.id === nextLesson.unitId);
+    if (currentUnitIndex === -1) return;
+
+    const unitsToPrefetch = [];
+    if (currentUnitIndex > 0) {
+      unitsToPrefetch.push(categoryUnits[currentUnitIndex - 1]);
+    }
+    unitsToPrefetch.push(categoryUnits[currentUnitIndex]);
+    if (currentUnitIndex < categoryUnits.length - 1) {
+      unitsToPrefetch.push(categoryUnits[currentUnitIndex + 1]);
+    }
+
+    unitsToPrefetch.forEach(unit => {
+      unit.levels.forEach(level => {
+        const cacheKey = `${unit.id}-${level.id}`;
+        if (!user.quizCache || !user.quizCache[cacheKey]) {
+          dispatch({ type: 'PREFETCH_QUIZ', unitId: unit.id, levelId: level.id });
+        }
+      });
+    });
+  }, [categoryUnits, nextLesson, user.quizCache, dispatch]);
+
   // Track which unit is currently in view using scroll position detection
   useEffect(() => {
     if (categoryUnits.length === 0) return;
