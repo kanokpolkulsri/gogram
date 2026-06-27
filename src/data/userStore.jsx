@@ -181,6 +181,7 @@ export function UserProvider({ children }) {
             email: firebaseUser.email,
             displayName: firebaseUser.displayName || profile.name,
             photoURL: firebaseUser.photoURL,
+          },
           mockUsers: [],
           promoCodes: [],
           auditLogs: [],
