@@ -185,8 +185,14 @@ export default function QuizPage() {
 
   if (loading) {
     return (
-      <div className="quiz-page quiz-loading">
-        <div className="quiz-loading-spinner">Loading quiz questions...</div>
+      <div className="quiz-page" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', gap: '16px' }}>
+        <div className="cms-loading-spinner" style={{ width: '40px', height: '40px', border: '4px solid var(--color-gray)', borderTopColor: 'var(--color-blue-dark)', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+        <p style={{ fontWeight: '700', color: 'var(--color-text-light)' }}>Loading quiz questions...</p>
+        <style>{`
+          @keyframes spin {
+            to { transform: rotate(360deg); }
+          }
+        `}</style>
       </div>
     );
   }
