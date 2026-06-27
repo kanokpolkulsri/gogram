@@ -128,23 +128,28 @@ export default function QuizPage() {
         levelId
       });
 
+      // Dispatch backend save in background
       dispatch({
         type: 'COMPLETE_LESSON',
         unitId: parseInt(unitId),
-        levelId,
-        onSuccess: (res) => {
-          navigate('/lesson-complete', {
-            state: { 
-              score, 
-              total: totalQuestions, 
-              xp: res.unitCompleted ? 1 : 0, 
-              levelUp: res.unitCompleted, 
-              newLevel: res.unitCompleted ? 2 : 1, 
-              categoryTitle: res.unitTitle || 'Grammar', 
-              categoryId: unit?.category 
-            },
-          });
-        }
+        levelId
+      });
+
+      // Navigate instantly with locally estimated metrics
+      const isUnitFinished = levelId === 'hard2';
+      const categoryTitle = unit?.title || 'Grammar';
+      const categoryId = unit?.category || 'grammar';
+
+      navigate('/lesson-complete', {
+        state: { 
+          score, 
+          total: totalQuestions, 
+          xp: isUnitFinished ? 1 : 0, 
+          levelUp: isUnitFinished, 
+          newLevel: isUnitFinished ? 2 : 1, 
+          categoryTitle, 
+          categoryId 
+        },
       });
     } else {
       const nextIdx = currentIndex + 1;

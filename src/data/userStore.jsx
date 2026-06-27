@@ -85,6 +85,17 @@ function userReducer(state, action) {
         ...action.payload
       };
 
+    case 'COMPLETE_LESSON_OPTIMISTIC': {
+      const key = `${action.unitId}-${action.levelId}`;
+      const newCompleted = state.completedLessons.includes(key)
+        ? state.completedLessons
+        : [...state.completedLessons, key];
+      return {
+        ...state,
+        completedLessons: newCompleted
+      };
+    }
+
     case 'COMPLETE_LESSON_SUCCESS':
       return {
         ...state,
@@ -273,14 +284,18 @@ export function UserProvider({ children }) {
         break;
 
       case 'COMPLETE_LESSON':
-        try {
-          const res = await api.post('/quiz/session/complete', {
-            unitId: action.unitId,
-            levelId: action.levelId
-          });
+        rawDispatch({
+          type: 'COMPLETE_LESSON_OPTIMISTIC',
+          unitId: action.unitId,
+          levelId: action.levelId
+        });
 
-          // Reload fresh profile mapping to get new global and category XP
-          const profile = await api.post('/auth/sync');
+        api.post('/quiz/session/complete', {
+          unitId: action.unitId,
+          levelId: action.levelId
+        }).then(() => {
+          return api.post('/auth/sync');
+        }).then(profile => {
           rawDispatch({
             type: 'COMPLETE_LESSON_SUCCESS',
             payload: {
@@ -289,11 +304,9 @@ export function UserProvider({ children }) {
               progress: profile.progress
             }
           });
-
-          if (action.onSuccess) action.onSuccess(res);
-        } catch (e) {
-          console.error('Failed to complete lesson on backend:', e);
-        }
+        }).catch(err => {
+          console.error('Failed to complete lesson on backend:', err);
+        });
         break;
 
       case 'APPLY_PROMO_CODE':
