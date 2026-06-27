@@ -274,82 +274,8 @@ export default function UsersSection({
                               Details for {u.name.split(' (')[0]}
                             </h4>
                             
-                            <div className="cms-expanded-progress-grid">
-                              {categories.map(cat => {
-                                const catUnits = units.filter(un => un.category === cat.id);
-                                let completedCount = u.progress?.[cat.id] || 0;
-                                if (u.uid === currentUser?.uid) {
-                                  completedCount = catUnits.reduce((sum, un) => {
-                                    return sum + un.levels.filter(l => currentUser?.completedLessons?.includes(`${un.id}-${l.id}`)).length;
-                                  }, 0);
-                                }
-                                const computedLevel = Math.floor(completedCount / 5) + 1;
-
-                                return (
-                                  <div key={cat.id} className="cms-progress-category-card">
-                                    <div className="cms-progress-category-info">
-                                      <span className="cms-progress-category-title">{cat.title}</span>
-                                    </div>
-                                    <div className="cms-progress-category-stats" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                      {completedCount > 0 && (
-                                        <button
-                                          className="icon-action-btn cms-reset-progress-btn"
-                                          title={`Reset ${cat.title} progress`}
-                                          onClick={() => {
-                                            triggerConfirm({
-                                              title: 'Reset Category Progress',
-                                              message: `Are you sure you want to reset progress in "${cat.title}" for ${u.name}? This will wipe their category scores and completed lesson keys for this category.`,
-                                              confirmText: 'Reset Progress',
-                                              isDanger: true,
-                                              onConfirm: () => {
-                                                const updatedProgress = { ...(u.progress || {}), [cat.id]: 0 };
-                                                apiUpdateUser(u.uid, { progress: updatedProgress })
-                                                  .then(() => {
-                                                    dispatch({
-                                                      type: 'RESET_USER_PROGRESS_IN_CATEGORY',
-                                                      userId: u.uid,
-                                                      categoryId: cat.id,
-                                                      isCurrentUser: u.uid === currentUser?.uid
-                                                    });
-                                                    showToast(`Progress reset for ${u.name} in ${cat.title}.`);
-                                                  })
-                                                  .catch(err => showToast(`Failed to reset progress: ${err.message}`));
-                                              }
-                                            });
-                                          }}
-                                        >
-                                          🔄
-                                        </button>
-                                      )}
-                                      <select
-                                        value={computedLevel}
-                                        onChange={(e) => {
-                                          const val = parseInt(e.target.value);
-                                          dispatch({
-                                            type: 'UPDATE_USER_PROGRESS_LEVEL',
-                                            userId: u.uid,
-                                            categoryId: cat.id,
-                                            levelValue: val
-                                          });
-                                          showToast(`Updated ${u.name.split(' (')[0]}'s ${cat.title} to Level ${val}`);
-                                        }}
-                                        className="cms-level-select"
-                                        style={{ padding: '4px 8px', borderRadius: '8px', border: '1px solid var(--color-gray)', fontSize: '13px', fontWeight: '700', backgroundColor: 'white', cursor: 'pointer' }}
-                                      >
-                                        <option value="1">LV 1</option>
-                                        <option value="2">LV 2</option>
-                                        <option value="3">LV 3</option>
-                                        <option value="4">LV 4</option>
-                                        <option value="5">LV 5</option>
-                                      </select>
-                                    </div>
-                                  </div>
-                                );
-                              })}
-                            </div>
-
                             {/* Account settings, Hearts and Promo Codes inside expanded-progress-container */}
-                            <div className="cms-user-details-settings-container" style={{ marginTop: '20px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
+                            <div className="cms-user-details-settings-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
                               <div className="cms-user-details-settings-block" style={{ background: 'white', padding: '16px', borderRadius: '12px', border: '1px solid var(--color-gray)', display: 'flex', flexDirection: 'column', gap: '12px' }}>
                                 <div className="cms-user-details-settings-group" style={{ display: 'flex', flexDirection: 'column', gap: '6px', textAlign: 'left' }}>
                                   <h5 className="cms-user-details-settings-title" style={{ fontSize: '14px', fontWeight: '800', color: 'var(--color-text)', margin: 0, marginBottom: '4px' }}>Account Settings</h5>
@@ -522,6 +448,45 @@ export default function UsersSection({
                                   </div>
                                 </div>
                               </div>
+                            </div>
+
+                            {/* Learning Progress Section */}
+                            <h5 style={{ fontSize: '13px', fontWeight: '800', color: 'var(--color-text-light)', marginTop: '24px', marginBottom: '12px', textAlign: 'left', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Category Progress</h5>
+                            <div className="cms-expanded-progress-grid">
+                              {categories.map(cat => {
+                                const catUnits = units.filter(un => un.category === cat.id);
+                                let completedCount = u.progress?.[cat.id] || 0;
+                                if (u.uid === currentUser?.uid) {
+                                  completedCount = catUnits.reduce((sum, un) => {
+                                    return sum + un.levels.filter(l => currentUser?.completedLessons?.includes(`${un.id}-${l.id}`)).length;
+                                  }, 0);
+                                }
+                                const computedLevel = Math.floor(completedCount / 5) + 1;
+
+                                return (
+                                  <div key={cat.id} className="cms-progress-category-card">
+                                    <div className="cms-progress-category-info">
+                                      <span className="cms-progress-category-title">{cat.title}</span>
+                                    </div>
+                                    <div className="cms-progress-category-stats" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                      <span
+                                        className="cms-level-badge"
+                                        style={{
+                                          padding: '4px 12px',
+                                          borderRadius: '8px',
+                                          border: '1px solid var(--color-gray)',
+                                          fontSize: '13px',
+                                          fontWeight: '700',
+                                          backgroundColor: '#F3F4F6',
+                                          color: 'var(--color-text)'
+                                        }}
+                                      >
+                                        LV {computedLevel}
+                                      </span>
+                                    </div>
+                                  </div>
+                                );
+                              })}
                             </div>
                           </div>
                         </td>
