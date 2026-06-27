@@ -148,15 +148,13 @@ export default function QuizPage() {
       });
     } else {
       const nextIdx = currentIndex + 1;
-      try {
-        await api.post('/quiz/session/progress', {
-          unitId: parseInt(unitId),
-          levelId,
-          nextIndex: nextIdx
-        });
-      } catch (err) {
+      api.post('/quiz/session/progress', {
+        unitId: parseInt(unitId),
+        levelId,
+        nextIndex: nextIdx
+      }).catch(err => {
         console.warn('Failed to update question progress index on backend:', err);
-      }
+      });
 
       setAnimating(true);
       setTimeout(() => {
