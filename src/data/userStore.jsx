@@ -199,6 +199,15 @@ export function UserProvider({ children }) {
           isAuthLoading: false
         }
       });
+
+      Promise.all([
+        api.get('/learn/categories'),
+        api.get('/learn/units')
+      ]).then(([categories, units]) => {
+        rawDispatch({ type: 'SET_CATEGORIES_AND_UNITS', categories, units });
+      }).catch(err => {
+        console.warn('Background startup revalidation of categories/units failed:', err);
+      });
     } catch (error) {
       console.error('Failed to initialize synced database profile:', error);
       rawDispatch({ type: 'AUTH_STATE_CHANGED', user: null });
@@ -335,10 +344,10 @@ export function UserProvider({ children }) {
         }
         break;
 
-      case 'ENSURE_LEARN_DATA': {
-        const hasData = user.categories && user.categories.length > 0 && user.units && user.units.length > 0;
-        if (hasData) {
+      case 'ENSURE_LEARN_DATA':
+        if (user.categories && user.categories.length > 0 && user.units && user.units.length > 0) {
           if (action.onSuccess) action.onSuccess();
+          break;
         }
         try {
           const [categories, units] = await Promise.all([
@@ -346,12 +355,11 @@ export function UserProvider({ children }) {
             api.get('/learn/units')
           ]);
           rawDispatch({ type: 'SET_CATEGORIES_AND_UNITS', categories, units });
-          if (!hasData && action.onSuccess) action.onSuccess();
+          if (action.onSuccess) action.onSuccess();
         } catch (err) {
-          console.error('Failed to load/revalidate lazy categories/units:', err);
+          console.error('Failed to load lazy categories/units:', err);
         }
         break;
-      }
 
       case 'PREFETCH_QUIZ':
         try {
