@@ -75,7 +75,7 @@ export default function QuizPage() {
     }
     loadQuizSession();
     return () => { isMounted = false; };
-  }, [unitId, levelId, user.quizCache]);
+  }, [unitId, levelId]);
 
   const handleSelect = (answer) => {
     if (isAnswered || user.hearts === 0) return;
