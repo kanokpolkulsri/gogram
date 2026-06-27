@@ -17,24 +17,46 @@ export default function LearnPage() {
   // Load the active category from the parameter, defaulting to the last studied category (can be null)
   const activeCategoryId = categoryId || user.lastCategoryId;
 
+  // Validate the categoryId and handle redirects if invalid
+  useEffect(() => {
+    if (user.categories && user.categories.length > 0) {
+      // If URL contains an invalid category ID, redirect to a valid place
+      if (categoryId && !user.categories.some(c => c.id === categoryId)) {
+        const isValidLast = user.lastCategoryId && user.categories.some(c => c.id === user.lastCategoryId);
+        if (isValidLast) {
+          navigate(`/learn/${user.lastCategoryId}`, { replace: true });
+        } else {
+          navigate('/dashboard', { replace: true });
+        }
+        return;
+      }
+      // If store's lastCategoryId is invalid, reset it to the first valid category
+      if (user.lastCategoryId && !user.categories.some(c => c.id === user.lastCategoryId)) {
+        dispatch({ type: 'SET_LAST_CATEGORY', categoryId: user.categories[0].id });
+      }
+    }
+  }, [categoryId, user.categories, user.lastCategoryId, navigate, dispatch]);
+
   // Keep userStore updated with the last studied category
   useEffect(() => {
-    if (activeCategoryId) {
-      dispatch({ type: 'SET_LAST_CATEGORY', categoryId: activeCategoryId });
+    if (activeCategoryId && user.categories && user.categories.length > 0) {
+      const isValid = user.categories.some(c => c.id === activeCategoryId);
+      if (isValid) {
+        dispatch({ type: 'SET_LAST_CATEGORY', categoryId: activeCategoryId });
+      }
     }
-  }, [activeCategoryId, dispatch]);
+  }, [activeCategoryId, user.categories, dispatch]);
 
   const categoryInfo = useMemo(() => {
     const studyCategories = user.categories || [];
-    return studyCategories.find((c) => c.id === activeCategoryId) || studyCategories[0];
+    if (!activeCategoryId) return studyCategories[0];
+    return studyCategories.find((c) => c.id === activeCategoryId);
   }, [activeCategoryId, user.categories]);
 
   const categoryUnits = useMemo(() => {
-    if (!categoryInfo) return [];
+    if (!categoryInfo || !activeCategoryId) return [];
     const units = user.units || [];
-    return activeCategoryId
-      ? units.filter((u) => u.category === categoryInfo.id)
-      : [];
+    return units.filter((u) => u.category === categoryInfo.id);
   }, [activeCategoryId, categoryInfo, user.units]);
 
   const nextLesson = getNextLesson(user.completedLessons, categoryUnits);
