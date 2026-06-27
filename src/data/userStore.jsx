@@ -181,9 +181,6 @@ export function UserProvider({ children }) {
             email: firebaseUser.email,
             displayName: firebaseUser.displayName || profile.name,
             photoURL: firebaseUser.photoURL,
-          },
-          categories: [],
-          units: [],
           mockUsers: [],
           promoCodes: [],
           auditLogs: [],
@@ -324,10 +321,10 @@ export function UserProvider({ children }) {
         }
         break;
 
-      case 'ENSURE_LEARN_DATA':
-        if (user.categories && user.categories.length > 0 && user.units && user.units.length > 0) {
+      case 'ENSURE_LEARN_DATA': {
+        const hasData = user.categories && user.categories.length > 0 && user.units && user.units.length > 0;
+        if (hasData) {
           if (action.onSuccess) action.onSuccess();
-          break;
         }
         try {
           const [categories, units] = await Promise.all([
@@ -335,11 +332,12 @@ export function UserProvider({ children }) {
             api.get('/learn/units')
           ]);
           rawDispatch({ type: 'SET_CATEGORIES_AND_UNITS', categories, units });
-          if (action.onSuccess) action.onSuccess();
+          if (!hasData && action.onSuccess) action.onSuccess();
         } catch (err) {
-          console.error('Failed to load lazy categories/units:', err);
+          console.error('Failed to load/revalidate lazy categories/units:', err);
         }
         break;
+      }
 
       case 'PREFETCH_QUIZ':
         try {
