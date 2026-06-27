@@ -94,11 +94,15 @@ export default function LearnPage() {
       unitsToPrefetch.push(categoryUnits[currentUnitIndex + 1]);
     }
 
+    let delay = 0;
     unitsToPrefetch.forEach(unit => {
       unit.levels.forEach(level => {
         const cacheKey = `${unit.id}-${level.id}`;
         if (!user.quizCache || !user.quizCache[cacheKey]) {
-          dispatch({ type: 'PREFETCH_QUIZ', unitId: unit.id, levelId: level.id });
+          setTimeout(() => {
+            dispatch({ type: 'PREFETCH_QUIZ', unitId: unit.id, levelId: level.id });
+          }, delay);
+          delay += 100;
         }
       });
     });
