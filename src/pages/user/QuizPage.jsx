@@ -305,7 +305,7 @@ export default function QuizPage() {
             </div>
           )}
           <button
-            className={`btn ${selectedAnswer && user.hearts > 0 ? 'btn-primary' : 'btn-disabled'}`}
+            className={`btn ${selectedAnswer && (user.hearts === 'infinity' || Number(user.hearts) > 0) ? 'btn-primary' : 'btn-disabled'}`}
             onClick={handleCheck}
             disabled={!selectedAnswer || user.hearts === 0}
             id="quiz-check-btn"
