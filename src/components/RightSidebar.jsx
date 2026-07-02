@@ -203,14 +203,7 @@ export default function RightSidebar() {
                 ‹
               </button>
 
-              {/* Learn Action Button in the middle */}
-              <button 
-                className={`vocab-learn-action-btn ${learnedIndices.includes(vocabIndex) ? 'learned' : ''}`}
-                onClick={handleMarkAsLearned}
-                disabled={learnedIndices.includes(vocabIndex)}
-              >
-                {learnedIndices.includes(vocabIndex) ? 'Learned ✓' : 'Learn'}
-              </button>
+
 
               <button 
                 className="vocab-carousel-arrow" 
