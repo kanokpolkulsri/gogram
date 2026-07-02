@@ -39,7 +39,7 @@
 .hearts-infinity-mode .hearts-count {
   font-size: 20px;
   font-weight: 900;
-  color: var(--color-orange-dark);
+  color: var(--color-text);
 }
 
 .hearts-empty {
