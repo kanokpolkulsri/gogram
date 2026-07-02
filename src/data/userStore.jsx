@@ -227,6 +227,15 @@ export function UserProvider({ children }) {
   // Set up auth state change hook
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      // If the user lands on the welcome page, we clear any stale Firebase auth session
+      // to prevent background database sync calls unless they explicitly clicked login.
+      if (window.location.pathname === '/welcome' && firebaseUser && !sessionStorage.getItem('gogram_login_clicked')) {
+        try {
+          auth.signOut();
+        } catch (e) {}
+        rawDispatch({ type: 'AUTH_STATE_CHANGED', user: null });
+        return;
+      }
       syncProfile(firebaseUser);
     });
     return () => unsubscribe();

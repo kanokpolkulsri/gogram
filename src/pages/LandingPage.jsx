@@ -76,10 +76,12 @@ export default function LandingPage() {
 
   const handleGoogleLogin = async () => {
     try {
+      sessionStorage.setItem('gogram_login_clicked', 'true');
       await signInWithPopup(auth, googleProvider);
       // Successful login triggers onAuthStateChanged in userStore context, 
       // which handles auth state updates and redirects the user automatically.
     } catch (error) {
+      sessionStorage.removeItem('gogram_login_clicked');
       console.error('Google Sign-In failed:', error);
       alert('Failed to sign in with Google. Please try again.');
     }
