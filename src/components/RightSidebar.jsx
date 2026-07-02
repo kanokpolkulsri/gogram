@@ -193,26 +193,6 @@ export default function RightSidebar() {
                 🎉 All 5 words learned today!
               </div>
             )}
-
-            <div className="vocab-carousel-controls">
-              <button 
-                className="vocab-carousel-arrow" 
-                onClick={prevVocab}
-                title="Previous word"
-              >
-                ‹
-              </button>
-
-
-
-              <button 
-                className="vocab-carousel-arrow" 
-                onClick={nextVocab}
-                title="Next word"
-              >
-                ›
-              </button>
-            </div>
           </>
         )}
       </div>
