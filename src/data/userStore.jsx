@@ -200,14 +200,17 @@ export function UserProvider({ children }) {
         }
       });
 
-      Promise.all([
-        api.get('/learn/categories'),
-        api.get('/learn/units')
-      ]).then(([categories, units]) => {
-        rawDispatch({ type: 'SET_CATEGORIES_AND_UNITS', categories, units });
-      }).catch(err => {
-        console.warn('Background startup revalidation of categories/units failed:', err);
-      });
+      // Only eager-load learn data on startup if we are not landing on an admin page
+      if (!window.location.pathname.startsWith('/admin')) {
+        Promise.all([
+          api.get('/learn/categories'),
+          api.get('/learn/units')
+        ]).then(([categories, units]) => {
+          rawDispatch({ type: 'SET_CATEGORIES_AND_UNITS', categories, units });
+        }).catch(err => {
+          console.warn('Background startup revalidation of categories/units failed:', err);
+        });
+      }
     } catch (error) {
       console.error('Failed to initialize synced database profile:', error);
       rawDispatch({ type: 'AUTH_STATE_CHANGED', user: null });
