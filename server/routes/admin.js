@@ -946,4 +946,158 @@ router.post('/questions/publish', async (req, res) => {
   }
 });
 
+// 7. Category CRUD Routes
+
+// 7a. Create a category
+router.post('/categories', async (req, res) => {
+  const { title, description, color } = req.body;
+  if (!title) {
+    return res.status(400).json({ error: 'Category title is required' });
+  }
+  // Generate a URL-friendly ID from the title
+  const id = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || `cat-${Date.now()}`;
+  try {
+    await query(
+      `INSERT INTO categories (id, title, description, color, icon_char)
+       VALUES ($1, $2, $3, $4, $5)`,
+      [id, title, description || '', color || '#58CC02', title.slice(0, 1).toUpperCase()]
+    );
+    await logAction(req.user.uid, req.adminName, `Created category "${title}" (${id})`);
+    res.json({ success: true, categoryId: id });
+  } catch (error) {
+    console.error('Error creating category:', error);
+    res.status(500).json({ error: 'Server error while creating category' });
+  }
+});
+
+// 7b. Update/Edit a category (including color)
+router.put('/categories/:id', async (req, res) => {
+  const { id } = req.params;
+  const { title, description, color } = req.body;
+  if (!title) {
+    return res.status(400).json({ error: 'Category title is required' });
+  }
+  try {
+    const updateRes = await query(
+      `UPDATE categories 
+       SET title = $1, description = $2, color = $3 
+       WHERE id = $4`,
+      [title, description || '', color || '#58CC02', id]
+    );
+    if (updateRes.rowCount === 0) {
+      return res.status(404).json({ error: 'Category not found' });
+    }
+    await logAction(req.user.uid, req.adminName, `Updated category "${title}" (${id})`);
+    res.json({ success: true });
+  } catch (error) {
+    console.error('Error updating category:', error);
+    res.status(500).json({ error: 'Server error while updating category' });
+  }
+});
+
+// 7c. Delete a category
+router.delete('/categories/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const delRes = await query('DELETE FROM categories WHERE id = $1', [id]);
+    if (delRes.rowCount === 0) {
+      return res.status(404).json({ error: 'Category not found' });
+    }
+    await logAction(req.user.uid, req.adminName, `Deleted category (${id})`);
+    res.json({ success: true });
+  } catch (error) {
+    console.error('Error deleting category:', error);
+    res.status(500).json({ error: 'Server error while deleting category' });
+  }
+});
+
+// 8. Unit (Topic) CRUD Routes
+
+// 8a. Create a unit
+router.post('/units', async (req, res) => {
+  const { categoryId, title, description, color } = req.body;
+  if (!categoryId || !title) {
+    return res.status(400).json({ error: 'categoryId and title are required' });
+  }
+  try {
+    // Get count of existing units in this category to calculate unit_number
+    const countRes = await query('SELECT COALESCE(MAX(id), 0) AS max_id FROM units');
+    const countInCat = await query('SELECT COUNT(*)::int AS count FROM units WHERE category_id = $1', [categoryId]);
+    
+    const newUnitId = countRes.rows[0].max_id + 1;
+    const unitNumber = countInCat.rows[0].count + 1;
+    const unitColor = color || '#58CC02';
+
+    await query(
+      `INSERT INTO units (id, category_id, unit_number, title, description, color)
+       VALUES ($1, $2, $3, $4, $5, $6)`,
+      [newUnitId, categoryId, unitNumber, title, description || '', unitColor]
+    );
+
+    // Seed default levels for this unit (easy, medium1, medium2, hard1, hard2)
+    const levels = [
+      { id: 'easy', label: 'Easy', xp: 10, icon: 'star' },
+      { id: 'medium1', label: 'Medium 1', xp: 15, icon: 'star' },
+      { id: 'medium2', label: 'Medium 2', xp: 15, icon: 'dumbbell' },
+      { id: 'hard1', label: 'Hard 1', xp: 20, icon: 'level-up' },
+      { id: 'hard2', label: 'Hard 2', xp: 35, icon: 'boss' }
+    ];
+
+    for (const lvl of levels) {
+      await query(
+        `INSERT INTO levels (unit_id, id, label, xp_reward, icon)
+         VALUES ($1, $2, $3, $4, $5)`,
+        [newUnitId, lvl.id, lvl.label, lvl.xp, lvl.icon]
+      );
+    }
+
+    await logAction(req.user.uid, req.adminName, `Created topic "${title}" (ID ${newUnitId}) in category ${categoryId}`);
+    res.json({ success: true, unitId: newUnitId });
+  } catch (error) {
+    console.error('Error creating unit:', error);
+    res.status(500).json({ error: 'Server error while creating topic' });
+  }
+});
+
+// 8b. Update/Edit a unit
+router.put('/units/:id', async (req, res) => {
+  const { id } = req.params;
+  const { title, description } = req.body;
+  if (!title) {
+    return res.status(400).json({ error: 'Topic title is required' });
+  }
+  try {
+    const updateRes = await query(
+      `UPDATE units 
+       SET title = $1, description = $2 
+       WHERE id = $3`,
+      [title, description || '', parseInt(id)]
+    );
+    if (updateRes.rowCount === 0) {
+      return res.status(404).json({ error: 'Topic not found' });
+    }
+    await logAction(req.user.uid, req.adminName, `Updated topic "${title}" (ID ${id})`);
+    res.json({ success: true });
+  } catch (error) {
+    console.error('Error updating unit:', error);
+    res.status(500).json({ error: 'Server error while updating topic' });
+  }
+});
+
+// 8c. Delete a unit
+router.delete('/units/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const delRes = await query('DELETE FROM units WHERE id = $1', [parseInt(id)]);
+    if (delRes.rowCount === 0) {
+      return res.status(404).json({ error: 'Topic not found' });
+    }
+    await logAction(req.user.uid, req.adminName, `Deleted topic (ID ${id})`);
+    res.json({ success: true });
+  } catch (error) {
+    console.error('Error deleting unit:', error);
+    res.status(500).json({ error: 'Server error while deleting topic' });
+  }
+});
+
 export default router;

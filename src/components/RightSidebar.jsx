@@ -160,13 +160,7 @@ export default function RightSidebar() {
                     <h4 className="vocab-vertical-word">{item.word}</h4>
                     <span className="vocab-vertical-type">{item.type}</span>
                   </div>
-                  <button 
-                    className={`vocab-vertical-action-btn ${learnedIndices.includes(index) ? 'learned' : ''}`}
-                    onClick={() => learnWord(index)}
-                    disabled={learnedIndices.includes(index)}
-                  >
-                    {learnedIndices.includes(index) ? 'Learned ✓' : 'Learn'}
-                  </button>
+
                 </div>
                 <p className="vocab-vertical-translation">{item.thai}</p>
                 <p className="vocab-vertical-example">

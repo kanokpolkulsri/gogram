@@ -182,6 +182,23 @@ export function UserProvider({ children }) {
       // 1. Sync auth profile record
       const profile = await api.post('/auth/sync', { name: firebaseUser.displayName });
       
+      let categories = [];
+      let units = [];
+
+      // Eager-load learn data on startup if we are not landing on an admin page
+      if (!window.location.pathname.startsWith('/admin')) {
+        try {
+          const [catRes, unitRes] = await Promise.all([
+            api.get('/learn/categories'),
+            api.get('/learn/units')
+          ]);
+          categories = catRes;
+          units = unitRes;
+        } catch (err) {
+          console.warn('Startup fetch of categories/units failed:', err);
+        }
+      }
+
       rawDispatch({
         type: 'INIT_APP_DATA',
         payload: {
@@ -193,24 +210,14 @@ export function UserProvider({ children }) {
             displayName: firebaseUser.displayName || profile.name,
             photoURL: firebaseUser.photoURL,
           },
+          categories,
+          units,
           mockUsers: [],
           promoCodes: [],
           auditLogs: [],
           isAuthLoading: false
         }
       });
-
-      // Only eager-load learn data on startup if we are not landing on an admin page
-      if (!window.location.pathname.startsWith('/admin')) {
-        Promise.all([
-          api.get('/learn/categories'),
-          api.get('/learn/units')
-        ]).then(([categories, units]) => {
-          rawDispatch({ type: 'SET_CATEGORIES_AND_UNITS', categories, units });
-        }).catch(err => {
-          console.warn('Background startup revalidation of categories/units failed:', err);
-        });
-      }
     } catch (error) {
       console.error('Failed to initialize synced database profile:', error);
       rawDispatch({ type: 'AUTH_STATE_CHANGED', user: null });
@@ -361,6 +368,19 @@ export function UserProvider({ children }) {
           if (action.onSuccess) action.onSuccess();
         } catch (err) {
           console.error('Failed to load lazy categories/units:', err);
+        }
+        break;
+
+      case 'REFRESH_LEARN_DATA':
+        try {
+          const [categories, units] = await Promise.all([
+            api.get('/learn/categories'),
+            api.get('/learn/units')
+          ]);
+          rawDispatch({ type: 'SET_CATEGORIES_AND_UNITS', categories, units });
+          if (action.onSuccess) action.onSuccess();
+        } catch (err) {
+          console.error('Failed to refresh categories/units:', err);
         }
         break;
 

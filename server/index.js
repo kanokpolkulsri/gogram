@@ -26,7 +26,7 @@ app.use(express.json());
 // Global Rate Limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 300, // Limit each IP to 300 requests per window
+  max: process.env.NODE_ENV === 'production' ? 300 : 2000, // Limit each IP in production, 2000 in dev
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: 'Too many requests from this IP, please try again after 15 minutes.' }

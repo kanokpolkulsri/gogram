@@ -8,6 +8,7 @@
 
 @media (min-width: 1024px) {
   .learn-scroll-area {
+    padding-bottom: 320px;
   }
 }
 

@@ -144,9 +144,9 @@ export default function LearnPage() {
 
       // Check if we are scrolled close to the bottom of the page
       const scrollHeight = document.documentElement.scrollHeight;
-      const clientHeight = document.documentElement.clientHeight;
+      const clientHeight = window.innerHeight;
       const scrollY = window.scrollY || window.pageYOffset;
-      const isAtBottom = scrollY + clientHeight >= scrollHeight - 50;
+      const isAtBottom = scrollY + clientHeight >= scrollHeight - 150;
 
       let activeIndex = 0;
 

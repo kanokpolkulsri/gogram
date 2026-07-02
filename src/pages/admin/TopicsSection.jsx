@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { api } from '../../data/api';
 
 export default function TopicsSection({
   categories,
@@ -26,6 +27,13 @@ export default function TopicsSection({
   const [newTopicTitle, setNewTopicTitle] = useState('');
   const [newTopicDesc, setNewTopicDesc] = useState('');
 
+  // Edit Category Modal States
+  const [showEditCategoryModal, setShowEditCategoryModal] = useState(false);
+  const [editingCategoryObj, setEditingCategoryObj] = useState(null);
+  const [ecTitle, setEcTitle] = useState('');
+  const [ecDesc, setEcDesc] = useState('');
+  const [ecColor, setEcColor] = useState('#58CC02');
+
   // Edit Topic Modal States
   const [showEditTopicModal, setShowEditTopicModal] = useState(false);
   const [editingTopicObj, setEditingTopicObj] = useState(null);
@@ -45,56 +53,68 @@ export default function TopicsSection({
   };
 
   // Save Topic Edit Handler
-  const handleSaveTopicEdit = (e) => {
+  const handleSaveTopicEdit = async (e) => {
     e.preventDefault();
     if (!editingTopicObj) return;
 
-    dispatch({
-      type: 'UPDATE_TOPIC',
-      unitId: editingTopicObj.id,
-      title: etTitle,
-      description: etDesc
-    });
-
-    setShowEditTopicModal(false);
-    setEditingTopicObj(null);
-    showToast('Topic updated successfully.');
+    try {
+      await api.put(`/admin/units/${editingTopicObj.id}`, {
+        title: etTitle,
+        description: etDesc
+      });
+      dispatch({ type: 'REFRESH_LEARN_DATA' });
+      setShowEditTopicModal(false);
+      setEditingTopicObj(null);
+      showToast('Topic updated successfully.');
+    } catch (err) {
+      console.error('Error updating topic:', err);
+      showToast(err.message || 'Failed to update topic.', true);
+    }
   };
 
   // Add Category Handler
-  const handleCreateCategory = (e) => {
+  const handleCreateCategory = async (e) => {
     e.preventDefault();
     if (!newCatTitle.trim()) return;
 
-    dispatch({
-      type: 'ADD_CATEGORY',
-      title: newCatTitle,
-      description: newCatDesc,
-      color: newCatColor
-    });
-
-    setNewCatTitle('');
-    setNewCatDesc('');
-    setShowAddCategoryModal(false);
-    showToast('Category created successfully.');
+    try {
+      await api.post('/admin/categories', {
+        title: newCatTitle,
+        description: newCatDesc,
+        color: newCatColor
+      });
+      dispatch({ type: 'REFRESH_LEARN_DATA' });
+      setNewCatTitle('');
+      setNewCatDesc('');
+      setShowAddCategoryModal(false);
+      showToast('Category created successfully.');
+    } catch (err) {
+      console.error('Error creating category:', err);
+      showToast(err.message || 'Failed to create category.', true);
+    }
   };
 
   // Add Topic (Unit) Handler
-  const handleCreateTopic = (e) => {
+  const handleCreateTopic = async (e) => {
     e.preventDefault();
     if (!newTopicTitle.trim()) return;
 
-    dispatch({
-      type: 'ADD_TOPIC',
-      categoryId: selectedTopicCatId,
-      title: newTopicTitle,
-      description: newTopicDesc
-    });
-
-    setNewTopicTitle('');
-    setNewTopicDesc('');
-    setShowAddTopicModal(false);
-    showToast('Topic created successfully.');
+    try {
+      await api.post('/admin/units', {
+        categoryId: selectedTopicCatId,
+        title: newTopicTitle,
+        description: newTopicDesc,
+        color: selectedCategoryObj?.color || '#58CC02'
+      });
+      dispatch({ type: 'REFRESH_LEARN_DATA' });
+      setNewTopicTitle('');
+      setNewTopicDesc('');
+      setShowAddTopicModal(false);
+      showToast('Topic created successfully.');
+    } catch (err) {
+      console.error('Error creating topic:', err);
+      showToast(err.message || 'Failed to create topic.', true);
+    }
   };
 
   const handleDeleteTopic = (unitId) => {
@@ -104,11 +124,46 @@ export default function TopicsSection({
       message: `Are you sure you want to delete the topic "${topicObj?.title || ''}" and all of its questions? This cannot be undone.`,
       confirmText: 'Delete Topic',
       isDanger: true,
-      onConfirm: () => {
-        dispatch({ type: 'DELETE_TOPIC', unitId });
-        showToast('Topic successfully deleted.');
+      onConfirm: async () => {
+        try {
+          await api.delete(`/admin/units/${unitId}`);
+          dispatch({ type: 'REFRESH_LEARN_DATA' });
+          showToast('Topic successfully deleted.');
+        } catch (err) {
+          console.error('Error deleting topic:', err);
+          showToast(err.message || 'Failed to delete topic.', true);
+        }
       }
     });
+  };
+
+  const handleStartCategoryEdit = (e, cat) => {
+    e.stopPropagation(); // Avoid selecting the category card
+    setEditingCategoryObj(cat);
+    setEcTitle(cat.title);
+    setEcDesc(cat.description || '');
+    setEcColor(cat.color || '#58CC02');
+    setShowEditCategoryModal(true);
+  };
+
+  const handleSaveCategoryEdit = async (e) => {
+    e.preventDefault();
+    if (!editingCategoryObj) return;
+
+    try {
+      await api.put(`/admin/categories/${editingCategoryObj.id}`, {
+        title: ecTitle,
+        description: ecDesc,
+        color: ecColor
+      });
+      dispatch({ type: 'REFRESH_LEARN_DATA' });
+      setShowEditCategoryModal(false);
+      setEditingCategoryObj(null);
+      showToast('Category updated successfully.');
+    } catch (err) {
+      console.error('Error updating category:', err);
+      showToast(err.message || 'Failed to update category.', true);
+    }
   };
 
   const handleDeleteCategory = (e, cat) => {
@@ -118,9 +173,15 @@ export default function TopicsSection({
       message: `Are you sure you want to delete the category "${cat.title}"? This will permanently delete all topics, questions, and student progress under this category. This action cannot be undone.`,
       confirmText: 'Delete Category',
       isDanger: true,
-      onConfirm: () => {
-        dispatch({ type: 'DELETE_CATEGORY', categoryId: cat.id });
-        showToast('Category successfully deleted.');
+      onConfirm: async () => {
+        try {
+          await api.delete(`/admin/categories/${cat.id}`);
+          dispatch({ type: 'REFRESH_LEARN_DATA' });
+          showToast('Category successfully deleted.');
+        } catch (err) {
+          console.error('Error deleting category:', err);
+          showToast(err.message || 'Failed to delete category.', true);
+        }
       }
     });
   };
@@ -144,44 +205,74 @@ export default function TopicsSection({
       </div>
 
       <div className="cms-split-layout cms-topics-split-layout">
-        {/* Left panel: Categories */}
-        <div className="cms-left-panel cms-topics-left-panel">
-          <div className="learners-list-header cms-topics-list-header">
-            <span>CATEGORIES</span>
+        {categories.length === 0 || units.length === 0 ? (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%', minHeight: '300px', gap: '12px' }}>
+            <div className="cms-loading-spinner" style={{ width: '40px', height: '40px', border: '4px solid var(--color-gray)', borderTopColor: 'var(--color-blue-dark)', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+            <p style={{ fontWeight: '700', color: 'var(--color-text-light)' }}>Loading topic data...</p>
+            <style>{`
+              @keyframes spin {
+                to { transform: rotate(360deg); }
+              }
+            `}</style>
           </div>
-          <div className="learners-list scrollbar cms-topics-categories-list">
-            {categories.map((cat) => {
-              const isSelected = cat.id === selectedTopicCatId;
-              return (
-                <div
-                  key={cat.id}
-                  className={`cms-category-item-card ${isSelected ? 'active' : ''}`}
-                  onClick={() => setSelectedTopicCatId(cat.id)}
-                >
-                  <span className="folder-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-folder cms-category-folder-icon">
-                      <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/>
-                    </svg>
-                  </span>
-                  <span className="category-label-text">{cat.title}</span>
-                  <button
-                    className="icon-action-btn delete-category-btn"
-                    onClick={(e) => handleDeleteCategory(e, cat)}
-                    title="Delete Category"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-trash-2">
-                      <path d="M3 6h18"/>
-                      <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
-                      <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
-                    </svg>
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        ) : (
+          <>
+            {/* Left panel: Categories */}
+            <div className="cms-left-panel cms-topics-left-panel">
+              <div className="learners-list-header cms-topics-list-header">
+                <span>CATEGORIES</span>
+              </div>
+              <div className="learners-list scrollbar cms-topics-categories-list">
+                {categories.map((cat) => {
+                  const isSelected = cat.id === selectedTopicCatId;
+                  return (
+                    <div
+                      key={cat.id}
+                      className={`cms-category-item-card ${isSelected ? 'active' : ''}`}
+                      onClick={() => setSelectedTopicCatId(cat.id)}
+                    >
+                      <span
+                        className="cms-category-circle-icon"
+                        style={{
+                          width: '10px',
+                          height: '10px',
+                          borderRadius: '50%',
+                          backgroundColor: cat.color || 'var(--color-blue)',
+                          flexShrink: 0,
+                          marginRight: '6px'
+                        }}
+                      />
+                      <span className="category-label-text">{cat.title}</span>
+                      <div className="category-action-buttons-group" style={{ marginLeft: 'auto', display: 'flex', gap: '4px' }}>
+                        <button
+                          className="icon-action-btn edit-category-btn"
+                          onClick={(e) => handleStartCategoryEdit(e, cat)}
+                          title="Edit Category"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-pencil">
+                            <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                            <path d="m15 5 4 4"/>
+                          </svg>
+                        </button>
+                        <button
+                          className="icon-action-btn delete-category-btn"
+                          onClick={(e) => handleDeleteCategory(e, cat)}
+                          title="Delete Category"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-trash-2">
+                            <path d="M3 6h18"/>
+                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
 
-        {/* Right panel: Topics in Category */}
+            {/* Right panel: Topics in Category */}
         <div className="cms-right-panel flex-column cms-topics-right-panel">
           <div className="panel-list-header cms-topics-panel-header">
             <h4 className="cms-topics-panel-title">TOPICS IN {selectedCategoryObj?.title?.toUpperCase() || ''}</h4>
@@ -233,7 +324,67 @@ export default function TopicsSection({
             )}
           </div>
         </div>
+          </>
+        )}
       </div>
+
+      {/* MODAL: EDIT CATEGORY */}
+      {showEditCategoryModal && editingCategoryObj && (
+        <div className="admin-modal-overlay animate-fade-in">
+          <div className="admin-modal edit-category-modal animate-scale-up">
+            <h3>Edit Category</h3>
+            <form onSubmit={handleSaveCategoryEdit}>
+              <div className="add-category-form-group">
+                <label>CATEGORY TITLE *</label>
+                <input
+                  type="text"
+                  value={ecTitle}
+                  onChange={(e) => setEcTitle(e.target.value)}
+                  placeholder="e.g. Speaking Practice"
+                  required
+                />
+              </div>
+              <div className="add-category-form-group">
+                <label>DESCRIPTION</label>
+                <input
+                  type="text"
+                  value={ecDesc}
+                  onChange={(e) => setEcDesc(e.target.value)}
+                  placeholder="e.g. Focus on vocabulary pronunciation"
+                />
+              </div>
+              <div className="add-category-form-group">
+                <label>THEME COLOR</label>
+                <div className="color-selector-grid">
+                  {['#58CC02', '#FF4B4B', '#CE82FF', '#1CB0F6', '#FF9600', '#FFC800', '#89E219'].map((color) => (
+                    <div
+                      key={color}
+                      className={`color-pill ${ecColor === color ? 'selected' : ''}`}
+                      style={{ backgroundColor: color }}
+                      onClick={() => setEcColor(color)}
+                    />
+                  ))}
+                </div>
+              </div>
+              <div className="cms-form-actions">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => {
+                    setShowEditCategoryModal(false);
+                    setEditingCategoryObj(null);
+                  }}
+                >
+                  CANCEL
+                </button>
+                <button type="submit" className="btn btn-primary">
+                  SAVE CHANGES
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* MODAL: ADD CATEGORY */}
       {showAddCategoryModal && (
@@ -263,7 +414,7 @@ export default function TopicsSection({
               <div className="add-category-form-group">
                 <label>THEME COLOR</label>
                 <div className="color-selector-grid">
-                  {['#58CC02', '#FF4B4B', '#CE82FF', '#1CB0F6', '#FF9600'].map((color) => (
+                  {['#58CC02', '#FF4B4B', '#CE82FF', '#1CB0F6', '#FF9600', '#FFC800', '#89E219'].map((color) => (
                     <div
                       key={color}
                       className={`color-pill ${newCatColor === color ? 'selected' : ''}`}
