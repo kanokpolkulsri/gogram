@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { api } from '../../data/api';
 
 export default function SearchSection({
   categories,
@@ -7,43 +6,34 @@ export default function SearchSection({
   questionsRefreshTrigger,
   handleStartQuestionEdit,
   handleDeleteQuestion,
-  showToast
+  showToast,
+  questions,
+  setQuestions,
+  totalQuestions,
+  setTotalQuestions,
+  currentPage,
+  setCurrentPage,
+  totalPages,
+  setTotalPages,
+  isLoading,
+  setIsLoading,
+  searchQuestionQuery,
+  setSearchQuestionQuery,
+  searchCategoryFilter,
+  setSearchCategoryFilter,
+  searchTopicFilter,
+  setSearchTopicFilter,
+  searchDifficultyFilter,
+  setSearchDifficultyFilter,
+  fetchQuestions
 }) {
-  // Local Search & Filtering State
-  const [searchQuestionQuery, setSearchQuestionQuery] = useState('');
-  const [searchCategoryFilter, setSearchCategoryFilter] = useState('all');
-  const [searchTopicFilter, setSearchTopicFilter] = useState('all');
-  const [searchDifficultyFilter, setSearchDifficultyFilter] = useState('all');
-
-  // Paginated questions states
-  const [questions, setQuestions] = useState([]);
-  const [totalQuestions, setTotalQuestions] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const fetchQuestions = async (page = 1) => {
-    try {
-      setIsLoading(true);
-      const data = await api.get(`/admin/questions?search=${searchQuestionQuery}&categoryId=${searchCategoryFilter}&unitId=${searchTopicFilter}&difficulty=${searchDifficultyFilter}&page=${page}&limit=10`);
-      setQuestions(data.questions);
-      setTotalQuestions(data.total);
-      setCurrentPage(data.page);
-      setTotalPages(data.pages);
-    } catch (err) {
-      showToast(`Error fetching questions: ${err.message}`);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   // Trigger search on filter changes or refresh triggers
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      fetchQuestions(1);
+      fetchQuestions(1, searchQuestionQuery, searchCategoryFilter, searchTopicFilter, searchDifficultyFilter);
     }, 400);
     return () => clearTimeout(delayDebounceFn);
-  }, [searchQuestionQuery, searchCategoryFilter, searchTopicFilter, searchDifficultyFilter, questionsRefreshTrigger]);
+  }, [searchQuestionQuery, searchCategoryFilter, searchTopicFilter, searchDifficultyFilter, questionsRefreshTrigger, fetchQuestions]);
 
   // CSV Export Functionality (Loads all matching search results up to 10,000 items)
   const handleExportCSV = async () => {
@@ -264,7 +254,7 @@ export default function SearchSection({
             <div style={{ display: 'flex', gap: '8px' }}>
               <button
                 disabled={currentPage === 1}
-                onClick={() => fetchQuestions(currentPage - 1)}
+                onClick={() => fetchQuestions(currentPage - 1, searchQuestionQuery, searchCategoryFilter, searchTopicFilter, searchDifficultyFilter)}
                 style={{
                   padding: '6px 12px',
                   borderRadius: '8px',
@@ -280,7 +270,7 @@ export default function SearchSection({
               </button>
               <button
                 disabled={currentPage === totalPages}
-                onClick={() => fetchQuestions(currentPage + 1)}
+                onClick={() => fetchQuestions(currentPage + 1, searchQuestionQuery, searchCategoryFilter, searchTopicFilter, searchDifficultyFilter)}
                 style={{
                   padding: '6px 12px',
                   borderRadius: '8px',

@@ -1,30 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { api } from '../../data/api';
 
-export default function DashboardSection({ categories }) {
-  const [stats, setStats] = useState({ totalUsers: 0, premiumUsers: 0, totalQuestions: 0, activePromoCodesCount: 0 });
-  const [auditLogs, setAuditLogs] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+export default function DashboardSection({
+  categories,
+  stats,
+  auditLogs,
+  isLoading,
+  fetchData
+}) {
   const [visibleCount, setVisibleCount] = useState(10);
 
   useEffect(() => {
-    async function loadData() {
-      try {
-        setIsLoading(true);
-        const [statsData, logsData] = await Promise.all([
-          api.get('/admin/stats'),
-          api.get('/admin/audit-logs?limit=100')
-        ]);
-        setStats(statsData);
-        setAuditLogs(logsData);
-      } catch (err) {
-        console.error('Error loading dashboard data:', err);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    loadData();
-  }, []);
+    fetchData();
+  }, [fetchData]);
 
   if (isLoading) {
     return (

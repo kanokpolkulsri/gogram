@@ -1,6 +1,7 @@
 import { useState, useEffect, Fragment } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useUser, useUserDispatch } from '../../data/userStore';
+import { api } from '../../data/api';
 import {
   HomeIcon,
   ProfileIcon,
@@ -50,6 +51,123 @@ export default function AdminPage() {
       navigate('/admin');
     } else {
       navigate(`/admin/${sectionId}`);
+    }
+  };
+
+  // ==========================================
+  // CACHED STATES FOR SECTIONS
+  // ==========================================
+
+  // Dashboard Section Cache
+  const [dashboardStats, setDashboardStats] = useState(null);
+  const [dashboardAuditLogs, setDashboardAuditLogs] = useState([]);
+  const [isDashboardLoading, setIsDashboardLoading] = useState(true);
+
+  const fetchDashboardData = async (force = false) => {
+    if (dashboardStats && !force) {
+      setIsDashboardLoading(false);
+      return;
+    }
+    try {
+      setIsDashboardLoading(true);
+      const [statsData, logsData] = await Promise.all([
+        api.get('/admin/stats'),
+        api.get('/admin/audit-logs?limit=100')
+      ]);
+      setDashboardStats(statsData);
+      setDashboardAuditLogs(logsData);
+    } catch (err) {
+      showToast(`Error loading dashboard: ${err.message}`);
+    } finally {
+      setIsDashboardLoading(false);
+    }
+  };
+
+  // Promo Codes Section Cache
+  const [promoCodes, setPromoCodes] = useState(null);
+  const [isPromoCodesLoading, setIsPromoCodesLoading] = useState(true);
+
+  const fetchPromoCodes = async (force = false) => {
+    if (promoCodes && !force) {
+      setIsPromoCodesLoading(false);
+      return;
+    }
+    try {
+      setIsPromoCodesLoading(true);
+      const data = await api.get('/admin/promo-codes');
+      setPromoCodes(data);
+    } catch (err) {
+      showToast(`Error loading promo codes: ${err.message}`);
+    } finally {
+      setIsPromoCodesLoading(false);
+    }
+  };
+
+  // Users Section Cache & Filter States
+  const [users, setUsers] = useState([]);
+  const [totalUsers, setTotalUsers] = useState(0);
+  const [usersCurrentPage, setUsersCurrentPage] = useState(1);
+  const [usersTotalPages, setUsersTotalPages] = useState(1);
+  const [isUsersLoading, setIsUsersLoading] = useState(true);
+  const [userSearchQuery, setUserSearchQuery] = useState('');
+  const [userRoleFilter, setUserRoleFilter] = useState('all');
+  const [userStatusFilter, setUserStatusFilter] = useState('all');
+  const [expandedUserIds, setExpandedUserIds] = useState([]);
+  const [userDetails, setUserDetails] = useState({});
+  const [usersRefreshTrigger, setUsersRefreshTrigger] = useState(0);
+  const [lastUsersFetchParams, setLastUsersFetchParams] = useState(null);
+
+  const fetchUsers = async (page = 1, searchQuery = userSearchQuery, roleFilter = userRoleFilter, statusFilter = userStatusFilter) => {
+    const cacheKey = `${page}-${searchQuery}-${roleFilter}-${statusFilter}-${usersRefreshTrigger}`;
+    if (lastUsersFetchParams === cacheKey) {
+      setIsUsersLoading(false);
+      return;
+    }
+    try {
+      setIsUsersLoading(true);
+      const data = await api.get(`/admin/users?search=${searchQuery}&role=${roleFilter}&status=${statusFilter}&page=${page}&limit=10`);
+      setUsers(data.users || []);
+      setTotalUsers(data.total || 0);
+      setUsersCurrentPage(data.page || 1);
+      setUsersTotalPages(data.pages || 1);
+      setLastUsersFetchParams(cacheKey);
+    } catch (err) {
+      showToast(`Error fetching users: ${err.message}`);
+    } finally {
+      setIsUsersLoading(false);
+    }
+  };
+
+  // Questions Search Cache & Filter States
+  const [questions, setQuestions] = useState([]);
+  const [totalQuestions, setTotalQuestions] = useState(0);
+  const [questionsCurrentPage, setQuestionsCurrentPage] = useState(1);
+  const [questionsTotalPages, setQuestionsTotalPages] = useState(1);
+  const [isQuestionsLoading, setIsQuestionsLoading] = useState(true);
+  const [searchQuestionQuery, setSearchQuestionQuery] = useState('');
+  const [searchCategoryFilter, setSearchCategoryFilter] = useState('all');
+  const [searchTopicFilter, setSearchTopicFilter] = useState('all');
+  const [searchDifficultyFilter, setSearchDifficultyFilter] = useState('all');
+  const [lastQuestionsFetchParams, setLastQuestionsFetchParams] = useState(null);
+
+  const fetchQuestions = async (page = 1, searchQuery = searchQuestionQuery, categoryFilter = searchCategoryFilter, topicFilter = searchTopicFilter, difficultyFilter = searchDifficultyFilter) => {
+    const cacheKey = `${page}-${searchQuery}-${categoryFilter}-${topicFilter}-${difficultyFilter}-${questionsRefreshTrigger}`;
+    if (lastQuestionsFetchParams === cacheKey) {
+      setIsQuestionsLoading(false);
+      return;
+    }
+    try {
+      setIsQuestionsLoading(true);
+      const data = await api.get(`/admin/questions?search=${searchQuery}&categoryId=${categoryFilter}&unitId=${topicFilter}&difficulty=${difficultyFilter}&page=${page}&limit=10`);
+      setQuestions(data.questions || []);
+      setTotalQuestions(data.total || 0);
+      setQuestionsCurrentPage(data.page || 1);
+      setQuestionsTotalPages(data.pages || 1);
+      setLastQuestionsFetchParams(cacheKey);
+    } catch (err) {
+      showToast(`Error fetching questions: ${err.message}`);
+    } finally {
+      setIsQuestionsLoading(false);
     }
   };
 
@@ -214,6 +332,10 @@ export default function AdminPage() {
         return (
           <DashboardSection
             categories={categories}
+            stats={dashboardStats}
+            auditLogs={dashboardAuditLogs}
+            isLoading={isDashboardLoading}
+            fetchData={fetchDashboardData}
           />
         );
       case 'search':
@@ -225,6 +347,25 @@ export default function AdminPage() {
             handleStartQuestionEdit={handleStartQuestionEdit}
             handleDeleteQuestion={handleDeleteQuestion}
             showToast={showToast}
+            questions={questions}
+            setQuestions={setQuestions}
+            totalQuestions={totalQuestions}
+            setTotalQuestions={setTotalQuestions}
+            currentPage={questionsCurrentPage}
+            setCurrentPage={setQuestionsCurrentPage}
+            totalPages={questionsTotalPages}
+            setTotalPages={setQuestionsTotalPages}
+            isLoading={isQuestionsLoading}
+            setIsLoading={setIsQuestionsLoading}
+            searchQuestionQuery={searchQuestionQuery}
+            setSearchQuestionQuery={setSearchQuestionQuery}
+            searchCategoryFilter={searchCategoryFilter}
+            setSearchCategoryFilter={setSearchCategoryFilter}
+            searchTopicFilter={searchTopicFilter}
+            setSearchTopicFilter={setSearchTopicFilter}
+            searchDifficultyFilter={searchDifficultyFilter}
+            setSearchDifficultyFilter={setSearchDifficultyFilter}
+            fetchQuestions={fetchQuestions}
           />
         );
       case 'generate':
@@ -257,6 +398,29 @@ export default function AdminPage() {
             currentUser={user}
             triggerConfirm={triggerConfirm}
             showToast={showToast}
+            users={users}
+            setUsers={setUsers}
+            totalUsers={totalUsers}
+            setTotalUsers={setTotalUsers}
+            currentPage={usersCurrentPage}
+            setCurrentPage={setUsersCurrentPage}
+            totalPages={usersTotalPages}
+            setTotalPages={setUsersTotalPages}
+            isLoading={isUsersLoading}
+            setIsLoading={setIsUsersLoading}
+            userSearchQuery={userSearchQuery}
+            setUserSearchQuery={setUserSearchQuery}
+            userRoleFilter={userRoleFilter}
+            setUserRoleFilter={setUserRoleFilter}
+            userStatusFilter={userStatusFilter}
+            setUserStatusFilter={setUserStatusFilter}
+            expandedUserIds={expandedUserIds}
+            setExpandedUserIds={setExpandedUserIds}
+            userDetails={userDetails}
+            setUserDetails={setUserDetails}
+            fetchUsers={fetchUsers}
+            usersRefreshTrigger={usersRefreshTrigger}
+            setUsersRefreshTrigger={setUsersRefreshTrigger}
           />
         );
       case 'promo-codes':
@@ -264,12 +428,21 @@ export default function AdminPage() {
           <PromoCodesSection
             triggerConfirm={triggerConfirm}
             showToast={showToast}
+            promoCodes={promoCodes}
+            setPromoCodes={setPromoCodes}
+            isLoading={isPromoCodesLoading}
+            setIsLoading={setIsPromoCodesLoading}
+            fetchPromoCodes={fetchPromoCodes}
           />
         );
       default:
         return (
           <DashboardSection
             categories={categories}
+            stats={dashboardStats}
+            auditLogs={dashboardAuditLogs}
+            isLoading={isDashboardLoading}
+            fetchData={fetchDashboardData}
           />
         );
     }

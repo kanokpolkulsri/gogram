@@ -19,11 +19,13 @@ function formatDuration(minutes) {
 
 export default function PromoCodesSection({
   triggerConfirm,
-  showToast
+  showToast,
+  promoCodes,
+  setPromoCodes,
+  isLoading,
+  setIsLoading,
+  fetchPromoCodes
 }) {
-  const [promoCodes, setPromoCodes] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
   // Form State for Adding Promo Code
   const [newCode, setNewCode] = useState('');
   const [newType, setNewType] = useState('hearts');
@@ -42,21 +44,9 @@ export default function PromoCodesSection({
   const [editInfinityDuration, setEditInfinityDuration] = useState('3mo');
   const [editMaxRedemptions, setEditMaxRedemptions] = useState('');
 
-  const fetchPromoCodes = async () => {
-    try {
-      setIsLoading(true);
-      const data = await api.get('/admin/promo-codes');
-      setPromoCodes(data);
-    } catch (err) {
-      showToast(`Error fetching promo codes: ${err.message}`);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   useEffect(() => {
     fetchPromoCodes();
-  }, []);
+  }, [fetchPromoCodes]);
 
   const handleAddCode = async (e) => {
     e.preventDefault();
@@ -103,7 +93,7 @@ export default function PromoCodesSection({
       setNewInfinityDuration('3mo');
       setNewMaxRedemptions('');
 
-      fetchPromoCodes();
+      fetchPromoCodes(true);
     } catch (err) {
       showToast(`Failed to create promo code: ${err.message}`);
     }
@@ -153,7 +143,7 @@ export default function PromoCodesSection({
       });
       setEditingCode(null);
       showToast(`Promo code ${originalCode} updated successfully.`);
-      fetchPromoCodes();
+      fetchPromoCodes(true);
     } catch (err) {
       showToast(`Error updating promo code: ${err.message}`);
     }
@@ -163,7 +153,7 @@ export default function PromoCodesSection({
     try {
       await api.delete(`/admin/promo-codes/${code}`);
       showToast(`Promo code ${code} has been deleted.`);
-      fetchPromoCodes();
+      fetchPromoCodes(true);
     } catch (err) {
       showToast(`Error deleting promo code: ${err.message}`);
     }

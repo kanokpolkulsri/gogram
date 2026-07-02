@@ -82,47 +82,40 @@ export default function UsersSection({
   categories,
   currentUser,
   triggerConfirm,
-  showToast
+  showToast,
+  users,
+  setUsers,
+  totalUsers,
+  setTotalUsers,
+  currentPage,
+  setCurrentPage,
+  totalPages,
+  setTotalPages,
+  isLoading,
+  setIsLoading,
+  userSearchQuery,
+  setUserSearchQuery,
+  userRoleFilter,
+  setUserRoleFilter,
+  userStatusFilter,
+  setUserStatusFilter,
+  expandedUserIds,
+  setExpandedUserIds,
+  userDetails,
+  setUserDetails,
+  fetchUsers,
+  usersRefreshTrigger,
+  setUsersRefreshTrigger
 }) {
-  // Local Filtering and Search State
-  const [userSearchQuery, setUserSearchQuery] = useState('');
-  const [userRoleFilter, setUserRoleFilter] = useState('all');
-  const [userStatusFilter, setUserStatusFilter] = useState('all');
-
-  // Users paginated data states
-  const [users, setUsers] = useState([]);
-  const [totalUsers, setTotalUsers] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [isLoading, setIsLoading] = useState(true);
-
-  // Local Expand State for User Progress Details
-  const [expandedUserIds, setExpandedUserIds] = useState([]);
-  const [userDetails, setUserDetails] = useState({});
   const [loadingDetails, setLoadingDetails] = useState({});
-
-  const fetchUsers = async (page = 1) => {
-    try {
-      setIsLoading(true);
-      const data = await api.get(`/admin/users?search=${userSearchQuery}&role=${userRoleFilter}&status=${userStatusFilter}&page=${page}&limit=10`);
-      setUsers(data.users);
-      setTotalUsers(data.total);
-      setCurrentPage(data.page);
-      setTotalPages(data.pages);
-    } catch (err) {
-      showToast(`Error fetching users: ${err.message}`);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   // Fetch users list with debounce on search query
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      fetchUsers(1);
+      fetchUsers(1, userSearchQuery, userRoleFilter, userStatusFilter);
     }, 400);
     return () => clearTimeout(delayDebounceFn);
-  }, [userSearchQuery, userRoleFilter, userStatusFilter]);
+  }, [userSearchQuery, userRoleFilter, userStatusFilter, usersRefreshTrigger, fetchUsers]);
 
   const toggleUserExpanded = async (userId) => {
     if (expandedUserIds.includes(userId)) {
@@ -259,7 +252,7 @@ export default function UsersSection({
     try {
       await api.delete(`/admin/users/${userId}`);
       showToast(`User ${name} has been removed.`);
-      fetchUsers(currentPage);
+      setUsersRefreshTrigger(prev => prev + 1);
     } catch (err) {
       showToast(`Error deleting user: ${err.message}`);
     }
@@ -641,7 +634,7 @@ export default function UsersSection({
             <div style={{ display: 'flex', gap: '8px' }}>
               <button
                 disabled={currentPage === 1}
-                onClick={() => fetchUsers(currentPage - 1)}
+                onClick={() => fetchUsers(currentPage - 1, userSearchQuery, userRoleFilter, userStatusFilter)}
                 style={{
                   padding: '6px 12px',
                   borderRadius: '8px',
@@ -657,7 +650,7 @@ export default function UsersSection({
               </button>
               <button
                 disabled={currentPage === totalPages}
-                onClick={() => fetchUsers(currentPage + 1)}
+                onClick={() => fetchUsers(currentPage + 1, userSearchQuery, userRoleFilter, userStatusFilter)}
                 style={{
                   padding: '6px 12px',
                   borderRadius: '8px',
