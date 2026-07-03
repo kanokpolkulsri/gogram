@@ -12,6 +12,15 @@ function formatDateForInput(timestamp) {
   return `${year}-${month}-${day}`;
 }
 
+function getExpirationDisplayText(timestamp) {
+  if (!timestamp) return 'Forever / Perpetual';
+  const date = new Date(timestamp);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+}
+
 function HeartsEditControl({ userId, currentHearts, onUpdate, showToast }) {
   const [isEditing, setIsEditing] = useState(false);
   const [tempVal, setTempVal] = useState(currentHearts === 'infinity' ? 100 : (currentHearts ?? 100));
@@ -91,6 +100,7 @@ export default function UsersSection({
 }) {
   const dispatch = useUserDispatch();
   const [loadingDetails, setLoadingDetails] = useState({});
+  const [focusedDatePickerUid, setFocusedDatePickerUid] = useState(null);
 
   // Fetch users list with debounce on search query
   useEffect(() => {
@@ -481,9 +491,9 @@ export default function UsersSection({
                                                </span>
                                                <div className="cms-flex-row-gap-2">
                                                  <input
-                                                   type="date"
+                                                   type={focusedDatePickerUid === u.uid ? "date" : "text"}
                                                    className="cms-user-subscription-date-picker"
-                                                   value={formatDateForInput(userPromoExpiresAt)}
+                                                   value={focusedDatePickerUid === u.uid ? formatDateForInput(userPromoExpiresAt) : getExpirationDisplayText(userPromoExpiresAt)}
                                                    onChange={(e) => {
                                                      const val = e.target.value;
                                                      if (val) {
@@ -493,6 +503,8 @@ export default function UsersSection({
                                                        handleUpdateSubscription(u.uid, null);
                                                      }
                                                    }}
+                                                   onFocus={() => setFocusedDatePickerUid(u.uid)}
+                                                   onBlur={() => setFocusedDatePickerUid(null)}
                                                  />
                                                  <button
                                                    className={`cms-btn-extend-preset ${!userPromoExpiresAt ? 'active' : ''}`}
@@ -507,32 +519,8 @@ export default function UsersSection({
                                          )}
 
                                          {/* Action Buttons */}
-                                         <div className="cms-user-hearts-actions-container">
-                                           {userHearts === 'infinity' ? (
-                                             <div className="cms-user-extend-preset-container">
-                                               <span className="cms-user-extend-label">EXTEND:</span>
-                                               <button
-                                                 className="cms-btn-extend-30-days cms-btn-extend-preset"
-                                                 onClick={() => {
-                                                   const date = new Date();
-                                                   date.setDate(date.getDate() + 30);
-                                                   handleUpdateSubscription(u.uid, date.toISOString());
-                                                 }}
-                                               >
-                                                 +30 Days
-                                               </button>
-                                               <button
-                                                 className="cms-btn-extend-1-year cms-btn-extend-preset"
-                                                 onClick={() => {
-                                                   const date = new Date();
-                                                   date.setFullYear(date.getFullYear() + 1);
-                                                   handleUpdateSubscription(u.uid, date.toISOString());
-                                                 }}
-                                               >
-                                                 +1 Year
-                                               </button>
-                                             </div>
-                                           ) : (
+                                         {userHearts !== 'infinity' && (
+                                           <div className="cms-user-hearts-actions-container">
                                              <div className="cms-user-hearts-adjust-numeric-row">
                                                <span className="cms-user-adjust-numeric-label">ADJUST NUMERIC:</span>
                                                <HeartsEditControl
@@ -542,8 +530,8 @@ export default function UsersSection({
                                                  showToast={showToast}
                                                />
                                              </div>
-                                           )}
-                                         </div>
+                                           </div>
+                                         )}
                                        </div>
                                      </div>
 
