@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS users (
     status user_status DEFAULT 'active' NOT NULL,
     joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     total_xp INT DEFAULT 0 NOT NULL, -- Total units completed across all categories
-    hearts_count INT DEFAULT 10 NOT NULL, -- Current numeric hearts (max defaults to 10)
+    hearts_count INT DEFAULT 100 NOT NULL, -- Current numeric hearts (max defaults to 100)
     subscription_expires_at TIMESTAMP NULL, -- Infinity hearts when in the future
     last_heart_refill_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     streak INT DEFAULT 0 NOT NULL

@@ -16,8 +16,8 @@ const initialStoreState = {
   role: 'user',
   joinedAt: null,
   totalXP: 0,
-  hearts: 10,
-  heartsCount: 10,
+  hearts: 100,
+  heartsCount: 100,
   lastHeartRefillTime: Date.now(),
   subscriptionExpiresAt: null,
   isPremium: false,
@@ -247,7 +247,7 @@ export function UserProvider({ children }) {
 
   // Hearts refill automatic background checker hook
   useEffect(() => {
-    if (!user || !user.isAuthenticated || user.hearts === 'infinity' || user.heartsCount >= 10) return;
+    if (!user || !user.isAuthenticated || user.hearts === 'infinity' || user.heartsCount >= 100) return;
 
     const interval = setInterval(async () => {
       try {

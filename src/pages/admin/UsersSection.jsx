@@ -14,7 +14,7 @@ function formatDateForInput(timestamp) {
 
 function HeartsEditControl({ userId, currentHearts, onUpdate, showToast }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [tempVal, setTempVal] = useState(currentHearts === 'infinity' ? 10 : (currentHearts ?? 10));
+  const [tempVal, setTempVal] = useState(currentHearts === 'infinity' ? 100 : (currentHearts ?? 100));
 
   const handleSave = () => {
     onUpdate(parseInt(tempVal) || 0);
@@ -51,7 +51,7 @@ function HeartsEditControl({ userId, currentHearts, onUpdate, showToast }) {
     <button
       className="cms-btn-edit-numeric-hearts cms-btn-action-blue"
       onClick={() => {
-        setTempVal(currentHearts ?? 10);
+        setTempVal(currentHearts ?? 100);
         setIsEditing(true);
       }}
     >
@@ -458,7 +458,7 @@ export default function UsersSection({
 
                                             <button
                                               className={`cms-btn-mode-numeric ${userHearts !== 'infinity' ? 'active' : 'inactive'}`}
-                                              onClick={() => handleUpdateHearts(u.uid, 10)}
+                                              onClick={() => handleUpdateHearts(u.uid, 100)}
                                               disabled={userHearts !== 'infinity'}
                                               title={userHearts !== 'infinity' ? 'Currently in Numeric Hearts Mode' : 'Switch to Numeric Hearts Mode'}
                                             >
@@ -468,7 +468,7 @@ export default function UsersSection({
                                                   fill={userHearts !== 'infinity' ? 'var(--color-red)' : 'var(--color-text-light)'}
                                                 />
                                               </svg>
-                                              <span>Numeric ({userHearts !== 'infinity' ? (userHearts ?? 10) : 10})</span>
+                                              <span>Numeric ({userHearts !== 'infinity' ? (userHearts ?? 100) : 100})</span>
                                             </button>
                                           </div>
 

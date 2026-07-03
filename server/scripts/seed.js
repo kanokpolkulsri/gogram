@@ -108,14 +108,14 @@ async function seed() {
       `INSERT INTO users (uid, email, name, role, status, total_xp, hearts_count)
        VALUES ($1, $2, $3, $4, $5, $6, $7)
        ON CONFLICT (uid) DO NOTHING`,
-      ['18JCe75AVxZEZF3Y1h0gBNo93ti2', 'kanokpolkulsri@gmail.com', 'Kanokpol Kulsri (Admin)', 'admin', 'active', 0, 10]
+      ['18JCe75AVxZEZF3Y1h0gBNo93ti2', 'kanokpolkulsri@gmail.com', 'Kanokpol Kulsri (Admin)', 'admin', 'active', 0, 100]
     );
 
     // 5. Seed some initial promo codes
     console.log('Seeding initial promo codes...');
     const defaultPromos = [
       { code: 'INFINITY', type: 'infinity', reward: 'infinity', description: 'Infinite hearts promo', infinity_duration_minutes: null, max_redemptions: null },
-      { code: 'WELCOME100', type: 'hearts', reward: '10', description: 'Get 10 hearts', infinity_duration_minutes: null, max_redemptions: null },
+      { code: 'WELCOME100', type: 'hearts', reward: '100', description: 'Get 100 hearts', infinity_duration_minutes: null, max_redemptions: null },
       { code: 'REF-ADMIN', type: 'infinity', reward: 'infinity', description: 'Admin referral code', infinity_duration_minutes: 1440, max_redemptions: 10 }
     ];
 

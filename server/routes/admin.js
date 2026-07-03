@@ -434,7 +434,7 @@ router.put('/users/:uid/hearts', async (req, res) => {
       );
       await logAction(req.user.uid, req.adminName, `Set hearts status of ${userName} to Infinity`);
     } else {
-      const numericHearts = parseInt(heartsValue) || 10;
+      const numericHearts = parseInt(heartsValue) || 100;
       await query(
         `UPDATE users 
          SET hearts_count = $1, subscription_expires_at = NULL, last_heart_refill_at = CURRENT_TIMESTAMP 
