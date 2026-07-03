@@ -193,21 +193,40 @@
 }
 
 .cms-btn-revoke-infinity {
-  width: 100%;
-  padding: 8px 12px;
+  padding: 4px 10px;
   background: var(--color-red-bg);
-  border: 1.5px solid var(--color-red-dark);
-  border-radius: 8px;
+  border: 1.5px solid var(--color-red);
+  border-radius: 20px;
   color: var(--color-red);
   font-weight: 800;
-  font-size: 12px;
+  font-size: 11px;
   cursor: pointer;
-  transition: opacity 0.2s ease;
-  text-align: center;
+  transition: all 0.2s ease;
+  margin-left: auto;
 }
 
 .cms-btn-revoke-infinity:hover {
-  opacity: 0.9;
+  background: var(--color-red);
+  color: var(--color-white);
+}
+
+.cms-user-subscription-date-picker {
+  height: 36px;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1.5px solid var(--color-gray);
+  outline: none;
+  background-color: var(--color-white);
+  flex-grow: 1;
+  box-sizing: border-box;
+}
+
+.cms-btn-extend-preset.active {
+  background-color: var(--color-orange-bg);
+  border-color: var(--color-orange-dark);
+  color: var(--color-orange-dark);
 }
 
 .cms-btn-grant-infinity {

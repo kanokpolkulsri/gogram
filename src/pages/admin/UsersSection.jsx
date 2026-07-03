@@ -2,6 +2,15 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { api } from '../../data/api';
 import './UsersSection.css';
 
+function formatDateForInput(timestamp) {
+  if (!timestamp) return '';
+  const date = new Date(timestamp);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
 function HeartsEditControl({ userId, currentHearts, onUpdate, showToast }) {
   const [isEditing, setIsEditing] = useState(false);
   const [tempVal, setTempVal] = useState(currentHearts === 'infinity' ? 10 : (currentHearts ?? 10));
@@ -435,24 +444,46 @@ export default function UsersSection({
                                            <span className="cms-user-hearts-mode-text">
                                              {userHearts === 'infinity' ? 'Infinite Hearts Mode' : 'Numeric Hearts Mode'}
                                            </span>
+                                           {userHearts === 'infinity' && (
+                                             <button
+                                               className="cms-btn-revoke-infinity"
+                                               onClick={() => handleUpdateHearts(u.uid, 10)}
+                                             >
+                                               Revoke
+                                             </button>
+                                           )}
                                          </div>
 
                                          {/* Expiration Details */}
                                          {userHearts === 'infinity' && (
-                                           <div className="cms-user-subscription-expiration-details">
-                                             <div>
-                                               <span style={{ fontWeight: '700' }}>Expires: </span>
-                                               <span>
-                                                 {userPromoExpiresAt 
-                                                   ? new Date(userPromoExpiresAt).toLocaleDateString('en-US', {
-                                                       year: 'numeric',
-                                                       month: 'short',
-                                                       day: 'numeric',
-                                                       hour: '2-digit',
-                                                       minute: '2-digit'
-                                                     })
-                                                   : 'Never (Perpetual)'}
+                                           <div className="cms-user-subscription-expiration-details" style={{ width: '100%' }}>
+                                             <div className="cms-flex-col-gap-1">
+                                               <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--color-text-light)', textTransform: 'uppercase' }}>
+                                                 Expiration Date
                                                </span>
+                                               <div className="cms-flex-row-gap-2">
+                                                 <input
+                                                   type="date"
+                                                   className="cms-user-subscription-date-picker"
+                                                   value={formatDateForInput(userPromoExpiresAt)}
+                                                   onChange={(e) => {
+                                                     const val = e.target.value;
+                                                     if (val) {
+                                                       const selectedDate = new Date(val + 'T23:59:59');
+                                                       handleUpdateSubscription(u.uid, selectedDate.toISOString());
+                                                     } else {
+                                                       handleUpdateSubscription(u.uid, null);
+                                                     }
+                                                   }}
+                                                 />
+                                                 <button
+                                                   className={`cms-btn-extend-preset ${!userPromoExpiresAt ? 'active' : ''}`}
+                                                   onClick={() => handleUpdateSubscription(u.uid, null)}
+                                                   style={{ height: '36px', whiteSpace: 'nowrap' }}
+                                                 >
+                                                   {!userPromoExpiresAt ? '✓ Perpetual' : 'Set Perpetual'}
+                                                 </button>
+                                               </div>
                                              </div>
                                            </div>
                                          )}
@@ -485,13 +516,6 @@ export default function UsersSection({
                                                    +1 Year
                                                  </button>
                                                </div>
-                                               {/* Button to change to Numeric (Revoke) */}
-                                               <button
-                                                 className="cms-btn-revoke-infinity"
-                                                 onClick={() => handleUpdateHearts(u.uid, 10)}
-                                               >
-                                                 Change to Numeric (Revoke Infinity)
-                                               </button>
                                              </>
                                            ) : (
                                              <>
