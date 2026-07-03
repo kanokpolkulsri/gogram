@@ -329,7 +329,7 @@ export default function UsersSection({
                   const isBlocked = u.status === 'blocked';
                   const isExpanded = expandedUserIds.includes(u.uid);
                   const userHearts = u.uid === currentUser?.uid ? currentUser.hearts : u.hearts;
-                  const userPromoExpiresAt = u.uid === currentUser?.uid ? currentUser.promoExpiresAt : u.promoExpiresAt;
+                  const userPromoExpiresAt = u.uid === currentUser?.uid ? currentUser.subscriptionExpiresAt : u.promoExpiresAt;
 
                   const details = userDetails[u.uid] || {};
                   const isDetailsLoading = loadingDetails[u.uid];
