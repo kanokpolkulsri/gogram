@@ -14,3 +14,6 @@ Follow these guidelines for all changes in the Gogram repository:
 
 ## 3. Imports & Code Tracing
 * **Verify API Helper Exports**: Do not assume API utilities are default exports under a `utils/` folder. In this project, use `{ api }` named import from `src/data/api`. Always search adjacent components for how helpers are imported before adding new ones.
+
+## 4. Testability & Developer Tracking
+* **Unique Selectors for Interactive Elements**: All interactive HTML/React elements (such as buttons, input fields, and selectors) must be assigned unique, descriptive `className` or `id` attributes to facilitate developer tracking and reliable selector targeting in QA and browser automation tests.
