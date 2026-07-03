@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser, useUserDispatch } from '../../data/userStore';
 import { auth, signOut } from '../../data/firebase';
+import { api } from '../../data/api';
 import {
   ProfileIcon,
 } from '../../components/icons';
@@ -19,6 +20,7 @@ export default function ProfilePage() {
   const [promoCode, setPromoCode] = useState('');
   const [promoMessage, setPromoMessage] = useState('');
   const [promoStatus, setPromoStatus] = useState(''); // 'success' or 'error'
+  const [isUpgrading, setIsUpgrading] = useState(false);
 
 
   const handleApplyPromo = (e) => {
@@ -37,6 +39,24 @@ export default function ProfilePage() {
         setPromoStatus('error');
       }
     });
+  };
+
+  const handleUpgradePremium = async () => {
+    try {
+      setIsUpgrading(true);
+      setPromoMessage('');
+      const res = await api.post('/payments/create-checkout-session');
+      if (res.url) {
+        window.location.href = res.url;
+      } else {
+        throw new Error('Failed to retrieve checkout URL.');
+      }
+    } catch (err) {
+      setPromoStatus('error');
+      setPromoMessage(err.message || 'Upgrade session failed.');
+    } finally {
+      setIsUpgrading(false);
+    }
   };
 
   const handleLogout = async () => {
@@ -126,6 +146,67 @@ export default function ProfilePage() {
         </div>
 
 
+        {/* Gogram Premium Card */}
+        <div className="profile-settings-card animate-fade-in" id="profile-premium-card">
+          <h3 className="profile-settings-title" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span>⚡</span> Gogram Premium
+          </h3>
+          <div className="profile-settings-list">
+            <div className="profile-settings-item" style={{ flexDirection: 'column', alignItems: 'stretch', gap: '12px' }}>
+              {user.hearts === 'infinity' ? (
+                <>
+                  <div className="profile-settings-item-info">
+                    <span className="profile-settings-item-label" style={{ color: 'var(--color-green-dark)', fontWeight: 'bold' }}>✓ Active Subscription</span>
+                    <span className="profile-settings-item-desc">You have unlocked Infinite Hearts! Learn without limits.</span>
+                  </div>
+                  {user.subscriptionExpiresAt && (
+                    <div style={{ padding: '12px', background: '#FFFDF0', borderRadius: '12px', border: '1px solid #FFEBAD', fontSize: '14px', color: '#B57A00', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <span>⏳ Active until:</span>
+                      <span>
+                        {new Date(user.subscriptionExpiresAt).getFullYear() >= 2090 
+                          ? 'Forever / Perpetual' 
+                          : new Date(user.subscriptionExpiresAt).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'short',
+                              day: 'numeric',
+                              hour: '2-digit',
+                              minute: '2-digit'
+                            })}
+                      </span>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <>
+                  <div className="profile-settings-item-info">
+                    <span className="profile-settings-item-label">Get Infinite Hearts</span>
+                    <span className="profile-settings-item-desc">Get 1 year of Infinite Hearts. Never wait for refills!</span>
+                  </div>
+                  <button
+                    onClick={handleUpgradePremium}
+                    disabled={isUpgrading}
+                    className="profile-settings-btn btn-orange"
+                    id="profile-upgrade-premium-btn"
+                    style={{ 
+                      width: '100%', 
+                      padding: '12px', 
+                      borderRadius: '12px', 
+                      fontWeight: '800', 
+                      background: 'linear-gradient(135deg, #FF9900 0%, #FF5E00 100%)',
+                      color: 'var(--color-white)',
+                      border: 'none',
+                      boxShadow: '0 3px 0 #CC4B00',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    {isUpgrading ? 'Redirecting to Stripe...' : 'Upgrade to Premium — 29 THB'}
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+
         {/* Promo & Referral Codes Card */}
         <div className="profile-settings-card animate-fade-in">
           <h3 className="profile-settings-title">Promo & Referral Codes</h3>
@@ -170,23 +251,6 @@ export default function ProfilePage() {
                   APPLY
                 </button>
               </div>
-
-              {user.hearts === 'infinity' && user.subscriptionExpiresAt && (
-                <div style={{ marginTop: '4px', fontSize: '13px', color: '#B57A00', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                  <span>⏳ Expiration Date:</span>
-                  <span>
-                    {new Date(user.subscriptionExpiresAt).getFullYear() >= 2090 
-                      ? 'Forever / Perpetual' 
-                      : new Date(user.subscriptionExpiresAt).toLocaleDateString('en-US', {
-                          year: 'numeric',
-                          month: 'short',
-                          day: 'numeric',
-                          hour: '2-digit',
-                          minute: '2-digit'
-                        })}
-                  </span>
-                </div>
-              )}
 
               {promoMessage && (
                 <p className={`profile-promo-message ${promoStatus}`}>
