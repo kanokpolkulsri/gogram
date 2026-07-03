@@ -133,29 +133,60 @@ export default function ProfilePage() {
             <div className="profile-settings-item" style={{ flexDirection: 'column', alignItems: 'stretch', gap: '12px' }}>
               <div className="profile-settings-item-info">
                 <span className="profile-settings-item-label">Apply a Code</span>
-                <span className="profile-settings-item-desc">Enter a promo code or friend's referral code.</span>
+                {user.hearts === 'infinity' ? (
+                  <span className="profile-settings-item-desc" style={{ color: 'var(--color-text-light)', fontStyle: 'italic' }}>
+                    Promo codes cannot be applied while Premium is active.
+                  </span>
+                ) : (
+                  <span className="profile-settings-item-desc">Enter a promo code or friend's referral code.</span>
+                )}
               </div>
               
               <div className="profile-promo-input-group">
                 <input
                   type="text"
-                  placeholder="e.g. PREMIUM2026"
+                  placeholder={user.hearts === 'infinity' ? "Disabled (Premium is active)" : "e.g. WELCOME100"}
                   value={promoCode}
                   onChange={(e) => {
                     setPromoCode(e.target.value);
                     setPromoMessage('');
                   }}
                   className="profile-promo-input"
+                  disabled={user.hearts === 'infinity'}
+                  style={user.hearts === 'infinity' ? { backgroundColor: 'var(--color-gray-light)', cursor: 'not-allowed', opacity: 0.6 } : {}}
                 />
                 <button 
                   onClick={handleApplyPromo} 
                   className="profile-settings-btn btn-primary" 
                   id="profile-apply-promo-btn"
-                  style={{ padding: '10px 20px', borderRadius: '12px', height: '44px' }}
+                  disabled={user.hearts === 'infinity'}
+                  style={{ 
+                    padding: '10px 20px', 
+                    borderRadius: '12px', 
+                    height: '44px',
+                    ...(user.hearts === 'infinity' ? { opacity: 0.5, cursor: 'not-allowed' } : {})
+                  }}
                 >
                   APPLY
                 </button>
               </div>
+
+              {user.hearts === 'infinity' && user.subscriptionExpiresAt && (
+                <div style={{ marginTop: '4px', fontSize: '13px', color: '#B57A00', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <span>⏳ Expiration Date:</span>
+                  <span>
+                    {new Date(user.subscriptionExpiresAt).getFullYear() >= 2090 
+                      ? 'Forever / Perpetual' 
+                      : new Date(user.subscriptionExpiresAt).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric',
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        })}
+                  </span>
+                </div>
+              )}
 
               {promoMessage && (
                 <p className={`profile-promo-message ${promoStatus}`}>
