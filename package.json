@@ -6,7 +6,8 @@
   "scripts": {
     "dev:frontend": "vite",
     "dev:server": "npm run dev --prefix server",
-    "dev": "concurrently \"npm run dev:server\" \"npm run dev:frontend\"",
+    "dev:db": "./server/cloud-sql-proxy gogram-web-2026:asia-southeast1:gogram",
+    "dev": "concurrently \"npm run dev:db\" \"npm run dev:server\" \"npm run dev:frontend\"",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
