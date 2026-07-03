@@ -3,3 +3,4 @@ node_modules/
 *.log
 firebase-service-account.json
 cloud-sql-proxy
+gcp-service-account.json
