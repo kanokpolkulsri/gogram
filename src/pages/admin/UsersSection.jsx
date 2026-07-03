@@ -10,16 +10,6 @@ function HeartsEditControl({ userId, currentHearts, onUpdate, showToast }) {
     setIsEditing(false);
   };
 
-  const handleMakeInfinity = () => {
-    onUpdate('infinity');
-    setIsEditing(false);
-  };
-
-  const handleResetHearts = () => {
-    onUpdate(10);
-    setIsEditing(false);
-  };
-
   if (isEditing) {
     return (
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -47,34 +37,15 @@ function HeartsEditControl({ userId, currentHearts, onUpdate, showToast }) {
   }
 
   return (
-    <div style={{ display: 'flex', gap: '8px' }}>
-      {currentHearts !== 'infinity' ? (
-        <>
-          <button
-            onClick={() => {
-              setTempVal(currentHearts ?? 10);
-              setIsEditing(true);
-            }}
-            style={{ padding: '4px 8px', background: 'var(--color-blue)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: 'bold', fontSize: '12px', cursor: 'pointer' }}
-          >
-            Edit
-          </button>
-          <button
-            onClick={handleMakeInfinity}
-            style={{ padding: '4px 8px', background: 'var(--color-orange)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: 'bold', fontSize: '12px', cursor: 'pointer' }}
-          >
-            Set Infinity
-          </button>
-        </>
-      ) : (
-        <button
-          onClick={handleResetHearts}
-          style={{ padding: '4px 8px', background: 'var(--color-red)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: 'bold', fontSize: '12px', cursor: 'pointer' }}
-        >
-          Make Numeric (10)
-        </button>
-      )}
-    </div>
+    <button
+      onClick={() => {
+        setTempVal(currentHearts ?? 10);
+        setIsEditing(true);
+      }}
+      style={{ padding: '4px 8px', background: 'var(--color-blue)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: 'bold', fontSize: '12px', cursor: 'pointer' }}
+    >
+      Edit Count
+    </button>
   );
 }
 
@@ -446,69 +417,141 @@ export default function UsersSection({
                                     </div>
 
                                     <div className="cms-user-details-settings-block" style={{ background: 'white', padding: '16px', borderRadius: '12px', border: '1px solid var(--color-gray)', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                                      <div className="cms-user-details-settings-group" style={{ display: 'flex', flexDirection: 'column', gap: '8px', textAlign: 'left' }}>
-                                        <h5 className="cms-user-details-settings-title" style={{ fontSize: '14px', fontWeight: '800', color: 'var(--color-text)', margin: 0 }}>Hearts Status</h5>
-                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '13px', color: 'var(--color-text-light)' }}>
-                                          <div>
-                                            <span style={{ fontWeight: '700' }}>Mode: </span>
-                                            <span>{userHearts === 'infinity' ? '♾️ Infinity' : 'Numeric'}</span>
-                                          </div>
-                                          <div>
-                                            <span style={{ fontWeight: '700' }}>Current Hearts: </span>
-                                            <span>{userHearts === 'infinity' ? '∞' : (userHearts ?? 10)}</span>
-                                          </div>
-                                          {userHearts === 'infinity' && (
-                                            <div>
-                                              <span style={{ fontWeight: '700' }}>Expiration: </span>
-                                              <span>
-                                                {userPromoExpiresAt 
-                                                  ? new Date(userPromoExpiresAt).toLocaleString('en-US', {
-                                                      year: 'numeric',
-                                                      month: 'short',
-                                                      day: 'numeric',
-                                                      hour: '2-digit',
-                                                      minute: '2-digit'
-                                                    })
-                                                  : 'Never Expires'}
-                                              </span>
-                                            </div>
-                                          )}
-                                        </div>
-                                        <div className="cms-user-details-settings-row" style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap', marginTop: '4px' }}>
-                                          <HeartsEditControl
-                                            userId={u.uid}
-                                            currentHearts={userHearts}
-                                            onUpdate={(val) => handleUpdateHearts(u.uid, val)}
-                                            showToast={showToast}
-                                          />
-                                        </div>
-                                        
-                                        {/* Premium Subscription Controls */}
-                                        <div style={{ marginTop: '12px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                                          <label style={{ fontSize: '11px', fontWeight: '800', color: 'var(--color-text-light)' }}>PREMIUM SUBSCRIPTION</label>
-                                          <div style={{ display: 'flex', gap: '8px' }}>
-                                            <button
-                                              onClick={() => {
-                                                const date = new Date();
-                                                date.setDate(date.getDate() + 30);
-                                                handleUpdateSubscription(u.uid, date.toISOString());
-                                              }}
-                                              style={{ flex: 1, padding: '6px 8px', background: 'var(--color-green)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: 'bold', fontSize: '11px', cursor: 'pointer' }}
-                                            >
-                                              +30 Days
-                                            </button>
-                                            <button
-                                              onClick={() => {
-                                                handleUpdateSubscription(u.uid, null);
-                                              }}
-                                              style={{ flex: 1, padding: '6px 8px', background: 'var(--color-red)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: 'bold', fontSize: '11px', cursor: 'pointer' }}
-                                            >
-                                              Revoke
-                                            </button>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
+                                       <div className="cms-user-details-settings-group" style={{ display: 'flex', flexDirection: 'column', gap: '8px', textAlign: 'left' }}>
+                                         <h5 className="cms-user-details-settings-title" style={{ fontSize: '14px', fontWeight: '800', color: 'var(--color-text)', margin: 0 }}>Hearts & Subscription Status</h5>
+                                         
+                                         {/* Visual Heart Status Badge */}
+                                         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '6px' }}>
+                                           <div style={{ 
+                                             display: 'flex', 
+                                             alignItems: 'center', 
+                                             gap: '6px', 
+                                             background: userHearts === 'infinity' ? '#FFF7ED' : '#ffebed', 
+                                             padding: '6px 12px', 
+                                             borderRadius: '20px', 
+                                             border: userHearts === 'infinity' ? '1px solid #FFEDD5' : '1px solid #ffccd1' 
+                                           }}>
+                                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                               <path
+                                                 d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                                                 fill={userHearts === 'infinity' ? '#EA580C' : '#ff4b4b'}
+                                               />
+                                             </svg>
+                                             <span style={{ fontSize: '15px', fontWeight: '800', color: userHearts === 'infinity' ? '#EA580C' : '#ff4b4b' }}>
+                                               {userHearts === 'infinity' ? '∞' : (userHearts ?? 10)}
+                                             </span>
+                                           </div>
+                                           <span style={{ fontSize: '13px', fontWeight: '800', color: 'var(--color-text)' }}>
+                                             {userHearts === 'infinity' ? 'Infinite Hearts Mode' : 'Numeric Hearts Mode'}
+                                           </span>
+                                         </div>
+
+                                         {/* Expiration Details */}
+                                         {userHearts === 'infinity' && (
+                                           <div style={{ fontSize: '12.5px', color: 'var(--color-text-light)', marginTop: '4px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                                             <div>
+                                               <span style={{ fontWeight: '700' }}>Expires: </span>
+                                               <span>
+                                                 {userPromoExpiresAt 
+                                                   ? new Date(userPromoExpiresAt).toLocaleDateString('en-US', {
+                                                       year: 'numeric',
+                                                       month: 'short',
+                                                       day: 'numeric',
+                                                       hour: '2-digit',
+                                                       minute: '2-digit'
+                                                     })
+                                                   : 'Never (Perpetual)'}
+                                               </span>
+                                             </div>
+                                           </div>
+                                         )}
+
+                                         {/* Action Buttons */}
+                                         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '12px' }}>
+                                           {userHearts === 'infinity' ? (
+                                             <>
+                                               {/* Button to change to Numeric (Revoke) */}
+                                               <button
+                                                 onClick={() => handleUpdateHearts(u.uid, 10)}
+                                                 style={{ 
+                                                   width: '100%', 
+                                                   padding: '8px 12px', 
+                                                   background: '#ffebeb', 
+                                                   border: '1.5px solid #ffccd1', 
+                                                   borderRadius: '8px', 
+                                                   color: '#ff4b4b', 
+                                                   fontWeight: '800', 
+                                                   fontSize: '12px', 
+                                                   cursor: 'pointer',
+                                                   transition: 'all 0.2s ease',
+                                                   textAlign: 'center'
+                                                 }}
+                                               >
+                                                 Change to Numeric (Revoke Infinity)
+                                               </button>
+                                               
+                                               {/* Extension preset options if they want to adjust the expiration date */}
+                                               <div style={{ display: 'flex', gap: '6px', alignItems: 'center', marginTop: '4px' }}>
+                                                 <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--color-text-light)', marginRight: 'auto' }}>EXTEND:</span>
+                                                 <button
+                                                   onClick={() => {
+                                                     const date = new Date();
+                                                     date.setDate(date.getDate() + 30);
+                                                     handleUpdateSubscription(u.uid, date.toISOString());
+                                                   }}
+                                                   style={{ padding: '4px 8px', background: '#F3F4F6', border: '1px solid #D1D5DB', borderRadius: '6px', color: '#374151', fontWeight: '800', fontSize: '11px', cursor: 'pointer' }}
+                                                 >
+                                                   +30 Days
+                                                 </button>
+                                                 <button
+                                                   onClick={() => {
+                                                     const date = new Date();
+                                                     date.setFullYear(date.getFullYear() + 1);
+                                                     handleUpdateSubscription(u.uid, date.toISOString());
+                                                   }}
+                                                   style={{ padding: '4px 8px', background: '#F3F4F6', border: '1px solid #D1D5DB', borderRadius: '6px', color: '#374151', fontWeight: '800', fontSize: '11px', cursor: 'pointer' }}
+                                                 >
+                                                   +1 Year
+                                                 </button>
+                                               </div>
+                                             </>
+                                           ) : (
+                                             <>
+                                               {/* Button to change to Infinity */}
+                                               <button
+                                                 onClick={() => handleUpdateHearts(u.uid, 'infinity')}
+                                                 style={{ 
+                                                   width: '100%', 
+                                                   padding: '8px 12px', 
+                                                   background: '#FFF7ED', 
+                                                   border: '1.5px solid #FFEDD5', 
+                                                   borderRadius: '8px', 
+                                                   color: '#EA580C', 
+                                                   fontWeight: '800', 
+                                                   fontSize: '12px', 
+                                                   cursor: 'pointer',
+                                                   transition: 'all 0.2s ease',
+                                                   textAlign: 'center'
+                                                 }}
+                                               >
+                                                 Change to Infinity
+                                               </button>
+                                               
+                                               {/* Numeric Hearts Editor */}
+                                               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', borderTop: '1px solid var(--color-gray)', paddingTop: '12px', marginTop: '4px' }}>
+                                                 <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--color-text-light)', marginRight: 'auto' }}>ADJUST NUMERIC:</span>
+                                                 <HeartsEditControl
+                                                   userId={u.uid}
+                                                   currentHearts={userHearts}
+                                                   onUpdate={(val) => handleUpdateHearts(u.uid, val)}
+                                                   showToast={showToast}
+                                                 />
+                                               </div>
+                                             </>
+                                           )}
+                                         </div>
+                                       </div>
+                                     </div>
 
                                     <div className="cms-user-details-settings-block" style={{ background: 'white', padding: '16px', borderRadius: '12px', border: '1px solid var(--color-gray)', display: 'flex', flexDirection: 'column', gap: '16px' }}>
                                       <div className="cms-user-details-promo-block" style={{ textAlign: 'left' }}>
