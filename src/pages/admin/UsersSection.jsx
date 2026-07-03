@@ -471,29 +471,8 @@ export default function UsersSection({
                                          <div className="cms-user-hearts-actions-container" style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '12px' }}>
                                            {userHearts === 'infinity' ? (
                                              <>
-                                               {/* Button to change to Numeric (Revoke) */}
-                                               <button
-                                                 className="cms-btn-revoke-infinity"
-                                                 onClick={() => handleUpdateHearts(u.uid, 10)}
-                                                 style={{ 
-                                                   width: '100%', 
-                                                   padding: '8px 12px', 
-                                                   background: '#ffebeb', 
-                                                   border: '1.5px solid #ffccd1', 
-                                                   borderRadius: '8px', 
-                                                   color: '#ff4b4b', 
-                                                   fontWeight: '800', 
-                                                   fontSize: '12px', 
-                                                   cursor: 'pointer',
-                                                   transition: 'all 0.2s ease',
-                                                   textAlign: 'center'
-                                                 }}
-                                               >
-                                                 Change to Numeric (Revoke Infinity)
-                                               </button>
-                                               
                                                {/* Extension preset options if they want to adjust the expiration date */}
-                                               <div className="cms-user-extend-preset-container" style={{ display: 'flex', gap: '6px', alignItems: 'center', marginTop: '4px' }}>
+                                               <div className="cms-user-extend-preset-container" style={{ display: 'flex', gap: '6px', alignItems: 'center', marginBottom: '8px' }}>
                                                  <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--color-text-light)', marginRight: 'auto' }}>EXTEND:</span>
                                                  <button
                                                    className="cms-btn-extend-30-days"
@@ -518,6 +497,26 @@ export default function UsersSection({
                                                    +1 Year
                                                  </button>
                                                </div>
+                                               {/* Button to change to Numeric (Revoke) */}
+                                               <button
+                                                 className="cms-btn-revoke-infinity"
+                                                 onClick={() => handleUpdateHearts(u.uid, 10)}
+                                                 style={{ 
+                                                   width: '100%', 
+                                                   padding: '8px 12px', 
+                                                   background: '#ffebeb', 
+                                                   border: '1.5px solid #ffccd1', 
+                                                   borderRadius: '8px', 
+                                                   color: '#ff4b4b', 
+                                                   fontWeight: '800', 
+                                                   fontSize: '12px', 
+                                                   cursor: 'pointer',
+                                                   transition: 'all 0.2s ease',
+                                                   textAlign: 'center'
+                                                 }}
+                                               >
+                                                 Change to Numeric (Revoke Infinity)
+                                               </button>
                                              </>
                                            ) : (
                                              <>
