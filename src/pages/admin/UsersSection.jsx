@@ -439,31 +439,38 @@ export default function UsersSection({
                                        <div className="cms-user-details-settings-group">
                                          <h5 className="cms-user-details-settings-title">Hearts & Subscription Status</h5>
                                          
-                                         {/* Visual Heart Status Badge */}
-                                         <div className="cms-user-hearts-badge-row">
-                                           <div className={`cms-user-hearts-badge-container ${userHearts === 'infinity' ? 'cms-user-hearts-badge-infinity' : 'cms-user-hearts-badge-numeric'}`}>
-                                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                                               <path
-                                                 d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-                                                 fill={userHearts === 'infinity' ? 'var(--color-orange)' : 'var(--color-red)'}
-                                               />
-                                             </svg>
-                                             <span className={userHearts === 'infinity' ? 'cms-user-hearts-badge-text-infinity' : 'cms-user-hearts-badge-text-numeric'}>
-                                               {userHearts === 'infinity' ? '∞' : (userHearts ?? 10)}
-                                             </span>
-                                           </div>
-                                           <span className="cms-user-hearts-mode-text">
-                                             {userHearts === 'infinity' ? 'Infinite Hearts Mode' : 'Numeric Hearts Mode'}
-                                           </span>
-                                           {userHearts === 'infinity' && (
-                                             <button
-                                               className="cms-btn-revoke-infinity"
-                                               onClick={() => handleUpdateHearts(u.uid, 10)}
-                                             >
-                                               Revoke
-                                             </button>
-                                           )}
-                                         </div>
+                                          {/* Visual Heart Status Badge Row showing both Infinity and Numeric modes */}
+                                          <div className="cms-user-hearts-badge-row">
+                                            <button
+                                              className={`cms-btn-mode-infinity ${userHearts === 'infinity' ? 'active' : 'inactive'}`}
+                                              onClick={() => handleUpdateHearts(u.uid, 'infinity')}
+                                              disabled={userHearts === 'infinity'}
+                                              title={userHearts === 'infinity' ? 'Currently in Infinite Hearts Mode' : 'Switch to Infinite Hearts Mode'}
+                                            >
+                                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                                <path
+                                                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                                                  fill={userHearts === 'infinity' ? 'var(--color-orange)' : 'var(--color-text-light)'}
+                                                />
+                                              </svg>
+                                              <span>Infinity (∞)</span>
+                                            </button>
+
+                                            <button
+                                              className={`cms-btn-mode-numeric ${userHearts !== 'infinity' ? 'active' : 'inactive'}`}
+                                              onClick={() => handleUpdateHearts(u.uid, 10)}
+                                              disabled={userHearts !== 'infinity'}
+                                              title={userHearts !== 'infinity' ? 'Currently in Numeric Hearts Mode' : 'Switch to Numeric Hearts Mode'}
+                                            >
+                                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                                <path
+                                                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                                                  fill={userHearts !== 'infinity' ? 'var(--color-red)' : 'var(--color-text-light)'}
+                                                />
+                                              </svg>
+                                              <span>Numeric ({userHearts !== 'infinity' ? (userHearts ?? 10) : 10})</span>
+                                            </button>
+                                          </div>
 
                                          {/* Expiration Details */}
                                          {userHearts === 'infinity' && (
@@ -502,52 +509,39 @@ export default function UsersSection({
                                          {/* Action Buttons */}
                                          <div className="cms-user-hearts-actions-container">
                                            {userHearts === 'infinity' ? (
-                                             <>
-                                               {/* Extension preset options if they want to adjust the expiration date */}
-                                               <div className="cms-user-extend-preset-container">
-                                                 <span className="cms-user-extend-label">EXTEND:</span>
-                                                 <button
-                                                   className="cms-btn-extend-30-days cms-btn-extend-preset"
-                                                   onClick={() => {
-                                                     const date = new Date();
-                                                     date.setDate(date.getDate() + 30);
-                                                     handleUpdateSubscription(u.uid, date.toISOString());
-                                                   }}
-                                                 >
-                                                   +30 Days
-                                                 </button>
-                                                 <button
-                                                   className="cms-btn-extend-1-year cms-btn-extend-preset"
-                                                   onClick={() => {
-                                                     const date = new Date();
-                                                     date.setFullYear(date.getFullYear() + 1);
-                                                     handleUpdateSubscription(u.uid, date.toISOString());
-                                                   }}
-                                                 >
-                                                   +1 Year
-                                                 </button>
-                                               </div>
-                                             </>
-                                           ) : (
-                                             <>
-                                               {/* Button to change to Infinity */}
+                                             <div className="cms-user-extend-preset-container">
+                                               <span className="cms-user-extend-label">EXTEND:</span>
                                                <button
-                                                 className="cms-btn-grant-infinity"
-                                                 onClick={() => handleUpdateHearts(u.uid, 'infinity')}
+                                                 className="cms-btn-extend-30-days cms-btn-extend-preset"
+                                                 onClick={() => {
+                                                   const date = new Date();
+                                                   date.setDate(date.getDate() + 30);
+                                                   handleUpdateSubscription(u.uid, date.toISOString());
+                                                 }}
                                                >
-                                                 Change to Infinity
+                                                 +30 Days
                                                </button>
-                                               
-                                               <div className="cms-user-hearts-adjust-numeric-row">
-                                                 <span className="cms-user-adjust-numeric-label">ADJUST NUMERIC:</span>
-                                                 <HeartsEditControl
-                                                   userId={u.uid}
-                                                   currentHearts={userHearts}
-                                                   onUpdate={(val) => handleUpdateHearts(u.uid, val)}
-                                                   showToast={showToast}
-                                                 />
-                                               </div>
-                                             </>
+                                               <button
+                                                 className="cms-btn-extend-1-year cms-btn-extend-preset"
+                                                 onClick={() => {
+                                                   const date = new Date();
+                                                   date.setFullYear(date.getFullYear() + 1);
+                                                   handleUpdateSubscription(u.uid, date.toISOString());
+                                                 }}
+                                               >
+                                                 +1 Year
+                                               </button>
+                                             </div>
+                                           ) : (
+                                             <div className="cms-user-hearts-adjust-numeric-row">
+                                               <span className="cms-user-adjust-numeric-label">ADJUST NUMERIC:</span>
+                                               <HeartsEditControl
+                                                 userId={u.uid}
+                                                 currentHearts={userHearts}
+                                                 onUpdate={(val) => handleUpdateHearts(u.uid, val)}
+                                                 showToast={showToast}
+                                               />
+                                             </div>
                                            )}
                                          </div>
                                        </div>
