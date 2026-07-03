@@ -52,13 +52,13 @@ This diagram visualizes how Gogram's frontend, backend API server, local authent
 
 ```mermaid
 graph TD
-    subgraph Local Machine (Developer)
+    subgraph local_machine ["Local Machine (Developer)"]
         Frontend[Frontend: React + Vite<br>Port 5173]
         Backend[Backend: Express.js API<br>Port 5001]
         Proxy[Cloud SQL Auth Proxy<br>Port 5432]
     end
 
-    subgraph Google Cloud Platform (GCP)
+    subgraph gcp_platform ["Google Cloud Platform (GCP)"]
         FirebaseAuth[Firebase Auth Service]
         CloudSQL[Cloud SQL PostgreSQL Instance<br>34.126.85.240]
     end
@@ -67,7 +67,7 @@ graph TD
     Frontend -->|2. API Requests / Bearer Token| Backend
     Backend -->|3. Verify Token| FirebaseAuth
     Backend -->|4. DB queries on localhost:5432| Proxy
-    Proxy == 5. Secure TLS Tunnel (IAM Auth) ==> CloudSQL
+    Proxy ==>|5. Secure TLS Tunnel (IAM Auth)| CloudSQL
 ```
 
 ### UML Sequence Diagram (Authentication & Data Lifecycle)
