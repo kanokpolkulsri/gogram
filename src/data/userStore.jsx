@@ -116,6 +116,9 @@ function userReducer(state, action) {
 
     case 'AUTH_STATE_CHANGED':
       if (!action.user) {
+        // Clear cached stats and login session flags on logout
+        localStorage.removeItem(STORAGE_KEY);
+        sessionStorage.removeItem('gogram_login_clicked');
         return {
           ...initialStoreState,
           isAuthLoading: false
