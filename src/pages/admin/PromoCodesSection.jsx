@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { api } from '../../data/api';
+import './PromoCodesSection.css';
 
 function formatDuration(minutes) {
   if (!minutes) return 'Never';
@@ -165,28 +166,28 @@ export default function PromoCodesSection({
       <p className="cms-promo-section-subtitle">Manage promotional rewards and special subscription activation keys.</p>
 
       {/* Add Code Form */}
-      <div className="cms-promo-form-card" style={{ marginBottom: '28px' }}>
-        <h3 className="cms-promo-card-title" style={{ marginBottom: '16px', fontSize: '18px', fontWeight: '800' }}>
+      <div className="cms-promo-form-card">
+        <h3 className="cms-promo-card-title">
           Create New Promo Code
         </h3>
-        <form onSubmit={handleAddCode} className="cms-promo-grid-form" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '16px', alignItems: 'end' }}>
+        <form onSubmit={handleAddCode} className="cms-promo-grid-form">
           <div className="cms-promo-form-group">
-            <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', color: 'var(--color-text-light)', marginBottom: '6px' }}>Code Name</label>
+            <label>Code Name</label>
             <input
               type="text"
               placeholder="e.g. FREEHEARTS"
               value={newCode}
               onChange={(e) => setNewCode(e.target.value.toUpperCase())}
-              style={{ width: '100%', padding: '10px 14px', border: '2px solid var(--color-gray)', borderRadius: '12px', fontSize: '14px', fontWeight: '700' }}
+              className="cms-promo-input-field"
             />
           </div>
 
           <div className="cms-promo-form-group">
-            <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', color: 'var(--color-text-light)', marginBottom: '6px' }}>Reward Type</label>
+            <label>Reward Type</label>
             <select
               value={newType}
               onChange={(e) => setNewType(e.target.value)}
-              style={{ width: '100%', padding: '10px 14px', border: '2px solid var(--color-gray)', borderRadius: '12px', fontSize: '14px', fontWeight: '700', backgroundColor: 'white' }}
+              className="cms-promo-input-field"
             >
               <option value="hearts">Extra Hearts</option>
               <option value="infinity">Infinity Hearts (Premium)</option>
@@ -194,34 +195,34 @@ export default function PromoCodesSection({
           </div>
 
           <div className="cms-promo-form-group">
-            <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', color: newType === 'hearts' ? 'var(--color-text-light)' : '#ccc', marginBottom: '6px' }}>Hearts Amount</label>
+            <label className={newType === 'hearts' ? '' : 'disabled'}>Hearts Amount</label>
             <input
               type="number"
               placeholder={newType === 'hearts' ? '100' : 'N/A'}
               value={newType === 'hearts' ? newReward : ''}
               onChange={(e) => setNewReward(e.target.value)}
               disabled={newType !== 'hearts'}
-              style={{ width: '100%', padding: '10px 14px', border: '2px solid var(--color-gray)', borderRadius: '12px', fontSize: '14px', fontWeight: '700', backgroundColor: newType === 'hearts' ? 'white' : '#f5f5f5', color: newType === 'hearts' ? 'inherit' : '#aaa', cursor: newType === 'hearts' ? 'text' : 'not-allowed' }}
+              className="cms-promo-input-field"
             />
           </div>
 
           <div className="cms-promo-form-group">
-            <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', color: 'var(--color-text-light)', marginBottom: '6px' }}>Code Expiry Date (Optional)</label>
+            <label>Code Expiry Date (Optional)</label>
             <input
               type="date"
               value={newExpiresAt}
               onChange={(e) => setNewExpiresAt(e.target.value)}
-              style={{ width: '100%', padding: '10px 14px', border: '2px solid var(--color-gray)', borderRadius: '12px', fontSize: '14px', fontWeight: '700', backgroundColor: 'white' }}
+              className="cms-promo-input-field"
             />
           </div>
 
           <div className="cms-promo-form-group">
-            <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', color: newType === 'infinity' ? 'var(--color-text-light)' : '#ccc', marginBottom: '6px' }}>Infinity Duration</label>
+            <label className={newType === 'infinity' ? '' : 'disabled'}>Infinity Duration</label>
             <select
               value={newType === 'infinity' ? newInfinityDuration : 'none'}
               onChange={(e) => setNewInfinityDuration(e.target.value)}
               disabled={newType !== 'infinity'}
-              style={{ width: '100%', padding: '10px 14px', border: '2px solid var(--color-gray)', borderRadius: '12px', fontSize: '14px', fontWeight: '700', backgroundColor: newType === 'infinity' ? 'white' : '#f5f5f5', color: newType === 'infinity' ? 'inherit' : '#aaa', cursor: newType === 'infinity' ? 'pointer' : 'not-allowed' }}
+              className="cms-promo-input-field"
             >
               {newType === 'infinity' ? (
                 <>
@@ -240,24 +241,24 @@ export default function PromoCodesSection({
           </div>
 
           <div className="cms-promo-form-group">
-            <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', color: 'var(--color-text-light)', marginBottom: '6px' }}>Max Claims Limit (Optional)</label>
+            <label>Max Claims Limit (Optional)</label>
             <input
               type="number"
               placeholder="e.g. 100"
               value={newMaxRedemptions}
               onChange={(e) => setNewMaxRedemptions(e.target.value)}
-              style={{ width: '100%', padding: '10px 14px', border: '2px solid var(--color-gray)', borderRadius: '12px', fontSize: '14px', fontWeight: '700' }}
+              className="cms-promo-input-field"
             />
           </div>
 
-          <div className="cms-promo-form-group" style={{ gridColumn: 'span 2' }}>
-            <label style={{ display: 'block', fontSize: '13px', fontWeight: '700', color: 'var(--color-text-light)', marginBottom: '6px' }}>Description</label>
+          <div className="cms-promo-form-group span-2">
+            <label>Description</label>
             <input
               type="text"
               placeholder="e.g. 100 hearts reward for tutoring school"
               value={newDesc}
               onChange={(e) => setNewDesc(e.target.value)}
-              style={{ width: '100%', padding: '10px 14px', border: '2px solid var(--color-gray)', borderRadius: '12px', fontSize: '14px', fontWeight: '700' }}
+              className="cms-promo-input-field"
             />
           </div>
 
@@ -265,7 +266,6 @@ export default function PromoCodesSection({
             <button
               type="submit"
               className="btn btn-orange cms-promo-add-btn"
-              style={{ width: '100%', padding: '12px', fontSize: '14px', fontWeight: '800', height: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
               Add Promo Code
             </button>
@@ -276,25 +276,25 @@ export default function PromoCodesSection({
       {/* Promo Codes Table */}
       <div className="cms-promo-table-card">
         <div className="cms-promo-table-wrapper scrollbar">
-          <table className="cms-promo-table text-left" style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <table className="cms-promo-table text-left">
             <thead>
-              <tr style={{ borderBottom: '2px solid var(--color-gray)' }}>
-                <th style={{ padding: '12px 8px' }}>CODE</th>
-                <th style={{ padding: '12px 8px' }}>TYPE</th>
-                <th style={{ padding: '12px 8px' }}>REWARD</th>
-                <th style={{ padding: '12px 8px' }}>CODE EXPIRES</th>
-                <th style={{ padding: '12px 8px' }}>INF DURATION</th>
-                <th style={{ padding: '12px 8px' }}>USAGE LIMIT</th>
-                <th style={{ padding: '12px 8px' }}>DESCRIPTION</th>
-                <th style={{ padding: '12px 8px' }}>ACTIONS</th>
+              <tr className="header-row">
+                <th>CODE</th>
+                <th>TYPE</th>
+                <th>REWARD</th>
+                <th>CODE EXPIRES</th>
+                <th>INF DURATION</th>
+                <th>USAGE LIMIT</th>
+                <th>DESCRIPTION</th>
+                <th>ACTIONS</th>
               </tr>
             </thead>
             <tbody>
               {isLoading ? (
                 <tr>
-                  <td colSpan="8" style={{ textAlign: 'center', padding: '40px' }}>
-                    <div className="cms-loading-spinner" style={{ display: 'inline-block', width: '24px', height: '24px', border: '3px solid var(--color-gray)', borderTopColor: 'var(--color-blue-dark)', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
-                    <p style={{ marginTop: '8px', fontSize: '13px', fontWeight: 'bold', color: 'var(--color-text-light)' }}>Loading Promo Codes...</p>
+                  <td colSpan="8" className="cms-promo-loading-cell">
+                    <div className="cms-loading-spinner cms-promo-loading-spinner"></div>
+                    <p className="cms-promo-loading-text">Loading Promo Codes...</p>
                   </td>
                 </tr>
               ) : (
@@ -304,42 +304,42 @@ export default function PromoCodesSection({
                   
                   if (isEditing) {
                     return (
-                      <tr key={c.code} style={{ borderBottom: '1px solid var(--color-gray-light)', backgroundColor: '#F9FAFB' }}>
-                        <td style={{ padding: '12px 8px', fontWeight: '800' }}>{c.code}</td>
-                        <td style={{ padding: '12px 8px' }}>
+                      <tr key={c.code} className="editing-row">
+                        <td className="code-cell">{c.code}</td>
+                        <td>
                           <select
                             value={editType}
                             onChange={(e) => setEditType(e.target.value)}
-                            style={{ padding: '6px 8px', borderRadius: '8px', border: '1px solid var(--color-gray)', fontSize: '13px', fontWeight: '700' }}
+                            className="cms-promo-edit-input"
                           >
                             <option value="hearts">HEARTS</option>
                             <option value="infinity">INFINITY</option>
                           </select>
                         </td>
-                        <td style={{ padding: '12px 8px' }}>
+                        <td>
                           {editType === 'hearts' ? (
                             <input
                               type="number"
                               value={editReward}
                               onChange={(e) => setEditReward(e.target.value)}
-                              style={{ width: '60px', padding: '6px 8px', borderRadius: '8px', border: '1px solid var(--color-gray)', fontSize: '13px', fontWeight: '700' }}
+                              className="cms-promo-edit-input width-60"
                             />
                           ) : '∞'}
                         </td>
-                        <td style={{ padding: '12px 8px' }}>
+                        <td>
                           <input
                             type="date"
                             value={editExpiresAt}
                             onChange={(e) => setEditExpiresAt(e.target.value)}
-                            style={{ padding: '6px 8px', borderRadius: '8px', border: '1px solid var(--color-gray)', fontSize: '13px', fontWeight: '700' }}
+                            className="cms-promo-edit-input"
                           />
                         </td>
-                        <td style={{ padding: '12px 8px' }}>
+                        <td>
                           {editType === 'infinity' ? (
                             <select
                               value={editInfinityDuration}
                               onChange={(e) => setEditInfinityDuration(e.target.value)}
-                              style={{ padding: '6px 8px', borderRadius: '8px', border: '1px solid var(--color-gray)', fontSize: '13px', fontWeight: '700' }}
+                              className="cms-promo-edit-input"
                             >
                               <option value="3mo">3 Months</option>
                               <option value="1mo">1 Month</option>
@@ -351,36 +351,34 @@ export default function PromoCodesSection({
                             </select>
                           ) : 'N/A'}
                         </td>
-                        <td style={{ padding: '12px 8px' }}>
+                        <td>
                           <input
                             type="number"
                             placeholder="No Limit"
                             value={editMaxRedemptions}
                             onChange={(e) => setEditMaxRedemptions(e.target.value)}
-                            style={{ width: '70px', padding: '6px 8px', borderRadius: '8px', border: '1px solid var(--color-gray)', fontSize: '13px', fontWeight: '700' }}
+                            className="cms-promo-edit-input width-70"
                           />
                         </td>
-                        <td style={{ padding: '12px 8px' }}>
+                        <td>
                           <input
                             type="text"
                             value={editDesc}
                             onChange={(e) => setEditDesc(e.target.value)}
-                            style={{ width: '120px', padding: '6px 8px', borderRadius: '8px', border: '1px solid var(--color-gray)', fontSize: '13px', fontWeight: '700' }}
+                            className="cms-promo-edit-input width-120"
                           />
                         </td>
-                        <td style={{ padding: '12px 8px' }}>
-                          <div style={{ display: 'flex', gap: '8px' }}>
+                        <td>
+                          <div className="cms-promo-action-group">
                             <button
                               onClick={() => handleSaveEdit(c.code)}
-                              className="cms-promo-icon-btn"
-                              style={{ padding: '4px 8px', backgroundColor: 'var(--color-green)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: '800', cursor: 'pointer', fontSize: '12px' }}
+                              className="cms-promo-icon-btn cms-btn-action-green"
                             >
                               Save
                             </button>
                             <button
                               onClick={() => setEditingCode(null)}
-                              className="cms-promo-icon-btn"
-                              style={{ padding: '4px 8px', backgroundColor: 'var(--color-gray-dark)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: '800', cursor: 'pointer', fontSize: '12px' }}
+                              className="cms-promo-icon-btn cms-btn-action-gray"
                             >
                               Cancel
                             </button>
@@ -389,30 +387,30 @@ export default function PromoCodesSection({
                       </tr>
                     );
                   }
-
+ 
                   return (
-                    <tr key={c.code} style={{ borderBottom: '1px solid var(--color-gray-light)' }}>
-                      <td style={{ padding: '12px 8px', fontWeight: '800' }}>{c.code}</td>
-                      <td style={{ padding: '12px 8px' }}>
+                    <tr key={c.code}>
+                      <td className="code-cell">{c.code}</td>
+                      <td>
                         <span className={`cms-promo-role-badge-text role-badge-text ${c.type === 'infinity' ? 'subscribed' : 'free'}`}>
                           {c.type === 'infinity' ? 'INFINITY' : 'HEARTS'}
                         </span>
                       </td>
-                      <td style={{ padding: '12px 8px', fontWeight: '800', color: c.type === 'infinity' ? 'var(--color-orange-dark)' : 'var(--color-text)' }}>
+                      <td className={c.type === 'infinity' ? 'reward-cell-infinity' : 'reward-cell-hearts'}>
                         {c.type === 'infinity' ? '∞' : c.reward}
                       </td>
-                      <td style={{ padding: '12px 8px', fontWeight: '800', color: 'var(--color-text-light)', fontSize: '13px' }}>
+                      <td className="expiry-cell">
                         {c.expiresAt ? new Date(c.expiresAt).toLocaleDateString('en-US', { year: 'numeric', month: 'numeric', day: 'numeric' }) : 'Never'}
                       </td>
-                      <td style={{ padding: '12px 8px', fontWeight: '800', color: 'var(--color-text-light)', fontSize: '13px' }}>
+                      <td className="duration-cell">
                         {c.type === 'infinity' ? (c.infinityDuration ? formatDuration(c.infinityDuration) : 'Never') : 'N/A'}
                       </td>
-                      <td style={{ padding: '12px 8px', fontWeight: '800', color: 'var(--color-text-light)', fontSize: '13px' }}>
+                      <td className="limit-cell">
                         {c.maxRedemptions ? `${redemptionsCount} / ${c.maxRedemptions}` : `${redemptionsCount} claims`}
                       </td>
-                      <td style={{ padding: '12px 8px', color: 'var(--color-text-light)', fontSize: '13px' }}>{c.description}</td>
-                      <td style={{ padding: '12px 8px' }}>
-                        <div style={{ display: 'flex', gap: '8px' }}>
+                      <td className="desc-cell">{c.description}</td>
+                      <td>
+                        <div className="cms-promo-action-group">
                           <button
                             className="cms-promo-icon-btn cms-promo-edit-btn icon-action-btn"
                             onClick={() => startEditing(c)}
@@ -452,18 +450,13 @@ export default function PromoCodesSection({
               )}
               {!isLoading && promoCodes.length === 0 && (
                 <tr>
-                  <td colSpan="8" className="cms-promo-no-data" style={{ padding: '20px 8px', color: 'var(--color-text-light)', fontStyle: 'italic', textAlign: 'center' }}>No custom promo codes found. Create one above!</td>
+                  <td colSpan="8" className="cms-promo-no-data">No custom promo codes found. Create one above!</td>
                 </tr>
               )}
             </tbody>
           </table>
         </div>
       </div>
-      <style>{`
-        @keyframes spin {
-          to { transform: rotate(360deg); }
-        }
-      `}</style>
     </div>
   );
 }
