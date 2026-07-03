@@ -224,6 +224,7 @@ export function UserProvider({ children }) {
     } catch (error) {
       console.error('Failed to initialize synced database profile:', error);
       rawDispatch({ type: 'AUTH_STATE_CHANGED', user: null });
+      alert('Failed to connect to Gogram server. Please ensure the backend server is running and your database is reachable.');
     }
   }, []);
 
