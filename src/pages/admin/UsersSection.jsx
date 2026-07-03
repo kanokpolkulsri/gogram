@@ -468,7 +468,7 @@ export default function UsersSection({
                                          )}
 
                                          {/* Action Buttons */}
-                                         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '12px' }}>
+                                         <div className="cms-user-hearts-actions-container" style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '12px' }}>
                                            {userHearts === 'infinity' ? (
                                              <>
                                                {/* Button to change to Numeric (Revoke) */}
@@ -493,7 +493,7 @@ export default function UsersSection({
                                                </button>
                                                
                                                {/* Extension preset options if they want to adjust the expiration date */}
-                                               <div style={{ display: 'flex', gap: '6px', alignItems: 'center', marginTop: '4px' }}>
+                                               <div className="cms-user-extend-preset-container" style={{ display: 'flex', gap: '6px', alignItems: 'center', marginTop: '4px' }}>
                                                  <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--color-text-light)', marginRight: 'auto' }}>EXTEND:</span>
                                                  <button
                                                    className="cms-btn-extend-30-days"
@@ -543,7 +543,7 @@ export default function UsersSection({
                                                </button>
                                                
                                                {/* Numeric Hearts Editor */}
-                                               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', borderTop: '1px solid var(--color-gray)', paddingTop: '12px', marginTop: '4px' }}>
+                                               <div className="cms-user-hearts-adjust-numeric-row" style={{ display: 'flex', alignItems: 'center', gap: '8px', borderTop: '1px solid var(--color-gray)', paddingTop: '12px', marginTop: '4px' }}>
                                                  <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--color-text-light)', marginRight: 'auto' }}>ADJUST NUMERIC:</span>
                                                  <HeartsEditControl
                                                    userId={u.uid}
