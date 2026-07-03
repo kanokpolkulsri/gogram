@@ -32,8 +32,9 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
     console.log(`Payment successful for user ${userId}. Session ID: ${session.id}`);
 
     try {
-      // Grant perpetual subscription to user
-      const expiresAt = new Date('2099-12-31T23:59:59Z');
+      // Grant 1 year subscription to user
+      const expiresAt = new Date();
+      expiresAt.setFullYear(expiresAt.getFullYear() + 1);
       await query(
         `UPDATE users 
          SET subscription_expires_at = $1 

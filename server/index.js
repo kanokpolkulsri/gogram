@@ -1,4 +1,4 @@
-import express from 'express';
+import express from 'express'; // reload env keys
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import { PORT } from './config.js';

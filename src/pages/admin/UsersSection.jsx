@@ -506,18 +506,26 @@ export default function UsersSection({
                                                        const selectedDate = new Date(val + 'T23:59:59');
                                                        handleUpdateSubscription(u.uid, selectedDate.toISOString());
                                                      } else {
-                                                       handleUpdateSubscription(u.uid, '2099-12-31T23:59:59Z');
+                                                       const oneYearFromNow = new Date();
+                                                       oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+                                                       handleUpdateSubscription(u.uid, oneYearFromNow.toISOString());
                                                      }
                                                    }}
                                                    onFocus={() => setFocusedDatePickerUid(u.uid)}
                                                    onBlur={() => setFocusedDatePickerUid(null)}
                                                  />
                                                  <button
-                                                   className={`cms-btn-extend-preset ${isPerpetual(userSubscriptionExpiresAt) ? 'active' : ''}`}
-                                                   onClick={() => handleUpdateSubscription(u.uid, '2099-12-31T23:59:59Z')}
+                                                   className="cms-btn-extend-preset"
+                                                   onClick={() => {
+                                                     const currentExpiry = userSubscriptionExpiresAt ? new Date(userSubscriptionExpiresAt) : new Date();
+                                                     const baseDate = currentExpiry > new Date() ? currentExpiry : new Date();
+                                                     const newExpiry = new Date(baseDate);
+                                                     newExpiry.setFullYear(newExpiry.getFullYear() + 1);
+                                                     handleUpdateSubscription(u.uid, newExpiry.toISOString());
+                                                   }}
                                                    style={{ height: '36px', whiteSpace: 'nowrap' }}
                                                  >
-                                                   {isPerpetual(userSubscriptionExpiresAt) ? '✓ Perpetual' : 'Set Perpetual'}
+                                                   +1 Year
                                                  </button>
                                                </div>
                                              </div>

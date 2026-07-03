@@ -77,7 +77,7 @@ export default function ShopPage() {
               <span className="premium-badge">PREMIUM</span>
               <h2 className="shop-premium-title">Upgrade to Infinite Hearts</h2>
               <p className="shop-premium-desc">
-                Learn grammar and vocabulary without limits! Never wait for hearts to refill.
+                Get 1 year of Infinite Hearts! Learn grammar and vocabulary without limits. Never wait for hearts to refill.
               </p>
               <button 
                 className="shop-premium-upgrade-btn"

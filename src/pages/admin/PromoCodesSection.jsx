@@ -190,7 +190,6 @@ export default function PromoCodesSection({
               className="cms-promo-input-field"
             >
               <option value="hearts">Extra Hearts</option>
-              <option value="infinity">Infinity Hearts (Premium)</option>
             </select>
           </div>
 
@@ -313,7 +312,6 @@ export default function PromoCodesSection({
                             className="cms-promo-edit-input"
                           >
                             <option value="hearts">HEARTS</option>
-                            <option value="infinity">INFINITY</option>
                           </select>
                         </td>
                         <td>

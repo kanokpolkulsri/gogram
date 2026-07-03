@@ -63,6 +63,10 @@ router.post('/claim', authenticate, async (req, res) => {
     }
 
     // 3. Validate code constraints
+    if (promo.type === 'infinity') {
+      return res.status(400).json({ error: "Promo code type 'infinity' is no longer supported." });
+    }
+
     const now = new Date();
 
     if (promo.expires_at && new Date(promo.expires_at) < now) {

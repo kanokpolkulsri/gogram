@@ -153,20 +153,33 @@ export default function HeartsModal({ isOpen, onClose }) {
         {/* Promo code form */}
         <div className="hearts-modal-promo-box">
           <h3>Apply Promo or Referral Code</h3>
-          <p className="promo-box-sub">Enter a valid promo code or a friend's referral code to refill hearts or activate Premium.</p>
+          {isInfinity ? (
+            <p className="promo-box-sub" style={{ color: 'var(--color-text-light)', fontStyle: 'italic' }}>
+              Promo codes cannot be applied while Premium is active.
+            </p>
+          ) : (
+            <p className="promo-box-sub">Enter a valid promo code or a friend's referral code to refill hearts.</p>
+          )}
           
           <form onSubmit={handleApply} className="hearts-modal-form">
             <input
               type="text"
-              placeholder="e.g. PREMIUM2026"
+              placeholder={isInfinity ? "Disabled (Premium is active)" : "e.g. WELCOME100"}
               value={code}
               onChange={(e) => {
                 setCode(e.target.value);
                 setStatusMsg('');
               }}
               className="hearts-modal-input"
+              disabled={isInfinity}
+              style={isInfinity ? { backgroundColor: 'var(--color-gray-light)', cursor: 'not-allowed', opacity: 0.6 } : {}}
             />
-            <button type="submit" className="btn btn-orange hearts-modal-btn">
+            <button 
+              type="submit" 
+              className="btn btn-orange hearts-modal-btn" 
+              disabled={isInfinity}
+              style={isInfinity ? { opacity: 0.5, cursor: 'not-allowed' } : {}}
+            >
               Apply Code
             </button>
           </form>
@@ -183,7 +196,7 @@ export default function HeartsModal({ isOpen, onClose }) {
           <div className="hearts-modal-promo-box hearts-modal-upgrade-cta" style={{ borderTop: '1px solid var(--color-gray)', paddingTop: '16px', marginTop: '16px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h3 style={{ margin: '0 0 4px 0', fontSize: '16px', fontWeight: '800' }}>⚡ Go Premium</h3>
             <p className="promo-box-sub" style={{ marginBottom: '12px', textAlign: 'center' }}>
-              Upgrade to Premium for 29 THB to get Infinite Hearts permanently!
+              Upgrade to Premium for 29 THB to get 1 year of Infinite Hearts!
             </p>
             <button
               className="btn btn-orange hearts-modal-upgrade-btn"
