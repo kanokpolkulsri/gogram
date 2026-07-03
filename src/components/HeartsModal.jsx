@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useUser, useUserDispatch } from '../data/userStore';
+import { api } from '../data/api';
 import './HeartsModal.css';
 
 export default function HeartsModal({ isOpen, onClose }) {
@@ -8,6 +9,25 @@ export default function HeartsModal({ isOpen, onClose }) {
   const [code, setCode] = useState('');
   const [statusMsg, setStatusMsg] = useState('');
   const [statusType, setStatusType] = useState(''); // 'success' or 'error'
+  const [isUpgrading, setIsUpgrading] = useState(false);
+
+  const handleUpgradePremium = async () => {
+    try {
+      setIsUpgrading(true);
+      setStatusMsg('');
+      const res = await api.post('/payments/create-checkout-session');
+      if (res.url) {
+        window.location.href = res.url;
+      } else {
+        throw new Error('Failed to retrieve checkout URL.');
+      }
+    } catch (err) {
+      setStatusType('error');
+      setStatusMsg(err.message || 'Upgrade session failed.');
+    } finally {
+      setIsUpgrading(false);
+    }
+  };
 
   const ONE_HOUR_MS = 3600000;
   const [timeLeft, setTimeLeft] = useState(0);
@@ -157,6 +177,24 @@ export default function HeartsModal({ isOpen, onClose }) {
             </div>
           )}
         </div>
+
+        {/* Go Premium CTA */}
+        {user.hearts !== 'infinity' && (
+          <div className="hearts-modal-promo-box hearts-modal-upgrade-cta" style={{ borderTop: '1px solid var(--color-gray)', paddingTop: '16px', marginTop: '16px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <h3 style={{ margin: '0 0 4px 0', fontSize: '16px', fontWeight: '800' }}>⚡ Go Premium</h3>
+            <p className="promo-box-sub" style={{ marginBottom: '12px', textAlign: 'center' }}>
+              Upgrade to Premium for 29 THB to get Infinite Hearts permanently!
+            </p>
+            <button
+              className="btn btn-orange hearts-modal-upgrade-btn"
+              onClick={handleUpgradePremium}
+              disabled={isUpgrading}
+              style={{ width: '100%', maxWidth: '280px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            >
+              {isUpgrading ? 'Redirecting to Stripe...' : 'Upgrade Now — 29 THB'}
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { shopItems } from '../../data/mockData';
 import { useUser, useUserDispatch } from '../../data/userStore';
+import { api } from '../../data/api';
 import './ShopPage.css';
 
 export default function ShopPage() {
@@ -8,6 +9,25 @@ export default function ShopPage() {
   const dispatch = useUserDispatch();
   const [boughtItems, setBoughtItems] = useState([]);
   const [showToast, setShowToast] = useState(null);
+  const [isUpgrading, setIsUpgrading] = useState(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('success') === 'true') {
+      setTimeout(() => {
+        setShowToast({ type: 'success', message: 'Payment successful! You now have Infinite Hearts!' });
+      }, 0);
+      window.history.replaceState({}, document.title, window.location.pathname);
+      dispatch({ type: 'CHECK_HEARTS_REFILL' });
+      setTimeout(() => setShowToast(null), 3000);
+    } else if (params.get('canceled') === 'true') {
+      setTimeout(() => {
+        setShowToast({ type: 'error', message: 'Payment was canceled.' });
+      }, 0);
+      window.history.replaceState({}, document.title, window.location.pathname);
+      setTimeout(() => setShowToast(null), 2000);
+    }
+  }, [dispatch]);
 
   const handleBuy = (item) => {
     if ((user.gems || 0) < item.cost) {
@@ -21,6 +41,23 @@ export default function ShopPage() {
     setTimeout(() => setShowToast(null), 2000);
   };
 
+  const handleUpgradePremium = async () => {
+    try {
+      setIsUpgrading(true);
+      const res = await api.post('/payments/create-checkout-session');
+      if (res.url) {
+        window.location.href = res.url;
+      } else {
+        throw new Error('Failed to retrieve checkout URL.');
+      }
+    } catch (err) {
+      setShowToast({ type: 'error', message: err.message || 'Upgrade session failed.' });
+      setTimeout(() => setShowToast(null), 2000);
+    } finally {
+      setIsUpgrading(false);
+    }
+  };
+
   return (
     <div className="shop-page" id="shop-page">
       <div className="shop-header">
@@ -31,6 +68,32 @@ export default function ShopPage() {
           <span className="shop-balance-label">Gems</span>
         </div>
       </div>
+
+      {/* Premium Upgrade section */}
+      {user.hearts !== 'infinity' && (
+        <div className="shop-section shop-premium-banner-section" id="shop-premium-section">
+          <div className="shop-premium-banner">
+            <div className="shop-premium-banner-content">
+              <span className="premium-badge">PREMIUM</span>
+              <h2 className="shop-premium-title">Upgrade to Infinite Hearts</h2>
+              <p className="shop-premium-desc">
+                Learn grammar and vocabulary without limits! Never wait for hearts to refill.
+              </p>
+              <button 
+                className="shop-premium-upgrade-btn"
+                onClick={handleUpgradePremium}
+                disabled={isUpgrading}
+                id="btn-stripe-promptpay-upgrade"
+              >
+                {isUpgrading ? 'Redirecting to Stripe...' : 'Upgrade Now — 29 THB'}
+              </button>
+            </div>
+            <div className="shop-premium-banner-visual">
+              <span className="premium-icon">⚡</span>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Power-ups */}
       <div className="shop-section">
@@ -106,7 +169,7 @@ export default function ShopPage() {
 
       {/* Toast */}
       {showToast && (
-        <div className={`shop-toast ${showToast.type}`}>
+        <div className={`shop-toast ${showToast.type}`} id="shop-notification-toast">
           {showToast.type === 'success' ? '✅' : '❌'} {showToast.message}
         </div>
       )}

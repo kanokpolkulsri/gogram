@@ -10,6 +10,7 @@ import learnRouter from './routes/learn.js';
 import quizRouter from './routes/quiz.js';
 import promoRouter from './routes/promo.js';
 import adminRouter from './routes/admin.js';
+import paymentRouter from './routes/payment.js';
 
 const app = express();
 
@@ -19,6 +20,9 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+// Bind webhook-friendly payment routes before parsing json
+app.use('/api/payments', paymentRouter);
 
 // Parse body requests
 app.use(express.json());
