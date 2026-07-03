@@ -1,0 +1,71 @@
+/* --- Gogram Admin: Topics Section Stylesheet --- */
+
+/* Loading Screen Container */
+.cms-topics-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 300px;
+  gap: 12px;
+}
+
+.cms-topics-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--color-gray);
+  border-top-color: var(--color-blue-dark);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.cms-topics-loading-text {
+  font-weight: 700;
+  color: var(--color-text-light);
+}
+
+/* Category Accent Elements */
+.cms-category-circle-icon {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-right: 6px;
+}
+
+.cms-category-action-buttons-group {
+  margin-left: auto;
+  display: flex;
+  gap: 4px;
+}
+
+/* Topic Card Right actions container */
+.cms-topics-card-right {
+  display: flex;
+  gap: 6px;
+}
+
+/* Modal textareas and custom forms inputs */
+.cms-topics-textarea-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 700;
+  border: 2px solid var(--color-gray);
+  border-radius: 12px;
+  outline: none;
+  resize: vertical;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.cms-topics-textarea-input:focus {
+  border-color: var(--color-blue);
+}
+
+/* Spinner Keyframe Animation */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

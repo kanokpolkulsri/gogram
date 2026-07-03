@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { api } from '../../data/api';
+import './TopicsSection.css';
 
 export default function TopicsSection({
   categories,
@@ -206,14 +207,9 @@ export default function TopicsSection({
 
       <div className="cms-split-layout cms-topics-split-layout">
         {categories.length === 0 || units.length === 0 ? (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%', minHeight: '300px', gap: '12px' }}>
-            <div className="cms-loading-spinner" style={{ width: '40px', height: '40px', border: '4px solid var(--color-gray)', borderTopColor: 'var(--color-blue-dark)', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
-            <p style={{ fontWeight: '700', color: 'var(--color-text-light)' }}>Loading topic data...</p>
-            <style>{`
-              @keyframes spin {
-                to { transform: rotate(360deg); }
-              }
-            `}</style>
+          <div className="cms-topics-loading-container">
+            <div className="cms-loading-spinner cms-topics-loading-spinner"></div>
+            <p className="cms-topics-loading-text">Loading topic data...</p>
           </div>
         ) : (
           <>
@@ -234,16 +230,11 @@ export default function TopicsSection({
                       <span
                         className="cms-category-circle-icon"
                         style={{
-                          width: '10px',
-                          height: '10px',
-                          borderRadius: '50%',
-                          backgroundColor: cat.color || 'var(--color-blue)',
-                          flexShrink: 0,
-                          marginRight: '6px'
+                          backgroundColor: cat.color || 'var(--color-blue)'
                         }}
                       />
                       <span className="category-label-text">{cat.title}</span>
-                      <div className="category-action-buttons-group" style={{ marginLeft: 'auto', display: 'flex', gap: '4px' }}>
+                      <div className="category-action-buttons-group cms-category-action-buttons-group">
                         <button
                           className="icon-action-btn edit-category-btn"
                           onClick={(e) => handleStartCategoryEdit(e, cat)}
@@ -291,7 +282,7 @@ export default function TopicsSection({
                       <p className="cms-topics-info-desc">{topic.description}</p>
                     </div>
                   </div>
-                  <div className="topic-card-right cms-topics-card-right" style={{ display: 'flex', gap: '6px' }}>
+                  <div className="topic-card-right cms-topics-card-right">
                     <button
                       className="icon-action-btn edit"
                       onClick={() => handleStartTopicEdit(topic)}
@@ -505,18 +496,7 @@ export default function TopicsSection({
                   value={etDesc}
                   onChange={(e) => setEtDesc(e.target.value)}
                   rows="3"
-                  style={{
-                    width: '100%',
-                    padding: '12px 16px',
-                    fontFamily: 'var(--font-family)',
-                    fontSize: '14px',
-                    fontWeight: 700,
-                    border: '2px solid var(--color-gray)',
-                    borderRadius: '12px',
-                    outline: 'none',
-                    resize: 'vertical',
-                    boxSizing: 'border-box'
-                  }}
+                  className="cms-topics-textarea-input"
                 />
               </div>
               <div className="cms-form-actions">
