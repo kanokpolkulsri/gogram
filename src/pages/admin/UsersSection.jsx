@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { api } from '../../data/api';
+import { useUserDispatch } from '../../data/userStore';
 import './UsersSection.css';
 
 function formatDateForInput(timestamp) {
@@ -88,6 +89,7 @@ export default function UsersSection({
   usersRefreshTrigger,
   setUsersRefreshTrigger
 }) {
+  const dispatch = useUserDispatch();
   const [loadingDetails, setLoadingDetails] = useState({});
 
   // Fetch users list with debounce on search query
@@ -158,11 +160,15 @@ export default function UsersSection({
           return {
             ...u,
             hearts: heartsValue,
+            promoExpiresAt: hasInfinity ? new Date('2099-12-31T23:59:59Z').getTime() : null,
             authLevel: hasInfinity ? 'subscribed' : (u.role === 'admin' ? 'admin' : 'free')
           };
         }
         return u;
       }));
+      if (userId === currentUser?.uid) {
+        dispatch({ type: 'CHECK_HEARTS_REFILL' });
+      }
     } catch (err) {
       showToast(`Error: ${err.message}`);
     }
@@ -171,7 +177,9 @@ export default function UsersSection({
   const handleUpdateSubscription = async (userId, expiresAt) => {
     try {
       await api.put(`/admin/users/${userId}/subscription`, { expiresAt });
-      showToast(expiresAt ? 'Premium granted/extended by 30 days' : 'Premium revoked');
+      showToast(expiresAt 
+        ? `Subscription updated to expire on ${new Date(expiresAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}` 
+        : 'Subscription set to Perpetual (Never Expires)');
       setUsers(prev => prev.map(u => {
         if (u.uid === userId) {
           const hasInfinity = expiresAt && new Date(expiresAt) > new Date();
@@ -184,6 +192,9 @@ export default function UsersSection({
         }
         return u;
       }));
+      if (userId === currentUser?.uid) {
+        dispatch({ type: 'CHECK_HEARTS_REFILL' });
+      }
     } catch (err) {
       showToast(`Error: ${err.message}`);
     }
