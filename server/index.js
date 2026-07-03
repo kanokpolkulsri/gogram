@@ -45,19 +45,28 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date() });
 });
 
-// Initialize DB and start server
+// Initialize DB and start server with connection retry logic
 const startServer = async () => {
-  try {
-    // Run schema migrations/initialization on startup
-    await initDb();
-    
-    app.listen(PORT, () => {
-      console.log(`Gogram Backend API Server running on port ${PORT}`);
-    });
-  } catch (error) {
-    console.error('Server failed to start due to database error:', error);
-    process.exit(1);
+  let retries = 5;
+  while (retries > 0) {
+    try {
+      // Run schema migrations/initialization on startup
+      await initDb();
+      break; // Successfully connected!
+    } catch (error) {
+      retries -= 1;
+      console.warn(`Database connection failed. Retrying in 2 seconds... (${retries} retries left)`);
+      if (retries === 0) {
+        console.error('Server failed to start due to database error:', error);
+        process.exit(1);
+      }
+      await new Promise(resolve => setTimeout(resolve, 2000));
+    }
   }
+
+  app.listen(PORT, () => {
+    console.log(`Gogram Backend API Server running on port ${PORT}`);
+  });
 };
 
 startServer();
