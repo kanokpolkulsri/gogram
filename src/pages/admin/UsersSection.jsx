@@ -38,6 +38,7 @@ function HeartsEditControl({ userId, currentHearts, onUpdate, showToast }) {
 
   return (
     <button
+      className="cms-btn-edit-numeric-hearts"
       onClick={() => {
         setTempVal(currentHearts ?? 10);
         setIsEditing(true);
@@ -472,6 +473,7 @@ export default function UsersSection({
                                              <>
                                                {/* Button to change to Numeric (Revoke) */}
                                                <button
+                                                 className="cms-btn-revoke-infinity"
                                                  onClick={() => handleUpdateHearts(u.uid, 10)}
                                                  style={{ 
                                                    width: '100%', 
@@ -494,6 +496,7 @@ export default function UsersSection({
                                                <div style={{ display: 'flex', gap: '6px', alignItems: 'center', marginTop: '4px' }}>
                                                  <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--color-text-light)', marginRight: 'auto' }}>EXTEND:</span>
                                                  <button
+                                                   className="cms-btn-extend-30-days"
                                                    onClick={() => {
                                                      const date = new Date();
                                                      date.setDate(date.getDate() + 30);
@@ -504,6 +507,7 @@ export default function UsersSection({
                                                    +30 Days
                                                  </button>
                                                  <button
+                                                   className="cms-btn-extend-1-year"
                                                    onClick={() => {
                                                      const date = new Date();
                                                      date.setFullYear(date.getFullYear() + 1);
@@ -519,6 +523,7 @@ export default function UsersSection({
                                              <>
                                                {/* Button to change to Infinity */}
                                                <button
+                                                 className="cms-btn-grant-infinity"
                                                  onClick={() => handleUpdateHearts(u.uid, 'infinity')}
                                                  style={{ 
                                                    width: '100%', 
