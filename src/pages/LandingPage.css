@@ -63,6 +63,9 @@
   text-align: center;
   margin-bottom: 24px;
   box-shadow: 0 2px 0 #e5e5e5;
+  min-width: 220px;
+  max-width: 90%;
+  box-sizing: border-box;
 }
 
 /* Arrow pointer pointing down */
@@ -94,7 +97,7 @@
 
 /* Typing animation elements */
 .speech-typed {
-  white-space: pre;
+  white-space: pre-wrap;
 }
 
 .speech-cursor {
