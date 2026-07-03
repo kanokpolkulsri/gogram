@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { api } from '../../data/api';
+import './UsersSection.css';
 
 function HeartsEditControl({ userId, currentHearts, onUpdate, showToast }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -12,23 +13,23 @@ function HeartsEditControl({ userId, currentHearts, onUpdate, showToast }) {
 
   if (isEditing) {
     return (
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+      <div className="cms-flex-row-gap-2">
         <input
           type="number"
           min="0"
           value={tempVal}
           onChange={(e) => setTempVal(e.target.value)}
-          style={{ width: '60px', padding: '4px 6px', border: '1px solid var(--color-gray)', borderRadius: '6px', fontSize: '13px', fontWeight: 'bold' }}
+          className="cms-numeric-input"
         />
         <button
           onClick={handleSave}
-          style={{ padding: '4px 8px', background: 'var(--color-green)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: 'bold', fontSize: '12px', cursor: 'pointer' }}
+          className="cms-btn-action-green"
         >
           Save
         </button>
         <button
           onClick={() => setIsEditing(false)}
-          style={{ padding: '4px 8px', background: 'var(--color-gray)', border: 'none', borderRadius: '6px', color: 'var(--color-text)', fontWeight: 'bold', fontSize: '12px', cursor: 'pointer' }}
+          className="cms-btn-action-gray"
         >
           Cancel
         </button>
@@ -38,12 +39,11 @@ function HeartsEditControl({ userId, currentHearts, onUpdate, showToast }) {
 
   return (
     <button
-      className="cms-btn-edit-numeric-hearts"
+      className="cms-btn-edit-numeric-hearts cms-btn-action-blue"
       onClick={() => {
         setTempVal(currentHearts ?? 10);
         setIsEditing(true);
       }}
-      style={{ padding: '4px 8px', background: 'var(--color-blue)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: 'bold', fontSize: '12px', cursor: 'pointer' }}
     >
       Edit Count
     </button>
@@ -283,9 +283,9 @@ export default function UsersSection({
             <tbody>
               {isLoading ? (
                 <tr>
-                  <td colSpan="4" style={{ textAlign: 'center', padding: '40px' }}>
-                    <div className="cms-loading-spinner" style={{ display: 'inline-block', width: '24px', height: '24px', border: '3px solid var(--color-gray)', borderTopColor: 'var(--color-blue-dark)', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
-                    <p style={{ marginTop: '8px', fontSize: '13px', fontWeight: 'bold', color: 'var(--color-text-light)' }}>Loading Users List...</p>
+                  <td colSpan="4" className="cms-loading-cell">
+                    <div className="cms-loading-spinner cms-loading-spinner-large"></div>
+                    <p className="cms-loading-text">Loading Users List...</p>
                   </td>
                 </tr>
               ) : (
@@ -381,35 +381,33 @@ export default function UsersSection({
                               </h4>
 
                               {isDetailsLoading ? (
-                                <div style={{ padding: '24px', textAlign: 'center' }}>
-                                  <div className="cms-loading-spinner" style={{ display: 'inline-block', width: '20px', height: '20px', border: '3px solid var(--color-gray)', borderTopColor: 'var(--color-blue-dark)', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
-                                  <span style={{ marginLeft: '8px', fontSize: '13px', color: 'var(--color-text-light)' }}>Loading profile progress...</span>
+                                <div className="cms-loading-wrapper">
+                                  <div className="cms-loading-spinner cms-loading-spinner-small"></div>
+                                  <span className="cms-loading-text-inline">Loading profile progress...</span>
                                 </div>
                               ) : (
                                 <>
                                   {/* Account settings, Hearts and Promo Codes inside expanded-progress-container */}
-                                  <div className="cms-user-details-settings-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
-                                    <div className="cms-user-details-settings-block" style={{ background: 'white', padding: '16px', borderRadius: '12px', border: '1px solid var(--color-gray)', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                                      <div className="cms-user-details-settings-group" style={{ display: 'flex', flexDirection: 'column', gap: '6px', textAlign: 'left' }}>
-                                        <h5 className="cms-user-details-settings-title" style={{ fontSize: '14px', fontWeight: '800', color: 'var(--color-text)', margin: 0, marginBottom: '4px' }}>Account Settings</h5>
+                                  <div className="cms-user-details-settings-container">
+                                    <div className="cms-user-details-settings-block">
+                                      <div className="cms-user-details-settings-group cms-user-details-settings-group-margin">
+                                        <h5 className="cms-user-details-settings-title">Account Settings</h5>
                                         
-                                        <label style={{ fontSize: '11px', fontWeight: '800', color: 'var(--color-text-light)' }}>ROLE</label>
+                                        <label className="cms-user-details-settings-label">ROLE</label>
                                         <select
-                                          className="role-dropdown-cms"
+                                          className="role-dropdown-cms cms-user-details-select-field cms-user-details-select-field-margin"
                                           value={u.role || 'user'}
                                           onChange={(e) => handleUpdateRole(u.uid, e.target.value)}
-                                          style={{ padding: '6px 12px', borderRadius: '8px', border: '2px solid var(--color-gray)', fontSize: '13px', fontWeight: '700', backgroundColor: 'white', cursor: 'pointer', width: '100%', marginBottom: '8px' }}
                                         >
                                           <option value="user">User</option>
                                           <option value="admin">Admin</option>
                                         </select>
 
-                                        <label style={{ fontSize: '11px', fontWeight: '800', color: 'var(--color-text-light)' }}>STATUS</label>
+                                        <label className="cms-user-details-settings-label">STATUS</label>
                                         <select
-                                          className="status-dropdown-cms"
+                                          className="status-dropdown-cms cms-user-details-select-field"
                                           value={u.status || 'active'}
                                           onChange={() => handleToggleBlock(u.uid, u.status)}
-                                          style={{ padding: '6px 12px', borderRadius: '8px', border: '2px solid var(--color-gray)', fontSize: '13px', fontWeight: '700', backgroundColor: 'white', cursor: 'pointer', width: '100%' }}
                                         >
                                           <option value="active">Active</option>
                                           <option value="blocked">Blocked</option>
@@ -417,39 +415,31 @@ export default function UsersSection({
                                       </div>
                                     </div>
 
-                                    <div className="cms-user-details-settings-block" style={{ background: 'white', padding: '16px', borderRadius: '12px', border: '1px solid var(--color-gray)', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                                       <div className="cms-user-details-settings-group" style={{ display: 'flex', flexDirection: 'column', gap: '8px', textAlign: 'left' }}>
-                                         <h5 className="cms-user-details-settings-title" style={{ fontSize: '14px', fontWeight: '800', color: 'var(--color-text)', margin: 0 }}>Hearts & Subscription Status</h5>
+                                    <div className="cms-user-details-settings-block">
+                                       <div className="cms-user-details-settings-group">
+                                         <h5 className="cms-user-details-settings-title">Hearts & Subscription Status</h5>
                                          
                                          {/* Visual Heart Status Badge */}
-                                         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '6px' }}>
-                                           <div style={{ 
-                                             display: 'flex', 
-                                             alignItems: 'center', 
-                                             gap: '6px', 
-                                             background: userHearts === 'infinity' ? '#FFF7ED' : '#ffebed', 
-                                             padding: '6px 12px', 
-                                             borderRadius: '20px', 
-                                             border: userHearts === 'infinity' ? '1px solid #FFEDD5' : '1px solid #ffccd1' 
-                                           }}>
+                                         <div className="cms-user-hearts-badge-row">
+                                           <div className={`cms-user-hearts-badge-container ${userHearts === 'infinity' ? 'cms-user-hearts-badge-infinity' : 'cms-user-hearts-badge-numeric'}`}>
                                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                                                <path
                                                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-                                                 fill={userHearts === 'infinity' ? '#EA580C' : '#ff4b4b'}
+                                                 fill={userHearts === 'infinity' ? 'var(--color-orange)' : 'var(--color-red)'}
                                                />
                                              </svg>
-                                             <span style={{ fontSize: '15px', fontWeight: '800', color: userHearts === 'infinity' ? '#EA580C' : '#ff4b4b' }}>
+                                             <span className={userHearts === 'infinity' ? 'cms-user-hearts-badge-text-infinity' : 'cms-user-hearts-badge-text-numeric'}>
                                                {userHearts === 'infinity' ? '∞' : (userHearts ?? 10)}
                                              </span>
                                            </div>
-                                           <span style={{ fontSize: '13px', fontWeight: '800', color: 'var(--color-text)' }}>
+                                           <span className="cms-user-hearts-mode-text">
                                              {userHearts === 'infinity' ? 'Infinite Hearts Mode' : 'Numeric Hearts Mode'}
                                            </span>
                                          </div>
 
                                          {/* Expiration Details */}
                                          {userHearts === 'infinity' && (
-                                           <div style={{ fontSize: '12.5px', color: 'var(--color-text-light)', marginTop: '4px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                                           <div className="cms-user-subscription-expiration-details">
                                              <div>
                                                <span style={{ fontWeight: '700' }}>Expires: </span>
                                                <span>
@@ -468,31 +458,29 @@ export default function UsersSection({
                                          )}
 
                                          {/* Action Buttons */}
-                                         <div className="cms-user-hearts-actions-container" style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '12px' }}>
+                                         <div className="cms-user-hearts-actions-container">
                                            {userHearts === 'infinity' ? (
                                              <>
                                                {/* Extension preset options if they want to adjust the expiration date */}
-                                               <div className="cms-user-extend-preset-container" style={{ display: 'flex', gap: '6px', alignItems: 'center', marginBottom: '8px' }}>
-                                                 <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--color-text-light)', marginRight: 'auto' }}>EXTEND:</span>
+                                               <div className="cms-user-extend-preset-container">
+                                                 <span className="cms-user-extend-label">EXTEND:</span>
                                                  <button
-                                                   className="cms-btn-extend-30-days"
+                                                   className="cms-btn-extend-30-days cms-btn-extend-preset"
                                                    onClick={() => {
                                                      const date = new Date();
                                                      date.setDate(date.getDate() + 30);
                                                      handleUpdateSubscription(u.uid, date.toISOString());
                                                    }}
-                                                   style={{ padding: '4px 8px', background: '#F3F4F6', border: '1px solid #D1D5DB', borderRadius: '6px', color: '#374151', fontWeight: '800', fontSize: '11px', cursor: 'pointer' }}
                                                  >
                                                    +30 Days
                                                  </button>
                                                  <button
-                                                   className="cms-btn-extend-1-year"
+                                                   className="cms-btn-extend-1-year cms-btn-extend-preset"
                                                    onClick={() => {
                                                      const date = new Date();
                                                      date.setFullYear(date.getFullYear() + 1);
                                                      handleUpdateSubscription(u.uid, date.toISOString());
                                                    }}
-                                                   style={{ padding: '4px 8px', background: '#F3F4F6', border: '1px solid #D1D5DB', borderRadius: '6px', color: '#374151', fontWeight: '800', fontSize: '11px', cursor: 'pointer' }}
                                                  >
                                                    +1 Year
                                                  </button>
@@ -501,19 +489,6 @@ export default function UsersSection({
                                                <button
                                                  className="cms-btn-revoke-infinity"
                                                  onClick={() => handleUpdateHearts(u.uid, 10)}
-                                                 style={{ 
-                                                   width: '100%', 
-                                                   padding: '8px 12px', 
-                                                   background: '#ffebeb', 
-                                                   border: '1.5px solid #ffccd1', 
-                                                   borderRadius: '8px', 
-                                                   color: '#ff4b4b', 
-                                                   fontWeight: '800', 
-                                                   fontSize: '12px', 
-                                                   cursor: 'pointer',
-                                                   transition: 'all 0.2s ease',
-                                                   textAlign: 'center'
-                                                 }}
                                                >
                                                  Change to Numeric (Revoke Infinity)
                                                </button>
@@ -524,26 +499,12 @@ export default function UsersSection({
                                                <button
                                                  className="cms-btn-grant-infinity"
                                                  onClick={() => handleUpdateHearts(u.uid, 'infinity')}
-                                                 style={{ 
-                                                   width: '100%', 
-                                                   padding: '8px 12px', 
-                                                   background: '#FFF7ED', 
-                                                   border: '1.5px solid #FFEDD5', 
-                                                   borderRadius: '8px', 
-                                                   color: '#EA580C', 
-                                                   fontWeight: '800', 
-                                                   fontSize: '12px', 
-                                                   cursor: 'pointer',
-                                                   transition: 'all 0.2s ease',
-                                                   textAlign: 'center'
-                                                 }}
                                                >
                                                  Change to Infinity
                                                </button>
                                                
-                                               {/* Numeric Hearts Editor */}
-                                               <div className="cms-user-hearts-adjust-numeric-row" style={{ display: 'flex', alignItems: 'center', gap: '8px', borderTop: '1px solid var(--color-gray)', paddingTop: '12px', marginTop: '4px' }}>
-                                                 <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--color-text-light)', marginRight: 'auto' }}>ADJUST NUMERIC:</span>
+                                               <div className="cms-user-hearts-adjust-numeric-row">
+                                                 <span className="cms-user-adjust-numeric-label">ADJUST NUMERIC:</span>
                                                  <HeartsEditControl
                                                    userId={u.uid}
                                                    currentHearts={userHearts}
@@ -557,31 +518,31 @@ export default function UsersSection({
                                        </div>
                                      </div>
 
-                                    <div className="cms-user-details-settings-block" style={{ background: 'white', padding: '16px', borderRadius: '12px', border: '1px solid var(--color-gray)', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                                      <div className="cms-user-details-promo-block" style={{ textAlign: 'left' }}>
-                                        <h5 className="cms-user-details-promo-title" style={{ fontSize: '13px', fontWeight: '800', marginBottom: '8px', color: 'var(--color-text)' }}>Promo Codes Redeemed</h5>
-                                        <div className="cms-user-details-promo-list" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                                    <div className="cms-user-details-settings-block">
+                                      <div className="cms-user-details-promo-block">
+                                        <h5 className="cms-user-details-promo-title">Promo Codes Redeemed</h5>
+                                        <div className="cms-user-details-promo-list">
                                           {(details.usedPromoCodes && details.usedPromoCodes.length > 0) ? (
                                             details.usedPromoCodes.map(code => {
                                               const isSuspended = details.suspendedPromoCodes?.includes(code);
                                               return (
-                                                <div key={code} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 12px', borderRadius: '8px', border: '1px solid var(--color-gray)', backgroundColor: '#F9FAFB' }}>
-                                                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                                    <span style={{ fontSize: '12px', fontWeight: '800', color: isSuspended ? 'var(--color-text-light)' : 'var(--color-text)', textDecoration: isSuspended ? 'line-through' : 'none' }}>
+                                                <div key={code} className="cms-user-details-promo-item">
+                                                  <div className="cms-user-details-promo-info">
+                                                    <span className={`cms-user-details-promo-code ${isSuspended ? 'suspended' : 'active'}`}>
                                                       {code}
                                                     </span>
                                                     {isSuspended && (
-                                                      <span style={{ fontSize: '10px', fontWeight: '800', padding: '2px 6px', borderRadius: '4px', backgroundColor: '#FEE2E2', color: '#EF4444' }}>
+                                                      <span className="cms-user-details-promo-suspended-badge">
                                                         Suspended
                                                       </span>
                                                     )}
                                                   </div>
-                                                  <div style={{ display: 'flex', gap: '6px' }}>
+                                                  <div className="cms-user-details-promo-actions">
                                                     {isSuspended ? (
                                                       <button
                                                         title="Reactivate/Unsuspend Promo Code"
                                                         onClick={() => handleSuspendPromo(u.uid, code, false)}
-                                                        style={{ padding: '4px 8px', background: 'var(--color-green)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: 'bold', fontSize: '11px', cursor: 'pointer' }}
+                                                        className="cms-btn-action-green"
                                                       >
                                                         Activate
                                                       </button>
@@ -589,7 +550,7 @@ export default function UsersSection({
                                                       <button
                                                         title="Suspend/Deactivate Promo Code"
                                                         onClick={() => handleSuspendPromo(u.uid, code, true)}
-                                                        style={{ padding: '4px 8px', background: 'var(--color-orange)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: 'bold', fontSize: '11px', cursor: 'pointer' }}
+                                                        className="cms-btn-action-blue"
                                                       >
                                                         Suspend
                                                       </button>
@@ -605,7 +566,7 @@ export default function UsersSection({
                                                           onConfirm: () => handleRemovePromo(u.uid, code)
                                                         });
                                                       }}
-                                                      style={{ padding: '4px 8px', background: 'var(--color-red)', border: 'none', borderRadius: '6px', color: 'white', fontWeight: 'bold', fontSize: '11px', cursor: 'pointer' }}
+                                                      className="cms-btn-action-red"
                                                     >
                                                       Remove
                                                     </button>
@@ -614,15 +575,14 @@ export default function UsersSection({
                                               );
                                             })
                                           ) : (
-                                            <span className="cms-user-details-promo-none" style={{ fontSize: '12px', color: 'var(--color-text-light)', fontStyle: 'italic' }}>None used yet</span>
+                                            <span className="cms-user-details-promo-none">None used yet</span>
                                           )}
                                         </div>
                                       </div>
                                     </div>
                                   </div>
 
-                                  {/* Learning Progress Section */}
-                                  <h5 style={{ fontSize: '13px', fontWeight: '800', color: 'var(--color-text-light)', marginTop: '24px', marginBottom: '12px', textAlign: 'left', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Category Progress</h5>
+                                  <h5 className="cms-user-details-progress-section-title">Category Progress</h5>
                                   <div className="cms-expanded-progress-grid">
                                     {categories.map(cat => {
                                       const completedCount = details.progress?.[cat.id] || 0;
@@ -633,19 +593,8 @@ export default function UsersSection({
                                           <div className="cms-progress-category-info">
                                             <span className="cms-progress-category-title">{cat.title}</span>
                                           </div>
-                                          <div className="cms-progress-category-stats" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                            <span
-                                              className="cms-level-badge"
-                                              style={{
-                                                padding: '4px 12px',
-                                                borderRadius: '8px',
-                                                border: '1px solid var(--color-gray)',
-                                                fontSize: '13px',
-                                                fontWeight: '700',
-                                                backgroundColor: '#F3F4F6',
-                                                color: 'var(--color-text)'
-                                              }}
-                                            >
+                                          <div className="cms-progress-category-stats cms-flex-row-gap-2">
+                                            <span className="cms-user-level-badge">
                                               LV {computedLevel}
                                             </span>
                                           </div>
@@ -674,40 +623,22 @@ export default function UsersSection({
 
         {/* Pagination Bar */}
         {!isLoading && totalPages > 1 && (
-          <div className="pagination-bar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 24px', borderTop: '2px solid var(--color-gray)' }}>
-            <span style={{ fontSize: '13px', color: 'var(--color-text-light)', fontWeight: 'bold' }}>
+          <div className="cms-pagination-bar">
+            <span className="cms-pagination-text">
               Showing Page {currentPage} of {totalPages} ({totalUsers} total users)
             </span>
-            <div style={{ display: 'flex', gap: '8px' }}>
+            <div className="cms-pagination-actions">
               <button
                 disabled={currentPage === 1}
                 onClick={() => fetchUsers(currentPage - 1, userSearchQuery, userRoleFilter, userStatusFilter)}
-                style={{
-                  padding: '6px 12px',
-                  borderRadius: '8px',
-                  border: '1.5px solid var(--color-gray)',
-                  backgroundColor: 'white',
-                  cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
-                  fontWeight: 'bold',
-                  fontSize: '12px',
-                  opacity: currentPage === 1 ? 0.5 : 1
-                }}
+                className="cms-pagination-btn"
               >
                 Previous
               </button>
               <button
                 disabled={currentPage === totalPages}
                 onClick={() => fetchUsers(currentPage + 1, userSearchQuery, userRoleFilter, userStatusFilter)}
-                style={{
-                  padding: '6px 12px',
-                  borderRadius: '8px',
-                  border: '1.5px solid var(--color-gray)',
-                  backgroundColor: 'white',
-                  cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',
-                  fontWeight: 'bold',
-                  fontSize: '12px',
-                  opacity: currentPage === totalPages ? 0.5 : 1
-                }}
+                className="cms-pagination-btn"
               >
                 Next
               </button>
@@ -715,11 +646,6 @@ export default function UsersSection({
           </div>
         )}
       </div>
-      <style>{`
-        @keyframes spin {
-          to { transform: rotate(360deg); }
-        }
-      `}</style>
     </div>
   );
 }

@@ -1,0 +1,514 @@
+/* --- Gogram Admin: Users Section Stylesheet --- */
+
+/* Reusable DRY Flex Helper Utilities */
+.cms-flex-row-gap-2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cms-flex-col-gap-1 {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cms-flex-col-gap-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cms-flex-col-gap-3 {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cms-flex-col-gap-4 {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* User Settings Panels Layout */
+.cms-user-details-settings-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.cms-user-details-settings-block {
+  background: var(--color-white);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--color-gray);
+  display: flex;
+  flex-direction: column;
+}
+
+.cms-user-details-settings-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.cms-user-details-settings-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.cms-user-details-settings-group-margin .cms-user-details-settings-title {
+  margin-bottom: 4px;
+}
+
+.cms-user-details-settings-label {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--color-text-light);
+  text-transform: uppercase;
+}
+
+.cms-user-details-select-field {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 2px solid var(--color-gray);
+  font-size: 13px;
+  font-weight: 700;
+  background-color: var(--color-white);
+  cursor: pointer;
+  width: 100%;
+  transition: border-color 0.2s ease;
+}
+
+.cms-user-details-select-field:focus {
+  outline: none;
+  border-color: var(--color-blue);
+}
+
+.cms-user-details-select-field-margin {
+  margin-bottom: 8px;
+}
+
+.cms-user-details-settings-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+/* Heart & Expiry Status Badge */
+.cms-user-hearts-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.cms-user-hearts-badge-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.cms-user-hearts-badge-infinity {
+  background: var(--color-orange-bg);
+  border: 1px solid var(--color-orange-bg);
+}
+
+.cms-user-hearts-badge-numeric {
+  background: var(--color-red-bg);
+  border: 1px solid var(--color-red-bg);
+}
+
+.cms-user-hearts-badge-text-infinity {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--color-orange-dark);
+}
+
+.cms-user-hearts-badge-text-numeric {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--color-red);
+}
+
+.cms-user-hearts-mode-text {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.cms-user-subscription-expiration-details {
+  font-size: 12.5px;
+  color: var(--color-text-light);
+  margin-top: 4px;
+}
+
+.cms-user-subscription-expiration-details span:first-child {
+  font-weight: 700;
+}
+
+/* Expiry / Refill Action Layouts */
+.cms-user-hearts-actions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.cms-user-extend-preset-container {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.cms-user-extend-preset-container span {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--color-text-light);
+  margin-right: auto;
+}
+
+.cms-btn-extend-preset {
+  padding: 4px 8px;
+  background: var(--color-gray-light);
+  border: 1px solid var(--color-gray);
+  border-radius: 6px;
+  color: var(--color-text);
+  font-weight: 800;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.cms-btn-extend-preset:hover {
+  background-color: var(--color-gray);
+}
+
+.cms-btn-revoke-infinity {
+  width: 100%;
+  padding: 8px 12px;
+  background: var(--color-red-bg);
+  border: 1.5px solid var(--color-red-dark);
+  border-radius: 8px;
+  color: var(--color-red);
+  font-weight: 800;
+  font-size: 12px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  text-align: center;
+}
+
+.cms-btn-revoke-infinity:hover {
+  opacity: 0.9;
+}
+
+.cms-btn-grant-infinity {
+  width: 100%;
+  padding: 8px 12px;
+  background: var(--color-orange-bg);
+  border: 1.5px solid var(--color-orange-dark);
+  border-radius: 8px;
+  color: var(--color-orange-dark);
+  font-weight: 800;
+  font-size: 12px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  text-align: center;
+}
+
+.cms-btn-grant-infinity:hover {
+  opacity: 0.9;
+}
+
+.cms-user-hearts-adjust-numeric-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid var(--color-gray);
+  padding-top: 12px;
+  margin-top: 4px;
+}
+
+.cms-user-hearts-adjust-numeric-row span {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--color-text-light);
+  margin-right: auto;
+}
+
+/* Promo Codes Section */
+.cms-user-details-promo-block {
+  text-align: left;
+}
+
+.cms-user-details-promo-title {
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--color-text);
+}
+
+.cms-user-details-promo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cms-user-details-promo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--color-gray);
+  background-color: var(--color-gray-light);
+}
+
+.cms-user-details-promo-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cms-user-details-promo-code {
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.cms-user-details-promo-code.active {
+  color: var(--color-text);
+}
+
+.cms-user-details-promo-code.suspended {
+  color: var(--color-text-light);
+  text-decoration: line-through;
+}
+
+.cms-user-details-promo-suspended-badge {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-color: var(--color-red-bg);
+  color: var(--color-red);
+}
+
+.cms-user-details-promo-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.cms-user-details-promo-none {
+  font-size: 12px;
+  color: var(--color-text-light);
+  font-style: italic;
+}
+
+/* Progress Section */
+.cms-user-details-progress-section-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--color-text-light);
+  margin-top: 24px;
+  margin-bottom: 12px;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cms-user-level-badge {
+  padding: 4px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--color-gray);
+  font-size: 13px;
+  font-weight: 700;
+  background-color: var(--color-gray-light);
+  color: var(--color-text);
+}
+
+/* Loading Layout Indicators */
+.cms-loading-cell {
+  text-align: center;
+  padding: 40px;
+}
+
+.cms-loading-wrapper {
+  padding: 24px;
+  text-align: center;
+}
+
+.cms-loading-spinner-small {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--color-gray);
+  border-top-color: var(--color-blue-dark);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.cms-loading-spinner-large {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--color-gray);
+  border-top-color: var(--color-blue-dark);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.cms-loading-text {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--color-text-light);
+}
+
+.cms-loading-text-inline {
+  margin-left: 8px;
+  font-size: 13px;
+  color: var(--color-text-light);
+}
+
+/* Pagination Styling */
+.cms-pagination-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-top: 2px solid var(--color-gray);
+}
+
+.cms-pagination-text {
+  font-size: 13px;
+  color: var(--color-text-light);
+  font-weight: bold;
+}
+
+.cms-pagination-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.cms-pagination-btn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1.5px solid var(--color-gray);
+  background-color: var(--color-white);
+  font-weight: bold;
+  font-size: 12px;
+  transition: all 0.2s ease;
+}
+
+.cms-pagination-btn:hover:not(:disabled) {
+  background-color: var(--color-gray-light);
+  cursor: pointer;
+}
+
+.cms-pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Action Buttons within HeartsEditControl */
+.cms-numeric-input {
+  width: 60px;
+  padding: 4px 6px;
+  border: 1px solid var(--color-gray);
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: bold;
+  outline: none;
+}
+
+.cms-btn-action-green {
+  padding: 4px 8px;
+  background: var(--color-green);
+  border: none;
+  border-radius: 6px;
+  color: var(--color-white);
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.cms-btn-action-green:hover {
+  opacity: 0.9;
+}
+
+.cms-btn-action-gray {
+  padding: 4px 8px;
+  background: var(--color-gray);
+  border: none;
+  border-radius: 6px;
+  color: var(--color-text);
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.cms-btn-action-gray:hover {
+  opacity: 0.9;
+}
+
+.cms-btn-action-blue {
+  padding: 4px 8px;
+  background: var(--color-blue);
+  border: none;
+  border-radius: 6px;
+  color: var(--color-white);
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.cms-btn-action-blue:hover {
+  opacity: 0.9;
+}
+
+.cms-btn-action-red {
+  padding: 4px 8px;
+  background: var(--color-red);
+  border: none;
+  border-radius: 6px;
+  color: var(--color-white);
+  font-weight: bold;
+  font-size: 11px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.cms-btn-action-red:hover {
+  opacity: 0.9;
+}
+
+/* Keyframe animations */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Explicit label selectors */
+.cms-user-extend-label {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--color-text-light);
+  margin-right: auto;
+}
+
+.cms-user-adjust-numeric-label {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--color-text-light);
+  margin-right: auto;
+}
