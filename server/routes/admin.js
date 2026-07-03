@@ -346,7 +346,7 @@ router.get('/users', async (req, res) => {
         joined: u.joined,
         status: u.status,
         hearts: hasInfinity ? 'infinity' : u.heartsCount,
-        promoExpiresAt: u.subscriptionExpiresAt ? new Date(u.subscriptionExpiresAt).getTime() : null
+        subscriptionExpiresAt: u.subscriptionExpiresAt ? new Date(u.subscriptionExpiresAt).getTime() : null
       };
     });
 

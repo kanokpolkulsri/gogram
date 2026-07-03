@@ -113,11 +113,11 @@ export default function HeartsModal({ isOpen, onClose }) {
             <p className="hearts-modal-desc premium-active-desc" style={{ marginBottom: '8px' }}>
               You are in Premium Mode. You can make unlimited mistakes during exercises!
             </p>
-            {user.promoExpiresAt && (
+            {user.subscriptionExpiresAt && (new Date(user.subscriptionExpiresAt).getFullYear() < 2090) && (
               <p className="hearts-modal-expiry-desc" style={{ fontSize: '13px', fontWeight: 'bold', color: '#B57A00', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}>
                 <span>⏳ Expires on:</span>
                 <span>
-                  {new Date(user.promoExpiresAt).toLocaleString('en-US', {
+                  {new Date(user.subscriptionExpiresAt).toLocaleString('en-US', {
                     year: 'numeric',
                     month: 'short',
                     day: 'numeric',

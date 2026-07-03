@@ -176,7 +176,7 @@ export default function UsersSection({
           return {
             ...u,
             hearts: heartsValue,
-            promoExpiresAt: hasInfinity ? new Date('2099-12-31T23:59:59Z').getTime() : null,
+            subscriptionExpiresAt: hasInfinity ? new Date('2099-12-31T23:59:59Z').getTime() : null,
             authLevel: hasInfinity ? 'subscribed' : (u.role === 'admin' ? 'admin' : 'free')
           };
         }
@@ -201,7 +201,7 @@ export default function UsersSection({
           const hasInfinity = expiresAt && new Date(expiresAt) > new Date();
           return {
             ...u,
-            promoExpiresAt: expiresAt ? new Date(expiresAt).getTime() : null,
+            subscriptionExpiresAt: expiresAt ? new Date(expiresAt).getTime() : null,
             authLevel: hasInfinity ? 'subscribed' : (u.role === 'admin' ? 'admin' : 'free'),
             hearts: hasInfinity ? 'infinity' : u.hearts
           };
@@ -329,7 +329,7 @@ export default function UsersSection({
                   const isBlocked = u.status === 'blocked';
                   const isExpanded = expandedUserIds.includes(u.uid);
                   const userHearts = u.uid === currentUser?.uid ? currentUser.hearts : u.hearts;
-                  const userPromoExpiresAt = u.uid === currentUser?.uid ? currentUser.subscriptionExpiresAt : u.promoExpiresAt;
+                  const userSubscriptionExpiresAt = u.uid === currentUser?.uid ? currentUser.subscriptionExpiresAt : u.subscriptionExpiresAt;
 
                   const details = userDetails[u.uid] || {};
                   const isDetailsLoading = loadingDetails[u.uid];
@@ -499,7 +499,7 @@ export default function UsersSection({
                                                  <input
                                                    type={focusedDatePickerUid === u.uid ? "date" : "text"}
                                                    className="cms-user-subscription-date-picker"
-                                                   value={focusedDatePickerUid === u.uid ? formatDateForInput(userPromoExpiresAt) : getExpirationDisplayText(userPromoExpiresAt)}
+                                                   value={focusedDatePickerUid === u.uid ? formatDateForInput(userSubscriptionExpiresAt) : getExpirationDisplayText(userSubscriptionExpiresAt)}
                                                    onChange={(e) => {
                                                      const val = e.target.value;
                                                      if (val) {
@@ -513,11 +513,11 @@ export default function UsersSection({
                                                    onBlur={() => setFocusedDatePickerUid(null)}
                                                  />
                                                  <button
-                                                   className={`cms-btn-extend-preset ${isPerpetual(userPromoExpiresAt) ? 'active' : ''}`}
+                                                   className={`cms-btn-extend-preset ${isPerpetual(userSubscriptionExpiresAt) ? 'active' : ''}`}
                                                    onClick={() => handleUpdateSubscription(u.uid, '2099-12-31T23:59:59Z')}
                                                    style={{ height: '36px', whiteSpace: 'nowrap' }}
                                                  >
-                                                   {isPerpetual(userPromoExpiresAt) ? '✓ Perpetual' : 'Set Perpetual'}
+                                                   {isPerpetual(userSubscriptionExpiresAt) ? '✓ Perpetual' : 'Set Perpetual'}
                                                  </button>
                                                </div>
                                              </div>
