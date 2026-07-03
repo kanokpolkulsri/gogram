@@ -623,7 +623,7 @@ export default function AdminPage() {
         <div className="admin-modal-overlay animate-fade-in">
           <div className="admin-modal confirm-modal animate-scale-up">
             <h3>{confirmModal.title}</h3>
-            <p className="confirm-modal-message" style={{ margin: '12px 0 24px 0', fontSize: '14px', color: 'var(--color-text-light)', lineHeight: '1.5' }}>
+            <p className="confirm-modal-message">
               {confirmModal.message}
             </p>
             <div className="cms-form-actions">
@@ -636,8 +636,7 @@ export default function AdminPage() {
               </button>
               <button
                 type="button"
-                className="btn"
-                style={confirmModal.isDanger ? { backgroundColor: '#EF4444', borderColor: '#EF4444', color: '#fff' } : { backgroundColor: 'var(--color-blue-dark)', borderColor: 'var(--color-blue-dark)', color: '#fff' }}
+                className={`btn ${confirmModal.isDanger ? 'btn-danger-confirm' : 'btn-primary-confirm'}`}
                 onClick={confirmModal.onConfirm}
               >
                 {confirmModal.confirmText}

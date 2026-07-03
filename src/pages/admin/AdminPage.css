@@ -1537,7 +1537,27 @@
   font-size: 14px;
   color: var(--color-text-light);
   line-height: 1.5;
-  margin: 0;
+  margin: 12px 0 24px 0;
+}
+
+.btn-danger-confirm {
+  background-color: var(--color-red);
+  border-color: var(--color-red-dark);
+  color: var(--color-white) !important;
+}
+
+.btn-danger-confirm:hover {
+  background-color: var(--color-red-dark);
+}
+
+.btn-primary-confirm {
+  background-color: var(--color-blue-dark);
+  border-color: var(--color-blue-dark);
+  color: var(--color-white) !important;
+}
+
+.btn-primary-confirm:hover {
+  opacity: 0.9;
 }
 
 .admin-modal .cms-form-actions {
