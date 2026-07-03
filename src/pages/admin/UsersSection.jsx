@@ -12,8 +12,14 @@ function formatDateForInput(timestamp) {
   return `${year}-${month}-${day}`;
 }
 
+function isPerpetual(timestamp) {
+  if (!timestamp) return true;
+  const date = new Date(timestamp);
+  return date.getFullYear() >= 2090;
+}
+
 function getExpirationDisplayText(timestamp) {
-  if (!timestamp) return 'Forever / Perpetual';
+  if (isPerpetual(timestamp)) return 'Forever / Perpetual';
   const date = new Date(timestamp);
   const day = String(date.getDate()).padStart(2, '0');
   const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -500,18 +506,18 @@ export default function UsersSection({
                                                        const selectedDate = new Date(val + 'T23:59:59');
                                                        handleUpdateSubscription(u.uid, selectedDate.toISOString());
                                                      } else {
-                                                       handleUpdateSubscription(u.uid, null);
+                                                       handleUpdateSubscription(u.uid, '2099-12-31T23:59:59Z');
                                                      }
                                                    }}
                                                    onFocus={() => setFocusedDatePickerUid(u.uid)}
                                                    onBlur={() => setFocusedDatePickerUid(null)}
                                                  />
                                                  <button
-                                                   className={`cms-btn-extend-preset ${!userPromoExpiresAt ? 'active' : ''}`}
-                                                   onClick={() => handleUpdateSubscription(u.uid, null)}
+                                                   className={`cms-btn-extend-preset ${isPerpetual(userPromoExpiresAt) ? 'active' : ''}`}
+                                                   onClick={() => handleUpdateSubscription(u.uid, '2099-12-31T23:59:59Z')}
                                                    style={{ height: '36px', whiteSpace: 'nowrap' }}
                                                  >
-                                                   {!userPromoExpiresAt ? '✓ Perpetual' : 'Set Perpetual'}
+                                                   {isPerpetual(userPromoExpiresAt) ? '✓ Perpetual' : 'Set Perpetual'}
                                                  </button>
                                                </div>
                                              </div>
