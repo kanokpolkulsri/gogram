@@ -17,3 +17,8 @@ Follow these guidelines for all changes in the Gogram repository:
 
 ## 4. Testability & Developer Tracking
 * **Unique Selectors for Interactive Elements**: All interactive HTML/React elements (such as buttons, input fields, and selectors) must be assigned unique, descriptive `className` or `id` attributes to facilitate developer tracking and reliable selector targeting in QA and browser automation tests.
+
+## 5. Cloud Deployment & Database Connections
+* **Unix Socket SSL Negotiation**: In production, when using a Unix domain socket database connection (e.g. Cloud Run connecting to Cloud SQL via `/cloudsql/...`), database SSL negotiation must be disabled in `server/db/index.js`. Attempting to negotiate SSL over a local Unix socket fails and will crash the server on startup.
+* **Production API Base URL**: The production backend API URL in `src/data/api.js` must always terminate with the `/api` path prefix to correctly route requests to the mounted Express app routes.
+* **Cloud Build Trigger Optimization**: To prevent unnecessary containers from building and to save build costs during frontend-only updates, the Cloud Build Trigger for the backend service must be filtered using the **Included files** glob set to `server/**`.
