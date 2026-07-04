@@ -17,6 +17,7 @@ Follow these guidelines for all changes in the Gogram repository:
 
 ## 4. Testability & Developer Tracking
 * **Unique Selectors for Interactive Elements**: All interactive HTML/React elements (such as buttons, input fields, and selectors) must be assigned unique, descriptive `className` or `id` attributes to facilitate developer tracking and reliable selector targeting in QA and browser automation tests.
+* **Unique Classnames for Component Containers**: Key frontend component containers, wrapper cards, and section elements (e.g., `profile-settings-card`, `premium-status-card`) must be assigned unique, descriptive `className` selectors to facilitate easy element targeting for page assertions, QA scripts, and browser automation.
 
 ## 5. Cloud Deployment & Database Connections
 * **Unix Socket SSL Negotiation**: In production, when using a Unix domain socket database connection (e.g. Cloud Run connecting to Cloud SQL via `/cloudsql/...`), database SSL negotiation must be disabled in `server/db/index.js`. Attempting to negotiate SSL over a local Unix socket fails and will crash the server on startup.
