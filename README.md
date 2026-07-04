@@ -47,10 +47,7 @@ npm run dev
 
 ## 📐 System Architecture & Diagrams
 
-### Architecture Layouts
-
-#### Local Development Setup
-This diagram visualizes how Gogram's frontend, backend Express API server, Cloud SQL Auth proxy, Firebase Auth, and Google Cloud SQL PostgreSQL database interact locally.
+### Component Architecture
 
 ```mermaid
 graph TD
@@ -70,32 +67,6 @@ graph TD
     Backend -->|3. Verify Token| FirebaseAuth
     Backend -->|4. DB queries on localhost:5432| Proxy
     Proxy ==>|5. Secure TLS Tunnel (IAM Auth)| CloudSQL
-```
-
-#### Production Deployment Setup
-This diagram visualizes the live architecture when deployed on GCP.
-
-```mermaid
-graph TD
-    subgraph client_browser ["Client Web Browser"]
-        Learner[Learner Client UI<br>gogram-web-2026.web.app]
-    end
-
-    subgraph firebase_platform ["Firebase Services"]
-        FirebaseAuth[Firebase Auth Service]
-        Hosting[Firebase Hosting<br>(Static HTML/JS/CSS)]
-    end
-
-    subgraph gcp_platform ["Google Cloud Platform (GCP)"]
-        CloudRun[Google Cloud Run<br>(Express Backend Service)]
-        CloudSQL[Cloud SQL PostgreSQL Instance]
-    end
-
-    Learner -->|1. Fetch Assets| Hosting
-    Learner -->|2. Authenticate| FirebaseAuth
-    Learner -->|3. HTTPS API requests| CloudRun
-    CloudRun -->|4. Verify Token| FirebaseAuth
-    CloudRun ==>|5. Direct Cloud SQL Connection| CloudSQL
 ```
 
 ### UML Sequence Diagram (Authentication & Data Lifecycle)
