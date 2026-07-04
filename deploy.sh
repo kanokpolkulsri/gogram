@@ -16,4 +16,7 @@ git push origin main || { echo "❌ Git push failed"; exit 1; }
 echo "=== 4. Deploying to Firebase Hosting ==="
 npx -y firebase-tools@latest deploy --only hosting || { echo "❌ Firebase deployment failed"; exit 1; }
 
+echo "=== 5. Deploying Backend API to Google Cloud Run ==="
+gcloud run deploy gogram-api --source ./server --platform managed --region asia-southeast1 --allow-unauthenticated || { echo "❌ Cloud Run deployment failed"; exit 1; }
+
 echo "=== 🚀 Success! Site live at: https://gogram-web-2026.web.app ==="
