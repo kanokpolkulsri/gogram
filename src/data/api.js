@@ -3,7 +3,7 @@ import { auth } from './firebase';
 const BASE_URL = import.meta.env.VITE_API_URL || (
   window.location.hostname === 'localhost' 
     ? 'http://localhost:5001/api' 
-    : 'https://gogram.techshabu.com/api' // Replace with your live Google Cloud Run URL later
+    : 'https://gogram-api-17204796727.asia-southeast1.run.app' // Replace with your live Google Cloud Run URL later
 );
 
 /**
