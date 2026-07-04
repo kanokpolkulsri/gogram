@@ -1,6 +1,6 @@
 #!/bin/bash
 # Prepend local bin path to ensure Node/NPM/NPX executables are found in all shell environments
-export PATH="/Users/tonpalmknp/.local/bin:$PATH"
+export PATH="/Users/tonpalmknp/.local/bin:/opt/homebrew/bin:/opt/homebrew/share/google-cloud-sdk/bin:$PATH"
 
 echo "=== 1. Committing changes ==="
 git add -A
