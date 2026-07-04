@@ -96,15 +96,8 @@ export default function HeartsModal({ isOpen, onClose }) {
           <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
             <path
               d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-              fill={isInfinity ? 'url(#modal-gold-grad)' : 'var(--color-red)'}
+              fill="var(--color-red)"
             />
-            <defs>
-              <linearGradient id="modal-gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#FFE082" />
-                <stop offset="50%" stopColor="#FFB300" />
-                <stop offset="100%" stopColor="#FFA000" />
-              </linearGradient>
-            </defs>
           </svg>
         </div>
 
@@ -130,11 +123,11 @@ export default function HeartsModal({ isOpen, onClose }) {
 
         {isInfinity && (
           <div className="hearts-modal-refill-info">
-            <p className="hearts-modal-desc premium-active-desc" style={{ marginBottom: '8px' }}>
+            <p className="hearts-modal-desc premium-active-desc" style={{ marginBottom: '12px', color: 'var(--color-text)' }}>
               You are in Premium Mode. You can make unlimited mistakes during exercises!
             </p>
             {user.subscriptionExpiresAt && (new Date(user.subscriptionExpiresAt).getFullYear() < 2090) && (
-              <p className="hearts-modal-expiry-desc" style={{ fontSize: '13px', fontWeight: 'bold', color: '#B57A00', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}>
+              <div className="hearts-modal-expiry-desc" style={{ padding: '12px', background: '#FFFDF0', borderRadius: '12px', border: '1px solid #FFEBAD', fontSize: '14px', color: '#B57A00', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', margin: '0 auto', maxWidth: '280px' }}>
                 <span>Expires on:</span>
                 <span>
                   {new Date(user.subscriptionExpiresAt).toLocaleDateString('en-GB', {
@@ -144,51 +137,43 @@ export default function HeartsModal({ isOpen, onClose }) {
                     year: 'numeric'
                   })}
                 </span>
-              </p>
+              </div>
             )}
           </div>
         )}
 
         {/* Promo code form */}
-        <div className="hearts-modal-promo-box">
-          <h3>Apply Promo or Referral Code</h3>
-          {isInfinity ? (
-            <p className="promo-box-sub" style={{ color: 'var(--color-text-light)', fontStyle: 'italic' }}>
-              Promo codes cannot be applied while Premium is active.
-            </p>
-          ) : (
+        {!isInfinity && (
+          <div className="hearts-modal-promo-box">
+            <h3>Apply Promo or Referral Code</h3>
             <p className="promo-box-sub">Enter a valid promo code or a friend's referral code to refill hearts.</p>
-          )}
-          
-          <form onSubmit={handleApply} className="hearts-modal-form">
-            <input
-              type="text"
-              placeholder={isInfinity ? "Disabled (Premium is active)" : "e.g. WELCOME100"}
-              value={code}
-              onChange={(e) => {
-                setCode(e.target.value);
-                setStatusMsg('');
-              }}
-              className="hearts-modal-input"
-              disabled={isInfinity}
-              style={isInfinity ? { backgroundColor: 'var(--color-gray-light)', cursor: 'not-allowed', opacity: 0.6 } : {}}
-            />
-            <button 
-              type="submit" 
-              className="btn btn-orange hearts-modal-btn" 
-              disabled={isInfinity}
-              style={isInfinity ? { opacity: 0.5, cursor: 'not-allowed' } : {}}
-            >
-              Apply Code
-            </button>
-          </form>
+            
+            <form onSubmit={handleApply} className="hearts-modal-form">
+              <input
+                type="text"
+                placeholder="e.g. WELCOME100"
+                value={code}
+                onChange={(e) => {
+                  setCode(e.target.value);
+                  setStatusMsg('');
+                }}
+                className="hearts-modal-input"
+              />
+              <button 
+                type="submit" 
+                className="btn btn-orange hearts-modal-btn" 
+              >
+                Apply Code
+              </button>
+            </form>
 
-          {statusMsg && (
-            <div className={`hearts-modal-status ${statusType}`}>
-              {statusType === 'success' ? '✔' : '✖'} {statusMsg}
-            </div>
-          )}
-        </div>
+            {statusMsg && (
+              <div className={`hearts-modal-status ${statusType}`}>
+                {statusType === 'success' ? '✔' : '✖'} {statusMsg}
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Go Premium CTA */}
         {user.hearts !== 'infinity' && (
