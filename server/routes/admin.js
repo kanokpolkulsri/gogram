@@ -1,6 +1,7 @@
 import express from 'express';
 import { query } from '../db/index.js';
 import { authenticate } from '../middleware/auth.js';
+import { MAX_HEARTS } from '../config.js';
 
 const router = express.Router();
 
@@ -434,7 +435,7 @@ router.put('/users/:uid/hearts', async (req, res) => {
       );
       await logAction(req.user.uid, req.adminName, `Set hearts status of ${userName} to Infinity`);
     } else {
-      const numericHearts = parseInt(heartsValue) || 100;
+      const numericHearts = parseInt(heartsValue) || MAX_HEARTS;
       await query(
         `UPDATE users 
          SET hearts_count = $1, subscription_expires_at = NULL, last_heart_refill_at = CURRENT_TIMESTAMP 

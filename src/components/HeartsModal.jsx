@@ -135,14 +135,13 @@ export default function HeartsModal({ isOpen, onClose }) {
             </p>
             {user.subscriptionExpiresAt && (new Date(user.subscriptionExpiresAt).getFullYear() < 2090) && (
               <p className="hearts-modal-expiry-desc" style={{ fontSize: '13px', fontWeight: 'bold', color: '#B57A00', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}>
-                <span>⏳ Expires on:</span>
+                <span>Expires on:</span>
                 <span>
-                  {new Date(user.subscriptionExpiresAt).toLocaleString('en-US', {
-                    year: 'numeric',
+                  {new Date(user.subscriptionExpiresAt).toLocaleDateString('en-GB', {
+                    timeZone: 'Asia/Bangkok',
+                    day: '2-digit',
                     month: 'short',
-                    day: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
+                    year: 'numeric'
                   })}
                 </span>
               </p>

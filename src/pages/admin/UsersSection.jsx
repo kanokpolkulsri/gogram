@@ -20,11 +20,12 @@ function isPerpetual(timestamp) {
 
 function getExpirationDisplayText(timestamp) {
   if (isPerpetual(timestamp)) return 'Forever / Perpetual';
-  const date = new Date(timestamp);
-  const day = String(date.getDate()).padStart(2, '0');
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const year = date.getFullYear();
-  return `${day}/${month}/${year}`;
+  return new Date(timestamp).toLocaleDateString('en-GB', {
+    timeZone: 'Asia/Bangkok',
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
+  });
 }
 
 function HeartsEditControl({ userId, currentHearts, onUpdate, showToast }) {
@@ -499,6 +500,8 @@ export default function UsersSection({
                                                  <input
                                                    type={focusedDatePickerUid === u.uid ? "date" : "text"}
                                                    className="cms-user-subscription-date-picker"
+                                                   min={`${new Date().getFullYear()}-01-01`}
+                                                   max={`${new Date().getFullYear() + 5}-12-31`}
                                                    value={focusedDatePickerUid === u.uid ? formatDateForInput(userSubscriptionExpiresAt) : getExpirationDisplayText(userSubscriptionExpiresAt)}
                                                    onChange={(e) => {
                                                      const val = e.target.value;

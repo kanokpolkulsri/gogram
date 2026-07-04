@@ -148,36 +148,33 @@ export default function ProfilePage() {
 
         {/* Gogram Premium Card */}
         <div className="profile-settings-card animate-fade-in" id="profile-premium-card">
-          <h3 className="profile-settings-title" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span>⚡</span> Gogram Premium
-          </h3>
+          <h3 className="profile-settings-title">Gogram Premium</h3>
           <div className="profile-settings-list">
-            <div className="profile-settings-item" style={{ flexDirection: 'column', alignItems: 'stretch', gap: '12px' }}>
-              {user.hearts === 'infinity' ? (
-                <>
-                  <div className="profile-settings-item-info">
-                    <span className="profile-settings-item-label" style={{ color: 'var(--color-green-dark)', fontWeight: 'bold' }}>✓ Active Subscription</span>
-                    <span className="profile-settings-item-desc">You have unlocked Infinite Hearts! Learn without limits.</span>
+            {user.hearts === 'infinity' ? (
+              <div className="profile-settings-item" style={{ flexDirection: 'column', alignItems: 'stretch', gap: '12px' }}>
+                <div className="profile-settings-item-info">
+                  <span className="profile-settings-item-label" style={{ color: 'var(--color-green-dark)', fontWeight: 'bold' }}>Active Subscription</span>
+                  <span className="profile-settings-item-desc">You have unlocked Infinite Hearts! Learn without limits.</span>
+                </div>
+                {user.subscriptionExpiresAt && (
+                  <div className="profile-premium-active-until" style={{ padding: '12px', background: '#FFFDF0', borderRadius: '12px', border: '1px solid #FFEBAD', fontSize: '14px', color: '#B57A00', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <span>Active until:</span>
+                    <span>
+                      {new Date(user.subscriptionExpiresAt).getFullYear() >= 2090 
+                        ? 'Forever / Perpetual' 
+                        : new Date(user.subscriptionExpiresAt).toLocaleDateString('en-GB', {
+                            timeZone: 'Asia/Bangkok',
+                            day: '2-digit',
+                            month: 'short',
+                            year: 'numeric'
+                          })}
+                    </span>
                   </div>
-                  {user.subscriptionExpiresAt && (
-                    <div style={{ padding: '12px', background: '#FFFDF0', borderRadius: '12px', border: '1px solid #FFEBAD', fontSize: '14px', color: '#B57A00', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <span>⏳ Active until:</span>
-                      <span>
-                        {new Date(user.subscriptionExpiresAt).getFullYear() >= 2090 
-                          ? 'Forever / Perpetual' 
-                          : new Date(user.subscriptionExpiresAt).toLocaleDateString('en-US', {
-                              year: 'numeric',
-                              month: 'short',
-                              day: 'numeric',
-                              hour: '2-digit',
-                              minute: '2-digit'
-                            })}
-                      </span>
-                    </div>
-                  )}
-                </>
-              ) : (
-                <>
+                )}
+              </div>
+            ) : (
+              <>
+                <div className="profile-settings-item" style={{ flexDirection: 'column', alignItems: 'stretch', gap: '12px' }}>
                   <div className="profile-settings-item-info">
                     <span className="profile-settings-item-label">Get Infinite Hearts</span>
                     <span className="profile-settings-item-desc">Get 1 year of Infinite Hearts. Never wait for refills!</span>
@@ -201,66 +198,51 @@ export default function ProfilePage() {
                   >
                     {isUpgrading ? 'Redirecting to Stripe...' : 'Upgrade to Premium — 29 THB'}
                   </button>
-                </>
-              )}
-            </div>
+                </div>
+
+                <div className="profile-settings-item" style={{ flexDirection: 'column', alignItems: 'stretch', gap: '12px' }}>
+                  <div className="profile-settings-item-info">
+                    <span className="profile-settings-item-label">Apply a Code</span>
+                    <span className="profile-settings-item-desc">Enter a promo code or friend's referral code.</span>
+                  </div>
+                  
+                  <div className="profile-promo-input-group">
+                    <input
+                      type="text"
+                      id="profile-promo-code-input"
+                      placeholder="e.g. WELCOME100"
+                      value={promoCode}
+                      onChange={(e) => {
+                        setPromoCode(e.target.value);
+                        setPromoMessage('');
+                      }}
+                      className="profile-promo-input"
+                    />
+                    <button 
+                      onClick={handleApplyPromo} 
+                      className="profile-settings-btn btn-primary" 
+                      id="profile-apply-promo-btn"
+                      style={{ 
+                        padding: '10px 20px', 
+                        borderRadius: '12px', 
+                        height: '44px',
+                      }}
+                    >
+                      APPLY
+                    </button>
+                  </div>
+
+                  {promoMessage && (
+                    <p className={`profile-promo-message ${promoStatus}`}>
+                      {promoMessage}
+                    </p>
+                  )}
+                </div>
+              </>
+            )}
           </div>
         </div>
 
-        {/* Promo & Referral Codes Card */}
-        <div className="profile-settings-card animate-fade-in">
-          <h3 className="profile-settings-title">Promo & Referral Codes</h3>
-          <div className="profile-settings-list">
-            <div className="profile-settings-item" style={{ flexDirection: 'column', alignItems: 'stretch', gap: '12px' }}>
-              <div className="profile-settings-item-info">
-                <span className="profile-settings-item-label">Apply a Code</span>
-                {user.hearts === 'infinity' ? (
-                  <span className="profile-settings-item-desc" style={{ color: 'var(--color-text-light)', fontStyle: 'italic' }}>
-                    Promo codes cannot be applied while Premium is active.
-                  </span>
-                ) : (
-                  <span className="profile-settings-item-desc">Enter a promo code or friend's referral code.</span>
-                )}
-              </div>
-              
-              <div className="profile-promo-input-group">
-                <input
-                  type="text"
-                  placeholder={user.hearts === 'infinity' ? "Disabled (Premium is active)" : "e.g. WELCOME100"}
-                  value={promoCode}
-                  onChange={(e) => {
-                    setPromoCode(e.target.value);
-                    setPromoMessage('');
-                  }}
-                  className="profile-promo-input"
-                  disabled={user.hearts === 'infinity'}
-                  style={user.hearts === 'infinity' ? { backgroundColor: 'var(--color-gray-light)', cursor: 'not-allowed', opacity: 0.6 } : {}}
-                />
-                <button 
-                  onClick={handleApplyPromo} 
-                  className="profile-settings-btn btn-primary" 
-                  id="profile-apply-promo-btn"
-                  disabled={user.hearts === 'infinity'}
-                  style={{ 
-                    padding: '10px 20px', 
-                    borderRadius: '12px', 
-                    height: '44px',
-                    ...(user.hearts === 'infinity' ? { opacity: 0.5, cursor: 'not-allowed' } : {})
-                  }}
-                >
-                  APPLY
-                </button>
-              </div>
-
-              {promoMessage && (
-                <p className={`profile-promo-message ${promoStatus}`}>
-                  {promoStatus === 'success' ? '✔' : '✖'} {promoMessage}
-                </p>
-              )}
-            </div>
-
-          </div>
-        </div>
 
         {/* Account & Privacy Settings Card */}
         <div className="profile-settings-card">
@@ -298,10 +280,10 @@ export default function ProfilePage() {
             {/* Delete Account */}
             <div className="profile-settings-item">
               <div className="profile-settings-item-info">
-                <span className="profile-settings-item-label" style={{ color: 'var(--color-red)' }}>Delete Account</span>
+                <span className="profile-settings-item-label">Delete Account</span>
                 <span className="profile-settings-item-desc">Permanently erase your account and all learning progress.</span>
               </div>
-              <button className="profile-settings-btn btn-danger-outline" onClick={() => setShowDeleteModal(true)} id="delete-account-btn">
+              <button className="profile-settings-btn" onClick={() => setShowDeleteModal(true)} id="delete-account-btn">
                 DELETE
               </button>
             </div>

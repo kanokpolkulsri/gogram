@@ -245,30 +245,28 @@ export function UserProvider({ children }) {
     return () => unsubscribe();
   }, [syncProfile]);
 
-  // Hearts refill automatic background checker hook
+  // Hearts refill automatic background local check hook (NO API CALLS)
   useEffect(() => {
-    if (!user || !user.isAuthenticated || user.hearts === 'infinity' || user.heartsCount >= 100) return;
+    if (!user || !user.isAuthenticated || user.hearts === 'infinity' || user.heartsCount >= 10) return;
 
-    const interval = setInterval(async () => {
-      try {
-        const profile = await api.post('/auth/sync');
+    const interval = setInterval(() => {
+      // Calculate if hearts have naturally refilled in the client
+      const elapsedMs = Date.now() - new Date(user.lastHeartRefillTime).getTime();
+      const refillIntervalMs = 60 * 60 * 1000; // 1 hour
+      const computedHearts = Math.min(10, user.heartsCount + Math.floor(elapsedMs / refillIntervalMs));
+
+      if (computedHearts !== user.hearts) {
         rawDispatch({
           type: 'UPDATE_HEARTS_AND_SUB',
           payload: {
-            hearts: profile.hearts,
-            heartsCount: profile.heartsCount,
-            lastHeartRefillTime: profile.lastHeartRefillTime,
-            subscriptionExpiresAt: profile.subscriptionExpiresAt,
-            isPremium: profile.isPremium
+            hearts: computedHearts
           }
         });
-      } catch (e) {
-        console.warn('Hearts refill check sync failed:', e);
       }
-    }, 20000); // Check every 20 seconds
+    }, 30000); // Check local time every 30 seconds
 
     return () => clearInterval(interval);
-  }, [user.isAuthenticated, user.hearts, user.heartsCount]);
+  }, [user.isAuthenticated, user.hearts, user.heartsCount, user.lastHeartRefillTime]);
 
   // Persist backup state to localStorage when changed
   useEffect(() => {
@@ -444,7 +442,35 @@ export function useUser() {
   if (context === null) {
     throw new Error('useUser must be used within a UserProvider');
   }
-  return context;
+
+  let user = context;
+
+  // 1. Dynamically check if subscription has expired on the client side.
+  if (user.hearts === 'infinity' && user.subscriptionExpiresAt) {
+    const isExpired = new Date(user.subscriptionExpiresAt).getTime() <= Date.now();
+    if (isExpired) {
+      user = {
+        ...user,
+        hearts: user.heartsCount || 0,
+        isPremium: false
+      };
+    }
+  }
+
+  // 2. Dynamically check if hearts have naturally refilled on the client side.
+  if (user.hearts !== 'infinity' && user.heartsCount < 10) {
+    const elapsedMs = Date.now() - new Date(user.lastHeartRefillTime).getTime();
+    const refillIntervalMs = 60 * 60 * 1000; // 1 hour
+    const computedHearts = Math.min(10, user.heartsCount + Math.floor(elapsedMs / refillIntervalMs));
+    if (computedHearts !== user.hearts) {
+      user = {
+        ...user,
+        hearts: computedHearts
+      };
+    }
+  }
+
+  return user;
 }
 
 export function useUserDispatch() {

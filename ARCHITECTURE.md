@@ -70,9 +70,12 @@ Gogram is split into a **decoupled Client-Server architecture**:
 *   **Pattern**: The Firebase Admin SDK automatically caches Google's public OIDC certificates.
 *   **Rationale**: To verify a JWT signature, the server needs Google's public key. The Admin SDK fetches these keys once and caches them in-memory, ensuring that subsequent API requests are authenticated locally in under 1 millisecond.
 
-### 3. Concurrency & Scaling Parameters
-*   **Configuration**: Cloud Run is configured with a concurrency threshold of **80 requests per container**.
-*   **Rationale**: Node.js is single-threaded and handles requests asynchronously. A single container can easily process 80 concurrent connections. If concurrency exceeds this limit, Cloud Run spins up another container, distributing the load efficiently and minimizing CPU resource waste.
+### 4. Client-Side Hearts & Subscription Dynamic Computations
+*   **Pattern**: Compute hearts refill logic and subscription expiration checks dynamically in the frontend custom hook (`useUser`) and a local browser interval rather than polling backend API endpoints.
+*   **Rationale**: 
+    1. Polling a backend `/sync` endpoint every 20 seconds to check for heart refills generates massive database-heavy request overhead (3,000+ operations/min per 1,000 active users).
+    2. Since subscription expiration and hourly heart recovery (capped at 10 hearts) are completely deterministic, the client's `useUser()` hook calculates them locally using `Date.now()`, the user's base `heartsCount`, and the `lastHeartRefillTime` anchor.
+    3. A 30-second local check interval triggers React state updates to reflect natural heart refills on-screen, completely removing background API requests. The server database is updated lazily when the user performs a functional action (e.g. a quiz mistake or completion).
 
 ---
 
