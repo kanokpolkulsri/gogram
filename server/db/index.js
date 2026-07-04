@@ -10,9 +10,11 @@ const { Pool } = pg;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const isUnixSocket = DATABASE_URL && (DATABASE_URL.includes('host=/') || DATABASE_URL.includes('%2Fcloudsql'));
+
 const pool = new Pool({
   connectionString: DATABASE_URL,
-  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
+  ssl: process.env.NODE_ENV === 'production' && !isUnixSocket ? { rejectUnauthorized: false } : false
 });
 
 export const query = (text, params) => pool.query(text, params);
