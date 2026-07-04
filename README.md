@@ -47,26 +47,66 @@ npm run dev
 
 ## 📐 System Architecture & Diagrams
 
-### Component Architecture
+### System Architecture & Technology Stack
+
+This diagram visualizes how the frontend app, backend API server, local development tools, third-party services, and deployment hosting layers interact within Gogram.
 
 ```mermaid
-graph TD
-    subgraph local_machine ["Local Machine (Developer)"]
-        Frontend[Frontend: React + Vite<br>Port 5173]
-        Backend[Backend: Express.js API<br>Port 5001]
-        Proxy[Cloud SQL Auth Proxy<br>Port 5432]
+flowchart TB
+    %% Subgraphs for layers
+    subgraph presentation_layer ["1. Presentation Layer (Frontend App)"]
+        React["React 19 / Vite"]
+        Router["React Router DOM v7"]
+        FirebaseWebSDK["Firebase Web SDK"]
+        UserStore["Custom userStore Context"]
+        
+        React --> Router
+        React --> UserStore
+        UserStore --> FirebaseWebSDK
     end
 
-    subgraph gcp_platform ["Google Cloud Platform (GCP)"]
-        FirebaseAuth[Firebase Auth Service]
-        CloudSQL[Cloud SQL PostgreSQL Instance<br>34.126.85.240]
+    subgraph hosting_infrastructure ["2. Hosting & Deployment Environments"]
+        FirebaseHosting["Firebase Hosting<br>(gogram-web-2026.web.app)"]
+        CloudRun["Google Cloud Run<br>(gogram-api Service)"]
     end
 
-    Frontend -->|1. Authenticate| FirebaseAuth
-    Frontend -->|2. API Requests / Bearer Token| Backend
-    Backend -->|3. Verify Token| FirebaseAuth
-    Backend -->|4. DB queries on localhost:5432| Proxy
-    Proxy ==>|5. Secure TLS Tunnel (IAM Auth)| CloudSQL
+    subgraph application_layer ["3. Application Layer (Backend Express Server)"]
+        NodeJS["Node.js Runtime"]
+        Express["Express.js App Router"]
+        FirebaseAdminSDK["Firebase Admin SDK"]
+        StripeNodeSDK["Stripe Node SDK"]
+        PgPool["pg Client Pool (PostgreSQL)"]
+        
+        NodeJS --> Express
+        Express --> FirebaseAdminSDK
+        Express --> StripeNodeSDK
+        Express --> PgPool
+    end
+
+    subgraph local_tunnelling ["4. Local Development Tools"]
+        SqlProxy["Cloud SQL Auth Proxy<br>(Port 5432 / TLS Auth Tunnel)"]
+    end
+
+    subgraph database_and_services ["5. Database, Auth & Third-Party APIs"]
+        CloudSQL["Google Cloud SQL (PostgreSQL)"]
+        FirebaseAuth["Firebase Authentication"]
+        StripeAPI["Stripe API Payment Gateway"]
+    end
+
+    %% Connections
+    FirebaseHosting -.->|Serves Static Files| React
+    
+    React -->|HTTP Requests / Bearer Token| CloudRun
+    CloudRun -->|Runs Express Server| Express
+    
+    FirebaseWebSDK -->|Google Sign-In Auth| FirebaseAuth
+    FirebaseAdminSDK -->|Token Verification API| FirebaseAuth
+    
+    StripeNodeSDK -->|Create PromptPay Session| StripeAPI
+    
+    PgPool -->|Local TCP Queries| SqlProxy
+    SqlProxy ==>|Secure TLS / IAM Auth Tunnel| CloudSQL
+    PgPool ==>|Production Direct Connection| CloudSQL
 ```
 
 ### UML Sequence Diagram (Authentication & Data Lifecycle)
