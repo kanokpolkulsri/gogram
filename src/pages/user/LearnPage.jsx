@@ -140,36 +140,34 @@ export default function LearnPage() {
       const unitElements = document.querySelectorAll('.learn-unit');
       if (unitElements.length === 0) return;
 
-      // Determine threshold dynamically based on screen width
+      // Threshold: how far from the top of the viewport before we "pin" a unit
       const isMobile = window.innerWidth < 1024;
-      const threshold = isMobile ? 160 : 110;
+      const threshold = isMobile ? 200 : 150;
 
-      // Check if we are scrolled close to the bottom of the page
+      // Check if we are scrolled to the very bottom of the page
       const scrollHeight = document.documentElement.scrollHeight;
       const clientHeight = window.innerHeight;
       const scrollY = window.scrollY || window.pageYOffset;
-      const isAtBottom = scrollY + clientHeight >= scrollHeight - 150;
+      const isAtBottom = scrollY + clientHeight >= scrollHeight - 80;
 
       let activeIndex = 0;
 
       if (isAtBottom) {
         activeIndex = unitElements.length - 1;
       } else {
+        // Walk through units: the active unit is the LAST one whose top edge
+        // has scrolled above the threshold (i.e., firstNode.top <= threshold).
+        // This means that unit's content is dominating the visible viewport.
         for (let i = 0; i < unitElements.length; i++) {
           const el = unitElements[i];
-          const nodes = el.querySelectorAll('.learn-path-node');
-          if (nodes.length > 0) {
-            const lastNode = nodes[nodes.length - 1];
-            const lastNodeRect = lastNode.getBoundingClientRect();
-
-            // If the bottom of the last node of this unit has not scrolled past the threshold,
-            // then this unit is the active one!
-            if (lastNodeRect.bottom > threshold) {
-              activeIndex = i;
-              break;
-            }
+          const firstNode = el.querySelector('.learn-path-node');
+          if (!firstNode) continue;
+          const rect = firstNode.getBoundingClientRect();
+          if (rect.top <= threshold) {
+            activeIndex = i; // keep advancing — the last match wins
+          } else {
+            break; // units below haven't scrolled up yet, stop here
           }
-          activeIndex = i; // fallback/last unit
         }
       }
 
@@ -179,10 +177,10 @@ export default function LearnPage() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
-    // Check initially after a brief delay to allow React to commit nodes to the DOM
-    const timer = setTimeout(handleScroll, 100);
+    // Run immediately after a brief delay to set correct initial state
+    const timer = setTimeout(handleScroll, 120);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
