@@ -68,6 +68,8 @@ export default function LearnPage() {
 
   const [activeUnitId, setActiveUnitId] = useState(initialActiveUnit?.id);
 
+  const nextLessonUnitId = nextLesson?.unitId;
+
   // Reset activeUnitId when category or units load/change
   useEffect(() => {
     if (categoryUnits.length > 0) {
@@ -76,7 +78,7 @@ export default function LearnPage() {
         : categoryUnits[0];
       setActiveUnitId(targetUnit?.id || categoryUnits[0].id);
     }
-  }, [activeCategoryId, categoryUnits, nextLesson]);
+  }, [activeCategoryId, categoryUnits, nextLessonUnitId]);
 
   const hasScrolledRef = useRef(false);
 
