@@ -84,6 +84,7 @@ router.post('/sync', authenticate, async (req, res) => {
       lastHeartRefillTime: new Date(profile.last_heart_refill_at).getTime(),
       subscriptionExpiresAt: profile.subscription_expires_at ? new Date(profile.subscription_expires_at).getTime() : null,
       isPremium: profile.isPremium,
+      isPrivate: profile.is_private,
       streak: profile.streak,
       progress,
       completedLessons,
@@ -92,6 +93,23 @@ router.post('/sync', authenticate, async (req, res) => {
   } catch (error) {
     console.error('Error syncing user profile:', error);
     res.status(500).json({ error: 'Server error during profile synchronization' });
+  }
+});
+
+// Update user privacy settings
+router.put('/privacy', authenticate, async (req, res) => {
+  const { uid } = req.user;
+  const { isPrivate } = req.body;
+
+  try {
+    await query(
+      `UPDATE users SET is_private = $1 WHERE uid = $2`,
+      [isPrivate, uid]
+    );
+    res.json({ success: true, isPrivate });
+  } catch (error) {
+    console.error('Error updating privacy settings:', error);
+    res.status(500).json({ error: 'Server error during privacy update' });
   }
 });
 

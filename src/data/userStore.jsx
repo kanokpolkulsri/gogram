@@ -21,6 +21,7 @@ const initialStoreState = {
   lastHeartRefillTime: Date.now(),
   subscriptionExpiresAt: null,
   isPremium: false,
+  isPrivate: false,
   streak: 0,
   progress: {},
   completedLessons: [],
@@ -31,6 +32,7 @@ const initialStoreState = {
   promoCodes: [],
   auditLogs: [],
   quizCache: {},
+  leaderboardCache: {},
   lastCategoryId: null,
   isAuthenticated: false,
   authProfile: null,
@@ -83,6 +85,21 @@ function userReducer(state, action) {
       return {
         ...state,
         ...action.payload
+      };
+
+    case 'SET_PRIVACY_OPTIMISTIC':
+      return {
+        ...state,
+        isPrivate: action.isPrivate
+      };
+
+    case 'SET_LEADERBOARD_CACHE':
+      return {
+        ...state,
+        leaderboardCache: {
+          ...state.leaderboardCache,
+          [action.categoryId]: action.payload
+        }
       };
 
     case 'COMPLETE_LESSON_OPTIMISTIC': {
@@ -419,6 +436,42 @@ export function UserProvider({ children }) {
 
       case 'SET_LAST_CATEGORY':
         rawDispatch(action);
+        break;
+
+      case 'SET_PRIVACY':
+        try {
+          rawDispatch({ type: 'SET_PRIVACY_OPTIMISTIC', isPrivate: action.isPrivate });
+          await api.put('/auth/privacy', { isPrivate: action.isPrivate });
+        } catch (e) {
+          console.error('Failed to update privacy settings on backend:', e);
+          // Rollback on failure
+          rawDispatch({ type: 'SET_PRIVACY_OPTIMISTIC', isPrivate: !action.isPrivate });
+        }
+        break;
+
+      case 'FETCH_LEADERBOARD':
+        try {
+          const cacheEntry = state.leaderboardCache[action.categoryId];
+          const cacheDuration = 5 * 60 * 1000; // 5 minutes
+          if (cacheEntry && (Date.now() - cacheEntry.fetchedAt < cacheDuration)) {
+            if (action.onSuccess) action.onSuccess(cacheEntry.data);
+            break;
+          }
+
+          const res = await api.get(`/learn/leaderboard/${action.categoryId}`);
+          rawDispatch({
+            type: 'SET_LEADERBOARD_CACHE',
+            categoryId: action.categoryId,
+            payload: {
+              data: res,
+              fetchedAt: Date.now()
+            }
+          });
+          if (action.onSuccess) action.onSuccess(res);
+        } catch (err) {
+          console.error(`Failed to fetch leaderboard for ${action.categoryId}:`, err);
+          if (action.onError) action.onError(err.message || 'Failed to fetch leaderboard');
+        }
         break;
 
       // Admin actions are now handled locally within each Admin page/component using local states and direct api calls.

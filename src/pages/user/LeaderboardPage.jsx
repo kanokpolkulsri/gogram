@@ -1,6 +1,5 @@
-import { useState } from 'react';
-import { useUser } from '../../data/userStore';
-import { leagueData } from '../../data/mockData';
+import { useState, useEffect } from 'react';
+import { useUser, useUserDispatch } from '../../data/userStore';
 import './LeaderboardPage.css';
 
 function ShieldIcon({ color, letter, isActive, size = 76 }) {
@@ -87,59 +86,46 @@ function ShieldIcon({ color, letter, isActive, size = 76 }) {
 
 export default function LeaderboardPage() {
   const user = useUser();
+  const dispatch = useUserDispatch();
   
   const studyCategories = user.categories || [];
-  const units = user.units || [];
 
   // Load the active category or fallback to the first one
   const initialCategoryId = user.lastCategoryId || 'grammar';
   const [selectedCategoryId, setSelectedCategoryId] = useState(initialCategoryId);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const selectedCategory = studyCategories.find((c) => c.id === selectedCategoryId) || (studyCategories.length > 0 ? studyCategories[0] : null);
 
-  // Helper to calculate or get level for each user
-  const getLevel = (uName, isYou) => {
-    if (isYou) {
-      return 1 + (user.progress?.[selectedCategoryId] || 0);
-    }
-    // Dynamic mock user levels based on categoryId and username hashing
-    const strVal = (selectedCategoryId + uName).length;
-    const mockBase = 1 + (strVal % 5); // Level 1 to 5
-    return mockBase;
-  };
+  useEffect(() => {
+    if (!selectedCategoryId) return;
+    setLoading(true);
+    setError(null);
+    dispatch({
+      type: 'FETCH_LEADERBOARD',
+      categoryId: selectedCategoryId,
+      onSuccess: () => setLoading(false),
+      onError: (err) => {
+        setError(err);
+        setLoading(false);
+      }
+    });
+  }, [selectedCategoryId, dispatch]);
 
-  // Determine user display details
   const userName = user.authProfile?.displayName || user.name || 'You';
   const userAvatar = user.authProfile?.photoURL || '#58CC02';
   const userInitials = user.authProfile?.displayName
     ? user.authProfile.displayName.slice(0, 2).toUpperCase()
     : 'YO';
 
-  // Construct leaderboard users list
-  const allUsers = [
-    ...leagueData.weeklyLeaderboard.slice(0, 8).map(u => ({ ...u, isYou: false })),
-    ...(!user.isPrivate ? [{ name: userName, country: '🇺🇸', avatar: userAvatar, initials: userInitials, isYou: true, xp: user.totalXP }] : []),
-    ...leagueData.weeklyLeaderboard.slice(8).map(u => ({ ...u, isYou: false })),
-  ].map(u => {
-    const level = getLevel(u.name, u.isYou);
-    return { ...u, level };
-  });
+  // Retrieve cached leaderboard lists from user store
+  const cacheEntry = user.leaderboardCache?.[selectedCategoryId];
+  const boardData = cacheEntry ? cacheEntry.data : null;
+  const allUsers = boardData ? boardData.leaderboard : [];
+  const youUser = boardData ? boardData.currentUser : null;
 
-  // Re-sort primarily by Level (highest level first) and secondarily by XP
-  allUsers.sort((a, b) => {
-    if (b.level !== a.level) {
-      return b.level - a.level;
-    }
-    return b.xp - a.xp;
-  });
-
-  // Reassign ranks
-  allUsers.forEach((u, i) => (u.rank = i + 1));
-
-  // Find logged in user rank
-  const youUser = allUsers.find(u => u.isYou);
   const youRank = youUser ? youUser.rank : null;
-  const youLevel = youUser ? youUser.level : null;
 
   if (!user.categories || user.categories.length === 0 || !user.units || user.units.length === 0) {
     return (
@@ -154,6 +140,76 @@ export default function LeaderboardPage() {
       </div>
     );
   }
+
+  const renderLeaderboardContent = () => {
+    if (loading && !boardData) {
+      return (
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '60px 0', gap: '12px' }}>
+          <div className="cms-loading-spinner" style={{ width: '32px', height: '32px', border: '4px solid var(--color-gray)', borderTopColor: 'var(--color-blue-dark)', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+          <p style={{ fontWeight: '700', color: 'var(--color-text-light)' }}>Fetching rankings...</p>
+        </div>
+      );
+    }
+
+    if (error && !boardData) {
+      return (
+        <div style={{ padding: '24px', textAlign: 'center', color: 'var(--color-red)', fontWeight: 'bold' }}>
+          Error: {error}
+        </div>
+      );
+    }
+
+    if (allUsers.length === 0) {
+      return (
+        <div style={{ padding: '24px', textAlign: 'center', color: 'var(--color-text-light)', fontWeight: 'bold' }}>
+          No active players in this board yet. Complete a lesson to join!
+        </div>
+      );
+    }
+
+    return (
+      <div className="leaderboard-list" key={selectedCategoryId}>
+        {allUsers.map((u, index) => {
+          let zoneClass = '';
+          if (u.rank <= 3) zoneClass = 'promotion'; // Top 3 highlighted
+          if (u.rank > 15 && allUsers.length >= 20) zoneClass = 'demotion'; // Demotion warning zone
+
+          const renderAvatar = () => {
+            if (!u.avatar || u.avatar.startsWith('#')) {
+              return (
+                <div className="leaderboard-avatar" style={{ background: u.avatar || '#58CC02' }}>
+                  {u.initials}
+                </div>
+              );
+            }
+            return <img src={u.avatar} alt={u.name} className="leaderboard-avatar-img" />;
+          };
+
+          return (
+            <div
+              key={u.name + u.rank}
+              className={`leaderboard-row ${u.isYou ? 'leaderboard-row-you' : ''} ${zoneClass}`}
+              style={{ animationDelay: `${index * 0.04}s` }}
+            >
+              <span className="leaderboard-rank">
+                {u.rank}
+              </span>
+              <div className="leaderboard-avatar-container">
+                {renderAvatar()}
+                {u.isYou && <span className="leaderboard-status-dot" />}
+              </div>
+              <div className="leaderboard-user-info">
+                <span className="leaderboard-name">{u.name}</span>
+              </div>
+              <span className="leaderboard-xp">
+                LV. {1 + (u.xp || 0)}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
 
   return (
     <div className="leaderboard-page" id="leaderboard-page">
@@ -203,49 +259,8 @@ export default function LeaderboardPage() {
         </div>
       )}
 
-      {/* Leaderboard list */}
-      <div className="leaderboard-list" key={selectedCategoryId}>
-        {allUsers.map((u, index) => {
-          const isPromotion = u.rank <= leagueData.promotionZone;
-          const isDemotion = u.rank > allUsers.length - leagueData.demotionZone;
-          let zoneClass = '';
-          if (isPromotion) zoneClass = 'promotion';
-          if (isDemotion) zoneClass = 'demotion';
-
-          const renderAvatar = () => {
-            if (u.avatar.startsWith('#')) {
-              return (
-                <div className="leaderboard-avatar" style={{ background: u.avatar }}>
-                  {u.initials}
-                </div>
-              );
-            }
-            return <img src={u.avatar} alt={u.name} className="leaderboard-avatar-img" />;
-          };
-
-          return (
-            <div
-              key={u.name + u.rank}
-              className={`leaderboard-row ${u.isYou ? 'leaderboard-row-you' : ''} ${zoneClass}`}
-              style={{ animationDelay: `${index * 0.04}s` }}
-            >
-              <span className="leaderboard-rank">
-                {u.rank}
-              </span>
-              <div className="leaderboard-avatar-container">
-                {renderAvatar()}
-                {u.isYou && <span className="leaderboard-status-dot" />}
-              </div>
-              <div className="leaderboard-user-info">
-                <span className="leaderboard-name">{u.name}</span>
-              </div>
-              <span className="leaderboard-xp">
-                LV. {u.level}
-              </span>
-            </div>
-          );
-        })}
-      </div>
+      {/* Leaderboard content */}
+      {renderLeaderboardContent()}
 
       {/* Sticky footer for the current user (only when public) */}
       {!user.isPrivate && youUser && (
@@ -268,7 +283,7 @@ export default function LeaderboardPage() {
               <span className="leaderboard-name">{userName}</span>
             </div>
             <span className="leaderboard-xp">
-              LV. {youLevel}
+              LV. {1 + (youUser.xp || 0)}
             </span>
           </div>
         </div>

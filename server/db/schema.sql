@@ -24,7 +24,8 @@ CREATE TABLE IF NOT EXISTS users (
     hearts_count INT DEFAULT 100 NOT NULL, -- Current numeric hearts (max defaults to 10)
     subscription_expires_at TIMESTAMP NULL, -- Infinity hearts when in the future
     last_heart_refill_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    streak INT DEFAULT 0 NOT NULL
+    streak INT DEFAULT 0 NOT NULL,
+    is_private BOOLEAN DEFAULT FALSE NOT NULL
 );
 
 -- 3. Study Categories Table
@@ -133,3 +134,7 @@ CREATE INDEX IF NOT EXISTS idx_questions_unit_level ON questions(unit_id, level_
 CREATE INDEX IF NOT EXISTS idx_completed_lessons_user ON completed_lessons(user_id);
 CREATE INDEX IF NOT EXISTS idx_completed_lessons_composite ON completed_lessons(user_id, unit_id, level_id);
 CREATE INDEX IF NOT EXISTS idx_user_category_progress_user ON user_category_progress(user_id);
+
+-- Migration support for updates on existing databases
+ALTER TABLE users ADD COLUMN IF NOT EXISTS is_private BOOLEAN DEFAULT FALSE NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_user_category_progress_rank ON user_category_progress(category_id, xp DESC);

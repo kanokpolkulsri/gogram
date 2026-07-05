@@ -73,10 +73,84 @@ router.get('/units', authenticate, async (req, res) => {
       });
     }
 
-    res.json(units);
   } catch (error) {
     console.error('Error fetching units:', error);
     res.status(500).json({ error: 'Server error while fetching units' });
+  }
+});
+
+// Retrieve leaderboard for a specific category
+router.get('/leaderboard/:categoryId', authenticate, async (req, res) => {
+  const { categoryId } = req.params;
+  const { uid } = req.user;
+
+  try {
+    // 1. Fetch top 20 active public users (or the user themselves)
+    const leaderboardRes = await query(
+      `SELECT 
+         u.name,
+         u.email,
+         u.uid,
+         COALESCE(ucp.xp, 0) AS xp
+       FROM users u
+       LEFT JOIN user_category_progress ucp ON u.uid = ucp.user_id AND ucp.category_id = $1
+       WHERE u.status = 'active' AND (u.is_private = FALSE OR u.uid = $2)
+       ORDER BY xp DESC, u.joined_at ASC
+       LIMIT 20`,
+      [categoryId, uid]
+    );
+
+    const leaderboard = leaderboardRes.rows.map((row, index) => {
+      const initials = row.name ? row.name.slice(0, 2).toUpperCase() : 'YO';
+      return {
+        name: row.name,
+        avatar: null, // UI will render fallback/initials
+        initials,
+        xp: parseInt(row.xp) || 0,
+        rank: index + 1,
+        isYou: row.uid === uid
+      };
+    });
+
+    // 2. Fetch requesting user's status and calculate their rank
+    const userRes = await query('SELECT name, email, joined_at FROM users WHERE uid = $1', [uid]);
+    const userRow = userRes.rows[0];
+    
+    const userXpRes = await query(
+      'SELECT xp FROM user_category_progress WHERE user_id = $1 AND category_id = $2',
+      [uid, categoryId]
+    );
+    const userXp = userXpRes.rows[0] ? parseInt(userXpRes.rows[0].xp) : 0;
+
+    const rankRes = await query(
+      `SELECT COUNT(*)::int + 1 AS rank 
+       FROM users u
+       LEFT JOIN user_category_progress ucp ON u.uid = ucp.user_id AND ucp.category_id = $1
+       WHERE u.status = 'active' 
+         AND (u.is_private = FALSE OR u.uid = $2)
+         AND (
+           COALESCE(ucp.xp, 0) > $3 OR 
+           (COALESCE(ucp.xp, 0) = $3 AND u.joined_at < $4)
+         )`,
+      [categoryId, uid, userXp, userRow.joined_at]
+    );
+    const userRank = rankRes.rows[0].rank;
+
+    const currentUser = {
+      name: userRow.name,
+      initials: userRow.name ? userRow.name.slice(0, 2).toUpperCase() : 'YO',
+      xp: userXp,
+      rank: userRank,
+      isYou: true
+    };
+
+    res.json({
+      leaderboard,
+      currentUser
+    });
+  } catch (error) {
+    console.error('Error fetching leaderboard:', error);
+    res.status(500).json({ error: 'Server error while fetching leaderboard' });
   }
 });
 
