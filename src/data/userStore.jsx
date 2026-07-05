@@ -451,7 +451,7 @@ export function UserProvider({ children }) {
 
       case 'FETCH_LEADERBOARD':
         try {
-          const cacheEntry = state.leaderboardCache[action.categoryId];
+          const cacheEntry = user.leaderboardCache[action.categoryId];
           const cacheDuration = 5 * 60 * 1000; // 5 minutes
           if (cacheEntry && (Date.now() - cacheEntry.fetchedAt < cacheDuration)) {
             if (action.onSuccess) action.onSuccess(cacheEntry.data);
@@ -479,7 +479,7 @@ export function UserProvider({ children }) {
       default:
         rawDispatch(action);
     }
-  }, [syncProfile, user.categories, user.units]);
+  }, [syncProfile, user.categories, user.units, user.leaderboardCache]);
 
   return (
     <UserContext.Provider value={user}>
