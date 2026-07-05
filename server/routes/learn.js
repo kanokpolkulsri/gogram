@@ -73,6 +73,7 @@ router.get('/units', authenticate, async (req, res) => {
       });
     }
 
+    res.json(units);
   } catch (error) {
     console.error('Error fetching units:', error);
     res.status(500).json({ error: 'Server error while fetching units' });
