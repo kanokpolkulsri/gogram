@@ -302,6 +302,17 @@ export default function LearnPage() {
           </div>
         ))}
 
+        {/* Mascot celebration card at the bottom */}
+        <div className="learn-mascot-celebration-card" id="learn-mascot-celebration-card">
+          <img 
+            src="/mascot_celebration.png" 
+            alt="Congratulations mascot" 
+            className="learn-mascot-img" 
+          />
+          <h3 className="learn-mascot-title-text">You&apos;re doing great!</h3>
+          <p className="learn-mascot-subtitle-text">Keep practicing and review your completed units to maintain your knowledge.</p>
+        </div>
+
         {/* All done message if completed everything in this category */}
         {!nextLesson && (
           <div className="learn-complete-message" id="learn-category-complete-message">
