@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /learn
+Disallow: /dashboard
+Disallow: /leaderboard
+Disallow: /shop
+Disallow: /profile
+Disallow: /quiz/
+Disallow: /admin
+Disallow: /lesson-complete
+
+Sitemap: https://gogram.techshabu.com/sitemap.xml
