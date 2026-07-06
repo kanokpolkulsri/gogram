@@ -25,6 +25,13 @@ function AppContent() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // Scroll to top on page change (except for learn pages which handle their own scroll)
+  useEffect(() => {
+    if (!location.pathname.startsWith('/learn')) {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname]);
+
   useEffect(() => {
     if (user.promoExpiredMessage) {
       alert(user.promoExpiredMessage);

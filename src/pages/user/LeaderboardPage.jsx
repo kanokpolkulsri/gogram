@@ -87,7 +87,7 @@ function ShieldIcon({ color, letter, isActive, size = 76 }) {
 export default function LeaderboardPage() {
   const user = useUser();
   const dispatch = useUserDispatch();
-  
+
   const studyCategories = user.categories || [];
 
   // Load the active category or fallback to the first one
