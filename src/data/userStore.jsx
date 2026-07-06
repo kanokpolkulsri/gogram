@@ -239,6 +239,22 @@ export function UserProvider({ children }) {
             isAuthLoading: false
           }
         });
+
+        // Background refresh to keep configuration up to date with server
+        if (!window.location.pathname.startsWith('/admin')) {
+          Promise.all([
+            api.get('/learn/categories'),
+            api.get('/learn/units')
+          ]).then(([catRes, unitRes]) => {
+            rawDispatch({
+              type: 'SET_CATEGORIES_AND_UNITS',
+              categories: catRes,
+              units: unitRes
+            });
+          }).catch(err => {
+            console.warn('Background sync of categories/units failed:', err);
+          });
+        }
       } else {
         // Fetch fresh data on startup if not starting on an admin page (exactly once per user)
         if (!window.location.pathname.startsWith('/admin')) {
