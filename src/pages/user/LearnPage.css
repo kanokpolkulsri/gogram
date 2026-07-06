@@ -46,14 +46,6 @@
   font-weight: 800;
 }
 
-.learn-unit-description {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 600;
-  margin-top: 4px;
-  line-height: 1.4;
-}
-
 .learn-unit-guide-btn {
   display: flex;
   align-items: center;
@@ -236,7 +228,7 @@
   width: 90%;
   max-width: 440px;
   text-align: center;
-  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   border: 2px solid var(--color-gray);
   animation: modalScaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
@@ -288,6 +280,7 @@
     transform: scale(0.9) translateY(20px);
     opacity: 0;
   }
+
   to {
     transform: scale(1) translateY(0);
     opacity: 1;

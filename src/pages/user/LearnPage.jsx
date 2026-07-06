@@ -209,8 +209,8 @@ export default function LearnPage() {
           <div className="learn-modal-icon" id="learn-category-select-icon">📚</div>
           <h3 className="learn-modal-title" id="learn-category-select-title">Select a Category</h3>
           <p className="learn-modal-desc" id="learn-category-select-desc">Please select a learning category first to begin your grammar journey!</p>
-          <button 
-            className="learn-modal-btn" 
+          <button
+            className="learn-modal-btn"
             id="learn-category-select-btn"
             onClick={() => navigate('/dashboard')}
           >
@@ -241,9 +241,6 @@ export default function LearnPage() {
                   : activeUnitHeader.section}
               </div>
               <h2 className="learn-unit-title">{activeUnitHeader.title}</h2>
-              {activeUnitHeader.description && (
-                <p className="learn-unit-description">{activeUnitHeader.description}</p>
-              )}
             </div>
           </div>
         </div>

@@ -16,21 +16,13 @@ async function seed() {
   const client = await pool.connect();
 
   try {
+    // Clean up existing learning content tables
+    console.log('Cleaning up existing learning content tables...');
+    await client.query('DELETE FROM categories');
 
     // 2. Seed Categories
     console.log('Seeding categories...');
     const allCategories = [...studyCategories];
-    
-    // Add exam-grammars if it is not present in studyCategories
-    if (!allCategories.some(c => c.id === 'exam-grammars')) {
-      allCategories.push({
-        id: 'exam-grammars',
-        title: 'Exam',
-        description: 'Prepare for official grammar exams',
-        color: '#89E219',
-        iconChar: 'E'
-      });
-    }
 
     for (const cat of allCategories) {
       await client.query(
@@ -43,33 +35,38 @@ async function seed() {
     }
 
     // 3. Seed Units and Levels
-    console.log('Seeding units and levels...');
-    // Keep track of unit numbers per category to assign sequentially
+    console.log('Seeding units and levels in parallel...');
     const categoryUnitCounters = {};
-
-    for (const unit of units) {
+    const unitsWithNumbers = units.map((unit) => {
       const catId = unit.category;
       if (!categoryUnitCounters[catId]) {
         categoryUnitCounters[catId] = 0;
       }
       categoryUnitCounters[catId]++;
-      const unitNumber = categoryUnitCounters[catId];
+      return {
+        ...unit,
+        unitNumber: categoryUnitCounters[catId]
+      };
+    });
 
-      // Insert Unit
-      const unitRes = await client.query(
+    const seedUnit = async (unit) => {
+      const catId = unit.category;
+      // Insert Unit (using pool to run in parallel)
+      const unitRes = await pool.query(
         `INSERT INTO units (id, category_id, unit_number, title, description, color)
          VALUES ($1, $2, $3, $4, $5, $6)
          ON CONFLICT (id) DO UPDATE 
          SET category_id = EXCLUDED.category_id, unit_number = EXCLUDED.unit_number, title = EXCLUDED.title, description = EXCLUDED.description, color = EXCLUDED.color
          RETURNING id`,
-        [unit.id, catId, unitNumber, unit.title, unit.description || '', unit.color]
+        [unit.id, catId, unit.unitNumber, unit.title, unit.description || '', unit.color]
       );
 
       const dbUnitId = unitRes.rows[0].id;
+      console.log(`- Seeding Unit #${unit.id} ("${unit.title}") as DB Unit #${dbUnitId}`);
 
-      // Insert Levels for this Unit
+      // Insert Levels and Questions for this Unit
       for (const lvl of unit.levels) {
-        await client.query(
+        await pool.query(
           `INSERT INTO levels (id, unit_id, label, icon)
            VALUES ($1, $2, $3, $4)
            ON CONFLICT (unit_id, id) DO UPDATE 
@@ -77,13 +74,11 @@ async function seed() {
           [lvl.id, dbUnitId, lvl.label, lvl.icon]
         );
 
-        // Generate and Seed Questions for this Level
+        // Generate and Seed Questions for this Level in parallel
         const questionsList = getMockQuestions(catId, unit.id, lvl.id, unit.title) || [];
-        for (let i = 0; i < questionsList.length; i++) {
-          const q = questionsList[i];
+        const insertPromises = questionsList.map((q, i) => {
           const questionId = q.id || `q-${dbUnitId}-${lvl.id}-${i}`;
-          
-          await client.query(
+          return pool.query(
             `INSERT INTO questions (id, unit_id, level_id, question, options, correct_answer, explanation, explanation_th)
              VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
              ON CONFLICT (id) DO UPDATE 
@@ -99,9 +94,13 @@ async function seed() {
               q.explanationTh || q.explanation_th || null
             ]
           );
-        }
+        });
+        await Promise.all(insertPromises);
       }
-    }
+      console.log(`- Finished Seeding Unit #${unit.id}`);
+    };
+
+    await Promise.all(unitsWithNumbers.map(seedUnit));
 
     console.log('Seeding default administrator user...');
     await client.query(

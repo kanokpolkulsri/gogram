@@ -13,166 +13,125 @@ export const initialUser = {
   league: 'Gold',
   following: 12,
   followers: 8,
-}; export const units = [
-  {
-    id: 1,
-    category: 'grammar',
-    title: 'Verb to Be',
-    section: 'SECTION 1, UNIT 1',
-    description: 'am, is, are, was, were',
-    color: '#58CC02',
-    levels: [
-      { id: 'easy', label: 'Easy', xpReward: 10, icon: 'star', questions: [] },
-      { id: 'medium1', label: 'Medium 1', xpReward: 15, icon: 'star', questions: [] },
-      { id: 'medium2', label: 'Medium 2', xpReward: 15, icon: 'dumbbell', questions: [] },
-      { id: 'hard1', label: 'Hard 1', xpReward: 20, icon: 'level-up', questions: [] },
-      { id: 'hard2', label: 'Hard 2', xpReward: 35, icon: 'boss', questions: [] }
-    ]
-  },
-  {
-    id: 2,
-    category: 'grammar',
-    title: 'Subject and Object Pronouns',
-    section: 'SECTION 1, UNIT 2',
-    description: 'he/him, she/her, they/them, I/me',
-    color: '#CE82FF',
-    levels: [
-      { id: 'easy', label: 'Easy', xpReward: 10, icon: 'star', questions: [] },
-      { id: 'medium1', label: 'Medium 1', xpReward: 15, icon: 'star', questions: [] },
-      { id: 'medium2', label: 'Medium 2', xpReward: 15, icon: 'dumbbell', questions: [] },
-      { id: 'hard1', label: 'Hard 1', xpReward: 20, icon: 'level-up', questions: [] },
-      { id: 'hard2', label: 'Hard 2', xpReward: 35, icon: 'boss', questions: [] }
-    ]
-  },
-  {
-    id: 3,
-    category: 'grammar',
-    title: 'Possessive Adjectives, Possessive Pronouns, and Reflexive Pronouns',
-    section: 'SECTION 1, UNIT 3',
-    description: 'my/mine/myself, its/itself, their/theirs/themselves',
-    color: '#1CB0F6',
-    levels: [
-      { id: 'easy', label: 'Easy', xpReward: 10, icon: 'star', questions: [] },
-      { id: 'medium1', label: 'Medium 1', xpReward: 15, icon: 'star', questions: [] },
-      { id: 'medium2', label: 'Medium 2', xpReward: 15, icon: 'dumbbell', questions: [] },
-      { id: 'hard1', label: 'Hard 1', xpReward: 20, icon: 'level-up', questions: [] },
-      { id: 'hard2', label: 'Hard 2', xpReward: 35, icon: 'boss', questions: [] }
-    ]
-  },
-  {
-    id: 4,
-    category: 'vocabulary',
-    title: 'Vocabulary: Fruits & Food',
-    section: 'SECTION 1, UNIT 4',
-    description: 'common food & fruits',
-    color: '#FF4B4B',
-    levels: [
-      { id: 'easy', label: 'Easy', xpReward: 10, icon: 'star', questions: [] },
-      { id: 'medium1', label: 'Medium', xpReward: 15, icon: 'star', questions: [] },
-      { id: 'medium2', label: 'Medium', xpReward: 15, icon: 'dumbbell', questions: [] },
-      { id: 'hard1', label: 'Hard', xpReward: 20, icon: 'star', questions: [] },
-      { id: 'hard2', label: 'Hard', xpReward: 25, icon: 'trophy', questions: [] }
-    ]
-  },
-  {
-    id: 5,
-    category: 'vocabulary',
-    title: 'Vocabulary: Colors & Clothes',
-    section: 'SECTION 1, UNIT 5',
-    description: 'colors & clothes',
-    color: '#FF9600',
-    levels: [
-      { id: 'easy', label: 'Easy', xpReward: 10, icon: 'star', questions: [] },
-      { id: 'medium1', label: 'Medium', xpReward: 15, icon: 'star', questions: [] },
-      { id: 'medium2', label: 'Medium', xpReward: 15, icon: 'dumbbell', questions: [] },
-      { id: 'hard1', label: 'Hard', xpReward: 20, icon: 'star', questions: [] },
-      { id: 'hard2', label: 'Hard', xpReward: 25, icon: 'trophy', questions: [] }
-    ]
-  },
-  {
-    id: 6,
-    category: 'reading',
-    title: 'Reading: The Boy Who Cried Wolf',
-    section: 'SECTION 2, UNIT 1',
-    description: 'reading fables',
-    color: '#CE82FF',
-    levels: [
-      { id: 'easy', label: 'Easy', xpReward: 10, icon: 'star', questions: [] },
-      { id: 'medium1', label: 'Medium', xpReward: 15, icon: 'star', questions: [] },
-      { id: 'medium2', label: 'Medium', xpReward: 15, icon: 'dumbbell', questions: [] },
-      { id: 'hard1', label: 'Hard', xpReward: 20, icon: 'star', questions: [] },
-      { id: 'hard2', label: 'Hard', xpReward: 25, icon: 'trophy', questions: [] }
-    ]
-  },
-  {
-    id: 7,
-    category: 'reading',
-    title: 'Reading: Little Red Riding Hood',
-    section: 'SECTION 2, UNIT 2',
-    description: 'reading fairytales',
-    color: '#00CDFF',
-    levels: [
-      { id: 'easy', label: 'Easy', xpReward: 10, icon: 'star', questions: [] },
-      { id: 'medium1', label: 'Medium', xpReward: 15, icon: 'star', questions: [] },
-      { id: 'medium2', label: 'Medium', xpReward: 15, icon: 'dumbbell', questions: [] },
-      { id: 'hard1', label: 'Hard', xpReward: 20, icon: 'star', questions: [] },
-      { id: 'hard2', label: 'Hard', xpReward: 25, icon: 'trophy', questions: [] }
-    ]
-  },
-  {
-    id: 8,
-    category: 'exam-grammars',
-    title: 'Exam: Passive Voice',
-    section: 'SECTION 3, UNIT 1',
-    description: 'passive voice structure',
-    color: '#89E219',
-    levels: [
-      { id: 'easy', label: 'Easy', xpReward: 10, icon: 'star', questions: [] },
-      { id: 'medium1', label: 'Medium', xpReward: 15, icon: 'star', questions: [] },
-      { id: 'medium2', label: 'Medium', xpReward: 15, icon: 'dumbbell', questions: [] },
-      { id: 'hard1', label: 'Hard', xpReward: 20, icon: 'star', questions: [] },
-      { id: 'hard2', label: 'Hard', xpReward: 25, icon: 'trophy', questions: [] }
-    ]
-  },
-  {
-    id: 9,
-    category: 'exam-grammars',
-    title: 'Exam: Conditional Sentences',
-    section: 'SECTION 3, UNIT 2',
-    description: 'if-clauses, conditionals',
-    color: '#1CB0F6',
-    levels: [
-      { id: 'easy', label: 'Easy', xpReward: 10, icon: 'star', questions: [] },
-      { id: 'medium1', label: 'Medium', xpReward: 15, icon: 'star', questions: [] },
-      { id: 'medium2', label: 'Medium', xpReward: 15, icon: 'dumbbell', questions: [] },
-      { id: 'hard1', label: 'Hard', xpReward: 20, icon: 'star', questions: [] },
-      { id: 'hard2', label: 'Hard', xpReward: 25, icon: 'trophy', questions: [] }
-    ]
-  }
+};
+
+const colors = ['#58CC02', '#CE82FF', '#1CB0F6', '#FF9600', '#FF4B4B', '#00CDFF'];
+
+const defaultLevels = [
+  { id: 'easy', label: 'Easy', xpReward: 10, icon: 'star', questions: [] },
+  { id: 'medium1', label: 'Medium 1', xpReward: 15, icon: 'star', questions: [] },
+  { id: 'medium2', label: 'Medium 2', xpReward: 15, icon: 'dumbbell', questions: [] },
+  { id: 'hard1', label: 'Hard 1', xpReward: 20, icon: 'level-up', questions: [] },
+  { id: 'hard2', label: 'Hard 2', xpReward: 35, icon: 'boss', questions: [] }
 ];
+
+const rawUnitsData = [
+  // SECTION 1: Nouns & Sentence Basics (1 - 16)
+  { id: 1, section: 1, title: 'Verb to Be', description: 'am, is, are, was, were' },
+  { id: 2, section: 1, title: 'Subject and Object Pronouns', description: 'he/him, she/her, they/them, I/me' },
+  { id: 3, section: 1, title: 'Possessive Adjectives, Possessive Pronouns, and Reflexive Pronouns', description: 'my/mine/myself, its/itself, their/theirs/themselves' },
+  { id: 4, section: 1, title: 'Singular and Plural Nouns', description: 'regular and irregular plurals' },
+  { id: 5, section: 1, title: 'Countable and Uncountable Nouns', description: 'nouns you can count vs nouns you cannot' },
+  { id: 6, section: 1, title: 'Articles and Zero Article', description: 'a, an, the, and no article' },
+  { id: 7, section: 1, title: 'Demonstratives', description: 'this, that, these, those' },
+  { id: 8, section: 1, title: 'Basic Sentence Order, Objects, and Imperatives', description: 'word order and commands' },
+  { id: 9, section: 1, title: 'Existence with There', description: 'there is/are/was/were/will be' },
+  { id: 10, section: 1, title: 'Subject-Verb Agreement, Capitalization, and Basic Punctuation', description: 'matching subject with verb and writing rules' },
+  { id: 11, section: 1, title: 'Some, Any, and No', description: 'some, any, no' },
+  { id: 12, section: 1, title: 'Much, Many, A Lot of, Lots of, Plenty of', description: 'large amounts' },
+  { id: 13, section: 1, title: 'Few, A Few, Little, A Little', description: 'small amounts' },
+  { id: 14, section: 1, title: 'Each, Every, All, Both, Either, Neither', description: 'groups and pairs' },
+  { id: 15, section: 1, title: 'Another, Other, Others, The Other', description: 'comparisons and alternatives' },
+  { id: 16, section: 1, title: 'Too and Enough', description: 'excess and sufficiency' },
+
+  // SECTION 2: Fundamental Tenses (17 - 25)
+  { id: 17, section: 2, title: 'Present Simple', description: 'routines, habits, facts, and general truths' },
+  { id: 18, section: 2, title: 'Present Continuous', description: 'actions happening now or around now' },
+  { id: 19, section: 2, title: 'Present Simple vs Present Continuous', description: 'habit/fact vs action-in-progress' },
+  { id: 20, section: 2, title: 'Past Simple', description: 'finished actions in the past' },
+  { id: 21, section: 2, title: 'Past Continuous', description: 'actions in progress at a specific past time' },
+  { id: 22, section: 2, title: 'Past Simple vs Past Continuous', description: 'background action vs interrupting action' },
+  { id: 23, section: 2, title: 'Present Perfect', description: 'life experience, recent result, and unfinished time' },
+  { id: 24, section: 2, title: 'Present Perfect with Ever, Never, Just, Already, Yet, For, and Since', description: 'time markers and adverbs' },
+  { id: 25, section: 2, title: 'Present Perfect vs Past Simple', description: 'finished past action vs connection to now' },
+
+  // SECTION 3: Future Tenses, Questions & Time (26 - 43)
+  { id: 26, section: 3, title: 'Present Perfect Continuous', description: 'duration or repeated activity continuing up to now' },
+  { id: 27, section: 3, title: 'Past Perfect', description: 'one past action before another past action' },
+  { id: 28, section: 3, title: 'Past Perfect Continuous', description: 'duration before another point in the past' },
+  { id: 29, section: 3, title: 'Future with Will', description: 'predictions, spontaneous decisions, promises' },
+  { id: 30, section: 3, title: 'Future with Be Going To', description: 'prior plans and predictions based on evidence' },
+  { id: 31, section: 3, title: 'Will vs Be Going To', description: 'spontaneous vs planned future' },
+  { id: 32, section: 3, title: 'Present Continuous for Future Arrangements', description: 'fixed plans and appointments' },
+  { id: 33, section: 3, title: 'Future Continuous', description: 'actions in progress in the future' },
+  { id: 34, section: 3, title: 'Future Perfect and Future Perfect Continuous', description: 'completion or duration before a future point' },
+  { id: 35, section: 3, title: 'Yes-No Questions and Short Answers', description: 'yes-no questions and natural answers' },
+  { id: 36, section: 3, title: 'Wh- Questions', description: 'who, what, where, when, why, how' },
+  { id: 37, section: 3, title: 'Negatives with Be, Do, and Have', description: 'negative sentences in different tenses' },
+  { id: 38, section: 3, title: 'Question Tags', description: "short tags like isn't it? or don't they?" },
+  { id: 39, section: 3, title: 'Indirect Questions', description: 'polite questions like Could you tell me where...?' },
+  { id: 40, section: 3, title: 'Adverbs of Frequency', description: 'always, usually, often, sometimes, never' },
+  { id: 41, section: 3, title: 'Common Time Expressions: for, since, ago, already, yet, just, still', description: 'common time words' },
+  { id: 42, section: 3, title: 'Sequence Words and Time Linkers: before, after, during, while, by, until, first, then, finally', description: 'order and sequence' },
+  { id: 43, section: 3, title: 'Prepositions of Time', description: 'in, on, at, by, until, during, before, after' },
+
+  // SECTION 4: Movement, Location & Modals (44 - 53)
+  { id: 44, section: 4, title: 'Prepositions of Place', description: 'in, on, at, under, over, near, between' },
+  { id: 45, section: 4, title: 'Prepositions of Movement', description: 'to, into, onto, out of, across, through' },
+  { id: 46, section: 4, title: 'Fixed Prepositions', description: 'verb/adjective/noun + preposition combinations' },
+  { id: 47, section: 4, title: 'Ability: can, could, be able to, manage to', description: 'present, past, and general ability' },
+  { id: 48, section: 4, title: 'Permission and Requests: can, could, may, would', description: 'permission and requests' },
+  { id: 49, section: 4, title: 'Advice: should, ought to, had better', description: 'recommendations, warnings, and suggestions' },
+  { id: 50, section: 4, title: 'Obligation and Necessity: must, have to, need to', description: 'rules, duties, and necessary actions' },
+  { id: 51, section: 4, title: 'Prohibition and Lack of Necessity: mustn’t, don’t have to, needn’t', description: 'forbidden vs optional actions' },
+  { id: 52, section: 4, title: 'Possibility, Probability, and Deduction: may, might, could, must, can’t', description: 'uncertainty vs logical conclusions' },
+  { id: 53, section: 4, title: 'Past Modals: should have, could have, would have, might have, must have, can’t have', description: 'regrets, missed chances, past possibility/deduction' },
+
+  // SECTION 5: Advanced Verb Patterns & Modifiers (54 - 67)
+  { id: 54, section: 5, title: 'Gerunds', description: '-ing forms as nouns' },
+  { id: 55, section: 5, title: 'Infinitives and Infinitives of Purpose', description: 'to + verb and explaining purpose' },
+  { id: 56, section: 5, title: 'Gerunds vs Infinitives', description: 'choosing the correct form after verbs' },
+  { id: 57, section: 5, title: 'Verb + Object + Infinitive', description: 'patterns like want him to go or tell her to wait' },
+  { id: 58, section: 5, title: 'Let, Make, and Help', description: 'permission, cause, and assistance' },
+  { id: 59, section: 5, title: 'Causatives: Have and Get', description: 'arranging for someone else to do something' },
+  { id: 60, section: 5, title: 'Used To and Would for Past Habits', description: 'past habits and states no longer true' },
+  { id: 61, section: 5, title: 'Stative and Dynamic Verbs; Linking Verbs', description: 'action vs state verbs and linking verbs' },
+  { id: 62, section: 5, title: 'Comparatives and Superlatives', description: 'comparing things (bigger, biggest)' },
+  { id: 63, section: 5, title: 'Comparative Structures: as…as, less…than, the more…the more', description: 'comparisons and proportional relationships' },
+  { id: 64, section: 5, title: 'Adjective Order', description: 'natural English order (e.g. beautiful small old house)' },
+  { id: 65, section: 5, title: 'Adverbs of Manner, Place, and Time', description: 'how, where, and when something happens' },
+  { id: 66, section: 5, title: 'So, Such, Too, and Enough', description: 'intensity and result structures' },
+  { id: 67, section: 5, title: 'Common Phrasal Verbs', description: 'separable, inseparable, transitive, intransitive' },
+
+  // SECTION 6: Complex Clauses & Advanced Structures (68 - 75)
+  { id: 68, section: 6, title: 'Conjunctions and Linkers', description: 'and, but, so, although, however, therefore' },
+  { id: 69, section: 6, title: 'Relative Clauses', description: 'who, which, that, where, whose' },
+  { id: 70, section: 6, title: 'Noun Clauses, Participle Clauses, and Reduced Clauses', description: 'advanced clauses and reductions' },
+  { id: 71, section: 6, title: 'Passive Voice', description: 'focus on action rather than the doer' },
+  { id: 72, section: 6, title: 'Reported Speech', description: 'reporting statements, questions, and commands' },
+  { id: 73, section: 6, title: 'Conditionals', description: 'zero, first, second, third, and mixed conditionals' },
+  { id: 74, section: 6, title: 'Wish and If Only', description: 'regrets and imagined changes' },
+  { id: 75, section: 6, title: 'Inversion and Ellipsis/Substitution', description: 'advanced word order and avoiding repetition' }
+];
+
+export const units = rawUnitsData.map(u => ({
+  id: u.id,
+  category: 'grammar',
+  title: u.title,
+  section: `SECTION 1, UNIT ${u.id}`,
+  description: u.description,
+  color: colors[(u.id - 1) % colors.length],
+  levels: defaultLevels
+}));
 
 export const studyCategories = [
   {
     id: 'grammar',
     title: 'Grammar',
-    description: 'Explore this category',
+    description: 'Master English grammar rules through interactive drills',
     color: '#58CC02',
     iconChar: 'G',
-  },
-  {
-    id: 'vocabulary',
-    title: 'Vocabulary',
-    description: 'Strengthen core verbs and keywords',
-    color: '#FF4B4B',
-    iconChar: 'V',
-  },
-  {
-    id: 'reading',
-    title: 'Reading',
-    description: 'Improve comprehension with short stories',
-    color: '#CE82FF',
-    iconChar: 'R',
-  },
+  }
 ];
 
 
