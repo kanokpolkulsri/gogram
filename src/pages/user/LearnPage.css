@@ -46,6 +46,14 @@
   font-weight: 800;
 }
 
+.learn-unit-description {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
 .learn-unit-guide-btn {
   display: flex;
   align-items: center;

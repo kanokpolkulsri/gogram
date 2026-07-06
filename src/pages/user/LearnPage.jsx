@@ -241,6 +241,9 @@ export default function LearnPage() {
                   : activeUnitHeader.section}
               </div>
               <h2 className="learn-unit-title">{activeUnitHeader.title}</h2>
+              {activeUnitHeader.description && (
+                <p className="learn-unit-description">{activeUnitHeader.description}</p>
+              )}
             </div>
           </div>
         </div>
