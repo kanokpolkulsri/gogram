@@ -239,31 +239,15 @@ export function UserProvider({ children }) {
             isAuthLoading: false
           }
         });
-      }
+      } else {
+        // Fetch fresh data on startup if not starting on an admin page (exactly once per user)
+        if (!window.location.pathname.startsWith('/admin')) {
+          try {
+            const [catRes, unitRes] = await Promise.all([
+              api.get('/learn/categories'),
+              api.get('/learn/units')
+            ]);
 
-      // Fetch fresh data in the background (or foreground if no cache exists)
-      if (!window.location.pathname.startsWith('/admin')) {
-        try {
-          // If cache exists, this runs in the background. If not, it blocks.
-          const [catRes, unitRes] = await Promise.all([
-            api.get('/learn/categories'),
-            api.get('/learn/units')
-          ]);
-
-          const changed = !hasCachedConfig ||
-            JSON.stringify(catRes) !== JSON.stringify(cachedCategories) ||
-            JSON.stringify(unitRes) !== JSON.stringify(cachedUnits);
-
-          if (changed) {
-            rawDispatch({
-              type: 'SET_CATEGORIES_AND_UNITS',
-              categories: catRes,
-              units: unitRes
-            });
-          }
-
-          // If we had no cache, we must dispatch INIT_APP_DATA to release the loading screen
-          if (!hasCachedConfig) {
             rawDispatch({
               type: 'INIT_APP_DATA',
               payload: {
@@ -283,11 +267,9 @@ export function UserProvider({ children }) {
                 isAuthLoading: false
               }
             });
-          }
-        } catch (err) {
-          console.warn('Startup fetch of categories/units failed:', err);
-          // Fallback if fetch fails and we had no cache (so user is not stuck on loading screen forever)
-          if (!hasCachedConfig) {
+          } catch (err) {
+            console.warn('Startup fetch of categories/units failed:', err);
+            // Release loading screen even on failure
             rawDispatch({
               type: 'INIT_APP_DATA',
               payload: {
@@ -308,28 +290,28 @@ export function UserProvider({ children }) {
               }
             });
           }
+        } else {
+          // If starting on admin, release loading screen with empty categories/units
+          rawDispatch({
+            type: 'INIT_APP_DATA',
+            payload: {
+              ...profile,
+              isAuthenticated: true,
+              authProfile: {
+                uid: firebaseUser.uid,
+                email: firebaseUser.email,
+                displayName: firebaseUser.displayName || profile.name,
+                photoURL: firebaseUser.photoURL,
+              },
+              categories: [],
+              units: [],
+              mockUsers: [],
+              promoCodes: [],
+              auditLogs: [],
+              isAuthLoading: false
+            }
+          });
         }
-      } else {
-        // If it starts with /admin, we don't load learn data, but we must release the loading screen
-        rawDispatch({
-          type: 'INIT_APP_DATA',
-          payload: {
-            ...profile,
-            isAuthenticated: true,
-            authProfile: {
-              uid: firebaseUser.uid,
-              email: firebaseUser.email,
-              displayName: firebaseUser.displayName || profile.name,
-              photoURL: firebaseUser.photoURL,
-            },
-            categories: hasCachedConfig ? cachedCategories : [],
-            units: hasCachedConfig ? cachedUnits : [],
-            mockUsers: [],
-            promoCodes: [],
-            auditLogs: [],
-            isAuthLoading: false
-          }
-        });
       }
     } catch (error) {
       console.error('Failed to initialize synced database profile:', error);
