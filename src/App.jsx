@@ -25,12 +25,12 @@ function AppContent() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Scroll to top on page change (except for learn pages which handle their own scroll)
+  // Scroll to top on page change or when authentication loading finishes (except for learn pages)
   useEffect(() => {
-    if (!location.pathname.startsWith('/learn')) {
+    if (!user.isAuthLoading && !location.pathname.startsWith('/learn')) {
       window.scrollTo(0, 0);
     }
-  }, [location.pathname]);
+  }, [location.pathname, user.isAuthLoading]);
 
   useEffect(() => {
     if (user.promoExpiredMessage) {
