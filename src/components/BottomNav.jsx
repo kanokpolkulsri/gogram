@@ -18,8 +18,8 @@ const tabs = [
 export default function BottomNav() {
   const location = useLocation();
 
-  const handleScrollToTop = (tabId) => {
-    if (tabId !== 'home') {
+  const handleScrollToTop = (tabId, isActive) => {
+    if (isActive && tabId !== 'home') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
@@ -36,7 +36,7 @@ export default function BottomNav() {
             to={tab.path}
             className={`bottom-nav-tab ${isActive ? 'active' : ''}`}
             id={`nav-${tab.id}`}
-            onClick={() => handleScrollToTop(tab.id)}
+            onClick={() => handleScrollToTop(tab.id, isActive)}
           >
             <tab.Icon active={isActive} />
           </Link>

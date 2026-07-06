@@ -38,14 +38,16 @@ const sidebarTabs = [
 export default function Sidebar() {
   const location = useLocation();
 
-  const handleScrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const handleScrollToTop = (isActive) => {
+    if (isActive) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   return (
     <aside className="sidebar" id="sidebar">
       {/* Logo — owl icon + text */}
-      <Link to="/learn" className="sidebar-logo" id="sidebar-logo" onClick={handleScrollToTop}>
+      <Link to="/learn" className="sidebar-logo" id="sidebar-logo" onClick={() => handleScrollToTop(location.pathname.startsWith('/learn'))}>
         <svg width="32" height="32" viewBox="0 0 200 200" fill="none">
           <circle cx="100" cy="100" r="100" fill="#FF9600" />
           {/* Eye whites */}
@@ -77,7 +79,7 @@ export default function Sidebar() {
               className={`sidebar-tab ${isActive ? 'active' : ''}`}
               id={`sidebar-${tab.id}`}
               title={tab.label}
-              onClick={handleScrollToTop}
+              onClick={() => handleScrollToTop(isActive)}
             >
               <span className="sidebar-tab-icon">
                 <tab.Icon active={isActive} />
