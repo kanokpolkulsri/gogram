@@ -202,42 +202,135 @@ export function UserProvider({ children }) {
       // 1. Sync auth profile record
       const profile = await api.post('/auth/sync', { name: firebaseUser.displayName });
       
-      let categories = [];
-      let units = [];
+      // Read cache from localStorage
+      let cachedCategories = [];
+      let cachedUnits = [];
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          cachedCategories = parsed.categories || [];
+          cachedUnits = parsed.units || [];
+        }
+      } catch (e) {
+        console.error('Failed to read cached categories/units from localStorage:', e);
+      }
 
-      // Eager-load learn data on startup if we are not landing on an admin page
+      const hasCachedConfig = cachedCategories.length > 0 && cachedUnits.length > 0;
+
+      if (hasCachedConfig) {
+        // Render instantly using cached data
+        rawDispatch({
+          type: 'INIT_APP_DATA',
+          payload: {
+            ...profile,
+            isAuthenticated: true,
+            authProfile: {
+              uid: firebaseUser.uid,
+              email: firebaseUser.email,
+              displayName: firebaseUser.displayName || profile.name,
+              photoURL: firebaseUser.photoURL,
+            },
+            categories: cachedCategories,
+            units: cachedUnits,
+            mockUsers: [],
+            promoCodes: [],
+            auditLogs: [],
+            isAuthLoading: false
+          }
+        });
+      }
+
+      // Fetch fresh data in the background (or foreground if no cache exists)
       if (!window.location.pathname.startsWith('/admin')) {
         try {
+          // If cache exists, this runs in the background. If not, it blocks.
           const [catRes, unitRes] = await Promise.all([
             api.get('/learn/categories'),
             api.get('/learn/units')
           ]);
-          categories = catRes;
-          units = unitRes;
+
+          const changed = !hasCachedConfig ||
+            JSON.stringify(catRes) !== JSON.stringify(cachedCategories) ||
+            JSON.stringify(unitRes) !== JSON.stringify(cachedUnits);
+
+          if (changed) {
+            rawDispatch({
+              type: 'SET_CATEGORIES_AND_UNITS',
+              categories: catRes,
+              units: unitRes
+            });
+          }
+
+          // If we had no cache, we must dispatch INIT_APP_DATA to release the loading screen
+          if (!hasCachedConfig) {
+            rawDispatch({
+              type: 'INIT_APP_DATA',
+              payload: {
+                ...profile,
+                isAuthenticated: true,
+                authProfile: {
+                  uid: firebaseUser.uid,
+                  email: firebaseUser.email,
+                  displayName: firebaseUser.displayName || profile.name,
+                  photoURL: firebaseUser.photoURL,
+                },
+                categories: catRes,
+                units: unitRes,
+                mockUsers: [],
+                promoCodes: [],
+                auditLogs: [],
+                isAuthLoading: false
+              }
+            });
+          }
         } catch (err) {
           console.warn('Startup fetch of categories/units failed:', err);
+          // Fallback if fetch fails and we had no cache (so user is not stuck on loading screen forever)
+          if (!hasCachedConfig) {
+            rawDispatch({
+              type: 'INIT_APP_DATA',
+              payload: {
+                ...profile,
+                isAuthenticated: true,
+                authProfile: {
+                  uid: firebaseUser.uid,
+                  email: firebaseUser.email,
+                  displayName: firebaseUser.displayName || profile.name,
+                  photoURL: firebaseUser.photoURL,
+                },
+                categories: [],
+                units: [],
+                mockUsers: [],
+                promoCodes: [],
+                auditLogs: [],
+                isAuthLoading: false
+              }
+            });
+          }
         }
+      } else {
+        // If it starts with /admin, we don't load learn data, but we must release the loading screen
+        rawDispatch({
+          type: 'INIT_APP_DATA',
+          payload: {
+            ...profile,
+            isAuthenticated: true,
+            authProfile: {
+              uid: firebaseUser.uid,
+              email: firebaseUser.email,
+              displayName: firebaseUser.displayName || profile.name,
+              photoURL: firebaseUser.photoURL,
+            },
+            categories: hasCachedConfig ? cachedCategories : [],
+            units: hasCachedConfig ? cachedUnits : [],
+            mockUsers: [],
+            promoCodes: [],
+            auditLogs: [],
+            isAuthLoading: false
+          }
+        });
       }
-
-      rawDispatch({
-        type: 'INIT_APP_DATA',
-        payload: {
-          ...profile,
-          isAuthenticated: true,
-          authProfile: {
-            uid: firebaseUser.uid,
-            email: firebaseUser.email,
-            displayName: firebaseUser.displayName || profile.name,
-            photoURL: firebaseUser.photoURL,
-          },
-          categories,
-          units,
-          mockUsers: [],
-          promoCodes: [],
-          auditLogs: [],
-          isAuthLoading: false
-        }
-      });
     } catch (error) {
       console.error('Failed to initialize synced database profile:', error);
       rawDispatch({ type: 'AUTH_STATE_CHANGED', user: null });
