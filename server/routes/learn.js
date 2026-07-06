@@ -67,7 +67,7 @@ router.get('/units', authenticate, async (req, res) => {
         category: unit.category_id,
         unitNumber: unit.unit_number,
         title: unit.title,
-        section: `UNIT ${unit.unit_number}`, // Frontend expects a section field
+        section: `LV.${unit.unit_number}`, // Frontend expects a section field
         description: unit.description,
         color: unit.color,
         levels: levelsRes.rows.map(l => ({
