@@ -222,13 +222,22 @@ export default function AdminPage() {
   const [eqOpt4, setEqOpt4] = useState('');
   const [eqCorrect, setEqCorrect] = useState('');
 
+  const [hasRefreshedLearnData, setHasRefreshedLearnData] = useState(false);
+
   // On-demand lazy load categories & units for specific tabs
   useEffect(() => {
     const sectionsRequiringLearnData = ['search', 'generate', 'topics', 'users'];
     if (sectionsRequiringLearnData.includes(activeSection)) {
-      dispatch({ type: 'ENSURE_LEARN_DATA' });
+      if (!hasRefreshedLearnData) {
+        dispatch({
+          type: 'REFRESH_LEARN_DATA',
+          onSuccess: () => setHasRefreshedLearnData(true)
+        });
+      } else {
+        dispatch({ type: 'ENSURE_LEARN_DATA' });
+      }
     }
-  }, [activeSection, dispatch]);
+  }, [activeSection, dispatch, hasRefreshedLearnData]);
 
   // ==========================================
   // QUESTIONS UTILITIES & HANDLERS
