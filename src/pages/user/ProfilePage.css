@@ -101,6 +101,12 @@
   gap: 4px;
 }
 
+.profile-hearts-display-wrapper {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
 .profile-user-name {
   font-size: 22px;
   font-weight: 800;
@@ -189,6 +195,10 @@
   
   .profile-user-info {
     align-items: center;
+  }
+
+  .profile-hearts-display-wrapper {
+    margin-left: 0;
   }
 }
 

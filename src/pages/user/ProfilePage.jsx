@@ -140,7 +140,7 @@ export default function ProfilePage() {
             <p className="profile-joined">Joined May 2026</p>
           </div>
 
-          <div className="profile-hearts-display-wrapper" style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
+          <div className="profile-hearts-display-wrapper">
             <Hearts count={user.hearts} onClick={() => setIsHeartsOpen(true)} />
           </div>
         </div>
