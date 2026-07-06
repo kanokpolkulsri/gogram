@@ -19,7 +19,7 @@ export const initialUser = {
     category: 'grammar',
     title: 'Verb to Be',
     section: 'SECTION 1, UNIT 1',
-    description: 'Master the forms of am, is, are, was, were',
+    description: 'am, is, are, was, were',
     color: '#58CC02',
     levels: [
       { id: 'easy', label: 'Easy', xpReward: 10, icon: 'star', questions: [] },
@@ -34,7 +34,7 @@ export const initialUser = {
     category: 'grammar',
     title: 'Subject and Object Pronouns',
     section: 'SECTION 1, UNIT 2',
-    description: 'Learn when to use he/him, she/her, they/them, and I/me',
+    description: 'he/him, she/her, they/them, I/me',
     color: '#CE82FF',
     levels: [
       { id: 'easy', label: 'Easy', xpReward: 10, icon: 'star', questions: [] },
@@ -49,7 +49,7 @@ export const initialUser = {
     category: 'grammar',
     title: 'Possessive Adjectives, Possessive Pronouns, and Reflexive Pronouns',
     section: 'SECTION 1, UNIT 3',
-    description: 'Master my/mine/myself, its/itself, their/theirs/themselves',
+    description: 'my/mine/myself, its/itself, their/theirs/themselves',
     color: '#1CB0F6',
     levels: [
       { id: 'easy', label: 'Easy', xpReward: 10, icon: 'star', questions: [] },
@@ -64,7 +64,7 @@ export const initialUser = {
     category: 'vocabulary',
     title: 'Vocabulary: Fruits & Food',
     section: 'SECTION 1, UNIT 4',
-    description: 'Learn common English food and fruits',
+    description: 'common food & fruits',
     color: '#FF4B4B',
     levels: [
       { id: 'easy', label: 'Easy', xpReward: 10, icon: 'star', questions: [] },
@@ -79,7 +79,7 @@ export const initialUser = {
     category: 'vocabulary',
     title: 'Vocabulary: Colors & Clothes',
     section: 'SECTION 1, UNIT 5',
-    description: 'Learn common colors and clothing vocabulary',
+    description: 'colors & clothes',
     color: '#FF9600',
     levels: [
       { id: 'easy', label: 'Easy', xpReward: 10, icon: 'star', questions: [] },
@@ -94,7 +94,7 @@ export const initialUser = {
     category: 'reading',
     title: 'Reading: The Boy Who Cried Wolf',
     section: 'SECTION 2, UNIT 1',
-    description: 'Practice reading comprehension with a classic fable',
+    description: 'reading fables',
     color: '#CE82FF',
     levels: [
       { id: 'easy', label: 'Easy', xpReward: 10, icon: 'star', questions: [] },
@@ -109,7 +109,7 @@ export const initialUser = {
     category: 'reading',
     title: 'Reading: Little Red Riding Hood',
     section: 'SECTION 2, UNIT 2',
-    description: 'Practice comprehension with a classic fairytale',
+    description: 'reading fairytales',
     color: '#00CDFF',
     levels: [
       { id: 'easy', label: 'Easy', xpReward: 10, icon: 'star', questions: [] },
@@ -124,7 +124,7 @@ export const initialUser = {
     category: 'exam-grammars',
     title: 'Exam: Passive Voice',
     section: 'SECTION 3, UNIT 1',
-    description: 'Learn passive voice structure for formal exams',
+    description: 'passive voice structure',
     color: '#89E219',
     levels: [
       { id: 'easy', label: 'Easy', xpReward: 10, icon: 'star', questions: [] },
@@ -139,7 +139,7 @@ export const initialUser = {
     category: 'exam-grammars',
     title: 'Exam: Conditional Sentences',
     section: 'SECTION 3, UNIT 2',
-    description: 'Learn conditional structures (If-clauses)',
+    description: 'if-clauses, conditionals',
     color: '#1CB0F6',
     levels: [
       { id: 'easy', label: 'Easy', xpReward: 10, icon: 'star', questions: [] },
