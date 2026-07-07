@@ -187,23 +187,23 @@ router.post('/session/complete', authenticate, async (req, res) => {
 
       if (completedLevelsRes.rows.length === 5) {
         unitCompleted = true;
-
-        // Reward 1 XP (Completed entire unit = 1 XP)
-        // Global XP increment
-        await query(
-          `UPDATE users SET total_xp = total_xp + 1 WHERE uid = $1`,
-          [uid]
-        );
-
-        // Category-specific XP increment
-        await query(
-          `INSERT INTO user_category_progress (user_id, category_id, xp)
-           VALUES ($1, $2, 1)
-           ON CONFLICT (user_id, category_id) 
-           DO UPDATE SET xp = user_category_progress.xp + 1`,
-          [uid, category_id]
-        );
       }
+
+      // Reward 1 XP (Completed lesson node = 1 XP)
+      // Global XP increment
+      await query(
+        `UPDATE users SET total_xp = total_xp + 1 WHERE uid = $1`,
+        [uid]
+      );
+
+      // Category-specific XP increment
+      await query(
+        `INSERT INTO user_category_progress (user_id, category_id, xp)
+         VALUES ($1, $2, 1)
+         ON CONFLICT (user_id, category_id) 
+         DO UPDATE SET xp = user_category_progress.xp + 1`,
+        [uid, category_id]
+      );
     }
 
     res.json({

@@ -121,6 +121,19 @@ export default function QuizPage() {
     }
 
     if (currentIndex + 1 >= totalQuestions) {
+      // Calculate metrics BEFORE dispatches modify user.completedLessons optimistically
+      const key = `${unitId}-${levelId}`;
+      const isNew = !user.completedLessons.includes(key);
+      const categoryTitle = unit?.title || 'Grammar';
+      const categoryId = unit?.category || 'grammar';
+      const unitsForCat = units.filter((u) => u.category === categoryId);
+      const completedLessonsInCat = (user.completedLessons || []).filter((k) => {
+        const [uId] = k.split('-');
+        return unitsForCat.some((u) => String(u.id) === String(uId));
+      }).length;
+      const currentLevelBefore = 1 + completedLessonsInCat;
+      const displayLevel = isNew ? currentLevelBefore + 1 : currentLevelBefore;
+
       // Lesson complete! Clear this level from cache
       dispatch({
         type: 'REMOVE_QUIZ_CACHE_KEY',
@@ -135,18 +148,13 @@ export default function QuizPage() {
         levelId
       });
 
-      // Navigate instantly with locally estimated metrics
-      const isUnitFinished = levelId === 'hard2';
-      const categoryTitle = unit?.title || 'Grammar';
-      const categoryId = unit?.category || 'grammar';
-
       navigate('/lesson-complete', {
         state: { 
           score, 
           total: totalQuestions, 
-          xp: isUnitFinished ? 1 : 0, 
-          levelUp: isUnitFinished, 
-          newLevel: isUnitFinished ? 2 : 1, 
+          xp: 1, 
+          levelUp: isNew, 
+          newLevel: displayLevel, 
           categoryTitle, 
           categoryId 
         },

@@ -607,7 +607,7 @@ router.put('/users/:uid/progress', async (req, res) => {
        VALUES ($1, $2, $3)
        ON CONFLICT (user_id, category_id) 
        DO UPDATE SET xp = $3`,
-      [uid, categoryId, completedUnitsCount]
+      [uid, categoryId, completedUnitsCount * 5]
     );
 
     // 5. Recalculate global total_xp (sum of category progress)

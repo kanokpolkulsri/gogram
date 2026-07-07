@@ -45,12 +45,11 @@ export default function LessonCompletePage() {
       navigate('/learn');
     }
   };
-  const completedUnitsCount = unitsForCat.filter((u) =>
-    ['easy', 'medium1', 'medium2', 'hard1', 'hard2'].every((lvl) =>
-      user.completedLessons.includes(`${u.id}-${lvl}`)
-    )
-  ).length;
-  const currentLevel = 1 + completedUnitsCount;
+  const completedLessonsInCat = (user.completedLessons || []).filter((key) => {
+    const [unitId] = key.split('-');
+    return unitsForCat.some((u) => String(u.id) === String(unitId));
+  }).length;
+  const currentLevel = 1 + completedLessonsInCat;
   const displayLevel = levelUp ? newLevel : currentLevel;
 
   const category = (user.categories || []).find((c) => c.id === activeCategoryId) || {
@@ -155,7 +154,7 @@ export default function LessonCompletePage() {
     : 'YO';
 
   return (
-    <div className={`complete-page ${levelUp ? 'level-up-theme' : ''}`} id="lesson-complete-page">
+    <div className="complete-page level-up-theme" id="lesson-complete-page">
       <button
         className="complete-close-btn"
         onClick={handleClose}
@@ -167,87 +166,54 @@ export default function LessonCompletePage() {
         </svg>
       </button>
 
-      {levelUp ? (
-        <div className="level-up-container animate-fade-in" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          {/* Glowing Shield Badge with Stars */}
-          <div className="lesson-complete-shield level-up-badge-container">
-            {renderCategoryShield(140, true)}
-            
-            {/* Stars floating around */}
-            <div className="shield-stars">
-              {renderStarSVG(24, "shield-star-1")}
-              {renderStarSVG(20, "shield-star-2")}
-              {renderStarSVG(26, "shield-star-3")}
-            </div>
-          </div>
-
-          {/* Title */}
-          <h1 className="complete-title level-up-title" style={{ marginBottom: '8px' }}>
-            Level Up!
-          </h1>
-
-          <p className="complete-level-subtitle">
-            {randomMessage}
-          </p>
-          <div className="lesson-complete-level-card">
-            <div className="leaderboard-avatar-container">
-              {userAvatar.startsWith('#') ? (
-                <div className="leaderboard-avatar" style={{ background: userAvatar }}>
-                  {userInitials}
-                </div>
-              ) : (
-                <img src={userAvatar} alt={userName} className="leaderboard-avatar-img" />
-              )}
-              <span className="leaderboard-status-dot" />
-            </div>
-            <div className="leaderboard-user-info" style={{ textAlign: 'left' }}>
-              <span className="leaderboard-name">{userName}</span>
-            </div>
-            <span className="leaderboard-xp">
-              LV. {displayLevel}
-            </span>
+      <div className="level-up-container animate-fade-in" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        {/* Glowing Shield Badge with Stars */}
+        <div className="lesson-complete-shield level-up-badge-container">
+          {renderCategoryShield(140, true)}
+          
+          {/* Stars floating around */}
+          <div className="shield-stars">
+            {renderStarSVG(24, "shield-star-1")}
+            {renderStarSVG(20, "shield-star-2")}
+            {renderStarSVG(26, "shield-star-3")}
           </div>
         </div>
-      ) : (
-        <div className="lesson-complete-container animate-fade-in" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          {/* Golden Shield with Stars */}
-          <div className="lesson-complete-shield">
-            {renderCategoryShield(140, false)}
-            
-            {/* Stars floating around */}
-            <div className="shield-stars">
-              {renderStarSVG(24, "shield-star-1")}
-              {renderStarSVG(20, "shield-star-2")}
-              {renderStarSVG(26, "shield-star-3")}
-            </div>
+
+        {/* Title */}
+        <h1 className="complete-title level-up-title" style={{ marginBottom: '8px' }}>
+          {levelUp ? 'Level Up!' : 'Lesson Complete!'}
+        </h1>
+
+        <p className="complete-level-subtitle">
+          {randomMessage}
+        </p>
+        <div className="lesson-complete-level-card">
+          <div className="leaderboard-avatar-container">
+            {userAvatar.startsWith('#') ? (
+              <div className="leaderboard-avatar" style={{ background: userAvatar }}>
+                {userInitials}
+              </div>
+            ) : (
+              <img src={userAvatar} alt={userName} className="leaderboard-avatar-img" />
+            )}
+            <span className="leaderboard-status-dot" />
           </div>
-
-          {/* Title */}
-          <h1 className="complete-title">Lesson Complete!</h1>
-
-          <p className="complete-level-subtitle">
-            {randomMessage}
-          </p>
-          <div className="lesson-complete-level-card">
-            <div className="leaderboard-avatar-container">
-              {userAvatar.startsWith('#') ? (
-                <div className="leaderboard-avatar" style={{ background: userAvatar }}>
-                  {userInitials}
-                </div>
-              ) : (
-                <img src={userAvatar} alt={userName} className="leaderboard-avatar-img" />
-              )}
-              <span className="leaderboard-status-dot" />
-            </div>
-            <div className="leaderboard-user-info" style={{ textAlign: 'left' }}>
-              <span className="leaderboard-name">{userName}</span>
-            </div>
-            <span className="leaderboard-xp">
+          <div className="leaderboard-user-info" style={{ textAlign: 'left' }}>
+            <span className="leaderboard-name">{userName}</span>
+          </div>
+          {levelUp ? (
+            <span className="leaderboard-xp" style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '16px', fontWeight: 800, color: 'var(--color-text)', flexShrink: 0 }}>
+              <span style={{ fontSize: '14px', opacity: 0.6, fontWeight: 700 }}>LV. {displayLevel - 1}</span>
+              <span style={{ color: '#FF4B4B', fontSize: '10px', display: 'inline-flex', alignItems: 'center', transform: 'translateY(-1px)' }}>▲</span>
+              <span style={{ color: category.color }}>LV. {displayLevel}</span>
+            </span>
+          ) : (
+            <span className="leaderboard-xp" style={{ fontSize: '16px', fontWeight: 800, color: 'var(--color-text)', flexShrink: 0 }}>
               LV. {displayLevel}
             </span>
-          </div>
+          )}
         </div>
-      )}
+      </div>
 
       {/* Continue */}
       <div className="complete-bottom">
