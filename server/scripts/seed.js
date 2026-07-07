@@ -74,16 +74,20 @@ async function seed() {
           [lvl.id, dbUnitId, lvl.label]
         );
 
-        // Generate and Seed Questions for this Level in parallel
+        // Generate and Seed Questions for this Level in a single bulk query
         const questionsList = getMockQuestions(catId, unit.id, lvl.id, unit.title) || [];
-        const insertPromises = questionsList.map((q, i) => {
-          const questionId = q.id || `q-${dbUnitId}-${lvl.id}-${i}`;
-          return pool.query(
-            `INSERT INTO questions (id, unit_id, level_id, question, options, correct_answer, explanation, explanation_th)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-             ON CONFLICT (id) DO UPDATE 
-             SET question = EXCLUDED.question, options = EXCLUDED.options, correct_answer = EXCLUDED.correct_answer, explanation = EXCLUDED.explanation, explanation_th = EXCLUDED.explanation_th`,
-            [
+        if (questionsList.length > 0) {
+          const values = [];
+          const valuePlaceholders = [];
+          let paramIndex = 1;
+
+          for (let i = 0; i < questionsList.length; i++) {
+            const q = questionsList[i];
+            const questionId = q.id || `q-${dbUnitId}-${lvl.id}-${i}`;
+
+            valuePlaceholders.push(`($${paramIndex}, $${paramIndex + 1}, $${paramIndex + 2}, $${paramIndex + 3}, $${paramIndex + 4}, $${paramIndex + 5}, $${paramIndex + 6}, $${paramIndex + 7})`);
+
+            values.push(
               questionId,
               dbUnitId,
               lvl.id,
@@ -92,15 +96,31 @@ async function seed() {
               q.correctAnswer,
               q.explanation || null,
               q.explanationTh || q.explanation_th || null
-            ]
-          );
-        });
-        await Promise.all(insertPromises);
+            );
+
+            paramIndex += 8;
+          }
+
+          const bulkQueryText = `
+            INSERT INTO questions (id, unit_id, level_id, question, options, correct_answer, explanation, explanation_th)
+            VALUES ${valuePlaceholders.join(', ')}
+            ON CONFLICT (id) DO UPDATE 
+            SET question = EXCLUDED.question, 
+                options = EXCLUDED.options, 
+                correct_answer = EXCLUDED.correct_answer, 
+                explanation = EXCLUDED.explanation, 
+                explanation_th = EXCLUDED.explanation_th
+          `;
+
+          await pool.query(bulkQueryText, values);
+        }
       }
       console.log(`- Finished Seeding Unit #${unit.id}`);
     };
 
-    await Promise.all(unitsWithNumbers.map(seedUnit));
+    for (const unit of unitsWithNumbers) {
+      await seedUnit(unit);
+    }
 
     console.log('Seeding default administrator user...');
     await client.query(
