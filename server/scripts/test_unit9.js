@@ -21,9 +21,9 @@ async function test() {
 
     console.log('Inserting level easy...');
     await client.query(
-      `INSERT INTO levels (id, unit_id, label, icon)
-       VALUES ($1, $2, $3, $4)`,
-      ['easy', dbUnitId, 'Easy', 'star']
+      `INSERT INTO levels (id, unit_id, label)
+       VALUES ($1, $2, $3)`,
+      ['easy', dbUnitId, 'Easy']
     );
 
     // Let's query levels table to see if it's there

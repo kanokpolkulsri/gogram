@@ -61,7 +61,6 @@ CREATE TABLE IF NOT EXISTS levels (
     id VARCHAR(50) NOT NULL, -- easy, medium1, medium2, hard1, hard2
     unit_id INT REFERENCES units(id) ON DELETE CASCADE NOT NULL,
     label VARCHAR(255) NOT NULL,
-    icon VARCHAR(50) NOT NULL,
     PRIMARY KEY (unit_id, id)
 );
 

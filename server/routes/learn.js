@@ -45,11 +45,11 @@ router.get('/units', authenticate, async (req, res) => {
     // 2. Fetch levels for each unit and map them
     for (const unit of unitsRes.rows) {
       const levelsRes = await query(
-        `SELECT l.id, l.label, l.icon, COUNT(q.id)::int AS question_count
+        `SELECT l.id, l.label, COUNT(q.id)::int AS question_count
          FROM levels l
          LEFT JOIN questions q ON q.unit_id = l.unit_id AND q.level_id = l.id
          WHERE l.unit_id = $1
-         GROUP BY l.unit_id, l.id, l.label, l.icon
+         GROUP BY l.unit_id, l.id, l.label
          ORDER BY 
            CASE l.id 
              WHEN 'easy' THEN 1 
@@ -73,7 +73,6 @@ router.get('/units', authenticate, async (req, res) => {
         levels: levelsRes.rows.map(l => ({
           id: l.id,
           label: l.label,
-          icon: l.icon,
           questions: Array(l.question_count || 0).fill({})
         }))
       });

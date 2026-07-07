@@ -289,7 +289,6 @@ export default function LearnPage() {
                       label={`${unit.id}-${level.id}`}
                       color={unit.color}
                       index={unitIndex * 5 + levelIndex}
-                      icon={level.icon}
                       tooltipText={tooltipText}
                       onClick={() => navigate(`/quiz/${unit.id}/${level.id}`)}
                     />

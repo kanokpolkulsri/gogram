@@ -1037,18 +1037,18 @@ router.post('/units', async (req, res) => {
 
     // Seed default levels for this unit (easy, medium1, medium2, hard1, hard2)
     const levels = [
-      { id: 'easy', label: 'Easy', xp: 10, icon: 'star' },
-      { id: 'medium1', label: 'Medium 1', xp: 15, icon: 'star' },
-      { id: 'medium2', label: 'Medium 2', xp: 15, icon: 'dumbbell' },
-      { id: 'hard1', label: 'Hard 1', xp: 20, icon: 'level-up' },
-      { id: 'hard2', label: 'Hard 2', xp: 35, icon: 'boss' }
+      { id: 'easy', label: 'Easy', xp: 10 },
+      { id: 'medium1', label: 'Medium 1', xp: 15 },
+      { id: 'medium2', label: 'Medium 2', xp: 15 },
+      { id: 'hard1', label: 'Hard 1', xp: 20 },
+      { id: 'hard2', label: 'Hard 2', xp: 35 }
     ];
 
     for (const lvl of levels) {
       await query(
-        `INSERT INTO levels (unit_id, id, label, xp_reward, icon)
-         VALUES ($1, $2, $3, $4, $5)`,
-        [newUnitId, lvl.id, lvl.label, lvl.xp, lvl.icon]
+        `INSERT INTO levels (unit_id, id, label, xp_reward)
+         VALUES ($1, $2, $3, $4)`,
+        [newUnitId, lvl.id, lvl.label, lvl.xp]
       );
     }
 

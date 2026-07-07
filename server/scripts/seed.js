@@ -67,11 +67,11 @@ async function seed() {
       // Insert Levels and Questions for this Unit
       for (const lvl of unit.levels) {
         await pool.query(
-          `INSERT INTO levels (id, unit_id, label, icon)
-           VALUES ($1, $2, $3, $4)
+          `INSERT INTO levels (id, unit_id, label)
+           VALUES ($1, $2, $3)
            ON CONFLICT (unit_id, id) DO UPDATE 
-           SET label = EXCLUDED.label, icon = EXCLUDED.icon`,
-          [lvl.id, dbUnitId, lvl.label, lvl.icon]
+           SET label = EXCLUDED.label`,
+          [lvl.id, dbUnitId, lvl.label]
         );
 
         // Generate and Seed Questions for this Level in parallel
