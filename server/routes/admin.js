@@ -511,14 +511,6 @@ router.post('/users/:uid/reset-progress', async (req, res) => {
       [uid, categoryId]
     );
 
-    // Remove ongoing quiz sessions in this category
-    await query(
-      `DELETE FROM user_quiz_sessions 
-       WHERE user_id = $1 AND unit_id IN (
-         SELECT id FROM units WHERE category_id = $2
-       )`,
-      [uid, categoryId]
-    );
 
     // Delete or zero category progress
     await query(

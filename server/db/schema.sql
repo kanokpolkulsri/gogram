@@ -77,17 +77,7 @@ CREATE TABLE IF NOT EXISTS questions (
     FOREIGN KEY (unit_id, level_id) REFERENCES levels(unit_id, id) ON DELETE CASCADE
 );
 
--- 8. Quiz Sessions Table (No correct/wrong score counters, just tracking progress)
-CREATE TABLE IF NOT EXISTS user_quiz_sessions (
-    user_id VARCHAR(255) REFERENCES users(uid) ON DELETE CASCADE NOT NULL,
-    unit_id INT NOT NULL,
-    level_id VARCHAR(50) NOT NULL,
-    current_question_index INT DEFAULT 0 NOT NULL,
-    completed BOOLEAN DEFAULT FALSE NOT NULL,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    PRIMARY KEY (user_id, unit_id, level_id),
-    FOREIGN KEY (unit_id, level_id) REFERENCES levels(unit_id, id) ON DELETE CASCADE
-);
+
 
 -- 9. Completed Lessons Table
 CREATE TABLE IF NOT EXISTS completed_lessons (
