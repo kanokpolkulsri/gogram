@@ -203,8 +203,7 @@ export default function LessonCompletePage() {
           </div>
           {levelUp ? (
             <span className="leaderboard-xp" style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '16px', fontWeight: 800, color: 'var(--color-text)', flexShrink: 0 }}>
-              <span style={{ fontSize: '14px', opacity: 0.6, fontWeight: 700 }}>LV. {displayLevel - 1}</span>
-              <span style={{ color: '#FF4B4B', fontSize: '10px', display: 'inline-flex', alignItems: 'center', transform: 'translateY(-1px)' }}>▲</span>
+              <span style={{ color: '#FF4B4B', fontSize: '14px', display: 'inline-flex', alignItems: 'center' }}>▲</span>
               <span style={{ color: category.color }}>LV. {displayLevel}</span>
             </span>
           ) : (
