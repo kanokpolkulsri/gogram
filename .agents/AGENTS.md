@@ -30,6 +30,7 @@ Follow these guidelines for all changes in the Gogram repository:
 
 ## 7. Curriculum & Seeding Specifications
 * **Curriculum Standard**: The Grammar category has a fixed configuration of exactly 75 units (topics) and 5 difficulty levels per unit (Easy, Medium 1, Medium 2, Hard 1, Hard 2) with 10 questions per level. Do not modify this default count, question distribution, or database schema configuration.
+* **Frontend Static Units**: The Grammar category units are loaded statically on the frontend from `src/data/mockData.js` to optimize API workload and startup speed. If any changes are made to the Grammar curriculum units (e.g., adding, deleting, or reordering units), ensure `src/data/mockData.js` is updated accordingly so the static frontend layout matches the database.
 * **Always Discuss Before Modifying/Deploying**: Because the platform is actively serving real users in production, do not make code changes, commit, or run the deployment script (`deploy.sh`) without first presenting the proposed plan to the developer and obtaining their explicit permission.
 
 

@@ -1,8 +1,9 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useReducer, useEffect, useCallback } from 'react';
+import { createContext, useContext, useReducer, useEffect, useCallback, useRef } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
 import { api } from './api';
+import { units } from './mockData';
 
 const UserContext = createContext(null);
 const UserDispatchContext = createContext(null);
@@ -27,7 +28,7 @@ const initialStoreState = {
   completedLessons: [],
   usedPromoCodes: [],
   categories: [],
-  units: [],
+  units: units,
   mockUsers: [],
   promoCodes: [],
   auditLogs: [],
@@ -165,6 +166,7 @@ function loadUser() {
       return {
         ...initialStoreState,
         ...parsed,
+        units: units,
         isAuthenticated: false,
         authProfile: null,
         isAuthLoading: true,
@@ -190,6 +192,11 @@ function saveUser(user) {
 export function UserProvider({ children }) {
   const [user, rawDispatch] = useReducer(userReducer, null, loadUser);
 
+  const userRef = useRef(user);
+  useEffect(() => {
+    userRef.current = user;
+  }, [user]);
+
   // Sync profile data from backend
   const syncProfile = useCallback(async (firebaseUser) => {
     if (!firebaseUser) {
@@ -204,19 +211,17 @@ export function UserProvider({ children }) {
       
       // Read cache from localStorage
       let cachedCategories = [];
-      let cachedUnits = [];
       try {
         const saved = localStorage.getItem(STORAGE_KEY);
         if (saved) {
           const parsed = JSON.parse(saved);
           cachedCategories = parsed.categories || [];
-          cachedUnits = parsed.units || [];
         }
       } catch (e) {
-        console.error('Failed to read cached categories/units from localStorage:', e);
+        console.error('Failed to read cached categories from localStorage:', e);
       }
 
-      const hasCachedConfig = cachedCategories.length > 0 && cachedUnits.length > 0;
+      const hasCachedConfig = cachedCategories.length > 0;
 
       if (hasCachedConfig) {
         // Render instantly using cached data
@@ -232,7 +237,7 @@ export function UserProvider({ children }) {
               photoURL: firebaseUser.photoURL,
             },
             categories: cachedCategories,
-            units: cachedUnits,
+            units: units,
             mockUsers: [],
             promoCodes: [],
             auditLogs: [],
@@ -242,27 +247,23 @@ export function UserProvider({ children }) {
 
         // Background refresh to keep configuration up to date with server
         if (!window.location.pathname.startsWith('/admin')) {
-          Promise.all([
-            api.get('/learn/categories'),
-            api.get('/learn/units')
-          ]).then(([catRes, unitRes]) => {
-            rawDispatch({
-              type: 'SET_CATEGORIES_AND_UNITS',
-              categories: catRes,
-              units: unitRes
+          api.get('/learn/categories')
+            .then((catRes) => {
+              rawDispatch({
+                type: 'SET_CATEGORIES_AND_UNITS',
+                categories: catRes,
+                units: units
+              });
+            })
+            .catch(err => {
+              console.warn('Background sync of categories failed:', err);
             });
-          }).catch(err => {
-            console.warn('Background sync of categories/units failed:', err);
-          });
         }
       } else {
         // Fetch fresh data on startup if not starting on an admin page (exactly once per user)
         if (!window.location.pathname.startsWith('/admin')) {
           try {
-            const [catRes, unitRes] = await Promise.all([
-              api.get('/learn/categories'),
-              api.get('/learn/units')
-            ]);
+            const catRes = await api.get('/learn/categories');
 
             rawDispatch({
               type: 'INIT_APP_DATA',
@@ -276,7 +277,7 @@ export function UserProvider({ children }) {
                   photoURL: firebaseUser.photoURL,
                 },
                 categories: catRes,
-                units: unitRes,
+                units: units,
                 mockUsers: [],
                 promoCodes: [],
                 auditLogs: [],
@@ -284,7 +285,7 @@ export function UserProvider({ children }) {
               }
             });
           } catch (err) {
-            console.warn('Startup fetch of categories/units failed:', err);
+            console.warn('Startup fetch of categories failed:', err);
             // Release loading screen even on failure
             rawDispatch({
               type: 'INIT_APP_DATA',
@@ -298,7 +299,7 @@ export function UserProvider({ children }) {
                   photoURL: firebaseUser.photoURL,
                 },
                 categories: [],
-                units: [],
+                units: units,
                 mockUsers: [],
                 promoCodes: [],
                 auditLogs: [],
@@ -474,32 +475,26 @@ export function UserProvider({ children }) {
         break;
 
       case 'ENSURE_LEARN_DATA':
-        if (user.categories && user.categories.length > 0 && user.units && user.units.length > 0) {
+        if (userRef.current.categories && userRef.current.categories.length > 0) {
           if (action.onSuccess) action.onSuccess();
           break;
         }
         try {
-          const [categories, units] = await Promise.all([
-            api.get('/learn/categories'),
-            api.get('/learn/units')
-          ]);
+          const categories = await api.get('/learn/categories');
           rawDispatch({ type: 'SET_CATEGORIES_AND_UNITS', categories, units });
           if (action.onSuccess) action.onSuccess();
         } catch (err) {
-          console.error('Failed to load lazy categories/units:', err);
+          console.error('Failed to load lazy categories:', err);
         }
         break;
 
       case 'REFRESH_LEARN_DATA':
         try {
-          const [categories, units] = await Promise.all([
-            api.get('/learn/categories'),
-            api.get('/learn/units')
-          ]);
+          const categories = await api.get('/learn/categories');
           rawDispatch({ type: 'SET_CATEGORIES_AND_UNITS', categories, units });
           if (action.onSuccess) action.onSuccess();
         } catch (err) {
-          console.error('Failed to refresh categories/units:', err);
+          console.error('Failed to refresh categories:', err);
         }
         break;
 
@@ -542,7 +537,7 @@ export function UserProvider({ children }) {
 
       case 'FETCH_LEADERBOARD':
         try {
-          const cacheEntry = user.leaderboardCache[action.categoryId];
+          const cacheEntry = userRef.current.leaderboardCache[action.categoryId];
           const cacheDuration = 5 * 60 * 1000; // 5 minutes
           if (cacheEntry && (Date.now() - cacheEntry.fetchedAt < cacheDuration)) {
             if (action.onSuccess) action.onSuccess(cacheEntry.data);
@@ -570,7 +565,7 @@ export function UserProvider({ children }) {
       default:
         rawDispatch(action);
     }
-  }, [syncProfile, user.categories, user.units, user.leaderboardCache]);
+  }, [syncProfile, rawDispatch]);
 
   return (
     <UserContext.Provider value={user}>

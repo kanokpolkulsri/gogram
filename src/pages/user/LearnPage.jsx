@@ -14,6 +14,8 @@ export default function LearnPage() {
   const user = useUser();
   const dispatch = useUserDispatch();
 
+  const prefetchingRef = useRef({});
+
   // Load the active category from the parameter, defaulting to the last studied category (can be null)
   const activeCategoryId = categoryId || user.lastCategoryId;
 
@@ -122,7 +124,9 @@ export default function LearnPage() {
     unitsToPrefetch.forEach(unit => {
       unit.levels.forEach(level => {
         const cacheKey = `${unit.id}-${level.id}`;
-        if (!user.quizCache || !user.quizCache[cacheKey]) {
+        const hasCache = user.quizCache && user.quizCache[cacheKey];
+        if (!hasCache && !prefetchingRef.current[cacheKey]) {
+          prefetchingRef.current[cacheKey] = true;
           setTimeout(() => {
             dispatch({ type: 'PREFETCH_QUIZ', unitId: unit.id, levelId: level.id });
           }, delay);
