@@ -2,6 +2,7 @@ import express from 'express';
 import { query } from '../db/index.js';
 import { authenticate } from '../middleware/auth.js';
 import { MAX_HEARTS } from '../config.js';
+import admin from 'firebase-admin';
 
 const router = express.Router();
 
@@ -638,8 +639,16 @@ router.delete('/users/:uid', async (req, res) => {
 
     const userName = targetUser.rows[0].name;
 
-    // Cascade references will automatically purge other dependent records
+    // 1. Purge from PostgreSQL (cascade purges other progress data)
     await query('DELETE FROM users WHERE uid = $1', [uid]);
+
+    // 2. Purge from Firebase Authentication
+    try {
+      await admin.auth().deleteUser(uid);
+      console.log(`Successfully deleted Firebase Auth user credentials for UID: ${uid}`);
+    } catch (firebaseError) {
+      console.warn(`Firebase Auth deletion skipped or failed for UID ${uid}:`, firebaseError.message);
+    }
     
     await logAction(req.user.uid, req.adminName, `Permanently removed user account and learning profile of ${userName}`);
     res.json({ success: true });
