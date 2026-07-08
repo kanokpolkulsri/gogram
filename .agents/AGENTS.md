@@ -28,3 +28,7 @@ Follow these guidelines for all changes in the Gogram repository:
 * **No Unsanctioned Database Resets**: Never execute database seeding commands (`npm run seed`) or clear tables (`DELETE FROM ...` / `DROP TABLE ...`) without the developer's explicit permission.
 * **Avoid Redundant Data Insertion**: Make sure any manual insert queries or seeding scripts use `ON CONFLICT` checks or verification queries to prevent duplicate entries and maintain database integrity.
 
+## 7. Curriculum & Seeding Specifications
+* **Curriculum Standard**: The Grammar category has a fixed configuration of exactly 75 units (topics) and 5 difficulty levels per unit (Easy, Medium 1, Medium 2, Hard 1, Hard 2) with 10 questions per level. Do not modify this default count, question distribution, or database schema configuration.
+
+
