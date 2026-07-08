@@ -23,3 +23,8 @@ Follow these guidelines for all changes in the Gogram repository:
 * **Unix Socket SSL Negotiation**: In production, when using a Unix domain socket database connection (e.g. Cloud Run connecting to Cloud SQL via `/cloudsql/...`), database SSL negotiation must be disabled in `server/db/index.js`. Attempting to negotiate SSL over a local Unix socket fails and will crash the server on startup.
 * **Production API Base URL**: The production backend API URL in `src/data/api.js` must always terminate with the `/api` path prefix to correctly route requests to the mounted Express app routes.
 * **Cloud Build Trigger Optimization**: To prevent unnecessary containers from building and to save build costs during frontend-only updates, the Cloud Build Trigger for the backend service must be filtered using the **Included files** glob set to `server/**`.
+
+## 6. Database Safety & Seeding Safeguards
+* **No Unsanctioned Database Resets**: Never execute database seeding commands (`npm run seed`) or clear tables (`DELETE FROM ...` / `DROP TABLE ...`) without the developer's explicit permission.
+* **Avoid Redundant Data Insertion**: Make sure any manual insert queries or seeding scripts use `ON CONFLICT` checks or verification queries to prevent duplicate entries and maintain database integrity.
+
