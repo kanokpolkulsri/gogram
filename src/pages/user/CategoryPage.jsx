@@ -39,13 +39,8 @@ export default function CategoryPage() {
       ? Math.round((completedLessonsForCat / totalLessonsForCat) * 100)
       : 0;
 
-    // Calculate category level based on completed units
-    const completedUnitsCount = unitsForCat.filter((unit) =>
-      ['easy', 'medium1', 'medium2', 'hard1', 'hard2'].every((lvl) =>
-        user.completedLessons.includes(`${unit.id}-${lvl}`)
-      )
-    ).length;
-    const categoryLevel = 1 + completedUnitsCount;
+    // Calculate category level based on completed lessons
+    const categoryLevel = 1 + completedLessonsForCat;
 
     const borderStyle = isCurrent
       ? {
