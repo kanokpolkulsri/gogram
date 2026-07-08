@@ -675,12 +675,12 @@ function getDynamicMockQuestions(categoryId, topicTitle, levelId, count = 10) {
 // Main helper export
 export function getMockQuestions(categoryId, topicId, levelId, topicTitle) {
   // 1. Check specific static mappings
-  // Articles Topic
-  if (topicId === 1 || topicTitle.toLowerCase().includes('article')) {
+  // Articles Topic (Unit 6)
+  if (topicId === 6 || topicTitle.toLowerCase().includes('article')) {
     return articlesQuestions[levelId] || getDynamicMockQuestions(categoryId, topicTitle, levelId);
   }
-  // Verb to be Topic
-  if (topicId === 2 || topicTitle.toLowerCase().includes('verb "être"') || topicTitle.toLowerCase().includes('to be') || topicTitle.toLowerCase().includes('être')) {
+  // Verb to Be Topic (Unit 1)
+  if (topicId === 1 || topicTitle.toLowerCase().includes('to be')) {
     return verbToBeQuestions[levelId] || getDynamicMockQuestions(categoryId, topicTitle, levelId);
   }
 
