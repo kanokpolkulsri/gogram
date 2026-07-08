@@ -1,8 +1,25 @@
 import { studyCategories, units } from '../../src/data/mockData.js';
 import { getMockQuestions } from '../../src/data/mockGenerator.js';
 import pool, { initDb } from '../db/index.js';
+import { DATABASE_URL } from '../config.js';
 
 async function seed() {
+  const isProduction = process.env.NODE_ENV === 'production' || 
+                        (DATABASE_URL && !DATABASE_URL.includes('localhost') && !DATABASE_URL.includes('127.0.0.1'));
+
+  if (isProduction) {
+    if (process.env.CONFIRM_PRODUCTION_SEED !== 'yes-i-want-to-wipe-production') {
+      console.error('\n================================================================');
+      console.error('🛑 DANGER: Database seeding is BLOCKED on remote/production DB!');
+      console.error('Running this script will permanently delete all user progress history.');
+      console.error('================================================================');
+      console.error('If you are absolutely sure you want to seed this database, run:');
+      console.error('CONFIRM_PRODUCTION_SEED=yes-i-want-to-wipe-production npm run seed');
+      console.error('================================================================\n');
+      process.exit(1);
+    }
+  }
+
   console.log('Starting database seeding...');
   
   // 1. Initialize tables (schema.sql)
