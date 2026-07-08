@@ -33,6 +33,20 @@ async function seed() {
   const client = await pool.connect();
 
   try {
+    // Check if database is already populated
+    const countRes = await client.query('SELECT COUNT(*)::int AS count FROM categories');
+    const hasData = countRes.rows[0].count > 0;
+
+    if (hasData && process.env.RESET_DB !== 'true') {
+      console.log('\n================================================================');
+      console.log('✅ Database already initialized with study categories and content.');
+      console.log('ℹ️  Seeding skipped to prevent overwriting existing progress.');
+      console.log('💡 To force a full database reset and re-seed, run:');
+      console.log('   RESET_DB=true npm run seed');
+      console.log('================================================================\n');
+      return;
+    }
+
     // Clean up existing learning content tables
     console.log('Cleaning up existing learning content tables...');
     await client.query('DELETE FROM categories');
