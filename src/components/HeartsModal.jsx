@@ -102,96 +102,147 @@ export default function HeartsModal({ isOpen, onClose }) {
         </div>
 
         {/* Current status */}
-        <h2 className="hearts-modal-title">
+        <h2 className="hearts-modal-title" style={{ marginBottom: '16px' }}>
           {isInfinity ? 'Infinite Hearts Active' : `You have ${user.hearts} Hearts`}
         </h2>
 
         {!isInfinity && (
-          <div className="hearts-modal-refill-info">
+          <div className="hearts-modal-refill-info" style={{ marginBottom: '24px' }}>
             {user.hearts < 10 ? (
               <>
-                <p className="hearts-modal-desc">
+                <p className="hearts-modal-desc" style={{ margin: '0 0 4px 0' }}>
                   Refilling 1 heart in <span className="countdown-timer">{formatTime(timeLeft)}</span>
                 </p>
-                <p className="hearts-modal-subdesc">Free users can have a maximum of 10 hearts.</p>
+                <p className="hearts-modal-subdesc" style={{ margin: 0 }}>Free users can have a maximum of 10 hearts.</p>
               </>
             ) : (
-              <p className="hearts-modal-desc">Your hearts are fully charged! (Max: 10)</p>
+              <p className="hearts-modal-desc" style={{ margin: 0 }}>Your hearts are fully charged! (Max: 10)</p>
             )}
           </div>
         )}
 
-        {isInfinity && (
-          <div className="hearts-modal-refill-info">
-            <p className="hearts-modal-desc premium-active-desc" style={{ marginBottom: '12px', color: 'var(--color-text)' }}>
-              You are in Premium Mode. You can make unlimited mistakes during exercises!
-            </p>
-            {user.subscriptionExpiresAt && (new Date(user.subscriptionExpiresAt).getFullYear() < 2090) && (
-              <div className="hearts-modal-expiry-desc" style={{ padding: '12px', background: '#FFFDF0', borderRadius: '12px', border: '1px solid #FFEBAD', fontSize: '14px', color: '#B57A00', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', margin: '0 auto', maxWidth: '280px' }}>
-                <span>Expires on:</span>
-                <span>
-                  {new Date(user.subscriptionExpiresAt).toLocaleDateString('en-GB', {
-                    timeZone: 'Asia/Bangkok',
-                    day: '2-digit',
-                    month: 'short',
-                    year: 'numeric'
-                  })}
-                </span>
+        {/* Gogram Premium Card Section matching Profile Page */}
+        <div className="profile-settings-card" id="profile-premium-card" style={{ width: '100%', borderTop: '2px solid var(--color-gray)', paddingTop: '20px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <h3 className="profile-settings-title" style={{ width: '100%', textAlign: 'left', margin: 0, fontSize: '18px', fontWeight: '800', color: 'var(--color-text)' }}>Gogram Premium</h3>
+          <div className="profile-settings-list" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            {isInfinity ? (
+              <div className="profile-settings-item" style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '12px' }}>
+                <div className="profile-settings-item-info" style={{ display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'left' }}>
+                  <span className="profile-settings-item-label" style={{ color: 'var(--color-green-dark)', fontWeight: 'bold', fontSize: '15px' }}>Active Subscription</span>
+                  <span className="profile-settings-item-desc" style={{ fontSize: '12px', color: 'var(--color-text-light)', lineHeight: '1.4' }}>You have unlocked Infinite Hearts! Learn without limits.</span>
+                </div>
+                {user.subscriptionExpiresAt && (
+                  <div className="profile-premium-active-until" style={{ padding: '12px', background: '#FFFDF0', borderRadius: '12px', border: '1px solid #FFEBAD', fontSize: '14px', color: '#B57A00', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}>
+                    <span>Active until:</span>
+                    <span>
+                      {new Date(user.subscriptionExpiresAt).getFullYear() >= 2090 
+                        ? 'Forever / Perpetual' 
+                        : new Date(user.subscriptionExpiresAt).toLocaleDateString('en-GB', {
+                            timeZone: 'Asia/Bangkok',
+                            day: '2-digit',
+                            month: 'short',
+                            year: 'numeric'
+                          })}
+                    </span>
+                  </div>
+                )}
               </div>
+            ) : (
+              <>
+                <div className="profile-settings-item" style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '12px' }}>
+                  <div className="profile-settings-item-info" style={{ display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'left' }}>
+                    <span className="profile-settings-item-label" style={{ fontSize: '15px', fontWeight: '800', color: 'var(--color-text)' }}>Get Infinite Hearts</span>
+                    <span className="profile-settings-item-desc" style={{ fontSize: '12px', color: 'var(--color-text-light)', lineHeight: '1.4' }}>Get 1 month of Infinite Hearts. Never wait for refills!</span>
+                  </div>
+                  <button
+                    onClick={handleUpgradePremium}
+                    disabled={isUpgrading}
+                    className="profile-settings-btn btn-orange"
+                    id="hearts-modal-upgrade-premium-btn"
+                    style={{ 
+                      width: '100%', 
+                      padding: '12px', 
+                      borderRadius: '12px', 
+                      fontWeight: '800', 
+                      background: 'linear-gradient(135deg, #FF9900 0%, #FF5E00 100%)',
+                      color: 'var(--color-white)',
+                      border: 'none',
+                      boxShadow: '0 3px 0 #CC4B00',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    {isUpgrading ? 'Redirecting to Stripe...' : 'Upgrade Now — 99 THB'}
+                  </button>
+                </div>
+
+                <div className="profile-settings-item" style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '12px' }}>
+                  <div className="profile-settings-item-info" style={{ display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'left' }}>
+                    <span className="profile-settings-item-label" style={{ fontSize: '15px', fontWeight: '800', color: 'var(--color-text)' }}>Apply a Code</span>
+                    <span className="profile-settings-item-desc" style={{ fontSize: '12px', color: 'var(--color-text-light)', lineHeight: '1.4' }}>Enter a promo code or friend's referral code.</span>
+                  </div>
+                  
+                  <form onSubmit={handleApply} className="profile-promo-input-group" style={{ display: 'flex', gap: '12px', width: '100%' }}>
+                    <input
+                      type="text"
+                      id="hearts-modal-promo-code-input"
+                      placeholder="e.g. WELCOME100"
+                      value={code}
+                      onChange={(e) => {
+                        setCode(e.target.value);
+                        setStatusMsg('');
+                      }}
+                      className="profile-promo-input"
+                      style={{
+                        flex: 1,
+                        padding: '10px 16px',
+                        fontSize: '15px',
+                        fontWeight: '700',
+                        border: '2px solid var(--color-gray)',
+                        borderRadius: '12px',
+                        backgroundColor: 'var(--color-gray-light)',
+                        outline: 'none'
+                      }}
+                    />
+                    <button 
+                      type="submit"
+                      className="profile-settings-btn btn-primary" 
+                      id="hearts-modal-apply-promo-btn"
+                      style={{ 
+                        padding: '10px 20px', 
+                        borderRadius: '12px', 
+                        height: '44px',
+                        background: 'var(--color-orange)',
+                        borderColor: 'var(--color-orange)',
+                        color: 'var(--color-white)',
+                        boxShadow: '0 4px 0 var(--color-orange-dark)',
+                        cursor: 'pointer',
+                        fontWeight: '800'
+                      }}
+                    >
+                      APPLY
+                    </button>
+                  </form>
+
+                  {statusMsg && (
+                    <p className={`profile-promo-message ${statusType}`} style={{
+                      fontSize: '13px',
+                      fontWeight: '700',
+                      padding: '6px 12px',
+                      borderRadius: '8px',
+                      textAlign: 'left',
+                      marginTop: '4px',
+                      backgroundColor: statusType === 'success' ? 'var(--color-green-bg)' : 'var(--color-red-bg)',
+                      color: statusType === 'success' ? 'var(--color-green-darker)' : 'var(--color-red-dark)',
+                      border: statusType === 'success' ? '1px solid var(--color-green-dark)' : '1px solid var(--color-red)'
+                    }}>
+                      {statusMsg}
+                    </p>
+                  )}
+                </div>
+              </>
             )}
           </div>
-        )}
-
-        {/* Promo code form */}
-        {!isInfinity && (
-          <div className="hearts-modal-promo-box">
-            <h3>Apply Promo or Referral Code</h3>
-            <p className="promo-box-sub">Enter a valid promo code or a friend's referral code to refill hearts.</p>
-            
-            <form onSubmit={handleApply} className="hearts-modal-form">
-              <input
-                type="text"
-                placeholder="e.g. WELCOME100"
-                value={code}
-                onChange={(e) => {
-                  setCode(e.target.value);
-                  setStatusMsg('');
-                }}
-                className="hearts-modal-input"
-              />
-              <button 
-                type="submit" 
-                className="btn btn-orange hearts-modal-btn" 
-              >
-                Apply Code
-              </button>
-            </form>
-
-            {statusMsg && (
-              <div className={`hearts-modal-status ${statusType}`}>
-                {statusType === 'success' ? '✔' : '✖'} {statusMsg}
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Go Premium CTA */}
-        {user.hearts !== 'infinity' && (
-          <div className="hearts-modal-promo-box hearts-modal-upgrade-cta" style={{ borderTop: '1px solid var(--color-gray)', paddingTop: '16px', marginTop: '16px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <h3 style={{ margin: '0 0 4px 0', fontSize: '16px', fontWeight: '800' }}>⚡ Go Premium</h3>
-            <p className="promo-box-sub" style={{ marginBottom: '12px', textAlign: 'center' }}>
-              Upgrade to Premium for 99 THB to get 1 month of Infinite Hearts!
-            </p>
-            <button
-              className="btn btn-orange hearts-modal-upgrade-btn"
-              onClick={handleUpgradePremium}
-              disabled={isUpgrading}
-              style={{ width: '100%', maxWidth: '280px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-            >
-              {isUpgrading ? 'Redirecting to Stripe...' : 'Upgrade Now — 99 THB'}
-            </button>
-          </div>
-        )}
+        </div>
       </div>
     </div>
   );
