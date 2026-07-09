@@ -57,12 +57,16 @@ router.post('/create-checkout-session', express.json(), authenticate, async (req
   const { referrer } = req.body || {};
   const returnPath = referrer || '/profile';
   const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+  const stripeSecretKey = process.env.STRIPE_SECRET_KEY || 'sk_test_placeholder';
   const stripe = getStripeInstance();
 
-  try {
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['promptpay'],
-      line_items: [{
+  const isLiveMode = stripeSecretKey.startsWith('sk_live_');
+  const lineItems = isLiveMode
+    ? [{
+        price: 'price_1Tr8KLARA58bgbenX4rCznw5',
+        quantity: 1,
+      }]
+    : [{
         price_data: {
           currency: 'thb',
           product_data: {
@@ -72,7 +76,12 @@ router.post('/create-checkout-session', express.json(), authenticate, async (req
           unit_amount: 9900, // 99 THB
         },
         quantity: 1,
-      }],
+      }];
+
+  try {
+    const session = await stripe.checkout.sessions.create({
+      automatic_payment_methods: { enabled: true },
+      line_items: lineItems,
       mode: 'payment',
       success_url: `${frontendUrl}${returnPath}?success=true&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${frontendUrl}${returnPath}?canceled=true`,
