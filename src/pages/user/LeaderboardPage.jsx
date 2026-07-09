@@ -3,14 +3,11 @@ import { useUser, useUserDispatch } from '../../data/userStore';
 import './LeaderboardPage.css';
 
 const AVATAR_COLORS = [
-  '#58CC02', // Duolingo Green
-  '#FF9600', // Duolingo Orange
-  '#2B70C9', // Duolingo Blue
-  '#E52424', // Red
-  '#7950F2', // Violet
-  '#E84576', // Pink
-  '#10B981', // Teal
-  '#F59E0B'  // Amber
+  '#58CC02', // Green (Grammar)
+  '#FFC800', // Yellow
+  '#FF4B4B', // Red (Vocab)
+  '#CE82FF', // Purple (Reading)
+  '#1CB0F6'  // Blue (Exam)
 ];
 
 const getAvatarColor = (name) => {
