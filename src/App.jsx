@@ -6,7 +6,6 @@ import LandingPage from './pages/LandingPage';
 import CategoryPage from './pages/user/CategoryPage';
 import LearnPage from './pages/user/LearnPage';
 import LeaderboardPage from './pages/user/LeaderboardPage';
-import ShopPage from './pages/user/ShopPage';
 import ProfilePage from './pages/user/ProfilePage';
 import QuizPage from './pages/user/QuizPage';
 import LessonCompletePage from './pages/user/LessonCompletePage';
@@ -95,7 +94,6 @@ function AppContent() {
             <Route path="/quiz/:unitId/:levelId" element={<QuizPage />} />
             <Route path="/lesson-complete" element={<LessonCompletePage />} />
             <Route path="/leaderboard" element={<DesktopPage><LeaderboardPage /></DesktopPage>} />
-            <Route path="/shop" element={<DesktopPage showRightSidebar={false}><ShopPage /></DesktopPage>} />
             <Route path="/profile" element={<DesktopPage><ProfilePage /></DesktopPage>} />
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/admin/:section" element={<AdminPage />} />

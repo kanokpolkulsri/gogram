@@ -136,69 +136,7 @@ export const studyCategories = [
 
 
 
-// Shop items
-export const shopItems = {
-  powerUps: [
-    {
-      id: 'streak-freeze',
-      name: 'Streak Freeze',
-      description: 'Streak Freeze allows your streak to remain in place for one full day of inactivity.',
-      icon: '❄️',
-      cost: 10,
-      category: 'Power-Ups',
-    },
-    {
-      id: 'heart-refill',
-      name: 'Heart Refill',
-      description: 'Refill your hearts so you can keep practicing without waiting.',
-      icon: '❤️',
-      cost: 350,
-      category: 'Power-Ups',
-    },
-    {
-      id: 'double-or-nothing',
-      name: 'Double or Nothing',
-      description: 'Wager 50 gems that you can maintain a 7 day streak. If you do, you win 100 gems!',
-      icon: '🎰',
-      cost: 50,
-      category: 'Power-Ups',
-    },
-  ],
-  outfits: [
-    {
-      id: 'superhero',
-      name: 'Superhero Gogram Owl',
-      description: 'Dress Gogram Owl in a superhero cape!',
-      icon: '🦸',
-      cost: 600,
-      category: 'Outfits',
-    },
-    {
-      id: 'formal',
-      name: 'Formal Gogram Owl',
-      description: 'Gogram Owl looking fancy in a top hat and bow tie.',
-      icon: '🎩',
-      cost: 500,
-      category: 'Outfits',
-    },
-    {
-      id: 'chef',
-      name: 'Chef Gogram Owl',
-      description: 'Gogram Owl is ready to cook some fine cuisine!',
-      icon: '👨‍🍳',
-      cost: 400,
-      category: 'Outfits',
-    },
-    {
-      id: 'athletic',
-      name: 'Athletic Gogram Owl',
-      description: 'Gogram Owl is ready for the sports day!',
-      icon: '🏃',
-      cost: 450,
-      category: 'Outfits',
-    },
-  ],
-};
+
 
 // League / leaderboard data
 export const leagueData = {

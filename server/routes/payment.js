@@ -72,8 +72,8 @@ router.post('/create-checkout-session', express.json(), authenticate, async (req
         quantity: 1,
       }],
       mode: 'payment',
-      success_url: `${frontendUrl}/shop?success=true&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${frontendUrl}/shop?canceled=true`,
+      success_url: `${frontendUrl}/profile?success=true&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${frontendUrl}/profile?canceled=true`,
       metadata: {
         userId: uid,
       }

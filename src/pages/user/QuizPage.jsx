@@ -322,7 +322,7 @@ export default function QuizPage() {
         <div className="quiz-bottom">
           {user.hearts === 0 && (
             <div className="quiz-no-hearts-warning" style={{ color: 'var(--color-red)', fontWeight: 800, textAlign: 'center', marginBottom: '16px' }}>
-              ❤️ No hearts left! Practice or visit the shop to get more.
+              ❤️ No hearts left! Practice or visit your Profile to get more.
             </div>
           )}
           <button
