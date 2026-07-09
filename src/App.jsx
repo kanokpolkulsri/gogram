@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { UserProvider, useUser, useUserDispatch } from './data/userStore';
+import './App.css';
 import DesktopLayout from './components/DesktopLayout';
 import LandingPage from './pages/LandingPage';
 import CategoryPage from './pages/user/CategoryPage';
@@ -23,6 +24,16 @@ function AppContent() {
   const dispatch = useUserDispatch();
   const location = useLocation();
   const navigate = useNavigate();
+  const [toast, setToast] = useState(null);
+
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => {
+        setToast(null);
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
 
   // Scroll to top on page change or when authentication loading finishes (except for learn pages)
   useEffect(() => {
@@ -34,23 +45,19 @@ function AppContent() {
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     if (params.get('success') === 'true') {
-      setTimeout(() => {
-        alert('Payment successful! You now have Infinite Hearts!');
-      }, 50);
+      setToast({ message: 'Payment successful! You now have Infinite Hearts!', type: 'success' });
       const sessionId = params.get('session_id');
       navigate(location.pathname, { replace: true });
       dispatch({ type: 'CHECK_HEARTS_REFILL', sessionId });
     } else if (params.get('canceled') === 'true') {
-      setTimeout(() => {
-        alert('Payment was canceled.');
-      }, 50);
+      setToast({ message: 'Payment was canceled.', type: 'canceled' });
       navigate(location.pathname, { replace: true });
     }
   }, [location, dispatch, navigate]);
 
   useEffect(() => {
     if (user.promoExpiredMessage) {
-      alert(user.promoExpiredMessage);
+      setToast({ message: user.promoExpiredMessage, type: 'info' });
       dispatch({ type: 'CLEAR_PROMO_EXPIRED_MESSAGE' });
     }
   }, [user.promoExpiredMessage, dispatch]);
@@ -123,6 +130,21 @@ function AppContent() {
           element={<Navigate to={user.isAuthenticated ? "/learn" : "/welcome"} replace />}
         />
       </Routes>
+
+      {toast && (
+        <div className={`global-toast-container toast-${toast.type}`}>
+          {toast.type === 'success' ? (
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+          ) : (
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+            </svg>
+          )}
+          <span>{toast.message}</span>
+        </div>
+      )}
     </div>
   );
 }

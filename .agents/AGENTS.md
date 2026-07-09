@@ -5,6 +5,7 @@ Follow these guidelines for all changes in the Gogram repository:
 ## 1. Frontend Styling & Accessibility (a11y)
 * **Maintain Text Contrast**: Avoid styling font colors or card backgrounds dynamically using user-configured or database-driven colors (such as category theme colors). If text is light (e.g. yellow or lime green), it will become unreadable on light theme pages.
 * **Accent Indicators Only**: When applying category theme colors, use design accents such as filled circular dots, SVG stroke outlines, or small borders, keeping typography standard.
+* **Avoid Inline Styling Blocks**: Do not style components using large inline style properties (the `style={{ ... }}` attribute) inside React components. Large style blocks must be defined in their own `.css` stylesheet using clear, unique class selectors (e.g. `src/App.css` or component-specific CSS files) to keep JSX markup clean and easily maintainable.
 
 ## 2. API & Data Loading Flow
 * **Sequence APIs over Ad-Hoc Spinners**: If a component has blank flashes when rendering, check if state data (like categories or units) is loading asynchronously. Await these dependencies at the API/Provider layer (e.g. inside `syncProfile` in `userStore.jsx`) before releasing the main authentication loading screens, instead of adding ad-hoc spinners to layout components.
