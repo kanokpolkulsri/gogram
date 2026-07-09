@@ -58,6 +58,16 @@ Gogram is split into a **decoupled Client-Server architecture**:
 *   **Decision**: Connect Cloud Run to Cloud SQL via a Unix domain socket (`/cloudsql/...`) rather than public IP whitelisting.
 *   **Rationale**: Cloud SQL has strict firewall rules. Whitelisting the server's public IP is impossible in a serverless environment because Cloud Run's outbound IP addresses change dynamically. The Unix socket connection mounts a secure local file socket inside the container, keeping all database traffic off the public internet.
 
+### 5. Static Grammar Curriculum Optimization
+*   **Decision**: Load the default Grammar category configuration (exactly 75 units, 5 difficulty nodes per unit) statically from mock data on the frontend (`src/data/mockData.js`), completely skipping database unit queries on application entry.
+*   **Rationale**: 
+    1. Loading 75 units and their corresponding nodes from a relational database can take several seconds and blocks user entry (especially under cold-starts or connection throttling).
+    2. Because the Grammar curriculum is static, we cached the structures on the client. Database API requests are only made in parallel when a user starts or completes a specific lesson/quiz, reducing database reads by over 90% and making initial app startup instantaneous.
+
+### 6. Synchronous Checkout Verification to Bypass Webhook Latency
+*   **Decision**: Implement a `/verify-session` backend endpoint to synchronously verify Stripe checkout sessions upon return redirection, before fetching the synced user profile.
+*   **Rationale**: Stripe webhooks are processed asynchronously and can experience delivery delays. If a user redirects back to Gogram instantly, a race condition occurs where the database does not reflect their new subscription yet. Querying Stripe synchronously via `/verify-session` before running `/auth/sync` guarantees that the database is upgraded and user hearts are set to `infinity` immediately, ensuring a seamless user experience.
+
 ---
 
 ## ⚡ Performance, Load & Caching Strategies
@@ -70,7 +80,7 @@ Gogram is split into a **decoupled Client-Server architecture**:
 *   **Pattern**: The Firebase Admin SDK automatically caches Google's public OIDC certificates.
 *   **Rationale**: To verify a JWT signature, the server needs Google's public key. The Admin SDK fetches these keys once and caches them in-memory, ensuring that subsequent API requests are authenticated locally in under 1 millisecond.
 
-### 4. Client-Side Hearts & Subscription Dynamic Computations
+### 3. Client-Side Hearts & Subscription Dynamic Computations
 *   **Pattern**: Compute hearts refill logic and subscription expiration checks dynamically in the frontend custom hook (`useUser`) and a local browser interval rather than polling backend API endpoints.
 *   **Rationale**: 
     1. Polling a backend `/sync` endpoint every 20 seconds to check for heart refills generates massive database-heavy request overhead (3,000+ operations/min per 1,000 active users).

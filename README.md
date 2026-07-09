@@ -102,21 +102,22 @@ flowchart TB
     FirebaseWebSDK -->|Google Sign-In Auth| FirebaseAuth
     FirebaseAdminSDK -->|Token Verification API| FirebaseAuth
     
-    StripeNodeSDK -->|Create PromptPay Session| StripeAPI
+    StripeNodeSDK -->|Create Checkout Session (Cards/PromptPay)| StripeAPI
     
     PgPool -->|Local TCP Queries| SqlProxy
     SqlProxy ==>|Secure TLS / IAM Auth Tunnel| CloudSQL
     PgPool ==>|Production Direct Connection| CloudSQL
 ```
 
-### UML Sequence Diagram (Authentication & Data Lifecycle)
-This sequence diagram demonstrates the flow of authentication token verification and SQL queries on page load or user sign-in.
+### UML Sequence Diagram (Authentication, Payments & Data Lifecycle)
+This sequence diagram demonstrates the flow of authentication token verification, dynamic Stripe checkout redirect routing, synchronous verification, and profile syncing.
 
 ```mermaid
 sequenceDiagram
     participant Learner as Learner (Browser)
     participant Front as Frontend App (Vite - Port 5173)
     participant Auth as Firebase Authentication
+    participant Stripe as Stripe API Gateway
     participant Back as Backend API (Express - Port 5001)
     participant Proxy as Cloud SQL Auth Proxy (Local Port 5432)
     participant DB as Google Cloud SQL (PostgreSQL)
@@ -128,14 +129,39 @@ sequenceDiagram
     Front->>Back: POST /api/auth/sync (Bearer Token)
     Back->>Auth: Verify ID Token (Firebase Admin SDK)
     Auth-->>Back: Token Valid (Decoded UID & Name)
-
-    %% Database Sync & Query Flow
     Back->>Proxy: Read/Write query (Port 5432)
     Proxy->>DB: Secure TLS Tunnel (IAM Verified)
     DB-->>Proxy: Return database rows
     Proxy-->>Back: Return database rows
     Back-->>Front: Return active learner profile
     Front-->>Learner: Display Dashboard & Learning Map
+
+    %% Stripe Checkout & Sync-Verification Lifecycle
+    Learner->>Front: Click "Upgrade to Premium" / upgrade button
+    Front->>Back: POST /api/payments/create-checkout-session (referrer path)
+    Back->>Stripe: Create Checkout Session
+    Stripe-->>Back: Session Object (Checkout URL & ID)
+    Back-->>Front: Return Session Checkout URL
+    Front->>Learner: Redirect to Stripe Checkout page
+    Learner->>Stripe: Complete payment (PromptPay / Card)
+    Stripe-->>Front: Redirect back with success=true & session_id
+
+    %% Synchronous Bypass verification
+    Front->>Back: POST /api/payments/verify-session (sessionId)
+    Back->>Stripe: Retrieve Session Status
+    Stripe-->>Back: Status: 'paid'
+    Back->>Proxy: UPDATE users SET subscription_expires_at = NOW() + 1 month
+    Proxy->>DB: Execute update
+    DB-->>Back: Done
+    Back-->>Front: Return verification success (true)
+
+    %% Profile sync download
+    Front->>Back: POST /api/auth/sync (Bearer Token)
+    Back->>Proxy: Query updated user details
+    Proxy->>DB: Execute select query
+    DB-->>Back: Return user details (hearts: infinity)
+    Back-->>Front: Return profile (hearts: infinity)
+    Front-->>Learner: Unlock Infinite Hearts on-screen
 ```
 
 ---
