@@ -22,20 +22,6 @@ export default function ProfilePage() {
   const [promoStatus, setPromoStatus] = useState(''); // 'success' or 'error'
   const [isUpgrading, setIsUpgrading] = useState(false);
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('success') === 'true') {
-      setPromoStatus('success');
-      setPromoMessage('Payment successful! You now have Infinite Hearts!');
-      window.history.replaceState({}, document.title, window.location.pathname);
-      dispatch({ type: 'CHECK_HEARTS_REFILL' });
-    } else if (params.get('canceled') === 'true') {
-      setPromoStatus('error');
-      setPromoMessage('Payment was canceled.');
-      window.history.replaceState({}, document.title, window.location.pathname);
-    }
-  }, [dispatch]);
-
 
   const handleApplyPromo = (e) => {
     e.preventDefault();
@@ -59,7 +45,9 @@ export default function ProfilePage() {
     try {
       setIsUpgrading(true);
       setPromoMessage('');
-      const res = await api.post('/payments/create-checkout-session');
+      const res = await api.post('/payments/create-checkout-session', {
+        referrer: window.location.pathname
+      });
       if (res.url) {
         window.location.href = res.url;
       } else {

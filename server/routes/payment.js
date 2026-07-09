@@ -54,6 +54,8 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
 // Create Stripe checkout session
 router.post('/create-checkout-session', express.json(), authenticate, async (req, res) => {
   const { uid } = req.user;
+  const { referrer } = req.body || {};
+  const returnPath = referrer || '/profile';
   const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
   const stripe = getStripeInstance();
 
@@ -72,8 +74,8 @@ router.post('/create-checkout-session', express.json(), authenticate, async (req
         quantity: 1,
       }],
       mode: 'payment',
-      success_url: `${frontendUrl}/profile?success=true&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${frontendUrl}/profile?canceled=true`,
+      success_url: `${frontendUrl}${returnPath}?success=true&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${frontendUrl}${returnPath}?canceled=true`,
       metadata: {
         userId: uid,
       }

@@ -15,7 +15,9 @@ export default function HeartsModal({ isOpen, onClose }) {
     try {
       setIsUpgrading(true);
       setStatusMsg('');
-      const res = await api.post('/payments/create-checkout-session');
+      const res = await api.post('/payments/create-checkout-session', {
+        referrer: window.location.pathname
+      });
       if (res.url) {
         window.location.href = res.url;
       } else {

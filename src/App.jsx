@@ -32,6 +32,22 @@ function AppContent() {
   }, [location.pathname, user.isAuthLoading]);
 
   useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get('success') === 'true') {
+      setTimeout(() => {
+        alert('Payment successful! You now have Infinite Hearts!');
+      }, 50);
+      navigate(location.pathname, { replace: true });
+      dispatch({ type: 'CHECK_HEARTS_REFILL' });
+    } else if (params.get('canceled') === 'true') {
+      setTimeout(() => {
+        alert('Payment was canceled.');
+      }, 50);
+      navigate(location.pathname, { replace: true });
+    }
+  }, [location, dispatch, navigate]);
+
+  useEffect(() => {
     if (user.promoExpiredMessage) {
       alert(user.promoExpiredMessage);
       dispatch({ type: 'CLEAR_PROMO_EXPIRED_MESSAGE' });
