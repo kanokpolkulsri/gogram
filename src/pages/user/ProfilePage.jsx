@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser, useUserDispatch } from '../../data/userStore';
 import { auth, signOut } from '../../data/firebase';
