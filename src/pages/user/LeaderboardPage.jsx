@@ -2,6 +2,27 @@ import { useState, useEffect } from 'react';
 import { useUser, useUserDispatch } from '../../data/userStore';
 import './LeaderboardPage.css';
 
+const AVATAR_COLORS = [
+  '#58CC02', // Duolingo Green
+  '#FF9600', // Duolingo Orange
+  '#2B70C9', // Duolingo Blue
+  '#E52424', // Red
+  '#7950F2', // Violet
+  '#E84576', // Pink
+  '#10B981', // Teal
+  '#F59E0B'  // Amber
+];
+
+const getAvatarColor = (name) => {
+  if (!name) return '#58CC02';
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const index = Math.abs(hash) % AVATAR_COLORS.length;
+  return AVATAR_COLORS[index];
+};
+
 function ShieldIcon({ color, letter, isActive, size = 76 }) {
   const scale = isActive ? 1.15 : 0.82;
   const opacity = isActive ? 1 : 0.55;
@@ -176,8 +197,9 @@ export default function LeaderboardPage() {
 
           const renderAvatar = () => {
             if (!u.avatar || u.avatar.startsWith('#')) {
+              const bg = u.avatar && u.avatar !== '#58CC02' ? u.avatar : getAvatarColor(u.name);
               return (
-                <div className="leaderboard-avatar" style={{ background: u.avatar || '#58CC02' }}>
+                <div className="leaderboard-avatar" style={{ background: bg }}>
                   {u.initials}
                 </div>
               );
@@ -271,7 +293,7 @@ export default function LeaderboardPage() {
             </span>
             <div className="leaderboard-avatar-container">
               {userAvatar.startsWith('#') ? (
-                <div className="leaderboard-avatar" style={{ background: userAvatar }}>
+                <div className="leaderboard-avatar" style={{ background: userAvatar !== '#58CC02' ? userAvatar : getAvatarColor(userName) }}>
                   {userInitials}
                 </div>
               ) : (

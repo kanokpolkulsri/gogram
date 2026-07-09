@@ -5,6 +5,27 @@ import { getNextLesson } from '../../data/progressHelpers';
 import './LessonCompletePage.css';
 import './LeaderboardPage.css';
 
+const AVATAR_COLORS = [
+  '#58CC02', // Duolingo Green
+  '#FF9600', // Duolingo Orange
+  '#2B70C9', // Duolingo Blue
+  '#E52424', // Red
+  '#7950F2', // Violet
+  '#E84576', // Pink
+  '#10B981', // Teal
+  '#F59E0B'  // Amber
+];
+
+const getAvatarColor = (name) => {
+  if (!name) return '#58CC02';
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const index = Math.abs(hash) % AVATAR_COLORS.length;
+  return AVATAR_COLORS[index];
+};
+
 const COMPLETION_MESSAGES = [
   "You nailed it!",
   "Superb!",
@@ -190,7 +211,7 @@ export default function LessonCompletePage() {
         <div className="lesson-complete-level-card">
           <div className="leaderboard-avatar-container">
             {userAvatar.startsWith('#') ? (
-              <div className="leaderboard-avatar" style={{ background: userAvatar }}>
+              <div className="leaderboard-avatar" style={{ background: userAvatar !== '#58CC02' ? userAvatar : getAvatarColor(userName) }}>
                 {userInitials}
               </div>
             ) : (
