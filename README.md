@@ -102,7 +102,7 @@ flowchart TB
     FirebaseWebSDK -->|Google Sign-In Auth| FirebaseAuth
     FirebaseAdminSDK -->|Token Verification API| FirebaseAuth
     
-    StripeNodeSDK -->|Create Checkout Session (Cards/PromptPay)| StripeAPI
+    StripeNodeSDK -->|Create Checkout Session - Cards or PromptPay| StripeAPI
     
     PgPool -->|Local TCP Queries| SqlProxy
     SqlProxy ==>|Secure TLS / IAM Auth Tunnel| CloudSQL
