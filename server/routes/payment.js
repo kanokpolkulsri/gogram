@@ -62,7 +62,6 @@ router.post('/create-checkout-session', express.json(), authenticate, async (req
 
   try {
     const session = await stripe.checkout.sessions.create({
-      automatic_payment_methods: { enabled: true },
       line_items: [{
         price: 'price_1Tr8KLARA58bgbenX4rCznw5',
         quantity: 1,
