@@ -108,18 +108,12 @@ export default function HeartsModal({ isOpen, onClose }) {
           {isInfinity ? 'Infinite Hearts Active' : `You have ${user.hearts} Hearts`}
         </h2>
 
-        {!isInfinity && (
+        {!isInfinity && user.hearts < 10 && (
           <div className="hearts-modal-refill-info" style={{ marginBottom: '24px' }}>
-            {user.hearts < 10 ? (
-              <>
-                <p className="hearts-modal-desc" style={{ margin: '0 0 4px 0' }}>
-                  Refilling 1 heart in <span className="countdown-timer">{formatTime(timeLeft)}</span>
-                </p>
-                <p className="hearts-modal-subdesc" style={{ margin: 0 }}>Free users can have a maximum of 10 hearts.</p>
-              </>
-            ) : (
-              <p className="hearts-modal-desc" style={{ margin: 0 }}>Your hearts are fully charged! (Max: 10)</p>
-            )}
+            <p className="hearts-modal-desc" style={{ margin: '0 0 4px 0' }}>
+              Refilling 1 heart in <span className="countdown-timer">{formatTime(timeLeft)}</span>
+            </p>
+            <p className="hearts-modal-subdesc" style={{ margin: 0 }}>Free users can have a maximum of 10 hearts.</p>
           </div>
         )}
 
