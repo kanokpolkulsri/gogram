@@ -37,8 +37,9 @@ function AppContent() {
       setTimeout(() => {
         alert('Payment successful! You now have Infinite Hearts!');
       }, 50);
+      const sessionId = params.get('session_id');
       navigate(location.pathname, { replace: true });
-      dispatch({ type: 'CHECK_HEARTS_REFILL' });
+      dispatch({ type: 'CHECK_HEARTS_REFILL', sessionId });
     } else if (params.get('canceled') === 'true') {
       setTimeout(() => {
         alert('Payment was canceled.');

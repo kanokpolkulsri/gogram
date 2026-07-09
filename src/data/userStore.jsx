@@ -406,6 +406,13 @@ export function UserProvider({ children }) {
 
       case 'CHECK_HEARTS_REFILL':
         try {
+          if (action.sessionId) {
+            try {
+              await api.post('/payments/verify-session', { sessionId: action.sessionId });
+            } catch (verifyErr) {
+              console.warn('Session verification endpoint failed, falling back to sync:', verifyErr);
+            }
+          }
           const profile = await api.post('/auth/sync');
           rawDispatch({
             type: 'UPDATE_HEARTS_AND_SUB',

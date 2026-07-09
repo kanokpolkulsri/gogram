@@ -88,4 +88,39 @@ router.post('/create-checkout-session', express.json(), authenticate, async (req
   }
 });
 
+// Verify a Stripe checkout session and force-update user profile if paid
+router.post('/verify-session', express.json(), authenticate, async (req, res) => {
+  const { uid } = req.user;
+  const { sessionId } = req.body;
+
+  if (!sessionId) {
+    return res.status(400).json({ error: 'Session ID is required.' });
+  }
+
+  const stripe = getStripeInstance();
+
+  try {
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+
+    if (session.payment_status === 'paid') {
+      const expiresAt = new Date();
+      expiresAt.setMonth(expiresAt.getMonth() + 1);
+      await query(
+        `UPDATE users 
+         SET subscription_expires_at = $1 
+         WHERE uid = $2`,
+        [expiresAt, uid]
+      );
+      console.log(`Successfully verified Stripe session ${sessionId} and upgraded user ${uid}.`);
+      return res.json({ success: true });
+    } else {
+      console.log(`Stripe session ${sessionId} payment status is: ${session.payment_status}`);
+      return res.json({ success: false, status: session.payment_status });
+    }
+  } catch (error) {
+    console.error('Error verifying Stripe Checkout Session:', error);
+    res.status(500).json({ error: 'Failed to verify payment session.' });
+  }
+});
+
 export default router;
