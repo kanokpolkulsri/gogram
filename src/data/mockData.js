@@ -1,4 +1,4 @@
-// Mock data for Gogram — English language learning for Thai learners
+// Mock data for GramGo — English language learning for Thai learners
 
 export const initialUser = {
   name: 'Learner',

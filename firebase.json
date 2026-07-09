@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "gramgo",
     "public": "dist",
     "ignore": [
       "firebase.json",
@@ -16,13 +17,15 @@
   "auth": {
     "providers": {
       "googleSignIn": {
-        "oAuthBrandDisplayName": "Gogram",
+        "oAuthBrandDisplayName": "GramGo",
         "supportEmail": "kanokpolkulsri@gmail.com",
         "authorizedRedirectUris": [
           "http://localhost",
           "https://gogram-web-2026.firebaseapp.com",
           "https://gogram-web-2026.web.app",
-          "https://gogram.techshabu.com"
+          "https://gogram.techshabu.com",
+          "https://gramgo.firebaseapp.com",
+          "https://gramgo.web.app"
         ]
       }
     }

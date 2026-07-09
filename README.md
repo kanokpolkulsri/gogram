@@ -1,6 +1,6 @@
-# Gogram — English Language Learning Platform
+# GramGo — English Language Learning Platform
 
-Gogram is an educational web application designed for Thai learners to study English grammar, vocabulary, and reading comprehension. 
+GramGo is an educational web application designed for Thai learners to study English grammar, vocabulary, and reading comprehension. 
 
 This project consists of a **React + Vite** frontend and an **Express.js (Node.js)** backend connected to a **PostgreSQL (Google Cloud SQL)** database.
 
@@ -23,11 +23,11 @@ cp server/.env.example server/.env  # Or edit the template server/.env directly
 ```
 Ensure the `DATABASE_URL` matches your local PostgreSQL configuration:
 ```env
-DATABASE_URL=postgresql://YOUR_USERNAME:YOUR_PASSWORD@localhost:5432/gogram
+DATABASE_URL=postgresql://YOUR_USERNAME:YOUR_PASSWORD@localhost:5432/gramgo
 ```
 
 ### 2. Initialize and Seed the Database
-Make sure you have started your local PostgreSQL server and created an empty database named `gogram`. Then, run the migration and seeding script:
+Make sure you have started your local PostgreSQL server and created an empty database named `gramgo`. Then, run the migration and seeding script:
 ```bash
 # Seed default categories, units, and quiz questions
 npm run seed --prefix server
@@ -49,7 +49,7 @@ npm run dev
 
 ### System Architecture & Technology Stack
 
-This diagram visualizes how the frontend app, backend API server, local development tools, third-party services, and deployment hosting layers interact within Gogram.
+This diagram visualizes how the frontend app, backend API server, local development tools, third-party services, and deployment hosting layers interact within GramGo.
 
 ```mermaid
 flowchart TB
@@ -66,7 +66,7 @@ flowchart TB
     end
 
     subgraph hosting_infrastructure ["2. Hosting & Deployment Environments"]
-        FirebaseHosting["Firebase Hosting<br>(gogram-web-2026.web.app)"]
+        FirebaseHosting["Firebase Hosting<br>(gramgo.web.app)"]
         CloudRun["Google Cloud Run<br>(gogram-api Service)"]
     end
 

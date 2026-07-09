@@ -463,7 +463,7 @@ export default function AdminPage() {
       <aside className="admin-cms-sidebar" id="admin-cms-sidebar">
         <div className="admin-cms-sidebar-header">
           <div className="admin-cms-logo" id="admin-cms-logo" onClick={() => navigate('/learn')}>
-            <span className="admin-cms-logo-text">GoGram</span>
+            <span className="admin-cms-logo-text">GramGo</span>
           </div>
         </div>
 

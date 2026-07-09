@@ -298,18 +298,12 @@ export const CategoriesIcon = ({ active, size = 32 }) => (
 );
 
 
-// ─── Practice (Duo owl face + hearts) ──────────────────────────────────
+// ─── Practice (Bullseye Target) ───────────────────────────────────────
 export const PracticeIcon = ({ active, size = 32 }) => (
   <svg width={size} height={size} viewBox="0 0 48 48" fill="none">
-    <circle cx="24" cy="24" r="16" fill={active ? '#58CC02' : '#E5E5E5'} />
-    <circle cx="24" cy="26" r="12" fill={active ? '#89E219' : '#F0F0F0'} />
-    <circle cx="19" cy="22" r="4.5" fill="white" />
-    <circle cx="29" cy="22" r="4.5" fill="white" />
-    <circle cx="20" cy="22" r="2.2" fill="#333" />
-    <circle cx="30" cy="22" r="2.2" fill="#333" />
-    <ellipse cx="24" cy="28" rx="2.5" ry="1.5" fill="#FFC800" />
-    <path d="M10 12c0-2 1.5-3.5 3.5-3.5S17 10 17 12c0 3.5-3.5 6-3.5 6S10 15.5 10 12z" fill={active ? '#FF4B4B' : '#D0D0D0'} />
-    <path d="M31 12c0-2 1.5-3.5 3.5-3.5S38 10 38 12c0 3.5-3.5 6-3.5 6S31 15.5 31 12z" fill={active ? '#CE82FF' : '#D0D0D0'} />
+    <circle cx="24" cy="24" r="18" fill={active ? '#FFC800' : '#E5E5E5'} stroke={active ? '#FF9600' : '#AFAFAF'} strokeWidth="3" />
+    <circle cx="24" cy="24" r="12" fill="white" />
+    <circle cx="24" cy="24" r="6" fill={active ? '#FF4B4B' : '#AFAFAF'} />
   </svg>
 );
 

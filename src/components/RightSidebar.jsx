@@ -62,33 +62,33 @@ export default function RightSidebar() {
 
   const [learnedIndices, setLearnedIndices] = useState(() => {
     const today = getTodayDateString();
-    const lastActive = localStorage.getItem('gogram_vocab_last_active_date');
+    const lastActive = localStorage.getItem('gramgo_vocab_last_active_date');
     if (lastActive !== today) {
-      localStorage.setItem('gogram_vocab_last_active_date', today);
-      localStorage.setItem('gogram_learned_vocabs', JSON.stringify([]));
+      localStorage.setItem('gramgo_vocab_last_active_date', today);
+      localStorage.setItem('gramgo_learned_vocabs', JSON.stringify([]));
       return [];
     }
-    const saved = localStorage.getItem('gogram_learned_vocabs');
+    const saved = localStorage.getItem('gramgo_learned_vocabs');
     return saved ? JSON.parse(saved) : [];
   });
 
   const [vocabStreak, setVocabStreak] = useState(() => {
-    const streak = localStorage.getItem('gogram_vocab_streak');
+    const streak = localStorage.getItem('gramgo_vocab_streak');
     return streak ? parseInt(streak, 10) : 0;
   });
 
   useEffect(() => {
     const today = getTodayDateString();
-    const lastCompleted = localStorage.getItem('gogram_vocab_last_completed_date');
+    const lastCompleted = localStorage.getItem('gramgo_vocab_last_completed_date');
     if (lastCompleted) {
       const daysSinceCompletion = getDaysBetween(lastCompleted, today);
       if (daysSinceCompletion > 1) {
         setVocabStreak(0);
-        localStorage.setItem('gogram_vocab_streak', '0');
+        localStorage.setItem('gramgo_vocab_streak', '0');
       }
     } else {
       setVocabStreak(0);
-      localStorage.setItem('gogram_vocab_streak', '0');
+      localStorage.setItem('gramgo_vocab_streak', '0');
     }
   }, []);
 
@@ -105,16 +105,16 @@ export default function RightSidebar() {
 
     const newLearned = [...learnedIndices, index];
     setLearnedIndices(newLearned);
-    localStorage.setItem('gogram_learned_vocabs', JSON.stringify(newLearned));
+    localStorage.setItem('gramgo_learned_vocabs', JSON.stringify(newLearned));
 
     if (newLearned.length === dailyVocab.length) {
       const today = getTodayDateString();
-      const lastCompleted = localStorage.getItem('gogram_vocab_last_completed_date');
+      const lastCompleted = localStorage.getItem('gramgo_vocab_last_completed_date');
       if (lastCompleted !== today) {
         const newStreak = vocabStreak + 1;
         setVocabStreak(newStreak);
-        localStorage.setItem('gogram_vocab_streak', String(newStreak));
-        localStorage.setItem('gogram_vocab_last_completed_date', today);
+        localStorage.setItem('gramgo_vocab_streak', String(newStreak));
+        localStorage.setItem('gramgo_vocab_last_completed_date', today);
       }
     }
   };

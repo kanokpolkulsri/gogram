@@ -76,12 +76,12 @@ export default function LandingPage() {
 
   const handleGoogleLogin = async () => {
     try {
-      sessionStorage.setItem('gogram_login_clicked', 'true');
+      sessionStorage.setItem('gramgo_login_clicked', 'true');
       await signInWithPopup(auth, googleProvider);
       // Successful login triggers onAuthStateChanged in userStore context, 
       // which handles auth state updates and redirects the user automatically.
     } catch (error) {
-      sessionStorage.removeItem('gogram_login_clicked');
+      sessionStorage.removeItem('gramgo_login_clicked');
       console.error('Google Sign-In failed:', error);
       alert('Failed to sign in with Google. Please try again.');
     }
@@ -91,7 +91,7 @@ export default function LandingPage() {
     <div className="landing-page" id="landing-page">
       {/* Top Header Logo */}
       <div className="landing-logo">
-        <span className="landing-logo-text">GoGram</span>
+        <span className="landing-logo-text">GramGo</span>
       </div>
 
       {/* Hero Section with Speech Bubble */}
@@ -141,26 +141,7 @@ export default function LandingPage() {
               <path className="bird-wing-down" d="M 0,2 Q 4,10 8,4 Q 12,10 16,2 Q 10,3 8,5 Q 6,3 0,2 Z" fill="#5B8FB9" opacity="0.8" />
             </g>
 
-            {/* Mascot Face Overlay */}
-            <g className="mascot-face-overlay" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.15))' }}>
-              {/* Left & Right Eye Whites (Static) */}
-              <circle cx="68" cy="80" r="19" fill="white" />
-              <circle cx="132" cy="80" r="19" fill="white" />
-
-              {/* Grouped Eyeballs (Animated together) */}
-              <g className="mascot-eyeballs">
-                {/* Left Eyeball */}
-                <circle cx="68" cy="80" r="9.5" fill="#333" />
-                <circle cx="70" cy="78" r="3.2" fill="white" />
-
-                {/* Right Eyeball */}
-                <circle cx="132" cy="80" r="9.5" fill="#333" />
-                <circle cx="134" cy="78" r="3.2" fill="white" />
-              </g>
-
-              {/* Beak */}
-              <ellipse cx="100" cy="112" rx="9" ry="5" fill="#FFC800" />
-            </g>
+            {/* Mascot Face Overlay Removed */}
           </svg>
         </div>
       </div>

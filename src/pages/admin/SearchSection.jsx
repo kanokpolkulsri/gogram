@@ -79,7 +79,7 @@ export default function SearchSection({
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.setAttribute('download', `gogram_questions_export_${new Date().toISOString().split('T')[0]}.csv`);
+      link.setAttribute('download', `gramgo_questions_export_${new Date().toISOString().split('T')[0]}.csv`);
       link.style.display = 'none';
       document.body.appendChild(link);
       link.click();

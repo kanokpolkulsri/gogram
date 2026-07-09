@@ -115,9 +115,9 @@ export default function HeartsModal({ isOpen, onClose }) {
           </div>
         )}
 
-        {/* Gogram Premium Card Section matching Profile Page */}
+        {/* GramGo Premium Card Section matching Profile Page */}
         <div className="profile-settings-card" id="profile-premium-card" style={{ width: '100%', borderTop: '2px solid var(--color-gray)', paddingTop: '20px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <h3 className="profile-settings-title" style={{ width: '100%', textAlign: 'left', margin: 0, fontSize: '18px', fontWeight: '800', color: 'var(--color-text)' }}>Gogram Premium</h3>
+          <h3 className="profile-settings-title" style={{ width: '100%', textAlign: 'left', margin: 0, fontSize: '18px', fontWeight: '800', color: 'var(--color-text)' }}>GramGo Premium</h3>
           <div className="profile-settings-list" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '20px' }}>
             {isInfinity ? (
               <div className="profile-settings-item" style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '12px' }}>

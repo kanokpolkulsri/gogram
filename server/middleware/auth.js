@@ -25,7 +25,7 @@ export const authenticate = async (req, res, next) => {
     const mockUid = token.replace('mock-', '');
     req.user = {
       uid: mockUid,
-      email: `${mockUid}@gogram.com`,
+      email: `${mockUid}@gramgo.com`,
       isMock: true
     };
     return next();

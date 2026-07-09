@@ -1,4 +1,4 @@
-// Mock realistic question database and generator for GoGram
+// Mock realistic question database and generator for GramGo
 
 const articlesQuestions = {
   easy: [

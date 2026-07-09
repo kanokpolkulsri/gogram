@@ -1,7 +1,7 @@
 {
-  "name": "gogram-server",
+  "name": "gramgo-server",
   "version": "1.0.0",
-  "description": "Express.js API server for Gogram language learning application",
+  "description": "Express.js API server for GramGo language learning application",
   "main": "index.js",
   "type": "module",
   "scripts": {

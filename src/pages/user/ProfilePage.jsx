@@ -77,7 +77,7 @@ export default function ProfilePage() {
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(user, null, 2));
     const downloadAnchor = document.createElement('a');
     downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", `gogram-data-${user.name || 'learner'}.json`);
+    downloadAnchor.setAttribute("download", `gramgo-data-${user.name || 'learner'}.json`);
     document.body.appendChild(downloadAnchor);
     downloadAnchor.click();
     downloadAnchor.remove();
@@ -148,9 +148,9 @@ export default function ProfilePage() {
         </div>
 
 
-        {/* Gogram Premium Card */}
+        {/* GramGo Premium Card */}
         <div className="profile-settings-card animate-fade-in" id="profile-premium-card">
-          <h3 className="profile-settings-title">Gogram Premium</h3>
+          <h3 className="profile-settings-title">GramGo Premium</h3>
           <div className="profile-settings-list">
             {user.hearts === 'infinity' ? (
               <div className="profile-settings-item" style={{ flexDirection: 'column', alignItems: 'stretch', gap: '12px' }}>

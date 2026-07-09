@@ -46,23 +46,20 @@ export default function Sidebar() {
 
   return (
     <aside className="sidebar" id="sidebar">
-      {/* Logo — owl icon + text */}
+      {/* Logo — brand icon + text */}
       <Link to="/learn" className="sidebar-logo" id="sidebar-logo" onClick={() => handleScrollToTop(location.pathname.startsWith('/learn'))}>
-        <svg width="32" height="32" viewBox="0 0 200 200" fill="none">
-          <circle cx="100" cy="100" r="100" fill="#FF9600" />
-          {/* Eye whites */}
-          <circle cx="68" cy="90" r="24" fill="white" />
-          <circle cx="132" cy="90" r="24" fill="white" />
-          {/* Pupils */}
-          <circle cx="68" cy="90" r="12" fill="#333" />
-          <circle cx="132" cy="90" r="12" fill="#333" />
-          {/* Highlights */}
-          <circle cx="71" cy="87" r="4" fill="white" />
-          <circle cx="135" cy="87" r="4" fill="white" />
-          {/* Beak */}
-          <ellipse cx="100" cy="122" rx="9" ry="5" fill="#FFC800" />
+        <svg className="sidebar-logo-icon" width="32" height="32" viewBox="0 0 200 200" fill="none">
+          <defs>
+            <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#FFB000" />
+              <stop offset="100%" stopColor="#FF8500" />
+            </linearGradient>
+          </defs>
+          <circle cx="100" cy="100" r="100" fill="url(#logo-grad)" />
+          {/* A beautiful white letter 'G' in the center */}
+          <path d="M135 70C125 55 110 45 90 45C60 45 40 70 40 100C40 130 60 155 90 155C120 155 135 130 135 110H95" stroke="white" strokeWidth="24" strokeLinecap="round" strokeLinejoin="round" fill="none" />
         </svg>
-        <span className="sidebar-logo-text">GoGram</span>
+        <span className="sidebar-logo-text">GramGo</span>
       </Link>
 
       {/* Navigation — icon + label */}

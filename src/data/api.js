@@ -32,7 +32,7 @@ async function request(endpoint, options = {}) {
   if (!idToken && window.location.hostname === 'localhost') {
     // Check if there is an active local user profile loaded in userStore
     try {
-      const stored = localStorage.getItem('gogram-user');
+      const stored = localStorage.getItem('gramgo-user');
       if (stored) {
         const parsed = JSON.parse(stored);
         const activeUid = parsed.authProfile?.uid || parsed.uid || '18JCe75AVxZEZF3Y1h0gBNo93ti2';

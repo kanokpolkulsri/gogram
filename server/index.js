@@ -69,7 +69,7 @@ const startServer = async () => {
   }
 
   app.listen(PORT, () => {
-    console.log(`Gogram Backend API Server running on port ${PORT}`);
+    console.log(`GramGo Backend API Server running on port ${PORT}`);
   });
 };
 

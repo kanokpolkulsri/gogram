@@ -8,7 +8,7 @@ import { units } from './mockData';
 const UserContext = createContext(null);
 const UserDispatchContext = createContext(null);
 
-const STORAGE_KEY = 'gogram-user';
+const STORAGE_KEY = 'gramgo-user';
 
 const initialStoreState = {
   uid: null,
@@ -136,7 +136,7 @@ function userReducer(state, action) {
       if (!action.user) {
         // Clear cached stats and login session flags on logout
         localStorage.removeItem(STORAGE_KEY);
-        sessionStorage.removeItem('gogram_login_clicked');
+        sessionStorage.removeItem('gramgo_login_clicked');
         return {
           ...initialStoreState,
           isAuthLoading: false
@@ -333,7 +333,7 @@ export function UserProvider({ children }) {
     } catch (error) {
       console.error('Failed to initialize synced database profile:', error);
       rawDispatch({ type: 'AUTH_STATE_CHANGED', user: null });
-      alert('Failed to connect to Gogram server. Please ensure the backend server is running and your database is reachable.');
+      alert('Failed to connect to GramGo server. Please ensure the backend server is running and your database is reachable.');
     }
   }, []);
 
@@ -342,7 +342,7 @@ export function UserProvider({ children }) {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       // If the user lands on the welcome page, we clear any stale Firebase auth session
       // to prevent background database sync calls unless they explicitly clicked login.
-      if (window.location.pathname === '/welcome' && firebaseUser && !sessionStorage.getItem('gogram_login_clicked')) {
+      if (window.location.pathname === '/welcome' && firebaseUser && !sessionStorage.getItem('gramgo_login_clicked')) {
         try {
           auth.signOut();
         } catch (e) {}

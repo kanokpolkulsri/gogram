@@ -103,31 +103,6 @@
   animation: pulse 2s ease-in-out infinite;
 }
 
-.learn-path-owl {
-  position: absolute;
-  animation: float 4s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@media (min-width: 1024px) {
-  .learn-path-owl {
-    width: 140px;
-    height: 140px;
-    left: calc(50% + 80px);
-    top: 150px;
-    transform: translateY(-50%);
-  }
-}
-
-@media (max-width: 1023px) {
-  .learn-path-owl {
-    width: calc(50% - 2px);
-    height: 220px;
-    left: calc(50% - 14px);
-    top: 140px;
-    transform: translateY(-50%);
-  }
-}
 
 /* Jump here section */
 .learn-jump-here {

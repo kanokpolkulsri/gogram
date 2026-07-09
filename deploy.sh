@@ -29,4 +29,4 @@ fi
 cat gcloud_deploy.log | grep -v -E "Creating Revision|Routing traffic|Preparing container|Uploading sources|Building Container|Setting IAM Policy"
 rm -f gcloud_deploy.log
 
-echo "=== 🚀 Success! Site live at: https://gogram-web-2026.web.app ==="
+echo "=== 🚀 Success! Site live at: https://gramgo.web.app ==="

@@ -1,5 +1,4 @@
 import { HeadphonesIcon, BookIcon, RecycleIcon } from '../../components/icons';
-import GogramOwl from '../../components/GogramOwl';
 import './PracticePage.css';
 
 export default function PracticePage() {
@@ -13,9 +12,7 @@ export default function PracticePage() {
             Strengthen your skills with targeted practice exercises
           </p>
         </div>
-        <div className="practice-hero-owl">
-          <GogramOwl size={80} />
-        </div>
+
       </div>
 
       {/* Conversation Section */}
@@ -73,7 +70,6 @@ export default function PracticePage() {
       {/* Personalized Practice */}
       <div className="practice-personalized">
         <div className="practice-personalized-content">
-          <GogramOwl size={70} />
           <div className="practice-personalized-text-wrapper" id="practice-personalized-text-wrapper">
             <h3 className="practice-personalized-title" id="practice-personalized-title">Personalized Practice</h3>
             <p className="practice-personalized-desc" id="practice-personalized-desc">
