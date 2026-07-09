@@ -180,7 +180,7 @@ export default function HeartsModal({ isOpen, onClose }) {
           <div className="hearts-modal-promo-box hearts-modal-upgrade-cta" style={{ borderTop: '1px solid var(--color-gray)', paddingTop: '16px', marginTop: '16px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h3 style={{ margin: '0 0 4px 0', fontSize: '16px', fontWeight: '800' }}>⚡ Go Premium</h3>
             <p className="promo-box-sub" style={{ marginBottom: '12px', textAlign: 'center' }}>
-              Upgrade to Premium for 29 THB to get 1 year of Infinite Hearts!
+              Upgrade to Premium for 99 THB to get 1 month of Infinite Hearts!
             </p>
             <button
               className="btn btn-orange hearts-modal-upgrade-btn"
@@ -188,7 +188,7 @@ export default function HeartsModal({ isOpen, onClose }) {
               disabled={isUpgrading}
               style={{ width: '100%', maxWidth: '280px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
-              {isUpgrading ? 'Redirecting to Stripe...' : 'Upgrade Now — 29 THB'}
+              {isUpgrading ? 'Redirecting to Stripe...' : 'Upgrade Now — 99 THB'}
             </button>
           </div>
         )}

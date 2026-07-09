@@ -32,9 +32,9 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
     console.log(`Payment successful for user ${userId}. Session ID: ${session.id}`);
 
     try {
-      // Grant 1 year subscription to user
+      // Grant 1 month subscription to user
       const expiresAt = new Date();
-      expiresAt.setFullYear(expiresAt.getFullYear() + 1);
+      expiresAt.setMonth(expiresAt.getMonth() + 1);
       await query(
         `UPDATE users 
          SET subscription_expires_at = $1 
@@ -65,9 +65,9 @@ router.post('/create-checkout-session', express.json(), authenticate, async (req
           currency: 'thb',
           product_data: {
             name: 'Gogram Premium (Infinity Hearts)',
-            description: 'Perpetual premium access with infinite hearts',
+            description: '1-Month Gogram Premium Access with Infinite Hearts',
           },
-          unit_amount: 2900, // 29 THB
+          unit_amount: 9900, // 99 THB
         },
         quantity: 1,
       }],

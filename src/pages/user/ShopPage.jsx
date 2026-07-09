@@ -77,7 +77,7 @@ export default function ShopPage() {
               <span className="premium-badge">PREMIUM</span>
               <h2 className="shop-premium-title">Upgrade to Infinite Hearts</h2>
               <p className="shop-premium-desc">
-                Get 1 year of Infinite Hearts! Learn grammar and vocabulary without limits. Never wait for hearts to refill.
+                Get 1 month of Infinite Hearts! Learn grammar and vocabulary without limits. Never wait for hearts to refill.
               </p>
               <button 
                 className="shop-premium-upgrade-btn"
@@ -85,7 +85,7 @@ export default function ShopPage() {
                 disabled={isUpgrading}
                 id="btn-stripe-promptpay-upgrade"
               >
-                {isUpgrading ? 'Redirecting to Stripe...' : 'Upgrade Now — 29 THB'}
+                {isUpgrading ? 'Redirecting to Stripe...' : 'Upgrade Now — 99 THB'}
               </button>
             </div>
             <div className="shop-premium-banner-visual">

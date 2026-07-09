@@ -177,7 +177,7 @@ export default function ProfilePage() {
                 <div className="profile-settings-item" style={{ flexDirection: 'column', alignItems: 'stretch', gap: '12px' }}>
                   <div className="profile-settings-item-info">
                     <span className="profile-settings-item-label">Get Infinite Hearts</span>
-                    <span className="profile-settings-item-desc">Get 1 year of Infinite Hearts. Never wait for refills!</span>
+                    <span className="profile-settings-item-desc">Get 1 month of Infinite Hearts. Never wait for refills!</span>
                   </div>
                   <button
                     onClick={handleUpgradePremium}
@@ -196,7 +196,7 @@ export default function ProfilePage() {
                       cursor: 'pointer'
                     }}
                   >
-                    {isUpgrading ? 'Redirecting to Stripe...' : 'Upgrade to Premium — 29 THB'}
+                    {isUpgrading ? 'Redirecting to Stripe...' : 'Upgrade to Premium — 99 THB'}
                   </button>
                 </div>
 
