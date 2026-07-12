@@ -2,6 +2,20 @@ import { studyCategories, units } from '../../src/data/mockData.js';
 import { getMockQuestions } from '../../src/data/mockGenerator.js';
 import pool, { initDb } from '../db/index.js';
 import { DATABASE_URL } from '../config.js';
+import fs from 'fs';
+import path from 'path';
+
+// Read backup questions if available
+let backupQuestions = [];
+try {
+  const backupPath = path.resolve('db/questions_backup.json');
+  if (fs.existsSync(backupPath)) {
+    backupQuestions = JSON.parse(fs.readFileSync(backupPath, 'utf8'));
+    console.log(`Loaded ${backupQuestions.length} pre-generated AI questions from local backup file.`);
+  }
+} catch (e) {
+  console.warn('Could not read questions_backup.json, falling back to mock generator:', e);
+}
 
 async function seed() {
   const isProduction = process.env.NODE_ENV === 'production' || 
@@ -106,7 +120,10 @@ async function seed() {
         );
 
         // Generate and Seed Questions for this Level in a single bulk query
-        const questionsList = getMockQuestions(catId, unit.id, lvl.id, unit.title) || [];
+        const filteredBackup = backupQuestions.filter(q => q.unit_number === unit.id && q.level_id === lvl.id);
+        const questionsList = filteredBackup.length > 0 
+          ? filteredBackup 
+          : (getMockQuestions(catId, unit.id, lvl.id, unit.title) || []);
         if (questionsList.length > 0) {
           const values = [];
           const valuePlaceholders = [];
@@ -124,7 +141,7 @@ async function seed() {
               lvl.id,
               q.question,
               JSON.stringify(q.options),
-              q.correctAnswer,
+              q.correctAnswer || q.correct_answer,
               q.explanation || null,
               q.explanationTh || q.explanation_th || null
             );

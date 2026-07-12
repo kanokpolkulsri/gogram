@@ -342,7 +342,7 @@ export default function QuizPage() {
               <span className="quiz-feedback-text">
                 {isCorrect ? encouragement : `Correct answer: ${currentQuestion.correctAnswer}`}
               </span>
-              {currentQuestion?.explanation && (
+              {(currentQuestion?.explanation || currentQuestion?.explanationTh) && (
                 <button
                   type="button"
                   className="quiz-explanation-toggle-btn"
@@ -355,33 +355,38 @@ export default function QuizPage() {
             </div>
 
             {/* Full-width drawer below the row */}
-            {currentQuestion?.explanation && (
+            {(currentQuestion?.explanation || currentQuestion?.explanationTh) && (
               <div className={`quiz-explanation-drawer${showExplanation ? ' quiz-explanation-drawer-open' : ''}`}>
                 <div className="quiz-explanation-content">
                   <div className="quiz-explanation-inner">
-                    {currentQuestion.explanation.includes('ENGLISH') && currentQuestion.explanation.includes('THAI') ? (
-                      (() => {
-                        const parts = currentQuestion.explanation.split(/THAI:?/i);
-                        const engText = parts[0].replace(/ENGLISH:?/i, '').trim();
-                        const thaiText = parts[1]?.trim() || '';
-                        return (
-                          <>
+                    {(() => {
+                      let engText = currentQuestion.explanation || '';
+                      let thaiText = currentQuestion.explanationTh || '';
+
+                      // Fallback for old combined explanation style
+                      if (engText.includes('ENGLISH') && engText.includes('THAI')) {
+                        const parts = engText.split(/THAI:?/i);
+                        engText = parts[0].replace(/ENGLISH:?/i, '').trim();
+                        thaiText = parts[1]?.trim() || '';
+                      }
+
+                      return (
+                        <>
+                          {engText && (
                             <div className="explanation-section">
                               <span className="explanation-label">ENGLISH</span>
                               <p className="explanation-text">{engText}</p>
                             </div>
-                            {thaiText && (
-                              <div className="explanation-section" style={{ marginTop: '12px' }}>
-                                <span className="explanation-label">THAI</span>
-                                <p className="explanation-text">{thaiText}</p>
-                              </div>
-                            )}
-                          </>
-                        );
-                      })()
-                    ) : (
-                      <p className="explanation-text">{currentQuestion.explanation}</p>
-                    )}
+                          )}
+                          {thaiText && (
+                            <div className="explanation-section" style={{ marginTop: '12px' }}>
+                              <span className="explanation-label">THAI</span>
+                              <p className="explanation-text">{thaiText}</p>
+                            </div>
+                          )}
+                        </>
+                      );
+                    })()}
                   </div>
                 </div>
               </div>

@@ -19,12 +19,17 @@ export default function LearnHeader() {
   const activeCategoryId = categoryId || user.lastCategoryId || 'grammar';
   const categoryInfo = studyCategories.find((c) => c.id === activeCategoryId) || (studyCategories.length > 0 ? studyCategories[0] : { iconChar: 'G', color: '#58CC02' });
 
-  // Calculate completed units count for this category
+  // Calculate completed lessons count for this category to determine user progress level
   const unitsForCat = units.filter(unit => unit.category === activeCategoryId);
-  const completedUnitsCount = unitsForCat.filter(unit => 
-    unit.levels.every(level => user.completedLessons.includes(`${unit.id}-${level.id}`))
-  ).length;
-  const userLevel = 1 + completedUnitsCount;
+  let completedLessonsCount = 0;
+  unitsForCat.forEach(unit => {
+    ['easy', 'medium1', 'medium2', 'hard1', 'hard2'].forEach(lvl => {
+      if (user.completedLessons.includes(`${unit.id}-${lvl}`)) {
+        completedLessonsCount++;
+      }
+    });
+  });
+  const userLevel = 1 + completedLessonsCount;
 
   return (
     <>

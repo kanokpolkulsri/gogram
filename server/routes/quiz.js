@@ -23,11 +23,24 @@ router.post('/session/start', authenticate, async (req, res) => {
       [unitId, levelId]
     );
 
-    const questions = questionsRes.rows;
+    const rawQuestions = questionsRes.rows;
 
-    if (questions.length === 0) {
+    if (rawQuestions.length === 0) {
       return res.status(404).json({ error: 'No questions found for this quiz level.' });
     }
+
+    // Shuffle options for each question to randomize order
+    const questions = rawQuestions.map(q => {
+      const shuffledOptions = [...q.options];
+      for (let i = shuffledOptions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
+      }
+      return {
+        ...q,
+        options: shuffledOptions
+      };
+    });
 
     res.json({
       questions,
