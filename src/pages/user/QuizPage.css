@@ -4,6 +4,7 @@
   min-height: 100vh;
   min-height: 100dvh;
   background: var(--color-white);
+  position: relative;
 }
 
 .quiz-error {
@@ -64,7 +65,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 24px 20px;
+  padding: 24px 20px 140px;
   gap: 32px;
 }
 
@@ -198,16 +199,27 @@
 
 /* Bottom / Check Button */
 .quiz-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   padding: 16px 20px;
   padding-bottom: max(16px, env(safe-area-inset-bottom));
   border-top: 2px solid var(--color-gray);
+  background: var(--color-white);
+  z-index: 20;
 }
 
 /* Feedback Bar */
 .quiz-feedback {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   padding: 20px 20px;
   padding-bottom: max(20px, env(safe-area-inset-bottom));
   animation: slideUp 0.3s ease;
+  z-index: 20;
 }
 
 .quiz-feedback > .btn {

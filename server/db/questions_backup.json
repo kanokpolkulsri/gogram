@@ -31358,5 +31358,3526 @@
     "correct_answer": "usually",
     "explanation": "The contrast word 'but today' shows that being driven to school is an exception to the speaker's normal habit of walking, so 'usually' is correct.",
     "explanation_th": "แปล: ปกติฉันเดินไปโรงเรียน แต่วันนี้พ่อขับรถมาส่งฉันเพราะฝนตก\n\nคำอธิบาย: ประโยคหลังใช้คำว่า 'but today...' (แต่วันนี้...) แสดงให้เห็นว่าเหตุการณ์ที่พ่อขับรถมาส่งเป็นข้อยกเว้นจากกิจวัตรปกติ ดังนั้น กิจวัตรปกติของฉันจึงต้องใช้ 'usually' (โดยปกติ)"
+  },
+  {
+    "id": "q-40-medium1-0",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "medium1",
+    "question": "My brother is a very disciplined student; he ___ late for his morning classes.",
+    "options": [
+      "is rarely",
+      "rarely is",
+      "is rare",
+      "rarely"
+    ],
+    "correct_answer": "is rarely",
+    "explanation": "Adverbs of frequency (such as 'rarely') must be placed after the verb 'to be' (is/am/are/was/were).",
+    "explanation_th": "แปล: น้องชายของฉันเป็นนักเรียนที่มีวินัยมาก เขาแทบจะไม่เคยมาสายสำหรับการเรียนในตอนเช้าเลย\n\nคำอธิบาย: คำกริยาวิเศษณ์บอกความถี่ (Adverbs of Frequency) เช่น 'rarely' จะต้องวางไว้หลัง Verb to be (is/am/are) ดังนั้นโครงสร้างที่ถูกต้องคือ 'is rarely'"
+  },
+  {
+    "id": "q-40-medium1-1",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "medium1",
+    "question": "You ___ find cheap and delicious street food in Bangkok; it is practically everywhere.",
+    "options": [
+      "can usually",
+      "usually can",
+      "can usual",
+      "usually"
+    ],
+    "correct_answer": "can usually",
+    "explanation": "When an auxiliary modal verb (like 'can') is used, the adverb of frequency is placed after the auxiliary verb and before the main verb.",
+    "explanation_th": "แปล: คุณสามารถหาอาหารสตรีทฟู้ดราคาถูกและอร่อยได้ทั่วไปในกรุงเทพฯ มันมีอยู่แทบทุกที่\n\nคำอธิบาย: เมื่อมีกริยาช่วย (Auxiliary verb) เช่น 'can' คำกริยาวิเศษณ์บอกความถี่ (usually) จะต้องวางไว้หลังกริยาช่วยและอยู่หน้ากริยาหลัก (find) โครงสร้างที่ถูกต้องจึงเป็น 'can usually'"
+  },
+  {
+    "id": "q-40-medium1-2",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "medium1",
+    "question": "She ___ goes to the cinema because she prefers watching Netflix at home.",
+    "options": [
+      "seldom",
+      "seldomly",
+      "doesn't seldom",
+      "does seldom"
+    ],
+    "correct_answer": "seldom",
+    "explanation": "'Seldom' is an adverb of frequency meaning 'rarely' or 'not often'. It is placed before the main verb 'goes'. Note that 'seldomly' is grammatically incorrect, and double negatives like 'doesn't seldom' must be avoided.",
+    "explanation_th": "แปล: หล่อนนาน ๆ ครั้งจะไปโรงภาพยนตร์เพราะหล่อนชอบดู Netflix ที่บ้านมากกว่า\n\nคำอธิบาย: 'seldom' เป็นกริยาวิเศษณ์บอกความถี่ แปลว่า 'นาน ๆ ครั้ง' หรือ 'แทบจะไม่' วางไว้หน้ากริยาแท้ (goes) ทั้งนี้คำว่า 'seldomly' ไม่มีรูปนี้ในภาษาอังกฤษที่เป็นมาตรฐาน และห้ามใช้ซ้ำซ้อนกับปฏิเสธ (doesn't seldom)"
+  },
+  {
+    "id": "q-40-medium1-3",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "medium1",
+    "question": "They ___ soccer on weekends, but today they are going swimming instead.",
+    "options": [
+      "usually play",
+      "play usually",
+      "are usually playing",
+      "usually playing"
+    ],
+    "correct_answer": "usually play",
+    "explanation": "In the Present Simple tense, adverbs of frequency are typically placed before the main action verb ('play').",
+    "explanation_th": "แปล: ปกติแล้วพวกเขาเล่นฟุตบอลในวันหยุดสุดสัปดาห์ แต่แค่วันนี้พวกเขาจะไปว่ายน้ำแทน\n\nคำอธิบาย: ในประโยค Present Simple Tense ที่แสดงนิสัยหรือตารางเวลาปกติ คำกริยาวิเศษณ์บอกความถี่ (usually) จะวางไว้หน้ากริยาหลัก (play) เสมอ"
+  },
+  {
+    "id": "q-40-medium1-4",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "medium1",
+    "question": "My father is a busy doctor, so he ___ has time to watch television.",
+    "options": [
+      "hardly ever",
+      "hardly never",
+      "ever hardly",
+      "does hardly"
+    ],
+    "correct_answer": "hardly ever",
+    "explanation": "'Hardly ever' is a common adverb phrase meaning 'almost never'. Combining 'hardly' with 'never' creates an incorrect double negative.",
+    "explanation_th": "แปล: พ่อของฉันเป็นหมอที่มีงานยุ่งมาก ดังนั้นเขาจึงแทบจะไม่เคยมีเวลาดูโทรทัศน์เลย\n\nคำอธิบาย: 'hardly ever' แปลว่า 'แทบจะไม่เคย' ซึ่งใช้เพื่อบอกความถี่ที่น้อยมากๆ ส่วนตัวเลือก 'hardly never' ผิดหลักไวยากรณ์เนื่องจากเป็นการใช้คำปฏิเสธซ้อนปฏิเสธ (double negative)"
+  },
+  {
+    "id": "q-40-medium1-5",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "medium1",
+    "question": "Do you ___ travel abroad during the summer holidays?",
+    "options": [
+      "usually",
+      "usual",
+      "usually do",
+      "do usually"
+    ],
+    "correct_answer": "usually",
+    "explanation": "In Present Simple questions, the adverb of frequency is placed after the subject and before the main verb (Do/Does + subject + adverb of frequency + main verb).",
+    "explanation_th": "แปล: ปกติแล้วคุณเดินทางไปต่างประเทศในช่วงวันหยุดฤดูร้อนใช่ไหม\n\nคำอธิบาย: ในโครงสร้างประโยคคำถามแบบ Yes/No Question ของ Present Simple Tense จะใช้โครงสร้าง: Do/Does + ประธาน (you) + Adverb of frequency (usually) + กริยาช่อง 1 (travel) ดังนั้นตัวเลือก 'usually' จึงถูกต้องและอยู่ในตำแหน่งที่เหมาะสมที่สุด"
+  },
+  {
+    "id": "q-40-medium1-6",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "medium1",
+    "question": "Jane and her sister ___ active and cheerful, which makes them very popular at school.",
+    "options": [
+      "are always",
+      "always are",
+      "always",
+      "are always being"
+    ],
+    "correct_answer": "are always",
+    "explanation": "The adverb of frequency 'always' must be placed after the auxiliary or link verb 'to be' (are).",
+    "explanation_th": "แปล: เจนและน้องสาวของเธอเป็นคนกระตือรือร้นและร่าเริงอยู่เสมอ ซึ่งทำให้พวกเธอเป็นที่นิยมมากในโรงเรียน\n\nคำอธิบาย: คำบอกความถี่ 'always' จะต้องตามหลัง Verb to be เสมอ ดังนั้นโครงสร้างที่ถูกต้องคือประธานพหูพจน์ (Jane and her sister) ตามด้วย 'are' แล้วจึงตามด้วย 'always'"
+  },
+  {
+    "id": "q-40-medium1-7",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "medium1",
+    "question": "Our English teacher ___ forgets to assign homework; she always writes it on the board.",
+    "options": [
+      "rarely",
+      "rarely does",
+      "is rarely",
+      "does rarely"
+    ],
+    "correct_answer": "rarely",
+    "explanation": "The adverb of frequency 'rarely' is placed directly before the main verb 'forgets' in simple present statements.",
+    "explanation_th": "แปล: ครูสอนภาษาอังกฤษของเราแทบจะไม่เคยลืมสั่งการบ้านเลย เธอมักจะเขียนมันไว้บนกระดานเสมอ\n\nคำอธิบาย: 'rarely' (แทบจะไม่เคย) เป็น Adverb of Frequency ที่นำมาวางหน้ารับกริยาแท้ 'forgets' ในประโยคบอกเล่าธรรมดาได้ทันที โดยไม่ต้องเติมกริยาช่วย (does) หรือ Verb to be เข้ามาแทรกข้างหน้า"
+  },
+  {
+    "id": "q-40-medium1-8",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "medium1",
+    "question": "Students ___ study in the library when final exams are approaching.",
+    "options": [
+      "frequently",
+      "frequent",
+      "are frequent",
+      "frequently do"
+    ],
+    "correct_answer": "frequently",
+    "explanation": "'Frequently' is an adverb of frequency. It is placed before the main verb 'study'. 'Frequent' is an adjective and cannot modify the verb directly.",
+    "explanation_th": "แปล: นักเรียนมักจะศึกษาค้นคว้าในห้องสมุดบ่อยครั้งเมื่อใกล้ถึงเวลาสอบปลายภาค\n\nคำอธิบาย: 'frequently' (บ่อยครั้ง) เป็นคำกริยาวิเศษณ์บอกความถี่ที่ถูกต้องตามโครงสร้างประธาน + Adverb + กริยาแท้ (study) ส่วน 'frequent' เป็นคำคุณศัพท์ (adjective) จึงไม่สามารถนำมาขยายกริยาได้โดยตรง"
+  },
+  {
+    "id": "q-40-medium1-9",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "medium1",
+    "question": "As a strict vegetarian, Mark ___ eats any meat or seafood.",
+    "options": [
+      "never",
+      "ever",
+      "always",
+      "sometimes"
+    ],
+    "correct_answer": "never",
+    "explanation": "Based on the context of being a 'strict vegetarian', the logically correct adverb of frequency is 'never' (0% of the time).",
+    "explanation_th": "แปล: ในฐานะที่เป็นมังสวิรัติอย่างเคร่งครัด มาร์คไม่เคยรับประทานเนื้อสัตว์หรืออาหารทะเลเลย\n\nคำอธิบาย: คำว่า 'vegetarian' (ผู้รับประทานมังสวิรัติ) บังคับให้เราเลือกความถี่ที่เป็นศูนย์ คือ 'never' (ไม่เคย) เพื่อให้สอดคล้องตามความหมายและบริบทของประโยค"
+  },
+  {
+    "id": "q-40-medium2-0",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "medium2",
+    "question": "Although Sarah lives far from the office, she ________ late for the weekly morning briefings.",
+    "options": [
+      "is rarely",
+      "rarely is",
+      "rarely has",
+      "is late rarely"
+    ],
+    "correct_answer": "is rarely",
+    "explanation": "Adverbs of frequency (such as 'rarely') are placed after the verb 'to be' (is/am/are/was/were).",
+    "explanation_th": "แปล: ถึงแม้ว่าซาร่าห์จะอาศัยอยู่ไกลจากที่ทำงาน แต่เธอก็แทบจะไม่เคยมาสายสำหรับการบรีฟงานตอนเช้าประจำสัปดาห์เลย\n\nคำอธิบาย: คำกริยาวิเศษณ์บอกความถี่ (Adverbs of Frequency) เช่น rarely จะต้องวางไว้ตามหลังกริยา Verb to be (is/am/are) ดังนั้น 'is rarely' จึงเป็นโครงสร้างที่ถูกต้องที่สุดตามหลักไวยากรณ์"
+  },
+  {
+    "id": "q-40-medium2-1",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "medium2",
+    "question": "Given his tight schedule, Kevin ________ find time to exercise at the gym on weekdays.",
+    "options": [
+      "can seldom",
+      "seldom can",
+      "does seldom",
+      "seldom does"
+    ],
+    "correct_answer": "can seldom",
+    "explanation": "When using a modal auxiliary verb (like 'can'), the adverb of frequency is placed between the modal verb and the main verb (modal + adverb + main verb).",
+    "explanation_th": "แปล: เมื่อพิจารณาจากตารางงานที่แน่นของเขา เควินแทบจะหาเวลาไปออกกำลังกายที่ยิมในวันธรรมดาไม่ได้เลย\n\nคำอธิบาย: เมื่อมีกริยาช่วยประเภท Modal verb (เช่น can, should, will) คำกริยาวิเศษณ์บอกความถี่ (seldom) จะต้องวางอยู่ระหว่างกริยาช่วยและกริยาแท้ โครงสร้าง 'can seldom find' (can + seldom + find) จึงถูกต้องที่สุด"
+  },
+  {
+    "id": "q-40-medium2-2",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "medium2",
+    "question": "Because of her severe peanut allergy, Jiranan ________ eats street food without asking about the ingredients first.",
+    "options": [
+      "never",
+      "doesn't never",
+      "is never",
+      "rarely not"
+    ],
+    "correct_answer": "never",
+    "explanation": "The adverb 'never' has a negative meaning itself, so it does not require a negative auxiliary like 'doesn't' (which would create an ungrammatical double negative). It is placed before the main verb 'eats'.",
+    "explanation_th": "แปล: เนื่องจากอาการแพ้ถั่วอย่างรุนแรงของเธอ จิรนันท์จึงไม่เคยรับประทานอาหารสตรีทฟู้ดโดยไม่ถามถึงส่วนผสมก่อนเลย\n\nคำอธิบาย: คำว่า 'never' มีความหมายปฏิเสธในตัวเองอยู่แล้ว (แปลว่า ไม่เคย) จึงไม่จำเป็นต้องใช้กริยาช่วยปฏิเสธซ้ำซ้อน เช่น doesn't (เพราะจะเกิด Double Negative ซึ่งผิดหลักภาษา) และวางไว้หน้ากริยาแท้ 'eats' ได้ทันที"
+  },
+  {
+    "id": "q-40-medium2-3",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "medium2",
+    "question": "Our manager ________ work on weekends, but she prefers to spend that time with her family.",
+    "options": [
+      "sometimes has to",
+      "has sometimes to",
+      "has to sometimes",
+      "sometimes is having to"
+    ],
+    "correct_answer": "sometimes has to",
+    "explanation": "Adverbs of frequency are placed before the semi-modal 'have to' / 'has to' because 'has' acts as a main verb in terms of adverb positioning.",
+    "explanation_th": "แปล: ผู้จัดการของเราบางครั้งต้องทำงานในวันหยุดสุดสัปดาห์ แต่เธอชอบที่จะใช้เวลานั้นกับครอบครัวของเธอมากกว่า\n\nคำอธิบาย: คำกริยาวิเศษณ์บอกความถี่ (sometimes) จะต้องวางไว้หน้ากลุ่มคำกริยา 'have to / has to' (ต้อง) ดังนั้นโครงสร้าง 'sometimes has to' จึงถูกต้องและเป็นธรรมชาติที่สุด"
+  },
+  {
+    "id": "q-40-medium2-4",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "medium2",
+    "question": "Since the library updated its digital archive, students ________ need to request physical copies of old journals.",
+    "options": [
+      "rarely",
+      "always",
+      "not rarely",
+      "usually"
+    ],
+    "correct_answer": "rarely",
+    "explanation": "Based on the context, since the archive is now digital, the need for physical copies is extremely low, making 'rarely' (seldom/almost never) the logical choice. It is correctly placed before the main verb 'need'.",
+    "explanation_th": "แปล: ตั้งแต่ห้องสมุดอัปเดตคลังข้อมูลดิจิทัล นักศึกษาก็แทบจะไม่จำเป็นต้องขอวารสารเก่าในรูปแบบเล่มจริงเลย\n\nคำอธิบาย: จากบริบทที่ระบุว่าระบบเปลี่ยนเป็นดิจิทัลแล้ว ความจำเป็นในการขอเอกสารตัวจริงย่อมลดลงอย่างมาก คำว่า 'rarely' (แทบจะไม่/นานๆ ครั้ง) จึงเหมาะสมที่สุดในเชิงความหมาย และวางไว้หน้ากริยาแท้ 'need'"
+  },
+  {
+    "id": "q-40-medium2-5",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "medium2",
+    "question": "Despite her interest in astronomy, Sunee ________ observed a solar eclipse with her own eyes.",
+    "options": [
+      "has never",
+      "never has",
+      "is never",
+      "has had never"
+    ],
+    "correct_answer": "has never",
+    "explanation": "In the present perfect tense (has/have + past participle), the adverb of frequency 'never' is placed between the auxiliary verb 'has' and the past participle 'observed'.",
+    "explanation_th": "แปล: แม้ว่าเธอจะสนใจในเรื่องดาราศาสตร์ แต่สุนีย์ก็ไม่เคยสังเกตการณ์สุริยุปราคาด้วยตาของเธอเองเลย\n\nคำอธิบาย: ในโครงสร้าง Present Perfect Tense (has/have + V.3) คำกริยาวิเศษณ์บอกความถี่ (never) จะต้องวางแทรกอยู่ตรงกลางระหว่างกริยาช่วย 'has' และกริยาช่อง 3 'observed' โครงสร้าง 'has never observed' จึงเป็นคำตอบที่ถูกต้อง"
+  },
+  {
+    "id": "q-40-medium2-6",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "medium2",
+    "question": "During his college years, David ________ stay up late studying in the 24-hour campus library.",
+    "options": [
+      "would often",
+      "often would",
+      "is often",
+      "often has"
+    ],
+    "correct_answer": "would often",
+    "explanation": "When expressing past habits using the modal 'would', the adverb of frequency 'often' is placed after 'would' and before the base verb 'stay'.",
+    "explanation_th": "แปล: ในช่วงปีที่เรียนมหาวิทยาลัย เดวิดมักจะอยู่ดึกเพื่ออ่านหนังสือในห้องสมุดของวิทยาเขตที่เปิดตลอด 24 ชั่วโมงบ่อยๆ\n\nคำอธิบาย: ในการบอกพฤติกรรมหรือนิสัยในอดีตโดยใช้ modal verb 'would' (มักจะ...) คำกริยาวิเศษณ์บอกความถี่ (often) จะต้องวางไว้หลัง 'would' และหน้ากริยาช่อง 1 (stay) โครงสร้าง 'would often' จึงถูกต้อง"
+  },
+  {
+    "id": "q-40-medium2-7",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "medium2",
+    "question": "________, we go to the local market on Sunday mornings to buy fresh ingredients, but this week we went to the supermarket instead.",
+    "options": [
+      "Usually",
+      "Always",
+      "Never",
+      "Seldom"
+    ],
+    "correct_answer": "Usually",
+    "explanation": "Only certain adverbs of frequency, such as 'Usually' and 'Sometimes', can be placed at the beginning of a sentence. Adverbs with negative or absolute meanings like 'Always', 'Never', and 'Seldom' are not typically placed at the beginning of affirmative statements without grammatical inversion.",
+    "explanation_th": "แปล: โดยปกติแล้ว พวกเราจะไปตลาดท้องถิ่นในเช้าวันอาทิตย์เพื่อซื้อวัตถุดิบสดใหม่ แต่สัปดาห์นี้พวกเราไปซูเปอร์มาร์เก็ตแทน\n\nคำอธิบาย: มีเพียงคำกริยาวิเศษณ์บอกความถี่บางคำเท่านั้น เช่น 'Usually' (โดยปกติ) หรือ 'Sometimes' (บางครั้ง) ที่สามารถวางไว้ต้นประโยคเพื่อเน้นย้ำได้ ส่วน 'Always', 'Never' และ 'Seldom' จะไม่นิยมวางไว้ขึ้นต้นประโยคบอกเล่าทั่วไปแบบนี้"
+  },
+  {
+    "id": "q-40-medium2-8",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "medium2",
+    "question": "Jane is a highly organized person; she ________ forgets her keys or misplaces her important documents.",
+    "options": [
+      "almost never",
+      "always",
+      "frequently",
+      "often"
+    ],
+    "correct_answer": "almost never",
+    "explanation": "The context describes Jane as 'highly organized', which means she is unlikely to forget things. Therefore, the negative frequency adverb 'almost never' makes the most logical sense.",
+    "explanation_th": "แปล: เจนเป็นคนที่มีระเบียบวินัยสูงมาก เธอแทบจะไม่เคยลืมกุญแจหรือวางเอกสารสำคัญผิดที่เลย\n\nคำอธิบาย: จากบริบทที่ระบุว่าเจนเป็นคนมีระเบียบมาก (highly organized) แปลว่าเธอไม่น่าจะมีพฤติกรรมขี้ลืม ดังนั้นคำว่า 'almost never' (แทบจะไม่เคย) จึงสอดคล้องกับความหมายที่สุด ส่วนตัวเลือกอื่นจะทำให้ความหมายขัดแย้งกับประโยคแรก"
+  },
+  {
+    "id": "q-40-medium2-9",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "medium2",
+    "question": "Even though they live in the same neighborhood, they ________ see each other because of their contrasting work shifts.",
+    "options": [
+      "do not often",
+      "often do not",
+      "do often not",
+      "not often do"
+    ],
+    "correct_answer": "do not often",
+    "explanation": "In negative sentences with auxiliary verbs (do/does/did), the adverb of frequency 'often' is typically placed after the negative particle 'not' (auxiliary + not + adverb + main verb).",
+    "explanation_th": "แปล: ถึงแม้ว่าพวกเขาจะอาศัยอยู่ในละแวกเดียวกัน แต่พวกเขาก็ไม่ได้เจอกันบ่อยนักเนื่องจากกะการทำงานที่ตรงกันข้ามกัน\n\nคำอธิบาย: ในประโยคปฏิเสธที่มีกริยาช่วย (do/does/did) คำกริยาวิเศษณ์บอกความถี่ (often) โดยทั่วไปจะวางไว้หลังคำปฏิเสธ 'not' (กริยาช่วย + not + adverb + กริยาแท้) โครงสร้าง 'do not often see' จึงเป็นรูปแบบที่ถูกต้องและเป็นธรรมชาติที่สุด"
+  },
+  {
+    "id": "q-40-hard1-0",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "hard1",
+    "question": "The safety protocols in this laboratory _______ by the research team during high-risk experiments.",
+    "options": [
+      "have always been strictly followed",
+      "have been always strictly followed",
+      "always have been strictly followed",
+      "have been strictly followed always"
+    ],
+    "correct_answer": "have always been strictly followed",
+    "explanation": "When a sentence has more than one auxiliary verb (have, been), the adverb of frequency (always) is placed immediately after the first auxiliary verb.",
+    "explanation_th": "แปล: โปรโตคอลความปลอดภัยในห้องปฏิบัติการนี้ได้รับการปฏิบัติตามอย่างเคร่งครัดโดยทีมวิจัยในระหว่างการทดลองที่มีความเสี่ยงสูงเสมอ\n\nคำอธิบาย: เมื่อประโยคมีคำกริยาช่วยมากกว่าหนึ่งตัว (have, been) วิเศษณ์บอกความถี่ (always) จะต้องวางไว้ข้างหลังคำกริยาช่วยตัวแรกสุดเสมอ ดังนั้น 'have always been...' จึงเป็นโครงสร้างที่ถูกต้องที่สุด ส่วนตัวเลือกอื่นวางตำแหน่งของคำวิเศษณ์ผิดหลักไวยากรณ์"
+  },
+  {
+    "id": "q-40-hard1-1",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "hard1",
+    "question": "Given his extremely busy schedule as a CEO, Mr. Vance _______ time to attend social gatherings on weekends.",
+    "options": [
+      "hardly ever has",
+      "doesn't hardly ever have",
+      "hardly ever doesn't have",
+      "has hardly ever"
+    ],
+    "correct_answer": "hardly ever has",
+    "explanation": "'Hardly ever' has a negative meaning, so it cannot be used with another negative auxiliary like 'doesn't' (which would cause a double negative error). It must be placed before the main verb 'has'.",
+    "explanation_th": "แปล: เมื่อพิจารณาจากตารางงานที่ยุ่งมากในฐานะซีอีโอ คุณแวนซ์แทบจะไม่มีเวลาเข้าร่วมงานสังสรรค์ในวันหยุดสุดสัปดาห์เลย\n\nคำอธิบาย: 'Hardly ever' (แทบจะไม่เคย) มีความหมายเป็นปฏิเสธในตัวเองอยู่แล้ว จึงห้ามใช้คู่กับกริยาปฏิเสธตัวอื่น เช่น 'doesn't' เพราะจะทำให้เกิดความซ้ำซ้อนทางปฏิเสธ (Double Negative) และตำแหน่งของคำวิเศษณ์บอกความถี่ต้องอยู่หน้ากริยาแท้ 'has' ตัวเลือกแรกจึงถูกต้องที่สุด"
+  },
+  {
+    "id": "q-40-hard1-2",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "hard1",
+    "question": "Due to the unpredictable weather in this region, commuters _______ check the daily forecast before leaving home.",
+    "options": [
+      "usually have to",
+      "have usually to",
+      "have to usually",
+      "usually to have"
+    ],
+    "correct_answer": "usually have to",
+    "explanation": "Adverbs of frequency are placed before the semi-modal 'have to'. Placing it inside or after 'have to' is grammatically incorrect.",
+    "explanation_th": "แปล: เนื่องจากสภาพอากาศที่คาดเดาไม่ได้ในภูมิภาคนี้ ผู้เดินทางโดยสารปกติแล้วต้องตรวจสอบพยากรณ์อากาศประจำวันก่อนออกจากบ้าน\n\nคำอธิบาย: คำวิเศษณ์บอกความถี่ (usually) จะต้องวางไว้ข้างหน้ากริยา 'have to' เสมอ (usually have to) ไม่สามารถแทรกกลางระหว่าง have และ to หรือวางไว้ข้างหลังได้"
+  },
+  {
+    "id": "q-40-hard1-3",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "hard1",
+    "question": "Under the new management policy, employees _______ required to work overtime without prior written consent.",
+    "options": [
+      "will seldom be",
+      "will be seldom",
+      "seldom will be",
+      "will be seldomly"
+    ],
+    "correct_answer": "will seldom be",
+    "explanation": "In sentences with a modal (will) and an auxiliary verb (be), the adverb of frequency (seldom) is placed between them. Note that 'seldomly' is non-standard, as 'seldom' is already an adverb.",
+    "explanation_th": "แปล: ภายใต้นโยบายการจัดการใหม่ พนักงานจะไม่ค่อยถูกขอให้ทำงานล่วงเวลาโดยไม่มีการยินยอมเป็นลายลักษณ์อักษรล่วงหน้า\n\nคำอธิบาย: ในประโยคที่มี modal verb (will) และ auxiliary verb (be) คำวิเศษณ์บอกความถี่ (seldom) จะต้องวางอยู่ระหว่างคำกริยาทั้งสองตัวนี้ (will seldom be) นอกจากนี้ 'seldomly' เป็นรูปคำที่ไม่มีในภาษาอังกฤษมาตรฐาน เนื่องจาก 'seldom' เป็นคำวิเศษณ์ในตัวเองอยู่แล้ว"
+  },
+  {
+    "id": "q-40-hard1-4",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "hard1",
+    "question": "Before the digital age, people _______ write letters to keep in touch with their relatives abroad.",
+    "options": [
+      "often used to",
+      "used to often",
+      "used often to",
+      "often did use to"
+    ],
+    "correct_answer": "often used to",
+    "explanation": "In formal English, adverbs of frequency are positioned before 'used to'.",
+    "explanation_th": "แปล: ก่อนยุคดิจิทัล ผู้คนมักจะเขียนจดหมายเพื่อติดต่อกับญาติที่อยู่ต่างประเทศเป็นประจำ\n\nคำอธิบาย: ในภาษาอังกฤษแบบทางการ คำวิเศษณ์บอกความถี่ (often) จะถูกจัดวางไว้หน้าโครงสร้าง 'used to' (often used to) เสมอ"
+  },
+  {
+    "id": "q-40-hard1-5",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "hard1",
+    "question": "Although she is a highly accomplished pianist, she _______ perform in public due to her severe stage fright.",
+    "options": [
+      "rarely does",
+      "does rarely",
+      "rarely doesn't",
+      "doesn't rarely"
+    ],
+    "correct_answer": "rarely does",
+    "explanation": "In this sentence, 'does' acts as an emphatic auxiliary verb. The negative adverb 'rarely' must precede the auxiliary 'does'. Using 'rarely doesn't' creates an incorrect double negative.",
+    "explanation_th": "แปล: แม้ว่าเธอจะเป็นนักเปียโนที่ประสบความสำเร็จอย่างสูง แต่เธอก็ไม่ค่อยแสดงในที่สาธารณะเนื่องจากอาการประหม่าเวทีอย่างรุนแรง\n\nคำอธิบาย: ในที่นี้ 'does' ทำหน้าที่เป็นกริยาช่วยเพื่อเน้นย้ำ (emphatic) หน้ากริยาแท้ 'perform' โดยคำวิเศษณ์ปฏิเสธ 'rarely' (ไม่ค่อยมี/แทบจะไม่) จะต้องวางอยู่หน้ากริยาช่วยตัวนี้ ส่วน 'rarely doesn't' เป็นข้อผิดพลาดประเภทปฏิเสธซ้อนปฏิเสธ"
+  },
+  {
+    "id": "q-40-hard1-6",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "hard1",
+    "question": "The quality control team emphasized that the machinery _______ calibrated before starting any production cycle.",
+    "options": [
+      "must always be",
+      "always must be",
+      "must be always",
+      "be must always"
+    ],
+    "correct_answer": "must always be",
+    "explanation": "With a modal verb (must) and the auxiliary verb (be) in passive voice, the adverb of frequency (always) must be placed between the modal and the auxiliary.",
+    "explanation_th": "แปล: ทีมควบคุมคุณภาพเน้นย้ำว่าเครื่องจักรจะต้องได้รับการปรับเทียบเสมอก่อนที่จะเริ่มรอบการผลิตใด ๆ\n\nคำอธิบาย: ในโครงสร้างประโยคที่มี modal verb (must) และ auxiliary verb 'be' คำวิเศษณ์บอกความถี่ (always) จะต้องแทรกอยู่ตรงกลางระหว่างกริยาทั้งสองตัวนี้ คือ 'must always be' เสมอ"
+  },
+  {
+    "id": "q-40-hard1-7",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "hard1",
+    "question": "Having lived in London for a decade, Clara _______ carrying an umbrella with her everywhere she goes.",
+    "options": [
+      "is usually used to",
+      "usually is used to",
+      "used to usually",
+      "is used to usually"
+    ],
+    "correct_answer": "is usually used to",
+    "explanation": "'Be used to + gerund' means 'to be accustomed to'. Since 'is' is the verb 'to be', the adverb of frequency 'usually' must come immediately after it.",
+    "explanation_th": "แปล: หลังจากอาศัยอยู่ในลอนดอนมานานทศวรรษ คลาร่ามักจะคุ้นเคยกับการพกพกร่มไปด้วยทุกที่ที่เธอไป\n\nคำอธิบาย: โครงสร้าง 'be used to + V.ing' แปลว่า คุ้นเคยกับ... ซึ่ง 'is' ทำหน้าที่เป็น verb to be ดังนั้นคำวิเศษณ์บอกความถี่ (usually) จะต้องวางอยู่หลัง verb to be ตัวแรกทันที จึงได้โครงสร้างที่ถูกต้องคือ 'is usually used to'"
+  },
+  {
+    "id": "q-40-hard1-8",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "hard1",
+    "question": "The security system is so advanced that unauthorized access to the server room _______.",
+    "options": [
+      "is hardly ever detected late",
+      "hardly ever is detected late",
+      "is detected hardly ever late",
+      "hardly is ever detected late"
+    ],
+    "correct_answer": "is hardly ever detected late",
+    "explanation": "In a passive voice construction (is + past participle), the adverbial phrase of frequency (hardly ever) is placed after the verb 'to be' (is) and before the past participle (detected).",
+    "explanation_th": "แปล: ระบบรักษาความปลอดภัยมีความก้าวหน้ามากจนการเข้าถึงห้องเซิร์ฟเวอร์โดยไม่ได้รับอนุญาตแทบจะไม่เคยถูกตรวจพบช้าเลย\n\nคำอธิบาย: ในประโยค passive voice (is + V.3) คำวิเศษณ์บอกความถี่ที่มีความหมายปฏิเสธอย่าง 'hardly ever' จะต้องวางอยู่หลัง verb to be (is) และอยู่หน้ากริยาช่อง 3 (detected) โครงสร้าง 'is hardly ever detected' จึงถูกต้องที่สุด"
+  },
+  {
+    "id": "q-40-hard1-9",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "hard1",
+    "question": "Since the new software update was installed, we _______ encountered any system crashes or performance lag.",
+    "options": [
+      "have hardly ever",
+      "haven't hardly ever",
+      "have never not",
+      "hardly ever have"
+    ],
+    "correct_answer": "have hardly ever",
+    "explanation": "In the present perfect tense (have + V.3), the adverb 'hardly ever' goes between 'have' and the past participle 'encountered'. 'Haven't hardly ever' is incorrect because it contains a double negative.",
+    "explanation_th": "แปล: ตั้งแต่ติดตั้งการอัปเดตซอฟต์แวร์ใหม่ เราแทบจะไม่เคยพบกับระบบล่มหรือความล่าช้าในการทำงานเลย\n\nคำอธิบาย: ในโครงสร้าง Present Perfect Tense (have/has + V.3) คำวิเศษณ์บอกความถี่ 'hardly ever' จะต้องแทรกระหว่าง have และกริยาช่อง 3 (encountered) ส่วน 'haven't hardly ever' ผิดเนื่องจากปฏิเสธซ้อนปฏิเสธ และ 'hardly ever have' วางตำแหน่งสลับที่กัน"
+  },
+  {
+    "id": "q-40-hard2-0",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "hard2",
+    "question": "The university's policy guidelines _______ updated by the administrative board, ensuring compliance with state regulations.",
+    "options": [
+      "have routinely been",
+      "routinely have been",
+      "have been routinely",
+      "been routinely have"
+    ],
+    "correct_answer": "have routinely been",
+    "explanation": "In formal English, when a verb phrase contains multiple auxiliary verbs (e.g., 'have been' in the present perfect passive), the adverb of frequency is most naturally and formally placed immediately after the first auxiliary verb.",
+    "explanation_th": "แปล: แนวปฏิบัตินโยบายของมหาวิทยาลัยได้รับการปรับปรุงอย่างเป็นประจำโดยคณะกรรมการบริหาร เพื่อให้มั่นใจว่าเป็นไปตามข้อบังคับของรัฐ\n\nคำอธิบาย: ในโครงสร้างประโยคที่มีกริยาช่วยมากกว่าหนึ่งตัว (ในที่นี้คือ have และ been ในรูป Present Perfect Passive) ตำแหน่งที่ถูกต้องและเป็นทางการที่สุดของ Adverb of Frequency (routinely) คือการวางไว้หลังกริยาช่วยตัวแรกสุด ดังนั้น 'have routinely been' จึงเป็นคำตอบที่ถูกต้องที่สุดตามหลักไวยากรณ์ภาษาอังกฤษที่เป็นทางการ"
+  },
+  {
+    "id": "q-40-hard2-1",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "hard2",
+    "question": "Given his meticulous nature, the lead researcher _______ overlooks minor discrepancies in the statistical data.",
+    "options": [
+      "hardly ever",
+      "doesn't rarely",
+      "does seldom",
+      "hardly never"
+    ],
+    "correct_answer": "hardly ever",
+    "explanation": "'Hardly ever' is a negative adverb of frequency meaning 'almost never' and is paired with a positive verb. Combining 'doesn't' with 'rarely' or 'hardly' with 'never' results in a double negative, which is grammatically incorrect.",
+    "explanation_th": "แปล: เนื่องจากธรรมชาติที่พิถีพิถันของเขา หัวหน้านักวิจัยแทบจะไม่เคยละเลยความคลาดเคลื่อนเล็กๆ น้อยๆ ในข้อมูลทางสถิติเลย\n\nคำอธิบาย: 'Hardly ever' มีความหมายเชิงปฏิเสธในตัวเองแปลว่า 'แทบจะไม่เคย' จึงต้องใช้กับคำกริยาบอกเล่า (overlooks) การใช้ตัวเลือกอื่นอย่าง 'doesn't rarely' หรือ 'hardly never' จะทำให้เกิดโครงสร้างปฏิเสธซ้อนปฏิเสธ (Double Negative) ซึ่งผิดหลักไวยากรณ์"
+  },
+  {
+    "id": "q-40-hard2-2",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "hard2",
+    "question": "Before the digital transition, archives of this scale _______ be updated manually by a team of dedicated clerks.",
+    "options": [
+      "would typically",
+      "typically would to",
+      "use to typically",
+      "would typical"
+    ],
+    "correct_answer": "would typically",
+    "explanation": "To express past habits or frequency, we use 'would' + adverb of frequency + bare infinitive. 'Would typically' is the correct syntactic order. 'Typically' must modify the verb, and 'would' cannot be followed by 'to'.",
+    "explanation_th": "แปล: ก่อนการเปลี่ยนผ่านสู่ระบบดิจิทัล เอกสารจดหมายเหตุที่มีขนาดใหญ่เช่นนี้มักจะถูกจัดเก็บและปรับปรุงด้วยมือโดยทีมเสมียนที่มีความทุ่มเท\n\nคำอธิบาย: เมื่อต้องการพูดถึงพฤติกรรมหรือเหตุการณ์ที่เกิดขึ้นบ่อยครั้งในอดีต เราสามารถใช้ 'would + Adverb of Frequency + กริยาฐาน (infinitive without to)' ได้ โครงสร้าง 'would typically' จึงถูกต้องที่สุด ส่วน 'typically would to' ผิดเพราะหลัง would ต้องไม่ตามด้วย to และ 'use to typically' ผิดหลักโครงสร้าง used to"
+  },
+  {
+    "id": "q-40-hard2-3",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "hard2",
+    "question": "Scholars _______ agree on the exact origins of this manuscript, as historical records remain highly fragmented.",
+    "options": [
+      "seldom",
+      "don't seldom",
+      "seldom don't",
+      "seldom do"
+    ],
+    "correct_answer": "seldom",
+    "explanation": "'Seldom' is a negative adverb of frequency that negates the verb 'agree' on its own. Using 'don't' with 'seldom' creates an ungrammatical double negative. 'Seldom do' is only used in inversion at the beginning of a sentence, not in mid-position.",
+    "explanation_th": "แปล: นักวิชาการแทบจะไม่เคยเห็นพ้องต้องกันเกี่ยวกับต้นกำเนิดที่แท้จริงของต้นฉบับโบราณนี้ เนื่องจากบันทึกทางประวัติศาสตร์ยังคงกระจัดกระจายอย่างมาก\n\nคำอธิบาย: 'Seldom' (นานๆ ครั้ง/แทบจะไม่) เป็น Adverb of Frequency ที่มีความหมายเชิงปฏิเสธในตัวมันเองอยู่แล้ว จึงสามารถใช้นำหน้ากริยาแท้ 'agree' ได้ทันทีโดยไม่ต้องพึ่งคำปฏิเสธอื่น การใช้ 'don't seldom' หรือ 'seldom don't' ถือเป็นปฏิเสธซ้อนปฏิเสธซึ่งผิดไวยากรณ์"
+  },
+  {
+    "id": "q-40-hard2-4",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "hard2",
+    "question": "Peer-reviewed journals _______ rigorous in their vetting processes, but occasional editorial oversights still occur.",
+    "options": [
+      "are almost always",
+      "almost always are",
+      "are always almost",
+      "always are almost"
+    ],
+    "correct_answer": "are almost always",
+    "explanation": "Adverbs of frequency must be placed after the verb 'to be' (are). In this case, 'almost' is an adverb of degree modifying 'always', so 'almost always' acts as a single frequency unit and must follow 'are'.",
+    "explanation_th": "แปล: วารสารที่ผ่านการประเมินโดยผู้ทรงคุณวุฒิมักจะมีความเข้มงวดในกระบวนการตรวจสอบอย่างยิ่ง แต่การมองข้ามโดยกองบรรณาธิการก็ยังคงเกิดขึ้นบ้างเป็นครั้งคราว\n\nคำอธิบาย: ตามกฎไวยากรณ์ Adverb of Frequency ต้องวางอยู่ 'หลัง' Verb to be (is/am/are/was/were) ดังนั้น 'are' ต้องมาก่อนกลุ่มคำบอกความถี่ 'almost always' (เกือบจะตลอดเวลา) ตัวเลือก 'are almost always' จึงถูกต้องและเป็นธรรมชาติที่สุดในภาษาเขียนระดับวิชาการ"
+  },
+  {
+    "id": "q-40-hard2-5",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "hard2",
+    "question": "The academic senate convened _______ to discuss curriculum restructuring, maintaining a biweekly schedule throughout the semester.",
+    "options": [
+      "every other week",
+      "each other week",
+      "every two week",
+      "all other weeks"
+    ],
+    "correct_answer": "every other week",
+    "explanation": "'Every other week' is a common adverbial phrase of frequency meaning 'every two weeks' or 'biweekly'. 'Each other week' is non-standard, and 'every two week' is ungrammatical because 'two' requires the plural noun 'weeks'.",
+    "explanation_th": "แปล: สภาวิชาการจัดประชุมสัปดาห์เว้นสัปดาห์เพื่อหารือเกี่ยวกับการปรับโครงสร้างหลักสูตร โดยรักษาตารางเวลาการประชุมทุกสองสัปดาห์ตลอดภาคการศึกษา\n\nคำอธิบาย: วลี 'every other week' เป็นสำนวนบอกความถี่หมายถึง 'สัปดาห์เว้นสัปดาห์' หรือ 'ทุกๆ สองสัปดาห์' (ตรงกับคำว่า biweekly ในประโยค) ส่วน 'every two week' ผิดไวยากรณ์เพราะหลังเลขสอง (two) คำนามต้องเป็นพหูพจน์ (weeks)"
+  },
+  {
+    "id": "q-40-hard2-6",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "hard2",
+    "question": "Economists _______ argued that market deregulation leads to short-term growth but long-term instability.",
+    "options": [
+      "have frequently",
+      "frequently have",
+      "have been frequently",
+      "frequently have been"
+    ],
+    "correct_answer": "have frequently",
+    "explanation": "In the present perfect tense ('have argued'), the frequency adverb 'frequently' is positioned between the auxiliary 'have' and the past participle 'argued'. 'Have been frequently' is passive or continuous, which does not fit the active voice required by the context.",
+    "explanation_th": "แปล: นักเศรษฐศาสตร์ได้โต้แย้งอยู่บ่อยครั้งว่าการลดการควบคุมของตลาดนำไปสู่การเติบโตในระยะสั้นแต่ความไม่มั่นคงในระยะยาว\n\nคำอธิบาย: ในประโยค Present Perfect Tense ที่เป็น Active Voice (have/has + V.3) ตำแหน่งของ Adverb of Frequency (frequently) จะอยู่ตรงกลางระหว่างกริยาช่วย 'have' และกริยาช่อง 3 'argued' ดังนั้น 'have frequently' จึงเป็นโครงสร้างที่ถูกต้องที่สุด"
+  },
+  {
+    "id": "q-40-hard2-7",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "hard2",
+    "question": "Environmental scientists warn that ecosystems _______ fully recover once a tipping point has been breached.",
+    "options": [
+      "may never",
+      "never may",
+      "may not never",
+      "might never not"
+    ],
+    "correct_answer": "may never",
+    "explanation": "Adverbs of frequency like 'never' should be placed after modal auxiliary verbs like 'may'. 'May not never' constitutes a double negative, which is grammatically incorrect in standard English.",
+    "explanation_th": "แปล: นักวิทยาศาสตร์สิ่งแวดล้อมเตือนว่าระบบนิเวศอาจไม่มีวันฟื้นตัวได้อย่างสมบูรณ์เมื่อจุดเปลี่ยนวิกฤตได้ถูกละเมิดไปแล้ว\n\nคำอธิบาย: Adverb of frequency (never) ต้องวางไว้ 'หลัง' กริยาช่วยประเภท Modal verbs เช่น may, can, should ดังนั้นจึงต้องเรียงเป็น 'may never' ส่วน 'may not never' เป็นการใช้ปฏิเสธซ้อนปฏิเสธ ซึ่งผิดหลักไวยากรณ์ภาษาอังกฤษ"
+  },
+  {
+    "id": "q-40-hard2-8",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "hard2",
+    "question": "Due to the dry climate, this region _______ experiences heavy snowfall, even during the peak of winter.",
+    "options": [
+      "scarcely ever",
+      "scarcely never",
+      "ever scarcely",
+      "never scarcely"
+    ],
+    "correct_answer": "scarcely ever",
+    "explanation": "'Scarcely ever' is a standard adverbial phrase meaning 'rarely' or 'almost never'. Since 'scarcely' already has a negative connotation, pairing it with 'never' creates an incorrect double negative.",
+    "explanation_th": "แปล: เนื่องจากภูมิอากาศที่แห้งแล้ง ภูมิภาคนี้จึงแทบจะไม่เคยมีหิมะตกหนักเลย แม้ในช่วงจุดสูงสุดของฤดูหนาวก็ตาม\n\nคำอธิบาย: 'Scarcely ever' เป็นกลุ่มคำคุณศัพท์บอกความถี่ที่มีความหมายว่า 'แทบจะไม่เคย' (เกือบเท่ากับ rarely/seldom) ซึ่งเป็นรูปที่ถูกต้องตามหลักไวยากรณ์ การใช้ 'scarcely never' ถือเป็นข้อผิดพลาดประเภทปฏิเสธซ้อน (Double Negative) เนื่องจากทั้งสองคำมีความหมายเป็นปฏิเสธอยู่แล้ว"
+  },
+  {
+    "id": "q-40-hard2-9",
+    "unit_id": 40,
+    "unit_number": 40,
+    "level_id": "hard2",
+    "question": "While she is a brilliant strategist, her decisions _______ align with the conservative expectations of the board.",
+    "options": [
+      "do not always",
+      "always do not",
+      "do always not",
+      "not always do"
+    ],
+    "correct_answer": "do not always",
+    "explanation": "To express partial negation (meaning something happens sometimes but not all the time), the correct word order is 'do/does not + always + verb'. Placing 'always' before 'do not' changes the meaning to 'never' and is syntactically awkward in this context.",
+    "explanation_th": "แปล: แม้ว่าเธอจะเป็นนักยุทธศาสตร์ที่ปราดเปรื่อง แต่การตัดสินใจของเธอก็ไม่ได้สอดคล้องกับความคาดหวังแบบอนุรักษนิยมของคณะกรรมการเสมอไป\n\nคำอธิบาย: ในการปฏิเสธแบบบางส่วน (Partial Negation) เพื่อบอกว่าเหตุการณ์ไม่ได้เกิดขึ้นตลอดเวลา (not 100% of the time) เราจะใช้โครงสร้าง 'do/does/did + not + always + กริยาแท้' ดังนั้น 'do not always' จึงเป็นคำตอบที่ถูกต้องตามหลักไวยากรณ์และบริบทของประโยคนี้"
+  },
+  {
+    "id": "q-41-easy-0",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "easy",
+    "question": "My uncle has lived in Bangkok ___ ten years.",
+    "options": [
+      "for",
+      "since",
+      "ago",
+      "yet"
+    ],
+    "correct_answer": "for",
+    "explanation": "'For' is used with a period of time (duration) to show how long something has lasted. 'Ten years' is a duration, so 'for' is the correct choice.",
+    "explanation_th": "แปล: คุณลุงของฉันอาศัยอยู่ในกรุงเทพฯ มาเป็นเวลาสิบปีแล้ว\n\nคำอธิบาย: 'for' ใช้เพื่อบอกช่วงระยะเวลา (duration of time) เช่น 'ten years' (สิบปี) ในขณะที่ 'since' จะใช้บอกจุดเริ่มต้นของเวลา"
+  },
+  {
+    "id": "q-41-easy-1",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "easy",
+    "question": "She has been a teacher ___ 2018.",
+    "options": [
+      "since",
+      "for",
+      "ago",
+      "already"
+    ],
+    "correct_answer": "since",
+    "explanation": "'Since' is used to refer to a specific starting point in time in the past. '2018' is a specific starting year.",
+    "explanation_th": "แปล: เธอเป็นครูมาตั้งแต่ปี 2018\n\nคำอธิบาย: 'since' ใช้บอกจุดเริ่มต้นของเวลา (starting point of time) เช่น '2018' (ปี ค.ศ. 2018)"
+  },
+  {
+    "id": "q-41-easy-2",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "easy",
+    "question": "They finished their high school exam two days ___.",
+    "options": [
+      "ago",
+      "since",
+      "for",
+      "already"
+    ],
+    "correct_answer": "ago",
+    "explanation": "'Ago' is used to show how far back in the past something happened. It is used with the Past Simple tense ('finished') and is placed after the time expression ('two days').",
+    "explanation_th": "แปล: พวกเขาสอบปลายภาคของมัธยมปลายเสร็จเมื่อสองวันก่อน\n\nคำอธิบาย: 'ago' แปลว่า 'ล่วงมาแล้ว/ก่อนหน้านี้' ใช้บอกเวลาในอดีตกับ Past Simple Tense โดยจะวางอยู่หลังคำบอกเวลา เช่น 'two days ago' (สองวันก่อน)"
+  },
+  {
+    "id": "q-41-easy-3",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "easy",
+    "question": "I am very hungry because I haven't eaten lunch ___.",
+    "options": [
+      "yet",
+      "already",
+      "just",
+      "since"
+    ],
+    "correct_answer": "yet",
+    "explanation": "'Yet' is commonly used at the end of negative sentences in the Present Perfect tense to show that something has not happened up to now.",
+    "explanation_th": "แปล: ฉันหิวมากเพราะฉันยังไม่ได้กินข้าวกลางวันเลย\n\nคำอธิบาย: 'yet' แปลว่า 'ยัง (ไม่ได้ทำ)' มักใช้ในประโยคปฏิเสธของ Present Perfect Tense และนิยมวางไว้ท้ายประโยค"
+  },
+  {
+    "id": "q-41-easy-4",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "easy",
+    "question": "Watch out! The floor is wet. Jane has ___ washed it.",
+    "options": [
+      "just",
+      "yet",
+      "ago",
+      "still"
+    ],
+    "correct_answer": "just",
+    "explanation": "'Just' is used in the Present Perfect tense to show that an action has happened very recently. It is placed between the auxiliary verb 'has/have' and the past participle.",
+    "explanation_th": "แปล: ระวังนะ! พื้นเปียกอยู่ เจนเพิ่งจะถูมันเสร็จ\n\nคำอธิบาย: 'just' แปลว่า 'เพิ่งจะ' ใช้บอกเหตุการณ์ที่เพิ่งเกิดขึ้นเสร็จสิ้นใหม่ๆ มักวางอยู่ระหว่าง has/have และกริยาช่อง 3 (washed)"
+  },
+  {
+    "id": "q-41-easy-5",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "easy",
+    "question": "You don't need to wash the dishes. I have ___ washed them.",
+    "options": [
+      "already",
+      "yet",
+      "still",
+      "ago"
+    ],
+    "correct_answer": "already",
+    "explanation": "'Already' is used in positive sentences to show that an action has been completed earlier than expected. It goes between 'have' and the past participle 'washed'.",
+    "explanation_th": "แปล: คุณไม่จำเป็นต้องล้างจานหรอก ฉันล้างพวกมันเรียบร้อยแล้ว\n\nคำอธิบาย: 'already' แปลว่า 'เรียบร้อยแล้ว' ใช้ในประโยคบอกเล่าเพื่อเน้นย้ำว่าการกระทำนั้นเสร็จสมบูรณ์แล้ว มักวางไว้หน้ากริยาช่อง 3"
+  },
+  {
+    "id": "q-41-easy-6",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "easy",
+    "question": "It is 10:00 PM, but Myra is ___ doing her homework.",
+    "options": [
+      "still",
+      "yet",
+      "already",
+      "since"
+    ],
+    "correct_answer": "still",
+    "explanation": "'Still' is used to show that an action is continuing and has not finished, especially when it is expected to have finished earlier.",
+    "explanation_th": "แปล: นี่เป็นเวลาสี่ทุ่มแล้ว แต่ไมร่ายังคงทำการบ้านของเธออยู่\n\nคำอธิบาย: 'still' แปลว่า 'ยังคง' ใช้เพื่ออธิบายเหตุการณ์หรือสถานการณ์ที่ยังคงดำเนินต่อเนื่องอยู่และยังไม่สิ้นสุด"
+  },
+  {
+    "id": "q-41-easy-7",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "easy",
+    "question": "We waited at the bus stop ___ half an hour this morning.",
+    "options": [
+      "for",
+      "since",
+      "ago",
+      "yet"
+    ],
+    "correct_answer": "for",
+    "explanation": "'Half an hour' is a duration of time, so 'for' is used to express how long the waiting lasted.",
+    "explanation_th": "แปล: พวกเราตั้งตารออยู่ที่ป้ายรถเมล์เป็นเวลาครึ่งชั่วโมงเมื่อเช้านี้\n\nคำอธิบาย: 'for' ใช้กับคำบอกช่วงระยะเวลา เช่น 'half an hour' (ครึ่งชั่วโมง)"
+  },
+  {
+    "id": "q-41-easy-8",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "easy",
+    "question": "Have you finished reading that new comic book ___?",
+    "options": [
+      "yet",
+      "still",
+      "ago",
+      "just"
+    ],
+    "correct_answer": "yet",
+    "explanation": "'Yet' is used at the end of questions in the Present Perfect tense to ask if an expected action has been completed.",
+    "explanation_th": "แปล: คุณอ่านหนังสือการ์ตูนเล่มใหม่นั้นจบหรือยัง?\n\nคำอธิบาย: 'yet' ในประโยคคำถาม แปลว่า 'หรือยัง' มักวางไว้ท้ายประโยคเพื่อถามว่าเหตุการณ์นั้นทำเสร็จหรือยัง"
+  },
+  {
+    "id": "q-41-easy-9",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "easy",
+    "question": "Peter hasn't played video games ___ he started his new job.",
+    "options": [
+      "since",
+      "for",
+      "ago",
+      "already"
+    ],
+    "correct_answer": "since",
+    "explanation": "'Since' can be followed by a specific time clause (using Past Simple, e.g., 'he started his new job') to show the starting point of an action.",
+    "explanation_th": "แปล: ปีเตอร์ไม่ได้เล่นวิดีโอเกมเลยตั้งแต่เขาเริ่มงานใหม่\n\nคำอธิบาย: 'since' (ตั้งแต่) สามารถนำหน้าประโยคย่อยที่เป็นจุดเริ่มต้นของเวลาในอดีต (มักใช้โครงสร้าง Past Simple: S + V.2 เช่น 'he started')"
+  },
+  {
+    "id": "q-41-medium1-0",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "medium1",
+    "question": "Sarah has lived in Bangkok ___ her family moved from Chiang Mai in 2018.",
+    "options": [
+      "since",
+      "for",
+      "ago",
+      "yet"
+    ],
+    "correct_answer": "since",
+    "explanation": "'Since' is used to indicate the starting point of an action or state that continues into the present. It is followed by a specific time or a clause in the Past Simple tense ('her family moved...').",
+    "explanation_th": "แปล: ซาร่าอาศัยอยู่ในกรุงเทพฯ ตั้งแต่ครอบครัวของเธอย้ายมาจากเชียงใหม่ในปี 2018\n\nคำอธิบาย: ใช้ 'since' เพื่อระบุจุดเริ่มต้นของเหตุการณ์ในอดีตที่ดำเนินมาจนถึงปัจจุบัน โดยในที่นี้ตามด้วยประโยค Past Simple (her family moved...) ซึ่งทำหน้าที่เป็นจุดเริ่มต้นของเวลา ส่วน 'for' ใช้กับช่วงระยะเวลา และ 'ago' ใช้ระบุจุดเวลาในอดีต (วางท้ายคำบอกเวลา)"
+  },
+  {
+    "id": "q-41-medium1-1",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "medium1",
+    "question": "We haven't received the package from the online store ___, so we should check the tracking number.",
+    "options": [
+      "yet",
+      "already",
+      "still",
+      "just"
+    ],
+    "correct_answer": "yet",
+    "explanation": "'Yet' is commonly used at the end of negative sentences in the Present Perfect tense to show that something expected has not happened up to now.",
+    "explanation_th": "แปล: พวกเรายังไม่ได้รับพัสดุจากร้านค้าออนไลน์เลย ดังนั้นพวกเราควรเช็กหมายเลขติดตามพัสดุ\n\nคำอธิบาย: ใช้ 'yet' ในประโยคปฏิเสธ (haven't received) โดยมักจะวางไว้ท้ายประโยค เพื่อแสดงว่าเหตุการณ์นั้นยังไม่เกิดขึ้นแต่คาดว่าจะเกิดขึ้น ส่วน 'already' และ 'just' มักใช้ในประโยคบอกเล่า และ 'still' จะวางหน้ากริยาปฏิเสธ (still haven't)"
+  },
+  {
+    "id": "q-41-medium1-2",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "medium1",
+    "question": "The train left the station ten minutes ___, so you will have to wait for the next one.",
+    "options": [
+      "ago",
+      "since",
+      "for",
+      "already"
+    ],
+    "correct_answer": "ago",
+    "explanation": "'Ago' is used with the Past Simple tense (left) to show how far back in the past something happened. It is placed after the time expression ('ten minutes').",
+    "explanation_th": "แปล: รถไฟออกเดินทางจากสถานีไปเมื่อสิบนาทีที่แล้ว ดังนั้นคุณจึงต้องรอขบวนถัดไป\n\nคำอธิบาย: ใช้ 'ago' ร่วมกับ Past Simple Tense (left) เพื่อบอกว่าเหตุการณ์เกิดขึ้นผ่านมานานเท่าใดแล้ว โดยตำแหน่งของ 'ago' จะอยู่หลังคำระบุช่วงเวลา (ten minutes ago)"
+  },
+  {
+    "id": "q-41-medium1-3",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "medium1",
+    "question": "I ___ haven't decided which university I want to apply to, even though the deadline is next week.",
+    "options": [
+      "still",
+      "yet",
+      "already",
+      "just"
+    ],
+    "correct_answer": "still",
+    "explanation": "'Still' is used in negative sentences to emphasize that something is continuing to not happen. In Present Perfect negative sentences, it is placed before the negative auxiliary verb ('haven't').",
+    "explanation_th": "แปล: ฉันยังไม่ได้ตัดสินใจเลยว่าจะสมัครเรียนที่มหาวิทยาลัยไหนดี ทั้งที่วันปิดรับสมัครคือสัปดาห์หน้าแล้ว\n\nคำอธิบาย: 'still' ใช้เพื่อเน้นย้ำว่าสถานการณ์หรือการกระทำนั้นยังคงไม่เกิดขึ้นและยังไม่เปลี่ยนแปลง โดยในประโยคปฏิเสธ Present Perfect จะวาง 'still' ไว้หน้ากริยาช่วย (still haven't) ต่างจาก 'yet' ที่มักวางไว้ท้ายประโยค"
+  },
+  {
+    "id": "q-41-medium1-4",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "medium1",
+    "question": "Look! The bus has ___ arrived, so we don't have to wait in the rain anymore.",
+    "options": [
+      "just",
+      "yet",
+      "ago",
+      "still"
+    ],
+    "correct_answer": "just",
+    "explanation": "'Just' is used in the Present Perfect tense to indicate that an action was completed a very short time ago. It is placed between 'has/have' and the past participle.",
+    "explanation_th": "แปล: ดูนั่นสิ! รถบัสเพิ่งจะมาถึง ดังนั้นพวกเราจึงไม่ต้องยืนรอท่ามกลางสายฝนอีกต่อไป\n\nคำอธิบาย: ใช้ 'just' เพื่อบอกว่าเหตุการณ์เพิ่งจะเกิดขึ้นและเสร็จสิ้นไปเมื่อครู่ใหญ่ๆ นี้เอง โดยโครงสร้างคือ has/have + just + V.3"
+  },
+  {
+    "id": "q-41-medium1-5",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "medium1",
+    "question": "Mr. Smith has been working as an English teacher at this high school ___ more than ten years.",
+    "options": [
+      "for",
+      "since",
+      "ago",
+      "still"
+    ],
+    "correct_answer": "for",
+    "explanation": "'For' is used to express the duration or period of time that an action has lasted ('more than ten years').",
+    "explanation_th": "แปล: คุณสมิธทำงานเป็นครูสอนภาษาอังกฤษที่โรงเรียนมัธยมปลายแห่งนี้มาเป็นเวลามากกว่าสิบปีแล้ว\n\nคำอธิบาย: ใช้ 'for' นำหน้าช่วงเวลาหรือระยะเวลา (duration) เช่น 'more than ten years' เพื่อบอกว่าเหตุการณ์นั้นดำเนินมานานเท่าใดแล้ว ต่างจาก 'since' ที่ใช้บอกจุดเริ่มต้นของเวลา"
+  },
+  {
+    "id": "q-41-medium1-6",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "medium1",
+    "question": "Don't worry about buying lunch for me; I have ___ eaten a sandwich.",
+    "options": [
+      "already",
+      "yet",
+      "still",
+      "since"
+    ],
+    "correct_answer": "already",
+    "explanation": "'Already' is used in affirmative sentences in the Present Perfect tense to show that an action has been completed sooner than expected. It usually goes between 'have/has' and the past participle.",
+    "explanation_th": "แปล: ไม่ต้องกังวลเรื่องซื้ออาหารกลางวันให้ฉันนะ ฉันกินแซนด์วิชเรียบร้อยแล้ว\n\nคำอธิบาย: ใช้ 'already' ในประโยคบอกเล่าของ Present Perfect Tense เพื่อระบุว่าการกระทำนั้นเสร็จสิ้นไปเรียบร้อยแล้ว (มักเร็วกว่าที่คาดไว้) โดยจะวางอยู่ระหว่างกริยาช่วย (have) และกริยาช่อง 3 (eaten)"
+  },
+  {
+    "id": "q-41-medium1-7",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "medium1",
+    "question": "Have you finished writing your science report ___? The teacher wants us to submit it by noon.",
+    "options": [
+      "yet",
+      "already",
+      "just",
+      "ago"
+    ],
+    "correct_answer": "yet",
+    "explanation": "'Yet' is commonly used at the end of questions in the Present Perfect tense to ask if an action has been completed up to the present moment.",
+    "explanation_th": "แปล: คุณเขียนรายงานวิทยาศาสตร์เสร็จหรือยัง? คุณครูต้องการให้พวกเราส่งภายในเที่ยงวันนะ\n\nคำอธิบาย: ใช้ 'yet' วางไว้ท้ายประโยคคำถามใน Present Perfect Tense เพื่อถามว่าสิ่งที่คาดหวังนั้นได้เกิดขึ้นหรือทำเสร็จสิ้นหรือยัง"
+  },
+  {
+    "id": "q-41-medium1-8",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "medium1",
+    "question": "This family business has been famous for its delicious recipes ___ 1995.",
+    "options": [
+      "since",
+      "for",
+      "ago",
+      "already"
+    ],
+    "correct_answer": "since",
+    "explanation": "'Since' is used to refer back to a specific starting point in time (the year 1995) when the action or state began.",
+    "explanation_th": "แปล: ธุรกิจครอบครัวนี้มีชื่อเสียงในเรื่องสูตรอาหารที่แสนอร่อยมาตั้งแต่ปี 1995\n\nคำอธิบาย: ใช้ 'since' เพื่อระบุจุดเริ่มต้นของเวลา (specific point in time) ซึ่งในประโยคนี้คือปี ค.ศ. 1995 ส่วน 'for' จะใช้กับความยาวของช่วงเวลา เช่น 'for 20 years'"
+  },
+  {
+    "id": "q-41-medium1-9",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "medium1",
+    "question": "Although it is past midnight, my older sister is ___ studying for her final exams.",
+    "options": [
+      "still",
+      "yet",
+      "already",
+      "ago"
+    ],
+    "correct_answer": "still",
+    "explanation": "'Still' is used to say that an action or situation is continuing and has not stopped or changed, especially when this is surprising.",
+    "explanation_th": "แปล: แม้ว่าจะเลยเที่ยงคืนไปแล้ว พี่สาวของฉันก็ยังคงอ่านหนังสือสอบปลายภาคอยู่\n\nคำอธิบาย: ใช้ 'still' (ยังคง) เพื่อระบุว่าการกระทำนั้นยังคงดำเนินต่อเนื่องอยู่และยังไม่สิ้นสุด มักใช้ในประโยคบอกเล่าและวางไว้หลัง Verb to be (is still studying)"
+  },
+  {
+    "id": "q-41-medium2-0",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "medium2",
+    "question": "Nida has been studying for her final exams ___ last Monday, so she is feeling quite exhausted now.",
+    "options": [
+      "since",
+      "for",
+      "ago",
+      "already"
+    ],
+    "correct_answer": "since",
+    "explanation": "'since' is used to indicate the starting point of an action that began in the past and continues into the present (Present Perfect Continuous). 'last Monday' is a specific starting point in time.",
+    "explanation_th": "แปล: นิดาอ่านหนังสือเตรียมสอบปลายภาคมาตั้งแต่จันทร์ที่แล้ว ดังนั้นตอนนี้เธอเลยรู้สึกเหนื่อยล้ามาก\n\nคำอธิบาย: ใช้ 'since' เพื่อบอกจุดเริ่มต้นของเวลา (starting point) ในที่นี้คือ 'last Monday' (วันจันทร์ที่แล้ว) ซึ่งมักใช้คู่กับ Present Perfect หรือ Present Perfect Continuous ส่วน 'for' ใช้กับระยะเวลา (duration), 'ago' ใช้กับ Past Simple และ 'already' ใช้บอกว่าทำเสร็จสิ้นแล้ว"
+  },
+  {
+    "id": "q-41-medium2-1",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "medium2",
+    "question": "I have ___ booked our flight tickets to Chiang Mai, but I haven't found a suitable hotel ___.",
+    "options": [
+      "already / yet",
+      "yet / already",
+      "still / just",
+      "just / since"
+    ],
+    "correct_answer": "already / yet",
+    "explanation": "'already' is used in affirmative sentences to show that something has happened sooner than expected. 'yet' is used at the end of negative sentences or questions to show that something expected has not happened.",
+    "explanation_th": "แปล: ฉันจองตั๋วเครื่องบินไปเชียงใหม่เรียบร้อยแล้ว แต่ฉันยังหาโรงแรมที่เหมาะสมไม่ได้เลย\n\nคำอธิบาย: ในประช่องแรกเป็นประโยคบอกเล่า (have booked) จึงเหมาะสมที่จะใช้ 'already' เพื่อบอกว่าทำเสร็จเรียบร้อยแล้ว ส่วนช่องที่สองอยู่ท้ายประโยคปฏิเสธ (haven't found...) จึงต้องใช้ 'yet' เพื่อบอกว่า 'ยังไม่ได้ทำ'"
+  },
+  {
+    "id": "q-41-medium2-2",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "medium2",
+    "question": "The family moved to Bangkok five years ___, but they have only lived in this particular neighborhood ___ 2021.",
+    "options": [
+      "ago / since",
+      "ago / for",
+      "since / for",
+      "for / since"
+    ],
+    "correct_answer": "ago / since",
+    "explanation": "'ago' is used with the past simple tense ('moved') to express how far back in the past something happened. 'since' is used with the present perfect tense ('have lived') to indicate the starting point of the period (2021).",
+    "explanation_th": "แปล: ครอบครัวนี้ย้ายมาอยู่กรุงเทพฯ เมื่อห้าปีที่แล้ว แต่พวกเขาเพิ่งจะมาอาศัยอยู่ในย่านนี้ตั้งแต่ปี 2021\n\nคำอธิบาย: ช่องแรกใช้ 'ago' เพราะอยู่หลังคำบอกเวลา (five years) ในประโยค Past Simple ('moved') ส่วนช่องที่สองใช้ 'since' เนื่องจากอยู่หน้าจุดเริ่มต้นของปี ค.ศ. (2021) ในประโยค Present Perfect"
+  },
+  {
+    "id": "q-41-medium2-3",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "medium2",
+    "question": "Even though the teacher promised to grade the papers by yesterday, we ___ haven't received our scores.",
+    "options": [
+      "still",
+      "yet",
+      "already",
+      "since"
+    ],
+    "correct_answer": "still",
+    "explanation": "'still' is used in negative sentences before the auxiliary verb (haven't) to show that a situation is continuing and has not changed, especially when we expect it to have changed.",
+    "explanation_th": "แปล: แม้ว่าคุณครูจะสัญญาว่าจะตรวจข้อสอบให้เสร็จภายในเมื่อวานนี้ แต่พวกเราก็ยังไม่ได้รับคะแนนสอบเลย\n\nคำอธิบาย: 'still' ใช้ในประโยคปฏิเสธเพื่อเน้นย้ำว่าเหตุการณ์ที่ควรจะเปลี่ยนไปแล้วแต่ยังคงดำเนินอยู่ โดยจะวางไว้หน้ากริยาช่วย (still haven't) ต่างจาก 'yet' ที่มักจะวางไว้ท้ายประโยคปฏิเสธ"
+  },
+  {
+    "id": "q-41-medium2-4",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "medium2",
+    "question": "You are in luck! The meeting has ___ started, so you didn't miss anything important.",
+    "options": [
+      "just",
+      "ago",
+      "yet",
+      "still"
+    ],
+    "correct_answer": "just",
+    "explanation": "'just' is used with the present perfect tense (between 'has/have' and the past participle) to indicate that an action happened a very short time ago.",
+    "explanation_th": "แปล: คุณโชคดีมาก! การประชุมเพิ่งจะเริ่มต้นขึ้น ดังนั้นคุณจึงไม่ได้พลาดสิ่งสำคัญอะไรไปเลย\n\nคำอธิบาย: ใช้ 'just' วางไว้ระหว่างกริยาช่วย has และกริยาช่อง 3 (started) เพื่อแสดงว่าเหตุการณ์นั้น 'เพิ่งจะเกิดขึ้น' สดๆ ร้อนๆ"
+  },
+  {
+    "id": "q-41-medium2-5",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "medium2",
+    "question": "We have been waiting for the bus ___ nearly an hour, but it seems there is a huge traffic jam today.",
+    "options": [
+      "for",
+      "since",
+      "ago",
+      "already"
+    ],
+    "correct_answer": "for",
+    "explanation": "'for' is used to state the duration of an activity (how long it has lasted), which in this case is 'nearly an hour'.",
+    "explanation_th": "แปล: พวกเรารอรถประจำทางมาเกือบหนึ่งชั่วโมงแล้ว แต่ดูเหมือนว่าวันนี้การจราจรจะติดขัดอย่างหนัก\n\nคำอธิบาย: 'nearly an hour' (เกือบหนึ่งชั่วโมง) คือระยะเวลา (duration) ดังนั้นจึงต้องใช้คู่กับ 'for' ในขณะที่ 'since' จะใช้บอกจุดเริ่มต้นของเวลา"
+  },
+  {
+    "id": "q-41-medium2-6",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "medium2",
+    "question": "Have you finished your group project ___, or do you still need more time to work on it?",
+    "options": [
+      "yet",
+      "ago",
+      "still",
+      "since"
+    ],
+    "correct_answer": "yet",
+    "explanation": "'yet' is commonly used at the end of questions to ask if something that was expected has been completed.",
+    "explanation_th": "แปล: คุณทำรายงานกลุ่มเสร็จหรือยัง หรือว่าคุณยังต้องการเวลาเพิ่มอีกเพื่อทำมันให้เสร็จ\n\nคำอธิบาย: ใช้ 'yet' วางท้ายประโยคคำถามเพื่อถามถึงเหตุการณ์ที่คาดหวังว่าจะเกิดขึ้นหรือเสร็จสิ้นแล้วหรือยัง"
+  },
+  {
+    "id": "q-41-medium2-7",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "medium2",
+    "question": "It started raining early this morning and it is ___ pouring outside, so don't forget to take an umbrella.",
+    "options": [
+      "still",
+      "yet",
+      "already",
+      "ago"
+    ],
+    "correct_answer": "still",
+    "explanation": "'still' is used to show that an action is continuing in the present, especially with the continuous tense ('is still pouring').",
+    "explanation_th": "แปล: ฝนเริ่มตกตั้งแต่เช้าตรู่และตอนนี้ข้างนอกฝนก็ยังคงตกหนักอยู่ ดังนั้นอย่าลืมพกร่มไปด้วยนะ\n\nคำอธิบาย: ใช้ 'still' เพื่อบอกว่าเหตุการณ์นั้น 'ยังคง' ดำเนินอยู่ มักวางไว้หลัง Verb to be (is still pouring) เพื่อเน้นย้ำความต่อเนื่อง"
+  },
+  {
+    "id": "q-41-medium2-8",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "medium2",
+    "question": "Chai hasn't visited his hometown in Isan ___ he graduated from university three years ago.",
+    "options": [
+      "since",
+      "for",
+      "ago",
+      "still"
+    ],
+    "correct_answer": "since",
+    "explanation": "'since' can be used as a conjunction followed by a clause in the Simple Past tense ('he graduated...') to indicate the starting point of a situation that has continued until now.",
+    "explanation_th": "แปล: ชัยไม่ได้กลับไปเยี่ยมบ้านเกิดของเขาในภาคอีสานเลยตั้งแต่เขาเรียนจบมหาวิทยาลัยเมื่อสามปีที่แล้ว\n\nคำอธิบาย: 'since' ทำหน้าที่เป็นคำเชื่อม (conjunction) ตามด้วยอนุประโยคที่เป็นอดีต (Past Simple: he graduated...) เพื่อระบุเวลาเริ่มต้นของเหตุการณ์ใน Present Perfect (hasn't visited)"
+  },
+  {
+    "id": "q-41-medium2-9",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "medium2",
+    "question": "My computer is ___ updating its software; it hasn't finished the process ___.",
+    "options": [
+      "still / yet",
+      "already / still",
+      "just / already",
+      "yet / for"
+    ],
+    "correct_answer": "still / yet",
+    "explanation": "'still' goes before or after the auxiliary verb to show a continuing action (is still updating). 'yet' is placed at the end of the negative sentence to indicate that the expected action has not finished.",
+    "explanation_th": "แปล: คอมพิวเตอร์ของฉันยังคงอัปเดตซอฟต์แวร์อยู่ มันยังทำงานไม่เสร็จเลย\n\nคำอธิบาย: ช่องแรกใช้ 'still' ในประโยคบอกเล่าเพื่อสื่อถึงการกระทำที่กำลังดำเนินอยู่ (is still updating) ช่องที่สองใช้ 'yet' ท้ายประโยคปฏิเสธ (hasn't finished...) เพื่อแสดงความคาดหวังว่างานนั้นยังไม่เสร็จสิ้น"
+  },
+  {
+    "id": "q-41-hard1-0",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "hard1",
+    "question": "Although the deadline was extended twice, several departments ___ haven't submitted their annual budget reports.",
+    "options": [
+      "still",
+      "yet",
+      "already",
+      "since"
+    ],
+    "correct_answer": "still",
+    "explanation": "'Still' is used to show that an action is continuing, especially when it is unexpected. When used with negative verbs, 'still' must be placed before the auxiliary negative form (still haven't). 'Yet' would typically go at the end of the sentence (haven't submitted... yet).",
+    "explanation_th": "แปล: แม้ว่ากำหนดส่งจะถูกเลื่อนออกไปถึงสองครั้ง แต่หลายแผนกก็ยังไม่ได้ส่งรายงานงบประมาณประจำปี\n\nคำอธิบาย: 'still' ใช้เพื่อแสดงว่าเหตุการณ์หรือสถานการณ์ยังคงดำเนินอยู่ (โดยเฉพาะเมื่อเป็นเรื่องที่น่าประหลาดใจหรือไม่ควรจะเป็น) เมื่อใช้ในประโยคปฏิเสธ 'still' จะต้องวางไว้หน้ากริยาช่วยปฏิเสธ (still haven't) ในขณะที่ 'yet' มักจะวางไว้ท้ายประโยค"
+  },
+  {
+    "id": "q-41-hard1-1",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "hard1",
+    "question": "The archaeological team discovered the ruins of the ancient temple ten years ___ when they were surveying the valley.",
+    "options": [
+      "ago",
+      "since",
+      "for",
+      "already"
+    ],
+    "correct_answer": "ago",
+    "explanation": "'Ago' is used to refer to a completed action at a specific time in the past. It is used with the Simple Past tense ('discovered') and is placed after a period of time ('ten years').",
+    "explanation_th": "แปล: ทีมโบราณคดีได้ค้นพบซากปรักหักพังของวิหารโบราณเมื่อสิบปีที่แล้วตอนที่พวกเขากำลังสำรวจหุบเขา\n\nคำอธิบาย: 'ago' ใช้เพื่ออ้างถึงเหตุการณ์ที่สิ้นสุดลงแล้วในอดีต มักใช้คู่กับ Past Simple Tense ('discovered') โดยจะวางไว้หลังกลุ่มคำบอกช่วงเวลา ('ten years')"
+  },
+  {
+    "id": "q-41-hard1-2",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "hard1",
+    "question": "It is only 8:00 AM, but Mr. Harrison has ___ replied to all fifty inquiries from the overseas clients.",
+    "options": [
+      "already",
+      "yet",
+      "still",
+      "just now"
+    ],
+    "correct_answer": "already",
+    "explanation": "'Already' is used in affirmative sentences to show that an action has happened sooner than expected. It is positioned between the auxiliary verb 'has' and the past participle 'replied'. 'Yet' is typically used in negative or interrogative sentences.",
+    "explanation_th": "แปล: นี่เพิ่งจะเวลา 8:00 น. เท่านั้น แต่คุณแฮร์ริสันได้ตอบกลับคำถามทั้งหมดห้าสิบข้อจากลูกค้าต่างประเทศเรียบร้อยแล้ว\n\nคำอธิบาย: 'already' (เรียบร้อยแล้ว) ใช้ในประโยคบอกเล่าเพื่อแสดงว่าการกระทำนั้นเกิดขึ้นเร็วกว่าที่คาดไว้ โดยจะวางอยู่ระหว่างกริยาช่วย 'has/have' และกริยาช่อง 3 'replied' ส่วน 'yet' มักใช้ในประโยคปฏิเสธหรือคำถาม"
+  },
+  {
+    "id": "q-41-hard1-3",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "hard1",
+    "question": "Dr. Evelyn has been leading the research on renewable energy ___ she joined the university’s science department.",
+    "options": [
+      "since",
+      "for",
+      "ago",
+      "still"
+    ],
+    "correct_answer": "since",
+    "explanation": "'Since' is used to indicate the starting point of an action that began in the past and continues to the present. It can introduce a time clause containing a verb in the Simple Past tense ('joined'). 'For' is used for a duration of time, not a starting point.",
+    "explanation_th": "แปล: ดร. เอเวลินได้นำการวิจัยเกี่ยวกับพลังงานหมุนเวียนมาโดยตลอดนับตั้งแต่เธอเข้าร่วมกับแผนกวิทยาศาสตร์ของมหาวิทยาลัย\n\nคำอธิบาย: 'since' (ตั้งแต่) ใช้บอกจุดเริ่มต้นของเวลาที่การกระทำนั้นเริ่มขึ้นในอดีตและดำเนินมาจนถึงปัจจุบัน โดยสามารถตามด้วยอนุประโยคที่เป็น Past Simple ('joined') ได้ ส่วน 'for' จะใช้กับช่วงระยะเวลา"
+  },
+  {
+    "id": "q-41-hard1-4",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "hard1",
+    "question": "Have the board members approved the proposed budget merger ___, or are they still debating the terms of the agreement?",
+    "options": [
+      "yet",
+      "already",
+      "still",
+      "for"
+    ],
+    "correct_answer": "yet",
+    "explanation": "'Yet' is commonly used at the end of negative sentences and questions to ask if an expected action has taken place. The second clause 'or are they still debating' shows that the speaker is checking whether the action has occurred up to the present moment.",
+    "explanation_th": "แปล: สมาชิกคณะกรรมการได้อนุมัติการเสนอควบรวมงบประมาณแล้วหรือยัง หรือพวกเขายังคงถกเถียงกันเกี่ยวกับข้อกำหนดของข้อตกลงอยู่\n\nคำอธิบาย: 'yet' มักใช้ท้ายประโยคคำถามและประโยคปฏิเสธเพื่อถามว่าการกระทำที่คาดหวังไว้เกิดขึ้นหรือยัง ซึ่งสอดคล้องกับประโยคด้านหลัง 'or are they still debating' ที่ถามว่าพวกเขายังถกเถียงกันอยู่หรือไม่"
+  },
+  {
+    "id": "q-41-hard1-5",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "hard1",
+    "question": "The flight to Tokyo has ___ departed; you can still see the plane taxiing on the runway if you look through the window.",
+    "options": [
+      "just",
+      "yet",
+      "still",
+      "since"
+    ],
+    "correct_answer": "just",
+    "explanation": "'Just' is used to express that an action happened a very short time ago. The context clue 'you can still see the plane taxiing' indicates that the departure occurred only moments before.",
+    "explanation_th": "แปล: เที่ยวบินไปโตเกียวเพิ่งจะออกเดินทางไปเอง คุณยังสามารถเห็นเครื่องบินกำลังเคลื่อนตัวอยู่บนรันเวย์ได้หากมองผ่านหน้าต่างออกไป\n\nคำอธิบาย: 'just' (เพิ่งจะ) ใช้ใน Present Perfect Tense เพื่อบอกว่าการกระทำนั้นเพิ่งเกิดขึ้นสด ๆ ร้อน ๆ สังเกตจากคำใบ้ในบริบทที่ว่า 'you can still see the plane taxiing' (คุณยังเห็นเครื่องบินกำลังวิ่งอยู่เลย)"
+  },
+  {
+    "id": "q-41-hard1-6",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "hard1",
+    "question": "The software company has struggled to maintain its market dominance ___ nearly a decade due to rapid technological shifts.",
+    "options": [
+      "for",
+      "since",
+      "ago",
+      "yet"
+    ],
+    "correct_answer": "for",
+    "explanation": "'For' is used to express the duration or period of time that an action has lasted. 'Nearly a decade' represents a length of time, making 'for' the correct preposition.",
+    "explanation_th": "แปล: บริษัทซอฟต์แวร์แห่งนี้ประสบปัญหาในการรักษาความเป็นผู้นำในตลาดมาเป็นเวลาเกือบทศวรรษเนื่องจากการเปลี่ยนแปลงทางเทคโนโลยีที่รวดเร็ว\n\nคำอธิบาย: 'for' ใช้เพื่อบอกช่วงเวลาหรือระยะเวลาทั้งหมดที่เหตุการณ์นั้นดำเนินมา (for + ช่วงเวลา) ซึ่งในข้อนี้คือ 'nearly a decade' (เกือบทศวรรษ) จึงต้องใช้ 'for' ไม่ใช่ 'since' ซึ่งใช้บอกจุดเริ่มต้นของเวลา"
+  },
+  {
+    "id": "q-41-hard1-7",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "hard1",
+    "question": "Despite receiving multiple warnings from the local council, the construction firm ___ continues to operate without a valid permit.",
+    "options": [
+      "still",
+      "yet",
+      "already",
+      "since"
+    ],
+    "correct_answer": "still",
+    "explanation": "'Still' is used in affirmative present sentences to show that an action is continuing to happen, especially when we might expect it to stop. It correctly precedes the main verb 'continues'.",
+    "explanation_th": "แปล: แม้ว่าจะได้รับคำเตือนหลายครั้งจากสภาท้องถิ่น แต่บริษัทก่อสร้างก็ยังคงดำเนินการต่อไปโดยไม่มีใบอนุญาตที่ถูกต้อง\n\nคำอธิบาย: 'still' (ยังคง) ใช้เพื่อบอกว่าเหตุการณ์ยังคงดำเนินอยู่ โดยเฉพาะอย่างยิ่งเมื่อมีอุปสรรคหรือสถานการณ์ที่คาดว่าเรื่องนั้นน่าจะหยุดไปแล้ว โดย 'still' จะวางไว้หน้ากริยาแท้ 'continues'"
+  },
+  {
+    "id": "q-41-hard1-8",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "hard1",
+    "question": "Ever ___ the implementation of the new tax laws, small businesses have struggled to keep their profit margins high.",
+    "options": [
+      "since",
+      "for",
+      "ago",
+      "already"
+    ],
+    "correct_answer": "since",
+    "explanation": "'Ever since' is a common emphatic time expression meaning continuously from a specific time in the past up to now. It is followed by a noun phrase representing the starting point ('the implementation of the new tax laws').",
+    "explanation_th": "แปล: นับตั้งแต่มีการบังคับใช้กฎหมายภาษีใหม่เป็นต้นมา ธุรกิจขนาดเล็กต่างก็ดิ้นรนเพื่อรักษาอัตรากำไรให้อยู่ในระดับสูง\n\nคำอธิบาย: 'Ever since' (นับตั้งแต่...เป็นต้นมา) เป็นสำนวนบอกเวลาที่เน้นย้ำความต่อเนื่องของเหตุการณ์ตั้งแต่จุดเริ่มต้นในอดีตมาจนถึงปัจจุบัน โดยตามด้วยจุดเริ่มต้นของเวลา ซึ่งในที่นี้คือคำนาม 'the implementation...' (การบังคับใช้กฎหมาย)"
+  },
+  {
+    "id": "q-41-hard1-9",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "hard1",
+    "question": "The package has not ___ arrived at the distribution center, causing a significant delay in the delivery schedule.",
+    "options": [
+      "yet",
+      "still",
+      "already",
+      "just"
+    ],
+    "correct_answer": "yet",
+    "explanation": "'Yet' is used in negative sentences with the Present Perfect tense to show that something expected has not happened up to the present moment. In formal style, 'yet' can be placed immediately after 'not' (has not yet arrived).",
+    "explanation_th": "แปล: พัสดุยังไม่ได้มาถึงศูนย์กระจายสินค้า ส่งผลให้เกิดความล่าช้าอย่างมากในกำหนดการจัดส่ง\n\nคำอธิบาย: ในประโยคปฏิเสธของ Present Perfect Tense เรานิยมใช้ 'yet' (ยัง) เพื่อแสดงว่าเหตุการณ์ที่คาดหวังยังไม่เกิดขึ้นจนถึงตอนนี้ โดยโครงสร้าง 'has/have not yet + V.3' (ยังไม่ได้...) เป็นโครงสร้างที่ถูกต้องและเป็นทางการ"
+  },
+  {
+    "id": "q-41-hard2-0",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "hard2",
+    "question": "Although the research team has conducted numerous trials to synthesize the compound, they have ___ to achieve a stable crystalline structure.",
+    "options": [
+      "yet",
+      "still",
+      "already",
+      "since"
+    ],
+    "correct_answer": "yet",
+    "explanation": "The construction 'have yet to + verb' is an academic and formal way of stating that something has not happened up to the present moment, but is expected to. 'Still' would typically require a negative form like 'still have not achieved' or 'are still to achieve'.",
+    "explanation_th": "แปล: แม้ว่าทีมวิจัยจะทำการทดลองหลายครั้งเพื่อสังเคราะห์สารประกอบนี้ แต่พวกเขาก็ยังไม่สามารถสร้างโครงสร้างผลึกที่เสถียรได้\n\nคำอธิบาย: โครงสร้าง 'have yet to + verb' เป็นสำนวนที่เป็นทางการในภาษาเขียน มีความหมายเหมือนกับ 'have not yet + past participle' (ยังไม่ได้ทำสิ่งนั้นๆ) ในขณะที่ 'still' จะไม่ใช้ในโครงสร้าง 'have still to' ในบริบทนี้ แต่จะใช้เป็น 'still have not achieved' แทน"
+  },
+  {
+    "id": "q-41-hard2-1",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "hard2",
+    "question": "The central bank has maintained interest rates at an unprecedented low ___ the onset of the sudden fiscal crisis.",
+    "options": [
+      "since",
+      "for",
+      "ago",
+      "still"
+    ],
+    "correct_answer": "since",
+    "explanation": "We use 'since' to indicate the starting point of an action or state that continues up to the present. 'The onset of the sudden fiscal crisis' acts as a specific point in time, requiring 'since' rather than 'for' (which is used for durations).",
+    "explanation_th": "แปล: ธนาคารกลางได้คงอัตราดอกเบี้ยไว้ที่ระดับต่ำอย่างที่ไม่เคยมีมาก่อนนับตั้งแต่การเริ่มต้นของวิกฤตการณ์ทางการเงินที่เกิดขึ้นอย่างกะทันหัน\n\nคำอธิบาย: 'the onset of the sudden fiscal crisis' (จุดเริ่มต้นของวิกฤตการคลังอย่างกะทันหัน) ถือเป็นจุดเริ่มต้นของเวลา (point in time) จึงต้องใช้คู่กับ 'since' (นับตั้งแต่) ส่วน 'for' จะใช้กับระยะเวลา (duration) และ 'ago' จะใช้กับ Past Simple Tense"
+  },
+  {
+    "id": "q-41-hard2-2",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "hard2",
+    "question": "Archaeologists unearthed the remnants of the ancient civilization over a century ___ , yet many of its texts remain undeciphered.",
+    "options": [
+      "ago",
+      "since",
+      "already",
+      "for"
+    ],
+    "correct_answer": "ago",
+    "explanation": "The past simple verb 'unearthed' indicates a completed past action, which is paired with 'ago' after a specific measurement of back-time ('over a century'). 'Since' and 'for' are associated with perfect tenses.",
+    "explanation_th": "แปล: นักโบราณคดีได้ขุดพบซากอารยธรรมโบราณเมื่อกว่าหนึ่งศตวรรษก่อน แต่ตัวอักษรจารึกจำนวนมากก็ยังคงไม่สามารถถอดรหัสได้\n\nคำอธิบาย: คำกริยา 'unearthed' อยู่ในรูป Past Simple Tense (กริยาช่อง 2) แสดงถึงเหตุการณ์ที่สิ้นสุดลงแล้วในอดีต จึงต้องใช้คู่กับ 'ago' (ที่ผ่านมาแล้ว) โดยวางไว้หลังคำบอกเวลา 'over a century' ส่วน 'since' และ 'for' มักใช้ใน Present Perfect Tense"
+  },
+  {
+    "id": "q-41-hard2-3",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "hard2",
+    "question": "Despite the implementation of rigorous emissions controls, several industrial zones are ___ discharging untreated chemical effluents into the municipal river.",
+    "options": [
+      "still",
+      "already",
+      "yet",
+      "just"
+    ],
+    "correct_answer": "still",
+    "explanation": "The adverb 'still' is used to emphasize that an action or situation continues to happen, especially when it is unexpected or when steps have been taken to prevent it (indicated by 'Despite...').",
+    "explanation_th": "แปล: แม้ว่าจะมีการบังคับใช้มาตรการควบคุมการปล่อยมลพิษอย่างเข้มงวด แต่นิคมอุตสาหกรรมหลายแห่งก็ยังคงปล่อยน้ำเสียที่เป็นสารเคมีที่ไม่ได้ผ่านการบำบัดลงสู่แม่น้ำของเมือง\n\nคำอธิบาย: 'still' (ยังคง) ใช้เพื่อระบุว่าสถานการณ์นั้นยังดำเนินอยู่จนถึงปัจจุบัน แม้จะมีอุปสรรคหรือความพยายามที่จะหยุดยั้งมันแล้วก็ตาม (สอดคล้องกับประโยคขัดแย้ง 'Despite...') ส่วน 'already' (เรียบร้อยแล้ว) หรือ 'yet' (ยัง) ไม่สามารถแสดงถึงความต่อเนื่องที่ขัดแย้งในลักษณะนี้ได้"
+  },
+  {
+    "id": "q-41-hard2-4",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "hard2",
+    "question": "The peer-reviewed journal has ___ published the highly anticipated study, making it instantly available to subscribers before the physical copies are printed.",
+    "options": [
+      "just",
+      "yet",
+      "ago",
+      "still"
+    ],
+    "correct_answer": "just",
+    "explanation": "'Just' is used with the present perfect tense to refer to an action that occurred in the very immediate past. This aligns with the context of immediate availability described in the second clause.",
+    "explanation_th": "แปล: วารสารวิชาการที่ผ่านการประเมินโดยผู้ทรงคุณวุฒิเพิ่งจะตีพิมพ์งานวิจัยที่ผู้คนตั้งตารอคอยอย่างมาก ทำให้สมาชิกสามารถเข้าถึงได้ทันทีในรูปแบบออนไลน์ก่อนที่เล่มจริงจะถูกพิมพ์ออกมา\n\nคำอธิบาย: 'just' ใน Present Perfect Tense ('has just published') ใช้ระบุว่าเหตุการณ์นั้นเพิ่งเกิดขึ้นเสร็จสิ้นลงไปสดๆ ร้อนๆ ซึ่งเหมาะสมที่สุดเมื่อพิจารณาจากผลลัพธ์ที่ตามมาว่า 'ทำให้สมาชิกเข้าถึงได้ทันที' (instantly available) ส่วน 'yet' มักใช้ในประโยคปฏิเสธหรือคำถาม"
+  },
+  {
+    "id": "q-41-hard2-5",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "hard2",
+    "question": "Many progressive organizations have ___ integrated artificial intelligence into their daily workflows, while conservative firms hesitate to take the leap.",
+    "options": [
+      "already",
+      "yet",
+      "still",
+      "since"
+    ],
+    "correct_answer": "already",
+    "explanation": "'Already' is used to indicate that something has happened sooner than expected or prior to another event, highlighting the contrast with the conservative firms that are still hesitating.",
+    "explanation_th": "แปล: องค์กรที่ก้าวหน้าหลายแห่งได้รวมปัญญาประดิษฐ์เข้ากับกระบวนการทำงานประจำวันเรียบร้อยแล้ว ในขณะที่บริษัทแนวอนุรักษนิยมยังคงลังเลที่จะก้าวตามให้ทัน\n\nคำอธิบาย: 'already' (เรียบร้อยแล้ว) ใช้ในประโยคบอกเล่าของ Present Perfect Tense เพื่อแสดงว่ากระบวนการนั้นเสร็จสมบูรณ์เรียบร้อยแล้ว ซึ่งสร้างข้อเปรียบเทียบที่ชัดเจนกับกลุ่มบริษัทอนุรักษนิยมที่ 'ยังลังเลอยู่' ส่วน 'yet' จะใช้กับประโยคปฏิเสธและคำถาม"
+  },
+  {
+    "id": "q-41-hard2-6",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "hard2",
+    "question": "Sociologists have observed a steady decline in rural populations ___ several generations, attributing the trend to urban migration.",
+    "options": [
+      "for",
+      "since",
+      "ago",
+      "just"
+    ],
+    "correct_answer": "for",
+    "explanation": "The phrase 'several generations' represents a duration of time (a period). Therefore, 'for' is the correct preposition to denote the length of time over which the trend has been observed.",
+    "explanation_th": "แปล: นักสังคมวิทยาได้สังเกตเห็นการลดลงอย่างต่อเนื่องของประชากรในแถบชนบทมาเป็นเวลาหลายชั่วอายุคน โดยระบุว่าแนวโน้มนี้เกิดจากการย้ายถิ่นฐานเข้าสู่เมือง\n\nคำอธิบาย: เนื่องจาก 'several generations' (หลายชั่วอายุคน) คือช่วงระยะเวลา (duration) เราจึงต้องใช้บุพบท 'for' (เป็นเวลา) ส่วน 'since' จะใช้บอกเฉพาะจุดเริ่มต้นของเวลาเท่านั้น"
+  },
+  {
+    "id": "q-41-hard2-7",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "hard2",
+    "question": "Epidemiologists warn that the newly mutated variant is highly contagious, as they ___ do not fully comprehend its long-term health implications.",
+    "options": [
+      "still",
+      "yet",
+      "already",
+      "for"
+    ],
+    "correct_answer": "still",
+    "explanation": "In negative sentences, 'still' expresses surprise or concern that a situation continues. It is placed before the negative auxiliary (e.g., 'still do not fully comprehend'). 'Yet' usually goes at the very end of negative clauses.",
+    "explanation_th": "แปล: นักระบาดวิทยาเตือนว่าเชื้อไวรัสกลายพันธุ์สายพันธุ์ใหม่นี้สามารถแพร่ระบาดได้อย่างรวดเร็ว เนื่องจากพวกเขายังคงไม่เข้าใจผลกระทบทางสุขภาพในระยะยาวของมันอย่างถ่องแท้\n\nคำอธิบาย: ในประโยคปฏิเสธ 'still' จะวางอยู่หน้ากริยาช่วยปฏิเสธ ('still do not') เพื่อสื่อถึงสถานการณ์ที่ยังคงเหมือนเดิมแม้จะผ่านระยะเวลามานานแล้ว ในขณะที่ 'yet' มักจะวางไว้ท้ายประโยคปฏิเสธเท่านั้น"
+  },
+  {
+    "id": "q-41-hard2-8",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "hard2",
+    "question": "The diplomatic relations between the two neighboring states have deteriorated significantly ___ the bilateral trade agreement was unilaterally terminated.",
+    "options": [
+      "since",
+      "for",
+      "ago",
+      "yet"
+    ],
+    "correct_answer": "since",
+    "explanation": "'Since' can function as a conjunction followed by a clause in the simple past tense ('the bilateral trade agreement was unilaterally terminated') to mark the starting point of the state described in the present perfect main clause.",
+    "explanation_th": "แปล: ความสัมพันธ์ทางการทูตระหว่างสองประเทศเพื่อนบ้านได้เสื่อมถอยลงอย่างมากนับตั้งแต่มิติด้านข้อตกลงทางการค้าทวิภาคีถูกยกเลิกไปฝ่ายเดียว\n\nคำอธิบาย: 'since' ทำหน้าที่เป็นคำเชื่อม (conjunction) ตามด้วยอนุประโยคที่เป็น Past Simple Tense ('was unilaterally terminated') เพื่อเป็นจุดเริ่มต้นของเหตุการณ์ที่ส่งผลมาถึงปัจจุบัน (Present Perfect ในประโยคหลัก: 'have deteriorated') ส่วน 'for' และ 'ago' ไม่สามารถทำหน้าที่เชื่อมประโยคย่อยเช่นนี้ได้"
+  },
+  {
+    "id": "q-41-hard2-9",
+    "unit_id": 41,
+    "unit_number": 41,
+    "level_id": "hard2",
+    "question": "Although astronomers have detected gravitational waves from distant black holes, have they confirmed the existence of wormholes ___?",
+    "options": [
+      "yet",
+      "still",
+      "already",
+      "just"
+    ],
+    "correct_answer": "yet",
+    "explanation": "'Yet' is the standard time expression used at the end of questions in the present perfect tense to ask if an expected event has occurred up to the present moment.",
+    "explanation_th": "แปล: แม้ว่านักดาราศาสตร์จะตรวจพบคลื่นความโน้มถ่วงจากหลุมดำที่ห่างไกลแล้ว แต่พวกเขาได้รับการยืนยันการมีอยู่ของรูหนอนแล้วหรือยัง?\n\nคำอธิบาย: 'yet' มักวางไว้ท้ายประโยคคำถามของ Present Perfect Tense เพื่อถามว่าเหตุการณ์ที่หวังหรือคาดว่าจะเกิดขึ้นนั้น ได้เกิดขึ้นหรือยัง แม้ 'already' จะนำมาใช้ในประโยคคำถามได้ในบางกรณีแต่จะใช้เมื่อผู้พูดแสดงความประหลาดใจว่าทำไมเกิดเร็ว ดังนั้นตัวเลือก 'yet' จึงเป็นทางเลือกที่ถูกต้องและเป็นทางการที่สุด"
+  },
+  {
+    "id": "q-42-easy-0",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "easy",
+    "question": "Please wash your hands ___ you have dinner.",
+    "options": [
+      "before",
+      "after",
+      "while",
+      "during"
+    ],
+    "correct_answer": "before",
+    "explanation": "We use 'before' to indicate that the first action (washing hands) should happen prior to the second action (having dinner).",
+    "explanation_th": "แปล: กรุณาล้างมือก่อนที่คุณจะรับประทานอาหารเย็น\n\nคำอธิบาย: 'before' แปลว่า 'ก่อน' ใช้เชื่อมเหตุการณ์ที่เกิดขึ้นก่อนอีกเหตุการณ์หนึ่ง ในบริบทนี้ผู้พูดต้องการบอกให้ล้างมือก่อนทานอาหาร ซึ่งถูกต้องตามหลักสุขอนามัย"
+  },
+  {
+    "id": "q-42-easy-1",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "easy",
+    "question": "My brother fell asleep ___ the long English class yesterday.",
+    "options": [
+      "during",
+      "while",
+      "until",
+      "then"
+    ],
+    "correct_answer": "during",
+    "explanation": "We use 'during' before a noun phrase (the long English class) to show that something happened within that period of time. 'While' must be followed by a clause (subject + verb).",
+    "explanation_th": "แปล: น้องชายของฉันเผลอหลับไปในระหว่างคาบเรียนภาษาอังกฤษที่แสนยาวนานเมื่อวานนี้\n\nคำอธิบาย: 'during' แปลว่า 'ในระหว่าง' ใช้ตามด้วยกลุ่มคำนาม (the long English class) เพื่อบอกช่วงเวลาที่เหตุการณ์เกิดขึ้น ส่วน 'while' จะใช้ตามด้วยประโยคที่มีประธานและกริยา"
+  },
+  {
+    "id": "q-42-easy-2",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "easy",
+    "question": "___, open the box. Then, take out the user manual.",
+    "options": [
+      "First",
+      "Finally",
+      "Until",
+      "During"
+    ],
+    "correct_answer": "First",
+    "explanation": "'First' is used to introduce the very first step in a sequence of actions, which is followed by 'then' or 'next'.",
+    "explanation_th": "แปล: ขั้นแรก ให้เปิดกล่องออก จากนั้นจึงนำคู่มือการใช้งานออกมา\n\nคำอธิบาย: 'First' แปลว่า 'อันดับแรก / ขั้นแรก' ใช้บอกขั้นตอนแรกสุดในการทำกิจกรรมใดๆ สังเกตประโยคถัดไปใช้คำเชื่อมบอกลำดับถัดไปคือ 'Then' (จากนั้น)"
+  },
+  {
+    "id": "q-42-easy-3",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "easy",
+    "question": "It started to rain ___ we were walking to school.",
+    "options": [
+      "while",
+      "during",
+      "before",
+      "by"
+    ],
+    "correct_answer": "while",
+    "explanation": "We use 'while' to connect two actions happening at the same time, and it is followed by a clause (subject + verb).",
+    "explanation_th": "แปล: ฝนเริ่มตกขณะที่เรากำลังเดินไปโรงเรียน\n\nคำอธิบาย: 'while' แปลว่า 'ขณะที่' ใช้บอกเหตุการณ์ที่กำลังดำเนินอยู่แล้วมีอีกเหตุการณ์หนึ่งแทรกขึ้นมา โดยโครงสร้างจะต้องตามด้วยประโยค (we were walking...)"
+  },
+  {
+    "id": "q-42-easy-4",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "easy",
+    "question": "The school library is open ___ 8:00 PM every day.",
+    "options": [
+      "until",
+      "while",
+      "after",
+      "during"
+    ],
+    "correct_answer": "until",
+    "explanation": "'Until' is used to show how long a situation or action continues, ending at a specific time.",
+    "explanation_th": "แปล: ห้องสมุดของโรงเรียนเปิดจนกระทั่งเวลาสองทุ่มของทุกวัน\n\nคำอธิบาย: 'until' แปลว่า 'จนกระทั่ง' ใช้ระบุจุดสิ้นสุดของเวลาที่เหตุการณ์นั้นดำเนินไป (ในที่นี้คือห้องสมุดเปิดไปจนถึงกำหนดเวลาคือสองทุ่ม)"
+  },
+  {
+    "id": "q-42-easy-5",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "easy",
+    "question": "You must submit your science project ___ this Friday.",
+    "options": [
+      "by",
+      "during",
+      "while",
+      "then"
+    ],
+    "correct_answer": "by",
+    "explanation": "'By' is used as a time linker meaning 'not later than' a specific deadline.",
+    "explanation_th": "แปล: คุณต้องส่งโครงงานวิทยาศาสตร์ของคุณภายในวันศุกร์นี้\n\nคำอธิบาย: 'by' ในบริบทของเวลาแปลว่า 'ภายใน' หรือ 'ไม่เกินกว่า' เพื่อบอกกำหนดส่งงาน (deadline) ที่จำกัดเวลาไว้ไม่เกินวันศุกร์"
+  },
+  {
+    "id": "q-42-easy-6",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "easy",
+    "question": "I usually do my homework ___ I get home from school.",
+    "options": [
+      "after",
+      "before",
+      "during",
+      "until"
+    ],
+    "correct_answer": "after",
+    "explanation": "'After' is used to show that the homework is done following the arrival at home.",
+    "explanation_th": "แปล: โดยปกติแล้วฉันจะทำการบ้านหลังจากที่ฉันกลับมาถึงบ้านจากโรงเรียน\n\nคำอธิบาย: 'after' แปลว่า 'หลังจาก' ใช้เชื่อมเหตุการณ์ที่เกิดขึ้นตามหลังอีกเหตุการณ์หนึ่งตามลำดับเวลา คือกลับถึงบ้านก่อนแล้วจึงทำการบ้าน"
+  },
+  {
+    "id": "q-42-easy-7",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "easy",
+    "question": "First, mix the flour and eggs. Next, add some milk. ___, bake it in the oven.",
+    "options": [
+      "Finally",
+      "Before",
+      "While",
+      "During"
+    ],
+    "correct_answer": "Finally",
+    "explanation": "'Finally' is used to introduce the last step in a series of instructions or events.",
+    "explanation_th": "แปล: ขั้นแรก ผสมแป้งและไข่ ขั้นต่อไป เติมนมลงไป สุดท้าย นำไปอบในเตาอบ\n\nคำอธิบาย: 'Finally' แปลว่า 'ในที่สุด / ท้ายที่สุด' ใช้บอกขั้นตอนสุดท้ายของกระบวนการ ลำดับขั้นตอนในประโยคคือ First -> Next -> Finally"
+  },
+  {
+    "id": "q-42-easy-8",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "easy",
+    "question": "She washed the dishes and ___ watched her favorite TV show.",
+    "options": [
+      "then",
+      "before",
+      "during",
+      "until"
+    ],
+    "correct_answer": "then",
+    "explanation": "'Then' is a sequence word used to indicate what happens next in a series of events.",
+    "explanation_th": "แปล: เธอแช่และล้างจาน จากนั้นก็ดูรายการทีวีโปรดของเธอ\n\nคำอธิบาย: 'then' แปลว่า 'จากนั้น / หลังจากนั้น' เป็นคำบอกลำดับเหตุการณ์ที่เกิดขึ้นต่อเนื่องกัน เมื่อล้างจานเสร็จแล้วก็ทำสิ่งนี้ต่อทันที"
+  },
+  {
+    "id": "q-42-easy-9",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "easy",
+    "question": "Always look both ways ___ you cross the busy street.",
+    "options": [
+      "before",
+      "after",
+      "while",
+      "until"
+    ],
+    "correct_answer": "before",
+    "explanation": "'Before' indicates that looking both ways must happen prior to crossing the street for safety.",
+    "explanation_th": "แปล: จงมองซ้ายมองขวาเสมอก่อนที่คุณจะข้ามถนนที่พลุกพล่าน\n\nคำอธิบาย: 'before' แปลว่า 'ก่อน' ใช้ระบุว่าเราต้องมองทางทั้งสองข้างก่อนที่จะข้ามถนน เพื่อความปลอดภัยในการจราจร"
+  },
+  {
+    "id": "q-42-medium1-0",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "medium1",
+    "question": "She kept taking notes ___ the lecture, even though she was very tired.",
+    "options": [
+      "during",
+      "while",
+      "until",
+      "by"
+    ],
+    "correct_answer": "during",
+    "explanation": "'During' is a preposition used to say when something happens within a period of time. It is followed by a noun phrase ('the lecture'), unlike 'while' which must be followed by a clause (subject + verb).",
+    "explanation_th": "แปล: เธอยังคงจดบันทึกระหว่างการบรรยาย แม้ว่าเธอจะเหนื่อยมากก็ตาม\n\nคำอธิบาย: คำว่า 'during' เป็นคำบุพบท (preposition) ที่ต้องตามด้วยกลุ่มคำนาม (noun phrase) ซึ่งในที่นี้คือ 'the lecture' (การบรรยาย) เพื่อบอกช่วงเวลาที่เกิดเหตุการณ์ ส่วน 'while' เป็นคำเชื่อม (conjunction) ที่ต้องตามด้วยประโยค (S + V)"
+  },
+  {
+    "id": "q-42-medium1-1",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "medium1",
+    "question": "We can go for a walk in the park ___ we are waiting for the food to be delivered.",
+    "options": [
+      "while",
+      "during",
+      "before",
+      "until"
+    ],
+    "correct_answer": "while",
+    "explanation": "'While' is a conjunction used to connect two actions happening at the same time and is followed by a clause ('we are waiting'). 'During' is a preposition and cannot be followed by a subject and verb.",
+    "explanation_th": "แปล: พวกเราสามารถไปเดินเล่นในสวนได้ในขณะที่เรากำลังรออาหารมาส่ง\n\nคำอธิบาย: 'while' ใช้เชื่อมเหตุการณ์สองเหตุการณ์ที่เกิดขึ้นพร้อมกันในเวลาเดียวกัน โดยต้องตามด้วยประโยค (S + V) ซึ่งในประโยคนี้คือ 'we are waiting' ส่วน 'during' ต้องตามด้วยกลุ่มคำนามเท่านั้น"
+  },
+  {
+    "id": "q-42-medium1-2",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "medium1",
+    "question": "Please make sure to submit your final project ___ Friday at 5 PM; no late work will be accepted.",
+    "options": [
+      "by",
+      "until",
+      "beforehand",
+      "then"
+    ],
+    "correct_answer": "by",
+    "explanation": "'By' is used to indicate a deadline, meaning 'not later than' a specific time. 'Until' describes a state or action that continues up to a point in time.",
+    "explanation_th": "แปล: กรุณาส่งโปรเจกต์สุดท้ายของคุณภายในวันศุกร์เวลา 17.00 น. จะไม่มีการรับงานล่าช้า\n\nคำอธิบาย: 'by' ใช้เพื่อบอกกำหนดส่งหรือเส้นตาย (deadline) ว่าต้องทำสิ่งนั้นเสร็จสิ้น 'ไม่เกิน' หรือ 'ภายใน' เวลาที่กำหนด ในขณะที่ 'until' จะใช้แสดงถึงความต่อเนื่องของเหตุการณ์ไปจนถึงเวลาหนึ่ง"
+  },
+  {
+    "id": "q-42-medium1-3",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "medium1",
+    "question": "The children played video games ___ their parents came home from work.",
+    "options": [
+      "until",
+      "by",
+      "during",
+      "finally"
+    ],
+    "correct_answer": "until",
+    "explanation": "'Until' is used to show that an action or situation (playing video games) continued up to a specific point in time (when their parents came home).",
+    "explanation_th": "แปล: เด็ก ๆ เล่นวิดีโอเกมจนกระทั่งพ่อแม่กลับมาจากทำงาน\n\nคำอธิบาย: 'until' (จนกระทั่ง) ใช้แสดงถึงกิจกรรมหรือสถานการณ์ที่ดำเนินอยู่ต่อเนื่องและสิ้นสุดลงเมื่อถึงจุดหนึ่งของเวลา ซึ่งในบริบทนี้คือเด็ก ๆ เล่นเกมไปเรื่อย ๆ จนกระทั่งถึงเวลาที่พ่อแม่กลับบ้าน"
+  },
+  {
+    "id": "q-42-medium1-4",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "medium1",
+    "question": "To cook this dish, ___, chop all the vegetables. Next, stir-fry them in a hot pan. Finally, add the sauce.",
+    "options": [
+      "first",
+      "then",
+      "after",
+      "while"
+    ],
+    "correct_answer": "first",
+    "explanation": "'First' is a sequence word used to introduce the initial step in a series of instructions. It pairs naturally with 'next' and 'finally' in sequential writing.",
+    "explanation_th": "แปล: ในการทำอาหารจานนี้ ขั้นแรกให้หั่นผักทั้งหมด จากนั้นนำไปผัดในกระทะร้อน และสุดท้ายคือใส่ซอสลงไป\n\nคำอธิบาย: 'first' (ขั้นแรก/อันดับแรก) ใช้สำหรับเกริ่นขั้นตอนแรกสุดในการอธิบายลำดับเหตุการณ์หรือขั้นตอนการทำสิ่งต่าง ๆ สังเกตจากประโยคถัดไปที่มีคำว่า 'next' และ 'finally' คอยเชื่อมโยงตามลำดับ"
+  },
+  {
+    "id": "q-42-medium1-5",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "medium1",
+    "question": "Make sure you wash your hands ___ eating your lunch to avoid getting sick.",
+    "options": [
+      "before",
+      "after",
+      "while",
+      "during"
+    ],
+    "correct_answer": "before",
+    "explanation": "'Before' is used here as a preposition followed by a gerund ('eating') to indicate that washing hands must occur prior to the meal for hygiene purposes.",
+    "explanation_th": "แปล: ตรวจสอบให้แน่ใจว่าคุณได้ล้างมือก่อนรับประทานอาหารกลางวันเพื่อหลีกเลี่ยงการเจ็บป่วย\n\nคำอธิบาย: จากบริบทเพื่อสุขอนามัยที่ดี เราจำเป็นต้องทำความสะอาดมือก่อน ('before') ที่จะเริ่มรับประทานอาหาร โดย 'before' ในประโยคนี้ทำหน้าที่เป็นคำบุพบทตามด้วยกริยาเติม -ing (gerund)"
+  },
+  {
+    "id": "q-42-medium1-6",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "medium1",
+    "question": "___ graduating from university, she spent a year traveling around Southeast Asia.",
+    "options": [
+      "After",
+      "Beforehand",
+      "Until",
+      "During"
+    ],
+    "correct_answer": "After",
+    "explanation": "'After' is used as a preposition followed by a gerund ('graduating') to show that the action of traveling happened after her graduation.",
+    "explanation_th": "แปล: หลังจากสำเร็จการศึกษาจากมหาวิทยาลัย เธอใช้เวลาหนึ่งปีในการเดินทางท่องเที่ยวในเอเชียตะวันออกเฉียงใต้\n\nคำอธิบาย: 'After' (หลังจาก) ใช้ระบุว่าเหตุการณ์หนึ่งเกิดขึ้นหลังอีกเหตุการณ์หนึ่ง ในโครงสร้างนี้ 'After' ทำหน้าที่เป็นบุพบทตามด้วยคำนามหรือกริยาเติม -ing (gerund) คือ 'graduating'"
+  },
+  {
+    "id": "q-42-medium1-7",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "medium1",
+    "question": "After three hours of searching in the rain, we ___ found our lost puppy hiding under the porch.",
+    "options": [
+      "finally",
+      "first",
+      "by",
+      "until"
+    ],
+    "correct_answer": "finally",
+    "explanation": "'Finally' is an adverb used to introduce something that happens after a long time, especially after a lot of effort or difficulties.",
+    "explanation_th": "แปล: หลังจากค้นหาท่ามกลางสายฝนเป็นเวลาสามชั่วโมง ในที่สุดพวกเราก็พบลูกสุนัขที่หลงทางซ่อนอยู่ใต้ระเบียงหน้าบ้าน\n\nคำอธิบาย: 'finally' (ในที่สุด) ใช้แสดงถึงเหตุการณ์ที่รอคอยมานานหรือเกิดขึ้นสำเร็จหลังจากผ่านอุปสรรคหรือความพยายามมาอย่างยากลำบาก (การค้นหาลูกสุนัขเป็นเวลาสามชั่วโมง)"
+  },
+  {
+    "id": "q-42-medium1-8",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "medium1",
+    "question": "Pack your suitcase first, and ___ check your passport to make sure it is not expired.",
+    "options": [
+      "then",
+      "during",
+      "while",
+      "until"
+    ],
+    "correct_answer": "then",
+    "explanation": "'Then' is used as a transition word meaning 'after that' to show the next step in a sequence of actions.",
+    "explanation_th": "แปล: จัดกระเป๋าเดินทางของคุณก่อน จากนั้นจึงตรวจสอบพาสปอร์ตของคุณเพื่อให้แน่ใจว่ายังไม่หมดอายุ\n\nคำอธิบาย: 'then' (จากนั้น/หลังจากนั้น) เป็นคำวิเศษณ์แสดงลำดับเวลาและขั้นตอนของเหตุการณ์ที่ทำเสร็จสิ้นไปแล้วขั้นตอนหนึ่ง (สังเกตคำใบ้ 'first' ในประโยคแรก)"
+  },
+  {
+    "id": "q-42-medium1-9",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "medium1",
+    "question": "I fell asleep ___ I was watching that boring documentary on TV.",
+    "options": [
+      "while",
+      "during",
+      "after",
+      "by"
+    ],
+    "correct_answer": "while",
+    "explanation": "'While' is a conjunction used to indicate that one action happened during the course of another continuous action. It is followed by a clause ('I was watching...').",
+    "explanation_th": "แปล: ฉันผล็อยหลับไปในขณะที่ฉันกำลังดูสารคดีที่น่าเบื่อบนโทรทัศน์\n\nคำอธิบาย: 'while' (ในขณะที่) ใช้เชื่อมเหตุการณ์ที่เกิดขึ้นแทรกเข้ามาในระหว่างที่อีกเหตุการณ์หนึ่งกำลังดำเนินอยู่อย่างต่อเนื่อง โดย 'while' ต้องตามด้วยประโยค (S + V) ในที่นี้คือ 'I was watching'"
+  },
+  {
+    "id": "q-42-medium2-0",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "medium2",
+    "question": "Many students prefer to study in the library ___ the semester break because the campus is quiet.",
+    "options": [
+      "during",
+      "while",
+      "until",
+      "by"
+    ],
+    "correct_answer": "during",
+    "explanation": "We use 'during' before a noun phrase (the semester break) to indicate that something happens within that period. 'While' is incorrect because it must be followed by a clause (subject + verb).",
+    "explanation_th": "แปล: นักเรียนหลายคนชอบที่จะอ่านหนังสือในห้องสมุดในช่วงปิดเทอมเพราะวิทยาเขตเงียบสงบ\n\nคำอธิบาย: 'during' เป็นคำบุพบท (preposition) ที่ต้องตามด้วยคำนามหรือวลี (noun phrase) ซึ่งในที่นี้คือ 'the semester break' เพื่อบอกช่วงเวลา ส่วน 'while' ต้องตามด้วยประโยค (clause) ที่มีประธานและกริยา"
+  },
+  {
+    "id": "q-42-medium2-1",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "medium2",
+    "question": "Please make sure to submit your final research papers ___ Friday at 5:00 PM; no late submissions will be accepted.",
+    "options": [
+      "by",
+      "until",
+      "while",
+      "then"
+    ],
+    "correct_answer": "by",
+    "explanation": "'By' is used to specify a deadline, meaning 'not later than' a certain time. 'Until' is used to describe a continuous state or action that stops at a specific time, which does not fit the one-time action of submitting a paper.",
+    "explanation_th": "แปล: กรุณาส่งรายงานวิจัยฉบับสมบูรณ์ของคุณภายในวันศุกร์เวลา 17.00 น. จะไม่มีการรับผลงานที่ส่งล่าช้า\n\nคำอธิบาย: 'by' ใช้เพื่อระบุเส้นตาย (deadline) มีความหมายว่า 'ไม่เกิน' หรือ 'ภายใน' วันศุกร์ ส่วน 'until' จะใช้กับเหตุการณ์ที่เกิดขึ้นอย่างต่อเนื่องจนถึงจุดเวลาหนึ่ง ซึ่งไม่เหมาะกับกริยา 'submit' ที่เป็นการกระทำครั้งเดียวเสร็จ"
+  },
+  {
+    "id": "q-42-medium2-2",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "medium2",
+    "question": "My mother likes to listen to classical music ___ she is preparing dinner in the kitchen.",
+    "options": [
+      "while",
+      "during",
+      "finally",
+      "before"
+    ],
+    "correct_answer": "while",
+    "explanation": "'While' is used to connect two continuous actions happening at the same time and is followed by a clause (she is preparing...). 'During' cannot be used here because it must be followed by a noun, not a clause.",
+    "explanation_th": "แปล: แม่ของฉันชอบฟังเพลงคลาสสิกในขณะที่เธอกำลังเตรียมอาหารเย็นในครัว\n\nคำอธิบาย: 'while' ใช้เชื่อมสองเหตุการณ์ที่กำลังเกิดขึ้นพร้อมกัน โดย 'while' ต้องตามด้วยประโยคที่มีกริยาแสดงความต่อเนื่อง (she is preparing...) ในขณะที่ 'during' ต้องตามด้วยคำนามหรือวลีคำนามเท่านั้น"
+  },
+  {
+    "id": "q-42-medium2-3",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "medium2",
+    "question": "To apply for the scholarship, you must ___ fill out the online form, then upload your transcript, and finally submit two recommendation letters.",
+    "options": [
+      "first",
+      "before",
+      "until",
+      "after"
+    ],
+    "correct_answer": "first",
+    "explanation": "The sentence presents a step-by-step process indicated by 'then' and 'finally'. The word 'first' is used to introduce the initial step in this sequence.",
+    "explanation_th": "แปล: ในการสมัครขอรับทุนการศึกษา ขั้นแรกคุณต้องกรอกแบบฟอร์มออนไลน์ จากนั้นจึงอัปโหลดใบแสดงผลการเรียน และสุดท้ายคือส่งจดหมายแนะนำสองฉบับ\n\nคำอธิบาย: โครงสร้างประโยคมีการเรียงลำดับขั้นตอนอย่างชัดเจน โดยสังเกตจากคำว่า 'then' (จากนั้น) และ 'finally' (สุดท้าย) ดังนั้นขั้นตอนแรกสุดจึงต้องใช้คำระบุลำดับเหตุการณ์คือ 'first' (ก่อนอื่น/ขั้นแรก)"
+  },
+  {
+    "id": "q-42-medium2-4",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "medium2",
+    "question": "You should always read the instructions on the medicine bottle carefully ___ taking any dosage.",
+    "options": [
+      "before",
+      "after",
+      "while",
+      "until"
+    ],
+    "correct_answer": "before",
+    "explanation": "'Before' is used to indicate that the action of reading instructions must precede the action of taking the medicine, which is the logical order for safety. 'Before' is followed here by a gerund (-ing form).",
+    "explanation_th": "แปล: คุณควรอ่านคำแนะนำบนขวายาอย่างระมัดระวังเสมอก่อนรับประทานยาในแต่ละปริมาณ\n\nคำอธิบาย: ตามหลักเหตุผลและความปลอดภัย เราต้องอ่านคำแนะนำ 'ก่อน' (before) การรับประทานยา การเลือกใช้ 'before' จึงถูกต้องตามความหมายและบริบทมากที่สุด"
+  },
+  {
+    "id": "q-42-medium2-5",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "medium2",
+    "question": "The security guard stayed at his post ___ the last employee left the building safely.",
+    "options": [
+      "until",
+      "by",
+      "during",
+      "finally"
+    ],
+    "correct_answer": "until",
+    "explanation": "'Until' is used to describe an action (staying at his post) that continued up to a specific event or point in time (the last employee leaving). 'By' cannot connect a clause in this context.",
+    "explanation_th": "แปล: เจ้าหน้าที่รักษาความปลอดภัยอยู่ประจำตำแหน่งของเขาจนกระทั่งพนักงานคนสุดท้ายออกจากอาคารอย่างปลอดภัย\n\nคำอธิบาย: 'until' (จนกระทั่ง) ใช้แสดงการกระทำที่ดำเนินอย่างต่อเนื่อง (stayed) ไปจนถึงจุดเวลาที่อีกเหตุการณ์หนึ่งเกิดขึ้น ('the last employee left...') ส่วน 'by' จะใช้กับจุดเวลากำหนดส่ง ไม่สามารถใช้เชื่อมประโยคแบบนี้ได้"
+  },
+  {
+    "id": "q-42-medium2-6",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "medium2",
+    "question": "___ graduating from university, Sarah spent six months traveling around Southeast Asia before looking for a job.",
+    "options": [
+      "After",
+      "While",
+      "During",
+      "Until"
+    ],
+    "correct_answer": "After",
+    "explanation": "'After' is used to show that one event occurred subsequent to another. Following 'After' with a gerund (graduating) indicates she completed her university education first, then went traveling.",
+    "explanation_th": "แปล: หลังจากสำเร็จการศึกษาจากมหาวิทยาลัย ซาราห์ใช้เวลาหกเดือนในการเดินทางท่องเที่ยวรอบเอเชียตะวันออกเฉียงใต้ก่อนที่จะหางานทำ\n\nคำอธิบาย: 'After' (หลังจาก) ใช้แสดงลำดับเหตุการณ์ที่เกิดขึ้นหลังจากการกระทำแรกเสร็จสิ้นลง ซึ่งสอดคล้องกับโครงสร้างตามด้วย Gerund (graduating) และสมเหตุสมผลที่สุดเนื่องจากเธอต้องเรียนจบก่อนจึงจะไปเที่ยวได้"
+  },
+  {
+    "id": "q-42-medium2-7",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "medium2",
+    "question": "The manager expects the marketing team to complete the campaign proposal ___ the end of this week.",
+    "options": [
+      "by",
+      "until",
+      "during",
+      "while"
+    ],
+    "correct_answer": "by",
+    "explanation": "We use 'by' to indicate a deadline (no later than the end of this week) for a completed action ('to complete'). 'Until' would mean they keep completing it continuously up to that point, which is semantically incorrect.",
+    "explanation_th": "แปล: ผู้จัดการคาดหวังให้ทีมการตลาดส่งข้อเสนอแคมเปญให้เสร็จสมบูรณ์ภายในสิ้นสัปดาห์นี้\n\nคำอธิบาย: 'by' ใช้ระบุจุดเวลากำหนดส่งหรือเส้นตาย (deadline) หมายถึง 'ไม่เกิน/ภายใน' สิ้นสัปดาห์นี้ ซึ่งเหมาะสมกับกริยาที่แสดงความเสร็จสิ้นอย่างคำว่า 'complete' ส่วน 'until' จะใช้กับสถานะหรือกิจกรรมที่ทำต่อเนื่องยาวนาน"
+  },
+  {
+    "id": "q-42-medium2-8",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "medium2",
+    "question": "We spent hours discussing the project, drafting the outline, and ___ reaching a unanimous decision.",
+    "options": [
+      "finally",
+      "first",
+      "before",
+      "while"
+    ],
+    "correct_answer": "finally",
+    "explanation": "'Finally' is used to introduce the last element in a series of actions or a final result after a long process of discussing and drafting.",
+    "explanation_th": "แปล: พวกเราใช้เวลาหลายชั่วโมงในการอภิปรายเกี่ยวกับโครงการ ร่างโครงร่าง และในที่สุดก็บรรลุการตัดสินใจที่เป็นเอกฉันท์\n\nคำอธิบาย: 'finally' (ในที่สุด) ใช้บอกเหตุการณ์สุดท้ายในการเรียงลำดับขั้นตอนหรือหลังจากความพยายามที่ยาวนาน (อภิปราย, ร่างโครงร่าง, และสุดท้ายคือตัดสินใจ)"
+  },
+  {
+    "id": "q-42-medium2-9",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "medium2",
+    "question": "The lights suddenly went out ___ the storm, leaving everyone in total darkness.",
+    "options": [
+      "during",
+      "while",
+      "until",
+      "then"
+    ],
+    "correct_answer": "during",
+    "explanation": "'During' is a preposition and must be followed by a noun phrase ('the storm'). 'While' is a conjunction and must be followed by a clause (e.g., 'while the storm was raging').",
+    "explanation_th": "แปล: ไฟดับลงอย่างกะทันหันในระหว่างเกิดพายุ ทำให้ทุกคนตกอยู่ในความมืดมิดโดยสิ้นเชิง\n\nคำอธิบาย: 'during' เป็นคำบุพบท (preposition) ที่ใช้แสดงเวลา ต้องตามด้วยคำนามหรือวลีนาม ('the storm') ในขณะที่ 'while' ต้องตามด้วยประโยค (clause) เสมอ"
+  },
+  {
+    "id": "q-42-hard1-0",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "hard1",
+    "question": "The lead actor forgot his lines several times ________ the first act of the play, causing a brief panic among the stage crew.",
+    "options": [
+      "during",
+      "while",
+      "until",
+      "by"
+    ],
+    "correct_answer": "during",
+    "explanation": "We use 'during' before a noun phrase (the first act of the play) to indicate that something happened within that period of time. 'While' must be followed by a clause (subject + verb) or a gerund representing a reduced clause.",
+    "explanation_th": "แปล: นักแสดงนำลืมบทของเขาหลายครั้งในระหว่างช่วงแรกของการแสดงละคร ส่งผลให้ทีมงานเวทีเกิดความตื่นตระหนกเล็กน้อย\n\nคำอธิบาย: คำว่า 'during' เป็นบุพบท (preposition) ต้องตามด้วยกลุ่มคำนาม (noun phrase) ซึ่งในที่นี้คือ 'the first act of the play' ในขณะที่ 'while' เป็นสันธาน (conjunction) ต้องตามด้วยประโยค (clause) หรือกริยาเติม -ing (gerund) ส่วน 'until' และ 'by' ไม่ตรงกับบริบทเชิงความหมายในข้อนี้"
+  },
+  {
+    "id": "q-42-hard1-1",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "hard1",
+    "question": "The research team must submit their final project proposal ________ next Friday, or they will lose their funding.",
+    "options": [
+      "by",
+      "until",
+      "while",
+      "then"
+    ],
+    "correct_answer": "by",
+    "explanation": "We use 'by' to indicate a deadline (not later than a specified time). 'Until' is used to talk about a state or activity that continues up to a particular point in time, which does not fit the one-time action of submitting a proposal.",
+    "explanation_th": "แปล: ทีมวิจัยจะต้องส่งข้อเสนอโครงการขั้นสุดท้ายภายในวันศุกร์หน้า มิฉะนั้นพวกเขาจะสูญเสียเงินทุน\n\nคำอธิบาย: 'by' ใช้เพื่อบอกเส้นตาย (deadline) มีความหมายว่า 'ไม่เกิน/ภายในเวลา...' ซึ่งสอดคล้องกับกริยาที่เกิดขึ้นครั้งเดียวเสร็จอย่าง 'submit' (ส่ง) ส่วน 'until' จะใช้กับเหตุการณ์ที่เกิดขึ้นอย่างต่อเนื่องยาวไปจนถึงจุดสิ้นสุด ไม่สามารถใช้กับการส่งงานที่เป็นการกระทำครั้งเดียวได้"
+  },
+  {
+    "id": "q-42-hard1-2",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "hard1",
+    "question": "________ preparing the chemical solution, Dr. Evans noticed a strange discoloration at the bottom of the beaker.",
+    "options": [
+      "While",
+      "During",
+      "Beforehand",
+      "Until"
+    ],
+    "correct_answer": "While",
+    "explanation": "We use 'while' before a gerund (-ing) when it functions as a reduced time clause (While he was preparing...). 'During' cannot be followed directly by a gerund in this manner; it must be followed by a noun or noun phrase.",
+    "explanation_th": "แปล: ในขณะที่กำลังเตรียมสารละลายเคมี ดร. เอวานส์สังเกตเห็นการเปลี่ยนสีที่น่าแปลกใจที่ก้นบีกเกอร์\n\nคำอธิบาย: 'While' สามารถตามด้วยกริยาเติม -ing (gerund) ได้ในกรณีที่เป็นการลดรูปประโยค (มาจาก While he was preparing...) ในขณะที่ 'During' ต้องตามด้วยคำนามหรือวลีคำนามเท่านั้น ไม่สามารถตามด้วย V-ing โดยตรงในลักษณะนี้ได้"
+  },
+  {
+    "id": "q-42-hard1-3",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "hard1",
+    "question": "The board members refused to approve the merger ________ they received a detailed financial audit from the independent firm.",
+    "options": [
+      "until",
+      "by",
+      "during",
+      "afterwards"
+    ],
+    "correct_answer": "until",
+    "explanation": "The conjunction 'until' is used to connect two clauses, indicating that the action in the main clause (refusing to approve) continued up to the point when the second action (receiving the audit) occurred.",
+    "explanation_th": "แปล: สมาชิกคณะกรรมการปฏิเสธที่จะอนุมัติการควบรวมกิจการจนกระทั่งพวกเขาได้รับรายงานการตรวจสอบทางการเงินโดยละเอียดจากบริษัทอิสระ\n\nคำอธิบาย: โครงสร้างปฏิเสธ 'not/refused... until' หมายถึง เหตุการณ์แรกจะไม่เกิดขึ้นจนกว่าเหตุการณ์ที่สองจะเกิดขึ้นก่อน ดังนั้น 'until' จึงถูกต้องที่สุดในการเชื่อมประโยคที่แสดงถึงเวลาจุดเปลี่ยนของการกระทำ ส่วน 'by' และ 'during' เป็นบุพบทไม่สามารถเชื่อมประโยค (clause) ที่มีประธานและกริยาได้"
+  },
+  {
+    "id": "q-42-hard1-4",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "hard1",
+    "question": "Always make sure to double-check the lock on the back door ________ leaving the laboratory unattended for the weekend.",
+    "options": [
+      "before",
+      "after",
+      "by",
+      "until"
+    ],
+    "correct_answer": "before",
+    "explanation": "According to safety logic, you must check the lock 'before' leaving, not 'after'. Both 'before' and 'after' can be followed by a gerund, but 'before' is the only logically correct choice here.",
+    "explanation_th": "แปล: ตรวจสอบให้แน่ใจเสมอว่าได้ตรวจเช็กตัวล็อกของประตูหลังอีกครั้งก่อนที่จะปล่อยห้องปฏิบัติการทิ้งไว้โดยไม่มีใครดูแลสำหรับช่วงสุดสัปดาห์\n\nคำอธิบาย: ในเชิงตรรกะความปลอดภัย เราต้องล็อกประตู 'ก่อน (before)' ที่จะเดินจากไป หากใช้ 'after' (หลังจาก) จะหมายความว่าปล่อยห้องทิ้งไว้แล้วค่อยมาเช็ก ซึ่งไม่สมเหตุสมผลตามหลักความปลอดภัย"
+  },
+  {
+    "id": "q-42-hard1-5",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "hard1",
+    "question": "The local library will not reopen to the public ________ the extensive renovations are fully completed.",
+    "options": [
+      "until",
+      "by",
+      "while",
+      "during"
+    ],
+    "correct_answer": "until",
+    "explanation": "We use 'until' to connect a continuous negative state ('will not reopen') to its endpoint (the completion of renovations). 'By' cannot be used here because it is a preposition and cannot connect a subordinate clause containing a verb.",
+    "explanation_th": "แปล: ห้องสมุดท้องถิ่นจะไม่เปิดให้บริการแก่สาธารณะอีกครั้งจนกว่าการปรับปรุงซ่อมแซมอย่างครอบคลุมจะเสร็จสิ้นโดยสมบูรณ์\n\nคำอธิบาย: 'until' ทำหน้าที่เป็นคำสันธานเชื่อมประโยคบอกจุดสิ้นสุดของสถานะปฏิเสธ (จะไม่เปิดจนกว่า...) ส่วน 'by' และ 'during' เป็นคำบุพบท ไม่สามารถตามด้วยประโยค (the renovations are completed) ได้ และ 'while' มีความหมายว่า 'ในขณะที่' ซึ่งไม่เข้ากับบริบท"
+  },
+  {
+    "id": "q-42-hard1-6",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "hard1",
+    "question": "To troubleshoot the software error, ________ restart the application; then, clear the cache, and finally, reinstall the updates if the issue persists.",
+    "options": [
+      "first",
+      "before",
+      "during",
+      "at last"
+    ],
+    "correct_answer": "first",
+    "explanation": "The sentence outlines a three-step sequence. The use of 'then' for the second step and 'finally' for the third step indicates that the first step must be introduced by the sequence word 'first'.",
+    "explanation_th": "แปล: ในการแก้ไขปัญหาข้อผิดพลาดของซอฟต์แวร์ ขั้นแรกให้เริ่มการทำงานของแอปพลิเคชันใหม่ จากนั้นให้ล้างแคช และสุดท้ายให้ติดตั้งการอัปเดตใหม่หากปัญหายังคงอยู่\n\nคำอธิบาย: ประโยคนี้เป็นการแสดงลำดับขั้นตอน (sequence) สังเกตได้จากคำว่า 'then' (จากนั้น) และ 'finally' (สุดท้าย) ดังนั้นคำระบุลำดับในช่องว่างแรกสุดที่เป็นคู่ขนานกันจึงต้องเป็น 'first' (ขั้นแรก)"
+  },
+  {
+    "id": "q-42-hard1-7",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "hard1",
+    "question": "The electricity went out ________ the storm, forcing the hospital to switch immediately to its backup generators.",
+    "options": [
+      "during",
+      "while",
+      "until",
+      "by"
+    ],
+    "correct_answer": "during",
+    "explanation": "'During' is a preposition used to say that something happened within the duration of an event. It is followed by a noun phrase ('the storm'). 'While' would require a subject and a verb.",
+    "explanation_th": "แปล: ไฟฟ้าดับในระหว่างเกิดพายุ ส่งผลให้โรงพยาบาลต้องเปลี่ยนไปใช้เครื่องกำเนิดไฟฟ้าสำรองทันที\n\nคำอธิบาย: 'the storm' ทำหน้าที่เป็นกลุ่มคำนาม (noun phrase) ดังนั้นคำบุพบทที่เหมาะสมในการบอกช่วงเวลาคือ 'during' (ในระหว่าง) ส่วน 'while' เป็นสันธานต้องตามด้วยประโยคที่มีประธานและกริยา"
+  },
+  {
+    "id": "q-42-hard1-8",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "hard1",
+    "question": "________ receiving numerous complaints from residents, the city council finally decided to install a traffic light at the dangerous intersection.",
+    "options": [
+      "After",
+      "Before",
+      "Until",
+      "While"
+    ],
+    "correct_answer": "After",
+    "explanation": "Based on cause and effect, the city council decided to install the traffic light 'after' they received complaints, not 'before'. Both 'after' and 'before' can function as prepositions followed by a gerund (-ing), but 'after' fits the logical order of events.",
+    "explanation_th": "แปล: หลังจากได้รับข้อร้องเรียนจำนวนมากจากผู้อยู่อาศัย ในที่สุดสภาเมืองก็ตัดสินใจติดตั้งสัญญาณไฟจราจรที่ทางแยกที่อันตรายนั้น\n\nคำอธิบาย: ข้อนี้วัดความเข้าใจเรื่องการลำดับเหตุการณ์ (logical sequence) สภาเมืองตัดสินใจติดตั้งไฟจราจรก็เนื่องมาจากได้รับเรื่องร้องเรียน ดังนั้นเหตุการณ์ได้รับเรื่องร้องเรียนจึงเกิดขึ้นก่อน จึงต้องใช้ 'After' (หลังจาก)"
+  },
+  {
+    "id": "q-42-hard1-9",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "hard1",
+    "question": "The high-tech security system will remain active ________ the authorized personnel input the correct override code.",
+    "options": [
+      "until",
+      "by",
+      "while",
+      "during"
+    ],
+    "correct_answer": "until",
+    "explanation": "'Until' is used here as a conjunction to indicate that the security system's active state continues up to the moment when the correct code is entered.",
+    "explanation_th": "แปล: ระบบรักษาความปลอดภัยที่ใช้เทคโนโลยีขั้นสูงจะยังคงทำงานอยู่จนกระทั่งบุคลากรที่ได้รับอนุญาตป้อนรหัสข้ามระบบที่ถูกต้อง\n\nคำอธิบาย: 'until' เป็นคำเชื่อมที่ใช้บ่งบอกว่าสถานะหนึ่ง (ระบบรักษาความปลอดภัยทำงานอยู่) จะดำเนินต่อไปเรื่อยๆ 'จนกระทั่ง' เกิดอีกเหตุการณ์หนึ่งขึ้น ส่วน 'by' และ 'during' เป็นบุพบทไม่สามารถนำหน้าประโยคย่อยที่มีกริยาแท้ (input) ได้"
+  },
+  {
+    "id": "q-42-hard2-0",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "hard2",
+    "question": "The research team must submit their final paper ___ the end of the month, but they plan to continue reviewing the data ___ they receive feedback from the peer reviewers.",
+    "options": [
+      "by / until",
+      "until / by",
+      "by / while",
+      "during / until"
+    ],
+    "correct_answer": "by / until",
+    "explanation": "'By' is used to denote a deadline (no later than a specific time), which fits 'the end of the month'. 'Until' is used to indicate that an action or situation continues up to a specific point in time, which fits the ongoing action of 'reviewing the data' until the feedback is received.",
+    "explanation_th": "แปล: ทีมวิจัยต้องส่งรายงานฉบับสุดท้ายภายในสิ้นเดือนนี้ แต่วางแผนที่จะทบทวนข้อมูลต่อไปจนกว่าจะได้รับข้อเสนอแนะจากผู้ประเมินอิสระ\n\nคำอธิบาย: 'by' ใช้ในการระบุเส้นตาย (deadline) ว่าต้องเสร็จภายในเวลานั้น ๆ ซึ่งเหมาะกับวลี 'the end of the month' ส่วน 'until' ใช้แสดงถึงการกระทำหรือสถานการณ์ที่ดำเนินไปอย่างต่อเนื่องและจะสิ้นสุดลงเมื่อถึงจุดเวลาหนึ่ง ซึ่งเข้ากับบริบท 'continue reviewing the data' (ทบทวนข้อมูลต่อไป) จนกระทั่งได้รับข้อเสนอแนะ"
+  },
+  {
+    "id": "q-42-hard2-1",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "hard2",
+    "question": "___ his tenure as the leading researcher at the institute, Dr. Arisara observed that academic productivity spiked only ___ he was actively collaborating with international scholars.",
+    "options": [
+      "During / while",
+      "While / during",
+      "During / during",
+      "Until / while"
+    ],
+    "correct_answer": "During / while",
+    "explanation": "'During' is a preposition and must be followed by a noun phrase ('his tenure...'). 'While' is a conjunction and must be followed by a clause containing a subject and a verb ('he was actively collaborating...').",
+    "explanation_th": "แปล: ในระหว่างการดำรงตำแหน่งนักวิจัยชั้นนำของสถาบัน ดร.อริสราสังเกตว่าผลผลิตทางวิชาการพุ่งสูงขึ้นเฉพาะในขณะที่เขากำลังร่วมมือกับนักวิชาการจากต่างประเทศอย่างจริงจังเท่านั้น\n\nคำอธิบาย: 'During' เป็นบุพบท (preposition) ต้องตามด้วยคำนามหรือกลุ่มคำนาม ซึ่งในที่นี้คือ 'his tenure...' (การดำรงตำแหน่งของเขา) ส่วน 'while' เป็นคำสันธาน (conjunction) ต้องตามด้วยประโยค (clause) ที่มีประธานและกริยาครบถ้วน ซึ่งในที่นี้คือ 'he was actively collaborating...'"
+  },
+  {
+    "id": "q-42-hard2-2",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "hard2",
+    "question": "Although the local administration has approved the budget, construction of the public library cannot begin ___ all environmental impact assessments are fully completed.",
+    "options": [
+      "until",
+      "by",
+      "during",
+      "after"
+    ],
+    "correct_answer": "until",
+    "explanation": "The negative structure 'cannot begin... until' is used to show that the construction will not start before the environmental impact assessments are finished, marking the point in time when the action can finally take place.",
+    "explanation_th": "แปล: แม้ว่าฝ่ายบริหารส่วนท้องถิ่นจะอนุมัติงบประมาณแล้ว แต่การก่อสร้างห้องสมุดประชาชนก็ยังไม่สามารถเริ่มขึ้นได้จนกว่าการประเมินผลกระทบสิ่งแวดล้อมทั้งหมดจะเสร็จสมบูรณ์\n\nคำอธิบาย: โครงสร้างประโยคปฏิเสธ 'cannot begin... until' (ไม่สามารถเริ่มได้จนกว่าจะ...) เป็นการบอกว่าการกระทำนั้นจะไม่เกิดขึ้นก่อนที่เงื่อนไขหลัง 'until' จะเสร็จสิ้น สมเหตุสมผลที่สุดในเชิงความหมายและโครงสร้างไวยากรณ์ ส่วน 'by' และ 'during' ไม่สามารถตามด้วยประโยค (clause) ในลักษณะนี้ได้"
+  },
+  {
+    "id": "q-42-hard2-3",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "hard2",
+    "question": "To conduct a reliable qualitative analysis, researchers must ___ establish a robust coding framework; ___, they apply these codes to the transcripts, and ___, they synthesize the recurring themes into a comprehensive report.",
+    "options": [
+      "first / then / finally",
+      "finally / then / first",
+      "first / finally / then",
+      "then / first / finally"
+    ],
+    "correct_answer": "first / then / finally",
+    "explanation": "This sentence outlines a chronological sequence of steps in research. 'First' introduces the initial step, 'then' indicates the subsequent action, and 'finally' signals the concluding step of the process.",
+    "explanation_th": "แปล: ในการวิเคราะห์เชิงคุณภาพที่น่าเชื่อถือ นักวิจัยต้องสร้างกรอบการเข้ารหัสที่รัดกุมเป็นอันดับแรก จากนั้นจึงนำรหัสเหล่านี้ไปประยุกต์ใช้กับบทถอดเทป และท้ายที่สุดจึงสังเคราะห์หัวข้อที่เกิดขึ้นซ้ำ ๆ ออกมาเป็นรายงานที่ครอบคลุม\n\nคำอธิบาย: ประโยคนี้อธิบายขั้นตอนการวิจัยตามลำดับเวลา (chronological sequence) ดังนั้น 'first' จึงใช้ระบุขั้นตอนแรก 'then' ใช้บอกขั้นตอนถัดไป และ 'finally' ใช้บอกขั้นตอนสุดท้ายที่เป็นบทสรุปของกระบวนการ"
+  },
+  {
+    "id": "q-42-hard2-4",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "hard2",
+    "question": "The university administration has announced that all tuition fees must be settled ___ August 15th; students who fail to do so will have their enrollment suspended ___ the outstanding balance is cleared.",
+    "options": [
+      "by / until",
+      "until / by",
+      "before / during",
+      "by / before"
+    ],
+    "correct_answer": "by / until",
+    "explanation": "The payment of tuition fees has a deadline, requiring the preposition 'by'. The suspension is an ongoing state that will continue up to the point when the balance is paid, which requires the conjunction 'until'.",
+    "explanation_th": "แปล: ฝ่ายบริหารของมหาวิทยาลัยได้ประกาศว่าค่าเล่าเรียนทั้งหมดจะต้องชำระภายในวันที่ 15 สิงหาคม นักศึกษาที่ไม่สามารถดำเนินการดังกล่าวได้จะถูกระงับการลงทะเบียนเรียนจนกว่ายอดค้างชำระจะได้รับการชำระเรียบร้อย\n\nคำอธิบาย: การชำระค่าเล่าเรียนมีกำหนดเวลาสุดท้ายหรือเส้นตาย (deadline) จึงต้องใช้ 'by' (ภายในวันที่) ส่วนการระงับการลงทะเบียนเป็นสถานะที่ดำเนินอย่างต่อเนื่องและจะไปสิ้นสุดลงเมื่อเคลียร์ยอดค้างชำระเสร็จ จึงต้องใช้ 'until' (จนกระทั่ง)"
+  },
+  {
+    "id": "q-42-hard2-5",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "hard2",
+    "question": "___ reviewing the experimental data for the third time, the laboratory technicians noticed a subtle anomaly that had been overlooked ___ the initial phase of testing.",
+    "options": [
+      "While / during",
+      "During / while",
+      "After / while",
+      "Before / until"
+    ],
+    "correct_answer": "While / during",
+    "explanation": "'While' can be followed by a gerund/participle clause ('reviewing...'), representing simultaneous actions. 'During' is a preposition that must be followed by a noun phrase ('the initial phase...').",
+    "explanation_th": "แปล: ในขณะที่กำลังทบทวนข้อมูลการทดลองเป็นครั้งที่สาม ช่างเทคนิคในห้องปฏิบัติการสังเกตเห็นความผิดปกติเล็กน้อยที่ถูกมองข้ามไปในช่วงระยะแรกของการทดสอบ\n\nคำอธิบาย: 'While' สามารถตามด้วยกริยาเติม -ing ในรูปของประโยคลดรูป (reduced clause) ได้ เช่น 'While reviewing...' เพื่อแสดงกิจกรรมที่เกิดขึ้นควบคู่กัน ส่วน 'during' เป็นบุพบทที่ต้องตามด้วยคำนามหรือกลุ่มคำนามเท่านั้น เช่น 'during the initial phase...'"
+  },
+  {
+    "id": "q-42-hard2-6",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "hard2",
+    "question": "Candidates are strongly advised to remain in the examination hall ___ all test papers have been collected and verified by the invigilators.",
+    "options": [
+      "until",
+      "by",
+      "while",
+      "during",
+      "after"
+    ],
+    "correct_answer": "until",
+    "explanation": "'Until' indicates that the action of remaining in the hall must continue up to the moment when the collection and verification of papers are completed.",
+    "explanation_th": "แปล: ผู้เข้าสอบได้รับคำแนะนำอย่างเข้มงวดให้คงอยู่ในห้องสอบจนกระทั่งกระดาษคำถามและคำตอบทั้งหมดจะถูกรวบรวมและตรวจสอบโดยผู้คุมสอบเรียบร้อยแล้ว\n\nคำอธิบาย: 'until' (จนกระทั่ง) ใช้แสดงการกระทำที่ต้องดำเนินต่อไปอย่างต่อเนื่อง (remain) และจะสิ้นสุดลงเมื่อเหตุการณ์ถัดไปเสร็จสิ้น ส่วน 'by' และ 'during' ไม่สามารถตามด้วยประโยค (clause) ได้ในบริบทนี้ และ 'while' ไม่สอดคล้องกับความหมายเชิงเวลาสิ้นสุด"
+  },
+  {
+    "id": "q-42-hard2-7",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "hard2",
+    "question": "A multinational corporation must thoroughly evaluate the potential risks of entering a new market ___ committing substantial financial resources.",
+    "options": [
+      "before",
+      "after",
+      "until",
+      "while"
+    ],
+    "correct_answer": "before",
+    "explanation": "Logically, evaluating risks must happen prior to committing resources to prevent financial loss. Therefore, the temporal preposition 'before' is the only logical choice.",
+    "explanation_th": "แปล: บริษัทข้ามชาติจำเป็นต้องประเมินความเสี่ยงที่อาจเกิดขึ้นของการเข้าสู่ตลาดใหม่อย่างรอบคอบก่อนที่จะตัดสินใจลงเงินทุนจำนวนมาก\n\nคำอธิบาย: ตามหลักเหตุและผล การประเมินความเสี่ยงจะต้องเกิดขึ้น 'ก่อน' (before) การลงทุน เพื่อป้องกันความเสียหายทางการเงิน ข้ออื่น ๆ เช่น 'after' (หลัง) หรือ 'while' (ขณะที่) ไม่สมเหตุสมผลในการดำเนินธุรกิจ"
+  },
+  {
+    "id": "q-42-hard2-8",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "hard2",
+    "question": "The geological survey team spent weeks mapping the fault line, ___ analyzed the soil samples, and ___ concluded that the area was highly prone to seismic activity.",
+    "options": [
+      "then / finally",
+      "finally / then",
+      "before / after",
+      "then / before"
+    ],
+    "correct_answer": "then / finally",
+    "explanation": "The sentence presents three sequential actions in the past. 'Then' is used to introduce the second action after mapping, and 'finally' introduces the ultimate conclusion of the sequence.",
+    "explanation_th": "แปล: ทีมสำรวจทางธรณีวิทยาใช้เวลาหลายสัปดาห์ในการทำแผนที่แนวรอยเลื่อน จากนั้นจึงวิเคราะห์ตัวอย่างดิน และในที่สุดก็สรุปได้ว่าพื้นที่ดังกล่าวมีแนวโน้มสูงที่จะเกิดกิจกรรมทางแผ่นดินไหว\n\nคำอธิบาย: ประโยคนี้ลำดับขั้นตอนการทำงานในอดีต 3 ขั้นตอน: ขั้นแรกทำแผนที่, 'then' (จากนั้น) ใช้เชื่อมไปสู่ขั้นตอนที่สองคือการวิเคราะห์ดิน, และ 'finally' (ในที่สุด/ท้ายที่สุด) ใช้เชื่อมเข้าสู่ข้อสรุปซึ่งเป็นขั้นตอนสุดท้าย"
+  },
+  {
+    "id": "q-42-hard2-9",
+    "unit_id": 42,
+    "unit_number": 42,
+    "level_id": "hard2",
+    "question": "The laboratory guidelines specify that the culture dishes must be sealed immediately ___ inoculation and kept undisturbed ___ the incubation period is complete.",
+    "options": [
+      "after / until",
+      "before / during",
+      "while / until",
+      "until / after"
+    ],
+    "correct_answer": "after / until",
+    "explanation": "Culture dishes must be sealed 'after' inoculation (the action of introducing microorganisms) has occurred. They must then remain undisturbed continuously 'until' the incubation period ends.",
+    "explanation_th": "แปล: คู่มือปฏิบัติการระบุว่าจานเพาะเชื้อจะต้องได้รับการปิดผนึกทันทีหลังจากการเพาะเชื้อ และต้องเก็บรักษาไว้โดยไม่ให้ถูกรบกวนจนกระทั่งระยะเวลาการบ่มจะเสร็จสิ้น\n\nคำอธิบาย: จานเพาะเชื้อต้องถูกปิดผนึก 'หลังจากการเพาะเชื้อ' (after inoculation) และต้องถูกปล่อยไว้ไม่ให้มีใครรบกวนอย่างต่อเนื่อง 'จนกระทั่ง' (until) สิ้นสุดระยะเวลาบ่มเชื้อ"
+  },
+  {
+    "id": "q-43-easy-0",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "easy",
+    "question": "My family always has a big dinner ___ Sundays.",
+    "options": [
+      "on",
+      "in",
+      "at",
+      "for"
+    ],
+    "correct_answer": "on",
+    "explanation": "We use the preposition 'on' before days of the week (e.g., on Sundays, on Monday).",
+    "explanation_th": "แปล: ครอบครัวของฉันมักจะรับประทานอาหารเย็นมื้อใหญ่ในวันอาทิตย์เสมอ\n\nคำอธิบาย: เราใช้บุพบท 'on' นำหน้าวันต่าง ๆ ในสัปดาห์ (เช่น Sundays) ส่วน 'in' ใช้กับเดือน/ปี, 'at' ใช้กับเวลาที่ระบุเจาะจง และ 'for' ใช้เพื่อบอกระยะเวลา"
+  },
+  {
+    "id": "q-43-easy-1",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "easy",
+    "question": "The school bell rings ___ 8:00 AM every morning.",
+    "options": [
+      "at",
+      "on",
+      "in",
+      "to"
+    ],
+    "correct_answer": "at",
+    "explanation": "We use the preposition 'at' for precise clock times (e.g., at 8:00 AM, at noon).",
+    "explanation_th": "แปล: กระดิ่งโรงเรียนดังขึ้นเวลา 8:00 น. ทุกเช้า\n\nคำอธิบาย: เราใช้ 'at' นำหน้าเวลาตามนาฬิกาหรือเวลาที่ระบุเฉพาะเจาะจง (เช่น at 8:00 AM) ส่วน 'on' ใช้กับวัน, 'in' ใช้กับเดือน/ปี/ช่วงเวลาของวัน และ 'to' ไม่ใช่บุพบทที่ใช้ระบุเวลาในบริบทนี้"
+  },
+  {
+    "id": "q-43-easy-2",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "easy",
+    "question": "My sister's birthday is ___ October.",
+    "options": [
+      "in",
+      "on",
+      "at",
+      "by"
+    ],
+    "correct_answer": "in",
+    "explanation": "We use 'in' before months of the year when no specific date is mentioned.",
+    "explanation_th": "แปล: วันเกิดของน้องสาวฉันอยู่ในเดือนตุลาคม\n\nคำอธิบาย: เราใช้บุพบท 'in' กับเดือนเดี่ยว ๆ ที่ไม่มีการระบุวันที่เจาะจง (เช่น in October) ส่วน 'on' จะใช้กับวันหรือวันที่ที่มีตัวเลขระบุชัดเจน"
+  },
+  {
+    "id": "q-43-easy-3",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "easy",
+    "question": "They moved to Bangkok ___ 2018.",
+    "options": [
+      "in",
+      "on",
+      "at",
+      "since"
+    ],
+    "correct_answer": "in",
+    "explanation": "We use 'in' before years (e.g., in 2018, in 2020).",
+    "explanation_th": "แปล: พวกเขาย้ายมาที่กรุงเทพฯ ในปี 2018\n\nคำอธิบาย: เราใช้ 'in' นำหน้าปีคริสต์ศักราช (เช่น in 2018) ในขณะที่ 'on' ใช้กับวัน/วันที่ 'at' ใช้กับจุดเวลา และ 'since' ใช้เพื่อบอกจุดเริ่มต้นของเวลา"
+  },
+  {
+    "id": "q-43-easy-4",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "easy",
+    "question": "It is often very quiet in my neighborhood ___ night.",
+    "options": [
+      "at",
+      "on",
+      "in",
+      "during"
+    ],
+    "correct_answer": "at",
+    "explanation": "We use the fixed phrase 'at night' when talking about nighttime in general.",
+    "explanation_th": "แปล: แถวบ้านของฉันมักจะเงียบมากในตอนกลางคืน\n\nคำอธิบาย: เราใช้บุพบท 'at' คู่กับคำว่า 'night' เป็นวลีเฉพาะเจาะจงคือ 'at night' (ในตอนกลางคืน) แตกต่างจากส่วนอื่นของวันที่ใช้ 'in' (เช่น in the morning)"
+  },
+  {
+    "id": "q-43-easy-5",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "easy",
+    "question": "We will celebrate Songkran ___ April 13th.",
+    "options": [
+      "on",
+      "in",
+      "at",
+      "for"
+    ],
+    "correct_answer": "on",
+    "explanation": "We use 'on' before specific dates (e.g., on April 13th).",
+    "explanation_th": "แปล: พวกเราจะเฉลิมฉลองเทศกาลสงกรานต์ในวันที่ 13 เมษายน\n\nคำอธิบาย: เมื่อมีการระบุวันที่เจาะจง (April 13th มีตัวเลขวันที่) เราต้องใช้บุพบท 'on' เสมอ ต่างจาก 'in' ที่ใช้บอกเดือนเดี่ยว ๆ โดยไม่มีวันที่"
+  },
+  {
+    "id": "q-43-easy-6",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "easy",
+    "question": "I like to drink hot cocoa ___ the evening.",
+    "options": [
+      "in",
+      "on",
+      "at",
+      "during"
+    ],
+    "correct_answer": "in",
+    "explanation": "We use 'in' with parts of the day (e.g., in the morning, in the afternoon, in the evening).",
+    "explanation_th": "แปล: ฉันชอบดื่มโกโก้ร้อนในตอนเย็น\n\nคำอธิบาย: สำนวนที่ใช้บอกช่วงเวลาต่าง ๆ ของวัน เช่น 'the evening' จะต้องใช้คู่กับบุพบท 'in' เสมอ เป็นวลีว่า 'in the evening'"
+  },
+  {
+    "id": "q-43-easy-7",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "easy",
+    "question": "My father lived in Japan ___ three years when he was young.",
+    "options": [
+      "for",
+      "since",
+      "at",
+      "during"
+    ],
+    "correct_answer": "for",
+    "explanation": "We use 'for' to show the duration or length of time of an activity (e.g., for three years).",
+    "explanation_th": "แปล: พ่อของฉันเคยอาศัยอยู่ในประเทศญี่ปุ่นเป็นเวลาสามปีเมื่อตอนที่ท่านยังเป็นเด็ก\n\nคำอธิบาย: เราใช้ 'for' ตามด้วยช่วงเวลาหรือจำนวนเวลาที่เกิดเหตุการณ์นั้น ๆ (เช่น for three years - เป็นเวลาสามปี) ส่วน 'since' จะใช้บอกจุดเริ่มต้นของเวลาเท่านั้น"
+  },
+  {
+    "id": "q-43-easy-8",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "easy",
+    "question": "I have been waiting for the bus ___ 9 o'clock.",
+    "options": [
+      "since",
+      "for",
+      "at",
+      "in"
+    ],
+    "correct_answer": "since",
+    "explanation": "We use 'since' to indicate a specific starting point in time of an action that continues to the present.",
+    "explanation_th": "แปล: ฉันรอรถประจำทางมาตั้งแต่เวลา 9 โมงแล้ว\n\nคำอธิบาย: เราใช้ 'since' (ตั้งแต่) เพื่อระบุจุดเริ่มต้นของเวลาของสถานการณ์ที่เกิดขึ้นมาจนถึงปัจจุบัน ส่วน 'for' จะใช้ระบุระยะเวลาความยาวนาน"
+  },
+  {
+    "id": "q-43-easy-9",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "easy",
+    "question": "It rains a lot here ___ the summer.",
+    "options": [
+      "in",
+      "on",
+      "at",
+      "to"
+    ],
+    "correct_answer": "in",
+    "explanation": "We use 'in' with seasons (e.g., in the summer, in winter, in spring).",
+    "explanation_th": "แปล: ฝนตกบ่อยมากที่นี่ในฤดูร้อน\n\nคำอธิบาย: เราใช้บุพบท 'in' เสมอเมื่อนำหน้าฤดูกาลต่าง ๆ (เช่น in the summer, in the winter)"
+  },
+  {
+    "id": "q-43-medium1-0",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "medium1",
+    "question": "The national park was established ___ 1995, but it only opened to the public ___ October 12th of that year.",
+    "options": [
+      "in, on",
+      "on, in",
+      "at, on",
+      "in, at"
+    ],
+    "correct_answer": "in, on",
+    "explanation": "Use 'in' for years (in 1995) and 'on' for specific dates (on October 12th).",
+    "explanation_th": "แปล: อุทยานแห่งชาติแห่งนี้ก่อตั้งขึ้นในปี 1995 แต่เพิ่งเปิดให้สาธารณชนเข้าชมเมื่อวันที่ 12 ตุลาคมของปีนั้น\n\nคำอธิบาย: เราใช้บุพบท 'in' กับปี ค.ศ. (in 1995) และใช้ 'on' กับวันที่ที่มีการระบุวันชัดเจน (on October 12th)"
+  },
+  {
+    "id": "q-43-medium1-1",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "medium1",
+    "question": "The school principal announced that the graduation ceremony will start ___ 9:00 AM ___ Friday.",
+    "options": [
+      "at, on",
+      "on, in",
+      "in, on",
+      "at, in"
+    ],
+    "correct_answer": "at, on",
+    "explanation": "Use 'at' for specific times of day (at 9:00 AM) and 'on' for days of the week (on Friday).",
+    "explanation_th": "แปล: ครูใหญ่ออกประกาศว่าพิธีสำเร็จการศึกษาจะเริ่มขึ้นเวลา 9:00 น. ในวันศุกร์\n\nคำอธิบาย: เราใช้บุพบท 'at' กับเวลาที่เฉพาะเจาะจงบนหน้าปัดนาฬิกา (at 9:00 AM) และใช้ 'on' กับวันในรอบสัปดาห์ (on Friday)"
+  },
+  {
+    "id": "q-43-medium1-2",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "medium1",
+    "question": "Sarah fell asleep ___ the biology lecture because she had stayed up late the night before.",
+    "options": [
+      "during",
+      "while",
+      "for",
+      "since"
+    ],
+    "correct_answer": "during",
+    "explanation": "Use 'during' before a noun phrase ('the biology lecture') to show that something happened within that period. 'While' must be followed by a clause.",
+    "explanation_th": "แปล: ซาร่าเผลอหลับไปในระหว่างการบรรยายวิชาชีววิทยาเพราะเธออยู่ดึกเมื่อคืนก่อน\n\nคำอธิบาย: เราใช้ 'during' นำหน้าคำนามหรือวลีนาม (the biology lecture) เพื่อบอกว่าเหตุการณ์เกิดขึ้นในช่วงเวลานั้น ส่วน 'while' ต้องตามด้วยประโยค (clause) ที่มีประธานและกริยา"
+  },
+  {
+    "id": "q-43-medium1-3",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "medium1",
+    "question": "Mr. Smith has been living in Bangkok ___ five years, so he is quite used to the traffic.",
+    "options": [
+      "for",
+      "since",
+      "during",
+      "in"
+    ],
+    "correct_answer": "for",
+    "explanation": "Use 'for' to show a duration of time (for five years) in the present perfect tense.",
+    "explanation_th": "แปล: คุณสมิธอาศัยอยู่ในกรุงเทพฯ มาเป็นเวลาห้าปีแล้ว ดังนั้นเขาจึงค่อนข้างคุ้นเคยกับสภาพการจราจร\n\nคำอธิบาย: เราใช้ 'for' เพื่อบอกช่วงระยะเวลา (duration) เช่น 'for five years' (เป็นเวลาห้าปี) ในขณะที่ 'since' ใช้บอกจุดเริ่มต้นของเวลา เช่น 'since 2018' (ตั้งแต่ปี 2018)"
+  },
+  {
+    "id": "q-43-medium1-4",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "medium1",
+    "question": "You must submit your university application forms ___ next Monday if you want to be considered for the scholarship.",
+    "options": [
+      "by",
+      "until",
+      "since",
+      "during"
+    ],
+    "correct_answer": "by",
+    "explanation": "Use 'by' to mean 'not later than' (a deadline). 'Until' describes an action that continues up to a specific point in time.",
+    "explanation_th": "แปล: คุณต้องส่งแบบฟอร์มสมัครเข้ามหาวิทยาลัยภายในวันจันทร์หน้า หากคุณต้องการได้รับการพิจารณารับทุนการศึกษา\n\nคำอธิบาย: 'by' ใช้เพื่อบอกกำหนดเวลา (deadline) หมายถึง 'ไม่เกิน/ภายในเวลานั้น' ส่วน 'until' ใช้กับเหตุการณ์ที่ดำเนินต่อเนื่องไปจนถึงจุดเวลาหนึ่ง"
+  },
+  {
+    "id": "q-43-medium1-5",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "medium1",
+    "question": "My sister enjoys jogging ___ the morning, but my brother prefers exercising ___ night.",
+    "options": [
+      "in, at",
+      "on, at",
+      "at, in",
+      "in, on"
+    ],
+    "correct_answer": "in, at",
+    "explanation": "We say 'in the morning' for parts of the day, but 'at night' is the standard idiomatic expression for nighttime.",
+    "explanation_th": "แปล: พี่สาวของฉันชอบไปวิ่งจ็อกกิ้งในตอนเช้า แต่น้องชายของฉันชอบออกกำลังกายในตอนกลางคืน\n\nคำอธิบาย: เราใช้ 'in' กับช่วงเวลาของวันที่มี the เช่น 'in the morning' แต่สำหรับเวลากลางคืนเราใช้สำนวนเฉพาะคือ 'at night'"
+  },
+  {
+    "id": "q-43-medium1-6",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "medium1",
+    "question": "The university entrance preparation workshop is scheduled to begin ___ Monday morning.",
+    "options": [
+      "on",
+      "at",
+      "in",
+      "by"
+    ],
+    "correct_answer": "on",
+    "explanation": "Even though 'morning' usually takes 'in the morning', when a specific day of the week modifies it (Monday morning), we must use 'on'.",
+    "explanation_th": "แปล: การเวิร์กชอปเตรียมตัวสอบเข้ามหาวิทยาลัยมีกำหนดการเริ่มต้นในเช้าวันจันทร์\n\nคำอธิบาย: แม้ว่าช่วงเวลา 'morning' จะใช้ 'in the morning' แต่เมื่อมีวันในสัปดาห์มาเจาะจงข้างหน้า (Monday morning) กฎเกณฑ์จะเปลี่ยนไปใช้บุพบท 'on' สำหรับวันในสัปดาห์"
+  },
+  {
+    "id": "q-43-medium1-7",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "medium1",
+    "question": "Thailand is usually very hot ___ April, but it rains heavily ___ the rainy season.",
+    "options": [
+      "in, during",
+      "on, in",
+      "at, during",
+      "in, at"
+    ],
+    "correct_answer": "in, during",
+    "explanation": "Use 'in' with months (in April). Use 'during' to specify that something happens within the period of a season (during the rainy season).",
+    "explanation_th": "แปล: ประเทศไทยมักจะร้อนมากในเดือนเมษายน แต่ฝนจะตกหนักในช่วงฤดูฝน\n\nคำอธิบาย: เราใช้ 'in' นำหน้าเดือน (in April) และใช้ 'during' เพื่อระบุเหตุการณ์ที่เกิดขึ้นในช่วงเวลาของฤดูกาล (during the rainy season)"
+  },
+  {
+    "id": "q-43-medium1-8",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "medium1",
+    "question": "The exam results will be published on the official website ___ two weeks of the test date.",
+    "options": [
+      "within",
+      "until",
+      "since",
+      "during"
+    ],
+    "correct_answer": "within",
+    "explanation": "'Within' is used to show that something must happen inside a particular period of time (not longer than two weeks).",
+    "explanation_th": "แปล: ผลสอบจะประกาศบนเว็บไซต์ทางการภายในสองสัปดาห์นับจากวันที่สอบ\n\nคำอธิบาย: เราใช้ 'within' เพื่อระบุช่วงเวลาที่จำกัดว่าสิ่งใดสิ่งหนึ่งจะเกิดขึ้น 'ภายในช่วงเวลาไม่เกิน...' เช่น 'within two weeks' (ภายในสองสัปดาห์)"
+  },
+  {
+    "id": "q-43-medium1-9",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "medium1",
+    "question": "___ the end of the year, my family always goes to Chiang Mai to experience the cool weather.",
+    "options": [
+      "At",
+      "In",
+      "On",
+      "During"
+    ],
+    "correct_answer": "At",
+    "explanation": "Use 'at the end of [something]' to refer to a specific point in time. 'In the end' is an idiom meaning 'finally' or 'eventually' and does not take an object.",
+    "explanation_th": "แปล: ในช่วงสิ้นปี ครอบครัวของฉันมักจะไปเชียงใหม่เสมอเพื่อไปสัมผัสอากาศหนาว\n\nคำอธิบาย: 'At the end of...' เป็นสำนวนที่หมายถึง 'ณ จุดสิ้นสุดของช่วงเวลาหนึ่ง' (เช่น สิ้นปี สิ้นเดือน) ส่วน 'In the end' มีความหมายว่า 'ในที่สุด' ซึ่งเป็นคำวิเศษณ์ที่ไม่ต้องการกรรมมารองรับ"
+  },
+  {
+    "id": "q-43-medium2-0",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "medium2",
+    "question": "The graduation ceremony is scheduled to begin precisely ___ the morning of July 15th, so please arrive early.",
+    "options": [
+      "on",
+      "in",
+      "at",
+      "during"
+    ],
+    "correct_answer": "on",
+    "explanation": "We use 'on' for specific days and dates, even when the sentence mentions 'morning', 'afternoon', or 'evening'. 'On the morning of July 15th' is the correct expression.",
+    "explanation_th": "แปล: พิธีสำเร็จการศึกษาถูกกำหนดให้เริ่มต้นอย่างตรงเวลาในเช้าวันที่ 15 กรกฎาคม ดังนั้นกรุณามาถึงก่อนเวลา\n\nคำอธิบาย: เราใช้บุพบท 'on' กับวันและวันที่เจาะจง แม้ว่าจะมีคำระบุช่วงเวลาอย่าง morning/afternoon/evening มาร่วมด้วยก็ตาม (on the morning of [Date]) ในขณะที่ 'in' จะใช้กับช่วงเวลาทั่วไปที่ไม่มีวันที่ระบุต่อท้าย เช่น in the morning"
+  },
+  {
+    "id": "q-43-medium2-1",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "medium2",
+    "question": "You must submit your university application portfolio ___ next Friday, as late submissions will not be considered.",
+    "options": [
+      "by",
+      "until",
+      "since",
+      "for"
+    ],
+    "correct_answer": "by",
+    "explanation": "'By' is used to indicate a deadline, meaning 'not later than' a specific time. 'Until' indicates how long a continuous situation lasts.",
+    "explanation_th": "แปล: คุณต้องส่งแฟ้มสะสมผลงานการสมัครเข้ามหาวิทยาลัยภายในวันศุกร์หน้า เนื่องจากจะไม่พิจารณาการส่งล่าช้า\n\nคำอธิบาย: 'by' ใช้เพื่อระบุเส้นตาย (deadline) มีความหมายว่า 'ไม่เกิน/ภายในเวลา...' ส่วน 'until' แปลว่า 'จนกระทั่ง' ซึ่งใช้กับเหตุการณ์ที่เกิดขึ้นอย่างต่อเนื่องจนถึงจุดหนึ่ง สำหรับการส่งงาน (submit) ซึ่งเป็นเหตุการณ์ที่ทำครั้งเดียวเสร็จ จึงต้องใช้ 'by'"
+  },
+  {
+    "id": "q-43-medium2-2",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "medium2",
+    "question": "Dr. Smith has been conducting research on renewable energy sources ___ the last decade, achieving several breakthroughs.",
+    "options": [
+      "for",
+      "since",
+      "during",
+      "in"
+    ],
+    "correct_answer": "for",
+    "explanation": "We use 'for' to state the duration of an action (a period of time like 'the last decade'), whereas 'since' is used to state the starting point of an action.",
+    "explanation_th": "แปล: ดร. สมิธ ได้ทำการวิจัยเกี่ยวกับแหล่งพลังงานหมุนเวียนมาเป็นเวลาทศวรรษที่ผ่านมา และประสบความสำเร็จในการค้นพบครั้งสำคัญหลายครั้ง\n\nคำอธิบาย: 'for' ใช้เพื่อบอกช่วงระยะเวลา (duration) เช่น 'for the last decade' (เป็นเวลาหนึ่งทศวรรษที่ผ่านมา) ส่วน 'since' จะใช้บอกจุดเริ่มต้นของเวลา (เช่น since 2010)"
+  },
+  {
+    "id": "q-43-medium2-3",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "medium2",
+    "question": "Many families in Western countries gather for a festive dinner ___ Christmas Day to exchange gifts and celebrate together.",
+    "options": [
+      "on",
+      "at",
+      "in",
+      "during"
+    ],
+    "correct_answer": "on",
+    "explanation": "We use 'on' with specific holiday days that contain the word 'Day' (e.g., on Christmas Day). If the word 'Day' is absent, we use 'at' (e.g., at Christmas).",
+    "explanation_th": "แปล: หลายครอบครัวในประเทศตะวันตกจะรวมตัวกันเพื่อรับประทานอาหารค่ำมื้อฉลองในวันคริสต์มาสเพื่อแลกเปลี่ยนของขวัญและเฉลิมฉลองร่วมกัน\n\nคำอธิบาย: เราใช้ 'on' กับวันเทศกาลที่มีคำว่า 'Day' ลงท้าย เช่น on Christmas Day หรือ on New Year's Day แต่หากพูดถึงช่วงเทศกาลโดยรวมโดยไม่มีคำว่า Day จะใช้ 'at' เช่น at Christmas"
+  },
+  {
+    "id": "q-43-medium2-4",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "medium2",
+    "question": "Financial reports must be finalized and sent to the head office ___ the end of each fiscal quarter.",
+    "options": [
+      "at",
+      "in",
+      "on",
+      "by the time"
+    ],
+    "correct_answer": "at",
+    "explanation": "The phrase 'at the end of' refers to a specific point in time when something finishes. In contrast, 'in the end' means 'finally' or 'eventually'.",
+    "explanation_th": "แปล: รายงานทางการเงินจะต้องได้รับการจัดทำขั้นสุดท้ายและส่งไปยังสำนักงานใหญ่ ณ สิ้นสุดไตรมาสทางการเงินแต่ละไตรมาส\n\nคำอธิบาย: สำนวน 'at the end of...' ใช้บอกช่วงเวลาเจาะจง ณ จุดสิ้นสุดของสิ่งใดสิ่งหนึ่ง (at the end of each fiscal quarter) แตกต่างจาก 'in the end' ที่เป็นคำเชื่อมแปลว่า 'ในท้ายที่สุด/ในที่สุด' (finally)"
+  },
+  {
+    "id": "q-43-medium2-5",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "medium2",
+    "question": "Please refrain from using your mobile phones ___ the lecture, as it disrupts both the speaker and other students.",
+    "options": [
+      "during",
+      "while",
+      "for",
+      "throughout of"
+    ],
+    "correct_answer": "during",
+    "explanation": "'During' is a preposition and is followed by a noun or noun phrase ('the lecture'). 'While' is a conjunction and must be followed by a clause (subject + verb).",
+    "explanation_th": "แปล: กรุณาหลีกเลี่ยงการใช้โทรศัพท์มือถือระหว่างการบรรยาย เนื่องจากเป็นการรบกวนทั้งผู้พูดและผู้ฟังคนอื่นๆ\n\nคำอธิบาย: 'during' เป็นคำบุพบท (preposition) ต้องตามด้วยคำนามหรือวลีนาม (noun phrase) เช่น during the lecture ในขณะที่ 'while' เป็นคำเชื่อม (conjunction) ต้องตามด้วยประโยคที่มีประธานและกริยา"
+  },
+  {
+    "id": "q-43-medium2-6",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "medium2",
+    "question": "The renovation of the main library is expected to be completed ___ three weeks, just before the new semester begins.",
+    "options": [
+      "in",
+      "for",
+      "by the time",
+      "since"
+    ],
+    "correct_answer": "in",
+    "explanation": "In this context, 'in' is used to indicate a period of time in the future when something will be completed (meaning 'within' or 'at the end of' a period of three weeks).",
+    "explanation_th": "แปล: การปรับปรุงห้องสมุดหลักคาดว่าจะเสร็จสิ้นภายในสามสัปดาห์ ก่อนที่ภาคการศึกษาใหม่จะเริ่มต้นขึ้นพอดี\n\nคำอธิบาย: 'in' เมื่อใช้ระบุเวลาในอนาคต มีความหมายว่า 'ในอีก... (ช่วงเวลา)' หรือ 'ภายในเวลา...' (เช่น in three weeks หมายถึง ในอีกสามสัปดาห์ข้างหน้า)"
+  },
+  {
+    "id": "q-43-medium2-7",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "medium2",
+    "question": "To qualify for the early-bird discount, participants must register for the conference ___ ten days of receiving the invitation.",
+    "options": [
+      "within",
+      "by",
+      "until",
+      "during"
+    ],
+    "correct_answer": "within",
+    "explanation": "'Within' means inside the limits of a period of time (not later than the end of ten days). 'By' is used for a specific deadline point in time (e.g., by Friday), not a duration.",
+    "explanation_th": "แปล: เพื่อให้ได้รับสิทธิ์ส่วนลดสำหรับผู้ลงทะเบียนล่วงหน้า ผู้เข้าร่วมจะต้องลงทะเบียนสำหรับงานประชุมภายในสิบวันนับจากวันที่ได้รับหนังสือเชิญ\n\nคำอธิบาย: 'within' มีความหมายว่า 'ภายในช่วงเวลาที่กำหนด' (ไม่เกินกรอบเวลาที่ระบุ) ซึ่งในประโยคนี้คือกำหนดเวลาภายใน 10 วันหลังจากได้รับจดหมาย ส่วน 'by' จะใช้กับจุดเวลาที่เป็นเส้นตายที่เจาะจง ไม่ใช้กับจำนวนระยะเวลาอย่าง ten days ในลักษณะนี้"
+  },
+  {
+    "id": "q-43-medium2-8",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "medium2",
+    "question": "The nocturnal animals in the safari park become highly active ___ night, making it the best time for guided tours.",
+    "options": [
+      "at",
+      "in",
+      "on",
+      "during of"
+    ],
+    "correct_answer": "at",
+    "explanation": "We use the preposition 'at' with 'night' (at night) when speaking generally. However, we use 'in' for other parts of the day (in the morning/afternoon/evening).",
+    "explanation_th": "แปล: สัตว์ที่ออกหากินเวลากลางคืนในสวนสัตว์ซาฟารีจะมีความตื่นตัวอย่างมากในเวลากลางคืน ทำให้เป็นเวลาที่ดีที่สุดสำหรับการทัวร์แบบมีมัคคุเทศก์นำทาง\n\nคำอธิบาย: เราใช้บุพบท 'at' คู่กับ 'night' เสมอ (at night) เมื่อกล่าวถึงเวลากลางคืนทั่วไป ในขณะที่ช่วงเวลาอื่นของวันเราจะใช้ 'in' นำหน้า เช่น in the morning, in the afternoon, in the evening"
+  },
+  {
+    "id": "q-43-medium2-9",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "medium2",
+    "question": "Global temperatures have risen significantly ___ the course of the last century due to industrial activities.",
+    "options": [
+      "over",
+      "at",
+      "since",
+      "until"
+    ],
+    "correct_answer": "over",
+    "explanation": "'Over' can be used to describe a change or development happening throughout a period of time. 'Over the course of...' is a common idiom meaning during a specified period.",
+    "explanation_th": "แปล: อุณหภูมิโลกสูงขึ้นอย่างมีนัยสำคัญตลอดช่วงศตวรรษที่ผ่านมาเนื่องจากกิจกรรมทางอุตสาหกรรม\n\nคำอธิบาย: 'over' สามารถใช้เพื่อระบุการเปลี่ยนแปลงหรือเหตุการณ์ที่เกิดขึ้นอย่างต่อเนื่องตลอดช่วงเวลาหนึ่ง โดยสำนวน 'over the course of...' แปลว่า 'ตลอดช่วงเวลาของ...' ซึ่งทำหน้าที่เป็นบุพบทบอกเวลาที่สอดคล้องกับ Present Perfect Tense ในประโยค"
+  },
+  {
+    "id": "q-43-hard1-0",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "hard1",
+    "question": "The organizing committee announced that all abstract submissions for the international conference must be uploaded ________ midnight on October 15th at the very latest.",
+    "options": [
+      "by",
+      "until",
+      "to",
+      "within"
+    ],
+    "correct_answer": "by",
+    "explanation": "'By' is used to indicate a deadline, meaning 'not later than' or 'on or before' a specific point in time (midnight). 'Until' is used to describe a state or action that continues up to a specific point, which is incorrect here because submitting is a single completion action, not a continuous one.",
+    "explanation_th": "แปล: คณะกรรมการจัดงานประกาศว่าการส่งบทคัดย่อทั้งหมดสำหรับการประชุมนานาชาติต้องได้รับการอัปโหลดภายในเวลาเที่ยงคืนของวันที่ 15 ตุลาคมเป็นอย่างช้าที่สุด\n\nคำอธิบาย: เราใช้ 'by' เพื่อบอกเส้นตาย (deadline) มีความหมายว่า 'ไม่เกิน' หรือ 'ภายใน' จุดเวลาที่กำหนด (midnight) ในขณะที่ 'until' จะใช้กับเหตุการณ์ที่ดำเนินต่อเนื่องไปจนถึงจุดเวลาหนึ่ง ซึ่งไม่สอดคล้องกับกริยาของการส่งงาน (upload) ที่เสร็จสิ้นในครั้งเดียว"
+  },
+  {
+    "id": "q-43-hard1-1",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "hard1",
+    "question": "The unexpected system crash occurred ________ the morning of the scheduled system upgrade, causing widespread panic among the IT staff.",
+    "options": [
+      "on",
+      "in",
+      "at",
+      "during of"
+    ],
+    "correct_answer": "on",
+    "explanation": "Although we say 'in the morning,' we must use 'on' when referring to a specific morning, afternoon, or evening associated with a particular date, day, or event (e.g., 'on the morning of the scheduled system upgrade').",
+    "explanation_th": "แปล: ระบบล่มโดยไม่คาดคิดเกิดขึ้นในเช้าของวันที่กำหนดจะอัปเกรดระบบ ส่งผลให้เกิดความตื่นตระหนกอย่างกว้างขวางในหมู่เจ้าหน้าที่ไอที\n\nคำอธิบาย: แม้ว่าปกติเราจะใช้ 'in the morning' แต่เมื่อมีการระบุเฉพาะเจาะจงว่าเป็นเช้าของ 'วันใดวันหนึ่ง' หรือ 'เหตุการณ์ใดเหตุการณ์หนึ่ง' (the morning of...) เราจะต้องเปลี่ยนมาใช้บุพบท 'on' เสมอ"
+  },
+  {
+    "id": "q-43-hard1-2",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "hard1",
+    "question": "The exhibition highlighting traditional Thai fabrics will remain open to the public ________ the entire month of April, including the Songkran holidays.",
+    "options": [
+      "throughout",
+      "during",
+      "for",
+      "in between"
+    ],
+    "correct_answer": "throughout",
+    "explanation": "'Throughout' is used to emphasize that something happens from the beginning to the end of a period of time ('the entire month of April'). 'During' only indicates that it happens at some point within that period, making 'throughout' more precise for emphasizing the whole duration.",
+    "explanation_th": "แปล: นิทรรศการที่เน้นผ้าทอพื้นเมืองของไทยจะยังคงเปิดให้ประชาชนทั่วไปเข้าชมตลอดทั้งเดือนเมษายน รวมถึงช่วงวันหยุดเทศกาลสงกรานต์ด้วย\n\nคำอธิบาย: 'Throughout' ใช้เพื่อเน้นย้ำช่วงเวลาตั้งแต่เริ่มต้นจนจบคาบเวลานั้น ๆ (ตลอดทั้ง...) ซึ่งสอดรับกับคำว่า 'the entire month' (ทั้งเดือน) ส่วน 'during' จะหมายถึงช่วงเวลาใดเวลาหนึ่งในระหว่างนั้น จึงไม่เน้นความต่อเนื่องเท่า throughout"
+  },
+  {
+    "id": "q-43-hard1-3",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "hard1",
+    "question": "According to the new environmental policy, all local factories are strictly required to transition to renewable energy sources ________ five years.",
+    "options": [
+      "within",
+      "by",
+      "until",
+      "at"
+    ],
+    "correct_answer": "within",
+    "explanation": "'Within' is used to express that something must happen inside the limits of a period of time (before five years have passed). 'By' cannot be used here because it must be followed by a specific point in time (e.g., 'by 2030'), not a duration like 'five years'.",
+    "explanation_th": "แปล: ตามนโยบายสิ่งแวดล้อมใหม่ โรงงานในท้องถิ่นทั้งหมดถูกกำหนดอย่างเข้มงวดให้เปลี่ยนผ่านไปสู่แหล่งพลังงานหมุนเวียนภายในระยะเวลาห้าปี\n\nคำอธิบาย: 'Within' มีความหมายว่า 'ภายในเวลา' ใช้ตามด้วยช่วงระยะเวลา (period of time เช่น five years) เพื่อบอกว่าเหตุการณ์ต้องเสร็จสิ้นก่อนหมดเวลานั้น ส่วน 'by' จะต้องตามด้วยจุดเวลาที่เฉพาะเจาะจง (point in time เช่น by Friday, by next year) ไม่สามารถใช้กับจำนวนปีลอย ๆ ได้"
+  },
+  {
+    "id": "q-43-hard1-4",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "hard1",
+    "question": "A special candlelight vigil is traditionally held ________ the eve of the anniversary to commemorate the historical event.",
+    "options": [
+      "on",
+      "at",
+      "in",
+      "during"
+    ],
+    "correct_answer": "on",
+    "explanation": "'On' is the correct preposition used in the idiomatic time phrase 'on the eve of', which means on the night or the day before a significant event.",
+    "explanation_th": "แปล: พิธีจุดเทียนรำลึกเป็นพิเศษจะถูกจัดขึ้นตามประเพณีในคืนก่อนวันครบรอบเพื่อรำลึกถึงเหตุการณ์ประวัติศาสตร์\n\nคำอธิบาย: 'on the eve of' เป็นสำนวนบอกเวลาที่เฉพาะเจาะจง หมายถึง 'ในเย็นหรือวันก่อนหน้าวันสำคัญ' ซึ่งต้องใช้คู่กับบุพบท 'on' เท่านั้น ไม่ใช้ at หรือ in"
+  },
+  {
+    "id": "q-43-hard1-5",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "hard1",
+    "question": "Many business owners reported a massive decline in tourist spending ________ the three-month lockdown period last year.",
+    "options": [
+      "during",
+      "for",
+      "while",
+      "since"
+    ],
+    "correct_answer": "during",
+    "explanation": "'During' is followed by a noun phrase ('the three-month lockdown period') to state when something happened. 'While' is a conjunction and must be followed by a clause (subject + verb). 'For' is used to state the duration of an action, but here we are pinpointing when the decline occurred.",
+    "explanation_th": "แปล: เจ้าของธุรกิจจำนวนมากรายงานว่ายอดการใช้จ่ายของนักท่องเที่ยวลดลงอย่างมหาศาลในระหว่างช่วงล็อกดาวน์สามเดือนเมื่อปีที่แล้ว\n\nคำอธิบาย: 'during' เป็นบุพบทที่ต้องตามด้วยคำนามหรือวลี (noun phrase) เพื่อบอกว่าเหตุการณ์เกิดขึ้น 'ในระหว่างช่วงเวลา' นั้น ๆ ในขณะที่ 'while' ทำหน้าที่เป็นคำเชื่อม (conjunction) ซึ่งต้องตามด้วยประโยค (S + V) ส่วน 'for' จะใช้ระบุระยะเวลาความต่อเนื่องของกริยา"
+  },
+  {
+    "id": "q-43-hard1-6",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "hard1",
+    "question": "Massive industrial developments and rapid urban migrations occurred ________ the turn of the twentieth century.",
+    "options": [
+      "at",
+      "in",
+      "on",
+      "by the time"
+    ],
+    "correct_answer": "at",
+    "explanation": "'At' is the standard preposition used with the phrase 'the turn of the century' to denote the transition point from one century to the next.",
+    "explanation_th": "แปล: การพัฒนาอุตสาหกรรมอย่างมหาศาลและการย้ายถิ่นฐานเข้าสู่เมืองอย่างรวดเร็วเกิดขึ้นในช่วงรอยต่อของคริสต์ศตวรรษที่ยี่สิบ\n\nคำอธิบาย: วลีบอกเวลา 'the turn of the century' (ช่วงผลัดเปลี่ยนศตวรรษ) เป็นสำนวนเฉพาะที่ต้องใช้ร่วมกับบุพบท 'at' เสมอ เป็น 'at the turn of...'"
+  },
+  {
+    "id": "q-43-hard1-7",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "hard1",
+    "question": "The historical treaty was finally signed ________ a gloomy Tuesday afternoon in late October.",
+    "options": [
+      "on",
+      "in",
+      "at",
+      "during"
+    ],
+    "correct_answer": "on",
+    "explanation": "We use 'on' for parts of the day when they are modified by a specific day of the week or an adjective specifying the day (e.g., 'on a gloomy Tuesday afternoon' or 'on Friday morning').",
+    "explanation_th": "แปล: ในที่สุดสนธิสัญญาประวัติศาสตร์ก็ได้รับการลงนามในบ่ายวันอังคารที่แสนหม่นหมองช่วงปลายเดือนตุลาคม\n\nคำอธิบาย: แม้ปกติช่วงเวลาของวันจะใช้ 'in' (เช่น in the afternoon) แต่หากมีวันในสัปดาห์ (Tuesday) หรือมีคำคุณศัพท์ขยายระบุวันนั้นโดยเฉพาะ เจาะจงลงไปเป็น 'บ่ายของวันอังคาร...' จะต้องใช้บุพบท 'on' เสมอ"
+  },
+  {
+    "id": "q-43-hard1-8",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "hard1",
+    "question": "The professor promised to distribute the comprehensive revision notes ________ the end of today's lecture.",
+    "options": [
+      "at",
+      "in",
+      "by",
+      "on"
+    ],
+    "correct_answer": "at",
+    "explanation": "'At the end of [something]' is used to refer to the specific point in time when an event finishes. 'In the end' is an idiom meaning 'finally' or 'after all' and does not take 'of'.",
+    "explanation_th": "แปล: อาจารย์สัญญาว่าจะแจกเอกสารสรุปทบทวนเนื้อหาอย่างครอบคลุมเมื่อสิ้นสุดการบรรยายในวันนี้\n\nคำอธิบาย: โครงสร้างบอกเวลา 'ณ จุดสิ้นสุดของสิ่งใดสิ่งหนึ่ง' จะใช้วลี 'at the end of...' เสมอ ในขณะที่ 'in the end' เป็นสำนวนมีความหมายว่า 'ในท้ายที่สุด' (เสมือนคำว่า finally) ซึ่งจะอยู่เดี่ยว ๆ และไม่มี 'of' ตามหลัง"
+  },
+  {
+    "id": "q-43-hard1-9",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "hard1",
+    "question": "The board of directors is scheduled to deliberate on the proposed annual budget ________ next Thursday morning.",
+    "options": [
+      "— (No preposition)",
+      "on",
+      "at",
+      "in"
+    ],
+    "correct_answer": "— (No preposition)",
+    "explanation": "Prepositions of time (in, on, at) are omitted before time expressions starting with words like 'next', 'last', 'this', 'every', 'each', or 'some'. Thus, no preposition is needed before 'next Thursday morning'.",
+    "explanation_th": "แปล: คณะกรรมการบริหารมีกำหนดการที่จะพิจารณาหารือเกี่ยวกับงบประมาณประจำปีที่เสนอมาในเช้าวันพฤหัสบดีหน้า\n\nคำอธิบาย: ในภาษาอังกฤษ เราจะไม่ใส่บุพบทบอกเวลา (in, on, at) ไว้หน้าคำแสดงเวลาที่มีคำว่า 'next', 'last', 'this', 'every' นำหน้าอยู่แล้ว ดังนั้นหนคำว่า 'next Thursday morning' จึงไม่ต้องใส่บุพบทใด ๆ"
+  },
+  {
+    "id": "q-43-hard2-0",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "hard2",
+    "question": "The socio-economic landscape of the region underwent dramatic transformations ___ the late nineteenth century, culminating in rapid industrialization.",
+    "options": [
+      "throughout",
+      "at",
+      "on",
+      "since"
+    ],
+    "correct_answer": "throughout",
+    "explanation": "'Throughout' is used as a preposition of time to show that something happens during the entire duration of a period. 'At' and 'on' are used for specific, localized points in time, while 'since' is incorrect here because it requires a perfect tense in the main clause, not the past simple 'underwent'.",
+    "explanation_th": "แปล: ภูมิทัศน์ทางเศรษฐกิจและสังคมของภูมิภาคนี้ได้ผ่านพ้นการเปลี่ยนแปลงอย่างรวดเร็วตลอดช่วงปลายศตวรรษที่สิบเก้า ซึ่งนำไปสู่การปฏิวัติอุตสาหกรรมอย่างรวดเร็ว\n\nคำอธิบาย: คำว่า 'throughout' เป็นบุพบทบอกเวลาที่หมายถึง 'ตลอดทั้งช่วงเวลา' ซึ่งสอดคล้องกับบริบทที่พูดถึงการเปลี่ยนแปลงที่เกิดขึ้นตลอดช่วงปลายศตวรรษที่ 19 ตัวเลือกอื่น ๆ เช่น 'at' และ 'on' ใช้กับจุดเวลาเฉพาะเจาะจง ส่วน 'since' (ตั้งแต่) มักใช้กับ Present Perfect Tense แต่ในประโยคนี้ใช้ Past Simple Tense ('underwent') จึงไม่ถูกต้อง"
+  },
+  {
+    "id": "q-43-hard2-1",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "hard2",
+    "question": "The research committee requested that all prospective scholars submit their complete dissertation drafts ___ midnight on the fifteenth of October.",
+    "options": [
+      "by",
+      "until",
+      "within",
+      "during"
+    ],
+    "correct_answer": "by",
+    "explanation": "'By' is used to specify a deadline (not later than a certain time). 'Until' is incorrect because it describes a continuous action up to a point, which does not fit the punctual verb 'submit'. 'Within' must be followed by a period/duration of time, not a specific point like 'midnight'.",
+    "explanation_th": "แปล: คณะกรรมการวิจัยได้ขอให้นักวิชาการที่คาดหวังทุกคนส่งร่างวิทยานิพนธ์ที่สมบูรณ์ภายในเวลาเที่ยงคืนของวันที่สิบห้าตุลาคม\n\nคำอธิบาย: 'by' ใช้ระบุ 'เส้นตาย' หรือเดดไลน์ (ไม่เกินเวลาที่กำหนด) ซึ่งสอดคล้องกับการส่งงาน (submit) ส่วน 'until' (จนกระทั่ง) ใช้กับเหตุการณ์ที่เกิดขึ้นอย่างต่อเนื่องจนถึงจุดเวลาหนึ่ง ซึ่งไม่เข้ากับกริยาประเภทฉับพลันอย่าง 'submit' และ 'within' ต้องตามด้วยช่วงระยะเวลา ไม่ใช่จุดเวลาอย่าง 'midnight'"
+  },
+  {
+    "id": "q-43-hard2-2",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "hard2",
+    "question": "The keynote speaker is scheduled to deliver her highly anticipated address on sustainable development ___ the afternoon of July 23rd.",
+    "options": [
+      "on",
+      "in",
+      "at",
+      "by"
+    ],
+    "correct_answer": "on",
+    "explanation": "While we say 'in the afternoon', we must use the preposition 'on' when referring to a specific part of a day on a particular date (e.g., 'on the afternoon of July 23rd'). 'At' is for specific clock times, and 'by' indicates a deadline.",
+    "explanation_th": "แปล: ผู้พูดหลักมีกำหนดการที่จะกล่าวสุนทรพจน์ที่ได้รับการตั้งตารอคอยอย่างมากเกี่ยวกับการพัฒนาที่ยั่งยืนในบ่ายวันที่ 23 กรกฎาคม\n\nคำอธิบาย: โดยปกติเราจะใช้ 'in the afternoon' แต่หากมีการระบุวันที่เฉพาะเจาะจง (ในที่นี้คือ July 23rd) กฎไวยากรณ์ภาษาอังกฤษกำหนดให้ใช้บุพบท 'on' ('on the afternoon of [date]') ตัวเลือก 'in' จึงผิดในบริบทนี้ ส่วน 'at' ใช้กับเวลาที่เจาะจงเป็นชั่วโมง และ 'by' ใช้บอกเส้นตาย"
+  },
+  {
+    "id": "q-43-hard2-3",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "hard2",
+    "question": "The government has implemented stringent environmental regulations, which have been rigorously enforced ___ the turn of the millennium.",
+    "options": [
+      "since",
+      "for",
+      "from",
+      "during"
+    ],
+    "correct_answer": "since",
+    "explanation": "'Since' is used to indicate the starting point of an action or state that continues up to the present, which perfectly aligns with the Present Perfect passive verb 'have been rigorously enforced'. 'For' is used for duration, and 'from' is not standardly used alone in this context.",
+    "explanation_th": "แปล: รัฐบาลได้บังคับใช้กฎระเบียบด้านสิ่งแวดล้อมที่เข้มงวด ซึ่งได้รับการบังคับใช้อย่างเข้มแข็งมาตั้งแต่ช่วงเปลี่ยนสหัสวรรษ\n\nคำอธิบาย: 'since' (ตั้งแต่) ใช้บอกจุดเริ่มต้นของเหตุการณ์ที่ดำเนินมาจนถึงปัจจุบัน มักใช้คู่กับ Present Perfect Tense ('have been enforced') ซึ่งระบุเวลาเริ่มต้นคือ 'the turn of the millennium' (ช่วงเปลี่ยนผ่านสหัสวรรษ) ส่วน 'for' ใช้กับระยะเวลา (เช่น for 10 years) และ 'from' มักใช้คู่กับ 'to' หรือ 'onward' เพื่อบอกช่วงเวลาทั่วไป"
+  },
+  {
+    "id": "q-43-hard2-4",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "hard2",
+    "question": "Under the new corporate guidelines, any customer grievances must be officially resolved ___ three working days of their initial submission.",
+    "options": [
+      "within",
+      "by",
+      "in",
+      "throughout"
+    ],
+    "correct_answer": "within",
+    "explanation": "'Within' indicates that an action must occur inside a specified limit of time (before a duration of time has elapsed). 'By' is used with a specific point in time (e.g., by 5 PM), not a duration. 'In' implies at the end of or after that period, rather than inside the limit.",
+    "explanation_th": "แปล: ภายใต้แนวปฏิบัติใหม่ของบริษัท ข้อร้องเรียนใด ๆ จากลูกค้าจะต้องได้รับการแก้ไขอย่างเป็นทางการภายในสามวันทำการนับจากการยื่นเรื่องครั้งแรก\n\nคำอธิบาย: 'within' (ภายใน) ใช้แสดงว่าเหตุการณ์ต้องเกิดขึ้นก่อนสิ้นสุดระยะเวลาที่กำหนด (ภายใน 3 วันทำการ) ส่วน 'by' ต้องตามด้วยจุดเวลา (เดดไลน์ เช่น by Friday) ไม่ใช่จำนวนวัน 'in' ในบริบทของเวลาอาจหมายถึง 'ในอีก (สามวันข้างหน้า)' ซึ่งไม่ตรงกับความหมายว่าห้ามเกินสามวันเท่ากับ 'within'"
+  },
+  {
+    "id": "q-43-hard2-5",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "hard2",
+    "question": "Academic institutions across the country traditionally experience a significant drop in student enrollment ___ Easter, whereas during the summer break, numbers stabilize.",
+    "options": [
+      "at",
+      "on",
+      "in",
+      "by"
+    ],
+    "correct_answer": "at",
+    "explanation": "We use the preposition 'at' when referring to whole holiday periods or religious festivals (e.g., 'at Easter', 'at Christmas'). 'On' is used for a single, specific day of that holiday (e.g., 'on Easter Sunday'). 'In' is used with months, years, or seasons.",
+    "explanation_th": "แปล: สถาบันการศึกษาทั่วประเทศมักจะประสบกับยอดการลงทะเบียนเรียนของนักเรียนที่ลดลงอย่างมีนัยสำคัญในช่วงเทศกาลอีสเตอร์ ในขณะที่ในช่วงปิดเทอมฤดูร้อน ตัวเลขจะกลับมาคงที่\n\nคำอธิบาย: เราใช้ 'at' กับเทศกาลหรือช่วงวันหยุดยาว เช่น 'at Easter' หรือ 'at Christmas' เพื่อสื่อถึงช่วงเทศกาลทั้งหมด ส่วน 'on' จะใช้กับวันเฉพาะเจาะจง เช่น 'on Easter Monday' และ 'in' ใช้กับเดือน ปี หรือฤดูกาล"
+  },
+  {
+    "id": "q-43-hard2-6",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "hard2",
+    "question": "The temporary archaeological exhibition will remain open to the public ___ a period of six months, after which the artifacts will be returned to Rome.",
+    "options": [
+      "for",
+      "during",
+      "in",
+      "throughout"
+    ],
+    "correct_answer": "for",
+    "explanation": "'For' is used to state the duration of an action or state (how long it lasts). 'During' is used to say when something happens within another period, but is not followed by a measurement of time unless emphasizing occurrence within that period rather than total duration.",
+    "explanation_th": "แปล: นิทรรศการโบราณคดีชั่วคราวจะยังคงเปิดให้สาธารณชนเข้าชมเป็นระยะเวลาหกเดือน หลังจากนั้นโบราณวัตถุจะถูกส่งกลับกรุงโรม\n\nคำอธิบาย: 'for' ใช้เพื่อระบุช่วงระยะเวลาของการกระทำหรือสถานะว่ายาวนานเท่าใด (for + ระยะเวลา เช่น for a period of six months) ส่วน 'during' ใช้ระบุว่าเหตุการณ์หนึ่งเกิดขึ้น 'ในระหว่าง' อีกช่วงเวลาหนึ่ง แต่ไม่ได้เน้นความยาวนานของตัวมันเองเหมือน 'for'"
+  },
+  {
+    "id": "q-43-hard2-7",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "hard2",
+    "question": "All international applicants must complete their language proficiency evaluations ___ their formal registration at the university.",
+    "options": [
+      "prior to",
+      "until",
+      "by",
+      "at"
+    ],
+    "correct_answer": "prior to",
+    "explanation": "'Prior to' is a formal compound preposition of time meaning 'before'. 'Until' and 'by' are grammatically unsuitable here as they do not correctly show the logical chronological relationship of completing one task before the event of registration.",
+    "explanation_th": "แปล: ผู้สมัครชาวต่างชาติทุกคนต้องเข้ารับการประเมินความสามารถทางภาษาให้เสร็จสิ้นก่อนการลงทะเบียนอย่างเป็นทางการที่มหาวิทยาลัย\n\nคำอธิบาย: 'prior to' เป็นบุพบทที่เป็นทางการหมายถึง 'ก่อน' (before) ใช้เชื่อมโยงเวลาของเหตุการณ์หนึ่งกับอีกเหตุการณ์หนึ่ง ส่วน 'until' (จนกระทั่ง) และ 'by' (ภายใน) ไม่สอดคล้องกับโครงสร้างและบริบทในการบอกลำดับขั้นตอนนี้"
+  },
+  {
+    "id": "q-43-hard2-8",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "hard2",
+    "question": "The philosopher’s revolutionary ideas regarding social contracts were first conceptualized ___ an era of intense political upheaval.",
+    "options": [
+      "in",
+      "at",
+      "on",
+      "for"
+    ],
+    "correct_answer": "in",
+    "explanation": "We use the preposition 'in' for long periods of time, including historical eras, centuries, years, and seasons (e.g., 'in an era', 'in the Middle Ages'). 'At' is reserved for precise points of time or age, and 'on' is for specific days.",
+    "explanation_th": "แปล: แนวคิดเชิงปฏิวัติของนักปรัชญาเกี่ยวกับสัญญาประชาคมถูกคิดค้นขึ้นครั้งแรกในยุคแห่งความระส่ำระสายทางการเมืองอย่างรุนแรง\n\nคำอธิบาย: เราใช้ 'in' กับยุคสมัยประวัติศาสตร์ ศตวรรษ หรือช่วงเวลายาว ๆ (เช่น in an era of..., in the golden age) ส่วน 'at' มักใช้กับจุดเวลาเฉพาะหรืออายุ และ 'on' ใช้กับวันหรือวันที่"
+  },
+  {
+    "id": "q-43-hard2-9",
+    "unit_id": 43,
+    "unit_number": 43,
+    "level_id": "hard2",
+    "question": "The peace delegation finally signed the historic treaty ___ a cold, rainy Monday morning, bringing hope to millions.",
+    "options": [
+      "on",
+      "in",
+      "at",
+      "during"
+    ],
+    "correct_answer": "on",
+    "explanation": "Even when modified by descriptive adjectives (like 'cold, rainy'), any phrase indicating a specific day of the week followed by a part of the day (e.g., 'Monday morning') requires the preposition 'on'. 'In' is only used if we say 'in the morning' without specifying the day.",
+    "explanation_th": "แปล: ในที่สุดคณะผู้แทนเจรจาสันติภาพก็ได้ลงนามในสนธิสัญญาประวัติศาสตร์ในเช้าวันจันทร์ที่เหน็บหนาวและมีฝนตก นำความหวังมาสู่ผู้คนหลายล้านคน\n\nคำอธิบาย: แม้ว่าวันจันทร์ (Monday) จะมีคำคุณศัพท์มาขยาย (cold, rainy) และตามด้วยช่วงเวลา (morning) เราก็ยังคงต้องใช้ 'on' เนื่องจากเป็นการระบุวันเฉพาะเจาะจง ('on Monday morning') ส่วน 'in' จะใช้กับช่วงเวลาทั่วไปที่ไม่มีวันระบุ (เช่น in the morning)"
+  },
+  {
+    "id": "q-44-easy-0",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "easy",
+    "question": "There is a cup of hot coffee ___ the table in the kitchen.",
+    "options": [
+      "on",
+      "in",
+      "at",
+      "into"
+    ],
+    "correct_answer": "on",
+    "explanation": "We use the preposition 'on' to indicate that something is positioned on a flat surface, such as a table.",
+    "explanation_th": "แปล: มีถ้วยกาแฟร้อนอยู่บนโต๊ะในห้องครัว\n\nคำอธิบาย: ใช้ 'on' เพื่อบอกตำแหน่งของสิ่งของที่อยู่บนพื้นผิวสัมผัส เช่น บนโต๊ะ (on the table) ส่วน in ใช้เมื่ออยู่ข้างใน และ at ใช้ระบุจุดที่เฉพาะเจาะจง"
+  },
+  {
+    "id": "q-44-easy-1",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "easy",
+    "question": "My grandparents live ___ Chiang Mai, a beautiful province in northern Thailand.",
+    "options": [
+      "in",
+      "on",
+      "at",
+      "to"
+    ],
+    "correct_answer": "in",
+    "explanation": "We use the preposition 'in' with cities, provinces, countries, and large geographical areas.",
+    "explanation_th": "แปล: ปู่ย่าตายายของฉันอาศัยอยู่ในจังหวัดเชียงใหม่ ซึ่งเป็นจังหวัดที่สวยงามทางภาคเหนือของประเทศไทย\n\nคำอธิบาย: ใช้บุพบท 'in' กับเมือง จังหวัด ประเทศ หรือพื้นที่ขนาดใหญ่ เช่น in Chiang Mai"
+  },
+  {
+    "id": "q-44-easy-2",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "easy",
+    "question": "The students are waiting for the school bus ___ the bus stop.",
+    "options": [
+      "at",
+      "on",
+      "in",
+      "above"
+    ],
+    "correct_answer": "at",
+    "explanation": "We use 'at' for a specific point or location in space.",
+    "explanation_th": "แปล: นักเรียนกำลังรอรถโรงเรียนอยู่ที่ป้ายรถเมล์\n\nคำอธิบาย: ใช้ 'at' เพื่อบอกจุดหรือสถานที่ที่เฉพาะเจาะจง เช่น at the bus stop (ที่ป้ายรถเมล์)"
+  },
+  {
+    "id": "q-44-easy-3",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "easy",
+    "question": "Our cat always hides ___ the bed when it hears loud thunder.",
+    "options": [
+      "under",
+      "between",
+      "on",
+      "at"
+    ],
+    "correct_answer": "under",
+    "explanation": "The preposition 'under' is used to talk about something that is below or covered by something else.",
+    "explanation_th": "แปล: แมวของพวกเรามักจะซ่อนอยู่ใต้เตียงเสมอเมื่อมันได้ยินเสียงฟ้าร้องดัง\n\nคำอธิบาย: ใช้ 'under' (ใต้) เพื่อบอกว่าสิ่งหนึ่งอยู่ข้างใต้หรือถูกบังโดยอีกสิ่งหนึ่ง (ใต้เตียง) ซึ่งสอดคล้องกับพฤติกรรมของแมวที่กลัวเสียงฟ้าร้อง"
+  },
+  {
+    "id": "q-44-easy-4",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "easy",
+    "question": "The new bakery is located ___ the pharmacy and the bookstore.",
+    "options": [
+      "between",
+      "among",
+      "next",
+      "in"
+    ],
+    "correct_answer": "between",
+    "explanation": "We use 'between' when referring to something in the middle of two distinct points, objects, or places.",
+    "explanation_th": "แปล: ร้านเบเกอรี่แห่งใหม่อยู่ระหว่างร้านขายยาและร้านหนังสือ\n\nคำอธิบาย: ใช้ 'between' (ระหว่าง) เมื่อพูดถึงสิ่งของหรือสถานที่ที่อยู่ตรงกลางระหว่างสิ่งสองสิ่ง (the pharmacy and the bookstore) ส่วน next ต้องมี to และ among ใช้กับสิ่งของตั้งแต่สามสิ่งขึ้นไป"
+  },
+  {
+    "id": "q-44-easy-5",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "easy",
+    "question": "There is a beautiful family photo hanging ___ the fireplace in the living room.",
+    "options": [
+      "above",
+      "under",
+      "in",
+      "at"
+    ],
+    "correct_answer": "above",
+    "explanation": "We use 'above' to describe something that is in a higher position than something else, without touching it.",
+    "explanation_th": "แปล: มีรูปถ่ายครอบครัวที่สวยงามแขวนอยู่เหนือเตาผิงในห้องนั่งเล่น\n\nคำอธิบาย: ใช้ 'above' (เหนือ / ข้างบน) เพื่อแสดงว่าสิ่งหนึ่งอยู่สูงกว่าอีกสิ่งหนึ่งโดยไม่ได้สัมผัสกันโดยตรง เช่น รูปภาพที่แขวนอยู่เหนือเตาผิง"
+  },
+  {
+    "id": "q-44-easy-6",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "easy",
+    "question": "Anna is standing ___ Tom in the queue. Tom is directly in front of her.",
+    "options": [
+      "behind",
+      "in front of",
+      "on",
+      "between"
+    ],
+    "correct_answer": "behind",
+    "explanation": "Since Tom is in front of Anna, it means Anna is standing 'behind' Tom.",
+    "explanation_th": "แปล: แอนนากำลังยืนอยู่ข้างหลังทอมในแถว ทอมยืนอยู่ข้างหน้าเธอโดยตรง\n\nคำอธิบาย: คำใบ้บอกว่าทอมอยู่ข้างหน้าแอนนา (Tom is directly in front of her) ดังนั้นแอนนาจึงต้องยืนอยู่ 'behind' (ข้างหลัง) ทอม"
+  },
+  {
+    "id": "q-44-easy-7",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "easy",
+    "question": "I can't find my wallet. Is it ___ your backpack?",
+    "options": [
+      "in",
+      "on",
+      "at",
+      "on top of"
+    ],
+    "correct_answer": "in",
+    "explanation": "We use 'in' to indicate that something is inside a container, bag, or enclosed space.",
+    "explanation_th": "แปล: ฉันหากระเป๋าสตางค์ไม่เจอ มันอยู่ในกระเป๋าเป้ของคุณหรือเปล่า?\n\nคำอธิบาย: ใช้ 'in' (ข้างใน) เพื่อบอกว่าสิ่งของนั้นอยู่ภายในภาชนะ พื้นที่ปิด หรือกระเป๋า (in your backpack)"
+  },
+  {
+    "id": "q-44-easy-8",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "easy",
+    "question": "The convenience store is located ___ the school, so students can buy snacks easily.",
+    "options": [
+      "next to",
+      "next",
+      "between",
+      "at"
+    ],
+    "correct_answer": "next to",
+    "explanation": "'Next to' is used to mean adjacent to or beside. 'Next' alone cannot be used as a preposition of place without 'to'.",
+    "explanation_th": "แปล: ร้านสะดวกซื้อตั้งอยู่ข้างๆ โรงเรียน นักเรียนจึงสามารถซื้อขนมได้ง่าย\n\nคำอธิบาย: 'next to' แปลว่า ถัดจาก หรือ ข้างๆ ซึ่งต้องการบุพบท 'to' เสมอ ส่วน 'next' เดี่ยวๆ ไม่สามารถทำหน้าที่เป็นคำบุพบทบอกตำแหน่งในโครงสร้างนี้ได้"
+  },
+  {
+    "id": "q-44-easy-9",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "easy",
+    "question": "She is currently studying for her exams ___ the library.",
+    "options": [
+      "at",
+      "on",
+      "under",
+      "between"
+    ],
+    "correct_answer": "at",
+    "explanation": "We use 'at' to refer to a place where an activity typically happens, such as studying at the library.",
+    "explanation_th": "แปล: ขณะนี้เธอกำลังอ่านหนังสือสอบอยู่ที่ห้องสมุด\n\nคำอธิบาย: ใช้ 'at' เพื่อสื่อถึงสถานที่ที่เป็นจุดทำกิจกรรมต่างๆ (at the library หมายถึงกำลังทำกิจกรรมเรียนหรืออ่านหนังสืออยู่ที่นั่น)"
+  },
+  {
+    "id": "q-44-medium1-0",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "medium1",
+    "question": "The new organic cafe is located ___ 45 Sukhumvit Road, right next to the BTS station.",
+    "options": [
+      "at",
+      "on",
+      "in",
+      "to"
+    ],
+    "correct_answer": "at",
+    "explanation": "We use 'at' for specific addresses that include a street number (e.g., 45 Sukhumvit Road). 'On' is used for street names without a number, and 'in' is used for cities, countries, or larger regions.",
+    "explanation_th": "แปล: คาเฟ่ออร์แกนิกแห่งใหม่ตั้งอยู่ที่เลขที่ 45 ถนนสุขุมวิท ถัดจากสถานีรถไฟฟ้าบีทีเอสพอดี\n\nคำอธิบาย: เราใช้ 'at' กับที่อยู่ที่ระบุเลขที่ตั้งชัดเจน (เช่น 45 Sukhumvit Road) ในขณะที่ 'on' จะใช้กับชื่อถนนเฉยๆ ที่ไม่มีเลขที่ และ 'in' ใช้กับเมือง จังหวัด ประเทศ หรือพื้นที่ปิด"
+  },
+  {
+    "id": "q-44-medium1-1",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "medium1",
+    "question": "The small cottage is hidden ___ the tall pine trees in the national park.",
+    "options": [
+      "among",
+      "between",
+      "under",
+      "on"
+    ],
+    "correct_answer": "among",
+    "explanation": "'Among' is used when talking about being surrounded by three or more things that are not individually distinct. 'Between' is typically used for two distinct things.",
+    "explanation_th": "แปล: กระท่อมหลังเล็กถูกซ่อนอยู่ท่ามกลางต้นสนสูงในอุทยานแห่งชาติ\n\nคำอธิบาย: ใช้ 'among' เมื่อพูดถึงการอยู่ท่ามกลางหรือถูกล้อมรอบด้วยสิ่งของตั้งแต่ 3 สิ่งขึ้นไปที่ไม่ได้ระบุแยกแยะเป็นรายชิ้น (ในที่นี้คือกลุ่มต้นสน) ส่วน 'between' มักใช้กับสิ่งสองสิ่งหรือการแบ่งแยกสองฝั่งที่ชัดเจน"
+  },
+  {
+    "id": "q-44-medium1-2",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "medium1",
+    "question": "I realized I had left my umbrella ___ the bus only after it had already driven away.",
+    "options": [
+      "on",
+      "in",
+      "at",
+      "by"
+    ],
+    "correct_answer": "on",
+    "explanation": "We use 'on' for larger public transport vehicles where passengers can stand and walk around (such as buses, trains, planes, and ships). 'In' is used for personal cars or taxis.",
+    "explanation_th": "แปล: ฉันเพิ่งนึกขึ้นได้ว่าลืมร่มไว้บนรถประจำทางหลังจากที่มันขับออกไปแล้ว\n\nคำอธิบาย: เราใช้บุพบท 'on' กับยานพาหนะสาธารณะขนาดใหญ่ที่เราสามารถเดินไปมาข้างในได้ (เช่น on the bus, on the train) ส่วน 'in' มักใช้กับรถยนต์ส่วนตัวหรือรถแท็กซี่ (in the car, in the taxi)"
+  },
+  {
+    "id": "q-44-medium1-3",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "medium1",
+    "question": "You can find the list of recommended books ___ page 42 of the course syllabus.",
+    "options": [
+      "on",
+      "in",
+      "at",
+      "to"
+    ],
+    "correct_answer": "on",
+    "explanation": "We use 'on' to refer to a specific page of a book, document, paper, or screen.",
+    "explanation_th": "แปล: คุณสามารถดูรายชื่อหนังสือที่แนะนำได้ที่หน้า 42 ของประมวลรายวิชา\n\nคำอธิบาย: เราใช้บุพบท 'on' เมื่อพูดถึงตำแหน่งบนหน้าหนังสือ เอกสาร หรือหน้าจอ (on page 42)"
+  },
+  {
+    "id": "q-44-medium1-4",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "medium1",
+    "question": "There were so many people ___ the rock concert last night that we could barely see the stage.",
+    "options": [
+      "at",
+      "in",
+      "on",
+      "into"
+    ],
+    "correct_answer": "at",
+    "explanation": "We use 'at' to describe being present at a specific public event, venue, or social gathering (e.g., at a concert, at a party, at a meeting).",
+    "explanation_th": "แปล: มีคนจำนวนมากที่คอนเสิร์ตร็อกเมื่อคืนนี้จนพวกเราแทบจะมองไม่เห็นเวทีเลย\n\nคำอธิบาย: เราใช้ 'at' กับการไปร่วมงานอีเวนต์ กิจกรรม หรือสถานที่ที่มีจุดประสงค์เฉพาะเจาะจง เช่น at a concert (ที่คอนเสิร์ต), at a meeting (ที่การประชุม)"
+  },
+  {
+    "id": "q-44-medium1-5",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "medium1",
+    "question": "The dog loves to sleep ___ the kitchen table while my mother is preparing dinner.",
+    "options": [
+      "under",
+      "on",
+      "over",
+      "above"
+    ],
+    "correct_answer": "under",
+    "explanation": "'Under' means directly below or covered by something. In this context, the dog is resting on the floor beneath the table.",
+    "explanation_th": "แปล: สุนัขชอบนอนใต้โต๊ะในครัวในขณะที่คุณแม่กำลังเตรียมอาหารเย็น\n\nคำอธิบาย: 'under' แปลว่า 'ภายใต้' หรือ 'อยู่ใต้' สิ่งใดสิ่งหนึ่งโดยตรง ในบริบทนี้สุนัขนอนอยู่บนพื้นใต้โต๊ะอาหาร"
+  },
+  {
+    "id": "q-44-medium1-6",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "medium1",
+    "question": "My grandparents prefer to live in a peaceful town ___ the north of Thailand.",
+    "options": [
+      "in",
+      "on",
+      "at",
+      "to"
+    ],
+    "correct_answer": "in",
+    "explanation": "We use 'in' to refer to positions within geographical regions or directions (e.g., in the north, in the south, in the middle of).",
+    "explanation_th": "แปล: ปู่ย่าตายายของฉันชอบที่จะอาศัยอยู่ในเมืองที่สงบสุขทางภาคเหนือของประเทศไทย\n\nคำอธิบาย: เราใช้บุพบท 'in' เพื่อบอกตำแหน่งที่อยู่ภายในขอบเขตของภูมิภาคหรือพื้นที่ทางภูมิศาสตร์นั้นๆ เช่น in the north of Thailand (ทางตอนเหนือของประเทศไทย)"
+  },
+  {
+    "id": "q-44-medium1-7",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "medium1",
+    "question": "The security guard is standing ___ the end of the hallway to check everyone's ID cards.",
+    "options": [
+      "at",
+      "in",
+      "on",
+      "to"
+    ],
+    "correct_answer": "at",
+    "explanation": "We use the preposition 'at' in the phrase 'at the end of' to specify a particular physical point in space.",
+    "explanation_th": "แปล: เจ้าหน้าที่รักษาความปลอดภัยยืนอยู่ที่ปลายสุดของโถงทางเดินเพื่อตรวจบัตรประชาชนของทุกคน\n\nคำอธิบาย: วลี 'at the end of...' ใช้บอกตำแหน่งจุดสิ้นสุดของสถานที่ทางกายภาพ เช่น at the end of the hallway (สุดโถงทางเดิน) หรือ at the end of the street (สุดถนน) ส่วน 'in the end' เป็นสำนวนที่ทำหน้าที่เป็นคำวิเศษณ์ แปลว่า 'ในที่สุด' (มักขึ้นต้นประโยค)"
+  },
+  {
+    "id": "q-44-medium1-8",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "medium1",
+    "question": "Please do not leave your wet glasses ___ the wooden desk, as they will damage the wood.",
+    "options": [
+      "on",
+      "in",
+      "at",
+      "above"
+    ],
+    "correct_answer": "on",
+    "explanation": "We use 'on' when an object is in contact with and supported by a flat surface (like a desk, table, or wall).",
+    "explanation_th": "แปล: กรุณาอย่าวางแก้วน้ำที่เปียกไว้บนโต๊ะทำงานไม้ เพราะมันจะทำให้เนื้อไม้เสียหาย\n\nคำอธิบาย: เราใช้ 'on' กับสิ่งของที่สัมผัสและวางอยู่บนพื้นผิวเรียบ เช่น on the desk (บนโต๊ะทำงาน), on the floor (บนพื้น)"
+  },
+  {
+    "id": "q-44-medium1-9",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "medium1",
+    "question": "The local pharmacy is located right ___ the supermarket and the beauty salon.",
+    "options": [
+      "between",
+      "among",
+      "through",
+      "along"
+    ],
+    "correct_answer": "between",
+    "explanation": "'Between' is used to describe a position in the middle of two distinct and separate objects, places, or people.",
+    "explanation_th": "แปล: ร้านขายยาในท้องถิ่นตั้งอยู่ระหว่างซูเปอร์มาร์เก็ตและร้านเสริมสวยพอดี\n\nคำอธิบาย: เราใช้ 'between' เมื่อพูดถึงตำแหน่งที่อยู่ตรงกลางระหว่างสิ่งของหรือสถานที่สองสิ่ง (ในที่นี้คือซูเปอร์มาร์เก็ตและร้านเสริมสวย)"
+  },
+  {
+    "id": "q-44-medium2-0",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "medium2",
+    "question": "The famous actress tried to blend in, but she was easily spotted ___ the crowd of excited fans waiting outside the theater.",
+    "options": [
+      "among",
+      "between",
+      "along",
+      "throughout"
+    ],
+    "correct_answer": "among",
+    "explanation": "We use 'among' when talking about being surrounded by or in the middle of a group of people or things (three or more). 'Between' is typically used for two distinct entities.",
+    "explanation_th": "แปล: นักแสดงหญิงชื่อดังพยายามทำตัวกลมกลืน แต่เธอก็ถูกสังเกตเห็นได้ง่ายท่ามกลางกลุ่มแฟนคลับที่ตื่นเต้นซึ่งกำลังรออยู่ด้านนอกโรงละคร\n\nคำอธิบาย: ใช้ 'among' เมื่อต้องการสื่อถึงการอยู่ท่ามกลางกลุ่มคนหรือสิ่งของที่มีจำนวนตั้งแต่ 3 ขึ้นไป (ในที่นี้คือกลุ่มแฟนคลับจำนวนมาก) ในขณะที่ 'between' มักใช้กับของสองสิ่ง"
+  },
+  {
+    "id": "q-44-medium2-1",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "medium2",
+    "question": "Please place the antique vase ___ the corner of the living room, right next to the bookshelf.",
+    "options": [
+      "in",
+      "at",
+      "on",
+      "over"
+    ],
+    "correct_answer": "in",
+    "explanation": "We use 'in the corner' when referring to the inside corner of a room or building. 'At the corner' is used for street corners, and 'on the corner' is used for the outer corner of a street.",
+    "explanation_th": "แปล: กรุณาวางแจกันโบราณไว้ที่มุมห้องนั่งเล่น ข้างๆ ชั้นวางหนังสือพอดี\n\nคำอธิบาย: ใช้ 'in the corner' สำหรับมุมด้านในห้องหรืออาคาร (inside corner) ส่วน 'at the corner' มักใช้กับมุมถนน (street corner) และ 'on the corner' ใช้กับสิ่งของที่อยู่ตรงหัวมุมถนนด้านนอก"
+  },
+  {
+    "id": "q-44-medium2-2",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "medium2",
+    "question": "The new bakery is located directly ___ the public library, so you just need to cross the street to get some fresh croissants.",
+    "options": [
+      "opposite",
+      "behind",
+      "next to",
+      "among"
+    ],
+    "correct_answer": "opposite",
+    "explanation": "'Opposite' means facing someone or something on the other side. Unlike 'across', 'opposite' does not require the preposition 'from' to function as a preposition of place.",
+    "explanation_th": "แปล: ร้านเบเกอรี่แห่งใหม่ตั้งอยู่ตรงข้ามกับห้องสมุดประชาชนโดยตรง ดังนั้นคุณแค่ต้องข้ามถนนไปเพื่อซื้อครัวซองต์อบใหม่\n\nคำอธิบาย: 'opposite' หมายถึง 'ตรงข้าม' หรืออยู่คนละฝั่งของถนน/พื้นที่ โดยไม่ต้องใช้คำบุพบทอื่นตามหลัง ต่างจาก 'across' ที่ต้องมี 'from' เพื่อระบุตำแหน่งตรงข้าม (across from)"
+  },
+  {
+    "id": "q-44-medium2-3",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "medium2",
+    "question": "I left my keys ___ the backseat of my friend's car, so I had to call him to bring them back to me.",
+    "options": [
+      "in",
+      "on",
+      "at",
+      "onto"
+    ],
+    "correct_answer": "in",
+    "explanation": "We use 'in' for enclosed spaces like cars and taxis (e.g., in the car, in the backseat). 'On' is used for public transportation where you can stand and walk (e.g., on the bus, on the train).",
+    "explanation_th": "แปล: ฉันลืมกุญแจไว้ที่เบาะหลังของรถเพื่อน ดังนั้นฉันจึงต้องโทรหาเขาให้นำมันกลับมาคืนฉัน\n\nคำอธิบาย: ใช้ 'in' กับรถยนต์ส่วนบุคคลหรือรถแท็กซี่ (in a car / in the backseat) ต่างจากยานพาหนะสาธารณะขนาดใหญ่ เช่น รถบัส รถไฟ หรือเครื่องบิน ที่เรามักใช้ 'on'"
+  },
+  {
+    "id": "q-44-medium2-4",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "medium2",
+    "question": "The painting was hung ___ the fireplace, making it the central focus of the entire room.",
+    "options": [
+      "above",
+      "on",
+      "in",
+      "under"
+    ],
+    "correct_answer": "above",
+    "explanation": "'Above' is used to describe a position higher than something else, without direct physical contact. 'On' would imply physical contact with the top of the fireplace.",
+    "explanation_th": "แปล: ภาพวาดถูกแขวนไว้เหนือเตาผิง ทำให้มันกลายเป็นจุดสนใจหลักของห้องทั้งหมด\n\nคำอธิบาย: ใช้ 'above' เพื่อระบุตำแหน่งที่อยู่สูงกว่าสิ่งอื่นโดยไม่ได้สัมผัสกันโดยตรง (เหนือเตาผิง) ส่วน 'on' จะหมายถึงอยู่บนพื้นผิวและสัมผัสกัน"
+  },
+  {
+    "id": "q-44-medium2-5",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "medium2",
+    "question": "The small border town lies ___ Thailand, Laos, and Myanmar, making it a unique cultural melting pot.",
+    "options": [
+      "between",
+      "among",
+      "with",
+      "inside"
+    ],
+    "correct_answer": "between",
+    "explanation": "'Between' can be used for more than two items when we refer to distinct, individual, and named geographical locations (like countries on a map). 'Among' is used for undefined groups or crowds.",
+    "explanation_th": "แปล: เมืองชายแดนขนาดเล็กแห่งนี้ตั้งอยู่ระหว่างประเทศไทย ลาว และเมียนมา ทำให้ที่นี่เป็นแหล่งหลอมรวมทางวัฒนธรรมที่โดดเด่น\n\nคำอธิบาย: แม้ว่าจะมีประเทศ 3 ประเทศ แต่เราใช้ 'between' เมื่อพูดถึงตำแหน่งทางภูมิศาสตร์ที่อยู่ระหว่างพื้นที่หรือจุดที่ระบุไว้อย่างชัดเจนและเป็นเอกเทศ (individual, defined locations) ส่วน 'among' จะใช้กับกลุ่มสิ่งของที่ไม่ได้ระบุชื่อเฉพาะเจาะจงชัดเจน"
+  },
+  {
+    "id": "q-44-medium2-6",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "medium2",
+    "question": "We agreed to meet ___ the main entrance of the shopping mall, but it was so crowded that we couldn't find each other.",
+    "options": [
+      "at",
+      "in",
+      "on",
+      "into"
+    ],
+    "correct_answer": "at",
+    "explanation": "'At' is used to refer to a specific point, location, or meeting place (e.g., at the entrance, at the station). 'In' refers to being inside a larger enclosed area.",
+    "explanation_th": "แปล: พวกเราตกลงที่จะพบกันที่ทางเข้าหลักของห้างสรรพสินค้า แต่คนเยอะมากจนพวกเราหากันไม่เจอ\n\nคำอธิบาย: ใช้ 'at' เพื่อระบุตำแหน่งที่เป็นจุดเฉพาะเจาะจง (specific point/location) เช่น 'at the entrance' (ที่ทางเข้า)"
+  },
+  {
+    "id": "q-44-medium2-7",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "medium2",
+    "question": "Archeologists discovered ancient ruins buried deep ___ the surface of the modern city.",
+    "options": [
+      "beneath",
+      "over",
+      "along",
+      "upon"
+    ],
+    "correct_answer": "beneath",
+    "explanation": "'Beneath' means under or below something, often used when something is completely covered or buried under a surface.",
+    "explanation_th": "แปล: นักโบราณคดีค้นพบซากปรักหักพังโบราณที่ถูกฝังอยู่ลึกลงไปใต้พื้นผิวของเมืองยุคใหม่\n\nคำอธิบาย: 'beneath' เป็นคำบุพบทบอกตำแหน่งที่หมายถึง 'อยู่ใต้' หรือ 'ต่ำกว่า' โดยมักใช้ในบริบทที่สิ่งนั้นถูกปกคลุมหรือฝังอยู่ใต้สิ่งอื่น ซึ่งเหมาะกับบริบทซากโบราณคดีที่ถูกฝังใต้ดิน"
+  },
+  {
+    "id": "q-44-medium2-8",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "medium2",
+    "question": "The government has set up security checkpoints ___ the city to ensure the safety of the citizens during the festival.",
+    "options": [
+      "throughout",
+      "between",
+      "into",
+      "alongside"
+    ],
+    "correct_answer": "throughout",
+    "explanation": "'Throughout' means in every part of a place or area. It describes the distribution of checkpoints across the whole city.",
+    "explanation_th": "แปล: รัฐบาลได้จัดตั้งจุดตรวจความปลอดภัยทั่วทั้งเมืองเพื่อดูแลความปลอดภัยของประชาชนในช่วงเทศกาล\n\nคำอธิบาย: 'throughout' หมายถึง 'ทั่วทั้ง' หรือในทุกๆ ส่วนของพื้นที่ (in every part of a place) ซึ่งในบริบทนี้คือการตั้งจุดตรวจกระจายอยู่ทั่วเมือง"
+  },
+  {
+    "id": "q-44-medium2-9",
+    "unit_id": 44,
+    "unit_number": 44,
+    "level_id": "medium2",
+    "question": "We enjoyed a peaceful walk ___ the riverbank as the sun began to set over the horizon.",
+    "options": [
+      "along",
+      "across",
+      "through",
+      "into"
+    ],
+    "correct_answer": "along",
+    "explanation": "'Along' is used to show movement or position in a line next to something long like a river, road, or path.",
+    "explanation_th": "แปล: พวกเราเพลิดเพลินกับการเดินเล่นอย่างสงบไปตามริมฝั่งแม่น้ำขณะที่ดวงอาทิตย์เริ่มลับขอบฟ้า\n\nคำอธิบาย: 'along' ใช้เมื่อต้องการบอกตำแหน่งหรือการเคลื่อนที่ขนานไปตามแนวราบที่ยาว เช่น ถนน ชายหาด หรือริมฝั่งแม่น้ำ (along the riverbank)"
   }
 ]
