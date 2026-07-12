@@ -383,7 +383,7 @@ export default function QuizPage() {
                           </div>
                         )}
                         {thaiText && (
-                          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                          <div style={{ display: 'flex', flexDirection: 'column' }}>
                             <button
                               type="button"
                               className="quiz-explanation-toggle-btn"
@@ -392,14 +392,16 @@ export default function QuizPage() {
                             >
                               {showThai ? 'Hide ▾' : 'Thai ▴'}
                             </button>
-                            {showThai && (
-                              <div className="quiz-explanation-inner">
-                                <div className="explanation-section">
-                                  <span className="explanation-label">THAI</span>
-                                  <p className="explanation-text">{thaiText}</p>
+                            <div className={`quiz-thai-drawer${showThai ? ' quiz-thai-drawer-open' : ''}`}>
+                              <div className="quiz-thai-content">
+                                <div className="quiz-explanation-inner">
+                                  <div className="explanation-section">
+                                    <span className="explanation-label">THAI</span>
+                                    <p className="explanation-text">{thaiText}</p>
+                                  </div>
                                 </div>
                               </div>
-                            )}
+                            </div>
                           </div>
                         )}
                       </>

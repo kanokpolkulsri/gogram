@@ -428,3 +428,27 @@
   white-space: pre-line;
 }
 
+/* Thai explanation expanding drawer animation matching main drawer */
+.quiz-thai-drawer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition:
+    grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    margin-top 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  width: 100%;
+  margin-top: 0;
+}
+
+.quiz-thai-drawer-open {
+  grid-template-rows: 1fr;
+  margin-top: 8px;
+}
+
+.quiz-thai-content {
+  min-height: 0;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
