@@ -37279,5 +37279,485 @@
     "correct_answer": "didn't manage to",
     "explanation": "To show failure in a specific past event despite trying hard, we can use the negative form of manage to, which is 'didn't manage to'. 'Couldn't able to' is double modal/grammatically incorrect.",
     "explanation_th": "แปล: แม้ว่าเธอจะฝึกซ้อมทุกวัน แต่เธอก็ไม่สามารถสอบผ่านการออดิชันเมื่อสัปดาห์ที่แล้วได้สำเร็จ\n\nคำอธิบาย: \"didn't manage to\" ใช้บอกความล้มเหลวในการทำสิ่งใดสิ่งหนึ่งในอดีตแม้ว่าจะพยายามแล้วก็ตาม ส่วน \"couldn't able to\" ผิดไวยากรณ์อย่างรุนแรงเนื่องจากห้ามใช้ could ซ้อนกับ able to และ \"was not managed to\" เป็นโครงสร้าง Passive Voice ที่มีความหมายผิดเพี้ยน"
+  },
+  {
+    "id": "q-47-hard1-0",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "hard1",
+    "question": "Despite the severe storm and zero visibility, the rescue team ________ locate the stranded hikers before nightfall.",
+    "options": [
+      "managed to",
+      "could",
+      "can",
+      "are able to"
+    ],
+    "correct_answer": "managed to",
+    "explanation": "For a specific, difficult achievement in the past, 'could' is grammatically incorrect in affirmative sentences. Instead, we must use 'managed to' or 'was/were able to'.",
+    "explanation_th": "แปล: แม้จะมีพายุรุนแรงและทัศนวิสัยเป็นศูนย์ ทีมกู้ภัยก็ยังสามารถระบุตำแหน่งของผู้ปีนเขาที่ติดอยู่ได้ก่อนค่ำ\n\nคำอธิบาย: ในการพูดถึงความสำเร็จเฉพาะเจาะจงครั้งหนึ่งในอดีตที่ทำได้สำเร็จด้วยความยากลำบาก เราจะไม่ใช้ could ในประโยคบอกเล่า แต่จะใช้ managed to หรือ was/were able to แทน"
+  },
+  {
+    "id": "q-47-hard1-1",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "hard1",
+    "question": "Although the lecture hall was incredibly noisy, I ________ hear the professor's explanation perfectly clearly.",
+    "options": [
+      "could",
+      "managed to",
+      "was managed to",
+      "can"
+    ],
+    "correct_answer": "could",
+    "explanation": "With verbs of perception and senses (such as hear, see, smell, understand), 'could' is typically used even when referring to a specific past event, making it more natural than 'managed to'.",
+    "explanation_th": "แปล: แม้ว่าห้องบรรยายจะเสียงดังมาก แต่ฉันก็สามารถได้ยินคำอธิบายของศาสตราจารย์ได้อย่างชัดเจน\n\nคำอธิบาย: เมื่อใช้กับกริยาเกี่ยวกับการรับรู้หรือประสาทสัมผัส (verbs of perception) เช่น hear, see, smell, understand ถึงแม้จะเป็นเหตุการณ์เฉพาะเจาะจงในอดีต เราก็นิยมใช้ could มากกว่า managed to หรือ was able to"
+  },
+  {
+    "id": "q-47-hard1-2",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "hard1",
+    "question": "Once you have completed this advanced programming course, you ________ develop complex mobile applications on your own.",
+    "options": [
+      "will be able to",
+      "can",
+      "could",
+      "have been able to"
+    ],
+    "correct_answer": "will be able to",
+    "explanation": "To express future ability, especially when it is dependent on a future condition or event, 'will be able to' is used. 'Can' usually refers only to present or general ability.",
+    "explanation_th": "แปล: เมื่อคุณเรียนหลักสูตรการเขียนโปรแกรมขั้นสูงนี้เสร็จแล้ว คุณจะสามารถพัฒนาแอปพลิเคชันมือถือที่ซับซ้อนได้ด้วยตนเอง\n\nคำอธิบาย: โครงสร้างประโยคระบุเงื่อนไขในอนาคต (Once you have completed...) จึงต้องใช้ will be able to เพื่อแสดงความสามารถที่จะเกิดขึ้นในอนาคตหลังจากผ่านเงื่อนไขนั้น"
+  },
+  {
+    "id": "q-47-hard1-3",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "hard1",
+    "question": "Since she moved to Tokyo last year, Sarah ________ speak Japanese fluently in daily conversations.",
+    "options": [
+      "has been able to",
+      "could",
+      "can",
+      "is able to"
+    ],
+    "correct_answer": "has been able to",
+    "explanation": "The present perfect tense is required due to the time marker 'Since she moved...'. Since 'can' and 'could' do not have a present perfect form, we must use 'has/have been able to'.",
+    "explanation_th": "แปล: ตั้งแต่เธอย้ายไปโตเกียวเมื่อปีที่แล้ว ซาร่าสามารถพูดภาษาญี่ปุ่นได้อย่างคล่องแคล่วในการสนทนาในชีวิตประจำวัน\n\nคำอธิบาย: เนื่องจากมีคำเชื่อมบอกเวลา 'Since' นำหน้าประโยคอดีต ประโยคหลักจึงต้องใช้ Present Perfect Tense (has/have + V.3) ซึ่ง can/could ไม่มีรูปนี้ จึงต้องใช้ has been able to"
+  },
+  {
+    "id": "q-47-hard1-4",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "hard1",
+    "question": "The security system was extremely tight; consequently, the hackers ________ bypass the firewall even after trying for hours.",
+    "options": [
+      "didn't manage to",
+      "managed to not",
+      "couldn't to",
+      "were not able"
+    ],
+    "correct_answer": "didn't manage to",
+    "explanation": "'Didn't manage to' is correct. 'Could' cannot be followed by 'to'. 'Were not able' is missing the particle 'to'. 'Managed to not' is grammatically incorrect in this context.",
+    "explanation_th": "แปล: ระบบรักษาความปลอดภัยแน่นหนามาก ส่งผลให้พวกแฮกเกอร์ไม่สามารถเจาะผ่านไฟร์วอลล์ได้แม้จะพยายามอยู่นานหลายชั่วโมงก็ตาม\n\nคำอธิบาย: 'didn't manage to' มีโครงสร้างที่ถูกต้องที่สุดในการสื่อความพยายามแต่ทำไม่สำเร็จ ส่วน couldn't ห้ามตามด้วย to และ were not able ในข้อเลือกสุดท้ายขาดคำว่า to"
+  },
+  {
+    "id": "q-47-hard1-5",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "hard1",
+    "question": "Despite having no formal training, the young prodigy ________ play the entire concerto flawlessly at last night's concert.",
+    "options": [
+      "was able to",
+      "could",
+      "can",
+      "is able to"
+    ],
+    "correct_answer": "was able to",
+    "explanation": "At last night's concert represents a specific past achievement. 'Could' is not used for specific achievements in affirmative past sentences; 'was able to' or 'managed to' must be used.",
+    "explanation_th": "แปล: แม้ว่าจะไม่ได้รับการฝึกฝนอย่างเป็นทางการ แต่อัจฉริยะรุ่นเยาว์คนนี้ก็สามารถเล่นเพลงคอนแชร์โตทั้งหมดได้อย่างไร้ที่ติในคอนเสิร์ตเมื่อคืนนี้\n\nคำอธิบาย: เหตุการณ์นี้เป็นความสำเร็จเฉพาะเจาะจงในอดีต (at last night's concert) ในรูปบอกเล่า กฎไวยากรณ์ระบุว่าห้ามใช้ could แต่ต้องใช้ was/were able to หรือ managed to"
+  },
+  {
+    "id": "q-47-hard1-6",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "hard1",
+    "question": "If you practice diligently every day, you might ________ pass the advanced piano exam next month.",
+    "options": [
+      "be able to",
+      "can",
+      "could",
+      "are able to"
+    ],
+    "correct_answer": "be able to",
+    "explanation": "After modal auxiliary verbs like 'might', 'should', or 'must', we cannot use other modals like 'can' or 'could'. We must use the bare infinitive form 'be able to'.",
+    "explanation_th": "แปล: ถ้าคุณฝึกซ้อมอย่างขยันขันแข็งทุกวัน คุณอาจจะสามารถสอบผ่านวิชาเปียโนขั้นสูงได้ในเดือนหน้า\n\nคำอธิบาย: หลังคำกริยาช่วย Modal (เช่น might, should, must) จะต้องใช้รูปกริยาฐาน (infinitive without to) จึงไม่สามารถใช้ can หรือ could ซ้อนได้ จึงต้องใช้ be able to"
+  },
+  {
+    "id": "q-47-hard1-7",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "hard1",
+    "question": "________ speak five languages fluently gives Clara a significant advantage in the international business sector.",
+    "options": [
+      "Being able to",
+      "Can",
+      "Could",
+      "To managing to"
+    ],
+    "correct_answer": "Being able to",
+    "explanation": "The subject of the sentence must be a gerund phrase. Since 'can' and 'could' do not have gerund (-ing) forms, 'Being able to' must be used as the gerund subject.",
+    "explanation_th": "แปล: การสามารถพูดได้ห้าภาษาอย่างคล่องแคล่วทำให้คลาร่าได้เปรียบอย่างมากในภาคธุรกิจระหว่างประเทศ\n\nคำอธิบาย: ตำแหน่งหน้าสุดของประโยคทำหน้าที่เป็นประธาน (Subject) จึงต้องอยู่ในรูป Gerund (V-ing) เนื่องจาก can และ could ไม่มีรูป -ing เราจึงต้องใช้ Being able to"
+  },
+  {
+    "id": "q-47-hard1-8",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "hard1",
+    "question": "After hours of intense negotiation, the two rival companies finally ________ agree on the terms of the merger.",
+    "options": [
+      "managed to",
+      "could",
+      "can",
+      "are able to"
+    ],
+    "correct_answer": "managed to",
+    "explanation": "The phrase 'After hours of intense negotiation' implies that the action was difficult and required effort. 'Managed to' is the best choice to show succeeding in doing something difficult in a specific past situation.",
+    "explanation_th": "แปล: หลังจากเจรจากันอย่างเข้มข้นนานหลายชั่วโมง ในที่สุดสองบริษัทคู่แข่งก็สามารถตกลงเงื่อนไขการควบรวมกิจการกันได้\n\nคำอธิบาย: การตกลงกันได้หลังการเจรจาอันตึงเครียด แสดงถึงความพยายามอย่างยากลำบากในอดีต (specific past struggle) คำว่า managed to จึงมีความหมายและน้ำหนักเหมาะสมที่สุด"
+  },
+  {
+    "id": "q-47-hard1-9",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "hard1",
+    "question": "When my grandfather was young, he ________ run a marathon in under three hours, but he can no longer do so.",
+    "options": [
+      "could",
+      "managed to",
+      "can",
+      "is able to"
+    ],
+    "correct_answer": "could",
+    "explanation": "'When my grandfather was young' indicates a general past ability or talent over a period of time, rather than a specific one-time event. 'Could' is the most appropriate modal verb for general past ability.",
+    "explanation_th": "แปล: ตอนที่ปู่ของฉันยังหนุ่ม ท่านสามารถวิ่งมาราธอนได้ในเวลาต่ำกว่าสามชั่วโมง แต่ตอนนี้ท่านทำไม่ได้อีกต่อไปแล้ว\n\nคำอธิบาย: ประโยคนี้พูดถึงความสามารถทั่วไปในอดีต (general past ability) ไม่ใช่เหตุการณ์เฉพาะเจาะจงครั้งเดียวที่ยากลำบาก ดังนั้นจึงใช้ could ได้อย่างถูกต้องและเป็นธรรมชาติที่สุด"
+  },
+  {
+    "id": "q-47-hard2-0",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "hard2",
+    "question": "Despite the severe network outage during the peak registration hour, a few determined candidates ______ submit their applications before the portal crashed entirely.",
+    "options": [
+      "managed to",
+      "could",
+      "can",
+      "were managing to"
+    ],
+    "correct_answer": "managed to",
+    "explanation": "For a specific past achievement or succeeding in doing something difficult on a single occasion, we use 'managed to' or 'was/were able to'. 'Could' is only used for general ability in the past, not for specific one-off accomplishments.",
+    "explanation_th": "แปล: แม้ว่าจะเกิดปัญหาเครือข่ายขัดข้องอย่างรุนแรงในช่วงชั่วโมงที่มีการลงทะเบียนหนาแน่นที่สุด แต่ผู้สมัครที่มุ่งมั่นไม่กี่คนก็สามารถส่งใบสมัครได้สำเร็จก่อนที่พอร์ทัลจะล่มโดยสิ้นเชิง\n\nคำอธิบาย: สำหรับเหตุการณ์เฉพาะเจาะจงในอดีตที่ทำสำเร็จได้ยากในครั้งนั้นๆ เราจะใช้ 'managed to' หรือ 'was/were able to' เท่านั้น ในขณะที่ 'could' จะใช้กับความสามารถทั่วไปในอดีต (general past ability) ไม่ใช้กับความสำเร็จเฉพาะครั้งในประโยคบอกเล่า"
+  },
+  {
+    "id": "q-47-hard2-1",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "hard2",
+    "question": "After months of intense negotiation, the board members hope ______ reach a consensus regarding the upcoming corporate merger by Friday.",
+    "options": [
+      "to be able to",
+      "can",
+      "to could",
+      "being able to"
+    ],
+    "correct_answer": "to be able to",
+    "explanation": "The verb 'hope' requires a to-infinitive. Modal verbs like 'can' or 'could' do not have infinitive forms (we cannot say 'to can'). Therefore, we must use the semi-modal equivalent 'to be able to'.",
+    "explanation_th": "แปล: หลังจากผ่านการเจรจาอย่างเข้มข้นมาหลายเดือน สมาชิกคณะกรรมการหวังว่าจะสามารถบรรลุข้อตกลงร่วมกันเกี่ยวกับการควบรวมกิจการที่กำลังจะเกิดขึ้นได้ภายในวันศุกร์\n\nคำอธิบาย: คำกริยา 'hope' ต้องตามด้วย to-infinitive เสมอ เนื่องจากกริยาช่วย (modal verbs) อย่าง 'can' หรือ 'could' ไม่มีรูป infinitive (ไม่สามารถใช้ 'to can' ได้) จึงต้องเลี่ยงไปใช้โครงสร้างกริยากึ่งช่วย 'to be able to' แทน"
+  },
+  {
+    "id": "q-47-hard2-2",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "hard2",
+    "question": "Although the sudden power outage plunged the laboratory into complete darkness, the researchers ______ secure the hazardous chemical samples safely.",
+    "options": [
+      "were able to",
+      "could",
+      "can",
+      "managed"
+    ],
+    "correct_answer": "were able to",
+    "explanation": "Similar to 'managed to', 'was/were able to' is used to express capability and success in a specific past event. 'Could' is incorrect in affirmative sentences for a specific past achievement. 'Managed' is incorrect because it lacks the preposition 'to'.",
+    "explanation_th": "แปล: แม้ว่าไฟฟ้าที่ดับอย่างกะทันหันจะทำให้ห้องปฏิบัติการตกอยู่ในความมืดมิด แต่ทีมนักวิจัยก็สามารถจัดเก็บตัวอย่างสารเคมีอันตรายได้อย่างปลอดภัย\n\nคำอธิบาย: สำหรับความสำเร็จเฉพาะครั้งในอดีตท่ามกลางสถานการณ์ที่ยากลำบาก เราใช้ 'were able to' เพื่อสื่อว่าทำได้สำเร็จในตอนนั้น ส่วน 'could' จะใช้กับความสามารถทั่วไปในอดีตและไม่นิยมใช้ในสถานการณ์เจาะจงเช่นนี้ ตัวเลือก 'managed' ผิดไวยากรณ์เพราะขาด 'to'"
+  },
+  {
+    "id": "q-47-hard2-3",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "hard2",
+    "question": "Since the implementation of the new traffic control system last year, urban planners ______ reduce commute times by nearly twenty percent.",
+    "options": [
+      "have been able to",
+      "could",
+      "can",
+      "have managed"
+    ],
+    "correct_answer": "have been able to",
+    "explanation": "The phrase 'Since the implementation...' indicates that the action started in the past and continues to the present, requiring the present perfect tense. Therefore, 'have been able to' is the only grammatically correct option. 'Have managed' is missing 'to'.",
+    "explanation_th": "แปล: นับตั้งแต่มีการใช้ระบบควบคุมการจราจรแบบใหม่เมื่อปีที่แล้ว นักผังเมืองก็สามารถลดเวลาในการเดินทางลงได้เกือบยี่สิบเปอร์เซ็นต์\n\nคำอธิบาย: วลี 'Since the implementation...' (ตั้งแต่มีการเริ่มใช้...) เป็นตัวบ่งชี้ว่าต้องใช้ Present Perfect Tense (have/has + V.3) เพื่อบอกเล่าถึงความสามารถที่ดำเนินมาตั้งแต่ในอดีตจนถึงปัจจุบัน ดังนั้น 'have been able to' จึงถูกต้องที่สุด ส่วน 'have managed' ผิดเนื่องจากขาด 'to' ไป"
+  },
+  {
+    "id": "q-47-hard2-4",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "hard2",
+    "question": "Once the new orbital telescope is fully calibrated next month, astrophysicists ______ observe cosmic phenomena that were previously hidden from view.",
+    "options": [
+      "will be able to",
+      "can",
+      "will can",
+      "manage to"
+    ],
+    "correct_answer": "will be able to",
+    "explanation": "To express future ability, we use 'will be able to'. We cannot combine two modal verbs like 'will can', and 'can' alone does not clearly express future capability after 'next month'.",
+    "explanation_th": "แปล: ทันทีที่กล้องโทรทรรศน์อวกาศตัวใหม่ได้รับการปรับเทียบมาตรฐานอย่างสมบูรณ์ในเดือนหน้า นักดาราศาสตร์ฟิสิกส์จะสามารถสังเกตปรากฏการณ์ในอวกาศที่เคยถูกบดบังจากสายตาได้\n\nคำอธิบาย: ในการระบุความสามารถที่จะเกิดขึ้นในอนาคต (มีคำว่า next month) เราต้องใช้รูปอนาคต 'will be able to' เนื่องจากเราไม่สามารถนำ modal verb มารวมกันเป็น 'will can' ได้"
+  },
+  {
+    "id": "q-47-hard2-5",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "hard2",
+    "question": "In order for the experimental vaccine to be deemed successful, it must ______ trigger a robust immune response in a majority of the trial participants.",
+    "options": [
+      "be able to",
+      "can",
+      "manage to",
+      "been able to"
+    ],
+    "correct_answer": "be able to",
+    "explanation": "After the modal verb 'must', we require a bare infinitive verb. 'Be able to' is correct. 'Can' is incorrect because modal verbs cannot follow other modal verbs. 'Manage to' implies struggle and intent, which is semantically inappropriate for a biological chemical reaction.",
+    "explanation_th": "แปล: เพื่อให้วัคซีนทดลองได้รับการพิจารณาว่าประสบความสำเร็จ มันจะต้องสามารถกระตุ้นการตอบสนองทางภูมิคุ้มกันที่แข็งแกร่งในผู้เข้าร่วมการทดลองส่วนใหญ่ได้\n\nคำอธิบาย: หลัง modal verb 'must' ต้องตามด้วย bare infinitive (กริยารูปพจนานุกรมที่ไม่เติมแต่ง) ตัวเลือก 'be able to' จึงถูกต้องที่สุด เพราะ 'can' ซ้อนหลัง 'must' ไม่ได้ ส่วน 'manage to' มักใช้กับความพยายามของบุคคลในการทำเรื่องยากๆ จึงไม่เหมาะกับปฏิกิริยาทางเคมีหรือชีวภาพในบริบทนี้"
+  },
+  {
+    "id": "q-47-hard2-6",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "hard2",
+    "question": "The security team searched the entire premises for hours, but they ______ locate the source of the silent alarm before the police arrived.",
+    "options": [
+      "couldn't",
+      "managed not to",
+      "were not able",
+      "can't"
+    ],
+    "correct_answer": "couldn't",
+    "explanation": "In negative past sentences, 'could not / couldn't' can be used for both general ability and specific past events. 'Were not able' is incorrect here because it lacks the preposition 'to' (were not able to).",
+    "explanation_th": "แปล: ทีมรักษาความปลอดภัยค้นหาทั่วทั้งอาคารเป็นเวลาหลายชั่วโมง แต่พวกเขาก็ไม่สามารถระบุตำแหน่งต้นตอของสัญญาณเตือนภัยเงียบได้ก่อนที่ตำรวจจะมาถึง\n\nคำอธิบาย: ในรูปปฏิเสธของเหตุการณ์ในอดีต เราสามารถใช้ได้ทั้ง 'couldn't' และ 'weren't able to' กับเหตุการณ์เฉพาะครั้งได้ ตัวเลือก 'were not able' ผิดหลักไวยากรณ์เนื่องจากไม่มี 'to' ต่อท้าย ส่วน 'can't' เป็นปัจจุบันจึงผิด tense"
+  },
+  {
+    "id": "q-47-hard2-7",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "hard2",
+    "question": "Despite having no prior experience in coding, the marketing intern ______ write a script that automated the weekly data report.",
+    "options": [
+      "managed to",
+      "could",
+      "was able",
+      "can"
+    ],
+    "correct_answer": "managed to",
+    "explanation": "The preposition 'Despite' highlights the difficulty of the situation. 'Managed to' emphasizes succeeding in doing something difficult or unexpected. 'Could' is used for general past ability, and 'was able' lacks 'to'.",
+    "explanation_th": "แปล: แม้ว่าจะไม่มีประสบการณ์ในการเขียนโค้ดมาก่อน แต่เด็กฝึกงานแผนกการตลาดก็สามารถเขียนสคริปต์ที่ช่วยจัดทำรายงานข้อมูลรายสัปดาห์แบบอัตโนมัติได้สำเร็จ\n\nคำอธิบาย: คำว่า 'Despite' (ทั้งๆ ที่/แม้ว่า) เป็นการเน้นย้ำถึงความอุปสรรคและความยากลำบาก ดังนั้น 'managed to' จึงเป็นคำที่เหมาะสมที่สุดในการอธิบายการฟันฝ่าจนทำเรื่องยากได้สำเร็จ ตัวเลือก 'was able' ขาด 'to' และ 'could' ไม่ใช้บอกความสำเร็จเฉพาะครั้งที่เป็นเชิงบวก"
+  },
+  {
+    "id": "q-47-hard2-8",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "hard2",
+    "question": "If we had invested in the renewable energy sector earlier, our facility ______ generate its own electricity during this current grid crisis.",
+    "options": [
+      "would be able to",
+      "could have",
+      "was able to",
+      "managed to"
+    ],
+    "correct_answer": "would be able to",
+    "explanation": "This is a mixed conditional sentence (past cause leading to a present result). The present capability is expressed using 'would be able to' (If + Past Perfect, would + bare infinitive). 'Could have' would require a past participle (could have generated) which is not present in the prompt.",
+    "explanation_th": "แปล: หากเราลงทุนในภาคส่วนพลังงานหมุนเวียนเร็วกว่านี้ โรงงานของเราจะสามารถผลิตไฟฟ้าใช้เองได้ในระหว่างวิกฤตระบบสายส่งไฟฟ้าในปัจจุบัน\n\nคำอธิบาย: ประโยคนี้เป็นประโยคเงื่อนไขแบบผสม (Mixed Conditional) คือสมมติสิ่งตรงข้ามความจริงในอดีต (had invested) เพื่อส่งผลถึงปัจจุบัน (during this current crisis) โครงสร้างคือ If + Past Perfect, would + V.inf จึงต้องใช้ 'would be able to' ส่วน 'could have' ผิดโครงสร้างเพราะคำกริยาหลังช่องว่างคือ 'generate' (V.inf) ไม่ใช่ 'generated' (V.3)"
+  },
+  {
+    "id": "q-47-hard2-9",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "hard2",
+    "question": "______ communicate effectively in multi-cultural environments is considered one of the most vital soft skills for modern diplomats.",
+    "options": [
+      "Being able to",
+      "Can",
+      "Able to",
+      "To manage"
+    ],
+    "correct_answer": "Being able to",
+    "explanation": "The sentence requires a subject, which must be a noun or a gerund phrase. 'Being able to' acts as a gerund phrase and serves as the subject. 'Can' is a modal verb and cannot act as a noun/subject. 'Able to' is an adjective and cannot function as a subject without a verb.",
+    "explanation_th": "แปล: การสามารถสื่อสารได้อย่างมีประสิทธิภาพในสภาพแวดล้อมที่หลากหลายทางวัฒนธรรม ถือเป็นหนึ่งในทักษะทางอารมณ์และสังคม (soft skills) ที่สำคัญที่สุดสำหรับนักการทูตยุคใหม่\n\nคำอธิบาย: ส่วนที่ว่างอยู่ทำหน้าที่เป็นประธาน (Subject) ของประโยค ซึ่งต้องอยู่ในรูปคำนามหรือวลีที่ขึ้นต้นด้วย Gerund (V-ing) ดังนั้น 'Being able to' จึงถูกต้องที่สุด ส่วน 'Can' เป็นกริยาช่วยไม่สามารถเป็นประธานได้ และ 'Able to' เป็นคำคุณศัพท์ (adjective) ที่ต้องการกริยา 'be' นำหน้าก่อนจึงจะทำหน้าที่ในส่วนนี้ได้"
+  },
+  {
+    "id": "q-48-easy-0",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "easy",
+    "question": "Excuse me, sir. ___ I borrow your pen for a moment?",
+    "options": [
+      "May",
+      "Must",
+      "Should",
+      "Will"
+    ],
+    "correct_answer": "May",
+    "explanation": "We use 'May I' to ask for permission in a formal and polite way, which is suitable when talking to a teacher or an adult.",
+    "explanation_th": "แปล: ขอโทษนะครับคุณครู/ครับผม ผมขออนุญาตยืมปากกาของคุณสักครู่ได้ไหมครับ?\n\nคำอธิบาย: ใช้ 'May' เพื่อขออนุญาต (Permission) อย่างสุภาพและเป็นทางการ ซึ่งเหมาะสำหรับการพูดกับผู้ใหญ่หรือคุณครู ส่วน Must (ต้อง), Should (ควรจะ) และ Will (จะ) ไม่ใช้ในการขออนุญาตในลักษณะนี้"
+  },
+  {
+    "id": "q-48-easy-1",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "easy",
+    "question": "It is very hot in here. ___ you please open the window?",
+    "options": [
+      "Could",
+      "May",
+      "Should",
+      "Must"
+    ],
+    "correct_answer": "Could",
+    "explanation": "We use 'Could you' to make polite requests asking someone to do something. 'May' is not used with 'you' for making requests.",
+    "explanation_th": "แปล: ข้างในนี้ร้อนมากเลยครับ คุณช่วยเปิดหน้าต่างให้หน่อยได้ไหมครับ?\n\nคำอธิบาย: ใช้ 'Could' ในการขอร้อง (Request) ให้ผู้อื่นทำบางสิ่งให้ด้วยความสุภาพ ส่วน 'May' มักใช้ขออนุญาตทำสิ่งต่าง ๆ ด้วยตัวเอง (เช่น May I...?) ไม่นิยมใช้ 'May you...?' ในการขอร้องผู้อื่น"
+  },
+  {
+    "id": "q-48-easy-2",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "easy",
+    "question": "Hey Jane, ___ I use your phone to call my mom? Mine is dead.",
+    "options": [
+      "Can",
+      "Would",
+      "Must",
+      "Should"
+    ],
+    "correct_answer": "Can",
+    "explanation": "'Can I' is commonly used to ask for permission in informal situations, such as when talking to friends or family members.",
+    "explanation_th": "แปล: เฮ้ เจน ฉันขอใช้โทรศัพท์ของเธอโทรหาแม่หน่อยได้ไหม? เครื่องของฉันแบตหมดน่ะ\n\nคำอธิบาย: ใช้ 'Can' เพื่อขออนุญาต (Permission) อย่างไม่เป็นทางการ (Informal) ซึ่งเหมาะสมและเป็นธรรมชาติที่สุดเมื่อคุยกับเพื่อนสนิท"
+  },
+  {
+    "id": "q-48-easy-3",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "easy",
+    "question": "___ you mind helping me carry these books to the classroom?",
+    "options": [
+      "Would",
+      "May",
+      "Can",
+      "Should"
+    ],
+    "correct_answer": "Would",
+    "explanation": "The expression 'Would you mind + V-ing...?' is a very polite formula used to request someone's help.",
+    "explanation_th": "แปล: คุณจะรังเกียจไหมถ้าจะช่วยฉันถือหนังสือเหล่านี้ไปที่ห้องเรียน?\n\nคำอธิบาย: สำนวน 'Would you mind + V-ing...?' เป็นโครงสร้างสำเร็จรูปที่ใช้ในการขอร้อง (Request) อย่างสุภาพอย่างยิ่ง เพื่อถามว่าอีกฝ่ายจะสะดวกหรือรังเกียจที่จะทำสิ่งนั้นให้หรือไม่"
+  },
+  {
+    "id": "q-48-easy-4",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "easy",
+    "question": "___ I have a glass of water, please?",
+    "options": [
+      "Could",
+      "Will",
+      "Would",
+      "Do"
+    ],
+    "correct_answer": "Could",
+    "explanation": "We use 'Could I have...' to ask for things politely in a restaurant or someone's home.",
+    "explanation_th": "แปล: ฉันขอรับน้ำสักแก้วได้ไหมคะ?\n\nคำอธิบาย: ใช้ 'Could' ในโครงสร้าง 'Could I have...?' เพื่อขอสิ่งของหรืออาหารอย่างสุภาพ โดยการเติมคำว่า 'please' ท้ายประโยคจะช่วยเพิ่มความสุภาพยิ่งขึ้น"
+  },
+  {
+    "id": "q-48-easy-5",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "easy",
+    "question": "I can't hear you very well. ___ you speak a bit louder, please?",
+    "options": [
+      "Could",
+      "May",
+      "Shall",
+      "Must"
+    ],
+    "correct_answer": "Could",
+    "explanation": "We use 'Could you' to make a polite request for someone to do something. 'May' cannot be used with the subject 'you' for requests.",
+    "explanation_th": "แปล: ฉันไม่ค่อยได้ยินคุณเลย คุณช่วยพูดดังขึ้นอีกนิดได้ไหมครับ?\n\nคำอธิบาย: ใช้ 'Could' เพื่อขอร้อง (Request) ให้ผู้อื่นช่วยทำสิ่งใดสิ่งหนึ่งด้วยความสุภาพ ส่วน 'May' จะใช้ในกรณีที่เราขออนุญาตทำด้วยตัวเอง เช่น May I... เท่านั้น"
+  },
+  {
+    "id": "q-48-easy-6",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "easy",
+    "question": "___ I come in, Mr. Benson?",
+    "options": [
+      "May",
+      "Would",
+      "Will",
+      "Do"
+    ],
+    "correct_answer": "May",
+    "explanation": "'May I' is the standard, most polite, and formal way to ask for permission to enter a room or a teacher's office.",
+    "explanation_th": "แปล: ขออนุญาตเข้าไปข้างในได้ไหมครับ คุณเบนสัน?\n\nคำอธิบาย: 'May I...?' เป็นสำนวนแบบสุภาพและเป็นทางการที่สุดในการขออนุญาต (Permission) เข้าห้องหรือขอตัวทำกิจกรรมต่าง ๆ กับผู้ที่มีอายุมากกว่าหรืออยู่ในตำแหน่งที่สูงกว่า"
+  },
+  {
+    "id": "q-48-easy-7",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "easy",
+    "question": "___ you turn down the TV? I am trying to study.",
+    "options": [
+      "Can",
+      "May",
+      "Should",
+      "Shall"
+    ],
+    "correct_answer": "Can",
+    "explanation": "'Can you' is used to make a request in an informal situation, such as asking a family member or roommate to do something.",
+    "explanation_th": "แปล: ช่วยเบาเสียงทีวีลงหน่อยได้ไหม? ฉันกำลังพยายามอ่านหนังสืออยู่น่ะ\n\nคำอธิบาย: ใช้ 'Can' ในประโยค 'Can you...?' เพื่อขอร้อง (Request) ให้ผู้อื่นทำบางสิ่งให้อย่างเป็นกันเอง เหมาะสำหรับการคุยกับคนในครอบครัวหรือคนสนิท"
+  },
+  {
+    "id": "q-48-easy-8",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "easy",
+    "question": "Excuse me, I ___ like to order a chicken salad, please.",
+    "options": [
+      "would",
+      "can",
+      "could",
+      "may"
+    ],
+    "correct_answer": "would",
+    "explanation": "We use 'would like' (often contracted to 'd like) to make polite requests or express wishes, especially when ordering food.",
+    "explanation_th": "แปล: ขอโทษนะคะ ฉันขอสั่งสลัดไก่หน่อยค่ะ\n\nคำอธิบาย: สำนวน 'would like' ใช้ในการแจ้งความประสงค์หรือสั่งอาหาร/เครื่องดื่มอย่างสุภาพมาก ซึ่งเป็นมาตรฐานที่ใช้กันทั่วไป"
+  },
+  {
+    "id": "q-48-easy-9",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "easy",
+    "question": "I don't feel well today. ___ I go home early, please?",
+    "options": [
+      "May",
+      "Would",
+      "Will",
+      "Do"
+    ],
+    "correct_answer": "May",
+    "explanation": "We use 'May I' to ask for permission to leave a place or do something, which is polite and appropriate when speaking to a boss or teacher.",
+    "explanation_th": "แปล: วันนี้ฉันรู้สึกไม่ค่อยสบาย ฉันขออนุญาตกลับบ้านเร็วขึ้นได้ไหมคะ?\n\nคำอธิบาย: ใช้ 'May' ในการขออนุญาต (Permission) เพื่อทำบางสิ่งจากคนที่มีอำนาจตัดสินใจ เช่น ครู หรือหัวหน้างาน เพื่อแสดงความเคารพและสุภาพนอบน้อม"
   }
 ]

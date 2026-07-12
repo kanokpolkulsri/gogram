@@ -390,7 +390,7 @@ export default function QuizPage() {
                               onClick={() => setShowThai(s => !s)}
                               style={{ display: 'block', alignSelf: 'flex-start' }}
                             >
-                              {showThai ? 'ซ่อนคำอธิบายภาษาไทย ▴' : 'คำอธิบายภาษาไทย (Thai) ▾'}
+                              {showThai ? 'Hide ▴' : 'Thai ▾'}
                             </button>
                             {showThai && (
                               <div className="quiz-explanation-inner">
