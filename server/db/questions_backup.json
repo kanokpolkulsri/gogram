@@ -38399,5 +38399,325 @@
     "correct_answer": "would",
     "explanation": "The formula 'We would highly appreciate it if you would/could...' is a standard polite request in formal correspondence, establishing a conditional politeness framework using 'would'.",
     "explanation_th": "แปล: พวกเราจะขอบคุณเป็นอย่างยิ่งหากคุณจะกรุณาทำแบบสอบถามความคิดเห็นตามเวลาที่คุณสะดวกที่สุด\n\nคำอธิบาย: ในการเขียนอีเมลขอความร่วมมือหรือขอร้องที่เป็นทางการ (Formal Request) โครงสร้างเงื่อนไขแบบสุภาพจะใช้ 'We would appreciate it if you would/could...' โดย 'would' ตัวแรกแสดงผลลัพธ์ที่เป็นเงื่อนไขที่สุภาพและนุ่มนวล"
+  },
+  {
+    "id": "q-49-easy-0",
+    "unit_id": 49,
+    "unit_number": 49,
+    "level_id": "easy",
+    "question": "It's raining outside. You ___ take an umbrella with you.",
+    "options": [
+      "should",
+      "should to",
+      "ought",
+      "had better to"
+    ],
+    "correct_answer": "should",
+    "explanation": "We use 'should' followed by the base form of the verb (infinitive without 'to') to give basic advice.",
+    "explanation_th": "แปล: ข้างนอกฝนกำลังตก คุณควรพกร่มไปด้วย\n\nคำอธิบาย: ใช้ 'should' ตามด้วยกริยาช่อง 1 (base form) เพื่อให้คำแนะนำทั่วไป ตัวเลือกอื่นผิดโครงสร้าง เช่น 'should to' หรือ 'had better to' ซึ่งไม่ใช้ 'to' ส่วน 'ought' ต้องมี 'to' เสมอ"
+  },
+  {
+    "id": "q-49-easy-1",
+    "unit_id": 49,
+    "unit_number": 49,
+    "level_id": "easy",
+    "question": "You ___ study harder if you want to pass the English exam.",
+    "options": [
+      "ought to",
+      "ought",
+      "should to",
+      "had better to"
+    ],
+    "correct_answer": "ought to",
+    "explanation": "'ought to' is used to express advice or duty, and it must be followed by a verb in its base form.",
+    "explanation_th": "แปล: คุณควรจะตั้งใจเรียนให้มากขึ้นถ้าคุณต้องการสอบผ่านวิชาภาษาอังกฤษ\n\nคำอธิบาย: 'ought to' มีความหมายเหมือน 'should' แปลว่า 'ควรจะ' ต้องมี 'to' เสมอ ส่วน 'should' ไม่ตามด้วย 'to' และ 'had better' ก็ไม่ตามด้วย 'to' จึงทำให้ตัวเลือกอื่นไม่ถูกต้อง"
+  },
+  {
+    "id": "q-49-easy-2",
+    "unit_id": 49,
+    "unit_number": 49,
+    "level_id": "easy",
+    "question": "It is very late. Children ___ watch TV at this hour.",
+    "options": [
+      "should not",
+      "not should",
+      "ought to not",
+      "had better not to"
+    ],
+    "correct_answer": "should not",
+    "explanation": "The negative form of 'should' is 'should not' or 'shouldn't', which is used to advise against doing something.",
+    "explanation_th": "แปล: มันดึกมากแล้ว เด็กๆ ไม่ควรดูโทรทัศน์ในเวลานี้\n\nคำอธิบาย: 'should not' (หรือ shouldn't) ใช้สำหรับแนะนำว่าไม่ควรทำสิ่งใดสิ่งหนึ่ง ตัวเลือก 'not should' เรียงคำผิด 'ought to not' ผิดโครงสร้าง (ต้องเป็น ought not to) และ 'had better not to' ผิดเพราะ had better ไม่ใช้ร่วมกับ to"
+  },
+  {
+    "id": "q-49-easy-3",
+    "unit_id": 49,
+    "unit_number": 49,
+    "level_id": "easy",
+    "question": "The train leaves in ten minutes. We ___ hurry up.",
+    "options": [
+      "had better",
+      "had better to",
+      "ought",
+      "should to"
+    ],
+    "correct_answer": "had better",
+    "explanation": "We use 'had better' + infinitive without 'to' to give strong advice or warnings about what is best to do in a specific situation.",
+    "explanation_th": "แปล: รถไฟจะออกในอีกสิบนาทีแล้ว พวกเราควรจะรีบหน่อยนะ\n\nคำอธิบาย: 'had better' แปลว่า 'ควรจะ... ดีกว่า' ใช้เตือนหรือแนะนำอย่างหนักแน่นในสถานการณ์เฉพาะเจาะจง ตามด้วยกริยาช่อง 1 ไม่เติม to ตัวเลือกอื่น เช่น 'had better to' และ 'should to' ผิดไวยากรณ์เพราะมี to"
+  },
+  {
+    "id": "q-49-easy-4",
+    "unit_id": 49,
+    "unit_number": 49,
+    "level_id": "easy",
+    "question": "The floor is wet. You ___ run here, or you will fall.",
+    "options": [
+      "had better not",
+      "had not better",
+      "better not to",
+      "shouldn't to"
+    ],
+    "correct_answer": "had better not",
+    "explanation": "The negative form of 'had better' is 'had better not' followed by a base verb, used to warn someone not to do something.",
+    "explanation_th": "แปล: พื้นเปียกนะ คุณไม่ควรวิ่งตรงนี้ดีกว่า ไม่งั้นคุณจะล้มลงไป\n\nคำอธิบาย: 'had better not' เป็นรูปปฏิเสธ แปลว่า 'ไม่ควร... ดีกว่า' เพื่อเตือนไม่ให้ทำสิ่งนั้น (หากทำอาจมีผลเสียตามมา) ตัวเลือกอื่นจัดรูปปฏิเสธผิดโครงสร้าง"
+  },
+  {
+    "id": "q-49-easy-5",
+    "unit_id": 49,
+    "unit_number": 49,
+    "level_id": "easy",
+    "question": "We ___ buy some fresh vegetables for dinner tonight.",
+    "options": [
+      "should",
+      "ought",
+      "had better to",
+      "should to"
+    ],
+    "correct_answer": "should",
+    "explanation": "'should' is followed directly by the base form of the verb (buy) to express a good idea or advice.",
+    "explanation_th": "แปล: พวกเราควรซื้อผักสดมาสำหรับมื้อเย็นคืนนี้นะ\n\nคำอธิบาย: 'should' ตามด้วยกริยาช่อง 1 (buy) ได้ทันทีเพื่อแนะนำสิ่งที่ควรทำ ตัวเลือกอื่นผิดไวยากรณ์เพราะ 'ought' ขาด 'to', 'had better to' เกิน 'to' และ 'should to' เกิน 'to'"
+  },
+  {
+    "id": "q-49-easy-6",
+    "unit_id": 49,
+    "unit_number": 49,
+    "level_id": "easy",
+    "question": "You had better ___ some rest before your long journey tomorrow.",
+    "options": [
+      "get",
+      "to get",
+      "getting",
+      "got"
+    ],
+    "correct_answer": "get",
+    "explanation": "'had better' must be followed by the bare infinitive (the base form of the verb without 'to').",
+    "explanation_th": "แปล: คุณควรพักผ่อนเสียหน่อยดีกว่าก่อนที่จะเดินทางไกลในวันพรุ่งนี้\n\nคำอธิบาย: โครงสร้างหลัง 'had better' ต้องตามด้วยกริยาฐานหรือกริยาช่อง 1 ที่ไม่มี to (bare infinitive) ดังนั้น 'get' จึงเป็นคำตอบที่ถูกต้อง"
+  },
+  {
+    "id": "q-49-easy-7",
+    "unit_id": 49,
+    "unit_number": 49,
+    "level_id": "easy",
+    "question": "I have a terrible headache. ___ I go to see a doctor?",
+    "options": [
+      "Should",
+      "Ought",
+      "Had better",
+      "Am I should"
+    ],
+    "correct_answer": "Should",
+    "explanation": "We use 'Should I + verb...?' to ask for advice or suggestions.",
+    "explanation_th": "แปล: ฉันปวดหัวมากเลย ฉันควรไปหาหมอไหม?\n\nคำอธิบาย: ใช้ 'Should' ขึ้นต้นประโยคคำถามเพื่อขอคำแนะนำ 'Should I + V.1?' ตัวเลือกอื่นไม่ถูกต้องเนื่องจาก 'Ought' ต้องการ 'to' (Ought I to...?) และ 'Had better' ไม่นิยมขึ้นต้นคำถามขอคำแนะนำทั่วไปในลักษณะนี้"
+  },
+  {
+    "id": "q-49-easy-8",
+    "unit_id": 49,
+    "unit_number": 49,
+    "level_id": "easy",
+    "question": "You ___ behave politely when talking to older people.",
+    "options": [
+      "ought to",
+      "should to",
+      "had better to",
+      "ought"
+    ],
+    "correct_answer": "ought to",
+    "explanation": "'ought to' is a modal verb used to give advice or talk about moral duty, followed by a base verb.",
+    "explanation_th": "แปล: คุณควรจะทำตัวสุภาพเรียบร้อยเมื่อพูดคุยกับผู้สูงอายุ\n\nคำอธิบาย: 'ought to' มีความหมายเดียวกับ should แต่เป็นทางการมากกว่าและเน้นเรื่องหน้าที่/ความถูกต้องตามศีลธรรม ตัวเลือกอื่นเช่น 'should to' หรือ 'had better to' ผิดไวยากรณ์เพราะ should และ had better ไม่ต้องตามด้วย to"
+  },
+  {
+    "id": "q-49-easy-9",
+    "unit_id": 49,
+    "unit_number": 49,
+    "level_id": "easy",
+    "question": "You ___ eat too much junk food because it is bad for your health.",
+    "options": [
+      "shouldn't",
+      "ought not",
+      "had better to not",
+      "don't should"
+    ],
+    "correct_answer": "shouldn't",
+    "explanation": "We use 'shouldn't' (should not) to advise against doing something that is not good for someone.",
+    "explanation_th": "แปล: คุณไม่ควรทานอาหารขยะมากเกินไปเพราะมันไม่ดีต่อสุขภาพของคุณ\n\nคำอธิบาย: 'shouldn't' (should not) เป็นรูปปฏิเสธที่เหมาะสมที่สุดในการแนะนำไม่ให้ทำสิ่งที่เป็นผลเสียต่อสุขภาพ ตัวเลือกอื่นผิดโครงสร้าง เช่น 'ought not' ขาด to และ 'don't should' ไม่มีในระบบไวยากรณ์ภาษาอังกฤษ"
+  },
+  {
+    "id": "q-49-medium1-0",
+    "unit_id": 49,
+    "unit_number": 49,
+    "level_id": "medium1",
+    "question": "You look really tired. You ___ drive tonight; let me take you home.",
+    "options": [
+      "had better not",
+      "had not better",
+      "shouldn't to",
+      "ought to not"
+    ],
+    "correct_answer": "had better not",
+    "explanation": "The negative of 'had better' is 'had better not' followed by a bare infinitive (drive). 'Had not better' is incorrect, and 'shouldn't' does not take 'to'.",
+    "explanation_th": "แปล: คุณดูเหนื่อยมากเลยนะ คืนนี้คุณไม่ควรขับรถเลย ให้ฉันไปส่งคุณที่บ้านเถอะ\n\nคำอธิบาย: รูปปฏิเสธของ had better คือ 'had better not' ตามด้วยกริยาช่อง 1 ไม่ผัน (drive) ตัวเลือก 'had not better' เรียงลำดับคำผิด ส่วน 'shouldn't to' ผิดโครงสร้างเพราะ should ไม่ตามด้วย to และ 'ought to not' รูปปฏิเสธที่ถูกต้องคือ ought not to"
+  },
+  {
+    "id": "q-49-medium1-1",
+    "unit_id": 49,
+    "unit_number": 49,
+    "level_id": "medium1",
+    "question": "If you want to pass the entrance exam, you ___ study a bit harder every day.",
+    "options": [
+      "ought to",
+      "should to",
+      "had better to",
+      "ought"
+    ],
+    "correct_answer": "ought to",
+    "explanation": "The semi-modal 'ought' must always be followed by 'to' + infinitive. 'Should' and 'had better' are followed directly by a bare infinitive.",
+    "explanation_th": "แปล: ถ้าคุณต้องการสอบเข้ามหาวิทยาลัยให้ผ่าน คุณควรจะตั้งใจเรียนให้หนักขึ้นอีกนิดในทุก ๆ วัน\n\nคำอธิบาย: คำว่า 'ought' ต้องใช้คู่กับ 'to' เสมอ (ought to + V.inf) ในขณะที่ 'should' และ 'had better' จะตามด้วยกริยาฐาน (bare infinitive) โดยไม่มี to เช่น should study หรือ had better study"
+  },
+  {
+    "id": "q-49-medium1-2",
+    "unit_id": 49,
+    "unit_number": 49,
+    "level_id": "medium1",
+    "question": "The train leaves in ten minutes. We ___ hurry up or we will miss it.",
+    "options": [
+      "had better",
+      "ought",
+      "should to",
+      "had to better"
+    ],
+    "correct_answer": "had better",
+    "explanation": "'Had better' is used for strong advice or warnings in urgent situations where there might be a negative consequence. It is followed by a bare infinitive.",
+    "explanation_th": "แปล: รถไฟจะออกในอีกสิบนาทีแล้วนะ พวกเราควรจะรีบหน่อย ไม่อย่างนั้นพวกเราจะตกรถไฟ\n\nคำอธิบาย: 'had better' ใช้ในการแนะนำอย่างแกมบังคับหรือเตือนภัยในสถานการณ์เฉพาะเจาะจงที่มีผลเสียตามมาหากไม่ทำตาม ตัวเลือก 'ought' ขาด to และ 'should' ไม่ใช้คู่กับ to ส่วน 'had to better' เป็นโครงสร้างที่ไม่มีอยู่จริง"
+  },
+  {
+    "id": "q-49-medium1-3",
+    "unit_id": 49,
+    "unit_number": 49,
+    "level_id": "medium1",
+    "question": "Students ___ copy their classmates' homework; it is against the school rules.",
+    "options": [
+      "ought not to",
+      "ought to not",
+      "shouldn't to",
+      "had better to not"
+    ],
+    "correct_answer": "ought not to",
+    "explanation": "The negative form of 'ought to' is 'ought not to' followed by the bare infinitive.",
+    "explanation_th": "แปล: นักเรียนไม่ควรลอกการบ้านของเพื่อนร่วมชั้น มันเป็นสิ่งที่ผิดกฎของโรงเรียน\n\nคำอธิบาย: รูปปฏิเสธของ ought to คือ 'ought not to' ตามด้วยกริยาช่อง 1 (copy) ตัวเลือก 'ought to not' เรียงคำผิด ส่วน 'shouldn't' จะไม่ตามด้วย to และ 'had better to not' ผิดไวยากรณ์"
+  },
+  {
+    "id": "q-49-medium1-4",
+    "unit_id": 49,
+    "unit_number": 49,
+    "level_id": "medium1",
+    "question": "A: 'I have a terrible headache.'\nB: 'I think you ___ take some aspirin and rest.'",
+    "options": [
+      "should",
+      "ought",
+      "had better to",
+      "should to"
+    ],
+    "correct_answer": "should",
+    "explanation": "'Should' is used to give general advice and is followed directly by a bare infinitive. 'Ought' requires 'to', and 'had better' does not take 'to'.",
+    "explanation_th": "แปล: A: 'ฉันปวดหัวมากเลย' B: 'ฉันคิดว่าคุณควรจะกินยาแอสไพรินและพักผ่อนนะ'\n\nคำอธิบาย: 'should' ใช้สำหรับให้คำแนะนำทั่วไปและตามด้วยกริยาช่อง 1 ไม่ผัน (take) ทันที ตัวเลือก 'ought' ต้องใช้คู่กับ to (ought to) และ 'had better' ไม่ใช้ร่วมกับ to จึงทำให้ตัวเลือกอื่นผิด"
+  },
+  {
+    "id": "q-49-medium1-5",
+    "unit_id": 49,
+    "unit_number": 49,
+    "level_id": "medium1",
+    "question": "Your mother looks really angry. You ___ argue with her right now.",
+    "options": [
+      "had better not",
+      "ought to not",
+      "should not to",
+      "had not better to"
+    ],
+    "correct_answer": "had better not",
+    "explanation": "'Had better not' is used for urgent advice to prevent bad consequences. It is followed by the bare infinitive 'argue'.",
+    "explanation_th": "แปล: แม่ของคุณดูโกรธมากนะ คุณไม่ควรโต้เถียงกับท่านในตอนนี้เลยนะ\n\nคำอธิบาย: ในสถานการณ์ที่มีความตึงเครียดหรืออาจมีผลกระทบด้านลบตามมา ควรใช้ 'had better not' (ไม่ควร...อย่างยิ่ง) ตัวเลือกอื่น ๆ มีการเรียงรูปปฏิเสธที่ผิดไวยากรณ์ทั้งหมด เช่น ought to not (ที่ถูกคือ ought not to) หรือ shouldn't to (ที่ถูกคือ shouldn't)"
+  },
+  {
+    "id": "q-49-medium1-6",
+    "unit_id": 49,
+    "unit_number": 49,
+    "level_id": "medium1",
+    "question": "You ___ keep your voice down in the library, or the librarian will ask you to leave.",
+    "options": [
+      "had better",
+      "ought",
+      "should to",
+      "had better to"
+    ],
+    "correct_answer": "had better",
+    "explanation": "We use 'had better' to give strong advice when there is a specific threat of a negative result ('or the librarian will ask you to leave').",
+    "explanation_th": "แปล: คุณควรจะลดเสียงลงหน่อยในห้องสมุด ไม่อย่างนั้นบรรณารักษ์จะขอให้คุณออกไปข้างนอก\n\nคำอธิบาย: 'had better' ใช้เตือนในกรณีที่มีผลกระทบด้านลบระบุไว้ตามมา (หรือบรรณารักษ์จะไล่ออกไป) โดยตามด้วยกริยาไม่ผันทันที ตัวเลือก 'ought' ขาด to ส่วน 'should to' และ 'had better to' ใช้ to ซึ่งผิดโครงสร้าง"
+  },
+  {
+    "id": "q-49-medium1-7",
+    "unit_id": 49,
+    "unit_number": 49,
+    "level_id": "medium1",
+    "question": "That new art museum is fantastic. You ___ visit it when you are in town.",
+    "options": [
+      "ought to",
+      "should to",
+      "had better to",
+      "ought"
+    ],
+    "correct_answer": "ought to",
+    "explanation": "'Ought to' is used to make recommendations. 'Should' and 'had better' cannot be followed by the preposition 'to'.",
+    "explanation_th": "แปล: พิพิธภัณฑ์แห่งใหม่นั้นยอดเยี่ยมมากเลย คุณควรจะไปเยี่ยมชมเมื่อคุณอยู่ในเมือง\n\nคำอธิบาย: 'ought to' มีความหมายว่า 'ควรจะ' ใช้ในการแนะนำทั่วไป โครงสร้างคือ ought to + V.inf ตัวเลือก 'should to' และ 'had better to' ผิดเพราะ modal verbs เหล่านี้ไม่ตามด้วย to ส่วน 'ought' เดี่ยว ๆ ไม่มี to ไม่สามารถวางหน้าคำกริยาหลักได้"
+  },
+  {
+    "id": "q-49-medium1-8",
+    "unit_id": 49,
+    "unit_number": 49,
+    "level_id": "medium1",
+    "question": "The road is icy and dangerous. We ___ drive slowly.",
+    "options": [
+      "had better",
+      "would better",
+      "had best to",
+      "ought drive"
+    ],
+    "correct_answer": "had better",
+    "explanation": "'Had better' is the correct modal expression for warning someone in dangerous circumstances. 'Would better' is non-existent, and 'ought' requires 'to'.",
+    "explanation_th": "แปล: ถนนลื่นและอันตรายมาก พวกเราควรจะขับรถอย่างช้า ๆ\n\nคำอธิบาย: ในสถานการณ์ที่เสี่ยงอันตราย เราใช้ 'had better' + V.inf เพื่อแนะแนวทางปฏิบัติที่ปลอดภัยที่สุด ตัวเลือก 'would better' ไม่มีในภาษาอังกฤษ ส่วน 'had best to' ผิดไวยากรณ์ (had best ไม่ใช้ to) และ 'ought' ต้องใช้คู่กับ to"
+  },
+  {
+    "id": "q-49-medium1-9",
+    "unit_id": 49,
+    "unit_number": 49,
+    "level_id": "medium1",
+    "question": "You ___ eat too much junk food if you want to stay healthy.",
+    "options": [
+      "shouldn't",
+      "oughtn't",
+      "had better to not",
+      "should not to"
+    ],
+    "correct_answer": "shouldn't",
+    "explanation": "'Shouldn't' (should not) is the standard negative modal for general advice. 'Oughtn't' requires 'to' (oughtn't to).",
+    "explanation_th": "แปล: คุณไม่ควรรับประทานอาหารขยะมากเกินไปหากคุณต้องการมีสุขภาพที่ดี\n\nคำอธิบาย: 'shouldn't' เป็นคำกริยาช่วยที่ใช้สมบูรณ์ในตัวสำหรับให้คำแนะนำทั่วไปตามด้วยกริยาช่อง 1 ไม่ผัน (eat) ตัวเลือก 'oughtn't' ขาดคำว่า to (ต้องเขียนเป็น oughtn't to) ส่วน 'should not to' และ 'had better to not' เป็นโครงสร้างที่ไม่ถูกต้องตามหลักไวยากรณ์"
   }
 ]
