@@ -36639,5 +36639,645 @@
     "correct_answer": "in",
     "explanation": "The verb 'instill' (meaning to gradually but firmly establish an idea or attitude in a person's mind) is paired with the preposition 'in' (instill something in someone).",
     "explanation_th": "แปล: หลักสูตรประถมศึกษาที่มีประสิทธิภาพต้องพยายามปลูกฝังความรู้สึกอยากรู้อยากเห็นให้เกิดขึ้นในตัวผู้เรียนวัยเยาว์ตั้งแต่เนิ่นๆ\n\nคำอธิบาย: คำกริยา 'instill' (ปลูกฝังแนวคิด ทัศนคติ หรือความรู้สึก) จะใช้โครงสร้าง 'instill something in/into someone' (ปลูกฝังบางสิ่งในตัวใครบางคน) ดังนั้นบุพบท 'in' จึงเป็นคำตอบเดียวที่ถูกต้องตามหลักไวยากรณ์ในข้อนี้"
+  },
+  {
+    "id": "q-46-hard2-0",
+    "unit_id": 46,
+    "unit_number": 46,
+    "level_id": "hard2",
+    "question": "Despite the evidence pointing to his guilt, the defense attorney insisted that his client was completely innocent ___ the charges.",
+    "options": [
+      "of",
+      "from",
+      "for",
+      "against"
+    ],
+    "correct_answer": "of",
+    "explanation": "The adjective 'innocent' is followed by the fixed preposition 'of' when referring to charges or crimes.",
+    "explanation_th": "แปล: แม้ว่าจะมีหลักฐานชี้ไปที่ความผิดของเขา แต่ทนายฝ่ายจำเลยยังคงยืนยันว่าลูกความของเขาบริสุทธิ์จากข้อกล่าวหาเหล่านั้นอย่างสิ้นเชิง\n\nคำอธิบาย: คำคุณศัพท์ 'innocent' ต้องใช้คู่กับบุพบทเฉพาะ (Fixed Preposition) คือ 'of' เสมอเมื่อพูดถึงความบริสุทธิ์จากข้อกล่าวหาหรือคดีความ (innocent of the charges) แม้ว่าในภาษาไทยจะแปลว่า 'จาก' แต่ห้ามใช้ 'from' ซึ่งเป็นข้อผิดพลาดที่พบได้บ่อย"
+  },
+  {
+    "id": "q-46-hard2-1",
+    "unit_id": 46,
+    "unit_number": 46,
+    "level_id": "hard2",
+    "question": "The research committee expressed strong reservations ___ the methodology used in the preliminary study, citing potential bias.",
+    "options": [
+      "about",
+      "to",
+      "with",
+      "for"
+    ],
+    "correct_answer": "about",
+    "explanation": "The noun 'reservations' (meaning doubts or misgivings) is typically followed by the preposition 'about' (or 'on/over').",
+    "explanation_th": "แปล: คณะกรรมการวิจัยได้แสดงความกังวลอย่างมากเกี่ยวกับระเบียบวิธีวิจัยที่ใช้ในการศึกษานำร่อง โดยอ้างถึงความเอนเอียงที่อาจเกิดขึ้นได้\n\nคำอธิบาย: คำนาม 'reservations' ในบริบทนี้หมายถึง ความกังวล ข้อสงสัย หรือความเคลือบแคลงใจ ซึ่งต้องใช้คู่กับบุพบท 'about' เพื่อบอกว่ามีความกังวลในเรื่องใด"
+  },
+  {
+    "id": "q-46-hard2-2",
+    "unit_id": 46,
+    "unit_number": 46,
+    "level_id": "hard2",
+    "question": "Highly sensitive to the market's fluctuations, the company's financial success is contingent ___ securing a long-term loan from the national bank.",
+    "options": [
+      "upon",
+      "to",
+      "with",
+      "at"
+    ],
+    "correct_answer": "upon",
+    "explanation": "The adjective 'contingent' is followed by 'upon' or 'on', meaning dependent on or conditioned by something else.",
+    "explanation_th": "แปล: ความสำเร็จทางการเงินของบริษัทนี้ขึ้นอยู่กับความผันผวนของตลาดอย่างมาก และยังต้องขึ้นอยู่กับการได้รับอนุมัติเงินกู้ระยะยาวจากธนาคารแห่งชาติอีกด้วย\n\nคำอธิบาย: คำคุณศัพท์ 'contingent' ต้องใช้คู่กับบุพบท 'upon' หรือ 'on' เท่านั้น ซึ่งมีความหมายว่า 'ขึ้นอยู่กับ' หรือ 'ต้องอาศัยเงื่อนไขของ' (dependent on)"
+  },
+  {
+    "id": "q-46-hard2-3",
+    "unit_id": 46,
+    "unit_number": 46,
+    "level_id": "hard2",
+    "question": "Due to his extensive experience in microfinance, Dr. Aris was deemed the most eligible candidate to preside ___ the newly formed economic council.",
+    "options": [
+      "over",
+      "at",
+      "for",
+      "on"
+    ],
+    "correct_answer": "over",
+    "explanation": "The verb 'preside' takes the preposition 'over' when meaning to be in charge of a meeting, court, or organization.",
+    "explanation_th": "แปล: เนื่องจากเขามีประสบการณ์อย่างกว้างขวางในด้านการเงินระดับฐานราก ดร.อาริสจึงได้รับการพิจารณาว่าเป็นผู้สมัครที่เหมาะสมที่สุดที่จะทำหน้าที่เป็นประธานในสภาเศรษฐกิจที่จัดตั้งขึ้นใหม่นี้\n\nคำอธิบาย: คำกริยา 'preside' ต้องใช้คู่กับบุพบท 'over' (preside over) เมื่อต้องการสื่อถึงการทำหน้าที่เป็นประธาน ดำเนินการประชุม หรือควบคุมดูแลองค์กร/การประชุม"
+  },
+  {
+    "id": "q-46-hard2-4",
+    "unit_id": 46,
+    "unit_number": 46,
+    "level_id": "hard2",
+    "question": "The administration's complete indifference ___ the plight of the rural farmers sparked widespread protests across the northern provinces.",
+    "options": [
+      "to",
+      "for",
+      "with",
+      "about"
+    ],
+    "correct_answer": "to",
+    "explanation": "The noun 'indifference' is followed by the fixed preposition 'to', meaning lack of interest or concern.",
+    "explanation_th": "แปล: ความเพิกเฉยอย่างสิ้นเชิงของฝ่ายบริหารต่อความทุกข์ยากของเกษตรกรในชนบทได้จุดชนวนให้เกิดการประท้วงอย่างแพร่หลายในจังหวัดภาคเหนือ\n\nคำอธิบาย: คำนาม 'indifference' (ความเพิกเฉย/ความเย็นชา) ต้องใช้ร่วมกับบุพบท 'to' เสมอ (indifference to something) ผู้เรียนชาวไทยมักสับสนไปใช้ 'for' หรือ 'about' เนื่องจากแปลตรงตัวจากภาษาไทยว่า 'ต่อ' หรือ 'เกี่ยวกับ'"
+  },
+  {
+    "id": "q-46-hard2-5",
+    "unit_id": 46,
+    "unit_number": 46,
+    "level_id": "hard2",
+    "question": "Even though the CEO was highly skilled in public relations, he was completely devoid ___ the empathy required to lead a diverse workforce during a crisis.",
+    "options": [
+      "of",
+      "from",
+      "with",
+      "in"
+    ],
+    "correct_answer": "of",
+    "explanation": "The adjective 'devoid' is followed by the fixed preposition 'of' to mean entirely lacking or free from.",
+    "explanation_th": "แปล: แม้ว่าซีอีโอจะมีความเชี่ยวชาญด้านการประชาสัมพันธ์เป็นอย่างดี แต่เขาขาดความเห็นอกเห็นใจผู้อื่นอย่างสิ้นเชิง ซึ่งเป็นสิ่งจำเป็นในการนำพาบุคลากรที่มีความหลากหลายในช่วงวิกฤต\n\nคำอธิบาย: คำคุณศัพท์ 'devoid' (ซึ่งขาดแคลน/ปราศจาก) ต้องใช้คู่กับบุพบท 'of' เสมอ (devoid of something) ห้ามใช้ 'from' แม้ว่าจะแปลว่า 'ปราศจากจาก...' ก็ตาม"
+  },
+  {
+    "id": "q-46-hard2-6",
+    "unit_id": 46,
+    "unit_number": 46,
+    "level_id": "hard2",
+    "question": "The newly appointed minister must comply ___ the strict ethical guidelines laid out in the constitution to avoid any conflict of interest.",
+    "options": [
+      "with",
+      "to",
+      "by",
+      "for"
+    ],
+    "correct_answer": "with",
+    "explanation": "The verb 'comply' is followed by 'with' to mean to act in accordance with a rule or command.",
+    "explanation_th": "แปล: รัฐมนตรีที่ได้รับการแต่งตั้งใหม่จะต้องปฏิบัติตามแนวทางปฏิบัติด้านจริยธรรมที่เข้มงวดซึ่งระบุไว้ในรัฐธรรมนูญ เพื่อหลีกเลี่ยงผลประโยชน์ทับซ้อนใดๆ\n\nคำอธิบาย: คำกริยา 'comply' ต้องใช้คู่กับบุพบท 'with' เสมอ (comply with rules/laws) ซึ่งแปลว่า ปฏิบัติตาม ตัวเลือกอื่นอย่าง 'to' มักสับสนกับ 'adhere to' และ 'by' สับสนกับ 'abide by' ซึ่งมีความหมายใกล้เคียงกัน"
+  },
+  {
+    "id": "q-46-hard2-7",
+    "unit_id": 46,
+    "unit_number": 46,
+    "level_id": "hard2",
+    "question": "The government's decision to cut funding for public schools is incompatible ___ their stated goal of improving national literacy rates.",
+    "options": [
+      "with",
+      "to",
+      "for",
+      "against"
+    ],
+    "correct_answer": "with",
+    "explanation": "The adjective 'incompatible' takes the preposition 'with' to indicate that two things cannot coexist or are inconsistent.",
+    "explanation_th": "แปล: การตัดสินใจของรัฐบาลที่จะตัดงบประมาณสนับสนุนโรงเรียนรัฐบาลนั้นขัดแย้งกับเป้าหมายที่ประกาศไว้ในการปรับปรุงอัตราการรู้หนังสือของประชากรในประเทศ\n\nคำอธิบาย: คำคุณศัพท์ 'incompatible' (ซึ่งเข้ากันไม่ได้/ขัดแย้งกัน) จะต้องใช้คู่กับบุพบท 'with' (incompatible with something) เพื่อแสดงความไม่สอดคล้องกันระหว่างสองสิ่ง"
+  },
+  {
+    "id": "q-46-hard2-8",
+    "unit_id": 46,
+    "unit_number": 46,
+    "level_id": "hard2",
+    "question": "Her propensity ___ making impulsive financial decisions often led her into deep debt despite her high monthly salary.",
+    "options": [
+      "for",
+      "to",
+      "in",
+      "by"
+    ],
+    "correct_answer": "for",
+    "explanation": "The noun 'propensity' (meaning a natural tendency to behave in a particular way) takes 'for' when followed by a noun or gerund.",
+    "explanation_th": "แปล: แนวโน้มที่จะตัดสินใจทางการเงินอย่างหุนหันพลันแล่นของเธอมักจะทำให้เธอตกเป็นหนี้สินล้นพ้นตัว แม้ว่าจะมีเงินเดือนสูงก็ตาม\n\nคำอธิบาย: คำนาม 'propensity' (แนวโน้ม/นิสัยที่เป็นมาแต่กำเนิด) เมื่อตามด้วยคำนามหรือคำนามที่เป็นรูปกริยา (Gerund: making) จะต้องใช้คู่กับบุพบท 'for' (propensity for doing something) หากจะใช้ 'to' ต้องตามด้วยกริยาช่องที่ 1 (Infinitive: propensity to make)"
+  },
+  {
+    "id": "q-46-hard2-9",
+    "unit_id": 46,
+    "unit_number": 46,
+    "level_id": "hard2",
+    "question": "The professor’s research is highly relevant to our project, as it is replete ___ empirical data that supports our hypothesis.",
+    "options": [
+      "with",
+      "of",
+      "by",
+      "in"
+    ],
+    "correct_answer": "with",
+    "explanation": "The adjective 'replete' means filled or well-supplied with something and is always followed by the preposition 'with'.",
+    "explanation_th": "แปล: งานวิจัยของศาสตราจารย์ท่านนี้เกี่ยวข้องกับโครงการของเราเป็นอย่างมาก เนื่องจากมันเต็มไปด้วยข้อมูลเชิงประจักษ์ที่สนับสนุนสมมติฐานของเรา\n\nคำอธิบาย: คำคุณศัพท์ 'replete' (ซึ่งเต็มไปด้วย/เพียบพร้อมด้วย) ต้องใช้คู่กับบุพบท 'with' เสมอ (replete with something) เป็นข้อสอบยอดนิยมที่มักหลอกให้ผู้สอบเลือกใช้ 'of' เนื่องจากสับสนกับคำว่า 'full of'"
+  },
+  {
+    "id": "q-47-easy-0",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "easy",
+    "question": "She is a talented musician; she ___ play three different instruments.",
+    "options": [
+      "can",
+      "could",
+      "is able",
+      "managed"
+    ],
+    "correct_answer": "can",
+    "explanation": "'can' is used to express general ability in the present tense. 'is able' requires 'to' to be grammatically correct, 'could' is past tense, and 'managed' requires 'to'.",
+    "explanation_th": "แปล: เธอเป็นนักดนตรีที่มีพรสวรรค์ เธอสามารถเล่นเครื่องดนตรีที่แตกต่างกันได้ถึงสามชนิด\n\nคำอธิบาย: ใช้ 'can' เพื่อบอกความสามารถทั่วไปในปัจจุบัน โครงสร้างคือ can + verb ช่อง 1 (play) ตัวเลือกอื่นไม่ถูกต้องตามหลักไวยากรณ์: 'is able' ต้องมี 'to' ตามหลัง, 'could' ใช้บอกความสามารถในอดีต และ 'managed' ต้องตามด้วย 'to'"
+  },
+  {
+    "id": "q-47-easy-1",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "easy",
+    "question": "When my grandfather was young, he ___ run very fast.",
+    "options": [
+      "could",
+      "can",
+      "is able to",
+      "manage to"
+    ],
+    "correct_answer": "could",
+    "explanation": "'could' is used to express general ability in the past, which matches the context 'When my grandfather was young'.",
+    "explanation_th": "แปล: ตอนที่คุณปู่ของฉันยังเป็นเด็ก ท่านสามารถวิ่งได้เร็วมาก\n\nคำอธิบาย: ประโยคนี้พูดถึงความสามารถทั่วไปในอดีต ('When my grandfather was young') จึงต้องใช้ 'could' ซึ่งเป็นรูปอดีตของ 'can' ส่วนตัวเลือกอื่น ๆ เป็นรูปปัจจุบันทั้งหมด"
+  },
+  {
+    "id": "q-47-easy-2",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "easy",
+    "question": "If you practice every day, you ___ speak English fluently soon.",
+    "options": [
+      "will be able to",
+      "can to",
+      "could",
+      "managed to"
+    ],
+    "correct_answer": "will be able to",
+    "explanation": "'will be able to' is used to express ability in the future. The word 'soon' and the conditional structure indicate a future ability.",
+    "explanation_th": "แปล: ถ้าคุณฝึกฝนทุกวัน คุณจะสามารถพูดภาษาอังกฤษได้อย่างคล่องแคล่วในไม่ช้า\n\nคำอธิบาย: บริบทของประโยคนี้แสดงถึงอนาคต โดยมีคำว่า 'soon' (ในไม่ช้า) โครงสร้างที่ถูกต้องในการแสดงความสามารถในอนาคตคือ 'will be able to' ส่วน 'can to' ผิดไวยากรณ์เพราะ can ไม่ต้องมี to และตัวเลือกอื่น ๆ เป็นเรื่องของอดีต"
+  },
+  {
+    "id": "q-47-easy-3",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "easy",
+    "question": "The exam was very difficult, but Tom ___ pass it.",
+    "options": [
+      "managed to",
+      "could to",
+      "is able",
+      "can"
+    ],
+    "correct_answer": "managed to",
+    "explanation": "'managed to' is used when someone succeeded in doing something difficult in a specific past situation.",
+    "explanation_th": "แปล: ข้อสอบยากมาก แต่ทอมก็ยังจัดการสอบผ่านมันไปได้\n\nคำอธิบาย: 'managed to' ใช้เมื่อสามารถทำสิ่งใดสิ่งหนึ่งที่ยากลำบากได้สำเร็จในอดีต (สอดคล้องกับ 'was' ที่เป็นอดีต) ส่วนตัวเลือกอื่นผิดไวยากรณ์: 'could to' ผิดเพราะ could ไม่ใช้กับ to, 'is able' ขาด to และ 'can' เป็นรูปปัจจุบัน"
+  },
+  {
+    "id": "q-47-easy-4",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "easy",
+    "question": "I am sorry, but I ___ help you with your homework right now because I am busy.",
+    "options": [
+      "cannot",
+      "could not",
+      "not able to",
+      "managed not"
+    ],
+    "correct_answer": "cannot",
+    "explanation": "'cannot' (or can't) is used to express inability in the present, matching 'right now' and 'I am busy'.",
+    "explanation_th": "แปล: ฉันขอโทษด้วยนะ แต่ฉันไม่สามารถช่วยเธอทำการบ้านได้ในตอนนี้เพราะฉันยุ่งอยู่\n\nคำอธิบาย: ประโยคบอกถึงความไม่สามารถในปัจจุบันอย่างชัดเจนด้วยคำว่า 'right now' และ 'am busy' จึงต้องใช้ 'cannot' ส่วน 'could not' เป็นรูปอดีต และ 'not able to' ขาด Verb to be (am) ข้างหน้า"
+  },
+  {
+    "id": "q-47-easy-5",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "easy",
+    "question": "Are you ___ swim across this wide river?",
+    "options": [
+      "able to",
+      "can",
+      "could",
+      "manage"
+    ],
+    "correct_answer": "able to",
+    "explanation": "'Are you able to...' is the correct grammatical structure for questioning present ability using 'be able to'.",
+    "explanation_th": "แปล: คุณสามารถว่ายน้ำข้ามแม่น้ำที่กว้างใหญ่นี้ได้ไหม\n\nคำอธิบาย: ประโยคคำถามขึ้นต้นด้วย 'Are you' ซึ่งเป็นกริยาช่วย (Verb to be) ดังนั้นจึงต้องเลือกใช้โครงสร้าง 'be able to' ทำให้ 'able to' เป็นคำตอบที่ถูกต้อง ส่วน 'can' และ 'could' ไม่สามารถใช้ตามหลัง 'Are you' ได้"
+  },
+  {
+    "id": "q-47-easy-6",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "easy",
+    "question": "Although the fire spread quickly, everyone ___ escape safely.",
+    "options": [
+      "was able to",
+      "can",
+      "could to",
+      "are able to"
+    ],
+    "correct_answer": "was able to",
+    "explanation": "'was able to' is used for a specific achievement in a past situation. 'Everyone' takes a singular verb, so 'was' is correct.",
+    "explanation_th": "แปล: แม้ว่าไฟจะลุกลามอย่างรวดเร็ว แต่ทุกคนก็สามารถหนีออกมาได้อย่างปลอดภัย\n\nคำอธิบาย: ประโยคนี้พูดถึงสถานการณ์เฉพาะเจาะจงในอดีต (สังเกตจาก fire spread ซึ่งเป็นอดีต) จึงต้องใช้ 'was/were able to' และเนื่องจาก 'everyone' มีฐานะเป็นเอกพจน์ในทางไวยากรณ์ จึงใช้ 'was able to' ตัวเลือกอื่นไม่สอดคล้องกับรูปอดีตหรือผิดโครงสร้างไวยากรณ์"
+  },
+  {
+    "id": "q-47-easy-7",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "easy",
+    "question": "___ you speak Spanish? No, but I want to learn.",
+    "options": [
+      "Can",
+      "Could to",
+      "Are able",
+      "Managed"
+    ],
+    "correct_answer": "Can",
+    "explanation": "'Can' is used to ask about a general ability in the present tense.",
+    "explanation_th": "แปล: คุณสามารถพูดภาษาสเปนได้ไหม? ไม่ได้ แต่ฉันอยากเรียนนะ\n\nคำอธิบาย: ใช้ 'Can' เพื่อถามถึงความสามารถทั่วไปในปัจจุบัน (Can you + Verb ช่อง 1?) ตัวเลือก 'Could to' ผิดโครงสร้างเพราะหลัง could ไม่มี to, 'Are able' ขาด to และ 'Managed' ต้องมี to ตามหลังก่อนกริยาแท้"
+  },
+  {
+    "id": "q-47-easy-8",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "easy",
+    "question": "It was a very heavy box, but how did you ___ carry it alone?",
+    "options": [
+      "manage to",
+      "can",
+      "could",
+      "able to"
+    ],
+    "correct_answer": "manage to",
+    "explanation": "After the auxiliary verb 'did', we must use the base form of the verb. 'manage to' is the base verb that expresses succeeding in doing something difficult.",
+    "explanation_th": "แปล: กล่องมันหนักมากเลยนะ แต่คุณจัดการยกมันคนเดียวได้อย่างไร\n\nคำอธิบาย: ประโยคคำถามนี้ใช้ 'did' เป็นกริยาช่วยแล้ว ดังนั้นคำในช่องว่างต้องเป็นกริยาช่องพื้นฐาน (Infinitive without to) ซึ่งก็คือ 'manage to' และสอดคล้องกับบริบทที่พูดถึงความพยายามทำสิ่งที่ยาก (กล่องหนักมาก) ได้สำเร็จ"
+  },
+  {
+    "id": "q-47-easy-9",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "easy",
+    "question": "Yesterday, I ___ find my keys, so I was late for school.",
+    "options": [
+      "could not",
+      "cannot",
+      "am not able to",
+      "managed to"
+    ],
+    "correct_answer": "could not",
+    "explanation": "'could not' is used to express inability in the past, matching 'Yesterday' and 'was late'.",
+    "explanation_th": "แปล: เมื่อวานนี้ ฉันไม่สามารถหากุญแจเจอ ฉันก็เลยไปโรงเรียนสาย\n\nคำอธิบาย: ประโยคพูดถึงเหตุการณ์ในอดีต (มีคำว่า 'Yesterday' และกริยาช่วย 'was') จึงต้องการกริยาบอกความไม่สามารถในอดีต ซึ่งคือ 'could not' (หรือรูปย่อ couldn't) ส่วน 'cannot' และ 'am not able to' เป็นรูปปัจจุบัน และ 'managed to' มีความหมายเชิงบวก (ทำสำเร็จ) ซึ่งไม่เข้ากับข้อความที่ว่า 'ฉันเลยไปโรงเรียนสาย'"
+  },
+  {
+    "id": "q-47-medium1-0",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "medium1",
+    "question": "Although the exam was extremely difficult, Sarah ___ pass it and get an A.",
+    "options": [
+      "managed to",
+      "could",
+      "can",
+      "is able to"
+    ],
+    "correct_answer": "managed to",
+    "explanation": "To describe succeeding in doing something difficult in a specific situation in the past, we use 'managed to' or 'was/were able to'. 'Could' is used for general past ability, not for a single specific accomplishment in a positive sentence.",
+    "explanation_th": "แปล: แม้ว่าข้อสอบจะยากมาก แต่ซาร่าห์ก็สามารถสอบผ่านและได้เกรดเอมาได้\n\nคำอธิบาย: ประโยคนี้พูดถึงความสำเร็จในสถานการณ์เฉพาะเจาะจงในอดีตที่ยากลำบาก เราจึงใช้ 'managed to' (จัดการทำสำเร็จ/พยายามจนทำได้สำเร็จ) ส่วน 'could' มักใช้กับความสามารถทั่วไปในอดีต ไม่นิยมใช้กับเหตุการณ์เฉพาะเจาะจงที่เป็นรูปบอกเล่า และ 'can' กับ 'is able to' เป็นรูปปัจจุบันซึ่งไม่สอดคล้องกับอดีต (was)"
+  },
+  {
+    "id": "q-47-medium1-1",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "medium1",
+    "question": "I haven't been feeling well lately, so I haven't ___ sleep properly for a week.",
+    "options": [
+      "been able to",
+      "could",
+      "can",
+      "managed"
+    ],
+    "correct_answer": "been able to",
+    "explanation": "We use 'been able to' after 'haven't/hasn't' in present perfect sentences. Modals like 'can' and 'could' do not have past participle forms, so they cannot be used in perfect tenses.",
+    "explanation_th": "แปล: ช่วงนี้ฉันรู้สึกไม่ค่อยสบาย ฉันเลยไม่สามารถนอนหลับได้อย่างเต็มอิ่มมาเป็นเวลาหนึ่งสัปดาห์แล้ว\n\nคำอธิบาย: หลังโครงสร้าง Present Perfect (haven't + V.3) เราต้องใช้รูปกริยาช่องที่ 3 ของ be able to นั่นคือ 'been able to' เนื่องจาก 'can' และ 'could' ไม่มีรูปช่องที่ 3 (V.3) จึงไม่สามารถใช้ตามหลัง haven't ได้"
+  },
+  {
+    "id": "q-47-medium1-2",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "medium1",
+    "question": "The door was locked, but after twisting the key hard, I finally ___ open it.",
+    "options": [
+      "was able to",
+      "could",
+      "can",
+      "am able to"
+    ],
+    "correct_answer": "was able to",
+    "explanation": "For a specific achievement in the past, we must use 'was/were able to' or 'managed to' instead of 'could' in positive sentences.",
+    "explanation_th": "แปล: ประตูถูกล็อกอยู่ แต่หลังจากบิดกุญแจอย่างแรง ในที่สุดฉันก็สามารถเปิดมันได้\n\nคำอธิบาย: สำหรับความสำเร็จในเหตุการณ์เฉพาะเจาะจงครั้งหนึ่งในอดีต (การบิดลูกบิดเปิดประตูที่ล็อก) ในประโยคบอกเล่า เราต้องใช้ 'was/were able to' หรือ 'managed to' แทนการใช้ 'could' ซึ่งใช้กับความสามารถทั่วไปในอดีต ส่วน 'can' และ 'am able to' เป็นรูปปัจจุบัน"
+  },
+  {
+    "id": "q-47-medium1-3",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "medium1",
+    "question": "If you practice every day, you will ___ speak English fluently in no time.",
+    "options": [
+      "be able to",
+      "can",
+      "could",
+      "managed to"
+    ],
+    "correct_answer": "be able to",
+    "explanation": "After modal verbs like 'will', we must use the base form (infinitive) 'be able to' to express ability. We cannot put two modal verbs like 'will' and 'can' together.",
+    "explanation_th": "แปล: ถ้าคุณฝึกฝนทุกวัน คุณจะสามารถพูดภาษาอังกฤษได้อย่างคล่องแคล่วในไม่ช้า\n\nคำอธิบาย: หลัง modal verb เช่น 'will' ต้องตามด้วยกริยา Infinitive (กริยาช่องเดิมที่ไม่ผัน) เสมอ เนื่องจาก 'can' และ 'could' เป็น modal verb เหมือนกัน จึงไม่สามารถใช้ซ้อนกันได้ (will can เป็นสิ่งที่ไม่ถูกต้องตามไวยากรณ์) เราจึงต้องใช้โครงสร้าง 'be able to' แทน"
+  },
+  {
+    "id": "q-47-medium1-4",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "medium1",
+    "question": "Even though the traffic was terrible, we ___ reach the airport just in time for our flight.",
+    "options": [
+      "managed to",
+      "could",
+      "can",
+      "are able to"
+    ],
+    "correct_answer": "managed to",
+    "explanation": "We use 'managed to' to emphasize that we succeeded in doing something difficult in a specific past situation. 'Could' is not used for specific positive past accomplishments.",
+    "explanation_th": "แปล: แม้ว่าการจราจรจะติดขัดอย่างหนัก แต่พวกเราก็สามารถไปถึงสนามบินได้ทันเวลาสำหรับเที่ยวบินของเราพอดี\n\nคำอธิบาย: ประโยคนี้กล่าวถึงการทำสิ่งใดสิ่งหนึ่งสำเร็จในสถานการณ์เฉพาะที่ยากลำบากในอดีต (การฝ่ารถติดไปสนามบินให้ทันเวลา) จึงใช้ 'managed to' (จัดการทำสำเร็จ) โครงสร้างคือ manage to + infinitive ส่วน 'could' ไม่ใช้กับเหตุการณ์เฉพาะเจาะจงที่เป็นด้านบวก"
+  },
+  {
+    "id": "q-47-medium1-5",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "medium1",
+    "question": "When my grandfather was younger, he ___ swim across this wide river easily.",
+    "options": [
+      "could",
+      "can",
+      "is able to",
+      "managed"
+    ],
+    "correct_answer": "could",
+    "explanation": "We use 'could' to talk about general ability in the past (something someone was capable of doing whenever they wanted).",
+    "explanation_th": "แปล: เมื่อตอนที่คุณปู่ของฉันยังเด็กกว่านี้ ท่านสามารถว่ายน้ำข้ามแม่น้ำที่กว้างใหญ่นี้ได้อย่างง่ายดาย\n\nคำอธิบาย: ประโยคนี้พูดถึงความสามารถทั่วไปในอดีต (general ability in the past) จึงใช้ 'could' ส่วน 'can' และ 'is able to' ใช้กับปัจจุบัน และ 'managed' ต้องมี 'to' ด้วยจึงจะสมบูรณ์"
+  },
+  {
+    "id": "q-47-medium1-6",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "medium1",
+    "question": "I searched everywhere for my keys, but I ___ find them anywhere.",
+    "options": [
+      "couldn't",
+      "can't",
+      "am not able to",
+      "managed to"
+    ],
+    "correct_answer": "couldn't",
+    "explanation": "To say that someone did not succeed in a specific past event, we can use either 'couldn't' or 'wasn't/weren't able to'. The other options are either in the present tense or have positive meanings.",
+    "explanation_th": "แปล: ฉันหาลูกกุญแจของฉันทุกที่แล้ว แต่ฉันก็ไม่สามารถหามันเจอได้เลย\n\nคำอธิบาย: ประโยคพูดถึงเหตุการณ์ในอดีต (searched) ดังนั้นข้อที่เป็นปัจจุบันอย่าง 'can't' และ 'am not able to' จึงผิดความหมายทางกาลเวลา ส่วน 'couldn't' และ 'wasn't able to' ใช้บอกความไม่สำเร็จในอดีตได้ ดังนั้น 'couldn't' จึงเป็นคำตอบที่ถูกต้องที่สุดตามไวยากรณ์"
+  },
+  {
+    "id": "q-47-medium1-7",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "medium1",
+    "question": "I hope ___ speak Spanish fluently after living in Madrid for a year.",
+    "options": [
+      "to be able to",
+      "to can",
+      "can",
+      "could"
+    ],
+    "correct_answer": "to be able to",
+    "explanation": "The verb 'hope' must be followed by a to-infinitive. Since 'can' does not have an infinitive form with 'to', we must use 'to be able to'.",
+    "explanation_th": "แปล: ฉันหวังว่าจะสามารถพูดภาษาสเปนได้อย่างคล่องแคล่วหลังจากได้ไปอาศัยอยู่ในมาดริดเป็นเวลาหนึ่งปี\n\nคำอธิบาย: หลังคำกริยา 'hope' ต้องตามด้วย to-infinitive (to + V.inf) เนื่องจาก 'can' เป็น modal verb และไม่มีรูป infinitive (ไม่มี to can) เราจึงต้องใช้โครงสร้าง 'to be able to' แทนเพื่อแสดงความสามารถ"
+  },
+  {
+    "id": "q-47-medium1-8",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "medium1",
+    "question": "The pilot ___ land the damaged plane safely on the runway despite the storm.",
+    "options": [
+      "was able to",
+      "could",
+      "can",
+      "is able to"
+    ],
+    "correct_answer": "was able to",
+    "explanation": "For a single, specific past success (landing a damaged plane), we use 'was/were able to' or 'managed to' in positive sentences, not 'could'.",
+    "explanation_th": "แปล: นักบินสามารถนำเครื่องบินที่ชำรุดลงจอดบนรันเวย์ได้อย่างปลอดภัยแม้ว่าจะมีพายุ\n\nคำอธิบาย: การทำสิ่งใดสิ่งหนึ่งที่ยากลำบากสำเร็จในเหตุการณ์เฉพาะเจาะจงในอดีต (การจอดเครื่องบินที่ชำรุด) ในประโยคบอกเล่า ต้องใช้ 'was/were able to' หรือ 'managed to' แทนการใช้ 'could' ซึ่ง 'could' ใช้กับความสามารถทั่วไปในอดีตเท่านั้น"
+  },
+  {
+    "id": "q-47-medium1-9",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "medium1",
+    "question": "Did you ___ contact the manager about the delivery issue yesterday?",
+    "options": [
+      "manage to",
+      "could",
+      "able to",
+      "can"
+    ],
+    "correct_answer": "manage to",
+    "explanation": "The past simple question structure is 'Did + subject + base form'. Therefore, 'manage to' is correct. To use 'able to', the sentence would have to start with 'Were you...'.",
+    "explanation_th": "แปล: เมื่อวานนี้คุณสามารถติดต่อผู้จัดการเกี่ยวกับปัญหาการจัดส่งสินค้าได้สำเร็จไหม\n\nคำอธิบาย: ประโยคคำถามในอดีตที่ขึ้นต้นด้วย 'Did you...' ต้องตามด้วยคำกริยารูปปกติ (infinitive) ตัวเลือก 'manage to' เป็นคำตอบที่ถูกต้องตามโครงสร้าง Did + subject + V.inf (manage) + to + V.inf (contact) หากใช้ 'able to' จะต้องเป็นโครงสร้าง 'Were you able to...'"
+  },
+  {
+    "id": "q-47-medium2-0",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "medium2",
+    "question": "Although the traffic was terrible this morning, we ___ reach the airport before our flight closed.",
+    "options": [
+      "managed to",
+      "could",
+      "can",
+      "are able to"
+    ],
+    "correct_answer": "managed to",
+    "explanation": "For a specific past situation where someone succeeded in doing something difficult, we use 'managed to' or 'was/were able to'. 'Could' is typically used for general past ability, and 'can' / 'are able to' are present tense.",
+    "explanation_th": "แปล: แม้ว่าการจราจรจะติดขัดมากเมื่อเช้าวันนี้ แต่พวกเราก็สามารถไปถึงสนามบินได้ก่อนที่เที่ยวบินจะปิดรับลงทะเบียน\n\nคำอธิบาย: ใช้ \"managed to\" เพื่อสื่อถึงการทำสิ่งใดสิ่งหนึ่งที่ยากลำบากได้สำเร็จในสถานการณ์เฉพาะเจาะจงในอดีต (โครงสร้างคือ manage + to + infinitive) ส่วน \"could\" มักใช้กับความสามารถทั่วไปในอดีต และตัวเลือกอื่นเป็นรูปปัจจุบันซึ่งไม่สอดคล้องกับกาลของประโยค (was terrible)"
+  },
+  {
+    "id": "q-47-medium2-1",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "medium2",
+    "question": "Once you complete this intensive training course next month, you ___ design your own mobile applications.",
+    "options": [
+      "will be able to",
+      "can to",
+      "could have",
+      "managed to"
+    ],
+    "correct_answer": "will be able to",
+    "explanation": "To express future ability, we use 'will be able to'. 'Can' does not have an infinitive form after 'will' (we cannot say 'will can' or 'can to'), and 'managed to' is used for past achievements.",
+    "explanation_th": "แปล: เมื่อคุณเรียนจบหลักสูตรฝึกอบรมที่เข้มข้นนี้ในเดือนหน้า คุณจะสามารถออกแบบแอปพลิเคชันมือถือของคุณเองได้\n\nคำอธิบาย: ข้อนี้พูดถึงความสามารถที่จะเกิดขึ้นในอนาคตหลังจากเงื่อนไขเสร็จสิ้น จึงต้องใช้ \"will be able to\" ส่วน \"can to\" ผิดไวยากรณ์ (can ไม่สามารถใช้คู่กับ to ได้) และ \"managed to\" ใช้กับเหตุการณ์ในอดีต"
+  },
+  {
+    "id": "q-47-medium2-2",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "medium2",
+    "question": "The fire spread through the building quickly, but fortunately, everyone ___ escape safely.",
+    "options": [
+      "was able to",
+      "could",
+      "can",
+      "managed"
+    ],
+    "correct_answer": "was able to",
+    "explanation": "When talking about succeeding in a specific past event (as opposed to general ability), we use 'was/were able to' or 'managed to' instead of 'could'. Since 'everyone' is a singular pronoun, 'was able to' is correct. 'Managed' is missing 'to'.",
+    "explanation_th": "แปล: ไฟลุกไหม้และลามไปทั่วตึกอย่างรวดเร็ว แต่โชคดีที่ทุกคนสามารถหนีออกมาได้อย่างปลอดภัย\n\nคำอธิบาย: ในการพูดถึงความสำเร็จในสถานการณ์เฉพาะเจาะจงในอดีตที่เป็นประโยคบอกเล่า เราจะใช้ \"was/were able to\" หรือ \"managed to\" แทนการใช้ \"could\" ซึ่งคำว่า \"everyone\" ถือเป็นสรรพนามเอกพจน์จึงใช้ \"was able to\" ส่วน \"managed\" ในข้อเลือกไม่มี \"to\" จึงผิดไวยากรณ์"
+  },
+  {
+    "id": "q-47-medium2-3",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "medium2",
+    "question": "I am so exhausted because I ___ sleep well for the past three nights.",
+    "options": [
+      "haven't been able to",
+      "couldn't",
+      "can't",
+      "haven't able to"
+    ],
+    "correct_answer": "haven't been able to",
+    "explanation": "The phrase 'for the past three nights' indicates a period of time from the past up to the present. Therefore, we must use the present perfect form of 'be able to', which is 'haven't been able to'.",
+    "explanation_th": "แปล: ฉันรู้สึกเหนื่อยล้ามากเพราะฉันไม่สามารถนอนหลับได้ดีเลยตลอดสามคืนที่ผ่านมา\n\nคำอธิบาย: วลี \"for the past three nights\" แสดงถึงช่วงเวลาตั้งแต่อดีตต่อเนื่องมาถึงปัจจุบัน จึงต้องใช้ Present Perfect tense คู่กับความสามารถ คือ \"haven't been able to\" ส่วน \"couldn't\" เป็นอดีต และ \"haven't able to\" ขาด Verb to be (been)"
+  },
+  {
+    "id": "q-47-medium2-4",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "medium2",
+    "question": "To work for this multinational corporation, you need ___ communicate fluently in at least three languages.",
+    "options": [
+      "to be able to",
+      "to can",
+      "could",
+      "to able to"
+    ],
+    "correct_answer": "to be able to",
+    "explanation": "The verb 'need' is followed by a 'to-infinitive'. Because 'can' does not have an infinitive form, we must use 'to be able to' to express capability after 'need'.",
+    "explanation_th": "แปล: ในการทำงานให้กับบริษัทข้ามชาตินี้ คุณจำเป็นต้องสามารถสื่อสารได้อย่างคล่องแคล่วอย่างน้อยสามภาษา\n\nคำอธิบาย: หลังกริยา \"need\" ต้องตามด้วย to-infinitive เพื่อแสดงความจำเป็น และเนื่องจาก \"can\" ไม่มีรูป infinitive (ไม่มีคำว่า to can) เราจึงต้องใช้ \"to be able to\" เพื่อแสดงความสามารถแทน"
+  },
+  {
+    "id": "q-47-medium2-5",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "medium2",
+    "question": "The math exam was incredibly difficult, but after hours of struggling, Sarah ___ solve the final problem.",
+    "options": [
+      "managed to",
+      "could",
+      "was can",
+      "might able to"
+    ],
+    "correct_answer": "managed to",
+    "explanation": "'Managed to' is used to emphasize that someone succeeded in doing something that was difficult or required effort in a specific situation.",
+    "explanation_th": "แปล: ข้อสอบคณิตศาสตร์ยากมาก แต่หลังจากพยายามอย่างหนักอยู่หลายชั่วโมง ซาร่าก็สามารถแก้โจทย์ข้อสุดท้ายได้สำเร็จ\n\nคำอธิบาย: \"managed to\" ใช้เพื่อเน้นย้ำถึงความพยายามและความยากลำบากในการทำสิ่งใดสิ่งหนึ่งให้สำเร็จในอดีต (succeeding in doing something difficult) ส่วน \"could\" สื่อถึงความสามารถทั่วไปในอดีตและไม่เน้นความพยายามเท่า \"managed to\""
+  },
+  {
+    "id": "q-47-medium2-6",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "medium2",
+    "question": "Despite the bad weather yesterday, the technicians ___ restore the internet connection.",
+    "options": [
+      "were able to",
+      "could to",
+      "can",
+      "are able to"
+    ],
+    "correct_answer": "were able to",
+    "explanation": "This refers to a specific achievement in a past situation ('yesterday'). We use 'were able to' (plural to match 'technicians'). 'Could' cannot be followed by 'to' (could to is incorrect).",
+    "explanation_th": "แปล: แม้ว่าสภาพอากาศจะย่ำแย่เมื่อวานนี้ แต่ช่างเทคนิคก็สามารถกู้คืนระบบเชื่อมต่ออินเทอร์เน็ตได้สำเร็จ\n\nคำอธิบาย: ประโยคกล่าวถึงเหตุการณ์เฉพาะเจาะจงในอดีต (yesterday) ที่ทำสำเร็จ จึงต้องใช้ \"were able to\" แทนการใช้ \"could\" (เพราะ could ไม่สามารถตามด้วย to ได้) และประธาน \"technicians\" เป็นพหูพจน์จึงใช้คู่กับ \"were\""
+  },
+  {
+    "id": "q-47-medium2-7",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "medium2",
+    "question": "When my grandfather was younger, he ___ swim across the wide river near his house.",
+    "options": [
+      "could",
+      "was able",
+      "managed",
+      "can"
+    ],
+    "correct_answer": "could",
+    "explanation": "We use 'could' to talk about general ability in the past. 'Was able' and 'managed' are incorrect here because they lack the required preposition 'to'.",
+    "explanation_th": "แปล: เมื่อคุณปู่ของฉันยังหนุ่ม ท่านสามารถว่ายน้ำข้ามแม่น้ำกว้างใกล้บ้านของท่านได้\n\nคำอธิบาย: ประโยคนี้พูดถึงความสามารถทั่วไปในอดีต (general past ability) จึงใช้ \"could\" ได้ทันที ส่วน \"was able\" และ \"managed\" ในข้อเลือกขาดคำว่า \"to\" จึงทำให้โครงสร้างประโยคไม่สมบูรณ์"
+  },
+  {
+    "id": "q-47-medium2-8",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "medium2",
+    "question": "I have looked everywhere for my glasses, but I ___ find them.",
+    "options": [
+      "can't",
+      "couldn't",
+      "haven't able to",
+      "won't able to"
+    ],
+    "correct_answer": "can't",
+    "explanation": "The speaker is talking about a present state of inability resulting from looking for the glasses. 'Can't' (present tense) fits best since the present perfect 'have looked' connects the past search to the present moment.",
+    "explanation_th": "แปล: ฉันหาแว่นตาของฉันทุกที่แล้ว แต่ฉันก็ยังหาไม่เจอ\n\nคำอธิบาย: ประโยคแรกใช้ Present Perfect (have looked) แสดงถึงการกระทำที่เพิ่งทำเสร็จสิ้นและส่งผลถึงปัจจุบัน ดังนั้นความไม่สามารถหาเจอจึงเป็นปัจจุบันด้วย จึงต้องใช้กริยาช่วยแสดงความสามารถในปัจจุบันคือ \"can't\" (cannot)"
+  },
+  {
+    "id": "q-47-medium2-9",
+    "unit_id": 47,
+    "unit_number": 47,
+    "level_id": "medium2",
+    "question": "Although she practiced every day, she ___ pass the audition last week.",
+    "options": [
+      "didn't manage to",
+      "couldn't able to",
+      "was not managed to",
+      "cannot"
+    ],
+    "correct_answer": "didn't manage to",
+    "explanation": "To show failure in a specific past event despite trying hard, we can use the negative form of manage to, which is 'didn't manage to'. 'Couldn't able to' is double modal/grammatically incorrect.",
+    "explanation_th": "แปล: แม้ว่าเธอจะฝึกซ้อมทุกวัน แต่เธอก็ไม่สามารถสอบผ่านการออดิชันเมื่อสัปดาห์ที่แล้วได้สำเร็จ\n\nคำอธิบาย: \"didn't manage to\" ใช้บอกความล้มเหลวในการทำสิ่งใดสิ่งหนึ่งในอดีตแม้ว่าจะพยายามแล้วก็ตาม ส่วน \"couldn't able to\" ผิดไวยากรณ์อย่างรุนแรงเนื่องจากห้ามใช้ could ซ้อนกับ able to และ \"was not managed to\" เป็นโครงสร้าง Passive Voice ที่มีความหมายผิดเพี้ยน"
   }
 ]

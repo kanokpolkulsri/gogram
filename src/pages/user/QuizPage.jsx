@@ -360,47 +360,51 @@ export default function QuizPage() {
             {/* Full-width drawer below the row */}
             {(currentQuestion?.explanation || currentQuestion?.explanationTh) && (
               <div className={`quiz-explanation-drawer${showExplanation ? ' quiz-explanation-drawer-open' : ''}`}>
-                <div className="quiz-explanation-content">
-                  <div className="quiz-explanation-inner">
-                    {(() => {
-                      let engText = currentQuestion.explanation || '';
-                      let thaiText = currentQuestion.explanationTh || '';
+                <div className="quiz-explanation-content" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  {(() => {
+                    let engText = currentQuestion.explanation || '';
+                    let thaiText = currentQuestion.explanationTh || '';
 
-                      // Fallback for old combined explanation style
-                      if (engText.includes('ENGLISH') && engText.includes('THAI')) {
-                        const parts = engText.split(/THAI:?/i);
-                        engText = parts[0].replace(/ENGLISH:?/i, '').trim();
-                        thaiText = parts[1]?.trim() || '';
-                      }
+                    // Fallback for old combined explanation style
+                    if (engText.includes('ENGLISH') && engText.includes('THAI')) {
+                      const parts = engText.split(/THAI:?/i);
+                      engText = parts[0].replace(/ENGLISH:?/i, '').trim();
+                      thaiText = parts[1]?.trim() || '';
+                    }
 
-                      return (
-                        <>
-                          {engText && (
+                    return (
+                      <>
+                        {engText && (
+                          <div className="quiz-explanation-inner">
                             <div className="explanation-section">
                               <span className="explanation-label">ENGLISH</span>
                               <p className="explanation-text">{engText}</p>
                             </div>
-                          )}
-                          {thaiText && (
-                            <div className="explanation-section-thai" style={{ marginTop: '12px' }}>
-                              <button
-                                type="button"
-                                className="quiz-thai-toggle-btn"
-                                onClick={() => setShowThai(s => !s)}
-                              >
-                                {showThai ? 'ซ่อนคำอธิบายภาษาไทย ▴' : 'คำอธิบายภาษาไทย (Thai) ▾'}
-                              </button>
-                              {showThai && (
-                                <div className="quiz-explanation-thai-content" style={{ marginTop: '8px' }}>
+                          </div>
+                        )}
+                        {thaiText && (
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                            <button
+                              type="button"
+                              className="quiz-explanation-toggle-btn"
+                              onClick={() => setShowThai(s => !s)}
+                              style={{ display: 'block', alignSelf: 'flex-start' }}
+                            >
+                              {showThai ? 'ซ่อนคำอธิบายภาษาไทย ▴' : 'คำอธิบายภาษาไทย (Thai) ▾'}
+                            </button>
+                            {showThai && (
+                              <div className="quiz-explanation-inner">
+                                <div className="explanation-section">
+                                  <span className="explanation-label">THAI</span>
                                   <p className="explanation-text">{thaiText}</p>
                                 </div>
-                              )}
-                            </div>
-                          )}
-                        </>
-                      );
-                    })()}
-                  </div>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </>
+                    );
+                  })()}
                 </div>
               </div>
             )}
