@@ -352,7 +352,7 @@ export default function QuizPage() {
                   onClick={() => setShowExplanation(s => !s)}
                   id="quiz-explanation-toggle"
                 >
-                  {showExplanation ? 'Hide ▴' : 'Explanation ▾'}
+                  {showExplanation ? 'Hide ▾' : 'Explanation ▴'}
                 </button>
               )}
             </div>
@@ -390,7 +390,7 @@ export default function QuizPage() {
                               onClick={() => setShowThai(s => !s)}
                               style={{ display: 'block', alignSelf: 'flex-start' }}
                             >
-                              {showThai ? 'Hide ▴' : 'Thai ▾'}
+                              {showThai ? 'Hide ▾' : 'Thai ▴'}
                             </button>
                             {showThai && (
                               <div className="quiz-explanation-inner">

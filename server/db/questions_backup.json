@@ -37759,5 +37759,325 @@
     "correct_answer": "May",
     "explanation": "We use 'May I' to ask for permission to leave a place or do something, which is polite and appropriate when speaking to a boss or teacher.",
     "explanation_th": "แปล: วันนี้ฉันรู้สึกไม่ค่อยสบาย ฉันขออนุญาตกลับบ้านเร็วขึ้นได้ไหมคะ?\n\nคำอธิบาย: ใช้ 'May' ในการขออนุญาต (Permission) เพื่อทำบางสิ่งจากคนที่มีอำนาจตัดสินใจ เช่น ครู หรือหัวหน้างาน เพื่อแสดงความเคารพและสุภาพนอบน้อม"
+  },
+  {
+    "id": "q-48-medium1-0",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "medium1",
+    "question": "\"Can I borrow your pen?\" - \"Yes, of course you ___.\"",
+    "options": [
+      "can",
+      "could",
+      "would",
+      "might"
+    ],
+    "correct_answer": "can",
+    "explanation": "When granting permission in the present, we use 'can' or 'may'. 'Could' is not used to give permission.",
+    "explanation_th": "แปล: \"ฉันขอยืมปากกาของคุณหน่อยได้ไหม?\" - \"ได้สิ แน่นอนว่าคุณยืมได้\"\n\nคำอธิบาย: ในการอนุญาต (Giving permission) เราใช้ 'can' หรือ 'may' เท่านั้น จะไม่ใช้ 'could' ในการอนุญาตในปัจจุบันหรืออนาคต ดังนั้น 'can' จึงเป็นคำตอบที่ถูกต้องที่สุด"
+  },
+  {
+    "id": "q-48-medium1-1",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "medium1",
+    "question": "___ you please speak a little louder? I can't hear you very well.",
+    "options": [
+      "Could",
+      "May",
+      "Shall",
+      "Should"
+    ],
+    "correct_answer": "Could",
+    "explanation": "'Could you...' is a polite way to make a request to someone else. 'May' is only used to ask for permission for oneself ('May I...?') and cannot be used with 'you' for requests.",
+    "explanation_th": "แปล: \"ช่วยพูดดังขึ้นอีกนิดได้ไหมครับ/ค่ะ? ฉันไม่ได้ยินคุณเลย\"\n\nคำอธิบาย: 'Could you...?' เป็นโครงสร้างการขอร้องอย่างสุภาพ (Request) ส่วน 'May' จะใช้ในการขออนุญาตสำหรับตนเองเท่านั้น (May I...?) เราจะไม่ใช้โครงสร้าง 'May you' ในการขอร้องให้คนอื่นทำสิ่งใดสิ่งหนึ่ง"
+  },
+  {
+    "id": "q-48-medium1-2",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "medium1",
+    "question": "Mrs. Davis, ___ I leave the classroom to go to the restroom, please?",
+    "options": [
+      "May",
+      "Would",
+      "Will",
+      "Should"
+    ],
+    "correct_answer": "May",
+    "explanation": "'May I...?' is the most formal and polite way to ask for permission, which is highly appropriate when speaking to a teacher or an authority figure.",
+    "explanation_th": "แปล: \"คุณครูเดวิสคะ/ครับ หนู/ผมขออนุญาตออกจากห้องเรียนเพื่อไปเข้าห้องน้ำได้ไหมคะ/ครับ?\"\n\nคำอธิบาย: 'May I...?' เป็นวิธีขออนุญาต (Permission) ที่เป็นทางการและสุภาพที่สุด เหมาะสำหรับใช้เมื่อพูดคุยกับผู้ที่มีอายุมากกว่าหรือผู้มีอำนาจ เช่น ครูหรือหัวหน้างาน"
+  },
+  {
+    "id": "q-48-medium1-3",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "medium1",
+    "question": "___ opening the window? It's getting a bit warm in here.",
+    "options": [
+      "Would you mind",
+      "Could you",
+      "May you",
+      "Would you please"
+    ],
+    "correct_answer": "Would you mind",
+    "explanation": "The expression 'Would you mind' is followed by a gerund (verb-ing) to make a polite request. The other options require a bare infinitive (open).",
+    "explanation_th": "แปล: \"คุณจะรังเกียจไหมถ้าจะช่วยเปิดหน้าต่าง? ในนี้เริ่มร้อนขึ้นนิดหน่อยแล้ว\"\n\nคำอธิบาย: สำนวน 'Would you mind' ต้องตามด้วยคำกริยาเติม -ing (Gerund) คือ 'opening' เสมอ ส่วนตัวเลือกอื่น ๆ เช่น 'Could you' หรือ 'Would you please' จะต้องตามด้วยกริยาช่อง 1 ไม่เติมแต่ง (Infinitive without to)"
+  },
+  {
+    "id": "q-48-medium1-4",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "medium1",
+    "question": "___ you do me a favor and hold this bag for a second?",
+    "options": [
+      "Could",
+      "May",
+      "Should",
+      "Shall"
+    ],
+    "correct_answer": "Could",
+    "explanation": "'Could you...' is used to make a polite request. 'May' cannot be used with 'you' as the subject when making requests.",
+    "explanation_th": "แปล: \"คุณช่วยทำอะไรให้ฉันหน่อยได้ไหม ช่วยถือกระเป๋าใบนี้ให้สักครู่ได้ไหมครับ/ค่ะ?\"\n\nคำอธิบาย: เราใช้ 'Could you...' เพื่อเป็นการขอร้อง (Request) ให้ผู้อื่นช่วยทำสิ่งใดสิ่งหนึ่งอย่างสุภาพ ส่วน 'May' ไม่สามารถใช้กับประธาน 'you' เพื่อทำการขอร้องได้"
+  },
+  {
+    "id": "q-48-medium1-5",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "medium1",
+    "question": "I'm sorry, but visitors ___ not enter the laboratory without authorization.",
+    "options": [
+      "may",
+      "could",
+      "would",
+      "might"
+    ],
+    "correct_answer": "may",
+    "explanation": "'May not' is used in formal situations to refuse permission or express prohibition in rules and regulations.",
+    "explanation_th": "แปล: \"ต้องขออภัยด้วย แต่ผู้เข้าเยี่ยมชมไม่ได้รับอนุญาตให้เข้าไปในห้องปฏิบัติการโดยไม่ได้รับอนุญาต\"\n\nคำอธิบาย: 'May not' ถูกใช้เพื่อปฏิเสธการให้อนุญาต (Refusing permission) หรือการสั่งห้ามอย่างเป็นทางการตามกฎระเบียบหรือข้อบังคับต่าง ๆ"
+  },
+  {
+    "id": "q-48-medium1-6",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "medium1",
+    "question": "___ you mind if I closed the window?",
+    "options": [
+      "Would",
+      "Could",
+      "May",
+      "Can"
+    ],
+    "correct_answer": "Would",
+    "explanation": "The grammatical structure for polite permission is 'Would you mind if I + past simple verb (closed)'.",
+    "explanation_th": "แปล: \"คุณจะรังเกียจไหมถ้าฉันจะปิดหน้าต่าง?\"\n\nคำอธิบาย: โครงสร้าง 'Would you mind if I + Past Simple (closed)...?' เป็นหนึ่งในโครงสร้างการขออนุญาตที่สุภาพมากที่สุด"
+  },
+  {
+    "id": "q-48-medium1-7",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "medium1",
+    "question": "Hey Jack, ___ I use your phone for a second? Mine is dead.",
+    "options": [
+      "Can",
+      "Would",
+      "Should",
+      "May not"
+    ],
+    "correct_answer": "Can",
+    "explanation": "'Can I...?' is the most common and appropriate modal verb to ask for permission in informal situations, such as talking to a friend.",
+    "explanation_th": "แปล: \"เฮ้ แจ็ค ฉันขอใช้โทรศัพท์ของนายสักแป๊บนึงได้ไหม? เครื่องของฉันแบตหมดน่ะ\"\n\nคำอธิบาย: ในสถานการณ์ที่เป็นกันเองหรือไม่เป็นทางการ (Informal) เช่น การพูดคุยกับเพื่อนสนิท การใช้ 'Can I...?' เพื่อขออนุญาตเป็นวิธีที่เป็นธรรมชาติและเหมาะสมที่สุด"
+  },
+  {
+    "id": "q-48-medium1-8",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "medium1",
+    "question": "Excuse me, I ___ like to ask a question about the project deadline.",
+    "options": [
+      "would",
+      "could",
+      "may",
+      "can"
+    ],
+    "correct_answer": "would",
+    "explanation": "'Would like to' is a polite phrase used to express a wish or to make a polite request to do something.",
+    "explanation_th": "แปล: \"ขออนุญาตนะคะ/ครับ ฉันอยากจะขอถามคำถามเกี่ยวกับกำหนดส่งโครงการหน่อยค่ะ/ครับ\"\n\nคำอธิบาย: 'would like to' เป็นรูปสุภาพของ 'want to' ใช้เมื่อต้องการแสดงความประสงค์หรือขอทำบางสิ่งอย่างสุภาพในบริบทที่เป็นทางการหรือกึ่งทางการ"
+  },
+  {
+    "id": "q-48-medium1-9",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "medium1",
+    "question": "If you finish your homework, you ___ watch TV for an hour.",
+    "options": [
+      "can",
+      "could",
+      "would",
+      "might"
+    ],
+    "correct_answer": "can",
+    "explanation": "We use 'can' to give permission in present or future situations. 'Could' is not used to grant specific permission.",
+    "explanation_th": "แปล: \"ถ้าลูกทำการบ้านเสร็จแล้ว ลูกสามารถดูทีวีได้หนึ่งชั่วโมงนะ\"\n\nคำอธิบาย: ในการให้อนุญาต (Giving permission) ในเหตุการณ์ปัจจุบันหรืออนาคต เราใช้ 'can' เสมอ ส่วน 'could' จะไม่ใช้ในการให้อนุญาตสำหรับสถานการณ์เฉพาะเจาะจง"
+  },
+  {
+    "id": "q-48-medium2-0",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "medium2",
+    "question": "Excuse me, Mr. Henderson, ________ ask a quick question regarding the third quarter budget proposal?",
+    "options": [
+      "may I",
+      "would I",
+      "will I",
+      "could you"
+    ],
+    "correct_answer": "may I",
+    "explanation": "'May I' is the most appropriate modal phrase used to ask for permission in formal situations, such as addressing a superior or speaking in a professional meeting.",
+    "explanation_th": "แปล: ขอโทษครับคุณเฮนเดอร์สัน ผมขออนุญาตถามคำถามสั้นๆ เกี่ยวกับข้อเสนองบประมาณไตรมาสที่สามหน่อยได้ไหมครับ\n\nคำอธิบาย: 'May I' ใช้ในการขออนุญาตอย่างเป็นทางการ สอดคล้องกับบริบทที่พูดคุยกับหัวหน้าหรือบุคคลที่มีตำแหน่งสูงกว่าในที่ทำงาน ส่วน 'could you' ใช้เมื่อขอให้ผู้อื่นทำบางสิ่ง ส่วน 'would I' และ 'will I' ไม่ใช้ในการขออนุญาตลักษณะนี้"
+  },
+  {
+    "id": "q-48-medium2-1",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "medium2",
+    "question": "I’m having trouble opening this jar. ________ you mind helping me with it?",
+    "options": [
+      "Would",
+      "Could",
+      "Can",
+      "May"
+    ],
+    "correct_answer": "Would",
+    "explanation": "The formula 'Would you mind + verb-ing...?' is a standard and very polite way to make a request. 'Could you mind' is grammatically incorrect.",
+    "explanation_th": "แปล: ฉันกำลังมีปัญหาในการเปิดโหลแก้วใบนี้ คุณจะรังเกียจไหมถ้าจะช่วยฉันเปิดมันหน่อย\n\nคำอธิบาย: โครงสร้าง 'Would you mind + V-ing' เป็นการขอร้องอย่างสุภาพเพื่อขอความช่วยเหลือ (คุณจะรังเกียจไหมที่จะ...) ไม่นิยมใช้ 'Could you mind' หรือ 'May you mind' เนื่องจากผิดหลักไวยากรณ์ภาษาอังกฤษ"
+  },
+  {
+    "id": "q-48-medium2-2",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "medium2",
+    "question": "My phone's battery is completely dead. ________ I possibly borrow yours to make an emergency call?",
+    "options": [
+      "Could",
+      "Would",
+      "May you",
+      "Will"
+    ],
+    "correct_answer": "Could",
+    "explanation": "'Could I possibly...' is a highly polite and standard structure used for asking permission. 'Would' cannot be used with 'I' in this manner, and 'May you' is incorrect because 'may' is used for asking permission for oneself (May I), not for asking someone else to do something.",
+    "explanation_th": "แปล: แบตเตอรี่โทรศัพท์ของฉันหมดเกลี้ยงเลย ฉันจะพอขอยืมโทรศัพท์ของคุณเพื่อโทรฉุกเฉินหน่อยได้ไหม\n\nคำอธิบาย: 'Could I possibly...' เป็นสำนวนที่สุภาพมากในการขออนุญาตทำบางสิ่ง ตัวเลือกอื่นอย่าง 'May you' ผิดโครงสร้าง (เราไม่ใช้ may กับประธาน you เพื่อขออนุญาตให้ตัวเองทำ) และ 'Would I' ไม่ใช้ในการขออนุญาตแบบนี้"
+  },
+  {
+    "id": "q-48-medium2-3",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "medium2",
+    "question": "Good afternoon, sir. ________ you please sign your name at the bottom of this registration form?",
+    "options": [
+      "Could",
+      "May",
+      "Should",
+      "Shall"
+    ],
+    "correct_answer": "Could",
+    "explanation": "'Could you please...' is used to make a polite request asking someone else to do something. 'May' cannot be used with 'you' to form a request (e.g., 'May you sign...' is ungrammatical).",
+    "explanation_th": "แปล: สวัสดีตอนบ่ายครับท่าน คุณช่วยกรุณาเซ็นชื่อที่ด้านล่างของใบลงทะเบียนนี้หน่อยได้ไหมครับ\n\nคำอธิบาย: 'Could you please...' เป็นโครงสร้างในการขอร้อง (Request) ให้ผู้อื่นทำบางสิ่งอย่างสุภาพ ทั้งนี้เราไม่สามารถใช้ 'May you' ในการขอร้องให้ผู้อื่นทำอะไรได้ (May I ใช้เพื่อขออนุญาตให้ตนเองทำ) ส่วน 'Should' และ 'Shall' ไม่ตรงกับความหมายของการขอร้องสุภาพในบริบทนี้"
+  },
+  {
+    "id": "q-48-medium2-4",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "medium2",
+    "question": "I'm a bit cold. Would you mind if I ________ the window?",
+    "options": [
+      "closed",
+      "close",
+      "closing",
+      "will close"
+    ],
+    "correct_answer": "closed",
+    "explanation": "The polite permission request pattern 'Would you mind if I...' is followed by the past simple form of the verb (closed) to express hypothetical politeness.",
+    "explanation_th": "แปล: ฉันรู้สึกหนาวนิดหน่อย คุณจะรังเกียจไหมถ้าฉันจะปิดหน้าต่าง\n\nคำอธิบาย: โครงสร้าง 'Would you mind if I + Past Simple (V.2)' ใช้ในการขออนุญาตอย่างสุภาพ ดังนั้นจึงต้องใช้ 'closed' ส่วนโครงสร้าง 'Would you mind + V-ing' (เช่น closing) จะใช้เมื่อขอให้ผู้ฟังเป็นคนทำกริยานั้นโดยตรง"
+  },
+  {
+    "id": "q-48-medium2-5",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "medium2",
+    "question": "Hey Sarah, ________ I crash on your couch tonight? My apartment is being fumigated.",
+    "options": [
+      "can",
+      "would",
+      "may you",
+      "will"
+    ],
+    "correct_answer": "can",
+    "explanation": "'Can I' is the most appropriate option for asking for permission in informal contexts, indicated by the casual greeting 'Hey Sarah' and the slang 'crash on your couch'.",
+    "explanation_th": "แปล: เฮ้ ซาร่า คืนนี้ฉันขอนอนค้างบนโซฟาของเธอหน่อยได้ไหม อพาร์ตเมนต์ของฉันกำลังโดนฉีดยากำจัดแมลงอยู่\n\nคำอธิบาย: 'Can I...' ใช้ในการขออนุญาตในสถานการณ์ที่ไม่เป็นทางการ (Informal) ระหว่างเพื่อนสนิทหรือคนคุ้นเคย สังเกตจากคำขึ้นต้นว่า 'Hey Sarah' และสำนวนภาษาพูดว่า 'crash on your couch' ส่วนตัวเลือกอื่นไม่เหมาะสมกับบริบท"
+  },
+  {
+    "id": "q-48-medium2-6",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "medium2",
+    "question": "Excuse me, ________ you tell me where the nearest MRT station is?",
+    "options": [
+      "could",
+      "may",
+      "should",
+      "will"
+    ],
+    "correct_answer": "could",
+    "explanation": "'Could you...' is a polite and standard way of making a request for information from a stranger. 'May you' is grammatically incorrect for making requests.",
+    "explanation_th": "แปล: ขอโทษนะคะ คุณช่วยบอกฉันหน่อยได้ไหมคะว่าสถานีรถไฟฟ้า MRT ที่ใกล้ที่สุดอยู่ที่ไหน\n\nคำอธิบาย: 'Could you...' เป็นวิธีมาตรฐานและสุภาพในการขอร้องขอความช่วยเหลือหรือขอข้อมูลจากคนแปลกหน้า เราไม่ใช้ 'May you' ในการขอร้องให้ผู้อื่นทำบางสิ่งให้"
+  },
+  {
+    "id": "q-48-medium2-7",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "medium2",
+    "question": "If you are not using that pen, ________ I borrow it for a second?",
+    "options": [
+      "may",
+      "would",
+      "will",
+      "shall"
+    ],
+    "correct_answer": "may",
+    "explanation": "'May I' is a formal and highly polite way to ask for permission to borrow something. 'Would I', 'Will I', and 'Shall I' do not fit the function of asking for permission in this context.",
+    "explanation_th": "แปล: ถ้าคุณไม่ได้ใช้ปากกาด้ามนั้น ฉันขออนุญาตยืมมันสักครู่ได้ไหม\n\nคำอธิบาย: 'May I...' เป็นการขออนุญาตที่สุภาพและถูกต้องตามหลักไวยากรณ์ที่สุดเมื่อต้องการขอยืมสิ่งของ ตัวเลือก 'would', 'will', และ 'shall' ไม่ได้มีบทบาทในการขออนุญาตในลักษณะนี้"
+  },
+  {
+    "id": "q-48-medium2-8",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "medium2",
+    "question": "________ you be so kind as to hand me that folder on the top shelf?",
+    "options": [
+      "Would",
+      "May",
+      "Can I",
+      "Should"
+    ],
+    "correct_answer": "Would",
+    "explanation": "'Would you be so kind as to + verb...' is a formal, polite formula used to make a request.",
+    "explanation_th": "แปล: คุณจะกรุณาส่งแฟ้มเอกสารบนชั้นบนสุดนั้นให้ฉันหน่อยได้ไหม\n\nคำอธิบาย: โครงสร้าง 'Would you be so kind as to + Verb infinitive...' เป็นสำนวนที่สุภาพและเป็นทางการมากในการขอร้องให้ผู้อื่นช่วยทำบางสิ่งให้ ตัวเลือกอื่นไม่เข้ากับโครงสร้างและบริบทนี้"
+  },
+  {
+    "id": "q-48-medium2-9",
+    "unit_id": 48,
+    "unit_number": 48,
+    "level_id": "medium2",
+    "question": "\"________ I have another glass of water, please?\" asked the guest at the dinner table.",
+    "options": [
+      "Could",
+      "Would",
+      "Will",
+      "Should"
+    ],
+    "correct_answer": "Could",
+    "explanation": "'Could I have...' is a polite way to request or ask for something, commonly used in dining or hospitality settings.",
+    "explanation_th": "แปล: \"ฉันขอรับน้ำเปล่าอีกสักแก้วได้ไหมคะ\" แขกที่โต๊ะอาหารค่ำเอ่ยถาม\n\nคำอธิบาย: 'Could I have...' เป็นสำนวนที่ใช้ในการขอสิ่งของหรืออาหารอย่างสุภาพในบริบทการรับประทานอาหาร ส่วน 'Would I have' ไม่ใช้ในการขอร้องหรือขออนุญาตในลักษณะนี้"
   }
 ]
