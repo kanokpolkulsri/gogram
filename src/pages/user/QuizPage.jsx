@@ -35,6 +35,7 @@ export default function QuizPage() {
   const [showOutOfHearts, setShowOutOfHearts] = useState(false);
   const [firstAttempt, setFirstAttempt] = useState(true);
   const [showExplanation, setShowExplanation] = useState(false);
+  const [showThai, setShowThai] = useState(false);
 
   const totalQuestions = questions.length;
   const currentQuestion = questions[currentIndex];
@@ -117,6 +118,7 @@ export default function QuizPage() {
       setIsCorrect(false);
       setEncouragement('');
       setShowExplanation(false);
+      setShowThai(false);
       return;
     }
 
@@ -171,6 +173,7 @@ export default function QuizPage() {
         setFirstAttempt(true);
         setEncouragement('');
         setShowExplanation(false);
+        setShowThai(false);
         setAnimating(false);
       }, 300);
     }
@@ -379,9 +382,19 @@ export default function QuizPage() {
                             </div>
                           )}
                           {thaiText && (
-                            <div className="explanation-section" style={{ marginTop: '12px' }}>
-                              <span className="explanation-label">THAI</span>
-                              <p className="explanation-text">{thaiText}</p>
+                            <div className="explanation-section-thai" style={{ marginTop: '12px' }}>
+                              <button
+                                type="button"
+                                className="quiz-thai-toggle-btn"
+                                onClick={() => setShowThai(s => !s)}
+                              >
+                                {showThai ? 'ซ่อนคำอธิบายภาษาไทย ▴' : 'คำอธิบายภาษาไทย (Thai) ▾'}
+                              </button>
+                              {showThai && (
+                                <div className="quiz-explanation-thai-content" style={{ marginTop: '8px' }}>
+                                  <p className="explanation-text">{thaiText}</p>
+                                </div>
+                              )}
                             </div>
                           )}
                         </>
