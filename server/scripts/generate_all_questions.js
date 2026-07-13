@@ -171,6 +171,8 @@ async function run() {
           for (let i = 0; i < questionsList.length; i++) {
             const q = questionsList[i];
             const qId = `q-${dbUnitId}-${levelId}-${i}`; // Use database unit ID to overwrite correctly
+            const resolvedCorrectAnswer = q.correctAnswer || q.correct_answer || (q.options && q.options[0]);
+            const resolvedExplanationTh = q.explanationTh || q.explanation_th || '';
 
             const queryText = `
               INSERT INTO questions (id, unit_id, level_id, question, options, correct_answer, explanation, explanation_th)
@@ -189,9 +191,9 @@ async function run() {
               levelId,
               q.question,
               JSON.stringify(q.options),
-              q.correctAnswer,
+              resolvedCorrectAnswer,
               q.explanation,
-              q.explanationTh
+              resolvedExplanationTh
             ]);
 
             // Save to local list for backup JSON file (avoid duplicates if resuming)
@@ -204,9 +206,9 @@ async function run() {
                 level_id: levelId,
                 question: q.question,
                 options: q.options,
-                correct_answer: q.correctAnswer,
+                correct_answer: resolvedCorrectAnswer,
                 explanation: q.explanation,
-                explanation_th: q.explanationTh
+                explanation_th: resolvedExplanationTh
               });
             }
           }
