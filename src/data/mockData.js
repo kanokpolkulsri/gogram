@@ -111,18 +111,106 @@ const rawUnitsData = [
   { id: 72, section: 6, title: 'Reported Speech', description: 'reporting statements, questions, and commands' },
   { id: 73, section: 6, title: 'Conditionals', description: 'zero, first, second, third, and mixed conditionals' },
   { id: 74, section: 6, title: 'Wish and If Only', description: 'regrets and imagined changes' },
-  { id: 75, section: 6, title: 'Inversion and Ellipsis/Substitution', description: 'advanced word order and avoiding repetition' }
+  { id: 75, section: 6, title: 'Inversion and Ellipsis/Substitution', description: 'advanced word order and avoiding repetition' },
+  { id: 76, section: 1, title: 'Daily Routines & Activities', description: 'commute, habits, chores, schedules' },
+  { id: 77, section: 1, title: 'Family, Relatives & Households', description: 'ancestors, siblings, domestic, household' },
+  { id: 78, title: 'Food, Cooking & Kitchen', description: 'ingredients, recipes, simmering, boiling, baking' },
+  { id: 79, title: 'Dining Out & Cafés', description: 'reservations, waiter, beverages, appetizers, chef' },
+  { id: 80, title: 'Apparel, Fashion & Shopping', description: 'wardrobes, bargains, fitting rooms, discounts' },
+  { id: 81, title: 'Feelings & Emotions', description: 'thrilled, frustrated, anxious, delighted, miserable' },
+  { id: 82, title: 'Personality & Human Traits', description: 'ambitious, generous, stubborn, outgoing, reliable' },
+  { id: 83, title: 'Physical Descriptions & Appearance', description: 'athletic, slender, dynamic, graceful' },
+  { id: 84, title: 'Weather & Seasons', description: 'humidity, breeze, forecast, mild, severe' },
+  { id: 85, title: 'Hobbies, Sports & Recreation', description: 'tournaments, recreation, fitness, leisure' },
+  { id: 86, title: 'Entertainment, Movies & Music', description: 'premieres, genres, audiences, soundtracks' },
+  { id: 87, title: 'Travel, Transport & Commute', description: 'passengers, delays, routes, tickets, schedules' },
+  { id: 88, title: 'Airports, Flights & Customs', description: 'baggage, boarding passes, destinations, security' },
+  { id: 89, title: 'Hotels & Accommodations', description: 'check-in, amenities, lobbies, suites' },
+  { id: 90, title: 'Describing Places, Towns & Cities', description: 'cozy, spacious, metropolitan, urban, scenic' },
+
+  // Phase 2: Culture, Media & Society (B1-B2)
+  { id: 91, title: 'News, Media & Journalism', description: 'broadcasts, editorials, sources, columns, reports' },
+  { id: 92, title: 'Social Media & Communication', description: 'engagement, content, platforms, viral' },
+  { id: 93, title: 'Urbanization & City Planning', description: 'infrastructure, rural, construct, zoning' },
+  { id: 94, title: 'Art, Literature & Creative Writing', description: 'masterpieces, dialogues, narratives, fiction' },
+  { id: 95, title: 'History & Ancient Civilizations', description: 'excavations, heritage, legacies, artifacts' },
+  { id: 96, title: 'Law, Crime & Police Operations', description: 'prosecute, suspects, evidence, search warrants' },
+  { id: 97, title: 'Courtrooms, Verdicts & Justice', description: 'verdicts, trials, testimonies, jury, sentence' },
+  { id: 98, title: 'Government Structure & Elections', description: 'candidates, campaigns, parliament, senate' },
+  { id: 99, title: 'Public Policy & Social Issues', description: 'welfare, reforms, discrimination, inequality' },
+  { id: 100, title: 'Geography, Maps & Landscape', description: 'altitude, terrain, continents, landmarks' },
+  { id: 101, title: 'Demography & Diverse Cultures', description: 'immigration, census, diversity, heritage' },
+  { id: 102, title: 'Philosophy & Ethics', description: 'dilemmas, morality, perspectives, principles' },
+  { id: 103, title: 'Architecture & Building Design', description: 'exterior, structures, restorations, pillars' },
+  { id: 104, title: 'Public Health & Community Care', description: 'hygiene, welfare, clinics, healthcare' },
+  { id: 105, title: 'Religions, Beliefs & Traditions', description: 'rituals, sacred, customs, ceremonies' },
+
+  // Phase 3: Scientific & Technical Realms (B1-B2)
+  { id: 106, title: 'Education & School Administration', description: 'syllabus, assignments, semesters, enrollment' },
+  { id: 107, title: 'Scientific Method & Inquiry', description: 'hypothesis, variable, analyze, data, peer review' },
+  { id: 108, title: 'Computer Science & Digital Tools', description: 'algorithm, database, process, software' },
+  { id: 109, title: 'Internet Security & Cryptography', description: 'encryption, firewalls, threats, vulnerabilities' },
+  { id: 110, title: 'General Biology & Life Forms', description: 'organism, cell, classification, genes' },
+  { id: 111, title: 'Ecology, Habitats & Ecosystems', description: 'biodiversity, conservation, species, extinction' },
+  { id: 112, title: 'Astronomy, Planets & Space', description: 'orbit, gravity, solar system, telescope' },
+  { id: 113, title: 'Chemistry, Elements & Matter', description: 'reaction, compound, molecular, solutions' },
+  { id: 114, title: 'Physics, Force & Energy', description: 'friction, velocity, electricity, thermal' },
+  { id: 115, title: 'Geology & Earth Sciences', description: 'erosion, seismic, volcano, continental drift' },
+  { id: 116, title: 'Meteorology & Natural Disasters', description: 'monsoon, evacuation, drought, hurricane' },
+  { id: 117, title: 'Health, Illnesses & Symptoms', description: 'chronic, recovery, treatment, diagnosis' },
+  { id: 118, title: 'Immunity & Disease Control', description: 'infection, prevention, antibodies, vaccines' },
+  { id: 119, title: 'Psychology & Human Behavior', description: 'cognitive, perception, stimuli, trauma' },
+  { id: 120, title: 'Medical Innovation & Tech', description: 'therapy, diagnostics, clinical trials, prosthesis' },
+
+  // Phase 4: Professional & Business English (B2-C1)
+  { id: 121, title: 'Office Work & Communications', description: 'memos, colleagues, deadlines, correspondence' },
+  { id: 122, title: 'Business Proposals & Projects', description: 'objectives, drafts, execution, deadlines' },
+  { id: 123, title: 'Meetings, Seminars & Conferences', description: 'agenda, consensus, presentation, minutes' },
+  { id: 124, title: 'Marketing, Advertising & Branding', description: 'campaigns, promote, consumer behavior, brand loyalty' },
+  { id: 125, title: 'Sales, Invoicing & Finance Transactions', description: 'invoices, payments, quotes, receipts' },
+  { id: 126, title: 'Customer Service & Client Relations', description: 'feedback, customer satisfaction, loyalty, support' },
+  { id: 127, title: 'Human Resources & Hiring', description: 'applicants, resumes, headhunting, hiring managers' },
+  { id: 128, title: 'Employee Benefits & Work Environment', description: 'salary, retirement, bonuses, commission' },
+  { id: 129, title: 'Contracts, Licensing & Legal Agreements', description: 'clauses, termination, breach of contract' },
+  { id: 130, title: 'Business Travel & Logistics', description: 'itineraries, reimbursement, inventories, warehouses' },
+  { id: 131, title: 'Economics, Supply & Demand', description: 'inflation, market share, economy, recession' },
+  { id: 132, title: 'International Trade & Commerce', description: 'tariffs, exports, imports, customs' },
+  { id: 133, title: 'Banking, Loans & Accounting', description: 'audits, interest, deposits, collateral' },
+  { id: 134, title: 'Manufacturing & Assembly Lines', description: 'defects, output, standard operating procedures' },
+  { id: 135, title: 'Startups, Entrepreneurship & Launching', description: 'ventures, funding, scale, investments' },
+
+  // Phase 5: High-Yield Academic Vocab, Phrasal Verbs & Collocations (C1)
+  { id: 136, title: 'Academic Word List: Abstract Concepts', description: 'perspective, criteria, core, framework' },
+  { id: 137, title: 'Academic Word List: Verbs of Analysis', description: 'evaluate, contrast, indicate, demonstrate' },
+  { id: 138, title: 'Academic Word List: Descriptors', description: 'significant, fundamental, precise, arbitrary' },
+  { id: 139, title: 'Academic Transition & Signal Words', description: 'furthermore, consequently, whereas, nonetheless' },
+  { id: 140, title: 'Phrasal Verbs: Everyday Movement', description: 'pick up, run out, show up, check out' },
+  { id: 141, title: 'Phrasal Verbs: Cognitive Actions', description: 'figure out, point out, look into, come up with' },
+  { id: 142, title: 'Phrasal Verbs: Work & Business', description: 'call off, carry out, take over, step down' },
+  { id: 143, title: 'Collocations: Verb + Noun', description: 'conduct research, make progress, pose a threat' },
+  { id: 144, title: 'Collocations: Adjective + Noun', description: 'vital role, widespread concern, key factor' },
+  { id: 145, title: 'Collocations: Verb + Preposition', description: 'comply with, focus on, consist of' },
+  { id: 146, title: 'Idioms: Work & Academic Success', description: 'burn the midnight oil, hit the books, go the extra mile' },
+  { id: 147, title: 'Idioms: Communication & Ideas', description: 'read between the lines, speak your mind, on the same page' },
+  { id: 148, title: 'Synonyms: High-Scoring Verbs', description: 'acquire/obtain, accomplish/achieve, establish/create' },
+  { id: 149, title: 'Synonyms: High-Scoring Adjectives', description: 'essential/crucial, vast/immense, minor/trivial' },
+  { id: 150, title: 'Antonyms & Contrast Words', description: 'prohibit/permit, expand/shrink, support/oppose' }
 ];
 
-export const units = rawUnitsData.map(u => ({
-  id: u.id,
-  category: 'grammar',
-  title: u.title,
-  section: `SECTION 1, UNIT ${u.id}`,
-  description: u.description,
-  color: colors[(u.id - 1) % colors.length],
-  levels: defaultLevels
-}));
+export const units = rawUnitsData.map(u => {
+  const isVocab = u.id >= 76;
+  return {
+    id: u.id,
+    category: isVocab ? 'vocabulary' : 'grammar',
+    title: u.title,
+    section: isVocab 
+      ? `SECTION ${Math.floor((u.id - 76) / 15) + 1}, UNIT ${u.id - 75}`
+      : `SECTION ${u.section || 1}, UNIT ${u.id}`,
+    description: u.description,
+    color: colors[(u.id - 1) % colors.length],
+    levels: defaultLevels
+  };
+});
 
 export const studyCategories = [
   {
@@ -131,6 +219,13 @@ export const studyCategories = [
     description: 'Master English grammar rules through interactive drills',
     color: '#58CC02',
     iconChar: 'G',
+  },
+  {
+    id: 'vocabulary',
+    title: 'Vocabulary',
+    description: 'Master English vocabulary through contextual drills',
+    color: '#CE82FF',
+    iconChar: 'V',
   }
 ];
 

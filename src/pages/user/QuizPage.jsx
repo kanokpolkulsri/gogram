@@ -372,6 +372,9 @@ export default function QuizPage() {
                       thaiText = parts[1]?.trim() || '';
                     }
 
+                    // Standardize list bullet points to use hyphens '-' instead of '*'
+                    thaiText = thaiText.replace(/^\s*\*\s+/gm, '- ');
+
                     return (
                       <>
                         {engText && (
