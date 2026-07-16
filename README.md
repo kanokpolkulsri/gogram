@@ -85,12 +85,14 @@ flowchart TB
 
     subgraph local_tunnelling ["4. Local Development Tools"]
         SqlProxy["Cloud SQL Auth Proxy<br>(Port 5432 / TLS Auth Tunnel)"]
+        Generators["Offline AI Question Generators<br>(generate_all_questions.js / generate_all_vocabulary.js)"]
     end
 
     subgraph database_and_services ["5. Database, Auth & Third-Party APIs"]
         CloudSQL["Google Cloud SQL (PostgreSQL)"]
         FirebaseAuth["Firebase Authentication"]
         StripeAPI["Stripe API Payment Gateway"]
+        GeminiAPI["Google Gemini API<br>(@google/generative-ai)"]
     end
 
     %% Connections
@@ -107,6 +109,10 @@ flowchart TB
     PgPool -->|Local TCP Queries| SqlProxy
     SqlProxy ==>|Secure TLS / IAM Auth Tunnel| CloudSQL
     PgPool ==>|Production Direct Connection| CloudSQL
+
+    Generators -->|HTTP Requests / JSON Schema| GeminiAPI
+    Generators -->|Seed Data via Pool| SqlProxy
+    Generators -.->|Write Offline Backups| BackupFiles["questions_backup.json"]
 ```
 
 ### UML Sequence Diagram (Authentication, Payments & Data Lifecycle)

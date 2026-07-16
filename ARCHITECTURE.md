@@ -58,15 +58,22 @@ Gogram is split into a **decoupled Client-Server architecture**:
 *   **Decision**: Connect Cloud Run to Cloud SQL via a Unix domain socket (`/cloudsql/...`) rather than public IP whitelisting.
 *   **Rationale**: Cloud SQL has strict firewall rules. Whitelisting the server's public IP is impossible in a serverless environment because Cloud Run's outbound IP addresses change dynamically. The Unix socket connection mounts a secure local file socket inside the container, keeping all database traffic off the public internet.
 
-### 5. Static Grammar Curriculum Optimization
-*   **Decision**: Load the default Grammar category configuration (exactly 75 units, 5 difficulty nodes per unit) statically from mock data on the frontend (`src/data/mockData.js`), completely skipping database unit queries on application entry.
+### 5. Static Curriculum Optimization (Grammar & Vocabulary)
+*   **Decision**: Load the default Grammar category configuration (75 units) and Vocabulary category configuration (75 units) statically on the frontend (`src/data/mockData.js`), completely skipping database unit queries on application entry.
 *   **Rationale**: 
-    1. Loading 75 units and their corresponding nodes from a relational database can take several seconds and blocks user entry (especially under cold-starts or connection throttling).
-    2. Because the Grammar curriculum is static, we cached the structures on the client. Database API requests are only made in parallel when a user starts or completes a specific lesson/quiz, reducing database reads by over 90% and making initial app startup instantaneous.
+    1. Loading 150 units and their corresponding nodes from a relational database can take several seconds and blocks user entry (especially under cold-starts or connection throttling).
+    2. By caching the static curriculum structure on the client, initial app startup is instantaneous. Database API requests are only made in parallel when a user starts or completes a specific lesson/quiz, reducing database reads by over 90%.
+    3. The Vocabulary track is dynamically divided into 5 sections of 15 units each using responsive mathematical layout segmenting, ensuring map uniformity.
 
 ### 6. Synchronous Checkout Verification to Bypass Webhook Latency
 *   **Decision**: Implement a `/verify-session` backend endpoint to synchronously verify Stripe checkout sessions upon return redirection, before fetching the synced user profile.
 *   **Rationale**: Stripe webhooks are processed asynchronously and can experience delivery delays. If a user redirects back to Gogram instantly, a race condition occurs where the database does not reflect their new subscription yet. Querying Stripe synchronously via `/verify-session` before running `/auth/sync` guarantees that the database is upgraded and user hearts are set to `infinity` immediately, ensuring a seamless user experience.
+
+### 7. Offline AI-Driven Question Generation & Seeding
+*   **Decision**: Pre-generate and seed all questions (3,750 for Grammar, 3,750 for Vocabulary, totaling 7,500 questions) offline using Gemini-3.5-flash CLI tools (`generate_all_questions.js`, `generate_all_vocabulary.js`) and back them up in `questions_backup.json`, instead of querying LLM APIs at runtime.
+*   **Rationale**: 
+    1. Running LLM APIs on-the-fly during quiz gameplay adds huge network latency (3–8 seconds per question) and introduces rate-limit crashes.
+    2. Pre-generating offline keeps runtime API costs to exactly **$0**, and guarantees instant page transitions when a learner starts a lesson.
 
 ---
 
