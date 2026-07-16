@@ -137,6 +137,12 @@
   font-size: 13px;
   font-weight: 700;
   color: var(--color-text-light);
+  display: inline-block;
+  max-width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
 }
 
 /* Complete message */
