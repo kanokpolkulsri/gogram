@@ -89,8 +89,8 @@ async function run() {
       mixedUnits.push({
         id: 151 + i,
         unitNumber: i + 1,
-        title: titles[i],
-        description: `Mixed drills testing various grammatical structures, focusing on ${titles[i].toLowerCase()}`
+        title: `Set ${i + 1}`,
+        description: 'Comprehensive mixed grammar practice set.'
       });
     }
 

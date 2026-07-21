@@ -289,18 +289,24 @@ export const units = rawUnitsData.map(u => {
   const cat = isMixed ? 'mixed_grammar' : (isVocab ? 'vocabulary' : 'grammar');
   
   let sectionStr = `SECTION ${u.section || 1}, UNIT ${u.id}`;
+  let title = u.title;
+  let description = u.description;
+  
   if (isVocab) {
     sectionStr = `SECTION ${Math.floor((u.id - 76) / 15) + 1}, UNIT ${u.id - 75}`;
   } else if (isMixed) {
-    sectionStr = `SECTION ${Math.floor((u.id - 151) / 15) + 1}, UNIT ${u.id - 150}`;
+    const setNum = u.id - 150;
+    sectionStr = `SECTION ${Math.floor((u.id - 151) / 15) + 1}, UNIT ${setNum}`;
+    title = `Set ${setNum}`;
+    description = `Comprehensive mixed grammar practice set.`;
   }
   
   return {
     id: u.id,
     category: cat,
-    title: u.title,
+    title: title,
     section: sectionStr,
-    description: u.description,
+    description: description,
     color: colors[(u.id - 1) % colors.length],
     levels: defaultLevels
   };
