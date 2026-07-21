@@ -194,18 +194,112 @@ const rawUnitsData = [
   { id: 147, title: 'Idioms: Communication & Ideas', description: 'read between the lines, speak your mind, on the same page' },
   { id: 148, title: 'Synonyms: High-Scoring Verbs', description: 'acquire/obtain, accomplish/achieve, establish/create' },
   { id: 149, title: 'Synonyms: High-Scoring Adjectives', description: 'essential/crucial, vast/immense, minor/trivial' },
-  { id: 150, title: 'Antonyms & Contrast Words', description: 'prohibit/permit, expand/shrink, support/oppose' }
+  { id: 150, title: 'Antonyms & Contrast Words', description: 'prohibit/permit, expand/shrink, support/oppose' },
+
+  // Mixed Grammar (Section 1–5, IDs 151–225)
+  // Section 1: Basic Tenses Mix
+  { id: 151, title: 'Present Simple & Present Progressive', description: 'Mixed drills on basic present state vs action' },
+  { id: 152, title: 'Past Simple & Past Progressive', description: 'Mixed drills on completed actions vs ongoing past contexts' },
+  { id: 153, title: 'Future Simple & Future Planned', description: 'Mixed drills on will vs going to vs present continuous' },
+  { id: 154, title: 'Present Perfect & Past Simple', description: 'Mixed drills on indefinite vs definite time frames' },
+  { id: 155, title: 'Present Perfect Simple & Continuous', description: 'Mixed drills on duration vs completion' },
+  { id: 156, title: 'Past Perfect & Past Simple', description: 'Mixed drills on sequential past events' },
+  { id: 157, title: 'Future Perfect & Future Continuous', description: 'Mixed drills on futurity and timelines' },
+  { id: 158, title: 'Mixed Active Tenses I', description: 'Grammar review of active time systems' },
+  { id: 159, title: 'Mixed Active Tenses II', description: 'Advanced review of active timeline situations' },
+  { id: 160, title: 'State Verbs & Action Verbs', description: 'Mixed drills on non-progressive verb constraints' },
+  { id: 161, title: 'Habitual Past Systems', description: 'used to, would, and past simple contrasts' },
+  { id: 162, title: 'Time Clauses & Aspect', description: 'when, while, before, as soon as aspect systems' },
+  { id: 163, title: 'Future in the Past', description: 'was going to, would, was about to configurations' },
+  { id: 164, title: 'Tense Auxiliary & Ellipsis', description: 'short answers, tag questions, auxiliary matches' },
+  { id: 165, title: 'Comprehensive Tense Review', description: 'Integrated active aspect and tense diagnostics' },
+
+  // Section 2: Noun Phrase Mix
+  { id: 166, title: 'Definite & Indefinite Articles', description: 'a, an, the, and zero article selections' },
+  { id: 167, title: 'Singular & Plural Noun Anomalies', description: 'irregular plurals, collective nouns, uncountable structures' },
+  { id: 168, title: 'Quantifiers & Determiners', description: 'much, many, few, little, some, any, each, every' },
+  { id: 169, title: 'Subject & Object Pronouns', description: 'pronoun case, gender constraints, dynamic referents' },
+  { id: 170, title: 'Possessives & Reflexives', description: 'my, mine, myself, owner structures, reciprocal referents' },
+  { id: 171, title: 'Demonstratives & Indefinite Pronouns', description: 'this, that, someone, anything, nowhere, general references' },
+  { id: 172, title: 'Prepositions of Place & Direction', description: 'in, on, at, under, across, through, into' },
+  { id: 173, title: 'Prepositions of Time & Duration', description: 'in, on, at, during, for, since, until' },
+  { id: 174, title: 'Prepositional Phrases', description: 'at risk, in progress, on purpose, by chance' },
+  { id: 175, title: 'Adjectives vs Adverbs', description: 'modifiers, adjective endings, adverb positions' },
+  { id: 176, title: 'Comparative & Superlative Forms', description: 'er, est, more, most, irregular degree systems' },
+  { id: 177, title: 'Equative & Progressive Comparison', description: 'as...as, the more...the more, double comparatives' },
+  { id: 178, title: 'Noun-Modifying Preposition Blocks', description: 'noun + preposition linkers in complex NPs' },
+  { id: 179, title: 'Compound Nouns & Modifiers', description: 'modifier sequence, hyphenated noun properties' },
+  { id: 180, title: 'Comprehensive Noun Phrase Review', description: 'Integrated nouns, determiners, modifiers, case' },
+
+  // Section 3: Clausal Mix
+  { id: 181, title: 'Coordinating Conjunctions', description: 'and, but, or, so, yet, for, nor' },
+  { id: 182, title: 'Subordinating Conjunctions', description: 'because, although, if, unless, while, whereas' },
+  { id: 183, title: 'Correlative Conjunctions', description: 'either...or, neither...nor, not only...but also' },
+  { id: 184, title: 'Defining Relative Clauses', description: 'relative pronouns, subject/object case, that/who/which' },
+  { id: 185, title: 'Non-Defining Relative Clauses', description: 'comma separators, relative pronouns, extra detail blocks' },
+  { id: 186, title: 'Prepositions in Relative Clauses', description: 'in which, whom, formal vs informal structures' },
+  { id: 187, title: 'Noun Clauses: That-clauses', description: 'subject/object clausal slots, fact structures' },
+  { id: 188, title: 'Noun Clauses: Wh-questions', description: 'indirect questions, word order, embedding' },
+  { id: 189, title: 'Participle Clauses', description: 'reduced relative clauses, active vs passive reductions' },
+  { id: 190, title: 'Adverbial Participle Clauses', description: 'reason/time clauses, dangling modifier caution' },
+  { id: 191, title: 'Adverbial Connectors of Contrast', description: 'despite, in spite of, whereas, on the other hand' },
+  { id: 192, title: 'Adverbial Connectors of Purpose/Result', description: 'so that, in order to, therefore, consequently' },
+  { id: 193, title: 'Infinitives of Purpose', description: 'to-infinitive, bare infinitive, complex purpose clauses' },
+  { id: 194, title: 'Clausal Reduction & Ellipsis', description: 'reduced clause patterns, avoiding redundancy' },
+  { id: 195, title: 'Comprehensive Clausal Review', description: 'Integrated subordination, relative paths, coordination' },
+
+  // Section 4: Voice & Speech Mix
+  { id: 196, title: 'Passive Voice Simple Aspects', description: 'present, past, future passive transformations' },
+  { id: 197, title: 'Passive Voice Complex Aspects', description: 'perfect, continuous, passive modal inflections' },
+  { id: 198, title: 'Causative Structures', description: 'have something done, get someone to do, make/let/force' },
+  { id: 199, title: 'Reported Statements', description: 'tense backshift, pronoun shifts, time expression updates' },
+  { id: 200, title: 'Reported Questions', description: 'reported if/whether, reported wh- questions, word order' },
+  { id: 201, title: 'Reported Commands & Requests', description: 'reported verbs (order, ask, beg, recommend) + infinitives' },
+  { id: 202, title: 'Gerunds as Subjects & Objects', description: 'ing nouns, subject slots, verbal noun constraints' },
+  { id: 203, title: 'Infinitives as Modifiers', description: 'to-infinitive object slots, adjectives + infinitives' },
+  { id: 204, title: 'Verbs + Gerund or Infinitive I', description: 'like, try, stop, remember (meaning changes)' },
+  { id: 205, title: 'Verbs + Gerund or Infinitive II', description: 'decide, afford, suggest, avoid (fixed structures)' },
+  { id: 206, title: 'Impersonal Passive Constructions', description: 'it is said that, he is believed to, reported passives' },
+  { id: 207, title: 'Active-Passive Semantic Pairs', description: 'meaning differences, agent emphasis transformations' },
+  { id: 208, title: 'Direct Speech Punctuation', description: 'quotes, commas, reporting verb placement' },
+  { id: 209, title: 'Reported Speech Exceptions', description: 'no backshift situations, hypothetical reported speech' },
+  { id: 210, title: 'Comprehensive Voice & Speech Review', description: 'Integrated passives, causatives, reported speech diagnostics' },
+
+  // Section 5: Advanced Structures Mix
+  { id: 211, title: 'Zero & First Conditionals', description: 'general truths, real future possibilities' },
+  { id: 212, title: 'Second & Third Conditionals', description: 'imagined present/future, past regrets' },
+  { id: 213, title: 'Mixed Conditionals', description: 'past action/present result, present condition/past result' },
+  { id: 214, title: 'Alternatives to "If"', description: 'provided that, as long as, unless, in case, otherwise' },
+  { id: 215, title: 'Wish & If Only Present', description: 'present regrets, annoying habits (wish + would)' },
+  { id: 216, title: 'Wish & If Only Past', description: 'past regrets (wish + past perfect)' },
+  { id: 217, title: 'Subject-Auxiliary Inversion', description: 'negative adverbs (seldom, hardly), only when inversions' },
+  { id: 218, title: 'Conditional Inversion', description: 'Had I known, Were I, Should you see' },
+  { id: 219, title: 'Subjunctive Mood', description: 'insist that, recommend that, demand that bare infinitives' },
+  { id: 220, title: 'Cleft Sentences', description: 'It is... that, What I need is... emphasis structures' },
+  { id: 221, title: 'Substitution & Ellipsis', description: 'so/not, do so, one/ones word reductions' },
+  { id: 222, title: 'Double Negative & Emphasis', description: 'not only, emphatic auxiliary do, double negative traps' },
+  { id: 223, title: 'Advanced Adverbial Placements', description: 'adverb sequence, negative adverb sentence heads' },
+  { id: 224, title: 'Parenthetical & Sentence Modifiers', description: 'however, frankly speaking, modifying entire clauses' },
+  { id: 225, title: 'Comprehensive Advanced Review', description: 'Integrated conditionals, inversions, clefts, subjunctives' }
 ];
 
 export const units = rawUnitsData.map(u => {
-  const isVocab = u.id >= 76;
+  const isVocab = u.id >= 76 && u.id <= 150;
+  const isMixed = u.id >= 151;
+  const cat = isMixed ? 'mixed_grammar' : (isVocab ? 'vocabulary' : 'grammar');
+  
+  let sectionStr = `SECTION ${u.section || 1}, UNIT ${u.id}`;
+  if (isVocab) {
+    sectionStr = `SECTION ${Math.floor((u.id - 76) / 15) + 1}, UNIT ${u.id - 75}`;
+  } else if (isMixed) {
+    sectionStr = `SECTION ${Math.floor((u.id - 151) / 15) + 1}, UNIT ${u.id - 150}`;
+  }
+  
   return {
     id: u.id,
-    category: isVocab ? 'vocabulary' : 'grammar',
+    category: cat,
     title: u.title,
-    section: isVocab 
-      ? `SECTION ${Math.floor((u.id - 76) / 15) + 1}, UNIT ${u.id - 75}`
-      : `SECTION ${u.section || 1}, UNIT ${u.id}`,
+    section: sectionStr,
     description: u.description,
     color: colors[(u.id - 1) % colors.length],
     levels: defaultLevels
@@ -226,6 +320,13 @@ export const studyCategories = [
     description: 'Master English vocabulary through contextual drills',
     color: '#CE82FF',
     iconChar: 'V',
+  },
+  {
+    id: 'mixed_grammar',
+    title: 'Mixed Grammar',
+    description: 'Master English grammar through comprehensive mock practice',
+    color: '#FF9600',
+    iconChar: 'M',
   }
 ];
 
