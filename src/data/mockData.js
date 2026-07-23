@@ -312,6 +312,18 @@ export const units = rawUnitsData.map(u => {
   };
 });
 
+// Append Conversation POC Unit 301
+units.push({
+  id: 301,
+  category: 'conversation',
+  title: 'Everyday & Campus Conversation',
+  section: 'SECTION 1, UNIT 1',
+  description: 'Master daily interactions, ordering, asking directions, and campus small talk.',
+  color: '#1CB0F6',
+  levels: defaultLevels
+});
+
+
 export const studyCategories = [
   {
     id: 'grammar',
@@ -333,8 +345,16 @@ export const studyCategories = [
     description: 'Master English grammar through comprehensive mock practice',
     color: '#FF9600',
     iconChar: 'M',
+  },
+  {
+    id: 'conversation',
+    title: 'Conversation',
+    description: 'Master practical English dialogues & exam-style conversations',
+    color: '#1CB0F6',
+    iconChar: 'C',
   }
 ];
+
 
 
 

@@ -3,7 +3,27 @@ import { createContext, useContext, useReducer, useEffect, useCallback, useRef }
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
 import { api } from './api';
-import { units } from './mockData';
+import { units, studyCategories } from './mockData';
+
+function mergeCategories(fetchedCategories) {
+  const list = Array.isArray(fetchedCategories) ? [...fetchedCategories] : [];
+  for (const staticCat of studyCategories) {
+    if (!list.some((c) => c.id === staticCat.id)) {
+      list.push(staticCat);
+    }
+  }
+  return list;
+}
+
+function mergeUnits(fetchedUnits) {
+  const list = Array.isArray(fetchedUnits) ? [...fetchedUnits] : [];
+  for (const staticUnit of units) {
+    if (!list.some((u) => u.id === staticUnit.id)) {
+      list.push(staticUnit);
+    }
+  }
+  return list;
+}
 
 const UserContext = createContext(null);
 const UserDispatchContext = createContext(null);
@@ -78,8 +98,8 @@ function userReducer(state, action) {
     case 'SET_CATEGORIES_AND_UNITS':
       return {
         ...state,
-        categories: action.categories,
-        units: action.units
+        categories: mergeCategories(action.categories),
+        units: mergeUnits(action.units)
       };
 
     case 'UPDATE_HEARTS_AND_SUB':
@@ -236,7 +256,7 @@ export function UserProvider({ children }) {
               displayName: firebaseUser.displayName || profile.name,
               photoURL: firebaseUser.photoURL,
             },
-            categories: cachedCategories,
+            categories: mergeCategories(cachedCategories),
             units: units,
             mockUsers: [],
             promoCodes: [],
@@ -276,8 +296,8 @@ export function UserProvider({ children }) {
                   displayName: firebaseUser.displayName || profile.name,
                   photoURL: firebaseUser.photoURL,
                 },
-                categories: catRes,
-                units: units,
+                categories: mergeCategories(catRes),
+                units: mergeUnits(units),
                 mockUsers: [],
                 promoCodes: [],
                 auditLogs: [],
@@ -298,8 +318,8 @@ export function UserProvider({ children }) {
                   displayName: firebaseUser.displayName || profile.name,
                   photoURL: firebaseUser.photoURL,
                 },
-                categories: [],
-                units: units,
+                categories: mergeCategories([]),
+                units: mergeUnits(units),
                 mockUsers: [],
                 promoCodes: [],
                 auditLogs: [],

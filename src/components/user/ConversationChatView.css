@@ -1,0 +1,62 @@
+/* Conversation Exam Script Layout */
+
+.exam-script-body {
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto 0 auto;
+  padding: 0 6px 4px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.exam-script-line {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 20px;
+  line-height: 1.4;
+  text-align: left;
+  font-family: var(--font-family);
+}
+
+/* Speaker Labels (A: / B:) */
+.exam-speaker-label {
+  font-weight: 800;
+  font-size: 20px;
+  min-width: 28px;
+  max-width: 36px;
+  color: var(--color-text, #2b2b2b);
+  flex-shrink: 0;
+  text-align: left;
+}
+
+.exam-dialogue-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text, #2b2b2b);
+  flex-grow: 1;
+  line-height: 1.4;
+}
+
+/* Static Target Blank Box */
+.exam-blank-box {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background-color: var(--color-gray-light, #f7f7f7);
+  border: 1.5px dashed var(--color-gray, #e5e5e5);
+  width: fit-content;
+  flex-shrink: 0;
+}
+
+.exam-blank-line-placeholder {
+  color: var(--color-gray-dark, #afafaf);
+  letter-spacing: 1px;
+  font-weight: 800;
+  font-size: 20px;
+}

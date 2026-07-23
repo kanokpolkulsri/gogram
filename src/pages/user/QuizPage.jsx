@@ -6,6 +6,8 @@ import { api } from '../../data/api';
 import ProgressBar from '../../components/ProgressBar';
 import Hearts from '../../components/Hearts';
 import HeartsModal from '../../components/HeartsModal';
+import { conversationQuestions } from '../../data/conversationQuestions';
+import ConversationChatView from '../../components/user/ConversationChatView';
 import './QuizPage.css';
 
 export default function QuizPage() {
@@ -16,7 +18,7 @@ export default function QuizPage() {
   const [isHeartsOpen, setIsHeartsOpen] = useState(false);
 
   const units = user.units || [];
-  const unit = units.find((u) => u.id === parseInt(unitId));
+  const unit = units.find((u) => String(u.id) === String(unitId));
 
   // Dynamic quiz data loaded from API
   const [questions, setQuestions] = useState([]);
@@ -44,7 +46,23 @@ export default function QuizPage() {
   useEffect(() => {
     let isMounted = true;
     async function loadQuizSession() {
-      // 1. Check if the session is cached in userStore
+      const uIdNum = parseInt(unitId);
+      const isConv = uIdNum === 301 || unit?.category === 'conversation';
+
+      // 1. If conversation unit, load conversationQuestions directly
+      if (isConv) {
+        const convQs = conversationQuestions.filter(
+          (q) => (q.unitId === uIdNum || q.category === 'conversation') && q.levelId === levelId
+        );
+        if (convQs.length > 0) {
+          setQuestions(convQs);
+          setCurrentIndex(0);
+          setLoading(false);
+          return;
+        }
+      }
+
+      // 2. Check if the session is cached in userStore
       const cacheKey = `${unitId}-${levelId}`;
       if (user.quizCache && user.quizCache[cacheKey]) {
         const cached = user.quizCache[cacheKey];
@@ -54,16 +72,16 @@ export default function QuizPage() {
         return;
       }
 
-      // 2. Fallback to API call if not cached
+      // 3. Fallback to API call if not cached
       try {
         setLoading(true);
         const data = await api.post('/quiz/session/start', {
-          unitId: parseInt(unitId),
+          unitId: uIdNum,
           levelId
         });
         if (isMounted) {
-          setQuestions(data.questions);
-          setCurrentIndex(data.currentIndex);
+          setQuestions(data.questions || []);
+          setCurrentIndex(data.currentIndex || 0);
           setLoading(false);
         }
       } catch (err) {
@@ -76,7 +94,7 @@ export default function QuizPage() {
     }
     loadQuizSession();
     return () => { isMounted = false; };
-  }, [unitId, levelId]);
+  }, [unitId, levelId, unit]);
 
   const handleSelect = (answer) => {
     if (isAnswered || user.hearts === 0) return;
@@ -180,16 +198,18 @@ export default function QuizPage() {
   }, [currentIndex, totalQuestions, unitId, levelId, score, dispatch, navigate, isCorrect, unit]);
 
   const handleClose = () => {
-    if (unit && unit.category) {
-      navigate(`/learn/${unit.category}`);
+    const targetCategory = unit?.category || (String(unitId) === '301' ? 'conversation' : user.lastCategoryId);
+    if (targetCategory) {
+      navigate(`/learn/${targetCategory}`);
     } else {
       navigate('/learn');
     }
   };
 
   const handleOutOfHeartsBack = () => {
-    if (unit && unit.category) {
-      navigate(`/learn/${unit.category}`);
+    const targetCategory = unit?.category || (String(unitId) === '301' ? 'conversation' : user.lastCategoryId);
+    if (targetCategory) {
+      navigate(`/learn/${targetCategory}`);
     } else {
       navigate('/learn');
     }
@@ -288,7 +308,16 @@ export default function QuizPage() {
 
       {/* Question */}
       <div className={`quiz-content ${animating ? 'quiz-content-exit' : 'quiz-content-enter'}`}>
-        <h2 className="quiz-question" id="quiz-question">{currentQuestion?.question}</h2>
+        {currentQuestion?.dialogue || unit?.category === 'conversation' ? (
+          <ConversationChatView
+            question={currentQuestion}
+            selectedAnswer={selectedAnswer}
+            isAnswered={isAnswered}
+            isCorrect={isCorrect}
+          />
+        ) : (
+          <h2 className="quiz-question" id="quiz-question">{currentQuestion?.question}</h2>
+        )}
 
         {/* Options */}
         <div className="quiz-options">
