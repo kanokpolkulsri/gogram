@@ -74,6 +74,8 @@ CREATE TABLE IF NOT EXISTS questions (
     correct_answer VARCHAR(255) NOT NULL,
     explanation TEXT,
     explanation_th TEXT,
+    dialogue JSONB, -- For Conversation multi-turn dialogue questions
+    target_turn_index INT, -- For Conversation target blank turn index
     FOREIGN KEY (unit_id, level_id) REFERENCES levels(unit_id, id) ON DELETE CASCADE
 );
 

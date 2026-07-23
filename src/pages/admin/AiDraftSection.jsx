@@ -144,26 +144,33 @@ Requirements:
 - For "Reading" category, include a short passage before the questions if appropriate, or make each question a mini-reading task.
 - For "Vocabulary" category:
   * Focus on word usage in context.
-  * Ensure the Thai explanation contains a clear "Vocabulary List" style breakdown of all answer options and key terms from the question text, with each vocabulary word and its translation clearly separated on a new line (using '\\n') or by commas.
+  * Ensure the Thai explanation contains a clear "Vocabulary List" style breakdown of all answer options and key terms from the question text, with each vocabulary word and its translation clearly separated on a new line (using '\n') or by commas.
 - For "Grammar" category, focus on the specific rule of the topic.
+- For "Conversation" category:
+  * Generate a cohesive, 5-part continuous story scene per level node (ordering at cafe, hotel check-in, airport flight cancellation, restaurant service, library study groups, etc.).
+  * Each question MUST include a "dialogue" array of turns with `speaker` ("A" or "B") and `text` (string, or null for the target blank turn), and `targetTurnIndex` (the index of the null target turn).
+  * Example dialogue: `[{"speaker": "A", "text": "Good morning! What can I get for you?"}, {"speaker": "B", "text": null}, {"speaker": "A", "text": "Hot or iced?"}]`
 
 CRITICAL FORMATTING RULES FOR THE QUESTION TEXT:
-1. The "question" field MUST consist ONLY of the fill-in-the-blank sentence itself, containing '___' as the blank.
+1. The "question" field MUST consist ONLY of the sentence/scene title (e.g., "Ordering at StarCafé").
 2. Do NOT prefix the question with phrases like "Complete:", "Which completes the sentence:", or "Which word/article/preposition completes:".
 3. Do NOT wrap the sentence in single or double quotes within the JSON string. Write the question sentence directly.
-   - CORRECT: "She ___ a doctor at the hospital."
-   - INCORRECT: "Complete: 'She ___ a doctor at the hospital.'"
-   - INCORRECT: "Which article completes: 'She ___ a doctor at the hospital'?"
 
 Output Format:
 You MUST output a valid JSON array of objects with the following JSON schema:
 [
   {
-    "question": "She ___ a doctor at the hospital.",
-    "options": ["a", "an", "the", "no article"],
-    "correctAnswer": "a",
-    "explanation": "Use 'a' before singular nouns starting with consonant sounds.",
-    "explanationTh": "ใช้ 'a' นำหน้าคำนามเอกพจน์นับได้ทั่วไปที่ขึ้นต้นด้วยเสียงพยัญชนะ\\n\\nคำศัพท์:\\ndoctor = หมอ\\nhospital = โรงพยาบาล"
+    "question": "Scene 1 (Part 1): Ordering at StarCafé",
+    "dialogue": [
+      {"speaker": "A", "text": "Good morning! Welcome to StarCafé. What can I get for you today?"},
+      {"speaker": "B", "text": null},
+      {"speaker": "A", "text": "Sure thing! Would you like that hot or iced?"}
+    ],
+    "targetTurnIndex": 1,
+    "options": ["I'd like an iced Americano, please.", "I am fine, thank you.", "Where is the nearest bank?", "No, I don't buy anything."],
+    "correctAnswer": "I'd like an iced Americano, please.",
+    "explanation": "'I'd like...' is a polite and natural way to order food or drinks in English.",
+    "explanationTh": "เมื่อสั่งอาหารหรือเครื่องดื่ม ควรใช้ประโยคสุภาพ เช่น 'I'd like...' (ฉันขอรับ...)"
   }
 ]`;
   };

@@ -16,7 +16,7 @@ router.post('/session/start', authenticate, async (req, res) => {
   try {
     // 1. Fetch questions for this unit and level
     const questionsRes = await query(
-      `SELECT id, question, options, correct_answer AS "correctAnswer", explanation, explanation_th AS "explanationTh"
+      `SELECT id, question, options, correct_answer AS "correctAnswer", explanation, explanation_th AS "explanationTh", dialogue, target_turn_index AS "targetTurnIndex"
        FROM questions 
        WHERE unit_id = $1 AND level_id = $2
        ORDER BY id`,
