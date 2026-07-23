@@ -11,11 +11,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const isUnixSocket = DATABASE_URL && (DATABASE_URL.includes('host=/') || DATABASE_URL.includes('%2Fcloudsql'));
-const isRemoteCloudSql = DATABASE_URL && (DATABASE_URL.includes('34.126.85.240') || DATABASE_URL.includes('cloudsql'));
+const isRemoteCloudSqlIp = DATABASE_URL && DATABASE_URL.includes('34.126.85.240');
 
 const pool = new Pool({
   connectionString: DATABASE_URL,
-  ssl: isRemoteCloudSql || (process.env.NODE_ENV === 'production' && !isUnixSocket) ? { rejectUnauthorized: false } : false
+  ssl: !isUnixSocket && (isRemoteCloudSqlIp || process.env.NODE_ENV === 'production') ? { rejectUnauthorized: false } : false
 });
 
 export const query = (text, params) => pool.query(text, params);
