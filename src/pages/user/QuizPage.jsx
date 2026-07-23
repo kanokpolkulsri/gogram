@@ -55,7 +55,15 @@ export default function QuizPage() {
           (q) => (q.unitId === uIdNum || q.category === 'conversation') && q.levelId === levelId
         );
         if (convQs.length > 0) {
-          setQuestions(convQs);
+          const shuffledConvQs = convQs.map(q => {
+            const shuffledOptions = [...q.options];
+            for (let i = shuffledOptions.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
+            }
+            return { ...q, options: shuffledOptions };
+          });
+          setQuestions(shuffledConvQs);
           setCurrentIndex(0);
           setLoading(false);
           return;
