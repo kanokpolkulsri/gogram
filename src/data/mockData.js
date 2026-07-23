@@ -312,15 +312,61 @@ export const units = rawUnitsData.map(u => {
   };
 });
 
-// Append Conversation POC Unit 301
-units.push({
-  id: 301,
-  category: 'conversation',
-  title: 'Everyday & Campus Conversation',
-  section: 'SECTION 1, UNIT 1',
-  description: 'Master daily interactions, ordering, asking directions, and campus small talk.',
-  color: '#1CB0F6',
-  levels: defaultLevels
+// Append 30 Conversation Units (Units 301–330 across 6 Sections)
+const conversationUnitsData = [
+  // SECTION 1: Daily Life & Social Interactions
+  { id: 301, section: 1, unitNum: 1, title: 'Everyday & Campus Life', description: 'Master cafe ordering, shopping inquiries, library study groups, and airport transit.' },
+  { id: 302, section: 1, unitNum: 2, title: 'Dining Out & Restaurant Ordering', description: 'Master food orders, table bookings, dietary needs, bill splitting, and complaints.' },
+  { id: 303, section: 1, unitNum: 3, title: 'Shopping, Bargaining & Refunds', description: 'Master supermarket shopping, market bargaining, product returns, and order tracking.' },
+  { id: 304, section: 1, unitNum: 4, title: 'Socializing & Making Friends', description: 'Master party small talk, weekend invitations, declining politely, and compliments.' },
+  { id: 305, section: 1, unitNum: 5, title: 'Expressing Sympathy & Encouragement', description: 'Master comforting friends, sick visits, sincere condolences, and burnout support.' },
+
+  // SECTION 2: Travel, Transport & Accommodation
+  { id: 306, section: 2, unitNum: 1, title: 'Street Directions & City Transport', description: 'Master BTS directions, taxi rides, train tickets, bus transfers, and car rentals.' },
+  { id: 307, section: 2, unitNum: 2, title: 'Hotel & Accommodation Management', description: 'Master hotel check-in, housekeeping, facility issues, deposits, and late check-outs.' },
+  { id: 308, section: 2, unitNum: 3, title: 'Airport, Flights & Customs', description: 'Master flight check-in, security checks, duty-free, connection flights, and lost luggage.' },
+  { id: 309, section: 2, unitNum: 4, title: 'Sightseeing & Tourism Activities', description: 'Master museum tours, guided trips, asking for photos, and local culture etiquette.' },
+  { id: 310, section: 2, unitNum: 5, title: 'Renting Apartments & Housing', description: 'Master apartment viewing, lease terms, furniture rental, landlord calls, and moving out.' },
+
+  // SECTION 3: Campus & Academic Success
+  { id: 311, section: 3, unitNum: 1, title: 'Campus Life & Orientation', description: 'Master meeting classmates, club registration, campus facilities, and student ID cards.' },
+  { id: 312, section: 3, unitNum: 2, title: 'Group Projects & Class Collaboration', description: 'Master task allocation, deadlines, shared documents, presentations, and peer feedback.' },
+  { id: 313, section: 3, unitNum: 3, title: 'Academic Advising & Office Hours', description: 'Master asking course feedback, thesis topics, grade inquiries, and recommendation letters.' },
+  { id: 314, section: 3, unitNum: 4, title: 'Scholarships & Study Abroad Interviews', description: 'Master motivation statements, academic goals, extracurriculars, and stress questions.' },
+  { id: 315, section: 3, unitNum: 5, title: 'Library & Research Facilities', description: 'Master book borrowing, research databases, inter-library loans, and scanning services.' },
+
+  // SECTION 4: Workplace & Professional Courtesy
+  { id: 316, section: 4, unitNum: 1, title: 'Workplace Courtesy & Office Talk', description: 'Master morning greetings, team meetings, supervisor help, mistakes, and promotions.' },
+  { id: 317, section: 4, unitNum: 2, title: 'Job Interviews & Career Progression', description: 'Master self-introductions, strengths/weaknesses, salary expectations, and past experience.' },
+  { id: 318, section: 4, unitNum: 3, title: 'Phone Calls & Video Meetings', description: 'Master taking calls, booking appointments, rescheduling, and formal inquiries.' },
+  { id: 319, section: 4, unitNum: 4, title: 'Business Meetings & Pitching', description: 'Master agenda opening, presentation delivery, Q&A handling, and client feedback.' },
+  { id: 320, section: 4, unitNum: 5, title: 'Workplace Negotiations & Extension Requests', description: 'Master deadline extensions, workload balancing, remote requests, and budget approvals.' },
+
+  // SECTION 5: Communication Skills & Opinions
+  { id: 321, section: 5, unitNum: 1, title: 'Expressing Opinions, Agreement & Disagreement', description: 'Master movie preferences, book reviews, gentle disagreement, and tech debates.' },
+  { id: 322, section: 5, unitNum: 2, title: 'Giving Advice & Recommendations', description: 'Master travel tips, study habits, tech purchasing advice, and fitness routines.' },
+  { id: 323, section: 5, unitNum: 3, title: 'Making Comparisons & Preferences', description: 'Master choosing options, pros & cons analysis, brand comparison, and lifestyle choices.' },
+  { id: 324, section: 5, unitNum: 4, title: 'Clarification & Active Listening', description: 'Master asking speakers to repeat, paraphrasing statements, and spelling names.' },
+  { id: 325, section: 5, unitNum: 5, title: 'Culture, Habits & Small Talk', description: 'Master weather talk, festival celebrations, culinary traditions, and travel stories.' },
+
+  // SECTION 6: Health, Emergencies & Financial Services
+  { id: 326, section: 6, unitNum: 1, title: 'Medical, Pharmacy & Health Care', description: 'Master pharmacy purchases, doctor registration, symptom details, and ER visits.' },
+  { id: 327, section: 6, unitNum: 2, title: 'Problem Solving & Customer Service Complaints', description: 'Master lost items, apartment noise, utility bills, swallowed ATM cards, and escalations.' },
+  { id: 328, section: 6, unitNum: 3, title: 'Emergency Situations & Calling for Help', description: 'Master calling ambulances, police reports, roadside assistance, and embassy help.' },
+  { id: 329, section: 6, unitNum: 4, title: 'Banking, ATM & Financial Services', description: 'Master opening accounts, currency exchange, wire transfers, and credit card blocks.' },
+  { id: 330, section: 6, unitNum: 5, title: 'Public Services, Post Office & Admin', description: 'Master sending packages, registered mail, government forms, and utility hookups.' }
+];
+
+conversationUnitsData.forEach((u) => {
+  units.push({
+    id: u.id,
+    category: 'conversation',
+    title: u.title,
+    section: `SECTION ${u.section}, UNIT ${u.unitNum}`,
+    description: u.description,
+    color: '#1CB0F6',
+    levels: defaultLevels
+  });
 });
 
 
