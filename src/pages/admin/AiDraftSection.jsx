@@ -148,8 +148,8 @@ Requirements:
 - For "Grammar" category, focus on the specific rule of the topic.
 - For "Conversation" category:
   * Generate a cohesive, 5-part continuous story scene per level node (ordering at cafe, hotel check-in, airport flight cancellation, restaurant service, library study groups, etc.).
-  * Each question MUST include a "dialogue" array of turns with `speaker` ("A" or "B") and `text` (string, or null for the target blank turn), and `targetTurnIndex` (the index of the null target turn).
-  * Example dialogue: `[{"speaker": "A", "text": "Good morning! What can I get for you?"}, {"speaker": "B", "text": null}, {"speaker": "A", "text": "Hot or iced?"}]`
+  * Each question MUST include a "dialogue" array of turns with 'speaker' ("A" or "B") and 'text' (string, or null for the target blank turn), and 'targetTurnIndex' (the index of the null target turn).
+  * Example dialogue: [{"speaker": "A", "text": "Good morning! What can I get for you?"}, {"speaker": "B", "text": null}, {"speaker": "A", "text": "Hot or iced?"}]
 
 CRITICAL FORMATTING RULES FOR THE QUESTION TEXT:
 1. The "question" field MUST consist ONLY of the sentence/scene title (e.g., "Ordering at StarCafé").
