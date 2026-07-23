@@ -49,28 +49,13 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date() });
 });
 
-// Initialize DB and start server with connection retry logic
-const startServer = async () => {
-  let retries = 5;
-  while (retries > 0) {
-    try {
-      // Run schema migrations/initialization on startup
-      await initDb();
-      break; // Successfully connected!
-    } catch (error) {
-      retries -= 1;
-      console.warn(`Database connection failed. Retrying in 2 seconds... (${retries} retries left)`);
-      if (retries === 0) {
-        console.error('Server failed to start due to database error:', error);
-        process.exit(1);
-      }
-      await new Promise(resolve => setTimeout(resolve, 2000));
-    }
-  }
-
-  app.listen(PORT, () => {
-    console.log(`GramGo Backend API Server running on port ${PORT}`);
+app.listen(PORT, () => {
+  console.log(`GramGo Backend API Server running on port ${PORT}`);
+  
+  // Run schema migrations/initialization asynchronously without blocking PORT binding
+  initDb().then(() => {
+    console.log('PostgreSQL DB schema ready.');
+  }).catch((err) => {
+    console.warn('Database init notice:', err.message);
   });
-};
-
-startServer();
+});
