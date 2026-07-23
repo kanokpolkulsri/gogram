@@ -4,6 +4,23 @@ import { authenticate } from '../middleware/auth.js';
 
 const router = express.Router();
 
+function formatDisplayName(name) {
+  if (!name || typeof name !== 'string') return 'Learner';
+  const trimmed = name.trim();
+  if (!trimmed) return 'Learner';
+
+  const parts = trimmed.split(/\s+/);
+  const rawFirst = parts[0];
+  const firstName = rawFirst.charAt(0).toUpperCase() + rawFirst.slice(1);
+
+  if (parts.length === 1) return firstName;
+
+  const lastPart = parts[parts.length - 1].replace(/\.+$/, '');
+  const lastNameInitial = lastPart.charAt(0).toUpperCase();
+
+  return `${firstName} ${lastNameInitial}.`;
+}
+
 // Retrieve all categories
 router.get('/categories', authenticate, async (req, res) => {
   try {
@@ -107,9 +124,10 @@ router.get('/leaderboard/:categoryId', authenticate, async (req, res) => {
     );
 
     const leaderboard = leaderboardRes.rows.map((row, index) => {
-      const initials = row.name ? row.name.slice(0, 2).toUpperCase() : 'YO';
+      const formattedName = formatDisplayName(row.name);
+      const initials = formattedName ? formattedName.slice(0, 2).toUpperCase() : 'YO';
       return {
-        name: row.name,
+        name: formattedName,
         avatar: null, // UI will render fallback/initials
         initials,
         xp: parseInt(row.xp) || 0,
@@ -142,9 +160,10 @@ router.get('/leaderboard/:categoryId', authenticate, async (req, res) => {
     );
     const userRank = rankRes.rows[0].rank;
 
+    const formattedCurrentUserName = formatDisplayName(userRow.name);
     const currentUser = {
-      name: userRow.name,
-      initials: userRow.name ? userRow.name.slice(0, 2).toUpperCase() : 'YO',
+      name: formattedCurrentUserName,
+      initials: formattedCurrentUserName ? formattedCurrentUserName.slice(0, 2).toUpperCase() : 'YO',
       xp: userXp,
       rank: userRank,
       isYou: true

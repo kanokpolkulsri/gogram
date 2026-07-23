@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useUser, useUserDispatch } from '../../data/userStore';
+import { formatDisplayName } from '../../utils/formatName';
 import './LeaderboardPage.css';
 
 const AVATAR_COLORS = [
@@ -218,7 +219,7 @@ export default function LeaderboardPage() {
                 {u.isYou && <span className="leaderboard-status-dot" />}
               </div>
               <div className="leaderboard-user-info">
-                <span className="leaderboard-name">{u.name}</span>
+                <span className="leaderboard-name">{formatDisplayName(u.name)}</span>
               </div>
               <span className="leaderboard-xp">
                 LV. {1 + (u.xp || 0)}
@@ -299,7 +300,7 @@ export default function LeaderboardPage() {
               <span className="leaderboard-status-dot" />
             </div>
             <div className="leaderboard-user-info">
-              <span className="leaderboard-name">{userName}</span>
+              <span className="leaderboard-name">{formatDisplayName(userName)}</span>
             </div>
             <span className="leaderboard-xp">
               LV. {1 + (youUser.xp || 0)}

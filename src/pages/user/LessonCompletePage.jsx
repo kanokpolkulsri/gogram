@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useUser, useUserDispatch } from '../../data/userStore';
 import { getNextLesson } from '../../data/progressHelpers';
+import { formatDisplayName } from '../../utils/formatName';
 import './LessonCompletePage.css';
 import './LeaderboardPage.css';
 
@@ -220,7 +221,7 @@ export default function LessonCompletePage() {
             <span className="leaderboard-status-dot" />
           </div>
           <div className="leaderboard-user-info" style={{ textAlign: 'left' }}>
-            <span className="leaderboard-name">{userName}</span>
+            <span className="leaderboard-name">{formatDisplayName(userName)}</span>
           </div>
           {levelUp ? (
             <span className="leaderboard-xp" style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '16px', fontWeight: 800, color: '#3c3c3c', flexShrink: 0 }}>
