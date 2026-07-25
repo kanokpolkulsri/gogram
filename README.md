@@ -45,7 +45,9 @@ npm run dev
 
 ---
 
-## 📐 System Architecture & Diagrams
+## 📐 System Architecture & Cloud FinOps Optimization
+
+For a detailed Google Cloud Architecture & FinOps (Cost Optimization) guide covering all service configurations, API token management, database connections, and cost-control knobs, please see **[ARCHITECTURE.md](file:///Users/tonpalmknp/Documents/gogram/ARCHITECTURE.md)**.
 
 ### System Architecture & Technology Stack
 
