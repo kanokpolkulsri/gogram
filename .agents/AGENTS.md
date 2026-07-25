@@ -35,6 +35,13 @@ Follow these guidelines for all changes in the Gogram repository:
 * **Category Icon Convention**: All study category icons must use a single capital letter (`iconChar`) representing the first letter of the category title (e.g., `G` for Grammar, `V` for Vocabulary, `M` for Mixed Grammar, `C` for Conversation). Emojis or special character symbols must not be used as category logo characters.
 * **Conversation Curriculum Standard**: The Conversation category is structured with 30 units (Units 301–330) and 5 difficulty levels per unit (Easy, Medium 1, Medium 2, Hard 1, Hard 2) with exactly **5 story questions per level node** (forming a cohesive 5-part continuous story scene per level).
 * **Always Discuss Before Modifying/Deploying**: Because the platform is actively serving real users in production, do not make code changes, commit, or run the deployment script (`deploy.sh`) without first presenting the proposed plan to the developer and obtaining their explicit permission.
-
-
+## 8. Infrastructure Sizing & Cost Optimization Rules
+* **Cloud SQL Instance Sizing**: Never provision or default to Enterprise Plus or multi-core (>1 vCPU) Cloud SQL database instances. Default strictly to **Enterprise Edition (Standard)** with **`db-f1-micro`** (Shared Core, 0.6 GB RAM) or **`db-custom-1-3840`** (1 vCPU, 3.75 GB RAM) and 10–20 GB SSD storage. Data Cache (NVMe) must remain disabled as Gogram's entire database dataset (<50 MB) fits comfortably inside standard PostgreSQL memory buffers.
+* **Cloud Run Service Optimization**:
+  * **Min Instances**: Must be set to `0` (`--min-instances 0`) so Cloud Run scales down to zero when idle, preventing baseline hourly charges.
+  * **CPU Allocation**: CPU must be set to `cpu-throttled` (CPU allocated only during request processing).
+  * **Memory & vCPU**: Provision `512Mi` RAM and `1 vCPU` max for the API container.
+  * **Concurrency**: Concurrency target set to `80` requests per instance.
+* **Cloud Build Trigger Filtering**: Build triggers must restrict included file paths to `server/**` so frontend code edits or documentation changes do not spawn paid container build steps.
+* **Instant Container Port Binding**: Backend entrypoints (`server/index.js`) must execute `app.listen(PORT)` immediately upon process start. Database connection tests or schema migrations must run asynchronously to ensure GCP container health probes (`PORT=8080`) pass within seconds without timing out.
 

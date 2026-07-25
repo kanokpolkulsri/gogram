@@ -18,7 +18,7 @@ npx -y firebase-tools@latest deploy --only hosting || { echo "❌ Firebase deplo
 
 echo "=== 5. Deploying Backend API to Google Cloud Run ==="
 echo "Building container and deploying (this may take a few minutes)..."
-gcloud run deploy gogram-api --source ./server --platform managed --region asia-southeast1 --allow-unauthenticated --project gogram-web-2026 > gcloud_deploy.log 2>&1
+gcloud run deploy gogram-api --source ./server --platform managed --region asia-southeast1 --allow-unauthenticated --min-instances 0 --max-instances 5 --memory 512Mi --cpu 1 --concurrency 80 --cpu-throttling --project gogram-web-2026 > gcloud_deploy.log 2>&1
 DEPLOY_STATUS=$?
 if [ $DEPLOY_STATUS -ne 0 ]; then
   cat gcloud_deploy.log
