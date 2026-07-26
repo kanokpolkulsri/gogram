@@ -1,38 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import { getDailyVocabSet } from '../data/dailyVocabData';
 import './RightSidebar.css';
-
-const dailyVocab = [
-  {
-    word: 'Ambitious',
-    type: 'adj.',
-    thai: 'ทะเยอทะยาน',
-    example: 'She has ambitious plans for her business expansion.'
-  },
-  {
-    word: 'Resilient',
-    type: 'adj.',
-    thai: 'ยืดหยุ่น / ฟื้นตัวเร็ว',
-    example: 'The local community proved resilient after the severe storm.'
-  },
-  {
-    word: 'Eloquent',
-    type: 'adj.',
-    thai: 'พูดจาคมคาย / มีวาทศิลป์',
-    example: 'His eloquent speech inspired everyone in the audience.'
-  },
-  {
-    word: 'Inevitable',
-    type: 'adj.',
-    thai: 'หลีกเลี่ยงไม่ได้',
-    example: 'Getting older is an inevitable part of life.'
-  },
-  {
-    word: 'Ubiquitous',
-    type: 'adj.',
-    thai: 'พบเห็นได้ทั่วไป / มีอยู่ทุกหนทุกแห่ง',
-    example: 'Smartphones are ubiquitous in modern society.'
-  }
-];
 
 const formatExample = (sentence, word) => {
   if (!sentence) return '';
@@ -59,16 +27,26 @@ const getDaysBetween = (dateStr1, dateStr2) => {
 export default function RightSidebar() {
   const [vocabIndex, setVocabIndex] = useState(0);
   const [isExpanded, setIsExpanded] = useState(true);
+  const [shuffleOffset, setShuffleOffset] = useState(() => {
+    const saved = localStorage.getItem('gramgo_vocab_shuffle_offset');
+    return saved ? parseInt(saved, 10) : 0;
+  });
 
-  const [learnedIndices, setLearnedIndices] = useState(() => {
-    const today = getTodayDateString();
+  const today = getTodayDateString();
+
+  // Get current 5 daily vocabulary words from 100-word pool
+  const dailyVocab = useMemo(() => {
+    return getDailyVocabSet(today, shuffleOffset);
+  }, [today, shuffleOffset]);
+
+  const [learnedIds, setLearnedIds] = useState(() => {
     const lastActive = localStorage.getItem('gramgo_vocab_last_active_date');
     if (lastActive !== today) {
       localStorage.setItem('gramgo_vocab_last_active_date', today);
-      localStorage.setItem('gramgo_learned_vocabs', JSON.stringify([]));
+      localStorage.setItem('gramgo_learned_vocab_ids', JSON.stringify([]));
       return [];
     }
-    const saved = localStorage.getItem('gramgo_learned_vocabs');
+    const saved = localStorage.getItem('gramgo_learned_vocab_ids');
     return saved ? JSON.parse(saved) : [];
   });
 
@@ -78,7 +56,6 @@ export default function RightSidebar() {
   });
 
   useEffect(() => {
-    const today = getTodayDateString();
     const lastCompleted = localStorage.getItem('gramgo_vocab_last_completed_date');
     if (lastCompleted) {
       const daysSinceCompletion = getDaysBetween(lastCompleted, today);
@@ -90,25 +67,27 @@ export default function RightSidebar() {
       setVocabStreak(0);
       localStorage.setItem('gramgo_vocab_streak', '0');
     }
-  }, []);
+  }, [today]);
 
-  const nextVocab = () => {
-    setVocabIndex((prev) => (prev + 1) % dailyVocab.length);
+  const handleShuffle = () => {
+    const nextOffset = shuffleOffset + 1;
+    setShuffleOffset(nextOffset);
+    localStorage.setItem('gramgo_vocab_shuffle_offset', String(nextOffset));
+    setVocabIndex(0);
   };
 
-  const prevVocab = () => {
-    setVocabIndex((prev) => (prev - 1 + dailyVocab.length) % dailyVocab.length);
-  };
+  const learnWord = (wordId) => {
+    if (learnedIds.includes(wordId)) return;
 
-  const learnWord = (index) => {
-    if (learnedIndices.includes(index)) return;
+    const newLearned = [...learnedIds, wordId];
+    setLearnedIds(newLearned);
+    localStorage.setItem('gramgo_learned_vocab_ids', JSON.stringify(newLearned));
 
-    const newLearned = [...learnedIndices, index];
-    setLearnedIndices(newLearned);
-    localStorage.setItem('gramgo_learned_vocabs', JSON.stringify(newLearned));
+    // Check if all 5 current words are learned
+    const currentWordIds = dailyVocab.map(w => w.id);
+    const hasLearnedAllCurrent = currentWordIds.every(id => newLearned.includes(id));
 
-    if (newLearned.length === dailyVocab.length) {
-      const today = getTodayDateString();
+    if (hasLearnedAllCurrent) {
       const lastCompleted = localStorage.getItem('gramgo_vocab_last_completed_date');
       if (lastCompleted !== today) {
         const newStreak = vocabStreak + 1;
@@ -119,13 +98,9 @@ export default function RightSidebar() {
     }
   };
 
-  const handleMarkAsLearned = () => {
-    learnWord(vocabIndex);
-
-    setTimeout(() => {
-      setVocabIndex((prev) => (prev + 1) % dailyVocab.length);
-    }, 400);
-  };
+  const isCurrentSetComplete = useMemo(() => {
+    return dailyVocab.every(w => learnedIds.includes(w.id));
+  }, [dailyVocab, learnedIds]);
 
   return (
     <aside className="right-sidebar" id="right-sidebar">
@@ -139,28 +114,40 @@ export default function RightSidebar() {
                 🔥 {vocabStreak} {vocabStreak === 1 ? 'day' : 'days'}
               </span>
             )}
-            <button 
-              className="vocab-expand-toggle-btn"
-              onClick={() => setIsExpanded(!isExpanded)}
-            >
-              {isExpanded ? 'COLLAPSE' : 'VIEW LIST'}
-            </button>
+            <div className="vocab-header-actions">
+              <button 
+                className="vocab-shuffle-btn"
+                onClick={handleShuffle}
+                title="Shuffle 5 New Vocabs"
+              >
+                🔄
+              </button>
+              <button 
+                className="vocab-expand-toggle-btn"
+                onClick={() => setIsExpanded(!isExpanded)}
+              >
+                {isExpanded ? 'COLLAPSE' : 'VIEW LIST'}
+              </button>
+            </div>
           </div>
         </div>
 
         {isExpanded ? (
           <div className="vocab-vertical-list">
-            {dailyVocab.map((item, index) => (
+            {dailyVocab.map((item) => (
               <div 
-                key={index} 
-                className={`vocab-vertical-item ${learnedIndices.includes(index) ? 'learned' : ''}`}
+                key={item.id} 
+                className={`vocab-vertical-item ${learnedIds.includes(item.id) ? 'learned' : ''}`}
+                onClick={() => learnWord(item.id)}
               >
                 <div className="vocab-vertical-item-header">
                   <div className="vocab-vertical-word-group">
                     <h4 className="vocab-vertical-word">{item.word}</h4>
                     <span className="vocab-vertical-type">{item.type}</span>
                   </div>
-
+                  {learnedIds.includes(item.id) && (
+                    <span className="vocab-learned-check">✓ Learned</span>
+                  )}
                 </div>
                 <p className="vocab-vertical-translation">{item.thai}</p>
                 <p className="vocab-vertical-example">
@@ -168,29 +155,29 @@ export default function RightSidebar() {
                 </p>
               </div>
             ))}
-            {learnedIndices.length === dailyVocab.length && (
+            {isCurrentSetComplete && (
               <div className="vocab-completion-message" style={{ marginTop: '12px' }}>
-                🎉 All 5 words learned today!
+                🎉 All 5 words in this set learned!
               </div>
             )}
           </div>
         ) : (
           <>
-            <div className="vocab-content animate-fade-in" key={vocabIndex}>
+            <div className="vocab-content animate-fade-in" key={dailyVocab[vocabIndex]?.id || vocabIndex}>
               <div className="vocab-word-row">
-                <h3 className="vocab-word">{dailyVocab[vocabIndex].word}</h3>
-                <span className="vocab-type">{dailyVocab[vocabIndex].type}</span>
+                <h3 className="vocab-word">{dailyVocab[vocabIndex]?.word}</h3>
+                <span className="vocab-type">{dailyVocab[vocabIndex]?.type}</span>
               </div>
-              <p className="vocab-translation">{dailyVocab[vocabIndex].thai}</p>
+              <p className="vocab-translation">{dailyVocab[vocabIndex]?.thai}</p>
               <p className="vocab-example-sentence">
-                "{formatExample(dailyVocab[vocabIndex].example, dailyVocab[vocabIndex].word)}"
+                "{formatExample(dailyVocab[vocabIndex]?.example, dailyVocab[vocabIndex]?.word)}"
               </p>
             </div>
 
             {/* Congratulatory Completion Message */}
-            {learnedIndices.length === dailyVocab.length && (
+            {isCurrentSetComplete && (
               <div className="vocab-completion-message">
-                🎉 All 5 words learned today!
+                🎉 All 5 words in this set learned!
               </div>
             )}
           </>
