@@ -52,36 +52,68 @@
 
   <!-- ===== Structured Data (JSON-LD) ===== -->
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "GramGo",
-      "url": "https://gramgo.web.app/",
-      "sameAs": [
-        "https://gramgo.web.app",
-        "https://www.techshabu.com"
-      ],
-      "description": "แอปเรียนภาษาอังกฤษฟรีสำหรับนักเรียนมัธยมไทย ฝึกไวยากรณ์อังกฤษแบบ gamified",
-      "applicationCategory": "EducationApplication",
-      "operatingSystem": "Web",
-      "isAccessibleForFree": true,
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "THB"
-      },
-      "inLanguage": ["th", "en"],
-      "audience": {
-        "@type": "EducationalAudience",
-        "educationalRole": "student",
-        "geographicArea": "Thailand"
-      },
-      "provider": {
-        "@type": "Organization",
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
         "name": "GramGo",
-        "url": "https://gramgo.web.app/"
+        "url": "https://gramgo.web.app/",
+        "sameAs": [
+          "https://gramgo.web.app",
+          "https://gramgo.techshabu.com"
+        ],
+        "description": "แอปเรียนภาษาอังกฤษฟรีสำหรับนักเรียนมัธยมไทย ตะลุยโจทย์ A-Level & TGAT ภาษาอังกฤษ ไวยากรณ์ 75 ยูนิต และบทสนทนา 30 ยูนิต แบบ gamified",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "THB"
+        },
+        "inLanguage": ["th", "en"],
+        "audience": {
+          "@type": "EducationalAudience",
+          "educationalRole": "student",
+          "geographicArea": "Thailand"
+        },
+        "provider": {
+          "@type": "Organization",
+          "name": "GramGo",
+          "url": "https://gramgo.web.app/"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "GramGo คืออะไร?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "GramGo คือแพลตฟอร์มฝึกภาษาอังกฤษฟรีสำหรับนักเรียนไทย ออกแบบมาเพื่อเตรียมสอบ A-Level และ TGAT ภาษาอังกฤษ มีระบบ XP, Streak และ Leaderboard เล่นสนุกเหมือนเกม"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "GramGo มีเนื้อหาอะไรบ้าง?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "GramGo ครอบคลุม 4 หมวดเรียนหลัก: Grammar (ไวยากรณ์ 75 ยูนิต), Vocabulary (คำศัพท์ A-Level 155 คำ), Mixed Grammar และ Conversation (บทสนทนาแบบต่อเนื่อง 30 ยูนิต)"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "GramGo ใช้งานฟรีหรือไม่?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ใช้งานฟรี 100% สามารถเข้าเรียนและฝึกทำโจทย์ผ่านเว็บบราวเซอร์ได้ทันทีโดยไม่ต้องเสียค่าใช้จ่าย"
+            }
+          }
+        ]
       }
-    }
+    ]
     </script>
 </head>
 

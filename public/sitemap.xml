@@ -2,11 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://gogram.techshabu.com/</loc>
-    <lastmod>2026-07-05</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://gramgo.web.app/</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="th" href="https://gogram.techshabu.com/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gogram.techshabu.com/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://gramgo.web.app/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gramgo.web.app/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gramgo.web.app/"/>
+  </url>
+  <url>
+    <loc>https://gramgo.web.app/category/1</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gramgo.web.app/category/2</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gramgo.web.app/category/3</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gramgo.web.app/category/4</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
