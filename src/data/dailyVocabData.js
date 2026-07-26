@@ -227,17 +227,14 @@ export const dailyVocabPool = [
 
 /**
  * Gets 5 vocabulary words for a given date or day-of-month (1 to 31).
- * Day 1 (1st) -> Words 1..5
- * Day 14 (14th) -> Words 66..70
- * Day 31 (31st) -> Words 151..155
- * 
- * If offset is provided (via user Clicking Shuffle button), it cycles to the next 5-word block.
+ * Day 1 (1st) -> Words 1..5 (Index 0..4)
+ * Day 14 (14th) -> Words 66..70 (Index 65..69)
+ * Day 31 (31st) -> Words 151..155 (Index 150..154)
  */
-export function getDailyVocabSet(dateStr, offset = 0) {
+export function getDailyVocabSet(dateStr) {
   let dayOfMonth = 1;
 
   if (dateStr) {
-    // Parse YYYY-MM-DD
     const parts = dateStr.split('-');
     if (parts.length === 3) {
       dayOfMonth = parseInt(parts[2], 10) || 1;
@@ -250,13 +247,7 @@ export function getDailyVocabSet(dateStr, offset = 0) {
   dayOfMonth = Math.max(1, Math.min(31, dayOfMonth));
 
   // Calculate starting index: Day 1 -> Index 0, Day 2 -> Index 5, Day 14 -> Index 65
-  const baseIndex = ((dayOfMonth - 1) * 5 + offset * 5) % dailyVocabPool.length;
+  const baseIndex = (dayOfMonth - 1) * 5;
 
-  const selected = [];
-  for (let i = 0; i < 5; i++) {
-    const idx = (baseIndex + i) % dailyVocabPool.length;
-    selected.push(dailyVocabPool[idx]);
-  }
-
-  return selected;
+  return dailyVocabPool.slice(baseIndex, baseIndex + 5);
 }

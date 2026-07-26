@@ -27,17 +27,13 @@ const getDaysBetween = (dateStr1, dateStr2) => {
 export default function RightSidebar() {
   const [vocabIndex, setVocabIndex] = useState(0);
   const [isExpanded, setIsExpanded] = useState(true);
-  const [shuffleOffset, setShuffleOffset] = useState(() => {
-    const saved = localStorage.getItem('gramgo_vocab_shuffle_offset');
-    return saved ? parseInt(saved, 10) : 0;
-  });
 
   const today = getTodayDateString();
 
-  // Get current 5 daily vocabulary words from 100-word pool
+  // Get current 5 daily vocabulary words for today from 155-word A-Level pool
   const dailyVocab = useMemo(() => {
-    return getDailyVocabSet(today, shuffleOffset);
-  }, [today, shuffleOffset]);
+    return getDailyVocabSet(today);
+  }, [today]);
 
   const [learnedIds, setLearnedIds] = useState(() => {
     const lastActive = localStorage.getItem('gramgo_vocab_last_active_date');
@@ -68,13 +64,6 @@ export default function RightSidebar() {
       localStorage.setItem('gramgo_vocab_streak', '0');
     }
   }, [today]);
-
-  const handleShuffle = () => {
-    const nextOffset = shuffleOffset + 1;
-    setShuffleOffset(nextOffset);
-    localStorage.setItem('gramgo_vocab_shuffle_offset', String(nextOffset));
-    setVocabIndex(0);
-  };
 
   const learnWord = (wordId) => {
     if (learnedIds.includes(wordId)) return;
@@ -114,21 +103,12 @@ export default function RightSidebar() {
                 🔥 {vocabStreak} {vocabStreak === 1 ? 'day' : 'days'}
               </span>
             )}
-            <div className="vocab-header-actions">
-              <button 
-                className="vocab-shuffle-btn"
-                onClick={handleShuffle}
-                title="Shuffle 5 New Vocabs"
-              >
-                🔄
-              </button>
-              <button 
-                className="vocab-expand-toggle-btn"
-                onClick={() => setIsExpanded(!isExpanded)}
-              >
-                {isExpanded ? 'COLLAPSE' : 'VIEW LIST'}
-              </button>
-            </div>
+            <button 
+              className="vocab-expand-toggle-btn"
+              onClick={() => setIsExpanded(!isExpanded)}
+            >
+              {isExpanded ? 'COLLAPSE' : 'VIEW LIST'}
+            </button>
           </div>
         </div>
 
@@ -157,7 +137,7 @@ export default function RightSidebar() {
             ))}
             {isCurrentSetComplete && (
               <div className="vocab-completion-message" style={{ marginTop: '12px' }}>
-                🎉 All 5 words in this set learned!
+                🎉 All 5 words learned today!
               </div>
             )}
           </div>
@@ -177,7 +157,7 @@ export default function RightSidebar() {
             {/* Congratulatory Completion Message */}
             {isCurrentSetComplete && (
               <div className="vocab-completion-message">
-                🎉 All 5 words in this set learned!
+                🎉 All 5 words learned today!
               </div>
             )}
           </>
